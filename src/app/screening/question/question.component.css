@@ -1,0 +1,194 @@
+h3 {
+  text-align: center;
+  color: white;
+}
+
+.card-header {
+  background-color: #F26925;
+}
+
+h6 {
+  text-align: center;
+  color: white;
+}
+
+#xIcon {
+    float: right;
+}
+
+#penIcon {
+  color: #F26925;
+}
+
+.revatureOrange{
+  background-color: #F26925;
+  color: white;
+  margin: 1px;
+}
+
+.revatureGray{
+ background-color: #6c757d;
+ color:white;
+ margin: 1px;
+}
+
+#xIcon {
+  color: #F26925;
+  margin-left: 10px;
+}
+
+#xIcon:hover{
+    color:black;
+}
+
+#penIcon {
+  color: #F26925;
+}
+#allTagsDiv{
+  overflow : auto;
+  height: 100px;
+  width: 430px;
+}
+#questionTable{
+  margin: auto;
+  overflow : auto;
+  height: 500px;
+  width: 1300px;
+}
+#allQuestionsDiv{
+  overflow : auto;
+  height: 380px;
+}
+/*Custom scrollbar*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6c757d; 
+  border-radius: 5px;
+}
+#penIcon:hover{
+    color:black;
+}
+i {
+  cursor: pointer;
+  cursor: hand;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  margin-left: 10px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+ /* The slider */
+ .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 0px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+ 
+input:checked + .slider {
+  background-color: #F26925;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #F26925;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+
+  
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#xIcon:hover .removeToolTip{
+  visibility: visible;
+}
+.removeToolTip{
+  visibility: hidden;
+  position: absolute;
+  float: right;
+  left: 90%;
+  top:70%;
+  
+}
+
+#penIcon:hover .editToolTip{
+visibility: visible;
+}
+.editToolTip{
+color: black;
+visibility: hidden;
+position: absolute;
+float: right;
+width: 10%;
+left: 87%;
+top:70%;
+
+}
+.accordion-toggle { display: block; }
+p{
+  color: #F26925;
+}
+fixed-modal .modal-content {
+  size: sm
+}
+
+.tabContent{
+  width: 420px;
+  height: 400px;
+}
+
+.pillButtons{
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 9%;
+  width: 91%;
+  height: 87%;
+  justify-content: center;
+  font-size: 12px;
+}

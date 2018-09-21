@@ -1,0 +1,43 @@
+<div id="pending-screening-list-container" class="animated fadeIn">
+  <h1>Candidate List</h1>
+  <div id="pending-screening-list-contents">
+    <div class="filters">
+      <!-- Search Bar -->
+      <input [(ngModel)]="searchText" placeholder="Search" class="search-bar">
+    </div>
+    <!-- Table of Pending Screenings -->
+    <table class="table table-hover" id="screenings-table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Track</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- The paginate pipe must be at the end of all the filters -->
+        <ng-container *ngFor="let i = index; let scheduledScreening of scheduledScreenings | searchPipe: searchText | paginate: { itemsPerPage: 10, currentPage: p } ">
+          <tr (click)="showBeginScreeningPrompt = !showBeginScreeningPrompt; selectedCandidate = scheduledScreening.trainee; selectedScheduledScreening = scheduledScreening">
+            <td>{{scheduledScreening.trainee.firstname}} {{scheduledScreening.trainee.lastname}}</td>
+            <td>{{scheduledScreening.trainee.skillTypeName}}</td>
+            <td>{{scheduledScreening.trainee.schedule | date:'short'}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <!-- The Modal -->
+    <div id="myModal" class="modal animated fadeIn" [style.display]="toggleBeginScreeningPrompt()">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <h2 *ngIf="selectedCandidate">You Chose "{{selectedCandidate.firstname}} {{selectedCandidate.lastname}}"</h2>
+        <div class="buttons">
+          <button class="btn" type="submit" (click)="confirmSelectedCandidate(); beginScreening()" routerLink="/Caliber/screening/introduction" routerLinkActive="activeLink">Begin Interview</button>
+          <button class="btn" (click)="showBeginScreeningPrompt = !showBeginScreeningPrompt">Back To List</button>
+        </div>
+      </div>
+    </div>
+    <!-- Pagination section -->
+    <pagination-controls class="pagination" (pageChange)="p = $event" maxSize="5" previousLabel="" nextLabel=""></pagination-controls>
+  </div>
+
+</div>

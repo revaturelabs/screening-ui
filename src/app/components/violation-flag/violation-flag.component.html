@@ -1,0 +1,29 @@
+
+<div id="violations-checkbox text-center">
+  <div *ngIf="!addViolation" class="text-center">
+    <button  class="btn" (click)="addViolation = !addViolation">Report Violation</button>
+    <br><br>
+  </div>
+  <div *ngIf="addViolation" class="text-center violation-container">
+    <br>
+    <div class="violation" *ngFor="let violationType of violationTypes; let i = index">
+      <!-- Create a checkbox for each tag using ngFor. Toggle buttons instead of checkboxes! -->
+      <span id="pass-fail-button" >
+        <label class="switch">
+          <input type="radio" name="violations" (click)="selectedViolation = violationType">
+          <div class="slider round">
+            <span class="on">{{violationType.violationTypeText}}</span>
+            <span class="off">{{violationType.violationTypeText}}</span>
+          </div>
+        </label>
+      </span>
+    </div>
+    <div class="violation-comment">
+      <textarea class="form-control" (input)="violationComment = $event.target.value" placeholder="Optional Soft Skill Violation Feedback"></textarea>
+    </div>
+    <br>
+    <button class="btn" (click)="submitViolation(selectedViolation, violationComment); addViolation = !addViolation">Add Violation</button>
+    <button class="btn" (click)="cancelViolation(); addViolation = !addViolation">Cancel</button>
+    <br><br>
+  </div>
+</div>

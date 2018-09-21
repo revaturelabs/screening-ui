@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{question.questionText}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h4> Sample Responses </h4>
+  <p>1 - {{question.sampleAnswer1}}</p>
+  <p>2 - {{question.sampleAnswer2}}</p>
+  <p>3 - {{question.sampleAnswer3}}</p>
+  <p>4 - {{question.sampleAnswer4}}</p>
+  <p>5 - {{question.sampleAnswer5}}</p>
+  <p>Score: {{questionScore.score}}</p>
+  <div class="slidecontainer container text-center">
+    <input [(ngModel)]="questionScore.score" type="range" min="0" max="5" class="slider" id="score">
+  </div>
+  <textarea class="form-control" placeholder="Optional Feedback"></textarea>
+</div>
+<div class="modal-footer answer-bank-end">
+    <span data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class="flag-button glyphicon glyphicon-flag color-red"></span>
+  <button type="button" class="btn btn-outline-dark" (click)="saveQuestionScore(); activeModal.close('Close click');">Submit Score</button>
+</div>
+<app-violation-flag></app-violation-flag>

@@ -1,0 +1,170 @@
+#q-and-a-container{
+    margin: 25px 10%;
+    min-width: 360px;
+    max-width: 95vw;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    border-radius: 4px;
+    /* padding-bottom: 128px; */
+    overflow: auto;
+}
+h1{
+    width: 100%;
+    min-width: 260px;
+    background: #f26925;
+    color: white;  
+    font-size: 20px;
+    border-color: #f26925;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-bottom: 0px;
+    
+    padding: 12px;
+    white-space:nowrap;
+}
+h2{
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+p{
+    font-size: 15px;  
+    margin-bottom: 0px;
+}
+#candidate-name{
+    font-size:20px;
+}
+#q-and-a-content{
+    padding: 20px 5%;
+    padding-bottom: 15px;
+}
+/* #############################
+    CATEGORY BUTTON TABS STYLES
+############################# */
+#bucket-buttons{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.nav-tabs{
+    color: #f26925;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: white;
+}
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover{
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    position: relative;
+    z-index: 2;
+}
+li .inActive{
+    border-bottom: 1px solid #ddd;
+}
+.nav>li>a, .nav>li>a{
+    margin-top: 5px;
+    transition: background-color 1s ease;
+}
+/* #############################
+    QUESTION TABLE STYLES 
+############################# */
+#table-container{
+    max-height: 300px;
+    overflow: auto;
+}
+
+#question-table-title{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.question-col{
+    padding: 0px !important;
+}
+
+.table[_ngcontent-c11] thead[_ngcontent-c11] th[_ngcontent-c11], 
+.table[_ngcontent-c11] td[_ngcontent-c11], 
+.table[_ngcontent-c11] th[_ngcontent-c11] {
+    border-top:0px;
+    font-size: 15px;
+}
+
+.table td, .table th{
+    padding: .5rem;
+}
+.table thead th, .table td, .table th{
+    border-top: 1px solid #b1b8bd;
+    border-bottom: 1px solid #7f97a8;
+}
+
+/* Submit Button */
+#center-submit{
+    text-align:center;
+    margin:auto;
+}
+
+#submit-button{
+    margin: auto 5px;
+    margin-top: 5px;
+    width: 120px;
+    background: #f26925;
+    border-color: #f26925;
+    color: white;
+}
+
+#submit-button:disabled {
+    background: #686868;
+    border: none;
+    color: white;
+    font-weight: strong;
+}
+
+/* Footer */
+.footer{
+    margin-top: 20px;
+    padding: 15px auto;
+    border-style: solid;
+    border-color: #474c55;
+    border-width: 0px;
+    border-top-width: 2px;
+    background-color: white;
+}
+#gfooter{
+	/* position: sticky; */
+    text-align: center;
+}
+
+#footsie{
+	font-size: 16px;
+	border: 1px solid #ccc;
+    border-radius: 4px;
+}
+h3{
+    font-size: 18px;
+    white-space: nowrap;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+textarea{
+    width: 100%;
+    min-width: 300px;
+    height: auto;
+}
+.pointer{
+    cursor: pointer;
+}
+
+@media(max-width:500px){
+    #q-and-a-container{
+        margin: auto;
+    }
+}

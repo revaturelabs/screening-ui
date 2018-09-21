@@ -1,0 +1,153 @@
+.pointer {cursor: pointer;}
+
+.col {
+    padding-right: 1%;
+    max-width: 24%;
+}
+
+@media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    .col{
+		padding: 1%;
+        width: 100%;
+    }
+}
+
+#editSkill, #skillName {
+    padding: 3%;
+}
+
+.btn-light {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #ccc;
+    text-shadow: 0 1px 0 #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+    background-repeat: repeat-x;
+}
+
+.btn-primary {
+    cursor: pointer;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    user-select: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.btn-default {
+    text-shadow: 0 1px 0 #fff;
+    border-color: #ccc;
+}
+
+.btn-default {
+    color: #333;
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    background-color: #fff;
+}
+
+.btn-default:hover {
+    background-image: linear-gradient(to bottom,rgb(240, 239, 239) 0,#cccbcb 100%);
+}
+
+/* End New CSS */
+.table th {
+    border-top: 0px;
+    border-bottom: 2px solid #ddd;
+}
+
+.table td {
+    text-align: left;
+}
+
+.table {
+    padding-bottom: 0;
+}
+
+.close {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.close:hover {
+    cursor: pointer;
+    color: #000;
+    font-weight: bolder;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.form-control {
+    padding: 0;
+}
+
+div .modal-dialog {
+    background-color: red;
+}
+
+a {
+	color: rgb(242, 105, 37);
+}
+
+.btn-primary, .fa .fa-file-code-o {
+	color: white !important;
+	border-color: white !important;
+	background-color: rgb(242, 105, 37) !important;
+    background-image: none;
+}
+
+.fa-check{
+	color: #81f575;
+}
+.fa-minus{
+	color: rgb(252,221,115);
+}
+.btn-update {
+    background-color: #ff8e4d;
+    color: white;
+}
+
+.btn-add {
+    background-color: #ff8e4d;
+    color: white;
+}
+
+.fa-pencil {
+    cursor: pointer;
+}
+
+.col-sm-2 {
+    padding-top: 10px;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #fa7427;
+	border-bottom: 1px solid #ebe8e8;
+	border-color: white;
+}
+.btn-secondary:hover {
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    color: #10009c;
+    transition: 1s;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
