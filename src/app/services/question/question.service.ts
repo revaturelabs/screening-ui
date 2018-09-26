@@ -30,16 +30,16 @@ export class QuestionService {
   // Returns an observable array of questions, filtered by the selected tags and
   // candidate's skillTypeID
   getQuestions(): Observable<Question[]> {
-    const tagArray: number[] = [];
-    for (const tag of this.tagService.getCheckedTags()){
-      tagArray.push(tag.tagId);
-    }
+    // const tagArray: number[] = [];
+    // for (const tag of this.tagService.getCheckedTags()){
+    //   tagArray.push(tag.tagId);
+    // }
     const currSkillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
-    // let currSkillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
-    const tagsAndSkill: TagsAndSkill = { tagList : tagArray, skillTypeId : currSkillTypeID };
-    return this.httpClient.post<Question[]>(
+    // const tagsAndSkill: TagsAndSkill = { tagList : tagArray, skillTypeId : currSkillTypeID };
+
+    return this.httpClient.post<Question[]>( //change to get with parameters
       this.urlService.question.filteredQuestions(),
-      tagsAndSkill
+       currSkillTypeID
     );
   }
 }

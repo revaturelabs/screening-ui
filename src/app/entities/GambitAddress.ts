@@ -7,3 +7,4 @@ export class GambitAddress {
     company: string;
     active: boolean;
 }
+//kill with fire

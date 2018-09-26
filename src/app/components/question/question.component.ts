@@ -159,31 +159,31 @@ export class QuestionComponent implements OnInit {
    * and create a new tag with no Id, then get the same tag with a valid
    * Id from the tag service
    **/
-  newTag() {
-    let newTag: Tag = new Tag();
-    newTag.tagName = this.newTagString;
-    if (this.newTagString) {
-      this.tagsService.createNewTag(this.newTagString).subscribe(data => {
-        newTag = (data as Tag);
-        this.currentTags.push(newTag);
-      });
-      this.newTagString = '';
-    }
-  }
+  // newTag() {
+  //   let newTag: Tag = new Tag();
+  //   newTag.tagName = this.newTagString;
+  //   if (this.newTagString) {
+  //     this.tagsService.createNewTag(this.newTagString).subscribe(data => {
+  //       newTag = (data as Tag);
+  //       this.currentTags.push(newTag);
+  //     });
+  //     this.newTagString = '';
+  //   }
+  // }
 
   /**
    * Converts the currently added Tag array into an array of tag ids for
    * saving and updating.
    **/
-  getTagIds() {
-    const tagIds: number[] = [];
-    let i = 0;
-
-    for (i; i < this.currentTags.length; i++) {
-      tagIds[i] = this.currentTags[i].tagId;
-    }
-    return tagIds;
-  }
+  // getTagIds() {
+  //   const tagIds: number[] = [];
+  //   let i = 0;
+  //
+  //   for (i; i < this.currentTags.length; i++) {
+  //     tagIds[i] = this.currentTags[i].tagId;
+  //   }
+  //   return tagIds;
+  // }
 
   /**
    * This function will check to see if all of the fields are filled
@@ -209,18 +209,18 @@ export class QuestionComponent implements OnInit {
    *
    **/
   addNewQuestion() {
-    this.tagsService.getAllTags().subscribe(data => {
-      this.allTags = (data as Tag[]);
-    });
-    const newCurrentTagIds: number[] = [];
-    let i = 0;
-    if (this.question) {
-      for (i; i < this.currentTags.length; i++) {
-        newCurrentTagIds.push(this.currentTags[i].tagId);
-      }
-    } else {
-      this.currentTags = [];
-    }
+    // this.tagsService.getAllTags().subscribe(data => {
+    //   this.allTags = (data as Tag[]);
+    // });
+    // const newCurrentTagIds: number[] = [];
+    // let i = 0;
+    // if (this.question) {
+    //   for (i; i < this.currentTags.length; i++) {
+    //     newCurrentTagIds.push(this.currentTags[i].tagId);
+    //   }
+    // } else {
+    //   this.currentTags = [];
+    // }
     if (this.sampleAnswers.length === 5 && this.question.questionText) {
       if (this.question.questionId) {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -254,53 +254,53 @@ export class QuestionComponent implements OnInit {
   /**
    * Adds the selected tag to the current tags array and removes it from the all tags array.
    **/
-  addTagToQuestion(tag) {
-    let currentTag: any;
-    const newAllTags: Tag[] = [];
-    let i = 0;
-
-    for (i; i < this.allTags.length; i++) {
-      currentTag = this.allTags[i];
-      if (tag && currentTag) {
-        if (tag.tagId !== currentTag.tagId) {
-          newAllTags.push(currentTag);
-        }
-      }
-    }
-    this.allTags = newAllTags;
-    this.currentTags.push(tag);
-  }
+  // addTagToQuestion(tag) {
+  //   let currentTag: any;
+  //   const newAllTags: Tag[] = [];
+  //   let i = 0;
+  //
+  //   for (i; i < this.allTags.length; i++) {
+  //     currentTag = this.allTags[i];
+  //     if (tag && currentTag) {
+  //       if (tag.tagId !== currentTag.tagId) {
+  //         newAllTags.push(currentTag);
+  //       }
+  //     }
+  //   }
+  //   this.allTags = newAllTags;
+  //   this.currentTags.push(tag);
+  // }
 
   /**
    * Adds the selected tag to the all tags array and removes it from the current tags array
    **/
-  removeTagFromQuestion(tag) {
-    let currentTag: any;
-    const newCurrentTags: Tag[] = [];
-    let i = 0;
-
-    for (i; i < this.currentTags.length; i++) {
-      currentTag = this.currentTags[i];
-      if (tag.tagId !== currentTag.tagId) {
-        newCurrentTags.push(currentTag);
-      }
-    }
-    this.allTags.push(tag);
-    this.currentTags = newCurrentTags;
-  }
+  // removeTagFromQuestion(tag) {
+  //   let currentTag: any;
+  //   const newCurrentTags: Tag[] = [];
+  //   let i = 0;
+  //
+  //   for (i; i < this.currentTags.length; i++) {
+  //     currentTag = this.currentTags[i];
+  //     if (tag.tagId !== currentTag.tagId) {
+  //       newCurrentTags.push(currentTag);
+  //     }
+  //   }
+  //   this.allTags.push(tag);
+  //   this.currentTags = newCurrentTags;
+  // }
 
   /**
    * Resets the current tags and then re adds the tags specific to the current question.
    * Used to update a question by populating the current tags with the tags currently
    * associated with that question.
    **/
-  removeTagsFromAll() {
-    let i = 0;
-    this.currentTags = [];
-    for (i; i < this.newTags.length; i++) {
-      this.addTagToQuestion(this.newTags[i]);
-    }
-  }
+  // removeTagsFromAll() {
+  //   let i = 0;
+  //   this.currentTags = [];
+  //   for (i; i < this.newTags.length; i++) {
+  //     this.addTagToQuestion(this.newTags[i]);
+  //   }
+  // }
 
   /**
    * Used to populate the current question and the current tags with a selected question to be
@@ -311,15 +311,15 @@ export class QuestionComponent implements OnInit {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
         this.questions = (data as Question[]);
       });
-      this.tagsService.getAllTags().subscribe(data => {
-        this.allTags = (data as Tag[]);
-      });
+      // this.tagsService.getAllTags().subscribe(data => {
+      //   this.allTags = (data as Tag[]);
+      // });
     }
   }
 
-  addNewTag(newTag: Tag) {
-    this.currentTags.push(newTag);
-  }
+  // addNewTag(newTag: Tag) {
+  //   this.currentTags.push(newTag);
+  // }
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');

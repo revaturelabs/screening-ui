@@ -9,7 +9,10 @@ export class GambitSkillType {
   skillTypeId: number;
   skillTypeName: string;
   skillTypeDesc: string;
-  skills: Array<GambitSkill>;
+  skills: Array<GambitSkill>; //GambitSkill -->Bucket
   isActive: boolean;
   isCore: boolean;
 }
+
+
+//kill with fire

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 
 // rxjs
-import { Observable, of  } from 'rxjs';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
+import { Observable, of, catchError } from 'rxjs';
+//import 'rxjs/add/operator/catch';
+//import 'rxjs/add/observable/of';
 
 /**
  * This class intercepts each HTTP request, clones it,
@@ -29,13 +29,13 @@ export class SpringInterceptor implements HttpInterceptor {
     });
 
     return <any>next.handle(modifiedRequest)
-      .subscribe( (error) => {  // universal error handler
+      .catchError( (error) => {  // universal error handler
         /*
         Dumps the error to the console and returns an empty Observable
         as a fallback to allow a service call to continue as if no data
         was returned
         */
-        if (error.type !== 200) {
+        if (error.status !== 200) {
             console.log('!!DETECTED XHR REQUEST ERRROR!!');
             console.log(error);
         }
