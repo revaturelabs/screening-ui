@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { TrainerService } from '../../../../gambit-client/services/trainer/trainer.service';
-import { GambitTrainer } from '../../../../gambit-client/entities/GambitTrainer';
+import { TrainerService } from '../../services/trainer/trainer.service';
+import { GambitTrainer } from '../../entities/GambitTrainer';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserRole } from '../../../../gambit-client/entities/UserRole';
+import { UserRole } from '../../entities/UserRole';
 
 
 @Component({

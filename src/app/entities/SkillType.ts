@@ -1,8 +1,6 @@
 
 export class SkillType {
     skillTypeId: number;
-    skillTypeName: string;
-    skillTypeDesc: string;
+    title: string;
     isActive: boolean;
-    isCore: boolean;
 }

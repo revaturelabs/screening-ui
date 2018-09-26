@@ -1,22 +1,15 @@
 // Testing modules
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 // Modules
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Dependencies } from '../../../caliber.test.module';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { Dependencies } from '../../caliber.test.module';
 
 // Components
 import { QuestionComponent } from './question.component';
 
-
-// Services
-import { AlertsService } from '../../services/alert-service/alerts.service';
-
 // Mock Data
 import { QUESTIONS } from '../../mock-data/mock-questions';
-import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { Question } from '../../entities/Question';
 
 /**
  * Test for methods on the question component.

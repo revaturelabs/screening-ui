@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Screening } from '../../entities/Screening';
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { UrlService } from '../urls/url.service';

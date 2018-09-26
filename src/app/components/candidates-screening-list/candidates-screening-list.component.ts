@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-// Pipes
-import { SearchPipe } from '../../util/search.pipe';
 
 // Classes
 import { SimpleTrainee } from '../../entities/SimpleTrainee';

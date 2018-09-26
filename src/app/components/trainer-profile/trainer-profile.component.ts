@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
 
 
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { TrainerService } from '../../../../gambit-client/services/trainer/trainer.service';
-import { GambitTrainer } from '../../../../gambit-client/entities/GambitTrainer';
-import { BatchService } from '../../../../gambit-client/aggregator/services/completebatch.service';
-import { CompleteBatch } from '../../../../gambit-client/aggregator/entities/CompleteBatch';
-import { GambitTrainee } from '../../../../gambit-client/entities/GambitTrainee';
-import { GambitTraineeService } from '../../../../gambit-client/services/trainee/gambit-trainee.service';
-import { UserRole } from '../../../../gambit-client/entities/UserRole';
+import { TrainerService } from '../../services/trainer/trainer.service';
+import { GambitTrainer } from '../../entities/GambitTrainer';
+import { BatchService } from '../../services/complete-batch-service/completebatch.service';
+import { CompleteBatch } from '../../entities/CompleteBatch';
+import { GambitTrainee } from '../../entities/GambitTrainee';
+import { GambitTraineeService } from '../../services/trainee/gambit-trainee.service';
+import { UserRole } from '../../entities/UserRole';
 
 @Component({
   selector: 'app-trainer-profile',

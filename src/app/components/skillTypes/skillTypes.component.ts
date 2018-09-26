@@ -121,12 +121,9 @@ export class SkillTypesComponent implements OnInit {
     */
     editSkillType(skillType) {
         this.singleSkillType = {
-            skillTypeName: skillType.skillTypeName,
+            title: skillType.title,
             skillTypeId: skillType.skillTypeId,
-            skillTypeDesc: skillType.skillTypeDesc,
             isActive: true,
-            isCore: true,
-            skills: []
         };
         this.skillTypeService.getBucketsBySkillType(skillType.skillTypeId).subscribe(results => {
             for (let i = 0; i < results.length; i++) {

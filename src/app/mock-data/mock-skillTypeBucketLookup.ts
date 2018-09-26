@@ -1,12 +1,11 @@
-import { Bucket } from '../entities/Bucket';
 import { SkillTypeBucketLookUp } from '../entities/SkillTypeBucketLookup';
-import { SkillType } from '../entities/SkillType';
+
 
 export const SKILL_TYPE_BUCKET_LOOKUP: SkillTypeBucketLookUp = {
       skillTypeBucketLookupID: 1,
-      SkillType: {
+      skillType: {
           skillTypeId: 51,
-          skillTypeName: 'Java EE/Microservices',
+          title: 'Java EE/Microservices',
           isActive: true
       },
       buckets: [

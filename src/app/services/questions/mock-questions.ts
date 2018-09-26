@@ -10,7 +10,8 @@ export const QUESTIONS: Question[] = [
         sampleAnswer2: 'answer2',
         sampleAnswer3: 'answer3',
         sampleAnswer4: 'answer4',
-        sampleAnswer5: 'answer5'
+        sampleAnswer5: 'answer5',
+        isActive: true
     },
     {
         questionId: 1,
@@ -20,7 +21,8 @@ export const QUESTIONS: Question[] = [
         sampleAnswer2: 'dsflkj',
         sampleAnswer3: 'eiei',
         sampleAnswer4: 'qq',
-        sampleAnswer5: 'rew'
+        sampleAnswer5: 'rew',
+        isActive: true
     },
     {
         questionId: 2,
@@ -30,7 +32,8 @@ export const QUESTIONS: Question[] = [
         sampleAnswer2: 'mnbb',
         sampleAnswer3: 'rewq',
         sampleAnswer4: 'hjkl',
-        sampleAnswer5: 'poiu'
+        sampleAnswer5: 'poiu',
+        isActive: true
   },
   ];
 
@@ -42,7 +45,8 @@ export const replacementQuestion: Question = {
     sampleAnswer2: 'buck',
     sampleAnswer3: 'scooter',
     sampleAnswer4: 'lou anne',
-    sampleAnswer5: 'idk man'
+    sampleAnswer5: 'idk man',
+    isActive: true
 };
 
 export const expectedQuestion: Question = {
@@ -53,5 +57,6 @@ export const expectedQuestion: Question = {
         sampleAnswer2: 'Ergonomic reciprocal complexity',
         sampleAnswer3: 'Universal user-facing moratorium',
         sampleAnswer4: '4',
-        sampleAnswer5: '5'
+        sampleAnswer5: '5',
+        isActive: true
 };

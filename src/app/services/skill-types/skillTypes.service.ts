@@ -45,12 +45,12 @@ export class SkillTypesService {
     }
 
     setSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.post(this.urlService.skillTypes.setSkillTypeBuckets(), { skillTypeName: skillType.skillTypeName, skillTypeId:
+        return this.http.post(this.urlService.skillTypes.setSkillTypeBuckets(), { title: skillType.title, skillTypeId:
             skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
     updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(), { skillTypeName: skillType.skillTypeName,
+        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(), { title: skillType.title,
             skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 

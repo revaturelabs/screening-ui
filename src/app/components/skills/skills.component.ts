@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { GambitSkill } from '../../../../gambit-client/entities/GambitSkill';
-import { GambitSkillService } from '../../../../gambit-client/services/skill/gambit-skill.service';
+import { GambitSkill } from '../../entities/GambitSkill';
+import { GambitSkillService } from '../../services/skill/gambit-skill.service';
 
 @Component({
   selector: 'app-skills',
