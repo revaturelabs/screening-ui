@@ -2,7 +2,7 @@
 /*
     DB entity representing a question corresponding to a particular skill (bucket)
 */
-export interface Question {
+export class Question {
     questionId: number;
     questionText: string;
     sampleAnswer1: string;
