@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
-import { SkillTypeService } from '../../services/skillType/skill-type.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { UrlService } from '../urls/url.service';
 
 /*
@@ -33,7 +33,7 @@ export class SimpleTraineeService {
   constructor(
     private httpClient: HttpClient,
     private urlService: UrlService,
-    private skillTypeService: SkillTypeService,
+    private skillTypesService: SkillTypesService,
   ) { }
 
   selectedCandidate: SimpleTrainee;
@@ -52,7 +52,7 @@ export class SimpleTraineeService {
   getSimpleTrainees(): Observable<SimpleTrainee[]> {
     const allSimpleTrainees: SimpleTrainee[] = [];
     // Get array of skillTypeIds, apply random skillTypeId's to each new SimpleTrainee
-    this.skillTypeService.getSkillTypes().subscribe(allSkillTypes => {
+    this.skillTypesService.getSkillTypes().subscribe(allSkillTypes => {
       // Get array of GAMBIT simpleTrainees, use info to build array of simpleTrainees
       this.httpClient.get<any[]>(this.urlService.simpleTrainee.getAllTrainee()).subscribe(allCandidates => {
         console.log(allCandidates);

@@ -16,8 +16,7 @@ export class SkillsComponent implements OnInit {
   newBucket: Bucket = {
     bucketId: 0,
     bucketDescription: '',
-    isActive: true,
-    questions: []
+    isActive: true
   };
 
   addForm: FormGroup;

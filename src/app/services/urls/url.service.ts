@@ -190,6 +190,12 @@ export class UrlService {
     fetchAll: () => `${this.context}types/qcstatus/all`,
   };
 
+
+  /**
+   * TO DO BITCHES!
+   * REFACTOR END POINTS AND REMOVE THE TAGGGGGS
+   */
+
   /**
    * Endpoints for questions service
    *

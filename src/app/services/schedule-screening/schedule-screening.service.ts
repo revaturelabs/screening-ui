@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
-import { SkillTypeService } from '../../services/skillType/skill-type.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { SkillType } from '../../entities/SkillType';
 import { UrlService } from '../urls/url.service';
 
@@ -10,7 +10,7 @@ import { UrlService } from '../urls/url.service';
 export class ScheduleScreeningService {
   constructor(
     private httpClient: HttpClient,
-    private skillTypeService: SkillTypeService,
+    private skillTypesService: SkillTypesService,
     private urlService: UrlService
   ) { }
 
@@ -30,7 +30,7 @@ export class ScheduleScreeningService {
    */
   getScheduleScreenings(): Observable<ScheduledScreening[]> {
     const scheduledScreenings: ScheduledScreening[] = [];
-    this.skillTypeService.getSkillTypes().subscribe(allSkillTypes => {
+    this.skillTypesService.getSkillTypes().subscribe(allSkillTypes => {
       this.httpClient.get<any[]>(this.urlService.screening.scheduleScreening()).subscribe(allScheduledScreenings => {
         for (const e of allScheduledScreenings) {
           // Each simpleTrainee get random skillType

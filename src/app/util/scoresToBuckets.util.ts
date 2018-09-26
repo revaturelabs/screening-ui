@@ -17,20 +17,25 @@ export class ScoresToBucketsUtil {
             questionsAsked = 0;
             totals[bucketIndex] = 0;
             scores[bucketIndex] = 0;
-            if (thisBucket.questions != null) {
-                // If the questions array in this bucket is populated, loop through the question
-                thisBucket.questions.forEach(thisQuestion => {
-                    const matchingQuestion = questionScores.find(function(element) {
-                        return element.questionId === thisQuestion.questionId;
-                    });
-                    // If this question has been answered, add it to the total
-                    if (matchingQuestion) {
-                        questionsAsked++;
-                        totals[bucketIndex] += 5;
-                        scores[bucketIndex] += matchingQuestion.score;
-                    }
-                });
-            }
+            /**
+             *  TO DO BITCHES!
+             *  The GOD DAMN BUCKETS AINT GOT NO QUESTIONS <('-')>
+             *  NEED TO ADD QUESTIONS MAYBE SOMEHOW IN A DIFFERENT WAY THATS BETTER
+             */
+            // if (thisBucket.questions != null) {
+            //     // If the questions array in this bucket is populated, loop through the question
+            //     thisBucket.questions.forEach(thisQuestion => {
+            //         const matchingQuestion = questionScores.find(function(element) {
+            //             return element.questionId === thisQuestion.questionId;
+            //         });
+            //         // If this question has been answered, add it to the total
+            //         if (matchingQuestion) {
+            //             questionsAsked++;
+            //             totals[bucketIndex] += 5;
+            //             scores[bucketIndex] += matchingQuestion.score;
+            //         }
+            //     });
+            // }
             // If questions were answered from this bucket, mark bucket as used
             if (questionsAsked > 0) {
                 bucketNames[bucketIndex] = thisBucket.bucketDescription;

@@ -88,8 +88,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
           {
             bucketId: e.bucketId,
             bucketDescription: e.bucketDescription,
-            isActive: e.isActive,
-            questions: [],
+            isActive: e.isActive
           }
         );
       }
@@ -121,12 +120,15 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     ));
   }
 
+  /**
+   * TO DO BITCHES!
+   * WE DONT DO ANYTHING HERE NOW
+   */
   // Unsubscribe to prevent memory leaks when component is destroyed
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe);
     if (this.questionBuckets !== undefined) {
       for (const bucket of this.questionBuckets) {
-        bucket.questions = [];
       }
     }
   }
