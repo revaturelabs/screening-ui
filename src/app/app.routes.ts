@@ -2,25 +2,10 @@ import { Routes } from '@angular/router';
 import { RoleGuard, roles } from './role-guard';
 
 // ::COMPONENTS::
-// NEVER USED WHAT IS thiS?!
-import { Component } from '@angular/core';
 // CALIBER COMPONENT -- USED AS BASE FOR CALIBER PORTAL
 // WHAT TO SWITCH IT OUT WITH
 // import { CaliberComponent } from './caliber.component';
-// HOME COMPONENT
-// HMMMMMMMM
-// import { HomeComponent } from './home/home.component';
 
-// ASS COMPONENT
-// ???????? DO WE NEED IT ??????????????
-// import { AssessComponent } from './assess/assess.component';
-
-// ??????????????? NEED THESE ?????????????
-// import { ManageComponent } from './manage/manage.component';
-// import { ReportsComponent } from './reports/reports.component';
-// import { LocationsComponent } from './settings/locations/locations.component';
-// import { QualityComponent } from './quality/quality.component';
-// import { PanelComponent } from './panel/panel/panel.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
@@ -34,54 +19,12 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
-
+import { AppComponent } from './app.component';
 export const routes: Routes = [
-      // {
-      //   path: 'home',
-      //   component: HomeComponent,
-      //   canActivate: [RoleGuard],
-      //   data: { roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole] }
-      // },
-      // {
-      //   path: 'manage',
-      //   component: ManageComponent,
-      //   canActivate: [RoleGuard],
-      //   data: { roles: [roles.panelRole, roles.qcRole, roles.trainerRole, roles.vpRole] }
-      // },
-      // {
-      //   path: 'assess',
-      //   component: AssessComponent,
-      //   canActivate: [RoleGuard],
-      //   data: {
-      //     roles: [
-      //       roles.vpRole,
-      //       roles.trainerRole
-      //     ]
-      //   }
-      // },
-      // {
-      //   path: 'quality',
-      //   component: QualityComponent,
-      //   canActivate: [RoleGuard],
-      //   data: { roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole] }
-      // },
-      // {
-      //   path: 'reports',
-      //   component: ReportsComponent,
-      //   canActivate: [RoleGuard],
-      //   data: { roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole] }
-      // },
-      // {
-      //   path: 'panel',
-      //   component: PanelComponent,
-      //   canActivate: [RoleGuard],
-      //   data: {
-      //     roles: [
-      //       roles.vpRole,
-      //       roles.panelRole
-      //     ]
-      //   }
-      // },
+  {
+    path: '',
+    component: AppComponent,
+    children: [
       {
         path: 'screening',
         component: ScreeningComponent,
@@ -126,10 +69,6 @@ export const routes: Routes = [
             path: 'skills',
             component: SkillsComponent
           },
-          // {
-          //   path: 'locations',
-          //   component: LocationsComponent
-          // },
           {
             path: 'trainers',
             component: TrainersComponent
@@ -141,12 +80,9 @@ export const routes: Routes = [
           {
             path: 'screening',
             component: ScreeningConfigComponent,
-            children: [
-
-            ]
           },
           {
-           path: 'screening/category',
+            path: 'screening/category',
             component: BucketComponent
           },
           {
@@ -160,4 +96,6 @@ export const routes: Routes = [
         pathMatch: 'full',
         redirectTo: '/Caliber/home'
       }
+    ]
+  }
 ];

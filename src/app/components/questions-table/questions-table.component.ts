@@ -95,7 +95,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
       }
 
       this.skillTypeBucketService.bucketsByWeight = {
-        skillTypeBucketLookupID: bucketsWithWeights.skillTypeBucketLookupID,
+        // skillTypeBucketLookupID: bucketsWithWeights.skillTypeBucketLookupID,
         skillType: JSON.parse(JSON.stringify(bucketsWithWeights.skillType)),
         buckets: myBuckets,
         weights: JSON.parse(JSON.stringify(bucketsWithWeights.weight)),

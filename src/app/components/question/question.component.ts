@@ -50,13 +50,13 @@ export class QuestionComponent implements OnInit {
   newTagString: string;
   createQuestion: FormGroup;
   newQuestion: Question;
-  newTags: Tag[];
-  allTags: Tag[];
-  currentTags: Tag[];
+  // newTags: Tag[];
+  // allTags: Tag[];
+  // currentTags: Tag[];
   question: Question;
   sampleAnswers: string[];
   questions: Question[];
-  filter: Tag = new Tag();
+  // filter: Tag = new Tag();
   currentBucket: Bucket;
   public answersCollapsed = true;
   public tagsCollapsed = true;
@@ -64,7 +64,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
-    this.currentTags = [];
+    // this.currentTags = [];
     this.question = new Question();
     this.sampleAnswers = [this.question.sampleAnswer1];
     this.sampleAnswers.push(this.question.sampleAnswer2);
@@ -126,7 +126,7 @@ export class QuestionComponent implements OnInit {
   setQuestionNull() {
     this.question = new Question();
     this.sampleAnswers = [];
-    this.currentTags = [];
+    // this.currentTags = [];
   }
 
   /**
@@ -145,13 +145,13 @@ export class QuestionComponent implements OnInit {
     this.sampleAnswers.push(this.question.sampleAnswer4);
     this.sampleAnswers.push(this.question.sampleAnswer5);
     const newTags = [];
-    this.tagsService.getAllTags().subscribe(data => {
-      this.allTags = (data as Tag[]);
-    });
-    this.tagsService.getTagByQuestion(this.question.questionId).subscribe(data => {
-      this.newTags = (data as Tag[]);
-      this.removeTagsFromAll();
-    });
+    // this.tagsService.getAllTags().subscribe(data => {
+    //   this.allTags = (data as Tag[]);
+    // });
+    // this.tagsService.getTagByQuestion(this.question.questionId).subscribe(data => {
+    //   this.newTags = (data as Tag[]);
+    //   this.removeTagsFromAll();
+    // });
   }
 
   /**
@@ -228,9 +228,9 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.updateQuestion(this.question, this.getTagIds()).subscribe(data => {
-          this.updateQuestions();
-        });
+        // this.questionService.updateQuestion(this.question, this.getTagIds()).subscribe(data => {
+        //   this.updateQuestions();
+        // });
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -239,9 +239,9 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
         this.question.bucketId = this.currentBucket.bucketId;
-        this.questionService.createNewQuestion(this.question, this.getTagIds()).subscribe(data => {
-          this.updateQuestions();
-        });
+        // this.questionService.createNewQuestion(this.question, this.getTagIds()).subscribe(data => {
+        //   this.updateQuestions();
+        // });
         this.savedSuccessfully();
       }
       this.setQuestionNull();

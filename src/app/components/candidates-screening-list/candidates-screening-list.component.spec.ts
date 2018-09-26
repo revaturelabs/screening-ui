@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CandidatesScreeningListComponent } from './candidates-screening-list.component';
 import { FormsModule } from '@angular/forms';
 import {
-  NgxPaginationModule, PaginatePipe, PaginationControlsComponent,
+  PaginatePipe, PaginationControlsComponent,
   PaginationControlsDirective, PaginationService
 } from 'ngx-pagination';
 import { SearchPipe } from '../../util/search.pipe';

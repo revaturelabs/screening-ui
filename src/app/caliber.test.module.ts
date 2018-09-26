@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 // import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { HttpClient } from '@angular/common/http';
-import { SimpleNotificationsModule } from 'angular2-notifications-lite';
+// import { SimpleNotificationsModule } from 'angular2-notifications-lite';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -164,7 +164,7 @@ export const Dependencies = {
     FormsModule,
     // ChartsModule,
     ReactiveFormsModule,
-    SimpleNotificationsModule.forRoot(),
+    // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
     BrowserAnimationsModule
   ],

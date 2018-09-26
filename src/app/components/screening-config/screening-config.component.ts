@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-screening',
-  templateUrl: './screening.component.html',
-  styleUrls: ['./screening.component.css']
+  templateUrl: './screening-config.component.html',
+  styleUrls: ['./screening-config.component.css']
 })
 export class ScreeningConfigComponent implements OnInit {
 

@@ -1,5 +1,5 @@
 
-//kill with fire
+// kill with fire
 export class GambitBatch {
 
   batchId: number;

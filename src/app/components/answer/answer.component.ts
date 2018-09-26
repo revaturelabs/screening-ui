@@ -2,7 +2,6 @@ import { Component, OnInit, Input} from '@angular/core';
 
 // Entities
 import { QuestionScore } from '../../entities/QuestionScore';
-import { Question } from '../../entities/Question';
 
 // Services
 import { QuestionService } from '../../services/question/question.service';
