@@ -1,4 +1,4 @@
-import { Question } from '../entities/question';
+import { Question } from '../entities/Question';
 
 export const QUESTIONS: Question[] = [
   { questionId: 11,

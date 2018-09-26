@@ -1,10 +1,8 @@
-import { Subject, Subscription } from 'rxjs';
+
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { GambitSkill } from '../../../../gambit-client/entities/GambitSkill';
 import { GambitSkillService } from '../../../../gambit-client/services/skill/gambit-skill.service';
 

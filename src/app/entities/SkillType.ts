@@ -1,4 +1,3 @@
-import { Bucket } from './Bucket';
 
 export class SkillType {
     skillTypeId: number;

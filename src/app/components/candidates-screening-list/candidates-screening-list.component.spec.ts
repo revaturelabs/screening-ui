@@ -14,9 +14,8 @@ import { ScheduleScreeningService } from '../../services/schedule-screening/sche
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { SkillTypeService } from '../../services/skillType/skill-type.service';
-import { Dependencies } from '../../../caliber.test.module';
-import { ScheduledScreening } from '../../entities/scheduleScreening';
-import { SimpleTrainee } from '../../entities/simpleTrainee';
+import { ScheduledScreening } from '../../entities/ScheduleScreening';
+import { SimpleTrainee } from '../../entities/SimpleTrainee';
 
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;

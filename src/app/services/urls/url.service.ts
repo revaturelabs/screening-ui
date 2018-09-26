@@ -1,6 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
-import { environment } from '../../../../environments/environment';
-import { Trainee } from '../../../portals/Caliber/entities/Trainee';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UrlService {

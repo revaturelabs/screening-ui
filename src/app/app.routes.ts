@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { RoleGuard, roles } from './role-guard';
 
 // ::COMPONENTS::
-//NEVER USED WHAT IS thiS?!
+// NEVER USED WHAT IS thiS?!
 import { Component } from '@angular/core';
 // CALIBER COMPONENT -- USED AS BASE FOR CALIBER PORTAL
 // WHAT TO SWITCH IT OUT WITH
@@ -36,10 +36,6 @@ import { BucketComponent } from './components/bucket/bucket.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: CaliberComponent,
-    children: [
       // {
       //   path: 'home',
       //   component: HomeComponent,
@@ -164,6 +160,4 @@ export const routes: Routes = [
         pathMatch: 'full',
         redirectTo: '/Caliber/home'
       }
-    ]
-  }
 ];

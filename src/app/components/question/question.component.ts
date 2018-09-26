@@ -1,16 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Question } from '../../../entities/Question';
-import { Bucket } from '../entities/Bucket';
-import { Tag } from '../entities/Tag';
+import { Question } from '../../entities/Question';
+import { Bucket } from '../../entities/Bucket';
+// import { Tag } from '../entities/Tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { QuestionsService } from '../../../services/questions/questions.service';
-import { TagsService } from '../services/tags.service';
+import { QuestionsService } from '../../services/questions/questions.service';
+// import { TagsService } from '../../services/tags.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { BucketsService } from '../services/buckets.service';
-import { SkillType } from '../entities/SkillType';
-import { AlertsService } from '../../../services/alerts.service';
+import { BucketsService } from '../../services/buckets/buckets.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 
 @Component({
   selector: 'app-question',
@@ -44,7 +42,7 @@ import { AlertsService } from '../../../services/alerts.service';
 export class QuestionComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private fb: FormBuilder,
-    private tagsService: TagsService,
+    // private tagsService: TagsService,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
     private alertsService: AlertsService) { }

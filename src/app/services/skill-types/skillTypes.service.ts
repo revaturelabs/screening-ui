@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { of } from 'rxjs/observable/of';
-import { catchError } from 'rxjs/operators';
 
-import { SkillType } from '../entities/SkillType';
-import { SkillTypeBucket } from '../entities/Weight';
-import { Bucket } from '../entities/Bucket';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { SkillType } from '../../entities/SkillType';
+import { Bucket } from '../../entities/Bucket';
+import { UrlService } from '../urls/url.service';
 
 
 const httpOptions = {

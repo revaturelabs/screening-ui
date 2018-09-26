@@ -2,10 +2,10 @@
 import { TagFilterPipe } from './question.filter';
 
 // Mock Data
-//import { TAGS } from '../../../screening/mock-data/mock-tags';
+// import { TAGS } from '../../../screening/mock-data/mock-tags';
 
 // Entities
-//import { Tag } from '../entities/Tag';
+// import { Tag } from '../entities/Tag';
 
 /**
  * Tests for the question filters.

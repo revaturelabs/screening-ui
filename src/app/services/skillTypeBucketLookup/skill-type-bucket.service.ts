@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { SkillTypeBucketLookUp } from '../../entities/skillTypeBucketLookup';
-import { SKILL_TYPE_BUCKET_LOOKUP } from '../../mock-data/mock-skillTypeBucketLookup';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
+import { UrlService } from '../urls/url.service';
 
 /*
 

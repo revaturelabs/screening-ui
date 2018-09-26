@@ -1,15 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { of } from 'rxjs/observable/of';
-import { catchError } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
-
-import { Bucket } from '../entities/Bucket';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { Bucket } from '../../entities/Bucket';
+import { UrlService } from '../urls/url.service';
 
 /**
    * Imported urlservice to replace hardcoded endpoints
@@ -70,11 +65,11 @@ export class BucketsService {
   }
 
   setName(name: string) {
-      this.currentBucket.bucketCategory = name;
+      this.currentBucket.bucketDescription = name;
   }
 
   getName(id: number) {
-      return this.currentBucket.bucketCategory;
+      return this.currentBucket.bucketDescription;
   }
 
   setDescription(desc: string) {

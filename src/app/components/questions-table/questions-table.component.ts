@@ -2,15 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 // Entities
-import { Question } from '../../entities/question';
+import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
-import { QuestionScore } from '../../entities/questionScore';
+import { QuestionScore } from '../../entities/QuestionScore';
 
 // Services
 import { QuestionService } from '../../services/question/question.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { SkillTypeBucketLookUp } from '../../entities/skillTypeBucketLookup';
 
 // Utility Class (setting up buckets and questions based on selected tags)
 import { QuestionsToBucketsUtil } from '../../util/questionsToBuckets.util';
@@ -87,8 +86,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
       for ( const e of bucketsWithWeights.bucket) {
         myBuckets.push(
           {
-            bucketID: e.bucketId,
-            bucketCategory: e.bucketCategory,
+            bucketId: e.bucketId,
             bucketDescription: e.bucketDescription,
             isActive: e.isActive,
             questions: [],
@@ -140,7 +138,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     // if the current bucket's id matches the bucket id
     // of the category selected by the user
     for (const bucket of this.questionBuckets) {
-      if (bucket.bucketID === bucketID) {
+      if (bucket.bucketId === bucketID) {
         // set the current category to the current bucket.
         this.currentCategory = bucket;
       }

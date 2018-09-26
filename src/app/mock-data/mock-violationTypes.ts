@@ -1,4 +1,4 @@
-import { ViolationType } from '../entities/violationType';
+import { ViolationType } from '../entities/ViolationType';
 
 export const VIOLATION_TYPES: ViolationType[] = [
   { violationTypeId: 11, violationType: 'Profanity' },

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable,of } from 'rxjs';
-import 'rxjs/Rx';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ScheduledScreening } from '../../entities/scheduleScreening';
+import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { SkillTypeService } from '../../services/skillType/skill-type.service';
-import { SkillType } from '../../entities/skillType';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { SkillType } from '../../entities/SkillType';
+import { UrlService } from '../urls/url.service';
 
 @Injectable()
 export class ScheduleScreeningService {

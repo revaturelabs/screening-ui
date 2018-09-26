@@ -1,4 +1,4 @@
-import {QuestionScore} from './questionScore';
+import {QuestionScore} from './QuestionScore';
 
 /*
     Entity representing questions answered by a candidate during a screeening

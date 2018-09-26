@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from '../../util/search.pipe';
 
 // Classes
-import { SimpleTrainee } from '../../entities/simpleTrainee';
-import { ScheduledScreening } from '../../entities/scheduleScreening';
+import { SimpleTrainee } from '../../entities/SimpleTrainee';
+import { ScheduledScreening } from '../../entities/ScheduleScreening';
 
 // Services
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';

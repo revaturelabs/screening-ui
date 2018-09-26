@@ -1,11 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbModule, ModalDismissReasons, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NgbTabset, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder } from '@angular/forms';
 import { SkillType } from '../../entities/SkillType';
 import { SkillTypesService } from '../../services/skill-types/skillTypes.service';
 import { Bucket } from '../../entities/Bucket';
-import { SkillTypeBucket } from '../../entities/Weight';
+import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
@@ -16,6 +15,8 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 })
 
 /**
+ * TO DO:
+ *  RENAME TO WEIGHTS
  * This component should probably be rewitten because it is a mess right now
  *
  * You will need to see implementation in the skills service relating to the
@@ -50,7 +51,7 @@ export class SkillTypesComponent implements OnInit {
     public modalServiceRef;
     public singleSkillTypeBucketIds: number[] = [];
 
-    public skillTypeBucket: SkillTypeBucket;
+    public Weight: Weight;
 
     constructor(
         private modalService: NgbModal,

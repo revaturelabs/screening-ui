@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
-import { SoftSkillViolation } from '../../entities/softSkillViolation';
-import { ViolationType } from '../../entities/violationType';
-import { MOCK_VIOLATIONS } from '../../mock-data/mock-violations';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
+import { ViolationType } from '../../entities/ViolationType';
+import { UrlService } from '../urls/url.service';
 
 /**
 * Separate from but related to the Soft Skills service,

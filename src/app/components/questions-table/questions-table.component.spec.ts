@@ -15,13 +15,13 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { NgbModalWindow } from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { Bucket } from '../../entities/bucket';
-import { Question } from '../../entities/question';
+import { Bucket } from '../../entities/Bucket';
+import { Question } from '../../entities/Question';
 import { AnswerComponent } from '../answer/answer.component';
 import { ViolationFlagComponent } from '../violation-flag/violation-flag.component';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
-import { AlertsService } from '../../../services/alerts.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 
 // Author: David Gustafson
 
@@ -42,15 +42,13 @@ const QUESTION: Question = {
 
 const BUCKETS: Bucket[] = [
   {
-    bucketID: 1,
-    bucketCategory: 'Basic Java',
+    bucketId: 1,
     bucketDescription: 'OCA level Java questions',
     isActive: true,
     questions: null
   },
   {
-    bucketID: 2,
-    bucketCategory: 'SQL',
+    bucketId: 2,
     bucketDescription: 'SQL database questions',
     isActive: true,
     questions: null
@@ -64,7 +62,7 @@ describe('QuestionsTableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [QuestionsTableComponent, NgbModalBackdrop, NgbModalWindow, AnswerComponent, ViolationFlagComponent],
       imports: [FormsModule],
-      providers: [HttpClient, HttpHandler, QuestionService, TagService, SimpleTraineeService,
+      providers: [HttpClient, HttpHandler, QuestionService, SimpleTraineeService,
         SkillTypeService, QuestionScoreService, QuestionsToBucketsUtil, NgbModal, NgbModalStack, ScreeningService,
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService]
     });
@@ -108,9 +106,9 @@ describe('QuestionsTableComponent', () => {
 
   it('should set currentCategory to bucket', () => {
     component.questionBuckets = BUCKETS;
-    component.questionBuckets[0].bucketID = 1;
+    component.questionBuckets[0].bucketId = 1;
     component.setBucket(1);
-    expect(component.currentCategory.bucketID).toBe(1);
+    expect(component.currentCategory.bucketId).toBe(1);
   });
 
   it('should set run open', () => {

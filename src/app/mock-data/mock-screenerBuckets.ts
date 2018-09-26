@@ -1,5 +1,4 @@
-import {ScreenerBucket} from '../entities/screenerBucket';
-import {QuestionScore} from '../entities/questionScore';
+import {ScreenerBucket} from '../entities/ScreenerBucket';
 
 
 export const SCREENERBUCKETS: ScreenerBucket[] = [

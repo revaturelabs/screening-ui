@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
-import { UrlService } from '../../../../gambit-client/services/urls/url.service';
+import { UrlService } from '../urls/url.service';
 
 /**
   * Used url Service to input endpoints to our services

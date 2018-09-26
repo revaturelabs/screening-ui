@@ -1,8 +1,8 @@
-import { SkillType } from '../entities/skillType';
+import { SkillType } from '../entities/SkillType';
 
 export const SKILLTYPES: SkillType[] = [
     {
-        skillTypeID: 52,
+        skillTypeId: 52,
         skillTypeName: 'Java EE/Microservices',
         isActive: true
     },

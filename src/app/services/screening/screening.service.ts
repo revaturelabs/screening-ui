@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Screening } from '../../entities/screening';
-import { ScheduledScreening } from '../../entities/scheduleScreening';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { Screening } from '../../entities/Screening';
+import { ScheduledScreening } from '../../entities/ScheduleScreening';
+import { UrlService } from '../urls/url.service';
 
 
 /**

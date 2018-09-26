@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
-import { SimpleTrainee } from '../../entities/simpleTrainee';
-import { TRAINEES } from '../../mock-data/mock-simpleTrainees';
+import { SimpleTrainee } from '../../entities/SimpleTrainee';
 import { SkillTypeService } from '../../services/skillType/skill-type.service';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { UrlService } from '../urls/url.service';
 
 /*
 

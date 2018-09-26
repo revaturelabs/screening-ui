@@ -3,11 +3,11 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { QuestionScore } from '../../entities/questionScore';
+import { QuestionScore } from '../../entities/QuestionScore';
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { SoftSkillViolation } from '../../entities/softSkillViolation';
+import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { Subscription } from 'rxjs';
 
 @Component({

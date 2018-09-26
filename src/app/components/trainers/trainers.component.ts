@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { TrainerService } from '../../../../gambit-client/services/trainer/trainer.service';
 import { GambitTrainer } from '../../../../gambit-client/entities/GambitTrainer';

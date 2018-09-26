@@ -6,8 +6,8 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SkillTypeService } from '../../services/skillType/skill-type.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
-import { AlertsService } from '../../../services/alerts.service';
-import { ViolationType } from '../../entities/violationType';
+import { AlertsService } from '../../services/alert-service/alerts.service';
+import { ViolationType } from '../../entities/ViolationType';
 
 // Author: David Gustafson
 

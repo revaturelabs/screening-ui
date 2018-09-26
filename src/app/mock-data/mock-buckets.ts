@@ -1,44 +1,37 @@
-import {Bucket} from '../entities/bucket';
+import {Bucket} from '../entities/Bucket';
 
 export const BUCKETS: Bucket[] = [
-    { bucketID: 1,
-      bucketCategory: 'Basic Java',
+    { bucketId: 1,
       bucketDescription: 'OCA level Java questions',
       isActive: true,
       questions: null
     },
-    { bucketID: 2,
-      bucketCategory: 'SQL',
+    { bucketId: 2,
       bucketDescription: 'SQL database questions',
       isActive: true,
       questions: null
     },
-    { bucketID: 3,
-      bucketCategory: 'JavaScript',
+    { bucketId: 3,
       bucketDescription: 'JavaScript questions',
       isActive: true,
       questions: null
     },
-    { bucketID: 4,
-      bucketCategory: 'HTML',
+    { bucketId: 4,
       bucketDescription: 'JavaScript questions',
       isActive: true,
       questions: null
     },
-    { bucketID: 5,
-      bucketCategory: 'CSS',
+    { bucketId: 5,
       bucketDescription: 'JavaScript questions',
       isActive: true,
       questions: null
     },
-    { bucketID: 6,
-      bucketCategory: 'Spring',
+    { bucketId: 6,
       bucketDescription: 'JavaScript questions',
       isActive: true,
       questions: null
     },
-    { bucketID: 7,
-      bucketCategory: 'Angular',
+    { bucketId: 7,
       bucketDescription: 'JavaScript questions',
       isActive: true,
       questions: null

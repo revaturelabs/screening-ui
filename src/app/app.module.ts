@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
-//Importing the routes from app routes
+// Importing the routes from app routes
 import { routes } from './app.routes';
 
 @NgModule({

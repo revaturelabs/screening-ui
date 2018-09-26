@@ -1,4 +1,3 @@
-import {Bucket} from './bucket';
 
 /*
     DB entity representing a question corresponding to a particular skill (bucket)

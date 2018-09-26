@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
-import { SoftSkillViolation } from '../../entities/softSkillViolation';
+import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { Observable } from 'rxjs';
 import { ScreeningService } from '../../services/screening/screening.service';

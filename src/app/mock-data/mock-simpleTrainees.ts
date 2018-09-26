@@ -1,4 +1,4 @@
-import { SimpleTrainee } from '../entities/simpleTrainee';
+import { SimpleTrainee } from '../entities/SimpleTrainee';
 
 const tempDate: Date = new Date();
 export const TRAINEES: SimpleTrainee[] = [

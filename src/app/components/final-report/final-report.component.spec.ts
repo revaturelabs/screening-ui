@@ -8,8 +8,7 @@ import { SkillTypeService } from '../../services/skillType/skill-type.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
-import { AlertService } from '../../../../Bam/services/alert.service';
-import { AlertsService } from '../../../services/alerts.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 
 // Author: David Gustafson

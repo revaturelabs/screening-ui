@@ -1,5 +1,5 @@
-import { QuestionScore } from '../entities/questionScore';
-import { SkillTypeBucketLookUp } from '../entities/skillTypeBucketLookup';
+import { QuestionScore } from '../entities/QuestionScore';
+import { SkillTypeBucketLookUp } from '../entities/SkillTypeBucketLookup';
 
 export class ScoresToBucketsUtil {
 
@@ -33,7 +33,7 @@ export class ScoresToBucketsUtil {
             }
             // If questions were answered from this bucket, mark bucket as used
             if (questionsAsked > 0) {
-                bucketNames[bucketIndex] = thisBucket.bucketCategory;
+                bucketNames[bucketIndex] = thisBucket.bucketDescription;
                 totalWeights += bucketsByWeight.weights[bucketIndex];
                 totalBuckets++;
             // If no questions from this bucket were asked, ignore in final calculations

@@ -1,5 +1,4 @@
-import {Screening} from './screening';
-import {ViolationType} from './violationType';
+import {ViolationType} from './ViolationType';
 
 /*
     Entity representing an occurrence of a soft skill violation during a screening

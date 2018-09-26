@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ViolationType } from '../../entities/violationType';
-import { VIOLATION_TYPES } from '../../mock-data/mock-violationTypes';
+import { Observable } from 'rxjs';
+import { ViolationType } from '../../entities/ViolationType';
 import { HttpClient } from '@angular/common/http';
-import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
+import { UrlService } from '../urls/url.service';
 
 /**
 * Service that contains methods related to ViolationType entities

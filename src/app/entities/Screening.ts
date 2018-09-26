@@ -1,6 +1,3 @@
-import { SimpleTrainee } from './simpleTrainee';
-import { CaliberTrainer } from './caliberTrainer';
-import { SkillType } from './skillType';
 
 /*
   Entity representing all data related to the screening of a candidate

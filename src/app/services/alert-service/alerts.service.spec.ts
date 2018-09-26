@@ -1,7 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { AlertsService } from './alerts.service';
-import { Observable } from 'rxjs';
-
 /**
  * Author: Jordan Young
  */

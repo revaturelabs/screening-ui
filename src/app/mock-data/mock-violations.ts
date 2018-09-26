@@ -1,5 +1,4 @@
-import { SoftSkillViolation } from '../entities/softSkillViolation';
-import { Screening } from '../entities/screening';
+import { SoftSkillViolation } from '../entities/SoftSkillViolation';
 
 export const MOCK_VIOLATIONS: SoftSkillViolation[] = [
   { violationID: 11,

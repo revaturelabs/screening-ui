@@ -1,5 +1,5 @@
-import { SimpleTrainee } from './simpleTrainee';
-import { SkillType } from './skillType';
+import { SimpleTrainee } from './SimpleTrainee';
+import { SkillType } from './SkillType';
 
 /*
   Entity representing a screening scheduled to take place

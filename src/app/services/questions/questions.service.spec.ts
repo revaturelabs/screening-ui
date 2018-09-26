@@ -1,6 +1,3 @@
-// Test imports modules
-import { TestBed, inject } from '@angular/core/testing';
-import { HttpTestingController } from '@angular/common/http/testing';
 
 // Entities
 import { Question } from '../../entities/Question';
@@ -9,11 +6,11 @@ import { Question } from '../../entities/Question';
 import { QuestionsService } from './questions.service';
 
 // Modules
-import { HttpClient, HttpHandler, HttpBackend, HttpErrorResponse } from '@angular/common/http';
-import { QUESTIONS, replacementQuestion, expectedQuestion } from './mock-questions';
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { UrlService } from '../../../../gambit-client/services/urls/url.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { QUESTIONS, expectedQuestion } from './mock-questions';
+
+import { defer } from 'rxjs';
+import { UrlService } from '../urls/url.service';
 
 export function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));

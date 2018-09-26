@@ -1,53 +1,46 @@
-import { Bucket } from '../entities/bucket';
-import { SkillTypeBucketLookUp } from '../entities/skillTypeBucketLookup';
-import { SkillType } from '../entities/skillType';
+import { Bucket } from '../entities/Bucket';
+import { SkillTypeBucketLookUp } from '../entities/SkillTypeBucketLookup';
+import { SkillType } from '../entities/SkillType';
 
 export const SKILL_TYPE_BUCKET_LOOKUP: SkillTypeBucketLookUp = {
       skillTypeBucketLookupID: 1,
-      skillType: {
-          skillTypeID: 51,
+      SkillType: {
+          skillTypeId: 51,
           skillTypeName: 'Java EE/Microservices',
           isActive: true
       },
       buckets: [
-        { bucketID: 1,
-          bucketCategory: 'Basic Java',
+        { bucketId: 1,
           bucketDescription: 'OCA level Java questions',
           isActive: false,
           questions: null
         },
-        { bucketID: 2,
-          bucketCategory: 'SQL',
+        { bucketId: 2,
           bucketDescription: 'SQL database questions',
           isActive: true,
           questions: null
         },
-        { bucketID: 3,
-          bucketCategory: 'JavaScript',
+        { bucketId: 3,
           bucketDescription: 'JavaScript questions',
           isActive: true,
           questions: null
         },
-        { bucketID: 4,
-          bucketCategory: 'HTML',
+        { bucketId: 4,
           bucketDescription: 'JavaScript questions',
           isActive: true,
           questions: null
         },
-        { bucketID: 5,
-          bucketCategory: 'CSS',
+        { bucketId: 5,
           bucketDescription: 'JavaScript questions',
           isActive: true,
           questions: null
         },
-        { bucketID: 6,
-          bucketCategory: 'Spring',
+        { bucketId: 6,
           bucketDescription: 'JavaScript questions',
           isActive: true,
           questions: null
         },
-        { bucketID: 7,
-          bucketCategory: 'Angular',
+        { bucketId: 7,
           bucketDescription: 'JavaScript questions',
           isActive: true,
           questions: null
