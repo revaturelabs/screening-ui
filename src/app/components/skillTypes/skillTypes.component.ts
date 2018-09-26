@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, ModalDismissReasons, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, ModalDismissReasons, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { SkillType } from '../entities/SkillType';
-import { SkillTypesService } from '../services/skillTypes.service';
-import { Bucket } from '../entities/Bucket';
-import { SkillTypeBucket } from '../entities/SkillTypeBucket';
-import { BucketsService } from '../services/buckets.service';
-import { AlertsService } from '../../../services/alerts.service';
+import { SkillType } from '../../entities/SkillType';
+import { SkillTypesService } from '../../services/skill-types/skillTypes.service';
+import { Bucket } from '../../entities/Bucket';
+import { SkillTypeBucket } from '../../entities/Weight';
+import { BucketsService } from '../../services/buckets/buckets.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 
 @Component({
     selector: 'app-skill-types',

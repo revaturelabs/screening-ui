@@ -3,10 +3,10 @@ import { ViolationType } from '../../entities/violationType';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
-import { AlertsService } from '../../../services/alerts.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillViolation } from '../../entities/softSkillViolation';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-violation-flag',

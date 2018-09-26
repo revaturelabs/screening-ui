@@ -5,10 +5,10 @@ import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/ski
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/questionScore';
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
-import { AlertsService } from '../../../services/alerts.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/softSkillViolation';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-final-report',

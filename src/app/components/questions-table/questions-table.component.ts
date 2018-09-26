@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 // Entities
 import { Question } from '../../entities/question';
-import { Bucket } from '../../entities/bucket';
+import { Bucket } from '../../entities/Bucket';
 import { QuestionScore } from '../../entities/questionScore';
 
 // Services

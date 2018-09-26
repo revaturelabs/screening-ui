@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // Entities
 import { Question } from '../../entities/question';
-import { Tag } from '../../entities/tag';
 import { QUESTIONS } from '../../mock-data/mock-questions';
-import { TagsAndSkill } from '../../wrappers/tagsAndSkill';
 
 // Services
-import { TagService } from '../../../services/tag/tag.service';
 import { SimpleTraineeService } from '../simpleTrainee/simple-trainee.service';
 import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
 /*

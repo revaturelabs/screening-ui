@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScreeningConfigComponent } from './screening.component';
+import { ScreeningConfigComponent } from './screening-config.component';
 
 describe('ScreeningComponent', () => {
   let component: ScreeningConfigComponent;

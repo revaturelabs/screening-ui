@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject , Observable, of } from 'rxjs';
 import { QuestionScore } from '../../entities/questionScore';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UrlService } from '../../../../../gambit-client/services/urls/url.service';

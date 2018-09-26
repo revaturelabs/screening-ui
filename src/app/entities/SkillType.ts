@@ -1,5 +1,4 @@
 import { Bucket } from './Bucket';
-import { Skill } from '../../../../Caliber/entities/Skill';
 
 export class SkillType {
     skillTypeId: number;
@@ -7,5 +6,4 @@ export class SkillType {
     skillTypeDesc: string;
     isActive: boolean;
     isCore: boolean;
-    skills: Skill[];
 }

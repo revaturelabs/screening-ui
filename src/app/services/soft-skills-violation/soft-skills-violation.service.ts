@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 
 import { SoftSkillViolation } from '../../entities/softSkillViolation';
 import { ViolationType } from '../../entities/violationType';
 import { MOCK_VIOLATIONS } from '../../mock-data/mock-violations';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UrlService } from '../../../../../gambit-client/services/urls/url.service';
 
 /**

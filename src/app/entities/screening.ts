@@ -1,4 +1,3 @@
-import { Tag } from './tag';
 import { SimpleTrainee } from './simpleTrainee';
 import { CaliberTrainer } from './caliberTrainer';
 import { SkillType } from './skillType';

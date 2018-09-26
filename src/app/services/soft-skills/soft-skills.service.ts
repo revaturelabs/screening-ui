@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { SoftSkillViolation } from '../../entities/softSkillViolation';
 import { ViolationType } from '../../entities/violationType';

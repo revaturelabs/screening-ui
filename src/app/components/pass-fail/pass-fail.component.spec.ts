@@ -8,7 +8,7 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SkillTypeService } from '../../services/skillType/skill-type.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
-import { AlertsService } from '../../../services/alerts.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 
 // Author: David Gustafson
 
