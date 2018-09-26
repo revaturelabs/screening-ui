@@ -6,7 +6,7 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
-import { SkillTypeService } from '../../services/skillType/skill-type.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
@@ -20,11 +20,11 @@ describe('PassFailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PassFailComponent, ViolationFlagComponent ],
-      providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, SimpleTraineeService,
-      SkillTypeService, ViolationTypeService, AlertsService ]
+      declarations: [PassFailComponent, ViolationFlagComponent],
+      providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, SimpleTraineeService,
+        ViolationTypeService, AlertsService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

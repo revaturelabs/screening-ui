@@ -1,4 +1,4 @@
-import { CompleteBatch } from '../entities/CompleteBatch';
+
 import { User } from './User';
 import { UserRole } from './UserRole';
 
@@ -7,7 +7,6 @@ export class GambitTrainee extends User {
     traineeId: number;
     resourceId: number;
     trainingStatus: string;
-    batch: CompleteBatch;
     phoneNumber: string;
     skypeId: string;
     profileUrl: string;
@@ -27,7 +26,7 @@ export class GambitTrainee extends User {
     constructor(userId?: number, firstName?: string, middleName?: string, lastName?: string,
         email?: string, password?: string, backupPassword?: string, role?: UserRole,
         mobilePhone?: string, homePhone?: string, token?: string,
-        traineeId?: number, resourceId?: number, trainingStatus?: string, batch?: CompleteBatch,
+        traineeId?: number, resourceId?: number, trainingStatus?: string,
         phoneNumber?: string, skypeId?: string, profileUrl?: string, recruiterName?: string,
         college?: string, degree?: string, major?: string, techScreenerName?: string,
         projectCompletion?: string, flagStatus?: string, flagNotes?: string, marketingStatus?: string,
@@ -37,7 +36,6 @@ export class GambitTrainee extends User {
             this.traineeId = traineeId;
             this.resourceId = resourceId;
             this.trainingStatus = trainingStatus;
-            this.batch = batch;
             this.phoneNumber = phoneNumber;
             this.skypeId = skypeId;
             this.profileUrl = profileUrl;

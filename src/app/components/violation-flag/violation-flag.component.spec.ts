@@ -4,7 +4,7 @@ import { ViolationFlagComponent } from './violation-flag.component';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
-import { SkillTypeService } from '../../services/skillType/skill-type.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
@@ -21,7 +21,7 @@ xdescribe('ViolationFlagComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ViolationFlagComponent ],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
-      SkillTypeService, ViolationTypeService, AlertsService ]
+      SkillTypesService, ViolationTypeService, AlertsService ]
     })
     .compileComponents();
   }));

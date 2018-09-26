@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbTabset, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { SkillType } from '../../entities/SkillType';
-import { SkillTypesService } from '../../services/skill-types/skillTypes.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { Bucket } from '../../entities/Bucket';
 import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';

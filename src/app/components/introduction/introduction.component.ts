@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
-import { SkillTypeService } from '../../services/skillType/skill-type.service';
 import { ScreeningService } from '../../services/screening/screening.service';
 
 
@@ -22,7 +21,6 @@ export class IntroductionComponent implements OnInit {
 
   constructor(
     private simpleTraineeService: SimpleTraineeService,
-    private skillTypeService: SkillTypeService,
     private screeningService: ScreeningService) { }
 
 

@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SkillTypesService } from './skillTypes.service';
+import { SkillTypesService } from './skill-types.service';
 
 describe('SkillTypesService', () => {
   beforeEach(() => {

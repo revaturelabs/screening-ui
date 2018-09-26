@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { TrainerService } from '../../services/trainer/trainer.service';
 import { GambitTrainer } from '../../entities/GambitTrainer';
 import { BatchService } from '../../services/complete-batch-service/completebatch.service';
-import { CompleteBatch } from '../../entities/CompleteBatch';
 import { GambitTrainee } from '../../entities/GambitTrainee';
 import { GambitTraineeService } from '../../services/trainee/gambit-trainee.service';
 import { UserRole } from '../../entities/UserRole';
@@ -27,8 +26,6 @@ export class TrainerProfilesComponent implements OnInit {
   * current trainer and their batch
   */
   currentTrainer: GambitTrainer;
-  batches: Array<CompleteBatch>;
-  currentBatch: CompleteBatch;
   currentBatchTrainees: Array<GambitTrainee>;
 
   /**
@@ -60,17 +57,6 @@ export class TrainerProfilesComponent implements OnInit {
     }
 
     /**
-    * fetches all batches and pushes into the batches object,
-    */
-    // this.batchService.fetchAll().subscribe(
-    //   (batches: Batch[]) => { this.batches = batches; }
-    // );
-
-    this.batchService.fetchAllByTrainerId(this.currentTrainer.userId).subscribe(
-      (batches: CompleteBatch[]) => { this.batches = batches; }
-    );
-
-    /**
     * fetches all trainers, titles and roles and pushes them onto the trainers, titles and roles observables
     */
     this.trainerService.fetchAll().subscribe((resp) => {
@@ -100,19 +86,7 @@ export class TrainerProfilesComponent implements OnInit {
     this.modalService.open(content, { size: 'lg' });
   }
 
-  /**
-  * sets the current batch
-  * triggered when a user clicks to see the trainees for a current batch
-  *
-  * @param content: String
-  */
-  setCurrentBatch(batch) {
-    this.currentBatch = batch;
-    this.traineeService.findAllByBatchAndStatus(batch.batchId, 'Training').subscribe( res =>
-      this.currentBatch.trainees = res['traineeIds']
-    );
-    console.log(batch);
-  }
+
 
   /**
   * navigates to the reports page

@@ -1,5 +1,12 @@
 import { Question } from '../entities/Question';
+import { Bucket } from '../entities/Bucket';
 
+let da: Bucket;
+da = {
+  bucketId : 1,
+  bucketDescription : 'test',
+  isActive: true
+};
 export const QUESTIONS: Question[] = [
   { questionId: 11,
     questionText: 'What is Inheritance?',
@@ -10,7 +17,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'The process by which an object or function take different forms.',
     sampleAnswer5: 'None of the above',
     isActive: true,
-    bucketId: 1
+    bucket: da
   },
   { questionId: 12,
     questionText: 'What is Polymorphism?',
@@ -21,7 +28,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'The process by which an object or function take different forms.',
     sampleAnswer5: 'None of the above',
     isActive: true,
-    bucketId: 1
+    bucket: da
   },
   { questionId: 13,
     questionText: 'What is Abstraction?',
@@ -32,7 +39,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'The process by which an object or function take different forms.',
     sampleAnswer5: 'None of the above',
     isActive: true,
-    bucketId: 1
+    bucket: da
   },
   { questionId: 14,
     questionText: 'What is Encapsulation?',
@@ -43,7 +50,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'The process by which an object or function take different forms.',
     sampleAnswer5: 'None of the above',
     isActive: true,
-    bucketId: 2
+    bucket: da
   },
   { questionId: 15,
     questionText: 'If TableA has 100 rows and TableB has 10 rows, how many rows would be retrieved from'
@@ -54,7 +61,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: '10',
     sampleAnswer5: '0',
     isActive: true,
-    bucketId: 2
+    bucket: da
   },
   { questionId: 16,
     questionText: 'Given that the table capitals extends the table cities, when querying cities I will receive results from:',
@@ -64,7 +71,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'Only the cities table, because you must explicitly list the inheriting table to include its data',
     sampleAnswer5: 'Only the capitals table',
     isActive: true,
-    bucketId: 3
+    bucket: da
   },
   { questionId: 17,
     questionText: 'What is a Circuit Breaker in a microservice application?',
@@ -74,7 +81,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'Improves resiliency with failsafe methods when dependent microservices become unavailable.',
     sampleAnswer5: 'All of the above',
     isActive: true,
-    bucketId: 4
+    bucket: da
   },
   { questionId: 18,
     questionText: 'What is Docker Swarm?',
@@ -84,7 +91,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'A tool for orchestrating builds for multiple Dockerfiles with a composite file. ',
     sampleAnswer5: 'None of the above',
     isActive: true,
-    bucketId: 5
+    bucket: da
   },
   { questionId: 19,
     questionText: 'Which annotation configures the Eureka server?',
@@ -94,7 +101,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: '@Configuration',
     sampleAnswer5: 'All of the above are needed to configure a Eureka server.',
     isActive: true,
-    bucketId: 6
+    bucket: da
   },
   { questionId: 20,
     questionText: 'Which annotation configures a fallback method with Hystrix?',
@@ -104,7 +111,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: '@HystrixCommand(fallback="someMethod")',
     sampleAnswer5: '@HystrixFallback',
     isActive: true,
-    bucketId: 7
+    bucket: da
   },
   { questionId: 21,
     questionText: '"Contract First" web services are:',
@@ -115,7 +122,7 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'The same as the "Bottom-Up" approach',
     sampleAnswer5: 'Dependent on a web.xml file being written before the Java classes',
     isActive: true,
-    bucketId: 7
+    bucket: da
   },
 
 ];

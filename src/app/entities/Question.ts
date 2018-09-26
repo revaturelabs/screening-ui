@@ -1,3 +1,4 @@
+import { Bucket } from './Bucket';
 
 /*
     DB entity representing a question corresponding to a particular skill (bucket)
@@ -11,5 +12,5 @@ export class Question {
     sampleAnswer4: string;
     sampleAnswer5: string;
     isActive: boolean;
-    bucketId: number;
+    bucket: Bucket;
 }

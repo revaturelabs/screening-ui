@@ -13,7 +13,7 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduleScreeningService } from '../../services/schedule-screening/schedule-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { SkillTypeService } from '../../services/skillType/skill-type.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
 
@@ -27,7 +27,7 @@ describe('CandidatesScreeningListComponent', () => {
         PaginationControlsDirective],
       imports: [FormsModule, HttpClientModule],
       providers: [SimpleTraineeService, ScreeningService, ScheduleScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypeService, PaginationService]
+        QuestionScoreService, SkillTypesService, PaginationService]
     })
       .compileComponents();
   }));

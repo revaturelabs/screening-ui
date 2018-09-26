@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { QuestionService } from '../../services/question/question.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
-import { SkillTypeService } from '../../services/skillType/skill-type.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionsToBucketsUtil } from '../../util/questionsToBuckets.util';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -37,7 +37,7 @@ const QUESTION: Question = {
   sampleAnswer4: 'string',
   sampleAnswer5: 'string',
   isActive: true,
-  bucketId: 1
+  bucket: new Bucket()
 };
 
 const BUCKETS: Bucket[] = [
@@ -63,7 +63,7 @@ describe('QuestionsTableComponent', () => {
       declarations: [QuestionsTableComponent, NgbModalBackdrop, NgbModalWindow, AnswerComponent, ViolationFlagComponent],
       imports: [FormsModule],
       providers: [HttpClient, HttpHandler, QuestionService, SimpleTraineeService,
-        SkillTypeService, QuestionScoreService, QuestionsToBucketsUtil, NgbModal, NgbModalStack, ScreeningService,
+        SkillTypesService, QuestionScoreService, QuestionsToBucketsUtil, NgbModal, NgbModalStack, ScreeningService,
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService]
     });
 

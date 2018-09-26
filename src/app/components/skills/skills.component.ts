@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { GambitSkill } from '../../entities/GambitSkill';
+import { Bucket } from '../../entities/Bucket';
 import { GambitSkillService } from '../../services/skill/gambit-skill.service';
 
 @Component({
@@ -13,16 +13,17 @@ import { GambitSkillService } from '../../services/skill/gambit-skill.service';
 })
 
 export class SkillsComponent implements OnInit {
-  newSkill: GambitSkill = {
-    skillID: 0,
-    skillName: '',
-    isActive: true
+  newBucket: Bucket = {
+    bucketId: 0,
+    bucketDescription: '',
+    isActive: true,
+    questions: []
   };
 
   addForm: FormGroup;
 
-  skills: GambitSkill[];
-  currentSkill: GambitSkill;
+  buckets: Bucket[];
+  currentBucket: Bucket;
 
   columns;
   numColumns: number;
@@ -36,8 +37,8 @@ export class SkillsComponent implements OnInit {
   ngOnInit() {
     this.initFormControl();
     this.skillService.findAll().subscribe((resp) => {
-      this.skills = resp;
-      this.numColumns = this.skills.length / 8 + 1;
+      this.buckets = resp;
+      this.numColumns = this.buckets.length / 8 + 1;
       if (this.numColumns > 3) {
         this.numColumns = 3;
       }
@@ -53,7 +54,7 @@ export class SkillsComponent implements OnInit {
 
   initFormControl() {
     this.addForm = this.fb.group({
-      'name': [this.newSkill.skillName, Validators.required]
+      'name': [this.newBucket.bucketDescription, Validators.required]
     });
   }
 
@@ -62,11 +63,11 @@ export class SkillsComponent implements OnInit {
    * @param {any} value
    * @memberof SkillsComponent
    */
-  addNewSkill(value) {
-    this.newSkill.skillName = value.name;
-    this.newSkill.isActive = true;
-    this.skillService.create(this.newSkill).subscribe((succ) => {
-      this.skills.push(succ);
+  addNewBucket(value) {
+    this.newBucket.bucketDescription = value.name;
+    this.newBucket.isActive = true;
+    this.skillService.create(this.newBucket).subscribe((succ) => {
+      this.buckets.push(succ);
     });
     // may not need this statement without all of the inherited subjects
     this.resetFormControl();
@@ -79,14 +80,14 @@ export class SkillsComponent implements OnInit {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    */
   editCurrentSkill() {
-    this.skillService.update(this.currentSkill).subscribe((resp) => {
-      const idx = this.skills.findIndex(skill => skill.skillID === resp.skillID);
-      this.skills[idx] = resp;
+    this.skillService.update(this.currentBucket).subscribe((resp) => {
+      const idx = this.buckets.findIndex(bucket => bucket.bucketId === resp.bucketId);
+      this.buckets[idx] = resp;
     });
   }
 
   /**
-   * Populates the Columns with Skills
+   * Populates the Columns with buckets
    * @param {any} column
    * @param {any} index
    * @returns
@@ -95,15 +96,15 @@ export class SkillsComponent implements OnInit {
   nextColumn(column, index) {
     switch (column) {
       case 0:
-        if (index < this.skills.length / this.numColumns) {
+        if (index < this.buckets.length / this.numColumns) {
           return true;
         }
         break;
       case 1:
-        if (index > this.skills.length / this.numColumns) {
-          // If the numbers of skills is 3 then this condition will activate
+        if (index > this.buckets.length / this.numColumns) {
+          // If the numbers of buckets is 3 then this condition will activate
           if (this.numColumns === 3) {
-            if (index < ((this.skills.length / this.numColumns) * 2)) {
+            if (index < ((this.buckets.length / this.numColumns) * 2)) {
               return true;
             } else {
               return false;
@@ -114,7 +115,7 @@ export class SkillsComponent implements OnInit {
         }
         break;
       case 2:
-        if (index > ((this.skills.length / this.numColumns) * 2)) {
+        if (index > ((this.buckets.length / this.numColumns) * 2)) {
           return true;
         } break;
       default:
@@ -139,8 +140,8 @@ export class SkillsComponent implements OnInit {
    * @param {Skill} index
    * @memberof SkillsComponent
    */
-  editopen(content, index: GambitSkill) {
-    this.currentSkill = JSON.parse(JSON.stringify(index)); // essentially clone the object, there may be a better way
+  editopen(content, index: Bucket) {
+    this.currentBucket = JSON.parse(JSON.stringify(index)); // essentially clone the object, there may be a better way
     this.modalService.open(content);
   }
 }
