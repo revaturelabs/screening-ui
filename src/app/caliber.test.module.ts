@@ -43,7 +43,7 @@ import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.se
 import { QuestionService } from './services/question/question.service';
 // import { QuestionsToBucketsUtil } from './screening/util/questionsToBuckets.util';
 // import { QuestionScoreService } from './screening/services/question-score/question-score.service';
-import { SkillTypeService } from './services/skillType/skill-type.service';
+import { SkillTypesService } from './services/skill-types/skill-types.service';
 // import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 // import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 
@@ -55,9 +55,9 @@ import { BucketsService } from './services/buckets/buckets.service';
   * executed, 'npm i angular-in-memory-web-api --save', remove from packange.json if not in use.
   */
 import { TrainerService } from './services/trainer/trainer.service';
-import { GambitBatchService } from './services/batch/gambit-batch.service';
-import { UrlService } from './services/urls/url.service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
+import { UrlService } from './services/urls/url.service';
+//import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
 
 // N.T.
@@ -335,7 +335,7 @@ export const Dependencies = {
     // TagService,
     // TagsService,
     SimpleTraineeService,
-    SkillTypeService,
+    SkillTypesService,
     // QuestionScoreService,
     // QuestionsToBucketsUtil,
     ScreeningService,
@@ -368,7 +368,7 @@ export const Dependencies = {
     NgbActiveModal,
     { provide: Router, useValue: {} },
     // GranularityService,
-    GambitBatchService,
+    GambitBatchUtilService,
     GambitBatchUtilService,
     UrlService,
     // CategoryService
