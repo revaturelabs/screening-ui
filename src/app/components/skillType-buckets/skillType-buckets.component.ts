@@ -5,6 +5,7 @@ import { Bucket } from '../../entities/Bucket';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */
+import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 

@@ -4,10 +4,10 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 // Importing the routes from app routes
 import { routes } from './app.routes';
-
 // Component Imports Alphabetically
 import { AnswerComponent } from './components/answer/answer.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
@@ -52,6 +52,7 @@ import { ApiService } from './services/api/api.service';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
+import { BucketFilterPipe } from './pipes/skillType-buckets.filter';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { GraphDataPipe } from './pipes/graph-data.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
@@ -90,6 +91,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     ViolationFlagComponent,
     // pipes
     ArrToStringPipe,
+    BucketFilterPipe,
     FilterByPipe,
     GraphDataPipe,
     OrderByPipe,
@@ -105,6 +107,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     HttpModule,
     NgbModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule
   ],

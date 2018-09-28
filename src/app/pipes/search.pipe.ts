@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
 @Pipe({
-    name: 'search'
+    name: 'searchPipe'
 })
 /**
  * @author Shane Sistoza
