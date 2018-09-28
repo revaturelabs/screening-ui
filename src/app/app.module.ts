@@ -4,14 +4,17 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { ScreeningComponent } from './components/screening/screening.component';
 import { AppComponent } from './app.component';
-
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 // Importing the routes from app routes
 import { routes } from './app.routes';
-
+import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 @NgModule({
   declarations: [
+    ScreeningComponent,
+    CandidatesScreeningListComponent,
+    QuestionsTableComponent,
     AppComponent
   ],
   imports: [
