@@ -27,6 +27,7 @@ import { TrainerProfilesComponent } from './components/trainer-profile/trainer-p
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 
+// Services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
@@ -46,9 +47,23 @@ import { GambitTraineeService } from './services/trainee/gambit-trainee.service'
 import { TrainerService } from './services/trainer/trainer.service';
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
+import { ApiService } from './services/api/api.service';
+
+// Pipes
+import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
+import { FilterByPipe } from './pipes/filter-by.pipe';
+import { GraphDataPipe } from './pipes/graph-data.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { TierPipe } from './pipes/tier-pipe';
+import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
+import { TraineeSearch } from './pipes/trainee-search.pipe';
+import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
+
+
 
 @NgModule({
   declarations: [
+    // components
     AppComponent,
     AnswerComponent,
     BucketComponent,
@@ -66,7 +81,16 @@ import { ViolationTypeService } from './services/violationType/violationType.ser
     SkillTypesComponent,
     TrainerProfilesComponent,
     TrainersComponent,
-    ViolationFlagComponent
+    ViolationFlagComponent,
+    // pipes
+    ArrToStringPipe,
+    FilterByPipe,
+    GraphDataPipe,
+    OrderByPipe,
+    TierPipe,
+    ToolbarFilterPipe,
+    TraineeSearch,
+    TrainerPipePipe
   ],
   imports: [
     BrowserModule,
@@ -77,6 +101,7 @@ import { ViolationTypeService } from './services/violationType/violationType.ser
   ],
   providers: [
     AlertsService,
+    ApiService,
     BucketsService,
     GambitBatchUtilService,
     HttpErrorHandlerService,
