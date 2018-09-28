@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+
 // Importing the routes from app routes
 import { routes } from './app.routes';
 // Component Imports Alphabetically
@@ -15,6 +16,7 @@ import { BucketComponent } from './components/bucket/bucket.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+// import { NavComponent } from './components/nav/nav.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
@@ -27,6 +29,7 @@ import { SkillTypesComponent } from './components/skillTypes/skillTypes.componen
 import { TrainerProfilesComponent } from './components/trainer-profile/trainer-profile.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
+
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -56,12 +59,15 @@ import { BucketFilterPipe } from './pipes/skillType-buckets.filter';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { GraphDataPipe } from './pipes/graph-data.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
-import { PaginatePipe, PaginationControlsComponent, NgxPaginationModule } from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
 import { TraineeSearch } from './pipes/trainee-search.pipe';
 import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
+
+
+import { NavModule } from './nav.module';
 
 
 
@@ -76,7 +82,6 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
-    // PaginationControlsComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
@@ -95,7 +100,6 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     FilterByPipe,
     GraphDataPipe,
     OrderByPipe,
-    // PaginatePipe,
     SearchPipe,
     TierPipe,
     ToolbarFilterPipe,
@@ -109,7 +113,8 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NavModule
   ],
   providers: [
     AlertsService,

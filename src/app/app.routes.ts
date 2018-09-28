@@ -20,6 +20,7 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { BucketComponent } from './components/bucket/bucket.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { AppComponent } from './app.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -94,7 +95,7 @@ export const routes: Routes = [
       {
         path: '**',
         pathMatch: 'full',
-        redirectTo: '/Caliber/home'
+        redirectTo: '/'
       }
     ]
   }
