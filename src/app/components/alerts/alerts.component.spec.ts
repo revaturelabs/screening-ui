@@ -35,7 +35,7 @@ describe('AlertsComponent', () => {
   it('should show error', inject([AlertsService, NotificationsService],
     (aService: AlertsService, nService: NotificationsService) => {
       aService.error('this is a test');
-      component.showNotif();
+      // component.showNotif();
       expect(component.message.text).toBe('this is a test');
   }));
 
@@ -43,7 +43,7 @@ describe('AlertsComponent', () => {
   it('should show success', inject([AlertsService, NotificationsService],
     (aService: AlertsService, nService: NotificationsService) => {
       aService.success('this is a test');
-      component.showNotif();
+      // component.showNotif();
       expect(component.message.text).toBe('this is a test');
   }));
 });

@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 
 // Component Imports Alphabetically
 import { AnswerComponent } from './components/answer/answer.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
@@ -54,7 +55,8 @@ import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { GraphDataPipe } from './pipes/graph-data.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
-import { PaginatePipe, PaginationControlsComponent } from 'ngx-pagination';
+import { PaginatePipe, PaginationControlsComponent, NgxPaginationModule } from 'ngx-pagination';
+import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
 import { TraineeSearch } from './pipes/trainee-search.pipe';
@@ -66,13 +68,14 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 @NgModule({
   declarations: [
     // components
+    AlertsComponent,
     AppComponent,
     AnswerComponent,
     BucketComponent,
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
-    PaginationControlsComponent,
+    // PaginationControlsComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
@@ -90,7 +93,8 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     FilterByPipe,
     GraphDataPipe,
     OrderByPipe,
-    PaginatePipe,
+    // PaginatePipe,
+    SearchPipe,
     TierPipe,
     ToolbarFilterPipe,
     TraineeSearch,
@@ -101,7 +105,8 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     HttpModule,
     NgbModule.forRoot(),
     FormsModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: true }),
+    NgxPaginationModule
   ],
   providers: [
     AlertsService,

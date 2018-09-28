@@ -15,6 +15,7 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 // Installed Modules
 // npm install ngx-pagination --save
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
   selector: 'app-candidates-screening-list',
@@ -55,7 +56,8 @@ export class CandidatesScreeningListComponent implements OnInit {
     private screeningService: ScreeningService,
     private scheduleScreeningService: ScheduleScreeningService,
     private softSkillsViolationService: SoftSkillsViolationService,
-    private questionScoreService: QuestionScoreService
+    private questionScoreService: QuestionScoreService,
+    private searchPipe: SearchPipe
   ) {}
 
   ngOnInit() {
