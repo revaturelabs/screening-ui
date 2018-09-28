@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 
@@ -20,7 +22,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
     NavComponent
   ],
-  providers: [],
+  providers: [CookieService],
   exports: [NavComponent]
 })
 export class NavModule { }

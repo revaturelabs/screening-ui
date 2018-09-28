@@ -68,6 +68,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
 
 import { NavModule } from './nav.module';
+import { RoleGuard } from './role-guard';
 
 
 
@@ -129,6 +130,7 @@ import { NavModule } from './nav.module';
     ScreenerBucketsService,
     ScreeningService,
     GambitSkillService,
+    RoleGuard,
     SkillTypesService,
     SkillTypeBucketService,
     SoftSkillsService,

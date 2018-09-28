@@ -10,41 +10,42 @@
 
   <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
     
-    <ul class="navbar-nav mr-auto module-select">
+    <!-- <ul class="navbar-nav mr-auto module-select">
       <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown-toggle c-pointer janus-links-collapse-support shift-down" id="dropdownBasic1" ngbDropdownToggle>{{currentApp}}</a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" (click)="toggleCollapse()">
           <a *ngFor="let app of apps" class="dropdown-item dropdown-size" [routerLink]="app.homeUrl" (click)="keepLinkActive()"> {{ app.name }} </a>
         </div>
       </li>
-    </ul>
+    </ul> -->
+
     <ul class="navbar-nav ml-auto margin-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/Caliber/home" routerLinkActive="activeLink">Home</a>
+        <a class="nav-link" routerLink="home" routerLinkActive="activeLink">Home</a>
       </li>
       <li class="nav-item" *ngIf="showManage">
-        <a class="nav-link" routerLink="/Caliber/manage" routerLinkActive="activeLink">Manage Batch</a>
+        <a class="nav-link" routerLink="manage" routerLinkActive="activeLink">Manage Batch</a>
       </li>
       <li class="nav-item" *ngIf="showAssess">
-        <a class="nav-link" routerLink="/Caliber/assess" routerLinkActive="activeLink">Assess Batch</a>
+        <a class="nav-link" routerLink="assess" routerLinkActive="activeLink">Assess Batch</a>
       </li>
       <li class="nav-item" *ngIf="showQuality">
-        <a class="nav-link" routerLink="/Caliber/quality" routerLinkActive="activeLink">Quality Audit</a>
+        <a class="nav-link" routerLink="quality" routerLinkActive="activeLink">Quality Audit</a>
       </li>
       <li class="nav-item" *ngIf="showPanel">
-        <a class="nav-link" routerLink="/Caliber/panel" routerLinkActive="activeLink">Panel</a>
+        <a class="nav-link" routerLink="panel" routerLinkActive="activeLink">Panel</a>
       </li>
       <li class="nav-item" *ngIf="showReports">
-        <a class="nav-link" routerLink="/Caliber/reports" routerLinkActive="activeLink">Reports</a>
+        <a class="nav-link" routerLink="reports" routerLinkActive="activeLink">Reports</a>
       </li>
       <li class="nav-item" (click)="$event.stopPropagation()" routerLinkActive="activeLink">
           <ul class="navbar-nav mr-auto caliber-adj-onresize">
             <li #myDrop = "ngbDropdown" ngbDropdown class="d-inline-block">
               <a class="nav-link dropdown-toggle c-pointer" id="settingsMenu" ngbDropdownToggle >Settings</a>
               <div  ngbDropdownMenu aria-labelledby="settingsMenu" (click)="toggleCollapse()">
-                <button class="dropdown-item c-pointer f-size" routerLink="/Caliber/settings/trainers" (click) = "myDrop.close()"> Trainers </button>
-                <button class="dropdown-item c-pointer f-size" routerLink="/Caliber/settings/locations" (click) = "myDrop.close()"> Locations </button>
-                <button class="dropdown-item c-pointer f-size" routerLink="/Caliber/settings/categories" (click) = "myDrop.close()"> Categories </button>
+                <button class="dropdown-item c-pointer f-size" routerLink="settings/trainers" (click) = "myDrop.close()"> Trainers </button>
+                <button class="dropdown-item c-pointer f-size" routerLink="settings/locations" (click) = "myDrop.close()"> Locations </button>
+                <button class="dropdown-item c-pointer f-size" routerLink="settings/categories" (click) = "myDrop.close()"> Categories </button>
               </div>
             </li>
           </ul>

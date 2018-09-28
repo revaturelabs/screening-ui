@@ -24,7 +24,7 @@ import { AppComponent } from './app.component';
 export const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: ScreeningComponent,
     children: [
       {
         path: 'screening',
@@ -55,6 +55,11 @@ export const routes: Routes = [
           {
             path: 'passFail',
             component: PassFailComponent
+          },
+          {
+            path: '**',
+            pathMatch: 'full',
+            redirectTo: '/'
           }
         ]
       },
@@ -89,6 +94,11 @@ export const routes: Routes = [
           {
             path: 'screening/skillTypeTopics',
             component: SkillTypeBucketsComponent,
+          },
+          {
+            path: '**',
+            pathMatch: 'full',
+            redirectTo: '/'
           }
         ]
       },
