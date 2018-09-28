@@ -2,20 +2,71 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { AppComponent } from './app.component';
-import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 // Importing the routes from app routes
 import { routes } from './app.routes';
+
+// Component Imports Alphabetically
+import { AnswerComponent } from './components/answer/answer.component';
+import { BucketComponent } from './components/bucket/bucket.component';
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
+import { FinalReportComponent } from './components/final-report/final-report.component';
+import { IntroductionComponent } from './components/introduction/introduction.component';
+import { PassFailComponent } from './components/pass-fail/pass-fail.component';
+import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
+import { ScreeningComponent } from './components/screening/screening.component';
+import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
+import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
+import { TrainerProfilesComponent } from './components/trainer-profile/trainer-profile.component';
+import { TrainersComponent } from './components/trainers/trainers.component';
+import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
+
+import { AlertsService } from './services/alert-service/alerts.service';
+import { BucketsService } from './services/buckets/buckets.service';
+import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
+import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
+import { QuestionService } from './services/question/question.service';
+import { QuestionScoreService } from './services/question-score/question-score.service';
+import { QuestionsService } from './services/questions/questions.service';
+import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
+import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
+import { ScreeningService } from './services/screening/screening.service';
+import { GambitSkillService } from './services/skill/gambit-skill.service';
+import { SkillTypesService } from './services/skill-types/skill-types.service';
+import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
+import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
+import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
+import { GambitTraineeService } from './services/trainee/gambit-trainee.service';
+import { TrainerService } from './services/trainer/trainer.service';
+import { UrlService } from './services/urls/url.service';
+import { ViolationTypeService } from './services/violationType/violationType.service';
+
 @NgModule({
   declarations: [
-    ScreeningComponent,
+    AppComponent,
+    AnswerComponent,
+    BucketComponent,
     CandidatesScreeningListComponent,
+    FinalReportComponent,
+    IntroductionComponent,
+    PassFailComponent,
+    QuestionComponent,
     QuestionsTableComponent,
-    AppComponent
+    ScreeningComponent,
+    ScreeningConfigComponent,
+    SettingsComponent,
+    SkillsComponent,
+    SkillTypeBucketsComponent,
+    SkillTypesComponent,
+    TrainerProfilesComponent,
+    TrainersComponent,
+    ViolationFlagComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +75,27 @@ import { QuestionsTableComponent } from './components/questions-table/questions-
     FormsModule,
     RouterModule.forRoot(routes, { useHash: true })
   ],
-  providers: [],
+  providers: [
+    AlertsService,
+    BucketsService,
+    GambitBatchUtilService,
+    HttpErrorHandlerService,
+    QuestionService,
+    QuestionScoreService,
+    QuestionsService,
+    ScheduleScreeningService,
+    ScreenerBucketsService,
+    ScreeningService,
+    GambitSkillService,
+    SkillTypesService,
+    SkillTypeBucketService,
+    SoftSkillsService,
+    SoftSkillsViolationService,
+    GambitTraineeService,
+    TrainerService,
+    UrlService,
+    ViolationTypeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
