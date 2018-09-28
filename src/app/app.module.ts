@@ -54,10 +54,12 @@ import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { GraphDataPipe } from './pipes/graph-data.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { PaginatePipe, PaginationControlsComponent } from 'ngx-pagination';
 import { TierPipe } from './pipes/tier-pipe';
 import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
 import { TraineeSearch } from './pipes/trainee-search.pipe';
 import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
+
 
 
 
@@ -70,6 +72,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
+    PaginationControlsComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
@@ -87,6 +90,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
     FilterByPipe,
     GraphDataPipe,
     OrderByPipe,
+    PaginatePipe,
     TierPipe,
     ToolbarFilterPipe,
     TraineeSearch,
