@@ -19,8 +19,6 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
-import { AppComponent } from './app.component';
-
 export const routes: Routes = [
   {
     path: '',
@@ -29,12 +27,12 @@ export const routes: Routes = [
       {
         path: 'screening',
         component: ScreeningComponent,
-        canActivate: [RoleGuard],
-        data: {
-          roles: [
-            roles.screenerRole, roles.vpRole
-          ]
-        },
+        // canActivate: [RoleGuard],
+        // data: {
+        //   roles: [
+        //     roles.screenerRole, roles.vpRole
+        //   ]
+        // },
         children: [
           {
             path: 'pendingScreeningsList',
@@ -55,21 +53,16 @@ export const routes: Routes = [
           {
             path: 'passFail',
             component: PassFailComponent
-          },
-          {
-            path: '**',
-            pathMatch: 'full',
-            redirectTo: '/'
           }
         ]
       },
       {
         path: 'settings',
         component: SettingsComponent,
-        canActivate: [RoleGuard],
-        data: {
-          roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
-        },
+        // canActivate: [RoleGuard],
+        // data: {
+        //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
+        // },
         children: [
           {
             path: 'skills',
@@ -94,11 +87,6 @@ export const routes: Routes = [
           {
             path: 'screening/skillTypeTopics',
             component: SkillTypeBucketsComponent,
-          },
-          {
-            path: '**',
-            pathMatch: 'full',
-            redirectTo: '/'
           }
         ]
       },

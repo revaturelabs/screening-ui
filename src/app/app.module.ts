@@ -69,6 +69,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
 import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -115,7 +116,8 @@ import { RoleGuard } from './role-guard';
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
-    NavModule
+    NavModule,
+    HttpClientModule
   ],
   providers: [
     AlertsService,
