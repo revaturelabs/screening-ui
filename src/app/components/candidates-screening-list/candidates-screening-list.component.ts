@@ -20,7 +20,8 @@ import { SearchPipe } from '../../pipes/search.pipe';
 @Component({
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
-  styleUrls: ['./candidates-screening-list.component.css']
+  styleUrls: ['./candidates-screening-list.component.css'],
+  providers: [SimpleTraineeService,SearchPipe]
 })
 
 /**

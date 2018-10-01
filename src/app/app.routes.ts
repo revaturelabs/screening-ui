@@ -67,9 +67,13 @@ export const routes: Routes = [
         ]
       },
       {
+        path: 'home',
+        component: CandidatesScreeningListComponent,
+      },
+      {
         path: '**',
         pathMatch: 'full',
-        redirectTo: '/'
+        redirectTo: '/home'
       }
     ]
   }
