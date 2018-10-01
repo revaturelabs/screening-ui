@@ -42,6 +42,7 @@ import { ScheduleScreeningService } from './services/schedule-screening/schedule
 import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { GambitSkillService } from './services/skill/gambit-skill.service';
+import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
@@ -127,6 +128,7 @@ import { HttpClientModule } from '@angular/common/http';
     QuestionService,
     QuestionScoreService,
     QuestionsService,
+    SimpleTraineeService,
     ScheduleScreeningService,
     ScreenerBucketsService,
     ScreeningService,

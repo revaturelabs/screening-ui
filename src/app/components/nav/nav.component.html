@@ -23,42 +23,12 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="home" routerLinkActive="activeLink">Home</a>
       </li>
-      <li class="nav-item" *ngIf="showManage">
-        <a class="nav-link" routerLink="manage" routerLinkActive="activeLink">Manage Batch</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="screening" routerLinkActive="activeLink">Screening</a>
       </li>
-      <li class="nav-item" *ngIf="showAssess">
-        <a class="nav-link" routerLink="assess" routerLinkActive="activeLink">Assess Batch</a>
-      </li>
-      <li class="nav-item" *ngIf="showQuality">
-        <a class="nav-link" routerLink="quality" routerLinkActive="activeLink">Quality Audit</a>
-      </li>
-      <li class="nav-item" *ngIf="showPanel">
-        <a class="nav-link" routerLink="panel" routerLinkActive="activeLink">Panel</a>
-      </li>
-      <li class="nav-item" *ngIf="showReports">
-        <a class="nav-link" routerLink="reports" routerLinkActive="activeLink">Reports</a>
-      </li>
-      <li class="nav-item" (click)="$event.stopPropagation()" routerLinkActive="activeLink">
-          <ul class="navbar-nav mr-auto caliber-adj-onresize">
-            <li #myDrop = "ngbDropdown" ngbDropdown class="d-inline-block">
-              <a class="nav-link dropdown-toggle c-pointer" id="settingsMenu" ngbDropdownToggle >Settings</a>
-              <div  ngbDropdownMenu aria-labelledby="settingsMenu" (click)="toggleCollapse()">
-                <button class="dropdown-item c-pointer f-size" routerLink="settings/trainers" (click) = "myDrop.close()"> Trainers </button>
-                <button class="dropdown-item c-pointer f-size" routerLink="screening" (click) = "myDrop.close()"> Screening </button>
-              </div>
-            </li>
-          </ul>
+      <li class="nav-item"> 
+          <a class="nav-link" routerLink="settings/screening">Settings</a>
       </li>
     </ul>
-
-
-<!--
-    <div class="shift-dropdown toggable-shadow calibar-nav-bg" (click)="toggleCollapse()">
-      <app-caliber-nav class="align-v-janus-links" [collapsed]="collapsed" (collapse)="toggleClose($event)" *ngIf="currentApp==='Caliber'"></app-caliber-nav>
-      <app-assign-force-nav *ngIf="currentApp==='Assign Force'"></app-assign-force-nav>
-      <app-track-force-nav *ngIf="currentApp==='Track Force'"></app-track-force-nav>
-      <app-bam-nav class="align-v-janus-links" [collapsed]="collapsed" (collapse)="toggleClose($event)" *ngIf="currentApp==='Bam'"></app-bam-nav>
-    </div> -->
-
   </div>
 </nav>
