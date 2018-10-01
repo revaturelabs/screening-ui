@@ -48,24 +48,6 @@ export const routes: Routes = [
     // data: {
     //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
     // },
-    children: [
-      {
-        path: 'questions',
-        component: QuestionComponent
-      },
-      {
-        path: 'skills',
-        component: SkillsComponent
-      },
-      {
-        path: 'buckets',
-        component: BucketComponent
-      },
-      {
-        path: 'skillTypeTopics',
-        component: SkillTypeBucketsComponent,
-      }
-    ]
   },
   {
     path: 'home',
