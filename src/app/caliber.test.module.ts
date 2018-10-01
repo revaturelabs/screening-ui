@@ -57,11 +57,11 @@ import { BucketsService } from './services/buckets/buckets.service';
 import { TrainerService } from './services/trainer/trainer.service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { UrlService } from './services/urls/url.service';
-//import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
+// import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
 
 // N.T.
-import { ApiService } from './util/api.service';
+import { ApiService } from './services/api/api.service';
 
 // pipes
 // import { GradeByTraineeByAssessmentPipe } from './pipes/grade-by-trainee-by-assessment.pipe';
@@ -78,7 +78,7 @@ import { ApiService } from './util/api.service';
 // import { TraineeSearch } from './pipes/trainee-search.pipe';
 // import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
 // import { BucketFilterPipe } from './settings/screening/skillType-buckets/skillType-buckets.filter';
-import { SearchPipe } from './util/search.pipe';
+// import { SearchPipe } from './pipes/search.pipe';
 
 // components
 // import { CaliberComponent } from './caliber.component';
@@ -152,7 +152,7 @@ import { QuestionComponent } from './components/question/question.component';
 // import { PDFService } from './services/pdf.service';
 // import { ReportingService } from './services/reporting.service';
 // import { CategoryService } from './services/category/category.service';
-import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+// import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 export const Dependencies = {
   imports: [
@@ -346,7 +346,7 @@ export const Dependencies = {
     HttpClient,
     // NoteService,
     NgbModal,
-    NgbModalStack,
+    // NgbModalStack,
     // VpHomeLineGraphService,
     // VpHomeSelectorService,
     // ColorService,
