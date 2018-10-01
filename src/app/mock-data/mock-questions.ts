@@ -126,3 +126,15 @@ export const QUESTIONS: Question[] = [
   },
 
 ];
+
+export const expectedQuestion: Question = {
+        questionId: 51,
+        questionText: 'Re-contextualized foreground website',
+        sampleAnswer1: 'Customizable bifurcated analyzer',
+        sampleAnswer2: 'Ergonomic reciprocal complexity',
+        sampleAnswer3: 'Universal user-facing moratorium',
+        sampleAnswer4: '4',
+        sampleAnswer5: '5',
+        isActive: true,
+        bucket: da
+};
