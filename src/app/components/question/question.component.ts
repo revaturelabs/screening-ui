@@ -58,6 +58,7 @@ export class QuestionComponent implements OnInit {
   sampleAnswers: string[];
   questions: Question[];
   // filter: Tag = new Tag();
+  allBuckets : Bucket[];
   currentBucket: Bucket;
   public answersCollapsed = true;
   public tagsCollapsed = true;
@@ -73,6 +74,8 @@ export class QuestionComponent implements OnInit {
     this.sampleAnswers.push(this.question.sampleAnswer4);
     this.sampleAnswers.push(this.question.sampleAnswer5);
     this.updateQuestions();
+    this.bucketService.getAllBuckets().subscribe(buckets => this.allBuckets = buckets);
+    console.log(this.allBuckets);
   }
 
   /**
@@ -138,14 +141,11 @@ export class QuestionComponent implements OnInit {
    **/
   editQuestion(question) {
     this.question = question;
-    const i = 0;
-    const j = 0;
     this.sampleAnswers = [this.question.sampleAnswer1];
     this.sampleAnswers.push(this.question.sampleAnswer2);
     this.sampleAnswers.push(this.question.sampleAnswer3);
     this.sampleAnswers.push(this.question.sampleAnswer4);
     this.sampleAnswers.push(this.question.sampleAnswer5);
-    setBucket(bucket)
     //const newTags = [];
     // this.tagsService.getAllTags().subscribe(data => {
     //   this.allTags = (data as Tag[]);
@@ -155,10 +155,8 @@ export class QuestionComponent implements OnInit {
     //   this.removeTagsFromAll();
     // });
   }
-  setBucket(Bucket: bucket){
-    this.currentBucket = bucket;
-    this.question.bucket = bucket;
-    QuestionService.updateQuestion(question)
+  setBucket(question:Question,bucket:Bucket){
+      this.questionService.updateQuestion(this.question)
   }
 
   /**
@@ -216,18 +214,6 @@ export class QuestionComponent implements OnInit {
    *
    **/
   addNewQuestion() {
-    // this.tagsService.getAllTags().subscribe(data => {
-    //   this.allTags = (data as Tag[]);
-    // });
-    // const newCurrentTagIds: number[] = [];
-    // let i = 0;
-    // if (this.question) {
-    //   for (i; i < this.currentTags.length; i++) {
-    //     newCurrentTagIds.push(this.currentTags[i].tagId);
-    //   }
-    // } else {
-    //   this.currentTags = [];
-    // }
     if (this.sampleAnswers.length === 5 && this.question.questionText) {
       if (this.question.questionId) {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -281,20 +267,6 @@ export class QuestionComponent implements OnInit {
   /**
    * Adds the selected tag to the all tags array and removes it from the current tags array
    **/
-  // removeTagFromQuestion(tag) {
-  //   let currentTag: any;
-  //   const newCurrentTags: Tag[] = [];
-  //   let i = 0;
-  //
-  //   for (i; i < this.currentTags.length; i++) {
-  //     currentTag = this.currentTags[i];
-  //     if (tag.tagId !== currentTag.tagId) {
-  //       newCurrentTags.push(currentTag);
-  //     }
-  //   }
-  //   this.allTags.push(tag);
-  //   this.currentTags = newCurrentTags;
-  // }
 
   /**
    * Resets the current tags and then re adds the tags specific to the current question.
