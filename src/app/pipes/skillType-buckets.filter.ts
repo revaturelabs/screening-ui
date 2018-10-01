@@ -27,7 +27,7 @@ Used in skillTypes-bucket
          for (const field in filter) {
              if (filter[field]) {
                  if (typeof filter[field] === 'string') {
-                     return false //return false by default -- Landon
+                     return false; // return false by default -- Landon
                  } else if (typeof filter[field] === 'number') {
                      if (bucket[field] !== filter[field]) {
                          return false;
