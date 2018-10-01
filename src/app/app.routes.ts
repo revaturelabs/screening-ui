@@ -26,7 +26,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'screening',
-        component: ScreeningConfigComponent,
+        component: QuestionsTableComponent,
         // canActivate: [RoleGuard],
         // data: {
         //   roles: [
@@ -91,9 +91,13 @@ export const routes: Routes = [
         ]
       },
       {
+        path: 'home',
+        component: CandidatesScreeningListComponent,
+      },
+      {
         path: '**',
         pathMatch: 'full',
-        redirectTo: '/'
+        redirectTo: '/home'
       }
     ]
   }
