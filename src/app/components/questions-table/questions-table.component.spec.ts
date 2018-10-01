@@ -44,14 +44,12 @@ const BUCKETS: Bucket[] = [
   {
     bucketId: 1,
     bucketDescription: 'OCA level Java questions',
-    isActive: true,
-    questions: null
+    isActive: true
   },
   {
     bucketId: 2,
     bucketDescription: 'SQL database questions',
-    isActive: true,
-    questions: null
+    isActive: true
   }];
 
 describe('QuestionsTableComponent', () => {
@@ -85,24 +83,24 @@ describe('QuestionsTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set questionBuckets to [] false', () => {
-    component.ngOnDestroy();
-    if (component.questionBuckets !== undefined) {
-      for (const bucket of component.questionBuckets) {
-        expect(bucket.questions).toEqual([]);
-      }
-    }
-  });
+  // it('should set questionBuckets to [] false', () => {
+  //   component.ngOnDestroy();
+  //   if (component.questionBuckets !== undefined) {
+  //     for (const bucket of component.questionBuckets) {
+  //       expect(bucket.questions).toEqual([]);
+  //     }
+  //   }
+  // });
 
-  it('should set questionBuckets to [] true', () => {
-    component.questionBuckets = BUCKETS;
-    component.ngOnDestroy();
-    if (component.questionBuckets !== undefined) {
-      for (const bucket of component.questionBuckets) {
-        expect(bucket.questions).toEqual([]);
-      }
-    }
-  });
+  // it('should set questionBuckets to [] true', () => {
+  //   component.questionBuckets = BUCKETS;
+  //   component.ngOnDestroy();
+  //   if (component.questionBuckets !== undefined) {
+  //     for (const bucket of component.questionBuckets) {
+  //       expect(bucket.questions).toEqual([]);
+  //     }
+  //   }
+  // });
 
   it('should set currentCategory to bucket', () => {
     component.questionBuckets = BUCKETS;
