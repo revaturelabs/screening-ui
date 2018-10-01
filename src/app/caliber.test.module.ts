@@ -190,7 +190,7 @@ export const Dependencies = {
     // ToolbarFilterPipe,
     // TraineeSearch,
     // ArrToStringPipe,
-    SearchPipe,
+    // SearchPipe,
     // BucketFilterPipe,
     // TagFilterPipe,
 
