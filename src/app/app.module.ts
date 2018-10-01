@@ -72,6 +72,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
+import { CandidateComponent } from './components/candidate/candidate.component';
 
 
 
@@ -98,6 +99,7 @@ import { HttpClientModule } from '@angular/common/http';
     TrainerProfilesComponent,
     TrainersComponent,
     ViolationFlagComponent,
+    CandidateComponent,
     // pipes
     ArrToStringPipe,
     BucketFilterPipe,
