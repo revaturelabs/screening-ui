@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
-import { AlertsService } from '../alert-service/alerts.service';
+import { AlertsService } from '../services/alert-service/alerts.service';
 import { ApiService } from './api.service';
 import { defer } from 'rxjs';
 

@@ -15,19 +15,24 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 // Installed Modules
 // npm install ngx-pagination --save
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
-  styleUrls: ['./candidates-screening-list.component.css']
+  styleUrls: ['./candidates-screening-list.component.css'],
+  providers: [SimpleTraineeService,SearchPipe]
 })
 
-/*
-   This is the landing / homepage for our functionality. There are many candidates that must be screened,
-   and the screeners choose their candidates from a common pool.
-   A screener will choose a candidate from the list, and a modal will appear with the options to
-   begin the interview or return to the list. Candidate list is paginated, with 10 results per page.
-*/
+/**
+ * This is the landing / homepage for our functionality. There are many candidates that must be screened,
+ * and the screeners choose their candidates from a common pool.
+ * A screener will choose a candidate from the list, and a modal will appear with the options to
+ * begin the interview or return to the list. Candidate list is paginated, with 10 results per page.
+ * @export
+ * @class CandidatesScreeningListComponent
+ * @implements {OnInit}
+ */
 export class CandidatesScreeningListComponent implements OnInit {
   /* ###########################
         FIELDS
@@ -55,7 +60,8 @@ export class CandidatesScreeningListComponent implements OnInit {
     private screeningService: ScreeningService,
     private scheduleScreeningService: ScheduleScreeningService,
     private softSkillsViolationService: SoftSkillsViolationService,
-    private questionScoreService: QuestionScoreService
+    private questionScoreService: QuestionScoreService,
+    private searchPipe: SearchPipe
   ) {}
 
   ngOnInit() {
