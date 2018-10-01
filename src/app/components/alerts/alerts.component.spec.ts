@@ -3,7 +3,7 @@ import { AlertsComponent } from './alerts.component';
 import { AlertsService } from '../services/alerts.service';
 import { XHRBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { NotificationsService } from 'angular2-notifications-lite';
+//import { NotificationsService } from 'angular2-notifications-lite';
 import { Dependencies } from '../caliber.test.module';
 
 /**

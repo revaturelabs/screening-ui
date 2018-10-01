@@ -26,7 +26,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'screening',
-        component: ScreeningComponent,
+        component: ScreeningConfigComponent,
         // canActivate: [RoleGuard],
         // data: {
         //   roles: [

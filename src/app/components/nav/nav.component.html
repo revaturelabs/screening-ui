@@ -9,7 +9,7 @@
   </button>
 
   <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
-    
+
     <!-- <ul class="navbar-nav mr-auto module-select">
       <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown-toggle c-pointer janus-links-collapse-support shift-down" id="dropdownBasic1" ngbDropdownToggle>{{currentApp}}</a>
@@ -44,6 +44,7 @@
               <a class="nav-link dropdown-toggle c-pointer" id="settingsMenu" ngbDropdownToggle >Settings</a>
               <div  ngbDropdownMenu aria-labelledby="settingsMenu" (click)="toggleCollapse()">
                 <button class="dropdown-item c-pointer f-size" routerLink="settings/trainers" (click) = "myDrop.close()"> Trainers </button>
+                <button class="dropdown-item c-pointer f-size" routerLink="screening" (click) = "myDrop.close()"> Screening </button>
               </div>
             </li>
           </ul>
@@ -51,7 +52,7 @@
     </ul>
 
 
-<!-- 
+<!--
     <div class="shift-dropdown toggable-shadow calibar-nav-bg" (click)="toggleCollapse()">
       <app-caliber-nav class="align-v-janus-links" [collapsed]="collapsed" (collapse)="toggleClose($event)" *ngIf="currentApp==='Caliber'"></app-caliber-nav>
       <app-assign-force-nav *ngIf="currentApp==='Assign Force'"></app-assign-force-nav>
