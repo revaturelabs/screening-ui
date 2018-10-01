@@ -10,6 +10,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
