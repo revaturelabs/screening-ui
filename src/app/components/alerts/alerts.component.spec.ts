@@ -2,6 +2,7 @@ import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlertsComponent } from './alerts.component';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { NotificationsService } from 'angular2-notifications-lite';
+import { Dependencies } from '../../caliber.test.module';
 
 /**
  * Author: Jordan Young
