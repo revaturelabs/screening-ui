@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -117,7 +119,8 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
     NavModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AlertsService,
