@@ -1,0 +1,21 @@
+<!-- Showing Bucket (Category) name and description - non-editable -->
+<div class="bucket-header">
+  <button class="btn btn-secondary b-top-radius pull-right" (click)="routeToAllBuckets()">
+    <i class="fa fa-backward" aria-hidden="true"></i>
+    <strong>Back To All Buckets</strong>
+  </button>
+    <!-- <a class="btn pull-right" (click)="routeToAllBuckets()">Back To SkillTypes</a> -->
+    <!--Bucket category (the name displayed)-->
+    <h3 *ngIf="this.theBucket" class="bucket-header">
+        {{this.theBucket.bucketCategory}}
+    </h3>
+    <!-- Bucket description (the description displayed)-->
+    <p *ngIf="this.theBucket" id="bucket-desc">
+        {{this.theBucket.bucketDescription}}
+    </p>
+</div>
+
+<div>
+    <!--Question Component-->
+    <app-question></app-question>
+</div>

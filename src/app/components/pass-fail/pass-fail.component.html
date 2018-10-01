@@ -1,0 +1,76 @@
+<div id="pass-fail-container" class="pass-fail-container">
+  <h1>Soft Skills Evaluation</h1>
+  <br>
+  <p id="candidate-name" class="text-center">{{candidateName}}</p>
+  <div id="table-container" >
+    <div id="violationTable" class="violation-table" >
+      <table class="table table-hover" id="table-container">
+        <thead>
+          <tr>
+            <th scope="col">Violation Type</th>
+            <th scope="col">Violation Time</th>
+            <th scope="col">Comment </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="violation" *ngIf="!hasViolations()">
+            <td colspan="4">No Violations Found</td>
+          </tr>
+          <tr class="violation" *ngFor="let violation of softSkillViolationService.softSkillViolations; let i = index">
+            <td>{{violation.violationType.violationTypeText}}</td>
+            <td>{{violation.Time | date:'shortTime'}}</td>
+            <td>{{violation.Comment}}</td>
+            <td><button class="btn" (click)="deleteViolation(violation.violationID, i)">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-violation-flag (flagChange)="getMessage($event)"></app-violation-flag>
+  <hr>
+  <div class="text-center">
+    
+    <h2>Overall Soft Skill Feedback</h2>
+    <textarea class="form-control" (input)="softSkillFeedback = $event.target.value" placeholder="Optional Feedback" id="overallSkillFeedback"></textarea>
+    <br>
+    <hr>
+    <h2>Did they pass soft skills? (required)</h2>
+    <span id="pass-fail-button">
+      <label class="switch">
+        <input type="radio" [checked]="passChecked" (change)="updateCheckedPass($event.target.checked)"/>
+        <div class="slider round">
+          <span class="on">PASS</span>
+          <span class="off">PASS</span>
+        </div>
+      </label>
+    </span>
+    <span id="pass-fail-button">
+      <label class="switch">
+        <input type="radio" [checked]="failChecked" (change)="updateCheckedFail($event.target.checked)"/>
+        <div class="slider round">
+          <span class="on">FAIL</span>
+          <span class="off">FAIL</span>
+        </div>
+      </label>
+    </span>
+    <br>
+    <hr>
+    <button class="btn" (click)="submit()" [disabled]="wasClicked()" routerLink="/Caliber/screening/finalReport">Complete Interview</button>
+    <br><br>
+  </div>
+  <!-- 
+  The Modal
+  <div id="myModal" class="modal" [style.display]="endScreeningPrompt()">
+    <div class="modal-content">
+      <h2>Do you want to Submit?</h2>
+      <div class="buttons">
+        <button class="btn" type="submit" 
+          routerLink="/Caliber/screening/finalReport"
+          routerLinkActive="activeLink">Submit</button>
+        <button class="btn" (click)="endScreening = !endScreening">Cancel</button>
+      </div>
+    </div>
+  </div>
+  -->
+</div>

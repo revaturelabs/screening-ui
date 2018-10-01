@@ -1,0 +1,49 @@
+<div id="q-and-a-container">
+
+  <h1>Questions By Topic</h1>
+  <br>
+  <p id="candidate-name" class="text-center">{{candidateName}}</p>
+  <div id="q-and-a-content">
+    <h2>Categories</h2>
+    <p>Select a category to begin asking questions</p>
+    <div id="bucket-buttons">
+      <ul class="nav nav-tabs">
+        <li class="pointer" *ngFor="let bucket of questionBuckets">
+          <!-- <button class="btn" *ngFor="let bucket of buckets" (click)="setBucket(bucket.bucketID)">{{bucket.bucketCategory}}</button> -->
+          <a class="nav-link" [class.active]="bucket.bucketID == currentCategory.bucketID" 
+            [class.inActive]="bucket.bucketID != currentCategory.bucketID" (click)="setBucket(bucket.bucketID)">{{bucket.bucketCategory}}</a>
+        </li>
+      </ul>
+    </div>
+    <h3 id="question-table-title">Question Bank</h3>
+    <div *ngIf="currentCategory != undefined" id="table-container">
+      <table class="table table-hover" id="questions-table">
+        <thead>
+          <tr>
+            <th scope="col" class="question-col"></th>
+            <th scope="col" class="question-col"></th>
+          </tr>
+        </thead>
+        <tbody class="question-transition">
+          <ng-container *ngFor="let question of currentCategory.questions; let i = index">
+            <tr class="pointer" (click)="open(question)">
+              <td class="question">{{question.questionText}}</td>
+              <td>
+                <span *ngIf="questionScores != undefined && isAnsweredQuestion(question)" style="color: #81f575" class="fa fa-check fa-2x"
+                  aria-hidden="true"></span>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="footer fixed-bottom text-center" id="gfooter"> -->
+    <div class="footer text-center" id="gfooter">
+      <h3>Overall Feedback (required)</h3>
+      <textarea [(ngModel)]="generalComment" id="footsie" rows="3" maxlength="4000" placeholder="Required Feedback"></textarea>
+    </div>
+    <div id="center-submit">
+      <button class="btn" id="submit-button" [disabled]="submitAllowed()" type="submit" routerLink="/Caliber/screening/passFail" routerLinkActive="activeLink" (click)="saveFeedback()">Finish</button>
+    </div>
+  </div>
+</div>

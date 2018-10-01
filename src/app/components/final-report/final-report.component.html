@@ -1,0 +1,27 @@
+<div id="final-report-container" class="final-report-container">	
+	<h1>Final Summary</h1>
+	<div id="finalrep">
+		<p id="candidate-name" class="text-center">{{candidateName}}</p>
+		<br>
+		<h2 class="text-center">Interview has been submitted</h2>
+		<br>
+		<div class="container-fluid rounded" id ="finalcon">
+			<p id="softskills">{{softSkillString}}</p>			
+			<div>
+				<p *ngFor="let bucket of bucketStringArray">{{bucket}}</p>
+			</div>			
+			<p id="overallScoreString">{{overallScoreString}}</p>
+			<p id="generalNotesString">"{{generalNotesString}}"</p>
+		</div>
+	</div>
+	<br>
+	
+	<div class="centerit">
+		<input class="copywow btn" type="button" (click) = "copyToClipboard()" value = "Copy To Clipboard"> 
+	</div>
+	<br>
+	<div class="centerit">
+		<button class="copywow btn" type="submit" routerLink="/Caliber/screening/pendingScreeningsList" routerLinkActive="activeLink">Candidate List</button>
+	<br><br>
+	</div>
+</div>

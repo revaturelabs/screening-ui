@@ -1,0 +1,163 @@
+<!--
+  This Template is connected to the question component and displayed within the bucket template in caliber.
+  It gets the currently selected bucket Id from the bucket service, displays all of the buckets questions and 
+  allows you to add questions to that bucket. 
+  The template starts with the table that is displayed and ends with the quesiton editor modal, which is displayed 
+  for adding and editing questions.
+-->
+<!--Questions Table Start-->
+<div id="QContent" class="move" [@move]='state'>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class = "card w-50" >
+        <h6 class="card-header">Questions</h6>
+        <div class="card-body" id = "allQuestionsDiv">
+          <div class="list-group" *ngFor="let question of questions">
+            <a class="list-group-item list-group-item-action" *ngIf = "question">
+              {{question.questionText}}
+              <i id="xIcon">
+                <label class="switch">
+                    <input type="checkbox" [checked] = question.isActive (change) = "changeQuestionStatus(question)">
+                    <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
+                    <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!question.isActive"></span>
+                </label>
+              </i>
+              <i id="penIcon" class="fa fa-pencil pull-right" (click)="editQuestion(question); open(content)" placement="top" ngbTooltip="edit"></i>
+            </a>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" (click)='setQuestionNull(); open(content);'>Create New Question</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Questions Table End-->
+<!--Add new question modal Start-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" *ngIf="!testSingleTrack">Question Editor</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <!--Question Form Start-->
+    <form #addQuestionForm="ngForm">
+      <!--Add new question input text boxes-->
+      <div class="form-group row">
+        <label for = "questionText" class="col-sm-3 col-form-label" min="0" max="100" align = "right">Question:</label>
+        <div class="col-sm-9">
+          <input name="question" [(ngModel)]="question.questionText" type = "text" id = "questionText" placeholder="Question" class="form-control bucketWeight" min="0" max="100">
+        </div>
+      </div>
+      <!---Answers/Tags Tabbing Start-->
+      <ngb-tabset>
+          <!--Answers Tab Start-->
+          <ngb-tab title="Answers">
+            <ng-template ngbTabContent>
+              <div ngbPanelContent class = "tabContent">
+                <br>
+                <div class="form-group row">
+                  <label for = "one point answer" class="col-sm-3 col-form-label" min="0" max="100" align = "right">One point:</label>
+                  <div class="col-sm-9">
+                    <input name="answer1" [(ngModel)]="sampleAnswers[0]" type = "text" id = "1pointAnswer" placeholder="answer" class="form-control" min="0" max="100">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="two point answer" class="col-sm-3 col-form-label" min="0" max="100" align = "right">Two point:</label>
+                  <div class="col-sm-9">
+                    <input name="answer2" [(ngModel)]="sampleAnswers[1]" type = "text" id = "2pointAnswer" placeholder="answer" class="form-control" min="0" max="100">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="three point answer" class="col-sm-3 col-form-label" min="0" max="100" align = "right">Three point:</label>
+                  <div class="col-sm-9">
+                    <input name="answer3" [(ngModel)]= "sampleAnswers[2]" type = "text" id = "3pointAnswer" placeholder="answer" class="form-control" min="0" max="100">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="four point answer" class="col-sm-3 col-form-label" min="0" max="100" align = "right">Four point:</label>
+                  <div class="col-sm-9">
+                    <input name="answer4" [(ngModel)]="sampleAnswers[3]" type = "text" id = "4pointAnswer" placeholder="answer" class="form-control" min="0" max="100">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="five point answer" class="col-sm-3 col-form-label" min="0" max="100" align = "right">Five point:</label>
+                  <div class="col-sm-9">
+                    <input name="answer5" [(ngModel)]="sampleAnswers[4]" type = "text" id = "5pointAnswer" placeholder="answer" class="form-control" min="0" max="100">
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <!--Answers Tab End-->
+          <!--Tags Tab Start-->
+          <ngb-tab title="Tags" (click) = "removeTagsFromAll()">
+            <ng-template ngbTabContent>
+              <div ngbPanelContent class = "tabContent">
+                <br>
+                <div class="row">
+                  <label for="allTags" class="col-form-label col-sm-3">Selected Tags:</label>
+                  <!--Add new tag section-->
+                  <div class="col-sm-9 col-form-label"  align = "center">
+                    <input #Tag (keyup.enter)="newTag()" [(ngModel)]="newTagString" name="newTag"  type = "text" id = "newTag" class="form-control" placeholder="add new tag">
+                  </div>
+                </div>
+                <!--Uses the same styling as the all tags, but this section is to display the currently added tags in the question editor-->
+                <div id = "allTagsDiv" data-spy="scroll" data-offset="50">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-sm-11 col-8">
+                        <div class="form-group row">
+                          <!--Corresponding to an array in the backend that removes a tag when one is clicked and adds that tag back to the all tags array-->
+                          <span *ngFor="let tag of currentTags">
+                            <span *ngIf = "tag" class="input-group-addon revatureOrange badge badge-pill" (click)="removeTagFromQuestion(tag)" [innerHTML]="tag.tagName"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Add tags section-->
+                <div class="form-group row">
+                  <label for="allTags" class="col-sm-3 col-form-label">All Tags:</label>
+                  <div class="col-sm-9">
+                    <!--A search bar to help sift through the unadded tags for when the amount of tags is increased-->
+                    <input type="text" name="tag" [(ngModel)]="filter.name" placeholder="Search Tags" min="0" max="100" class = "form-control">
+                  </div>
+              </div>
+              <div id = "allTagsDiv" data-spy="scroll" data-offset="50">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-11 col-8">
+                      <div class="form-group row">
+                        <!--Custome filter that checks all of the tags against the string in the search bar above-->
+                        <!-- <span *ngFor="let tag of allTags| tagfilter:filter">
+                          <span *ngIf = "tag" class="input-group-addon revatureGray badge badge-pill" (click)="addTagToQuestion(tag)">{{tag.tagName}}</span>
+                        </span> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <!--Tags Tab End-->
+        </ngb-tabset>
+        <!---Answers/Tags Tabbing End-->
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+        <!--The save button will save/update a question so long as all of the fields have been filled and display a message that the question has been saved-->
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)=" addNewQuestion();c('Close click')">Save</button>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="form-group row">
+      </div>
+    </form>
+    <!--Question Form End-->
+  </div>
+</ng-template>
+<!--Ending of the add new question modal -->

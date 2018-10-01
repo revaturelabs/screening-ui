@@ -1,0 +1,225 @@
+/* #############################
+        GENERAL STYLING 
+############################# */
+
+#introduction-container {
+  margin: 25px auto;
+  min-width: 400px;
+  width: 70%;
+  max-width: 95vw;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+  border-radius: 4px;
+}
+
+#introduction-content {
+  padding: auto 15%;
+}
+
+h1 {
+  background: #f26925;
+  color: white;
+  min-width: 260px;
+  text-align: center;
+  font-size: 25px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 100%;
+  border-color: #f26925;
+  margin-bottom: 20px;
+  padding: 12px;
+  white-space: nowrap;
+}
+
+h2 {
+  font-size: 20px;
+}
+p {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+/* #############################
+        NAME & SKILLTYPE
+############################# */
+.info {
+  width: 40%;
+  margin: 0 auto;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 20px;
+}
+.info div p {
+  font-size: 20px;
+}
+.name,
+.skillType {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-gap: 20px;
+  text-align: left;
+}
+
+/* #############################
+        CHECK BOXES
+############################# */
+.skills-checkbox {
+  margin: 5px 5px 5px 5px;
+  width: 90%;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 18px;
+}
+#skills-checkbox label {
+  width: 100%;
+}
+.skill {
+  width: auto;
+  margin: auto 10px;
+  display: inline-flex;
+}
+/* #############################
+        ABOUT ME
+############################# */
+.form-group{
+  margin-bottom: 0px;
+}
+
+.comment-container {
+  font-size: 20px;
+  margin-right:10px;
+  margin-left: 10px;
+}
+/* #############################
+        SUBMIT BUTTON 
+############################# */
+
+#submit-button {
+  margin: 10px auto 20px auto;
+  width: 160px;
+  background: #f26925;
+  border-color: #f26925;
+  color: white;
+}
+
+#submit-button:disabled {
+  background: #686868;
+  border: none;
+  color: white;
+  font-weight: strong;
+}
+
+/* #############################
+        TOGGLE BUTTONS 
+############################# */
+
+ /* The switch - the box around the slider */
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #999999;
+  width: 60px;
+  height: 34px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #f26925;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #f26925;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+} 
+
+/*
+    Media queries for Toggle-switch grid (skills-checkbox is the container)
+    To make the design responsive, below are 5 media queries to re-arrange
+    the grid system based on width. 
+    This was mostly trial-and-error to get the numbers.
+
+    The first one in the list is the catch-all, meaning the grid should have
+    at most 6 columns. If your screen has greater resolution than 3450, have fun with that. 
+*/
+@media screen and (max-width: 3450px){
+  div.skills-checkbox{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+}
+/*
+  If the screen resolution is over 1300, use the above query. 
+  If the screen resolution is below 1300, use the below query. 
+*/
+@media screen and (max-width: 1300px){
+  div.skills-checkbox{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  div.skills-checkbox{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media screen and (max-width:800px){
+  div.skills-checkbox{
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media screen and (max-width:650px){
+  div.skills-checkbox{
+    display: inline-grid;
+    grid-template-columns: auto auto;
+  }
+}
