@@ -18,6 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
     NgbModule.forRoot(),
     FormsModule,
     RouterModule,
+    BrowserModule
   ],
   declarations: [
     NavComponent

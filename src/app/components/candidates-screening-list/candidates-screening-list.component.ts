@@ -23,12 +23,15 @@ import { SearchPipe } from '../../pipes/search.pipe';
   styleUrls: ['./candidates-screening-list.component.css']
 })
 
-/*
-   This is the landing / homepage for our functionality. There are many candidates that must be screened,
-   and the screeners choose their candidates from a common pool.
-   A screener will choose a candidate from the list, and a modal will appear with the options to
-   begin the interview or return to the list. Candidate list is paginated, with 10 results per page.
-*/
+/**
+ * This is the landing / homepage for our functionality. There are many candidates that must be screened,
+ * and the screeners choose their candidates from a common pool.
+ * A screener will choose a candidate from the list, and a modal will appear with the options to
+ * begin the interview or return to the list. Candidate list is paginated, with 10 results per page.
+ * @export
+ * @class CandidatesScreeningListComponent
+ * @implements {OnInit}
+ */
 export class CandidatesScreeningListComponent implements OnInit {
   /* ###########################
         FIELDS
