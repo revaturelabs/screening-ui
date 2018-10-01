@@ -10,71 +10,70 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
+import { QuestionComponent } from './components/question/question.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: CandidatesScreeningListComponent,
+  },
+  {
+    path: 'screening',
+    component: IntroductionComponent,
+    // canActivate: [RoleGuard],
+    // data: {
+    //   roles: [
+    //     roles.screenerRole, roles.vpRole
+    //   ]
+    // },
     children: [
       {
-        path: 'screening',
-        component: IntroductionComponent,
-        // canActivate: [RoleGuard],
-        // data: {
-        //   roles: [
-        //     roles.screenerRole, roles.vpRole
-        //   ]
-        // },
-        children: [
-          {
-            path: 'questions',
-            component: QuestionsTableComponent,
-          },
-          {
-            path: 'finalReport',
-            component: FinalReportComponent,
-          },
-          {
-            path: 'passFail',
-            component: PassFailComponent
-          }
-        ]
+        path: 'questions',
+        component: QuestionsTableComponent,
       },
       {
-        path: 'settings',
-        component: SettingsComponent,
-        // canActivate: [RoleGuard],
-        // data: {
-        //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
-        // },
-        children: [
-          {
-            path: 'skills',
-            component: SkillsComponent
-          },
-          {
-            path: 'screening',
-            component: ScreeningConfigComponent,
-          },
-          {
-            path: 'screening/category',
-            component: BucketComponent
-          },
-          {
-            path: 'screening/skillTypeTopics',
-            component: SkillTypeBucketsComponent,
-          }
-        ]
+        path: 'finalReport',
+        component: FinalReportComponent,
       },
       {
-        path: 'home',
-        component: CandidatesScreeningListComponent,
-      },
-      {
-        path: '**',
-        pathMatch: 'full',
-        redirectTo: '/home'
+        path: 'passFail',
+        component: PassFailComponent
       }
     ]
+  },
+  {
+    path: 'settings',
+    component: ScreeningConfigComponent,
+    // canActivate: [RoleGuard],
+    // data: {
+    //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
+    // },
+    children: [
+      {
+        path: 'questions',
+        component: QuestionComponent
+      },
+      {
+        path: 'skills',
+        component: SkillsComponent
+      },
+      {
+        path: 'buckets',
+        component: BucketComponent
+      },
+      {
+        path: 'skillTypeTopics',
+        component: SkillTypeBucketsComponent,
+      }
+    ]
+  },
+  {
+    path: 'home',
+    component: CandidatesScreeningListComponent,
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/home'
   }
 ];
