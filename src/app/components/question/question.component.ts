@@ -145,7 +145,8 @@ export class QuestionComponent implements OnInit {
     this.sampleAnswers.push(this.question.sampleAnswer3);
     this.sampleAnswers.push(this.question.sampleAnswer4);
     this.sampleAnswers.push(this.question.sampleAnswer5);
-    const newTags = [];
+    setBucket(bucket)
+    //const newTags = [];
     // this.tagsService.getAllTags().subscribe(data => {
     //   this.allTags = (data as Tag[]);
     // });
@@ -153,6 +154,11 @@ export class QuestionComponent implements OnInit {
     //   this.newTags = (data as Tag[]);
     //   this.removeTagsFromAll();
     // });
+  }
+  setBucket(Bucket: bucket){
+    this.currentBucket = bucket;
+    this.question.bucket = bucket;
+    QuestionService.updateQuestion(question)
   }
 
   /**
@@ -229,9 +235,9 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        // this.questionService.updateQuestion(this.question, this.getTagIds()).subscribe(data => {
-        //   this.updateQuestions();
-        // });
+        this.questionService.updateQuestion(this.question).subscribe(data => {
+          this.updateQuestions();
+         });
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -240,9 +246,9 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
         this.question.bucket = this.currentBucket;
-        // this.questionService.createNewQuestion(this.question, this.getTagIds()).subscribe(data => {
-        //   this.updateQuestions();
-        // });
+         this.questionService.createNewQuestion(this.question).subscribe(data => {
+           this.updateQuestions();
+         });
         this.savedSuccessfully();
       }
       this.setQuestionNull();
