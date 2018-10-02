@@ -37,7 +37,6 @@ import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
-import { QuestionService } from './services/question/question.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
@@ -110,7 +109,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     TierPipe,
     ToolbarFilterPipe,
     TraineeSearch,
-    TrainerPipePipe
+    TrainerPipePipe,
   ],
   imports: [
     BrowserModule,
@@ -130,7 +129,6 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     BucketsService,
     GambitBatchUtilService,
     HttpErrorHandlerService,
-    QuestionService,
     QuestionScoreService,
     QuestionsService,
     SimpleTraineeService,

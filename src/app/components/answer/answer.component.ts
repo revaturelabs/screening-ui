@@ -4,7 +4,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { QuestionScore } from '../../entities/QuestionScore';
 
 // Services
-import { QuestionService } from '../../services/question/question.service';
+import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 
 // ngbootstrap for modal
@@ -23,8 +23,7 @@ export class AnswerComponent implements OnInit {
   // used to exchange data between the answer modal and question table component
   questionScores: QuestionScore[];
 
-  constructor(public activeModal: NgbActiveModal, private questionService: QuestionService,
-    private questionScoreService: QuestionScoreService) { }
+  constructor(public activeModal: NgbActiveModal, private questionScoreService: QuestionScoreService) { }
 
   ngOnInit() {
     this.questionScore = {

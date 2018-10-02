@@ -7,12 +7,9 @@ import { Bucket } from '../../entities/Bucket';
 import { QuestionScore } from '../../entities/QuestionScore';
 
 // Services
-import { QuestionService } from '../../services/question/question.service';
+import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-
-// Utility Class (setting up buckets and questions based on selected tags)
-import { QuestionsToBucketsUtil } from '../../util/questionsToBuckets.util';
 
 // Modal for answering the question
 import { AnswerComponent } from '../answer/answer.component';
@@ -68,9 +65,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   constructor(
-    private questionService: QuestionService,
+    private questionService: QuestionsService,
     private questionScoreService: QuestionScoreService,
-    private questionsToBucketsUtil: QuestionsToBucketsUtil,
     private modalService: NgbModal,
     private screeningService: ScreeningService,
     private simpleTraineeService: SimpleTraineeService,
@@ -79,8 +75,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
+    const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
     this.subscriptions.push(this.skillTypeBucketService.
-      getSkillTypeBuckets(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(bucketsWithWeights => {
+      getSkillTypeBuckets(skillTypeID).subscribe(bucketsWithWeights => {
 
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights.bucket) {
@@ -100,8 +97,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
         weights: JSON.parse(JSON.stringify(bucketsWithWeights.weight)),
       };
 
-      this.subscriptions.push(this.questionService.getQuestions().subscribe(allQuestions => {
-        this.questionBuckets = this.questionsToBucketsUtil.saveQuestions(allQuestions, this.skillTypeBucketService.bucketsByWeight);
+      this.subscriptions.push(this.questionService.getQuestions(skillTypeID).subscribe(allQuestions => {
+        this.questionBuckets = this.questionService.saveQuestions(allQuestions, this.skillTypeBucketService.bucketsByWeight);
         this.skillTypeBucketService.bucketsByWeight.buckets = JSON.parse(JSON.stringify(this.questionBuckets));
 
         if (this.questionBuckets.length > 0) {
