@@ -14,8 +14,8 @@
           <th scope="col">Date</th>
         </tr>
       </thead>
-      <!-- <tbody>
-         The paginate pipe must be at the end of all the filters 
+      <tbody>
+         <!-- The paginate pipe must be at the end of all the filters -->
         <ng-container *ngFor="let i = index; let scheduledScreening of scheduledScreenings | searchPipe: searchText | paginate: { itemsPerPage: 10, currentPage: p } ">
           <tr (click)="showBeginScreeningPrompt = !showBeginScreeningPrompt; selectedCandidate = scheduledScreening.trainee; selectedScheduledScreening = scheduledScreening">
             <td>{{scheduledScreening.trainee.firstname}} {{scheduledScreening.trainee.lastname}}</td>
@@ -23,7 +23,7 @@
             <td>{{scheduledScreening.trainee.schedule | date:'short'}}</td>
           </tr>
         </ng-container>
-      </tbody> -->
+      </tbody>
     </table>
     <!-- The Modal -->
     <div id="myModal" class="modal animated fadeIn" [style.display]="toggleBeginScreeningPrompt()">

@@ -74,6 +74,8 @@ export class QuestionComponent implements OnInit {
     this.sampleAnswers.push(this.question.sampleAnswer4);
     this.sampleAnswers.push(this.question.sampleAnswer5);
     this.updateQuestions();
+
+
     this.bucketService.getAllBuckets().subscribe(buckets => this.allBuckets.push(... buckets as Bucket[]));
     console.log(this.allBuckets);
   }
