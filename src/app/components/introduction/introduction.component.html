@@ -14,7 +14,7 @@
 
     <hr>
     <h2>Skills (required)</h2>
-    <div id="skills-checkbox" class="skills-checkbox"> 
+    <div id="skills-checkbox" class="skills-checkbox">
       <div class="skill" *ngFor="let tag of tagList; let i = index">
         <!-- Create a checkbox for each tag using ngFor. Toggle buttons instead of checkboxes! -->
         <span>
@@ -36,7 +36,7 @@
           <br>
           <textarea class="form-control" (input)="comment = $event.target.value" id="inputComment" name="commentBox" placeholder="Optional Feedback"></textarea>
           <br>
-          <button class="btn" (click)="onSubmit()" id="submit-button" [disabled]="skillChosen()" routerLink="/Caliber/screening/questions" routerLinkActive="activeLink">Begin Questions</button>
+          <button class="btn" (click)="onSubmit()" id="submit-button" [disabled]="skillChosen()" routerLink="screening/questions" routerLinkActive="activeLink">Begin Questions</button>
         </div>
       </div>
 
@@ -56,4 +56,3 @@
   </div>
   <app-violation-flag></app-violation-flag>
 </div>
-
