@@ -1,8 +1,8 @@
 <!--
   This Template is connected to the question component and displayed within the bucket template in caliber.
-  It gets the currently selected bucket Id from the bucket service, displays all of the buckets questions and 
-  allows you to add questions to that bucket. 
-  The template starts with the table that is displayed and ends with the quesiton editor modal, which is displayed 
+  It gets the currently selected bucket Id from the bucket service, displays all of the buckets questions and
+  allows you to add questions to that bucket.
+  The template starts with the table that is displayed and ends with the quesiton editor modal, which is displayed
   for adding and editing questions.
 -->
 <!--Questions Table Start-->
@@ -92,7 +92,7 @@
           </ngb-tab>
           <!--Answers Tab End-->
           <!--Tags Tab Start-->
-          <ngb-tab title="Tags" (click) = "removeTagsFromAll()">
+          <ngb-tab title="Buckets" (click) = "removeTagsFromAll()">
             <ng-template ngbTabContent>
               <div ngbPanelContent class = "tabContent">
                 <br>
@@ -102,6 +102,9 @@
                   <div class="col-sm-9 col-form-label"  align = "center">
                     <input #Tag (keyup.enter)="newTag()" [(ngModel)]="newTagString" name="newTag"  type = "text" id = "newTag" class="form-control" placeholder="add new tag">
                   </div>
+                  <!-- <select>
+                  <option *ngFor = "let bucket of bucketService.getAllBuckets()" >
+                  </select> -->
                 </div>
                 <!--Uses the same styling as the all tags, but this section is to display the currently added tags in the question editor-->
                 <div id = "allTagsDiv" data-spy="scroll" data-offset="50">
@@ -110,8 +113,8 @@
                       <div class="col-sm-11 col-8">
                         <div class="form-group row">
                           <!--Corresponding to an array in the backend that removes a tag when one is clicked and adds that tag back to the all tags array-->
-                          <span *ngFor="let tag of currentTags">
-                            <span *ngIf = "tag" class="input-group-addon revatureOrange badge badge-pill" (click)="removeTagFromQuestion(tag)" [innerHTML]="tag.tagName"></span>
+                          <span *ngFor="let bucket of allBuckets">
+                            <span *ngIf = "bucket" class="input-group-addon revatureOrange badge badge-pill" (click)="setBucket()" [innerHTML]="bucket.bucketDescription"></span>
                           </span>
                         </div>
                       </div>
@@ -123,7 +126,7 @@
                   <label for="allTags" class="col-sm-3 col-form-label">All Tags:</label>
                   <div class="col-sm-9">
                     <!--A search bar to help sift through the unadded tags for when the amount of tags is increased-->
-                    <input type="text" name="tag" [(ngModel)]="filter.name" placeholder="Search Tags" min="0" max="100" class = "form-control">
+                    <input type="text" name="bucket" [(ngModel)]="filter.name" placeholder="Search Tags" min="0" max="100" class = "form-control">
                   </div>
               </div>
               <div id = "allTagsDiv" data-spy="scroll" data-offset="50">

@@ -39,8 +39,8 @@ export class QuestionsService {
    * @param question - question model
    * @param tagIds - array of tag ids
    */
-  createNewQuestion(question: Question, tagIds: number[]) {
-    return this.http.post(this.urlService.question.postQuestion(), { question: question, tagIds: tagIds }, httpOptions);
+  createNewQuestion(question: Question) {
+    return this.http.post(this.urlService.question.postQuestion(), question, httpOptions);
   }
 
   /**
@@ -51,8 +51,8 @@ export class QuestionsService {
    * @param question
    * @param newTagIds
    */
-  updateQuestion(question: Question, newTagIds: number[]) {
-    return this.http.put(this.urlService.question.putQuestion(), { question: question, tagIds: newTagIds }, httpOptions);
+  updateQuestion(question: Question) {
+    return this.http.put(this.urlService.question.putQuestion(), question, httpOptions);
   }
 
   /**
