@@ -11,6 +11,7 @@ import { QUESTIONS, expectedQuestion } from '../../mock-data/mock-questions';
 
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
+import { SimpleTraineeService } from '../simpleTrainee/simple-trainee.service';
 
 export function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));
@@ -46,7 +47,7 @@ describe('QuestionsService ', () => {
    */
   it('getBucketQuestions should return expected questions from bucket #' + testBucket + ' (HttpClient called once)', () => {
     httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
-    questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService);
+    questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService );
 
     const expectedQuestions: Question[] = [expectedQuestion];
 
@@ -71,7 +72,7 @@ describe('QuestionsService ', () => {
 
     httpClientSpyOnPost.post.and.returnValue(asyncData(QUESTIONS[0]));
 
-    questionsService.createNewQuestion(QUESTIONS[0], [1]).subscribe(
+    questionsService.createNewQuestion(QUESTIONS[0]).subscribe(
       questions => expect(questions).toEqual(QUESTIONS[0]),
       fail
     );
@@ -90,7 +91,7 @@ describe('QuestionsService ', () => {
 
     httpClientSpyOnPost.post.and.returnValue(asyncData(QUESTIONS[0]));
 
-    questionsService.updateQuestion(QUESTIONS[0], [1]).subscribe(
+    questionsService.updateQuestion(QUESTIONS[0]).subscribe(
       questions => expect(questions).toEqual(QUESTIONS[0]),
       fail
     );
@@ -172,7 +173,7 @@ describe('QuestionsService ', () => {
     httpClientSpyOnPost.post.and.returnValue(asyncError(errorResponse));
     questionsService = new QuestionsService(<any> httpClientSpyOnPost, new UrlService);
 
-    questionsService.createNewQuestion(QUESTIONS[0], [1]).subscribe(
+    questionsService.createNewQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
       error  => expect(error.message).toContain('404')
     );
@@ -187,7 +188,7 @@ describe('QuestionsService ', () => {
     httpClientSpyOnPost.post.and.returnValue(asyncError(errorResponse));
     questionsService = new QuestionsService(<any> httpClientSpyOnPost, new UrlService);
 
-    questionsService.updateQuestion(QUESTIONS[0], [1]).subscribe(
+    questionsService.updateQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
       error  => expect(error.message).toContain('404')
     );

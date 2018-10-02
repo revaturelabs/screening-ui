@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { TrainerService } from '../../services/trainer/trainer.service';
 import { GambitTrainer } from '../../entities/GambitTrainer';
-//import { BatchService } from '../../services/complete-batch-service/completebatch.service';
+// import { BatchService } from '../../services/complete-batch-service/completebatch.service';
 import { GambitTrainee } from '../../entities/GambitTrainee';
 import { GambitTraineeService } from '../../services/trainee/gambit-trainee.service';
 import { UserRole } from '../../entities/UserRole';
