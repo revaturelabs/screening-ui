@@ -77,7 +77,6 @@ export class ScheduleScreeningService {
           }
           */
 
-          const skillTypes: SkillType[] = allSkillTypes;
           let skillType: SkillType;
           for (const s of allSkillTypes) {
             if (s.skillTypeId === e.skillTypeId) {

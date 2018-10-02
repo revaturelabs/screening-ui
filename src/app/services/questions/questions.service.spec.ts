@@ -7,7 +7,7 @@ import { QuestionsService } from './questions.service';
 
 // Modules
 import { HttpErrorResponse } from '@angular/common/http';
-import { QUESTIONS, expectedQuestion } from './mock-questions';
+import { QUESTIONS, expectedQuestion } from '../../mock-data/mock-questions';
 
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';

@@ -21,7 +21,7 @@ import { SearchPipe } from '../../pipes/search.pipe';
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
   styleUrls: ['./candidates-screening-list.component.css'],
-  providers: [SimpleTraineeService,SearchPipe]
+  providers: [ SimpleTraineeService, SearchPipe ]
 })
 
 /**
@@ -113,6 +113,7 @@ export class CandidatesScreeningListComponent implements OnInit {
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
     this.simpleTraineeService.setSelectedCandidate(this.selectedCandidate);
+    console.log("CAndididate selected is ", this.simpleTraineeService.getSelectedCandidate());
     localStorage.setItem('scheduledScreeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
   }
 
