@@ -56,9 +56,9 @@ p {
 .name,
 .skillType {
   display: grid;
-  grid-template-columns: 50px auto;
+  grid-template-columns: 50px 100px;
   grid-gap: 20px;
-  text-align: left;
+  text-align: center;
 }
 
 /* #############################

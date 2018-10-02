@@ -73,9 +73,6 @@ import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
 
-
-
-
 @NgModule({
   declarations: [
     // components
