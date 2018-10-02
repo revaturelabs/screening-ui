@@ -34,9 +34,9 @@ export class SimpleTraineeService {
     private httpClient: HttpClient,
     private urlService: UrlService,
     private skillTypesService: SkillTypesService,
-  ) { }
+  ) {}
 
-  selectedCandidate: SimpleTrainee;
+  private selectedCandidate: SimpleTrainee;
 
   // Set the current selected candidate to the candidate input
   setSelectedCandidate(candidate: SimpleTrainee): void {
