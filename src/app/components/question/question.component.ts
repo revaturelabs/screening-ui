@@ -58,11 +58,11 @@ export class QuestionComponent implements OnInit {
   sampleAnswers: string[];
   questions: Question[];
   // filter: Tag = new Tag();
-  allBuckets: Bucket[];
   currentBucket: Bucket;
   public answersCollapsed = true;
   public tagsCollapsed = true;
   state;
+  allBuckets = Array<Bucket>();
 
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
@@ -75,7 +75,7 @@ export class QuestionComponent implements OnInit {
     this.sampleAnswers.push(this.question.sampleAnswer5);
     this.updateQuestions();
     // this.bucketService.getAllBuckets().subscribe(buckets => this.allBuckets = buckets);
-    this.bucketService.getAllBuckets().subscribe(buckets => console.log(buckets));
+    this.bucketService.getAllBuckets().subscribe(buckets => this.allBuckets.push(... buckets as Bucket[]));
     console.log(this.allBuckets);
   }
 
