@@ -41,7 +41,7 @@ export class BucketComponent implements OnInit {
    */
   routeToAllBuckets() {
     this.bucketService.routingToAllBuckets = true;
-    this.router.navigate(['Caliber/settings/screening']);
+    this.router.navigate(['settings/main']);
   }
 
 }
