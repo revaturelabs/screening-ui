@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
 import { UrlService } from '../urls/url.service';
+import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
+import { Bucket } from '../../entities/Bucket';
+import { Observable } from 'rxjs';
 
 /**
   * Used url Service to input endpoints to our services
@@ -27,9 +30,14 @@ const httpOptions = {
 @Injectable()
 export class QuestionsService {
 
-  constructor(private http: HttpClient, private urlService: UrlService) { }
+  constructor(
+    private http: HttpClient,
+    private urlService: UrlService,
+  ) { }
 
   questions: Question[];
+
+  private returnBuckets: Bucket[] = [];
 
   /**
    * Modifed parameters to only take in question and tagIds and not also bucket id because that is already
@@ -81,4 +89,65 @@ export class QuestionsService {
   getBucketQuestions(bucketId: number) {
     return this.http.get(this.urlService.question.getQuestionsByBucketId(bucketId));
   }
+
+  getQuestions(skillTypeId: number): Observable<Question[]> {
+    // const tagArray: number[] = [];
+    // for (const tag of this.tagService.getCheckedTags()){
+    //   tagArray.push(tag.tagId);
+    // }
+    const currSkillTypeID = skillTypeId;
+    // const tagsAndSkill: TagsAndSkill = { tagList : tagArray, skillTypeId : currSkillTypeID };
+
+    return this.http.post<Question[]>( // change to get with parameters
+      this.urlService.question.filteredQuestions(),
+      currSkillTypeID
+    );
+  }
+
+  /**
+   * Originally from a file called "questionsToBuckets.util.ts"
+   * That was a gross way to do it, so I incorporated the only method in it
+   * here.
+   * @param allQuestions
+   * @param allBuckets
+   */
+  saveQuestions(allQuestions: Question[], allBuckets: SkillTypeBucketLookUp): Bucket[] {
+    allQuestions.forEach(question => {
+      // If the buckets array is empty, add this question's bucket to it
+      if (this.returnBuckets.length === 0) {
+        const matchingBucket = allBuckets.buckets.find(function (element) {
+          return element.bucketId === question.bucket.bucketId;
+        });
+        // After adding the new bucket, add the current question to the new bucket
+        if (matchingBucket) {
+          this.returnBuckets.push(matchingBucket);
+          // this.returnBuckets[this.returnBuckets.length - 1].questions = [];
+          // this.returnBuckets[this.returnBuckets.length - 1].questions.push(question);
+        }
+        // If the bucket array is not empty, check to see if this question's bucket is already listed
+      } else {
+        const existingBucket = this.returnBuckets.find(function (element) {
+          return element.bucketId === question.bucket.bucketId;
+        });
+        // If this question's bucket is not listed, add it
+        if (!existingBucket) {
+          const matchingBucket = allBuckets.buckets.find(function (element) {
+            return element.bucketId === question.bucket.bucketId;
+          });
+          // After adding the new bucket, add the current question to the new bucket
+          if (matchingBucket) {
+            this.returnBuckets.push(matchingBucket);
+            // this.returnBuckets[this.returnBuckets.length - 1].questions = [];
+            // this.returnBuckets[this.returnBuckets.length - 1].questions.push(question);
+          }
+          // If the bucket exists, add question to it
+        } else {
+          // this.returnBuckets[this.returnBuckets.indexOf(existingBucket)].questions.push(question);
+        }
+      }
+
+    });
+    return this.returnBuckets;
+  }
+
 }

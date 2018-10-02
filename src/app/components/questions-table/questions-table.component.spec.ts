@@ -3,11 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { QuestionsTableComponent } from './questions-table.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { QuestionService } from '../../services/question/question.service';
+import { QuestionsService } from '../../services/questions/questions.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { QuestionsToBucketsUtil } from '../../util/questionsToBuckets.util';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
@@ -60,8 +59,8 @@ describe('QuestionsTableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [QuestionsTableComponent, NgbModalBackdrop, NgbModalWindow, AnswerComponent, ViolationFlagComponent],
       imports: [FormsModule],
-      providers: [HttpClient, HttpHandler, QuestionService, SimpleTraineeService,
-        SkillTypesService, QuestionScoreService, QuestionsToBucketsUtil, NgbModal, NgbModalStack, ScreeningService,
+      providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
+        SkillTypesService, QuestionScoreService, NgbModal, NgbModalStack, ScreeningService,
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService]
     });
 
