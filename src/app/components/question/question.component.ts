@@ -58,7 +58,7 @@ export class QuestionComponent implements OnInit {
   sampleAnswers: string[];
   questions: Question[];
   // filter: Tag = new Tag();
-  allBuckets : Bucket[];
+  allBuckets: Bucket[];
   currentBucket: Bucket;
   public answersCollapsed = true;
   public tagsCollapsed = true;
@@ -74,7 +74,8 @@ export class QuestionComponent implements OnInit {
     this.sampleAnswers.push(this.question.sampleAnswer4);
     this.sampleAnswers.push(this.question.sampleAnswer5);
     this.updateQuestions();
-    this.bucketService.getAllBuckets().subscribe(buckets => this.allBuckets = buckets);
+    // this.bucketService.getAllBuckets().subscribe(buckets => this.allBuckets = buckets);
+    this.bucketService.getAllBuckets().subscribe(buckets => console.log(buckets));
     console.log(this.allBuckets);
   }
 
@@ -146,7 +147,7 @@ export class QuestionComponent implements OnInit {
     this.sampleAnswers.push(this.question.sampleAnswer3);
     this.sampleAnswers.push(this.question.sampleAnswer4);
     this.sampleAnswers.push(this.question.sampleAnswer5);
-    //const newTags = [];
+    // const newTags = [];
     // this.tagsService.getAllTags().subscribe(data => {
     //   this.allTags = (data as Tag[]);
     // });
@@ -155,8 +156,8 @@ export class QuestionComponent implements OnInit {
     //   this.removeTagsFromAll();
     // });
   }
-  setBucket(question:Question,bucket:Bucket){
-      this.questionService.updateQuestion(this.question)
+  setBucket(question: Question, bucket: Bucket) {
+    this.questionService.updateQuestion(this.question);
   }
 
   /**
@@ -223,7 +224,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer5 = this.sampleAnswers[4];
         this.questionService.updateQuestion(this.question).subscribe(data => {
           this.updateQuestions();
-         });
+        });
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -232,9 +233,9 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
         this.question.bucket = this.currentBucket;
-         this.questionService.createNewQuestion(this.question).subscribe(data => {
-           this.updateQuestions();
-         });
+        this.questionService.createNewQuestion(this.question).subscribe(data => {
+          this.updateQuestions();
+        });
         this.savedSuccessfully();
       }
       this.setQuestionNull();
