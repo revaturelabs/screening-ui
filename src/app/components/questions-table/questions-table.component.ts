@@ -66,7 +66,6 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // used on ngOnDestroy. Will unsubscribe from all observables
   // to prevent memory leaks
   subscriptions: Subscription[] = [];
-
   constructor(
     private questionService: QuestionService,
     private questionScoreService: QuestionScoreService,
@@ -179,7 +178,6 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
-    this.screeningService.generalComments = this.generalComment;
-    this.screeningService.submitGeneralComment();
+    this.screeningService.updateScreening(parseInt(localStorage.getItem('screeningID')));
   }
 }

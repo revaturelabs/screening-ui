@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { ScreeningService } from '../../services/screening/screening.service';
 
-
 @Component({
   selector: 'app-introduction',
   templateUrl: './introduction.component.html',
@@ -44,7 +43,7 @@ export class IntroductionComponent implements OnInit {
   // Submit the comments on the Introduction view when the "Begin Questions" buton is clicked
   onSubmit() {
     // Send the comments to the appropriate service method saves them to the DB
-    this.screeningService.submitIntroComment(this.comment);
+    this.screeningService.createScreening();
   }
 
   // // Returns a boolean depending on whether a tag was checked.
