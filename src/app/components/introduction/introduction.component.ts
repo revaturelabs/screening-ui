@@ -7,6 +7,8 @@ import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AnswerComponent } from '../answer/answer.component';
+
 @Component({
   selector: 'app-introduction',
   templateUrl: './introduction.component.html',

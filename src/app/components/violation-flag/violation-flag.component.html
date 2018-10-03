@@ -1,7 +1,7 @@
 
 <div id="violations-checkbox text-center">
   <div class="text-center">
-    <button  class="btn" (click)="addViolation = !addViolation">Report Violation</button>
+    <button  class="btn" (click)="toggleAddViolation()">Report Violation</button>
     <br><br>
   </div>
   <div *ngIf="addViolation" class="text-center violation-container">

@@ -6,7 +6,6 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 
-
 @Component({
   selector: 'app-violation-flag',
   templateUrl: './violation-flag.component.html',
@@ -52,11 +51,16 @@ export class ViolationFlagComponent implements OnInit {
   getViolationTypes(): void {
     this.violationTypeService.getViolationTypes().subscribe(
       violationTypes => {
-        this.violationTypes = violationTypes;
+        this.violationTypes.push(... violationTypes);
       }
     );
   }
 
+  toggleAddViolation(){
+    console.log("called toggle");
+    this.addViolation = !this.addViolation;
+    console.log("did toggle " + this.addViolation);
+  }
   updateViolationList(changedViolationType: ViolationType, checked: boolean) {
     if (checked) {
       this.violationTypesChecked.push(changedViolationType);
