@@ -28,7 +28,7 @@ export class ViolationFlagComponent implements OnInit {
 
   @Output() flagEvent = new EventEmitter<string>();
 
-  violationTypes: ViolationType[];
+  violationTypes: ViolationType[] = [{violationTypeId: 0, violationType:"odors"},{violationTypeId: 1, violationType:"appearance"}];
   violationTypesChecked: ViolationType[] = [];
   softSkillViolations: SoftSkillViolation[];
   selectedViolation: ViolationType;

@@ -18,7 +18,7 @@
             <td colspan="4">No Violations Found</td>
           </tr>
           <tr class="violation" *ngFor="let violation of softSkillViolationService.softSkillViolations; let i = index">
-            <td>{{violation.violationType.violationTypeText}}</td>
+            <td>{{violation.violationType}}</td>
             <td>{{violation.Time | date:'shortTime'}}</td>
             <td>{{violation.Comment}}</td>
             <td><button class="btn" (click)="deleteViolation(violation.violationID, i)">Remove</button></td>
@@ -30,7 +30,7 @@
   <app-violation-flag (flagChange)="getMessage($event)"></app-violation-flag>
   <hr>
   <div class="text-center">
-    
+
     <h2>Overall Soft Skill Feedback</h2>
     <textarea class="form-control" (input)="softSkillFeedback = $event.target.value" placeholder="Optional Feedback" id="overallSkillFeedback"></textarea>
     <br>
@@ -56,21 +56,21 @@
     </span>
     <br>
     <hr>
-    <button class="btn" (click)="submit()" [disabled]="wasClicked()" routerLink="/Caliber/screening/finalReport">Complete Interview</button>
+    <button class="btn" (click)="submit()" [disabled]="wasClicked()" routerLink="/screening/finalReport">Complete Interview</button>
     <br><br>
   </div>
-  <!-- 
-  The Modal
+
+  <!-- The Modal -->
   <div id="myModal" class="modal" [style.display]="endScreeningPrompt()">
     <div class="modal-content">
       <h2>Do you want to Submit?</h2>
       <div class="buttons">
-        <button class="btn" type="submit" 
-          routerLink="/Caliber/screening/finalReport"
+        <button class="btn" type="submit"
+          routerLink="/screening/finalReport"
           routerLinkActive="activeLink">Submit</button>
         <button class="btn" (click)="endScreening = !endScreening">Cancel</button>
       </div>
     </div>
   </div>
-  -->
+
 </div>

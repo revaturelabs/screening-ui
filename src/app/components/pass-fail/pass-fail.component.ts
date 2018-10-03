@@ -58,7 +58,6 @@ export class PassFailComponent implements OnInit {
       this.previousViolations = data;
       this.softSkillViolationService.softSkillViolations = this.previousViolations;
     });
-
     this.violationTypeService.getAllViolationTypes().subscribe(violationTypes => {
       this.getViolations().subscribe(data => {
         // e = our violations

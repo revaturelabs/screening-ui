@@ -12,8 +12,8 @@
         <label class="switch">
           <input type="radio" name="violations" (click)="selectedViolation = violationType">
           <div class="slider round">
-            <span class="on">{{violationType.violationTypeText}}</span>
-            <span class="off">{{violationType.violationTypeText}}</span>
+            <span class="on">{{violationType.violationType}}</span>
+            <span class="off">{{violationType.violationType}}</span>
           </div>
         </label>
       </span>
@@ -22,8 +22,8 @@
       <textarea class="form-control" (input)="violationComment = $event.target.value" placeholder="Optional Soft Skill Violation Feedback"></textarea>
     </div>
     <br>
-    <button class="btn" (click)="submitViolation(selectedViolation, violationComment); addViolation = !addViolation">Add Violation</button>
-    <button class="btn" (click)="cancelViolation(); addViolation = !addViolation">Cancel</button>
+    <button class="btn" style = "margin:10px;" (click)="submitViolation(selectedViolation, violationComment); addViolation = !addViolation">Submit Violation</button>
+    <button class="btn" style = "margin:10px;" (click)="cancelViolation(); addViolation = !addViolation">Cancel</button>
     <br><br>
   </div>
 </div>
