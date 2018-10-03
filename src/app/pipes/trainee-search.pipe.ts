@@ -1,22 +1,22 @@
-// import { Pipe, PipeTransform } from '@angular/core';
-// import { GambitTrainee } from '../../../gambit-client/entities/GambitTrainee';
+import { Pipe, PipeTransform } from '@angular/core';
+import { GambitTrainee } from '../entities/GambitTrainee';
 
 
-// @Pipe({
-//   name: 'traineeSearchPipe'
-// })
-// export class TraineeSearch implements PipeTransform {
+@Pipe({
+  name: 'traineeSearchPipe'
+})
+export class TraineeSearch implements PipeTransform {
 
-//   transform(trainees: any, searchText: String): GambitTrainee[] {
-//     if (!trainees) {
-//       return [];
-//     } else {
-//       searchText = searchText.toLowerCase();
+  transform(trainees: any, searchText: String): GambitTrainee[] {
+    if (!trainees) {
+      return [];
+    } else {
+      searchText = searchText.toLowerCase();
 
-//       return trainees.filter(results => {
-//         return results.toLowerCase().includes(searchText);
-//       });
-//     }
-//   }
-// }
+      return trainees.filter(results => {
+        return results.toLowerCase().includes(searchText);
+      });
+    }
+  }
+}
 

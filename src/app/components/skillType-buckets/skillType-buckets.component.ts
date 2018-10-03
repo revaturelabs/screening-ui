@@ -62,7 +62,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
-    this.router.navigate(['Caliber/settings/screening/category']);
+    this.router.navigate(['settings/bucket']);
   }
 
   /** Stores the value of selected bucket to a 'currBucket' */
@@ -85,10 +85,6 @@ export class SkillTypeBucketsComponent implements OnInit {
       this.savedSuccessfully();
     }
   }
-
-
-
-
 
   /** Creates new bucket */
   createBucket() {

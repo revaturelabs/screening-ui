@@ -1,4 +1,4 @@
-const context = 'http://ec2-35-182-210-106.ca-central-1.compute.amazonaws.com:10000/';
+const context = 'http://ec2-52-55-27-249.compute-1.amazonaws.com:8181';
 const bam = 'http://18.219.59.193:9001/api/v2';
 export const environment = {
   production: true,

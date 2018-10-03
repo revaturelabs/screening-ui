@@ -2,7 +2,7 @@
 /*
     Entity representing the candidate being screened
 */
-export interface SimpleTrainee {
+export class SimpleTrainee {
     traineeID: number;
     firstname: string;
     lastname: string;

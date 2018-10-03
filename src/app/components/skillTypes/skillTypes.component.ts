@@ -222,10 +222,8 @@ export class SkillTypesComponent implements OnInit {
     updateSkillType(modal: SkillType) {
         this.skillType = modal;
         this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
-        let addedBucket = false;
         this.bucketWeightSum = 0;
         if (this.bucketsAndWeights.length !== 0) {
-            addedBucket = true;
             for (const index of this.bucketsAndWeights) {
                 this.bucketWeightSum += this.bucketsAndWeights[index].weights;
             }

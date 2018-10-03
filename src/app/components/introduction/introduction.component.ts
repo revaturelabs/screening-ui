@@ -35,7 +35,7 @@ export class IntroductionComponent implements OnInit {
 
   ngOnInit() {
     this.traineeName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.simpleTraineeService.getSelectedCandidate().lastname;
     this.traineeTrack = this.simpleTraineeService.getSelectedCandidate().skillTypeName;
   }
 

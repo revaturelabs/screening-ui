@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UrlService {
-  public readonly context: string =  environment.gambitContext;
+  public readonly context: string =  environment.context;
 
   apiCurrentBatchesLineChart = this.context + 'all/reports/dashboard';
 
@@ -85,7 +85,7 @@ export class UrlService {
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  private bucketEndpoint = '/buckets';
+  private bucketEndpoint = '/bucket';
   bucket = {
     getAllBuckets: () => `${this.context + this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.context + this.bucketEndpoint}/${bucketId}`,
@@ -207,7 +207,7 @@ export class UrlService {
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  private questionEndpoint = (this.context + '/questions');
+  private questionEndpoint = (this.context + '/question');
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}`,
@@ -297,7 +297,7 @@ export class UrlService {
   /**
    * Endpoints for skillType
    */
-  skillTypesServiceEndpoint = this.context + '/skillType';
+  skillTypesServiceEndpoint = this.context + '/skilltype';
   skillTypes = {
     findAll: () => `${this.context}`,
     findAllActive: () => `${this.context}/active`,

@@ -18,7 +18,7 @@
 /**
 * Setting up the testing environment for question filters.
 **/
-describe('QuestionFilter', () => {
+xdescribe('QuestionFilter', () => {
     // const pipe = new TagFilterPipe();
     // const fauxTag = new Tag();
     // fauxTag.tagId = 1;
