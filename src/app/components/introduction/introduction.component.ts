@@ -51,9 +51,4 @@ export class IntroductionComponent implements OnInit {
     this.screeningService.createScreening();
   }
 
-  // // Returns a boolean depending on whether a tag was checked.
-  // // Returns false if there are checked tags.
-  // skillChosen(): boolean {
-  //   return (!(this.tagService.tagListChecked.length > 0));
-  // }
 }
