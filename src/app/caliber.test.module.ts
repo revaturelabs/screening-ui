@@ -48,7 +48,6 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
-import { BucketComponent } from './components/bucket/bucket.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
 
@@ -86,7 +85,6 @@ export const Dependencies = {
     PassFailComponent,
     ViolationFlagComponent,
     SkillTypesComponent,
-    BucketComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
     ScreeningComponent

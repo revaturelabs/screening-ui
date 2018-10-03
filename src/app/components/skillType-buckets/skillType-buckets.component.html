@@ -1,7 +1,7 @@
 <!-- skillTypeBuckets list  -->
 <div id="ABcontent" class="container">
   <div class="row justify-content-center">
-    <div class="card w-50">
+    <div class="card w-100">
 
       <h6 class="card-header">All Categories</h6>
 
@@ -9,8 +9,8 @@
         <div class="form-group row">
           <div class="col-sm-12">
             <!--A search bar to help sift through the unadded tags for when the amount of tags is increased-->
-            <input type="text" name="bucket" [(ngModel)]="filter.bucketCategory" placeholder="Search Categories" min="0" max="100" 
-class="form-control">
+            <input type="text" name="bucket" [(ngModel)]="filter.bucketCategory" placeholder="Search Categories" min="0"
+              max="100" class="form-control">
           </div>
         </div>
 
@@ -19,8 +19,8 @@ class="form-control">
           <!-- clickable to route to Bucket -->
           <!--* routeToBucket() -->
           <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets| bucketFilter:filter" (click)="routeToBucket(bucket);">
-              <b>{{bucket.bucketCategory}}</b>
-              <br>
+            <b>{{bucket.bucketCategory}}</b>
+            <br>
             <small>{{bucket.bucketDescription}}</small>
 
             <!--* editBucket(bucket), passes the bucket selected to component side.
@@ -33,7 +33,8 @@ class="form-control">
                 </label>
               </i>
             </div>
-            <i id="penIcon" class="fa fa-pencil pull-right" (click)="editBucket(bucket); open(edit)" placement="top" ngbTooltip="edit">
+            <i id="penIcon" class="fa fa-pencil pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
+              ngbTooltip="edit">
             </i>
 
           </a>
@@ -81,7 +82,7 @@ class="form-control">
 <!--* Create name, description -->
 <ng-template #create let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h6 class="modal-title">Create Bucket</h6>
+    <h6 class="modal-title">Create</h6>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -92,11 +93,8 @@ class="form-control">
       <div class="form-group">
         <label>Name:</label>
         <br>
-        <input class="form-control" type="text" [(ngModel)]="newBucket.bucketCategory" [ngModelOptions]="{standalone: true}" />
+        <input class="form-control" type="text" [(ngModel)]="newBucket.bucketDescription" [ngModelOptions]="{standalone: true}" />
         <br>
-        <label>Description:</label>
-        <br>
-        <textarea class="form-control" type="text" [(ngModel)]="newBucket.bucketDescription" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
     </form>
   </div>

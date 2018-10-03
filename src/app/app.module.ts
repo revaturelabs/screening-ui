@@ -14,7 +14,6 @@ import { routes } from './app.routes';
 // Component Imports Alphabetically
 import { AnswerComponent } from './components/answer/answer.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
-import { BucketComponent } from './components/bucket/bucket.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
@@ -79,7 +78,6 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     AlertsComponent,
     AppComponent,
     AnswerComponent,
-    BucketComponent,
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,

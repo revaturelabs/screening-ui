@@ -80,7 +80,6 @@ export class CandidatesScreeningListComponent implements OnInit {
       this.scheduledScreenings = data;
     });
     // Mock data for testing without endpoints
-    
     this.scheduledScreenings.push({
       scheduledScreeningId: 0,
       trainee: {
