@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
         <div class="card w-50">
 
-            <h6 class="card-header">Skill Types</h6>
+            <h6 class="card-header">Tracks</h6>
 
             <div class="card-body" id="skillTypesDiv">
                 <div class="list-group">
@@ -20,17 +20,17 @@
                     </a>
                 </div>
             </div>
-            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create Skill Type</button>
+            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create new Track</button>
         </div>
 
     </div>
 </div>
-<!-- Modal for creating and editting a new SkillType -->
+<!-- Modal for creating and editting a new Track (SkillType) -->
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
       <!-- If a skillType got clicked, Title is Edit -->
-    <h4 class="modal-title" *ngIf="!singleSkillType">Create a SkillType</h4>
-    <h4 class="modal-title" *ngIf="singleSkillType">Edit SkillType</h4>
+    <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
+    <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -52,7 +52,7 @@
           </div>
           <div *ngIf="singleSkillType">
               <div class="form-group row">
-                  <label for="buckets" class="col-sm-2 col-form-label">Buckets:</label>
+                  <label for="buckets" class="col-sm-2 col-form-label">Categories:</label>
                   <div class="col-sm-10">
                       <div *ngFor="let bucketWeight of bucketsAndWeights; let index = index">
                           <div class="input-group col-sm-9 rounded" style="margin-bottom: 0.5%;">
@@ -65,11 +65,11 @@
                           </div>
                       </div>
                       <br>
-                      <p *ngIf="error" class="text-danger">The sum of the bucket weight percentages has to equal <strong>100</strong></p>
+                      <p *ngIf="error" class="text-danger">The sum of the category weight percentages has to equal <strong>100</strong></p>
                   </div>
               </div>
               <div class="form-group row">
-                  <label for="inactiveBuckets" class="col-sm-6 col-form-label">All Buckets:</label>
+                  <label for="inactiveBuckets" class="col-sm-6 col-form-label">All Categories:</label>
                   <div class="col-sm-10 row">
                     <span *ngFor="let bucket of allBuckets">
                         <button type="button" class="input-group-addon pillButtons" (click)="addToSkillTypeBuckets(bucket)" *ngIf="!checkContains(bucket.bucketId)">{{bucket.bucketCategory}}</button>
