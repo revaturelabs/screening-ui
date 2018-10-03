@@ -85,7 +85,7 @@ export class ViolationFlagComponent implements OnInit {
   }
 
   cancelViolation() {
-
+    return undefined;
   }
 
   flagChange() {
