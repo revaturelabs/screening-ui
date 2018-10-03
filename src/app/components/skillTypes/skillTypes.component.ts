@@ -327,11 +327,6 @@ export class SkillTypesComponent implements OnInit {
     ngOnInit() {
         this.grabAllSkillTypes();
         this.grabAllBuckets();
-        if (this.bucketsService.routingToAllBuckets === true) {
-            this.bucketsService.routingToAllBuckets = false;
-            this.tab.activeId = 'tab-2';
-
-        }
     }
 
 }

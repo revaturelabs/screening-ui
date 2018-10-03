@@ -29,7 +29,6 @@ export class BucketsService {
 
   /** Making an Observable */
   bucketSubject = new Subject();
-  routingToAllBuckets = false;
 
   private currentBucket: Bucket;
 

@@ -9,11 +9,17 @@ h3 {
 
 .card-header {
   background-color: #F26925;
+  display:inline;
+  color: white;
 }
 
-h6 {
+a{
+  color:white;
+  text-decoration: none;
+}
+#daTitle {
+  width: 100%;
   text-align: center;
-  color: white;
 }
 
 #xIcon {
