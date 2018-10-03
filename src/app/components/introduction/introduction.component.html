@@ -7,24 +7,8 @@
         <p>{{traineeName}}</p>
       </div>
       <div class="skillType">
-        <label>Skill Type: </label>
+        <label>Track: </label>
         <p>{{traineeTrack}}</p>
-      </div>
-    </div>
-
-    <hr>
-    <h2>Skills (required)</h2>
-    <div id="skills-checkbox" class="skills-checkbox">
-      <div class="skill" *ngFor="let tag of tagList; let i = index">
-        <!-- Create a checkbox for each tag using ngFor. Toggle buttons instead of checkboxes! -->
-        <span>
-          {{tag.tagName}}
-          <label class="switch">
-            <input type="checkbox" (change)="updateTagList(tag, $event.target.checked)" id="checkbox{{i}}">
-            <span class="slider round"></span>
-          </label>
-        </span>
-
       </div>
     </div>
     <hr>
