@@ -17,7 +17,6 @@ import { SpringInterceptor } from './interceptors/spring.interceptor';
 // services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.service';
-import { QuestionService } from './services/question/question.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
@@ -95,7 +94,6 @@ export const Dependencies = {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
     TrainerService,
-    QuestionService,
     QuestionsService,
     BucketsService,
     SimpleTraineeService,
