@@ -45,6 +45,9 @@ export class SkillTypeBucketService {
   getSkillTypeBuckets(skillTypeID: number): Observable<any> {
     return this.httpClient.get<any>(`${this.urlService.skillTypes.getBucketBySkillType(skillTypeID)}`);
   }
+  getWeightsBySkillType(skillTypeID: number){
+    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeID)}`);
+  }
 
 /*
   getSkillTypeBuckets(skillTypeID: number): Observable<SkillTypeBucketLookUp>{

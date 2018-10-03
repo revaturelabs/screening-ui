@@ -86,8 +86,8 @@ export class QuestionsService {
    * add urlService to get endpoint for getting Bucket Questions
    * @param buckerId
   */
-  getBucketQuestions(bucketId: number) {
-    return this.http.get(this.urlService.question.getQuestionsByBucketId(bucketId));
+  getBucketQuestions(bucketId: number): Observable<Question[]>{
+    return this.http.get<Question[]>(this.urlService.question.getQuestionsByBucketId(bucketId));
   }
 
   getQuestions(skillTypeId: number): Observable<Question[]> {
