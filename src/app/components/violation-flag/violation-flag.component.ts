@@ -5,7 +5,7 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-
+import { VIOLATION_TYPES } from '../../mock-data/mock-violationTypes';
 @Component({
   selector: 'app-violation-flag',
   templateUrl: './violation-flag.component.html',
@@ -27,8 +27,8 @@ export class ViolationFlagComponent implements OnInit {
 
   @Output() flagEvent = new EventEmitter<string>();
 
-  violationTypes: ViolationType[] = [{violationTypeId: 0, violationType:"odors"},{violationTypeId: 1, violationType:"appearance"}];
-  violationTypesChecked: ViolationType[] = [];
+  violationTypes: ViolationType[] = VIOLATION_TYPES;
+  violationTypesChecked: ViolationType[] = []S;
   softSkillViolations: SoftSkillViolation[];
   selectedViolation: ViolationType;
   public candidateName: string;
@@ -43,6 +43,7 @@ export class ViolationFlagComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log()
     this.getViolationTypes();
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
@@ -57,9 +58,7 @@ export class ViolationFlagComponent implements OnInit {
   }
 
   toggleAddViolation(){
-    console.log("called toggle");
     this.addViolation = !this.addViolation;
-    console.log("did toggle " + this.addViolation);
   }
   updateViolationList(changedViolationType: ViolationType, checked: boolean) {
     if (checked) {

@@ -36,19 +36,19 @@
     <br>
     <hr>
     <h2>Did they pass soft skills? (required)</h2>
-    <span id="pass-fail-button">
+    <span id="pass-fail-button" style = "margin:6px">
       <label class="switch">
         <input type="radio" [checked]="passChecked" (change)="updateCheckedPass($event.target.checked)"/>
-        <div class="slider round">
+        <div class="slider round" >
           <span class="on">PASS</span>
           <span class="off">PASS</span>
         </div>
       </label>
     </span>
-    <span id="pass-fail-button">
+    <span id="pass-fail-button"style = "margin:6px">
       <label class="switch">
         <input type="radio" [checked]="failChecked" (change)="updateCheckedFail($event.target.checked)"/>
-        <div class="slider round">
+        <div class="slider round" >
           <span class="on">FAIL</span>
           <span class="off">FAIL</span>
         </div>

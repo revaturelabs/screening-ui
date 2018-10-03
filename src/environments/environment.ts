@@ -16,8 +16,8 @@
  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
  */
 
- const context = 'http://ec2-52-55-27-249.compute-1.amazonaws.com:8181';
-
+  const context = 'http://ec2-54-234-111-103.compute-1.amazonaws.com:8081'
+  
 const bam = '';
 
 export const environment = {

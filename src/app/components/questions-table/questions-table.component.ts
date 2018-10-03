@@ -74,10 +74,11 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
+    console.log("skill type id " + this.simpleTraineeService.getSelectedCandidate().skillTypeID);
     const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
     this.subscriptions.push(this.skillTypeBucketService.
       getSkillTypeBuckets(skillTypeID).subscribe(bucketsWithWeights => {
-
+        console.log("buckets with weights " + bucketsWithWeights);
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights.bucket) {
         myBuckets.push(
