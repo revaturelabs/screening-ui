@@ -7,8 +7,8 @@ import { FinalReportComponent } from './components/final-report/final-report.com
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { BucketComponent } from './components/bucket/bucket.component';
 import { ScreeningComponent } from './components/screening/screening.component';
+import { QuestionComponent } from './components/question/question.component';
 
 export const routes: Routes = [
   {
@@ -57,7 +57,7 @@ export const routes: Routes = [
       },
       {
         path: 'bucket',
-        component: BucketComponent
+        component: QuestionComponent
       }
     ]
   },

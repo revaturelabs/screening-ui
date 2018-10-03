@@ -9,8 +9,20 @@
 <div id="QContent" class="move" [@move]='state'>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="card w-50">
-        <h6 class="card-header">Questions</h6>
+      <div class="card w-100">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-3">
+              <a routerLink="/settings/main">
+                <i class="fas fa-caret-left" aria-hidden="true"></i>
+                Back to Categories
+              </a>
+            </div>
+            <div class="col-sm-6">
+              <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div>
+            </div>
+          </div>
+        </div>
         <div class="card-body" id="allQuestionsDiv">
           <div class="list-group" *ngFor="let question of questions">
             <a class="list-group-item list-group-item-action" *ngIf="question">
@@ -48,7 +60,7 @@
       <div class="form-group row">
         <label for="questionText" class="col-sm-3 col-form-label" min="0" max="100" align="right">Question:</label>
         <div class="col-sm-9">
-          <input name="question" [(ngModel)]="question.questionText" type="text" id="questionText" placeholder="Question"
+          <input name="question" [(ngModel)]="question.questionText" type="text" id="questionText" placeholder="Question Text"
             class="form-control bucketWeight" min="0" max="100">
         </div>
       </div>
@@ -59,40 +71,40 @@
         <label for="one point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">One
           point:</label>
         <div class="col-sm-9">
-          <input name="answer1" [(ngModel)]="sampleAnswers[0]" type="text" id="1pointAnswer" placeholder="sample answer" class="form-control"
-            min="0" max="100">
+          <input name="answer1" [(ngModel)]="sampleAnswers[0]" type="text" id="1pointAnswer" placeholder="sample answer"
+            class="form-control" min="0" max="100">
         </div>
       </div>
       <div class="form-group row">
         <label for="two point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Two
           point:</label>
         <div class="col-sm-9">
-          <input name="answer2" [(ngModel)]="sampleAnswers[1]" type="text" id="2pointAnswer" placeholder="answer" class="form-control"
-            min="0" max="100">
+          <input name="answer2" [(ngModel)]="sampleAnswers[1]" type="text" id="2pointAnswer" placeholder="sample answer"
+            class="form-control" min="0" max="100">
         </div>
       </div>
       <div class="form-group row">
         <label for="three point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Three
           point:</label>
         <div class="col-sm-9">
-          <input name="answer3" [(ngModel)]="sampleAnswers[2]" type="text" id="3pointAnswer" placeholder="answer" class="form-control"
-            min="0" max="100">
+          <input name="answer3" [(ngModel)]="sampleAnswers[2]" type="text" id="3pointAnswer" placeholder="sample answer"
+            class="form-control" min="0" max="100">
         </div>
       </div>
       <div class="form-group row">
         <label for="four point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Four
           point:</label>
         <div class="col-sm-9">
-          <input name="answer4" [(ngModel)]="sampleAnswers[3]" type="text" id="4pointAnswer" placeholder="answer" class="form-control"
-            min="0" max="100">
+          <input name="answer4" [(ngModel)]="sampleAnswers[3]" type="text" id="4pointAnswer" placeholder="sample answer"
+            class="form-control" min="0" max="100">
         </div>
       </div>
       <div class="form-group row">
         <label for="five point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Five
           point:</label>
         <div class="col-sm-9">
-          <input name="answer5" [(ngModel)]="sampleAnswers[4]" type="text" id="5pointAnswer" placeholder="answer" class="form-control"
-            min="0" max="100">
+          <input name="answer5" [(ngModel)]="sampleAnswers[4]" type="text" id="5pointAnswer" placeholder="sample answer"
+            class="form-control" min="0" max="100">
         </div>
       </div>
       <!--Answers Tab End-->
