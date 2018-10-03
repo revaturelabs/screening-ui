@@ -39,6 +39,8 @@
     </div>
     <!-- <div class="footer fixed-bottom text-center" id="gfooter"> -->
     <div class="footer text-center" id="gfooter">
+      <br>
+        <app-violation-flag (flagChange)="getMessage($event)"></app-violation-flag>
       <h3>Overall Feedback (required)</h3>
       <textarea [(ngModel)]="generalComment" id="footsie" rows="3" maxlength="4000" placeholder="Required Feedback"></textarea>
     </div>

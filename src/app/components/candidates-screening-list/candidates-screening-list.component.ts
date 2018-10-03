@@ -87,11 +87,11 @@ export class CandidatesScreeningListComponent implements OnInit {
           firstname: 'Landon',
           lastname: 'Renzullo',
           skillTypeID: 0,
-          skillTypeName: 'string',
+          skillTypeName: 'Java',
           schedule: new Date()
         },
-      track: {skillTypeId: 0, title: 'string', isActive: true},
-      status: 'string',
+      track: {skillTypeId: 411, title: 'Java', isActive: true},
+      status: 'What Is this',
       trainer: 0,
       scheduledDate: new Date()
     });

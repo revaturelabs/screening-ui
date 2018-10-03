@@ -18,7 +18,7 @@
             <td colspan="4">No Violations Found</td>
           </tr>
           <tr class="violation" *ngFor="let violation of softSkillViolationService.softSkillViolations; let i = index">
-            <td>{{violation.violationType}}</td>
+            <td>{{violation.violationType.violationType}}</td>
             <td>{{violation.Time | date:'shortTime'}}</td>
             <td>{{violation.Comment}}</td>
             <td><button class="btn" (click)="deleteViolation(violation.violationID, i)">Remove</button></td>
