@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { ScreeningService } from '../../services/screening/screening.service';
+import { ViolationTypeService } from '../../services/violationType/violationType.service';
+import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
+import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AnswerComponent } from '../answer/answer.component';
 
 @Component({
   selector: 'app-introduction',
@@ -45,9 +51,4 @@ export class IntroductionComponent implements OnInit {
     this.screeningService.createScreening();
   }
 
-  // // Returns a boolean depending on whether a tag was checked.
-  // // Returns false if there are checked tags.
-  // skillChosen(): boolean {
-  //   return (!(this.tagService.tagListChecked.length > 0));
-  // }
 }

@@ -13,7 +13,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-final-report',
   templateUrl: './final-report.component.html',
-  styleUrls: ['./final-report.component.css']
+  styleUrls: ['./final-report.component.css'],
+  providers: [ScoresToBucketsUtil]
 })
 
 /*

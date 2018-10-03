@@ -10,7 +10,7 @@
       <ul class="nav nav-tabs">
         <li class="pointer" *ngFor="let bucket of questionBuckets">
           <!-- <button class="btn" *ngFor="let bucket of buckets" (click)="setBucket(bucket.bucketID)">{{bucket.bucketCategory}}</button> -->
-          <a class="nav-link" [class.active]="bucket.bucketID == currentCategory.bucketID" 
+          <a class="nav-link" [class.active]="bucket.bucketID == currentCategory.bucketID"
             [class.inActive]="bucket.bucketID != currentCategory.bucketID" (click)="setBucket(bucket.bucketID)">{{bucket.bucketCategory}}</a>
         </li>
       </ul>
@@ -39,11 +39,13 @@
     </div>
     <!-- <div class="footer fixed-bottom text-center" id="gfooter"> -->
     <div class="footer text-center" id="gfooter">
+      <br>
+        <app-violation-flag (flagChange)="getMessage($event)"></app-violation-flag>
       <h3>Overall Feedback (required)</h3>
       <textarea [(ngModel)]="generalComment" id="footsie" rows="3" maxlength="4000" placeholder="Required Feedback"></textarea>
     </div>
     <div id="center-submit">
-      <button class="btn" id="submit-button" [disabled]="submitAllowed()" type="submit" routerLink="/Caliber/screening/passFail" routerLinkActive="activeLink" (click)="saveFeedback()">Finish</button>
+      <button class="btn" id="submit-button" [disabled]="submitAllowed()" type="submit" routerLink="/screening/passFail" routerLinkActive="activeLink" (click)="saveFeedback()">Finish</button>
     </div>
   </div>
 </div>
