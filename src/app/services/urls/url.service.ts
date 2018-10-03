@@ -256,14 +256,15 @@ export class UrlService {
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = 'screening-service/screening';
+  screeningEndpoint = 'screening';
   screening = {
-    scheduleScreening: () => `${this.context + this.screeningEndpoint}/scheduledScreenings`,
-    startScreening: () => `${this.context + this.screening}/start`,
-    endScreening: () => `${this.context + this.screening}/end`,
-    introComment: () => `${this.context + this.screeningEndpoint}/introcomment`,
-    generalComment: () => `${this.context + this.screeningEndpoint}/generalcomment`,
-  };
+    scheduleScreening: () => `${this.context + this.screeningEndpoint}/scheduled`,
+    startScreening: () => `${this.context + this.screening}/new`,
+    endScreening: () => `${this.context + this.screening}/update`,
+    updateScreening: () => `${this.context + this.screening}/update`,
+    getScreening: id => `${this.context + this.screening}/{id}`
+    //softSkills: () => `${this.context + this.screening}/`
+   };
 
   /**
    * Endpoints for simple-trainee service
@@ -326,10 +327,10 @@ export class UrlService {
   };
 
   softSkillsViolation = {
-    getViolationTypeURL: () => `${this.context}screening-service/violation/all`,
-    getViolationURL: (screeningID: number) => `${this.context}screening-service/screening/violation/${screeningID}`,
-    addViolationURL: () => `${this.context}screening-service/violation/flag/`,
-    deleteViolationURL: (violationID: number) => `${this.context}screening-service/violation/delete/${violationID}`,
+    getViolationTypeURL: () => `${this.context}/screening/violation/all`,
+    getViolationURL: (screeningID: number) => `${this.context}/screening/violation/${screeningID}`,
+    addViolationURL: () => `${this.context}/screening/violation/flag/`,
+    deleteViolationURL: (violationID: number) => `${this.context}/screening/violation/delete/${violationID}`,
   };
 
   subtopic = {

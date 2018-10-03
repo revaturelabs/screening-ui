@@ -92,6 +92,10 @@ export class ScreeningService {
     ).subscribe();
   }
 
+  getScreeningById(id) {
+        return this.httpClient.get<Screening>(this.urlService.screening.getScreening(id));
+  }
+
   // Helper method that converts an input string to a boolean
   convertToBoolean(input: string): boolean | undefined {
     try {
@@ -100,23 +104,34 @@ export class ScreeningService {
       return undefined;
     }
   }
-
+  createScreening(){
+    this.httpClient.post(this.urlService.screening.startScreening(),
+    {
+      'status': 'In Progress',
+      'softSkillVerdict': 0,
+      'screenerId':0,
+      'aboutComments': '',
+      'generalComments':'',
+      'softSkillCommentary': '',
+      'startDate': new Date(),
+      'endDateTime': '',
+      'screeningId': localStorage.getItem('screeningID'),
+      'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+      'compositeScore': 0
+    }
+  )
+  }
+  updateScreening(id:number){
+    this.getScreeningById(id).subscribe(
+      screening => this.httpClient.post(this.urlService.screening.updateScreening(),screening)
+    );
+  }
   // Submit comments related to the candidate's self-introduction
   // From the IntroductionComponent
   // comment - the screener's comment
-  submitIntroComment(comment: string) {
-    this.httpClient.post<String>(
-      this.urlService.screening.introComment(),
-      { traineeId: localStorage.getItem('screeningID'), softSkillCommentary: comment }
-    ).subscribe();
-  }
+
 
   // Submits general comments related to the candidate's overall performance
   // through the Q&A portion.
-  submitGeneralComment() {
-    this.httpClient.post<String>(
-      this.urlService.screening.generalComment(),
-      { comment: this.generalComments, screeningId: localStorage.getItem('screeningID') }
-    ).subscribe();
-  }
+
 }
