@@ -54,14 +54,14 @@ export class ScreeningService {
   ): Observable<Number> {
     return this.httpClient
       .post<Number>(
-      this.urlService.screening.startScreening(),
-      {
-        'scheduledScreening': scheduledScreening.scheduledScreeningId,
-        'beginTime': beginTime,
-        'trainerId': trainerId,
-        'skillTypeId': skillTypeId
-      },
-      { headers: this.headers }
+        this.urlService.screening.startScreening(),
+        {
+          'scheduledScreening': scheduledScreening.scheduledScreeningId,
+          'beginTime': beginTime,
+          'trainerId': trainerId,
+          'skillTypeId': skillTypeId
+        },
+        { headers: this.headers }
       );
   }
 
@@ -93,7 +93,7 @@ export class ScreeningService {
   }
 
   getScreeningById(id) {
-        return this.httpClient.get<Screening>(this.urlService.screening.getScreening(id));
+    return this.httpClient.get<Screening>(this.urlService.screening.getScreening(id));
   }
 
   // Helper method that converts an input string to a boolean
@@ -104,26 +104,26 @@ export class ScreeningService {
       return undefined;
     }
   }
-  createScreening(){
+  createScreening() {
     this.httpClient.post(this.urlService.screening.startScreening(),
-    {
-      'status': 'In Progress',
-      'softSkillVerdict': 0,
-      'screenerId':0,
-      'aboutComments': '',
-      'generalComments':'',
-      'softSkillCommentary': '',
-      'startDate': new Date(),
-      'endDateTime': '',
-      'screeningId': localStorage.getItem('screeningID'),
-      'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
-      'compositeScore': 0
-    }
-  )
+      {
+        'status': 'In Progress',
+        'softSkillVerdict': 0,
+        'screenerId': 0,
+        'aboutComments': '',
+        'generalComments': '',
+        'softSkillCommentary': '',
+        'startDate': new Date(),
+        'endDateTime': '',
+        'screeningId': localStorage.getItem('screeningID'),
+        'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+        'compositeScore': 0
+      }
+    );
   }
-  updateScreening(id:number){
+  updateScreening(id: number) {
     this.getScreeningById(id).subscribe(
-      screening => this.httpClient.post(this.urlService.screening.updateScreening(),screening)
+      screening => this.httpClient.post(this.urlService.screening.updateScreening(), screening)
     );
   }
   // Submit comments related to the candidate's self-introduction
