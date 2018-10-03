@@ -8,10 +8,10 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
-import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+// import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+// import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { NgbModalWindow } from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
+// import { NgbModalWindow } from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { Bucket } from '../../entities/Bucket';
@@ -57,16 +57,16 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent, NgbModalBackdrop, NgbModalWindow, AnswerComponent, ViolationFlagComponent],
+      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule],
       providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
-        SkillTypesService, QuestionScoreService, NgbModal, NgbModalStack, ScreeningService,
+        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [QuestionsTableComponent, NgbModalBackdrop, NgbModalWindow, AnswerComponent, ViolationFlagComponent]
+        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
       }
     })
       .compileComponents();
