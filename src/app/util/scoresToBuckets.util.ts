@@ -1,10 +1,11 @@
 import { QuestionScore } from '../entities/QuestionScore';
 import { SkillTypeBucketLookUp } from '../entities/SkillTypeBucketLookup';
+import { QuestionsService} from '../services/questions/questions.service';
 
 export class ScoresToBucketsUtil {
 
-
-    getFinalBreakdown(questionScores: QuestionScore[], bucketsByWeight: SkillTypeBucketLookUp): string[] {
+    private questionsService:QuestionsService;
+    getFinalBreakdown(questionScores: QuestionScore[], bucketsByWeight:SkillTypeBucketLookUp): string[] {
         const bucketNames: string[] = [];
         const totals: number[] = [];
         const scores: number[] = [];
@@ -12,41 +13,7 @@ export class ScoresToBucketsUtil {
         let questionsAsked;
         let totalWeights = 0;
         let totalBuckets = 0;
-        // Loop through the buckets provided by the SkillTypeBucketLookup entity
-        bucketsByWeight.buckets.forEach(thisBucket => {
-            questionsAsked = 0;
-            totals[bucketIndex] = 0;
-            scores[bucketIndex] = 0;
-            /**
-             *  TO DO BITCHES!
-             *  The GOD DAMN BUCKETS AINT GOT NO QUESTIONS <('-')>
-             *  NEED TO ADD QUESTIONS MAYBE SOMEHOW IN A DIFFERENT WAY THATS BETTER
-             */
-            // if (thisBucket.questions != null) {
-            //     // If the questions array in this bucket is populated, loop through the question
-            //     thisBucket.questions.forEach(thisQuestion => {
-            //         const matchingQuestion = questionScores.find(function(element) {
-            //             return element.questionId === thisQuestion.questionId;
-            //         });
-            //         // If this question has been answered, add it to the total
-            //         if (matchingQuestion) {
-            //             questionsAsked++;
-            //             totals[bucketIndex] += 5;
-            //             scores[bucketIndex] += matchingQuestion.score;
-            //         }
-            //     });
-            // }
-            // If questions were answered from this bucket, mark bucket as used
-            if (questionsAsked > 0) {
-                bucketNames[bucketIndex] = thisBucket.bucketDescription;
-                totalWeights += bucketsByWeight.weights[bucketIndex];
-                totalBuckets++;
-            // If no questions from this bucket were asked, ignore in final calculations
-            } else {
-                bucketNames[bucketIndex] = 'skip';
-            }
-            bucketIndex++;
-        });
+        
         let normalizeWeight = 0;
         // If the total weights from the buckets with answered questions don't add up to 100%, evenly distribute the difference
         if (totalWeights < 100) {

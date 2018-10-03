@@ -40,23 +40,17 @@
           <div class="form-group row">
               <label for="name" class="col-sm-2 col-form-label">Name:&nbsp;</label>
               <div class="col-sm-10">
-                  <input type="text" id="skillTypeName" name=skillTypeName class="form-control" *ngIf="singleSkillType" required #skillTypeName="ngModel" [(ngModel)]="singleSkillType.skillTypeName">
+                  <input type="text" id="skillTypeName" name=skillTypeName class="form-control" *ngIf="singleSkillType" required #skillTypeName="ngModel" [(ngModel)]="singleSkillType.title">
                   <input type="text" id="skillTypeName" name="skillTypeName" placeholder="Skill type name" class="form-control" *ngIf="!singleSkillType" required ngModel>
               </div>
-
-              <label for="name" class="col-sm-2 col-form-label">Description:&nbsp;</label>
-              <div class="col-sm-10">
-                  <input type="text" id="skillTypeDesc" name=skillTypeDesc class="form-control" *ngIf="singleSkillType" required #skillTypeName="ngModel" [(ngModel)]="singleSkillType.skillTypeDesc">
-                  <input type="text" id="skillTypeDesc" name="skillTypeDesc" placeholder="Skill type description" class="form-control" *ngIf="!singleSkillType" required ngModel>
-              </div> 
           </div>
           <div *ngIf="singleSkillType">
               <div class="form-group row">
                   <label for="buckets" class="col-sm-2 col-form-label">Categories:</label>
                   <div class="col-sm-10">
-                      <div *ngFor="let bucketWeight of bucketsAndWeights; let index = index">
+                      <div *ngFor="let bucket of bucketsAndWeights; let index = index">
                           <div class="input-group col-sm-9 rounded" style="margin-bottom: 0.5%;">
-                              <span class="input-group-addon col-sm-5 revatureOrange" id="font-fix">{{bucketWeight.bucketCategory}}</span>
+                              <span class="input-group-addon col-sm-5 revatureOrange" id="font-fix">{{bucket.bucketDescription}}</span>
                               <input type="number" #weight name="weight" class="form-control border-right-0 bucketWeight" min="0" max="100" [(ngModel)]="bucketWeight.weights" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
                               <input type="number" name="sum" class="form-control border-right-0" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
                               <span class="input-group-addon percentSign" style="border-top-right-radius: 11%; border-bottom-right-radius: 11%;">%</span>
@@ -72,7 +66,7 @@
                   <label for="inactiveBuckets" class="col-sm-6 col-form-label">All Categories:</label>
                   <div class="col-sm-10 row">
                     <span *ngFor="let bucket of allBuckets">
-                        <button type="button" class="input-group-addon pillButtons" (click)="addToSkillTypeBuckets(bucket)" *ngIf="!checkContains(bucket.bucketId)">{{bucket.bucketCategory}}</button>
+                        <button type="button" class="input-group-addon pillButtons" (click)="addToSkillTypeBuckets(bucket)" *ngIf="!checkContains(bucket.bucketId)">{{bucket.bucketDescription}}</button>
                     </span>
                   </div>
               </div>

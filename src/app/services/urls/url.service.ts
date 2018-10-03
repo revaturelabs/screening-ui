@@ -130,6 +130,10 @@ export class UrlService {
     update: () => `${this.context}/skill/`,
     delete: (id: number) => `${this.context}/skill`
   };
+  weightsEndpoint = this.context + '/weight';
+  weights = {
+    getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`
+  }
 
   /**
    * Endpoints for skillType
@@ -163,7 +167,7 @@ export class UrlService {
   };
 
   softSkillsViolation = {
-    getViolationTypeURL: () => `${this.context}/screening/violation/all`,
+    getViolationTypeURL: () => `${this.context}/screening/violation`,
     getViolationURL: (screeningID: number) => `${this.context}/screening/violation/${screeningID}`,
     addViolationURL: () => `${this.context}/screening/violation/flag/`,
     deleteViolationURL: (violationID: number) => `${this.context}/screening/violation/delete/${violationID}`,
