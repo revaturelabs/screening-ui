@@ -13,68 +13,6 @@ export class UrlService {
   }
 
   /**
-   * In Alphabatical order MUST continue to keep in Alphabatical order
-   * to make it easier to find what you are looking for.
-   *
-   * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
-   * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
-   * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
-   * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
-   */
-
-  addsubtopics = {
-    // getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-    //   `${this.context}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
-    getBatchIdUrl: (batchId: number) => `${this.context}/batches/batch/${batchId}`,
-    addSubtopicUrl: () => `${this.context}/curricula/schedules`,
-    getSubtopicPoolUrl: (curriculumId: number) => `${this.context}/curricula/${curriculumId}/subtopics`,
-    updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
-      `${this.context}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
-    updateScheduleURL: `${this.context}/curricula/schedules`,
-    addNewScheduledSubtopic: (scheduleId: number) => `${this.context}/curricula/scheduled-subtopics?schedule=${scheduleId}`
-  };
-
-
-  assessment = {
-    fetchByBatchIdByWeek: (batchId: number, week: number) => `${this.context}/trainer/assessment/${batchId}/${week}`,
-    save: () => `${this.context}/trainer/assessment/create`,
-    update: () => `${this.context}/trainer/assessment/update`,
-    delete: (assessmentId: number) => `${this.context}/trainer/assessment/delete/${assessmentId}`,
-  };
-
-  assignForce = {
-    refreshBatches: () => `${this.context}/refreshbatches`
-  };
-
-  bambatch = {
-    getBatchAllUrl: () => `${this.context}/batches/`,
-    getPastBatchesUrl: (trainerId: number) => `${this.context}/batches/past/${trainerId}`,
-    getFutureBatchesUrl: (trainerId: number) => `${this.context}/batches/future/${trainerId}`,
-    getBatchInProgressUrl: (email: string) => `${this.context}/batches/inprogress/${email}`,
-    getAllBatchesInProgressUrl: (trainerId: number) => `${this.context}/batches/current/${trainerId}`,
-    getBatchByIdURL: (batchId: number) => `${this.context}/batches/batch/${batchId}`,
-    updateBatchUrl: () => `${this.context}/batches/batch`,
-    getAllBatchTypesUrl: () => `${this.context}/batches/types`,
-    removeSubtopicFromBatchUrl: (subtopicId: number) => `${this.context}/batch/${subtopicId}`,
-    getAllInProgressUrl: () => `${this.context}/batches/current/`
-  };
-
-  /**
-   * Endpoints for batches
-   */
-  batches = {
-    fetchAllByTrainer: () => `${this.context}/batches/trainers`,
-    fetchAllByTrainerId: (id: number) => `${this.context}/batches/trainers/${id}`,
-    fetchAll: () => `${this.context}/batches`,
-    save: () => `${this.context}/batches`,
-    update: () => `${this.context}/batches`,
-    delete: (batchId) => `${this.context}/batches/${batchId}`
-  };
-
-  /**
    * Endpoints for bucket service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
@@ -84,6 +22,7 @@ export class UrlService {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
+   *
    */
   private bucketEndpoint = '/bucket';
   bucket = {
@@ -92,109 +31,6 @@ export class UrlService {
     updateBucket: () => `${this.context + this.bucketEndpoint}`,
     createNewBucket: () => `${this.context + this.bucketEndpoint}`
   };
-
-  /**
-   * Endpoints for buildings:
-   * This section is being added for use in the location service
-   * @author Tanhim Ahmed
-   */
-  building = {
-    getBuildingById: (buildingId: number) => `${this.context}/buildings/${buildingId}`,
-    getBuildingsByLocationId: (locationId: number) => `${this.context}/buildings/location/${locationId}`,
-    getAllBuildings: () => `${this.context}/buildings/`,
-    postBuilding: () => `${this.context}/buildings/`,
-    putBuildingById: (buildingId: number) => `${this.context}/buildings/${buildingId}`,
-    // deleteBuildingById: (buildingId: number) => `${this.context}/buidlings/${buildingId}`
-  };
-
-  calendar = {
-    // getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-    //   `${this.context}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
-    getScheduleById: (scheduleId: number) => `${this.context}/curricula/schedules/${scheduleId}`,
-    getSubtopicsByBatchUrl: (batchId: number) => `${this.context}/calendar/subtopics/${batchId}`,
-    getNumberOfSubTopicsByBatchUrl: (batchId: number) => `${this.context}/calendar/getnumberofsubtopics/${batchId}`,
-    getTopicsByBatchPagUrl: (batchId: number) => `${this.context}/calendar/topics/${batchId}`,
-    changeTopicDateUrl: `${this.context}/curricula/scheduled-subtopics`,
-    updateTopicStatusUrl: (subtopicId: number, batchId: number, status: string) =>
-      `${this.context}/curricula/schedules`,
-    addTopicsUrl: () => `${this.context}/calendar/addtopics`
-  };
-
-  category = {
-    fetchAll: () => `${this.context}vp/category`,
-    fetchAllActive: () => `${this.context}category/all`,
-    fetchById: (id: number) => `${this.context}category/${id}`,
-    save: () => `${this.context}vp/category`,
-    update: () => `${this.context}vp/category/update`,
-  };
-
-  curriculum = {
-    getCurriculumAllUrl: () => `${this.context}/curricula/all`,
-    getCurriculumByIdUrl: (id: number) => `${this.context}/curricula?ids=${id}`,
-    getSchedulesByCurriculumIdUrl: (id: number) => `${this.context}/curricula/${id}/schedules`,
-    getTopicPoolAllUrl: () => `${this.context}/topics/`,
-    getSubtopicPoolAllUrl: () => `${this.context}/curricula/subtopicpool`,
-    addCurriculumUrl: () => `${this.context}/curricula/`,
-    makeCurriculumMasterByIdUrl: (id: number) => `${this.context}/curricula/${id}/master`,
-    syncBatchByIdUrl: (id: number) => `${this.context}/curricula/syncbatch/${id}`,
-    deleteCurriculumVersionUrl: () => `${this.context}/curricula/deleteversion`,
-    getScheduleById: (id: number) => `${this.context}/curricula/schedules/${id}`,
-    addSchedule: () => `${this.context}/curricula/schedules`
-  };
-
-  grade = {
-    fetchByBatchIdByWeek: (batchId, week) => `${this.context}all/grades/batch/${batchId}/week/${week}`,
-    save: () => `${this.context}trainer/grade/create`,
-    update: () => `${this.context}trainer/grade/update`,
-  };
-
-  /**
-   * Endpoints for locations:
-   * This section is being added for use in the location service
-   * @author Tanhim Ahmed
-   */
-  location = {
-    getLocationById: (locationId: number) => `${this.context}/locations/${locationId}`,
-    getAllLocations: () => `${this.context}/locations/`,
-    postLocation: () => `${this.context}/locations/`,
-    putLocationById: (locationId: number) => `${this.context}/locations/${locationId}`,
-    deleteLocationById: (locationId: number) => `${this.context}/locations/${locationId}`,
-    /**Migrated location from old environment.ts diifrent from above */
-    fetchAll: () => `${this.context}all/location/all`,
-    save: () => `${this.context}vp/location/create`,
-    update: () => `${this.context}vp/location/update`,
-  };
-
-  note = {
-    fetchQcBatchNotesByBatchIdByWeek: (batchId: number, week: number) => `${this.context}qc/note/batch/${batchId}/${week}`,
-    fetchQcTraineeNotesByBatchIdByWeek: (batchId: number, week: number) => `${this.context}qc/note/trainee/${batchId}/${week}`,
-    fetchBatchNotesByBatchIdByWeek: (batchId: number, week: number) => `${this.context}trainer/note/batch/${batchId}/${week}`,
-    fetchTraineeNotesByBatchIdByWeek: (batchId: number, week: number) => `${this.context}trainer/note/trainee/${batchId}/${week}`,
-    fetchTrainingNotesByTrainee: (traineeId: number) => `${this.context}all/notes/trainee/${traineeId}`,
-    fetchQcNotesByTrainee: (traineeId: number) => `${this.context}qc/note/trainee/${traineeId}`,
-    update: () => `${this.context}note/update`,
-    save: () => `${this.context}note/create`,
-    getAllQCTraineeNotes: (batchId: number, week: number) => `${this.context}qc/note/trainee/${batchId}/${week}`,
-    findQCBatchNotes: (batchId: number, week: number) => `${this.context}qc/note/batch/${batchId}/${week}`,
-  };
-
-  panel = {
-    fetchAll: () => `${this.context}panel/all`,
-    fetchAllByTrainee: (traineeId) => `${this.context}panel/trainee/${traineeId}`,
-    save: () => `${this.context}panel/create`,
-    update: () => `${this.context}panel/update`,
-    delete: (panelId: number) => `${this.context}panel/delete/${panelId}`,
-  };
-
-  qcStatus = {
-    fetchAll: () => `${this.context}types/qcstatus/all`,
-  };
-
-
-  /**
-   * TO DO BITCHES!
-   * REFACTOR END POINTS AND REMOVE THE TAGGGGGS
-   */
 
   /**
    * Endpoints for questions service
@@ -211,7 +47,7 @@ export class UrlService {
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}`,
-    getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/bucket/${bucketId}`,
+    getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}/deactivate`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}/activate`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
