@@ -45,40 +45,17 @@ export class UrlService {
    */
   private questionEndpoint = (this.context + '/question');
   question = {
-    postQuestion: () => `${this.questionEndpoint}`,
-    putQuestion: () => `${this.questionEndpoint}`,
+    postQuestion: () => `${this.questionEndpoint}/new`,
+    putQuestion: () => `${this.questionEndpoint}/update`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}/deactivate`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}/activate`,
+    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
+    activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
-    getAllTags: () => `${this.questionEndpoint}/tags`,
-    createNewTag: () => `${this.questionEndpoint}/tags`,
-    getTagsByQuestionId: (questionId: number) => `${this.questionEndpoint}/tags/question/${questionId}`
-  };
+   };
 
   private questionScoringEndpoint = 'question-score-service/question';
   questionScoring = {
     scoringQuestion: () => `${this.context + this.questionScoringEndpoint}/score`,
-  };
-
-    // Reports Service API endpoints
-    reportsStackedBarCurrentWeek = this.context + 'all/reports/batch/week/stacked-bar-current-week';
-    reportsDashBoard = this.context + 'all/reports/dashboard';
-    reportsBiWeeklyPanel = this.context + 'all/reports/biweeklyPanelResults';
-
-  /**
-   * Endpoints for rooms:
-   * This section is being added for use in the location service
-   * @author Tanhim Ahmed
-   */
-  room = {
-    getRoomById: (roomId: number) => `${this.context}/rooms/${roomId}`,
-    getAllRooms: () => `${this.context}/rooms/`,
-    // getRoomsByLocationId: (locationId: number) => `${this.context}/rooms/locations/${locationId}`,
-    getRoomsByBuildingId: (buildingId: number) => `${this.context}/rooms/building/${buildingId}`,
-    postRoom: () => `${this.context}/rooms/`,
-    putRoomById: (roomId: number) => `${this.context}/rooms/${roomId}`,
-    // deleteRoomById: (roomId: number) => `${this.context}/rooms/${roomId}`
   };
 
   /**
