@@ -175,6 +175,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
-    this.screeningService.updateScreening(parseInt(localStorage.getItem('screeningID')));
+    // tslint:disable-next-line:radix
+    this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
   }
 }
