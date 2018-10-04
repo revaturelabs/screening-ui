@@ -8,10 +8,9 @@
     <p>Select a category to begin asking questions</p>
     <div id="bucket-buttons">
       <ul class="nav nav-tabs">
-        <li class="pointer" *ngFor="let bucket of questionBuckets">
-           <!-- <button class="btn" *ngFor="let bucket of questionBuckets" (click)="setBucket(bucket.bucketID)">{{bucket.bucket.bucketDescription}}</button> -->
-          <a class="nav-link" [class.active]="bucket.bucket.bucketId == currentBucket"
-            [class.inActive]="bucket.bucket.bucketId != currentBucket" (click)="setBucket(bucket.bucket.bucketId)">{{bucket.bucket.bucketDescription}}</a>
+        <li class="pointer" *ngFor="let weight of questionBuckets">
+          <a class="nav-link" [class.active]="weight.bucket.bucketId == currentBucket"
+            [class.inActive]="weight.bucket.bucketId != currentBucket" (click)="setBucket(weight.bucket.bucketId)">{{weight.bucket.bucketDescription}}</a>
         </li>
       </ul>
     </div>

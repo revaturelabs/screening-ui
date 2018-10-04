@@ -76,14 +76,10 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
-    console.log("Selected Candidate: " + JSON.stringify(this.simpleTraineeService.getSelectedCandidate()));
     const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
-    console.log("skill type id" + skillTypeID);
     this.subscriptions.push(
-
       this.skillTypeBucketService.
       getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
-        console.log("buckets with weights " + JSON.stringify(bucketsWithWeights));
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights) {
         myBuckets.push(
@@ -94,23 +90,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
           }
         );
       }
-
-       this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
-
+      this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
       this.questionBuckets = bucketsWithWeights;
-      console.log("question buckets" +  JSON.stringify(this.questionBuckets));
-      // this.subscriptions.push(this.questionService.getQuestions(skillTypeID).subscribe(allQuestions => {
-      //   this.questionBuckets = bucketsWithWeights;
-      //   console.log("question buckets" + this.questionBuckets);
-
-      // // this.subscriptions.push(this.questionService.getQuestions(skillTypeID).subscribe(allQuestions => {
-      //   this.questionBuckets = this.questionService.saveQuestions(allQuestions, this.skillTypeBucketService.bucketsByWeight);
-      //   this.skillTypeBucketService.bucketsByWeight.buckets = JSON.parse(JSON.stringify(this.questionBuckets));
-
-        // if (this.questionBuckets.length > 0) {
-        //   this.currentCategory = this.questionBuckets[0];
-        // }
-      // }));
     }));
 
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
@@ -123,10 +104,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     ));
   }
 
-  /**
-   * TO DO BITCHES!
-   * WE DONT DO ANYTHING HERE NOW
-   */
+
   // Unsubscribe to prevent memory leaks when component is destroyed
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe);
@@ -150,7 +128,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   }
 
   open(question: Question) {
-    const modalRef = this.modalService.open(AnswerComponent);
+    const modalRef = this.modalService.open("text");
     modalRef.componentInstance.question = question;
   }
 
