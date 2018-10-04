@@ -10,6 +10,7 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 // ngbootstrap for modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',

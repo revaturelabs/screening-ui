@@ -49,7 +49,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   // holds the current category. Used to control
   // which questions are displayed in the questions table.
-  currentCategory: Bucket;
+  currentBucket: number;
 
   // value entered enables finish button
   generalComment: string;
@@ -60,9 +60,11 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // The candidate's name
   candidateName: string;
 
+  questionsInBucket: Question[];
   // used on ngOnDestroy. Will unsubscribe from all observables
   // to prevent memory leaks
   subscriptions: Subscription[] = [];
+
   constructor(
     private questionService: QuestionsService,
     private questionScoreService: QuestionScoreService,
@@ -94,23 +96,21 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
       }
 
        this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
-      //{
-      //   // skillTypeBucketLookupID: bucketsWithWeights.skillTypeBucketLookupID,
-      //   skillType: JSON.parse(JSON.stringify(bucketsWithWeights.skillType)),
-      //   buckets: myBuckets,
-      //   weights: JSON.parse(JSON.stringify(bucketsWithWeights.weight)),
-      // };
 
-      this.subscriptions.push(this.questionService.getQuestions(skillTypeID).subscribe(allQuestions => {
-        this.questionBuckets = bucketsWithWeights
+      this.questionBuckets = bucketsWithWeights;
+      console.log("question buckets" +  JSON.stringify(this.questionBuckets));
       // this.subscriptions.push(this.questionService.getQuestions(skillTypeID).subscribe(allQuestions => {
+      //   this.questionBuckets = bucketsWithWeights;
+      //   console.log("question buckets" + this.questionBuckets);
+
+      // // this.subscriptions.push(this.questionService.getQuestions(skillTypeID).subscribe(allQuestions => {
       //   this.questionBuckets = this.questionService.saveQuestions(allQuestions, this.skillTypeBucketService.bucketsByWeight);
       //   this.skillTypeBucketService.bucketsByWeight.buckets = JSON.parse(JSON.stringify(this.questionBuckets));
 
         // if (this.questionBuckets.length > 0) {
         //   this.currentCategory = this.questionBuckets[0];
         // }
-      }));
+      // }));
     }));
 
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
@@ -138,16 +138,15 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   // sets the current category, allowing for dynamic change
   // of the questions being displayed.
-  setBucket(bucketID: number) {
+  setBucket(bucketID:number) {
     // iterate through each bucket
     // if the current bucket's id matches the bucket id
     // of the category selected by the user
-    for (const bucket of this.questionBuckets) {
-      if (bucket.bucketId === bucketID) {
-        // set the current category to the current bucket.
-        this.currentCategory = bucket;
+    this.currentBucket = bucketID;
+    this.questionService.getBucketQuestions(bucketID).subscribe(questions=>{
+        this.questionsInBucket = questions;
       }
-    }
+    );
   }
 
   open(question: Question) {
