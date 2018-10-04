@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbTabset, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { SkillType } from '../../entities/SkillType';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
@@ -7,6 +7,7 @@ import { Bucket } from '../../entities/Bucket';
 import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 
 @Component({
     selector: 'app-skill-types',
@@ -16,17 +17,21 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 
 /**
  * TO DO:
- *  RENAME TO WEIGHTS
- * This component should probably be rewitten because it is a mess right now
- *
- * You will need to see implementation in the skills service relating to the
- * skillType controler.
- * Whats working:
- * Creating a skill type and editing a skill
- *
- * Whats not working:
- * assigning buckets to skill types is not working.
- * adding weights needs to be added functionality does not exist
+ *  REWRITE THIS WHOLE DUMPSTER FIRE
+ * DO NOT EVEN ATTEMPT TO MAKE THIS MESS WORK
+ * IT IS TRASH
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
+ * Abandon hope all ye who enter here
  */
 
 /**
@@ -46,10 +51,15 @@ export class SkillTypesComponent implements OnInit {
     public bucketsAndWeights = [];
     public skillType: SkillType;
     public singleSkillType: SkillType;
-    public singleSkillTypeBuckets: Bucket[];
+    public singleSkillTypeBuckets: Bucket[] = [];
     public error: boolean;
     public modalServiceRef;
     public singleSkillTypeBucketIds: number[] = [];
+
+    public skillTypeWeights: Weight[] = [];
+    public allWeights: Weight[] = [];
+
+    public relaventWeights: Weight[] = [];
 
     public Weight: Weight;
 
@@ -57,6 +67,7 @@ export class SkillTypesComponent implements OnInit {
         private modalService: NgbModal,
         private fb: FormBuilder,
         private skillTypeService: SkillTypesService,
+        private skillTypeBucketService: SkillTypeBucketService,
         private bucketsService: BucketsService,
         private alertsService: AlertsService,
         private tab: NgbTabset,
@@ -101,6 +112,9 @@ export class SkillTypesComponent implements OnInit {
     /**
     * Opens the modal for creating and editing skill SkillType
     * Resets fields clears the data within set fields
+    * ____________________
+    * THIS DOES NOT ACTUALLY CLEAR DARA SET IN FIELDS
+    * --------------------
     * Creates a variable to reference the open modal service
     */
     open(content) {
@@ -120,30 +134,48 @@ export class SkillTypesComponent implements OnInit {
     * @param skillType: selected skill type
     */
     editSkillType(skillType) {
+        this.singleSkillTypeBuckets = [];
         this.singleSkillType = {
             title: skillType.title,
             skillTypeId: skillType.skillTypeId,
             isActive: true,
         };
-        this.skillTypeService.getBucketsBySkillType(skillType.skillTypeId).subscribe(results => {
-            for (let i = 0; i < results.length; i++) {
-                this.singleSkillTypeBucketIds.push(results[i].bucketId);
-            }
-        });
-
+        this.getAssociated();
     }
 
     /**
-    * Checks which buckets are currently associated with the selected skill Type
-    * If a bucket from all buckets already belong to the selected skill type, hide the bucket
-    * Includes with objects giving wrong results, so used an
-    * array of bucket ids to utilize the includes method.
-    * @param bucketId: Id of single bucket
-    */
-    checkContains(bucketId) {
-        if (this.singleSkillType) {
-            return this.singleSkillTypeBucketIds.includes(bucketId);
+     * Only darkness within
+     */
+    getAssociated() {
+        for (let i = 0; i < this.allBuckets.length; i++) {
+            if (this.checkContains(this.allBuckets[i])) {
+                if (!this.singleSkillTypeBucketIds.includes(this.allBuckets[i].bucketId)) {
+                    this.singleSkillTypeBuckets.push(this.allBuckets[i]);
+                    this.singleSkillTypeBucketIds.push(this.allBuckets[i].bucketId);
+                }
+            }
         }
+    }
+
+    /**
+    * THIS IS BAD!
+    * DONT KEEP THIS IMPLEMENTATION
+    * IM SORRY FOR ANYONE THAT HAS TO FIX THIS,
+    * I WAS GIVIN A PILE OF TRASH AND DIDNT HAVE TIME TO GET TO THIS
+    * @param bucket: Id of single bucket
+    */
+    checkContains(bucket: Bucket) {
+        if (this.singleSkillType) {
+            for (let i = 0; i < this.allWeights.length; i++) {
+                if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
+                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {
+                        // console.log('this skilltype is associated with : ' + bucket.bucketDescription);
+                        return true;
+                    }
+                }
+            }
+        }
+        // console.log('this skilltype is not associated with : ' + bucket.bucketDescription);
         return false;
     }
 
@@ -153,14 +185,20 @@ export class SkillTypesComponent implements OnInit {
     * Add the bucketId to the array of Ids of selected skill type
     * @param bucket: bucket object needed to be added to skill types.
     */
-    addToSkillTypeBuckets(bucket: Bucket) {
-        // if (this.singleSkillType) {
-        //     this.singleSkillType.buckets.push(bucket);
-        //     // this auto sets weights for all buckets assigned to zero.
-        //     this.singleSkillType.weights.push(0);
-        //     this.singleSkillTypeBucketIds.push(bucket.bucketId);
-        //     this.combineBucketsAndWeights();
-        // }
+    addToSkillTypeBuckets(bucky: Bucket) {
+        console.log(bucky);
+        if (this.singleSkillType) {
+            console.log('if called');
+            const relationship: Weight = {
+                bucket: bucky,
+                skillType: this.singleSkillType,
+                weightValue: 0,
+                weightId: 0
+            };
+            this.skillTypeBucketService.newSkillTypeForBucket(relationship);
+            this.grabAllBuckets();
+            this.getAssociated();
+        }
     }
 
     /**
@@ -168,17 +206,16 @@ export class SkillTypesComponent implements OnInit {
     * @param bucket: bucket object to be removed from all associates to the skill type
     */
     removeFromSkillTypeBuckets(bucket) {
-        // if (this.singleSkillType) {
-        //     for (const singleBucketIndex in this.singleSkillType.buckets) {
-        //         if (this.singleSkillType.buckets[singleBucketIndex].bucketCategory === bucket) {
-        //             this.singleSkillType.weights.splice(Number(singleBucketIndex), 1);
-        //             this.singleSkillTypeBucketIds.splice(Number(singleBucketIndex), 1);
-        //             this.bucketsAndWeights.splice(Number(singleBucketIndex), 1);
-        //             this.singleSkillType.buckets.splice(Number(singleBucketIndex), 1);
-        //         }
-        //     }
-        //     this.combineBucketsAndWeights();
-        // }
+        if (this.singleSkillType) {
+            const modSkillTypeBuckets = [];
+            for (let i = 0; i < this.singleSkillTypeBuckets.length; i++) {
+                if (this.singleSkillTypeBuckets[i].bucketId !== bucket.bucketId) {
+                    modSkillTypeBuckets.push(this.singleSkillTypeBuckets[i]);
+                }
+            }
+            this.singleSkillTypeBuckets = modSkillTypeBuckets.slice();
+            this.skillTypeBucketService.
+        }
     }
 
     /**
@@ -250,7 +287,6 @@ export class SkillTypesComponent implements OnInit {
     * Grabs all the skill types after the information has been submitted
     * @param modal: Form information from the modal, with parameters matching the SkillType entity
     */
-
     createNewSkillType(modal: SkillType) {
         this.skillType = modal;
         this.skillTypeService.createSkillType(this.skillType).subscribe(results => {
@@ -324,9 +360,15 @@ export class SkillTypesComponent implements OnInit {
         this.tab.activeId = 'tab-2';
     }
 
+    getAllWaits() {
+        this.skillTypeBucketService.getAllWeights().subscribe(results => {
+            this.allWeights = results;
+        });
+    }
     ngOnInit() {
         this.grabAllSkillTypes();
         this.grabAllBuckets();
+        this.getAllWaits();
     }
 
 }

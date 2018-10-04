@@ -26,17 +26,17 @@ Screener can copy the summary to the clipboard, and return to the candidate list
 
 export class FinalReportComponent implements OnInit, OnDestroy {
 
-public candidateName: string;
-softSkillString: string;
-bucketStringArray: string[];
-overallScoreString: string;
-generalNotesString: string;
-allTextString: string;
+  public candidateName: string;
+  softSkillString: string;
+  bucketStringArray: string[];
+  overallScoreString: string;
+  generalNotesString: string;
+  allTextString: string;
 
-questionScores: QuestionScore[];
-softSkillViolations: SoftSkillViolation[];
-public checked: string;
-subscriptions: Subscription[] = [];
+  questionScores: QuestionScore[];
+  softSkillViolations: SoftSkillViolation[];
+  public checked: string;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private screeningService: ScreeningService,
@@ -51,7 +51,7 @@ subscriptions: Subscription[] = [];
   ngOnInit() {
     this.checked = 'false';
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-                          this.simpleTraineeService.getSelectedCandidate().lastname;
+      this.simpleTraineeService.getSelectedCandidate().lastname;
     this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
     this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(

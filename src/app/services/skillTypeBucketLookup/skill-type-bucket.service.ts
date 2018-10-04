@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
 import { UrlService } from '../urls/url.service';
+import { Bucket } from '../../entities/Bucket';
+import { SkillType } from '../../entities/SkillType';
+import { Weight } from '../../entities/Weight';
 
 /*
 
 */
-
+const httpOptions = {
+  headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+      })
+  };
 
 /**
 * Used to move the data for buckets and their related weights.
@@ -45,8 +52,16 @@ export class SkillTypeBucketService {
   getSkillTypeBuckets(skillTypeID: number): Observable<any> {
     return this.httpClient.get<any>(`${this.urlService.skillTypes.getBucketBySkillType(skillTypeID)}`);
   }
-  getWeightsBySkillType(skillTypeID: number){
+  getWeightsBySkillType(skillTypeID: number) {
     return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeID)}`);
+  }
+
+  newSkillTypeForBucket(weight: Weight) {
+    return this.httpClient.post<Weight>(`${this.urlService.weights.newWeight()}`, weight, httpOptions);
+  }
+
+  getAllWeights() {
+    return this.httpClient.get<any>(`${this.urlService.weights.getAll()}`);
   }
 
 /*

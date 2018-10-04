@@ -99,7 +99,7 @@ export class UrlService {
     endScreening: () => `${this.context + this.screening}/update`,
     updateScreening: () => `${this.context + this.screening}/update`,
     getScreening: id => `${this.context + this.screening}/{id}`
-    //softSkills: () => `${this.context + this.screening}/`
+    // softSkills: () => `${this.context + this.screening}/`
    };
 
   /**
@@ -132,8 +132,10 @@ export class UrlService {
   };
   weightsEndpoint = this.context + '/weight';
   weights = {
-    getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`
-  }
+    getAll: () => `${this.context}/weight`,
+    getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
+    newWeight: () => `${this.context}/weight/new`
+  };
 
   /**
    * Endpoints for skillType

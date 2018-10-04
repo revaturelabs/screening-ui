@@ -77,7 +77,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
     this.subscriptions.push(this.skillTypeBucketService.
       getSkillTypeBuckets(skillTypeID).subscribe(bucketsWithWeights => {
-        console.log("buckets with weights " + bucketsWithWeights);
+        console.log('buckets with weights ' + bucketsWithWeights);
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights.bucket) {
         myBuckets.push(

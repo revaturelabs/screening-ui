@@ -6,6 +6,6 @@ import { SkillType } from './SkillType';
 */
 export interface SkillTypeBucketLookUp {
     skillType: SkillType;
-    buckets: Bucket;
-    weights: number;
+    buckets: Bucket[];
+    weights: number[];
 }
