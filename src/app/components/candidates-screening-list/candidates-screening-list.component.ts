@@ -88,7 +88,7 @@ export class CandidatesScreeningListComponent implements OnInit {
           lastname: 'Renzullo',
           skillTypeID: 56,
           skillTypeName: 'Java',
-          schedule: new Date()
+          schedule: new Date((new Date()).getTime() + 100000)
         },
       track: {skillTypeId: 56, title: 'Java', isActive: true},
       status: 'in progress',

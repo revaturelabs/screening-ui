@@ -51,13 +51,9 @@ export class QuestionComponent implements OnInit {
   newTagString: string;
   createQuestion: FormGroup;
   newQuestion: Question;
-  // newTags: Tag[];
-  // allTags: Tag[];
-  // currentTags: Tag[];
   question: Question;
   sampleAnswers: string[];
   questions: Question[];
-  // filter: Tag = new Tag();
   currentBucket: Bucket;
   public answersCollapsed = true;
   public tagsCollapsed = true;
@@ -66,7 +62,6 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
-    // this.currentTags = [];
     this.question = new Question();
     this.sampleAnswers = [this.question.sampleAnswer1];
     this.sampleAnswers.push(this.question.sampleAnswer2);
