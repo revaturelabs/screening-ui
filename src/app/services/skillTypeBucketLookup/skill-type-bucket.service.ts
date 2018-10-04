@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
 import { UrlService } from '../urls/url.service';
-
+import { Weight } from '../../entities/Weight';
 /*
 
 */
@@ -31,7 +31,7 @@ export class SkillTypeBucketService {
     private urlService: UrlService
   ) { }
 
-  bucketsByWeight: SkillTypeBucketLookUp;
+  bucketsByWeight: Weight[];
 
 
   // getSkillTypeBuckets(skillTypeID: number): Observable<any>{

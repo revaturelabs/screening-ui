@@ -9,7 +9,7 @@
     <div id="bucket-buttons">
       <ul class="nav nav-tabs">
         <li class="pointer" *ngFor="let bucket of questionBuckets">
-          <!-- <button class="btn" *ngFor="let bucket of buckets" (click)="setBucket(bucket.bucketID)">{{bucket.bucketCategory}}</button> -->
+           <button class="btn" *ngFor="let bucket of buckets" (click)="setBucket(bucket.bucketID)">{{bucket.bucketDescription}}</button>
           <a class="nav-link" [class.active]="bucket.bucketID == currentCategory.bucketID"
             [class.inActive]="bucket.bucketID != currentCategory.bucketID" (click)="setBucket(bucket.bucketID)">{{bucket.bucketCategory}}</a>
         </li>

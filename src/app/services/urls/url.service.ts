@@ -332,7 +332,7 @@ export class UrlService {
 
   softSkillsViolation = {
     getViolationTypeURL: () => `${this.context}/screening/violation`,
-    getViolationURL: (screeningID: number) => `${this.context}/screening/violation/${screeningID}`,
+    getViolationURL: (screeningID: number) => '${this.context}/screening/${screeningID}/violations',
     addViolationURL: () => `${this.context}/screening/violation/flag/`,
     deleteViolationURL: (violationID: number) => `${this.context}/screening/violation/delete/${violationID}`,
   };

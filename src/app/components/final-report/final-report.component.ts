@@ -57,9 +57,13 @@ subscriptions: Subscription[] = [];
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.bucketStringArray =
-          this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, this.skillTypeBucketService.bucketsByWeight);
-
+        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(
+          weights =>
+          {
+            this.bucketStringArray =
+            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+          }
+        )
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
