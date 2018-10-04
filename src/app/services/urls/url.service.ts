@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Weight } from '../../entities/Weight';
 
 @Injectable()
 export class UrlService {
@@ -134,7 +135,8 @@ export class UrlService {
   weights = {
     getAll: () => `${this.context}/weight`,
     getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
-    newWeight: () => `${this.context}/weight/new`
+    newWeight: () => `${this.context}/weight/new`,
+    deleteWeight: (waitId: number) => `${this.context}/weight/delete/${waitId}`
   };
 
   /**

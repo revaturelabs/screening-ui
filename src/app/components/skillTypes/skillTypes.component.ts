@@ -113,7 +113,7 @@ export class SkillTypesComponent implements OnInit {
     * Opens the modal for creating and editing skill SkillType
     * Resets fields clears the data within set fields
     * ____________________
-    * THIS DOES NOT ACTUALLY CLEAR DARA SET IN FIELDS
+    * THIS DOES NOT ACTUALLY CLEAR DATA SET IN FIELDS
     * --------------------
     * Creates a variable to reference the open modal service
     */
@@ -197,6 +197,7 @@ export class SkillTypesComponent implements OnInit {
             };
             this.skillTypeBucketService.newSkillTypeForBucket(relationship);
             this.grabAllBuckets();
+            this.getAllWaits();
             this.getAssociated();
         }
     }
@@ -214,7 +215,17 @@ export class SkillTypesComponent implements OnInit {
                 }
             }
             this.singleSkillTypeBuckets = modSkillTypeBuckets.slice();
-            this.skillTypeBucketService.
+            // need a weight ID from bucket
+            let removed: number;
+            for (let j = 0; j < this.allWeights.length; j++) {
+                if (this.allWeights[j].bucket.bucketId === bucket.bucketId) {
+                    // delete the weight
+                    this.skillTypeBucketService.deleteWeight(this.allWeights[j].weightId);
+                    // remove from list
+                    removed = j;
+                }
+            }
+            this.allWeights.splice( removed, 1);
         }
     }
 

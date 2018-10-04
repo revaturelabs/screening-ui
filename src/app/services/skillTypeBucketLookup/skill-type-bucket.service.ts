@@ -64,6 +64,10 @@ export class SkillTypeBucketService {
     return this.httpClient.get<any>(`${this.urlService.weights.getAll()}`);
   }
 
+  deleteWeight(weightId: number) {
+    return this.httpClient.delete<any>(`${this.urlService.weights.deleteWeight(weightId)}`);
+  }
+
 /*
   getSkillTypeBuckets(skillTypeID: number): Observable<SkillTypeBucketLookUp>{
     return of(SKILL_TYPE_BUCKET_LOOKUP);
