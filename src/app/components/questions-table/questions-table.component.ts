@@ -128,7 +128,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   }
 
   open(question: Question) {
-    const modalRef = this.modalService.open("text");
+    const modalRef = this.modalService.open("AnswerComponent"); //AnswerComponent should be injected into this modal
     modalRef.componentInstance.question = question;
   }
 
