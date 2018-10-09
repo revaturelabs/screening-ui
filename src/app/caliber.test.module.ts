@@ -47,7 +47,7 @@ import { SkillTypesComponent } from './components/skillTypes/skillTypes.componen
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
 
-import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+// import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 export const Dependencies = {
   imports: [
@@ -90,7 +90,6 @@ export const Dependencies = {
     ScheduleScreeningService,
     HttpClient,
     NgbModal,
-    NgbModalStack,
     AlertsService,
     ApiService,
     NgbActiveModal,
