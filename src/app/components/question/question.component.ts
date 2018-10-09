@@ -96,7 +96,7 @@ export class QuestionComponent implements OnInit {
 
   /**
    * Switches the question sent in as an argument from active to deactive
-   * or from deactive to active based on it's current status
+   * or from deactive to active based on its current status
    **/
   changeQuestionStatus(question) {
     if (question.isActive) {
@@ -118,9 +118,9 @@ export class QuestionComponent implements OnInit {
   }
 
   /**
-   * This function will set the required fields of the selected
+   * Set the required fields of the selected
    * function to edit to help the  add new question function decide
-   * wheather to add or update a question and to fill in the fields
+   * whether to add or update a question and to fill in the fields
    * with the selected questions sample answers and question text
    **/
   editQuestion(question) {
