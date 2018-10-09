@@ -26,17 +26,17 @@ Screener can copy the summary to the clipboard, and return to the candidate list
 
 export class FinalReportComponent implements OnInit, OnDestroy {
 
-public candidateName: string;
-softSkillString: string;
-bucketStringArray: string[];
-overallScoreString: string;
-generalNotesString: string;
-allTextString: string;
+  public candidateName: string;
+  softSkillString: string;
+  bucketStringArray: string[];
+  overallScoreString: string;
+  generalNotesString: string;
+  allTextString: string;
 
-questionScores: QuestionScore[];
-softSkillViolations: SoftSkillViolation[];
-public checked: string;
-subscriptions: Subscription[] = [];
+  questionScores: QuestionScore[];
+  softSkillViolations: SoftSkillViolation[];
+  public checked: string;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private screeningService: ScreeningService,
@@ -51,15 +51,19 @@ subscriptions: Subscription[] = [];
   ngOnInit() {
     this.checked = 'false';
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-                          this.simpleTraineeService.getSelectedCandidate().lastname;
+      this.simpleTraineeService.getSelectedCandidate().lastname;
     this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
     this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.bucketStringArray =
-          this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, this.skillTypeBucketService.bucketsByWeight);
-
+        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(
+          weights =>
+          {
+            this.bucketStringArray =
+            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+          }
+        )
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);

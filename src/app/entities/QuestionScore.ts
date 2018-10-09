@@ -8,5 +8,6 @@ export interface QuestionScore {
   screeningID: number;
   score: number;
   commentary: string;
+  bucketId: number;
   beginTime: Date;
 }
