@@ -10,6 +10,7 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 // ngbootstrap for modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -32,6 +33,7 @@ export class AnswerComponent implements OnInit {
       screeningID: +localStorage.getItem('screeningID'),
       score: 0,
       commentary: '',
+      bucketId: this.question.bucket.bucketId,
       beginTime: new Date()
     };
     // update answeredQuestions array to match our question service's answeredQuestions array.

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Weight } from '../../entities/Weight';
 
 @Injectable()
 export class UrlService {
@@ -72,9 +73,15 @@ export class UrlService {
     startScreening: () => `${this.screeningContext + this.screening}/new`,
     endScreening: () => `${this.screeningContext + this.screening}/update`,
     updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening}/{id}`
-    // softSkills: () => `${this.context + this.screening}/`
+    getScreening: id => `${this.screeningContext + this.screening/`
    };
+  weightsEndpoint = this.adminContext + '/weight';
+  weights = {
+    getAll: () => `${this.context}/weight`,
+    getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
+    newWeight: () => `${this.context}/weight/new`,
+    deleteWeight: (waitId: number) => `${this.context}/weight/delete/${waitId}`
+  };
 
   /**
    * Endpoints for skillType
@@ -103,6 +110,6 @@ export class UrlService {
     getViolationTypeURL: () => `${this.screeningContext}/screening/violation/all`,
     getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/violation/${screeningID}`,
     addViolationURL: () => `${this.screeningContext}/screening/violation/flag/`,
-    deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`,
-  };
+    deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
+    };
 }

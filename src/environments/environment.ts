@@ -17,7 +17,7 @@
  */
 
   const adminContext = 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8181';
-  const screeningContext = 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8183';
+  const screeningContext = 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8183;
 
 const bam = '';
 
