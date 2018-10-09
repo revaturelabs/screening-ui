@@ -98,7 +98,7 @@ export class QuestionComponent implements OnInit {
    * Switches the question sent in as an argument from active to deactive
    * or from deactive to active based on it's current status
    **/
-  changeQuesitonStatus(question) {
+  changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
       this.questionService.deactivateQuestion(question.questionId).subscribe();

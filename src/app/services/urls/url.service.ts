@@ -73,14 +73,14 @@ export class UrlService {
     startScreening: () => `${this.screeningContext + this.screening}/new`,
     endScreening: () => `${this.screeningContext + this.screening}/update`,
     updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening/`
+    getScreening: id => `${this.screeningContext + this.screening}/`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
-    getAll: () => `${this.context}/weight`,
+    getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
-    newWeight: () => `${this.context}/weight/new`,
-    deleteWeight: (waitId: number) => `${this.context}/weight/delete/${waitId}`
+    newWeight: () => `${this.weightsEndpoint}/new`,
+    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`
   };
 
   /**
