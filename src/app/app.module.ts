@@ -23,11 +23,8 @@ import { QuestionsTableComponent } from './components/questions-table/questions-
 import { ScreeningComponent } from './components/screening/screening.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { SkillsComponent } from './components/skills/skills.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
-import { TrainerProfilesComponent } from './components/trainer-profile/trainer-profile.component';
-import { TrainersComponent } from './components/trainers/trainers.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 
 
@@ -41,14 +38,11 @@ import { QuestionsService } from './services/questions/questions.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
 import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { GambitSkillService } from './services/skill/gambit-skill.service';
 import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
-import { GambitTraineeService } from './services/trainee/gambit-trainee.service';
-import { TrainerService } from './services/trainer/trainer.service';
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
 import { ApiService } from './services/api/api.service';
@@ -87,11 +81,8 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ScreeningComponent,
     ScreeningConfigComponent,
     SettingsComponent,
-    SkillsComponent,
     SkillTypeBucketsComponent,
     SkillTypesComponent,
-    TrainerProfilesComponent,
-    TrainersComponent,
     ViolationFlagComponent,
     CandidateComponent,
     // pipes
@@ -130,14 +121,11 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ScheduleScreeningService,
     ScreenerBucketsService,
     ScreeningService,
-    GambitSkillService,
     RoleGuard,
     SkillTypesService,
     SkillTypeBucketService,
     SoftSkillsService,
     SoftSkillsViolationService,
-    GambitTraineeService,
-    TrainerService,
     UrlService,
     ViolationTypeService
   ],

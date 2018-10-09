@@ -71,8 +71,8 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   /**
-   * resposible for making call for updatating a bucket
-   * when editted or activity toggled
+   * resposible for making call for updating a bucket
+   * when edited or activity toggled
    * @param bucketParam
    */
   updateBucket(bucketParam: Bucket) {
