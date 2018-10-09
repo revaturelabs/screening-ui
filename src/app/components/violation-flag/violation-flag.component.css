@@ -1,0 +1,202 @@
+/* #############################
+          CHECK BOXES
+  ############################# */
+  #violations-checkbox {
+    width: 100%;
+    text-align: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
+  }
+  #violations-checkbox label {
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+  }
+  .violation {
+    width: auto;
+    margin: auto 20px;
+    display: inline-flex;
+  }
+  .violation-container {
+    background-color: #f2692580;
+    border-color: #f2692590;
+    border-width: 2px;
+    border-style: solid;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  
+  /* #############################
+          TOGGLE BUTTONS 
+  ############################# */
+  
+   /* The switch - the box around the slider */
+   .violation-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .violation-switch input {display:none;}
+  
+  /* The slider */
+  .violation-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(153, 153, 153);
+    width: 60px;
+    height: 34px;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .violation-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .violation-slider {
+    background-color: #f26925;
+  }
+  
+  input:focus + .violation-slider {
+    box-shadow: 0 0 1px #f26925;
+  }
+  
+  input:checked + .violation-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .violation-slider.violation-round {
+    border-radius: 34px;
+  }
+  
+  .violation-slider.violation-round:before {
+    border-radius: 50%;
+  } 
+  
+  .btn{
+    background: #f26925;
+    color: white;
+    font-weight: strong;
+}
+
+  /* #############################
+          CANDIDATE NAME 
+  ############################# */
+#candidate-name{
+  font-size:20px;
+}
+
+/* #############################
+        TOGGLE BUTTONS 
+############################# */
+
+ /* The switch - the box around the slider */
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+#pass-fail-button {
+  vertical-align:middle;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #787878;
+  width: 150px;
+  height: 34px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/* .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+} */
+
+input:checked + .slider {
+  background-color: #f26925;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #f26925;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(68px);
+  -ms-transform: translateX(68px);
+  transform: translateX(68px);
+}
+
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 15px;
+  font-family: 'Futura-Std-Book';
+}
+
+input:checked+ .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+} 
+.violation-comment {
+  padding-left: 10px;
+  padding-right: 10px;
+}

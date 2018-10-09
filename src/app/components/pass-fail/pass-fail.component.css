@@ -1,0 +1,205 @@
+/* #############################
+    QUESTION TABLE STYLES 
+############################# */
+#table-container{
+    max-height: 300px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+.violation-table{
+    align-content: center;
+    max-width: 100%;
+}
+
+.table[_ngcontent-c11] thead[_ngcontent-c11] th[_ngcontent-c11], 
+.table[_ngcontent-c11] td[_ngcontent-c11], 
+.table[_ngcontent-c11] th[_ngcontent-c11] {
+    border-top:0px;
+}
+.table thead th, .table td, .table th{
+    border-top: 1px solid #b1b8bd;
+    border-bottom: 1px solid #7f97a8;
+}
+
+/* #############################
+        Pass-Fail Div STYLES 
+############################# */
+
+.pass-fail-container {
+    margin: 25px 10%;
+    min-width: 360px;
+    max-width: 95vw;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    border-radius: 4px;
+    /* padding-bottom: 128px; */
+    overflow: auto;
+}
+
+#pass-fail-button {
+    vertical-align:middle;
+}
+
+
+/* #############################
+        MODAL STYLES 
+############################# */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    margin: auto;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.583); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    text-align: center;
+    background-color: #fefefe;
+    margin: 300px auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 350px; /* Could be more or less, depending on screen size */
+}
+h1{
+    width: 100%;
+    min-width: 260px;
+    background: #f26925;
+    color: white;  
+    font-size: 20px;
+    border-color: #f26925;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-bottom: 0px;
+    
+    padding: 12px;
+    white-space:nowrap;
+}
+h2{
+    font-size: 1.25em;
+    margin-bottom: 15px;
+}
+#candidate-name{
+    font-size:20px;
+}
+.buttons{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+}
+.btn{
+    background: #f26925;
+    color: white;
+    font-weight: strong;
+}
+
+.btn:disabled {
+    background: #686868;
+    color: white;
+    font-weight: strong;
+}
+
+/* #############################
+        TOGGLE BUTTONS 
+############################# */
+
+ /* The switch - the box around the slider */
+ .switch {
+    position: relative;
+    display: inline-block;
+    width: 103px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #787878;
+    width: 103px;
+    height: 34px;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  /* .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  } */
+  
+  input:checked + .slider {
+    background-color: #f26925;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #f26925;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(68px);
+    -ms-transform: translateX(68px);
+    transform: translateX(68px);
+  }
+  
+  .on
+  {
+    display: none;
+  }
+  
+  .on, .off
+  {
+    color: white;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    font-size: 15px;
+    font-family: 'Futura-Std-Book';
+  }
+  
+  input:checked+ .slider .on
+  {display: block;}
+  
+  input:checked + .slider .off
+  {display: none;}
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  } 
+
+  /* #############################
+        FEEDBACK COMMENT
+############################# */
+.form-control{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}

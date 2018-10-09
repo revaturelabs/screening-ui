@@ -1,0 +1,157 @@
+/* #############################
+        GENERAL STYLES
+############################# */
+#pending-screening-list-container{
+    margin: 25px 10%;
+    min-width: 400px;
+    max-width: 95vw;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    border-radius: 4px;
+}
+h1{
+    background: #f26925;
+    color: white;
+    min-width: 260px;
+    width: 100%;
+    margin-bottom: 0px;
+    padding: 12px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-color: #f26925;
+    text-align: center;
+    font-size: 25px;
+    white-space:nowrap;
+}
+
+#pending-screening-list-contents{
+    padding: 25px 5%;
+}
+/* #############################
+        SEARCH BAR STYLES
+############################# */
+.search-bar{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* #############################
+        TABLE STYLES
+############################# */
+#screenings-table{
+    max-height: 300px;
+    margin-bottom: 20px;
+}
+
+.table thead th, .table td, .table th{
+    border-top: 1px solid #b1b8bd;
+    border-bottom: 1px solid #7f97a8;
+    font-size: 15px;
+}
+.table td, .table th{
+    padding: .5rem;
+}
+.table td{
+    cursor: pointer;
+}
+.table-hover{
+    width: 100%;
+    
+}
+
+/* #############################
+        PAGINATION STYLES
+############################# */
+
+.pagination {
+    margin: auto;
+    width: 100%;
+    font-size: 15px;
+}
+.pagination /deep/ pagination-template{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.pagination /deep/ ul{
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+.pagination /deep/ .ngx-pagination .pagination-previous{
+    padding-left: 0px;
+    padding-right: 2.5px;
+}
+.pagination /deep/ .ngx-pagination .current
+{
+    background: #f26925;
+}
+
+/* #############################
+        MODAL STYLES 
+############################# */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    margin: auto;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.583); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    text-align: center;
+    background-color: #fefefe;
+    margin: 300px auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 350px; /* Could be more or less, depending on screen size */
+}
+h2{
+    font-size: 1.25em;
+    margin-bottom: 15px;
+}
+.buttons{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+}
+.btn{
+    background: #f26925;
+    color: white;
+    font-weight: strong;
+}
+/* #############################
+        MEDIA STYLES 
+############################# */
+@media(max-width:700px){
+    .filters{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+        margin: auto 10px;
+    }
+    .filter-buttons{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 10px;
+        margin-bottom: 0px;
+    }
+}
+@media(max-width: 508px){
+    .filter-buttons{
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+    }
+}

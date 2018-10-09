@@ -1,0 +1,110 @@
+<app-alerts></app-alerts>
+<!-- Create Assessment Skills and Edit assessment Skills including making it active or inactive -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 tab-panes">
+            <ul class="nav nav-tabs justify-content-end">
+                <li id="addButton" role="button" (click)="open(addSkill)">
+                    <button type="button" class="btn btn-secondary pointer">
+                        <strong>Create Skill
+                          <i class="fa fa-plus" aria-hidden="true" style="padding-left: 7px;"></i>
+                        </strong>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Display all assessment skills -->
+<!-- <div class="container centered" id="trainer-assess-table" *ngIf="skills[0]"> -->
+<div class="container centered" id="trainer-assess-table" *ngIf="skills[0]">
+    <div class="row">
+        <!-- Col Start -->
+        <div class="col top5" *ngFor='let column of columns;let c=index;'>
+            <!-- Accordian table -->
+            <table class="table table-responsive table-hover" style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="padding-top: 0;"><b>Skill</b></th>
+                        <th class='text-right'><b>Active</b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Load all skills -->
+                    <tr *ngFor="let skill of skills; let i=index;">
+                        <td *ngIf='nextColumn(c,i)' (click)='editopen(editSkill,skill);' class='pointer'>
+                            {{skill.skillName}}
+                        </td>
+                        <!-- Display active condition -->
+                        <td class='text-center' *ngIf='!skill.isActive && nextColumn(c,i)'>
+                            <span style="color: #ff7575" class="fas fa-times fa-2x" aria-hidden="true"></span>
+                        </td>
+                        <td class='text-center' *ngIf='skill.isActive && nextColumn(c,i)'>
+                            <span style="color: #81f575" class="fas fa-check fa-2x" aria-hidden="true"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End row -->
+    </div>
+</div>
+
+<!-- Add skill modal -->
+<ng-template #addSkill let-c="close" let-d="dismiss">
+    <form #myForm="ngForm" [formGroup]="addForm">
+        <div class="modal-header">
+            <h4 class="modal-title" style="font-size: 18px;">Add SKill</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="skillName"><b>Skill:</b></label>
+                    <input formControlName= "name" name="skill" type="text" class="form-control" id="skillName" placeholder="Title"
+                        required/>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="addNewSkill(myForm.value); c();" type="button" [disabled]="!myForm.valid" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-default" (click)="c(); this.resetFormControl();">Close</button>
+        </div>
+    </form>
+</ng-template>
+
+<!-- Edit skill modal 
+     Introduced two way binding for the active checkbox to properly implement two way binding with ngModel
+     @fixer Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
+-->
+<ng-template #editSkill let-c="close" let-d="dismiss">
+    <form #myForm="ngForm" class="form-control">
+        <div class="modal-header" style="background-color: #f1f2f4;">
+            <h4 class="modal-title" style="font-size: 18px; font-weight: 500;">Edit Skill</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true" style="color: grey;">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="skillName"><b>Skill:</b></label>
+                    <input name="skillName" type="text" class="form-control" #name='ngModel' [(ngModel)]="currentSkill.skillName" id="editSkill"
+                        placeholder="Skill" required>
+                </div>
+            
+                <div class="form-group col-sm-1 col-md-1">
+                    <label for="skillName"><b>Active:</b></label>
+                    <br />
+                    <input type="checkbox" name='active' style="text-align: left" [(ngModel)]="currentSkill.isActive"/>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="editCurrentSkill(); c()" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+        </div>
+    </form>
+</ng-template>
