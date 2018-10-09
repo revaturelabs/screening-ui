@@ -25,7 +25,6 @@ import { BucketsService } from './services/buckets/buckets.service';
 /** for in memory data service
   * executed, 'npm i angular-in-memory-web-api --save', remove from packange.json if not in use.
   */
-import { TrainerService } from './services/trainer/trainer.service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { UrlService } from './services/urls/url.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
@@ -37,10 +36,7 @@ import { ApiService } from './services/api/api.service';
 import { SearchPipe } from './pipes/search.pipe';
 
 // components
-import { TrainerProfilesComponent } from './components/trainer-profile/trainer-profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { SkillsComponent } from './components/skills/skills.component';
-import { TrainersComponent } from './components/trainers/trainers.component';
 import { ScreeningComponent } from './components/screening/screening.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { AnswerComponent } from './components/answer/answer.component';
@@ -71,14 +67,8 @@ export const Dependencies = {
     // pipes
     SearchPipe,
     SettingsComponent,
-    TrainersComponent,
-    SkillsComponent,
-    TrainerProfilesComponent,
     // components
     SettingsComponent,
-    TrainersComponent,
-    SkillsComponent,
-    TrainerProfilesComponent,
     ScreeningConfigComponent,
     IntroductionComponent,
     AnswerComponent,
@@ -91,7 +81,6 @@ export const Dependencies = {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
-    TrainerService,
     QuestionsService,
     BucketsService,
     SimpleTraineeService,
@@ -101,8 +90,6 @@ export const Dependencies = {
     ScheduleScreeningService,
     HttpClient,
     NgbModal,
-    // NgbModalStack,
-    TrainerService,
     AlertsService,
     ApiService,
     NgbActiveModal,
