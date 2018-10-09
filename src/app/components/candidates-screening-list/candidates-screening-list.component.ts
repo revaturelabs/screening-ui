@@ -82,15 +82,15 @@ export class CandidatesScreeningListComponent implements OnInit {
     // Mock data for testing without endpoints
     this.scheduledScreenings.push({
       scheduledScreeningId: 0,
-      trainee: {
+      trainee: { //Mock Data used for test screening
           traineeID: 0,
           firstname: 'Landon',
           lastname: 'Renzullo',
-          skillTypeID: 411,
+          skillTypeID: 56,
           skillTypeName: 'Java',
-          schedule: new Date()
+          schedule: new Date((new Date()).getTime() + 100000)
         },
-      track: {skillTypeId: 411, title: 'Java', isActive: true},
+      track: {skillTypeId: 56, title: 'Java', isActive: true},
       status: 'in progress',
       trainer: 0,
       scheduledDate: new Date()

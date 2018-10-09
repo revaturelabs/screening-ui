@@ -49,7 +49,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   // holds the current category. Used to control
   // which questions are displayed in the questions table.
-  currentCategory: Bucket;
+  currentBucket: number;
 
   // value entered enables finish button
   generalComment: string;
@@ -60,9 +60,11 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // The candidate's name
   candidateName: string;
 
+  questionsInBucket: Question[];
   // used on ngOnDestroy. Will unsubscribe from all observables
   // to prevent memory leaks
   subscriptions: Subscription[] = [];
+
   constructor(
     private questionService: QuestionsService,
     private questionScoreService: QuestionScoreService,
@@ -74,37 +76,22 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
-    console.log("skill type id " + this.simpleTraineeService.getSelectedCandidate().skillTypeID);
     const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
-    this.subscriptions.push(this.skillTypeBucketService.
-      getSkillTypeBuckets(skillTypeID).subscribe(bucketsWithWeights => {
-        console.log("buckets with weights " + bucketsWithWeights);
+    this.subscriptions.push(
+      this.skillTypeBucketService.
+      getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
       const myBuckets: Bucket[] = [];
-      for ( const e of bucketsWithWeights.bucket) {
+      for ( const e of bucketsWithWeights) {
         myBuckets.push(
           {
-            bucketId: e.bucketId,
-            bucketDescription: e.bucketDescription,
-            isActive: e.isActive
+            bucketId: e.bucket.bucketId,
+            bucketDescription: e.bucket.bucketDescription,
+            isActive: e.bucket.isActive
           }
         );
       }
-
-      this.skillTypeBucketService.bucketsByWeight = {
-        // skillTypeBucketLookupID: bucketsWithWeights.skillTypeBucketLookupID,
-        skillType: JSON.parse(JSON.stringify(bucketsWithWeights.skillType)),
-        buckets: myBuckets,
-        weights: JSON.parse(JSON.stringify(bucketsWithWeights.weight)),
-      };
-
-      this.subscriptions.push(this.questionService.getQuestions(skillTypeID).subscribe(allQuestions => {
-        this.questionBuckets = this.questionService.saveQuestions(allQuestions, this.skillTypeBucketService.bucketsByWeight);
-        this.skillTypeBucketService.bucketsByWeight.buckets = JSON.parse(JSON.stringify(this.questionBuckets));
-
-        if (this.questionBuckets.length > 0) {
-          this.currentCategory = this.questionBuckets[0];
-        }
-      }));
+      this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
+      this.questionBuckets = bucketsWithWeights;
     }));
 
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
@@ -117,35 +104,31 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     ));
   }
 
-  /**
-   * TO DO BITCHES!
-   * WE DONT DO ANYTHING HERE NOW
-   */
+
   // Unsubscribe to prevent memory leaks when component is destroyed
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe);
-    if (this.questionBuckets !== undefined) {
-      for (const bucket of this.questionBuckets) {
-      }
-    }
+    // if (this.questionBuckets !== undefined) {
+    //   for (const bucket of this.questionBuckets) {
+    //   }
+    // }
   }
 
   // sets the current category, allowing for dynamic change
   // of the questions being displayed.
-  setBucket(bucketID: number) {
+  setBucket(bucketID:number) {
     // iterate through each bucket
     // if the current bucket's id matches the bucket id
     // of the category selected by the user
-    for (const bucket of this.questionBuckets) {
-      if (bucket.bucketId === bucketID) {
-        // set the current category to the current bucket.
-        this.currentCategory = bucket;
+    this.currentBucket = bucketID;
+    this.questionService.getBucketQuestions(bucketID).subscribe(questions=>{
+        this.questionsInBucket = questions;
       }
-    }
+    );
   }
 
   open(question: Question) {
-    const modalRef = this.modalService.open(AnswerComponent);
+    const modalRef = this.modalService.open("AnswerComponent"); //AnswerComponent should be injected into this modal
     modalRef.componentInstance.question = question;
   }
 
