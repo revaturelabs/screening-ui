@@ -55,8 +55,8 @@ export class PassFailComponent implements OnInit {
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
     this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID')).subscribe(data => {
-      this.previousViolations = data;
-      this.softSkillViolationService.softSkillViolations = this.previousViolations;
+      this.previousViolations.push(...data);
+      this.softSkillViolationService.softSkillViolations.push(...this.previousViolations);
     });
     this.violationTypeService.getAllViolationTypes().subscribe(violationTypes => {
       this.getViolations().subscribe(data => {
