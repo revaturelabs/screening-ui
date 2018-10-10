@@ -27,7 +27,7 @@ export class ViolationFlagComponent implements OnInit {
 
   @Output() flagEvent = new EventEmitter<string>();
 
-  violationTypes: ViolationType[] = VIOLATION_TYPES; //Mock Data taken from mock-violationTypes
+  violationTypes: ViolationType[] = []; //Mock Data taken from mock-violationTypes
   violationTypesChecked: ViolationType[] = [];
   softSkillViolations: SoftSkillViolation[];
   selectedViolation: ViolationType;
@@ -52,7 +52,8 @@ export class ViolationFlagComponent implements OnInit {
   getViolationTypes(): void {
     this.violationTypeService.getViolationTypes().subscribe(
       violationTypes => {
-        this.violationTypes.push(... violationTypes);
+        console.log(violationTypes);
+        this.violationTypes = this.violationTypes.concat(violationTypes);
       }
     );
   }
