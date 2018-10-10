@@ -115,8 +115,8 @@ export class ScreeningService {
         'softSkillCommentary': '',
         'startDate': new Date(),
         'endDateTime': '',
-        'screeningId': localStorage.getItem('screeningID'),
-        'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+        'screening': localStorage.getItem('screeningID'),
+        'scheduledScreening': localStorage.getItem('scheduledScreeningID'),
         'compositeScore': 0
       }
     );

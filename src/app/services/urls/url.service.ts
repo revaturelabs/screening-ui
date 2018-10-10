@@ -67,7 +67,7 @@ export class UrlService {
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = 'screening';
+  screeningEndpoint = '/screening';
   screening = {
     scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
     startScreening: () => `${this.screeningContext + this.screening}/new`,

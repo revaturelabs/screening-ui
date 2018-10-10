@@ -19,6 +19,6 @@
 
 export const environment = {
   production: false,
-  adminContext: 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8181',
-  screeningContext: 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8183',
+  adminContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8181',
+  screeningContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8183',
 };

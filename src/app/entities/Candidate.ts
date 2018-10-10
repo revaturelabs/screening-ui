@@ -3,10 +3,11 @@ import { User } from './User';
 import { UserRole } from './UserRole';
 
 
-export class GambitTrainee extends User {
-    traineeId: number;
+export class Candidate extends User {
+    candidateId: number;
     resourceId: number;
-    trainingStatus: string;
+    name: string;
+    email: string;
     phoneNumber: string;
     skypeId: string;
     profileUrl: string;
@@ -15,27 +16,18 @@ export class GambitTrainee extends User {
     degree: string;
     major: string;
     techScreenerName: string;
-    projectCompletion: string;
-    flagStatus: string;
-    flagNotes: string;
-    marketingStatus: string;
-    client: string;
-    endClient: string;
-    traineeUserInfo: User;
+
 
     constructor(userId?: number, firstName?: string, middleName?: string, lastName?: string,
         email?: string, password?: string, backupPassword?: string, role?: UserRole,
         mobilePhone?: string, homePhone?: string, token?: string,
-        traineeId?: number, resourceId?: number, trainingStatus?: string,
+        candidateId?: number, resourceId?: number,
         phoneNumber?: string, skypeId?: string, profileUrl?: string, recruiterName?: string,
-        college?: string, degree?: string, major?: string, techScreenerName?: string,
-        projectCompletion?: string, flagStatus?: string, flagNotes?: string, marketingStatus?: string,
-        client?: string, endClient?: string, traineeUserInfo?: User) {
+        college?: string, degree?: string, major?: string, techScreenerName?: string) {
             super(userId, firstName, middleName, lastName, email, password,
                 backupPassword, role, mobilePhone, homePhone, token);
-            this.traineeId = traineeId;
+            this.candidateId = candidateId;
             this.resourceId = resourceId;
-            this.trainingStatus = trainingStatus;
             this.phoneNumber = phoneNumber;
             this.skypeId = skypeId;
             this.profileUrl = profileUrl;
@@ -44,14 +36,5 @@ export class GambitTrainee extends User {
             this.degree = degree;
             this.major = major;
             this.techScreenerName = techScreenerName;
-            this.projectCompletion = projectCompletion;
-            this.flagStatus = flagStatus;
-            this.flagNotes = flagNotes;
-            this.marketingStatus = marketingStatus;
-            this.client = client;
-            this.endClient = endClient;
-            this.traineeUserInfo = traineeUserInfo;
       }
 }
-
-

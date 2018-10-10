@@ -12,6 +12,7 @@ import { ScheduleScreeningService } from '../../services/schedule-screening/sche
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { TRAINEES } from '../../mock-data/mock-simpleTrainees';
+import { SkillTypesService} from '../../services/skill-types/skill-types.service';
 // Installed Modules
 // npm install ngx-pagination --save
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
@@ -39,6 +40,7 @@ export class CandidatesScreeningListComponent implements OnInit {
   ########################### */
   // array containing upcoming interviews
   scheduledScreenings: ScheduledScreening[];
+  tracks: SkillType[] = [];
   // when a screener (user) clicks on a screening,
   // save the candidate and scheduled screening
   // to their respective services.
@@ -60,6 +62,7 @@ export class CandidatesScreeningListComponent implements OnInit {
     private screeningService: ScreeningService,
     private scheduleScreeningService: ScheduleScreeningService,
     private softSkillsViolationService: SoftSkillsViolationService,
+    private skillTypesService: SkillTypesService,
     private questionScoreService: QuestionScoreService,
     private searchPipe: SearchPipe
   ) {}
@@ -74,29 +77,17 @@ export class CandidatesScreeningListComponent implements OnInit {
     ) {
       window.location.reload(true);
     }
-
-    // retrieve all scheduled interviews and populate the table of screenings.
+    console.log("getting tracklist");
+    this.skillTypesService.getSkillTypes().subscribe({
+      tracklist =>
+      tracklist.forEach(function(element){
+        this.tracks[element.skillTypeId] = element;
+      });
+    });
     this.scheduleScreeningService.getScheduleScreenings().subscribe(data => {
       this.scheduledScreenings = data;
     });
-    // Mock data for testing without endpoints
-    this.scheduledScreenings.push({
-      scheduledScreeningId: 0,
-      trainee: { //Mock Data used for test screening
-          traineeID: 0,
-          firstname: 'Landon',
-          lastname: 'Renzullo',
-          skillTypeID: 56,
-          skillTypeName: 'Java',
-          schedule: new Date((new Date()).getTime() + 100000)
-        },
-      track: {skillTypeId: 56, title: 'Java', isActive: true},
-      status: 'in progress',
-      trainer: 0,
-      scheduledDate: new Date()
-    });
   }
-  // End mock data!!!!!!!
   /* ###########################
         FUNCTIONS
   ########################### */

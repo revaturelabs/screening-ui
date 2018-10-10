@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GambitTrainee } from '../entities/GambitTrainee';
+import { Candidate } from '../entities/Candidate';
 
 
 @Pipe({
@@ -7,7 +7,7 @@ import { GambitTrainee } from '../entities/GambitTrainee';
 })
 export class TraineeSearch implements PipeTransform {
 
-  transform(trainees: any, searchText: String): GambitTrainee[] {
+  transform(trainees: any, searchText: String): Candidate[] {
     if (!trainees) {
       return [];
     } else {
@@ -19,4 +19,3 @@ export class TraineeSearch implements PipeTransform {
     }
   }
 }
-
