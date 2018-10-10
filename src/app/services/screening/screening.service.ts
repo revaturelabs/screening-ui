@@ -51,12 +51,12 @@ export class ScreeningService {
     beginTime: Date,
     trainerId: number,
     skillTypeId: number,
-  ): Observable<Number> {
+  ): Observable<ScheduledScreening> {
     return this.httpClient
-      .post<Number>(
+      .post<ScheduledScreening>(
         this.urlService.screening.startScreening(),
         {
-          'scheduledScreening': scheduledScreening.scheduledScreeningId,
+          'scheduledScreening': scheduledScreening,
           'beginTime': beginTime,
           'trainerId': trainerId,
           'skillTypeId': skillTypeId
@@ -85,7 +85,7 @@ export class ScreeningService {
         'softSkillVerdict': verdict,
         'softSkillCommentary': this.finalSoftSkillComment,
         'endDateTime': new Date(),
-        'screeningId': localStorage.getItem('screeningID'),
+        'screeningId': localStorage.getItem('screening'),
         'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
         'compositeScore': this.compositeScore
       }

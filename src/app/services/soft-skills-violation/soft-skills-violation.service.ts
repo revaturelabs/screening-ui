@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { ViolationType } from '../../entities/ViolationType';
+import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { UrlService } from '../urls/url.service';
 
 /**
@@ -30,7 +31,7 @@ export class SoftSkillsViolationService {
   ) { }
 
   headers = new HttpHeaders({
-    'Content-type': 'application/json'
+          'Content-Type':  'application/json',
   });
 
   softSkillViolations: any[] = [];
@@ -81,14 +82,14 @@ export class SoftSkillsViolationService {
   }
 
   // Submit a violation with the appropriate comment, screening ID and timestamp.
-  submitViolation(typeID: number, comment: string, screeningID: number): Observable<SoftSkillViolation[]> {
+  submitViolation(type: ViolationType, comment: string, screening: ScheduledScreening): Observable<SoftSkillViolation[]> {
     return this.http.post<any[]>(
       this.urlService.softSkillsViolation.addViolationURL(),
       {
-        'violationTypeId': [typeID],
+        'violationType': type,
         'softSkillComment': comment,
         'violationTime': new Date(),
-        'screeningId': screeningID
+        'screening': screening
       },
       { headers: this.headers }
     );

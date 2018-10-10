@@ -43,7 +43,6 @@ export class ViolationFlagComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log()
     this.getViolationTypes();
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
@@ -52,7 +51,6 @@ export class ViolationFlagComponent implements OnInit {
   getViolationTypes(): void {
     this.violationTypeService.getViolationTypes().subscribe(
       violationTypes => {
-        console.log(violationTypes);
         this.violationTypes = this.violationTypes.concat(violationTypes);
       }
     );
@@ -72,19 +70,19 @@ export class ViolationFlagComponent implements OnInit {
 
   submitViolation(violationType: ViolationType, comment: string): void {
     // Send request with the violation + comments
-    const screeningID = Number.parseInt(localStorage.getItem('screeningID'));
-    this.alertsService.success('Soft Skill Violation Added');
+    const screening = JSON.parse(localStorage.getItem('screeningID'));
+    //this.alertsService.success('Soft Skill Violation Added');
     //this.violationTypeService.getAllViolationTypes().subscribe(data => console.log(data));
     this.flagChange();
-
+    console.log("Violation type" + JSON.stringify(violationType));
     this.violationService.softSkillViolations.push({
       violationID: undefined,
-      screeningID: +localStorage.getItem('screeningID'),
+      screening: +localStorage.getItem('screening'),
       violationType: violationType,
       Time: new Date(),
       Comment: comment
     });
-    this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
+    this.violationService.submitViolation(violationType, comment, JSON.parse(screening)).subscribe(data => {
     });
   }
 
