@@ -150,6 +150,12 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
+        
+        // The bucket and isActive fields are null and undefined, respectively,
+        // which prevents new questions from being added to a bucket.
+        this.question.bucket = this.currentBucket;
+        this.question.isActive = false;
+
         this.questionService.createNewQuestion(this.question).subscribe();
         this.savedSuccessfully();
       }
@@ -182,4 +188,5 @@ export class QuestionComponent implements OnInit {
   savedUnsuccessfull() {
     this.alertsService.error('All Fields Must be Filled');
   }
+
 }

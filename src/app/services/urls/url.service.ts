@@ -26,7 +26,7 @@ export class UrlService {
   bucket = {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
-    updateBucket: () => `${this.bucketEndpoint}`,
+    updateBucket: () => `${this.bucketEndpoint}/update`,
     createNewBucket: () => `${this.bucketEndpoint}`
   };
 
