@@ -19,7 +19,7 @@
           <br>
           <label for="inputComment">Overall Introduction Feedback</label>
           <br>
-          <textarea class="form-control" (input)="comment = $event.target.value" id="inputComment" name="commentBox" placeholder="Optional Feedback"></textarea>
+          <textarea class="form-control" (change)="comment = $event.target.value" id="inputComment" name="commentBox" placeholder="Optional Feedback" ></textarea>
           <br>
           <button class="btn" (click)="onSubmit()" id="submit-button" routerLink="/screening/questions" routerLinkActive="activeLink">Begin Questions</button>
         </div>

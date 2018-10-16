@@ -128,7 +128,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   }
 
   open(question: Question) {
-    const modalRef = this.modalService.open("AnswerComponent"); //AnswerComponent should be injected into this modal
+    const modalRef = this.modalService.open(AnswerComponent); //AnswerComponent should be injected into this modal
     modalRef.componentInstance.question = question;
   }
 
@@ -141,6 +141,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
         return true;
       }
     }
+    //console.log(this.questionScores);
   }
 
   // Method that controls whether the user is allowed to click the submit button
@@ -160,6 +161,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     // tslint:disable-next-line:radix
+    this.screeningService.generalComments=this.generalComment;
     this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
   }
 }

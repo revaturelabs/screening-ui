@@ -33,11 +33,13 @@ export class ScreeningService {
     'Content-type': 'application/json'
   });
 
+  public introComment:string;
+  
   public softSkillsResult: string;
   public generalComments: string;
   public screeningID$: Observable<Screening>;
   compositeScore: number;
-  finalSoftSkillComment: string;
+  public finalSoftSkillComment: string;
 
 
   // When the screening begins, the following information will be sent,
