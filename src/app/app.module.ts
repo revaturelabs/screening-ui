@@ -102,7 +102,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
   imports: [
     BrowserModule,
     HttpModule,
-    NgbModule.forRoot(),
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),

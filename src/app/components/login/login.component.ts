@@ -10,9 +10,9 @@ import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cogn
 
 export class LoginComponent implements OnInit{
     @Input()
-    username:string;
+    username: string;
     @Input()
-    password:string;
+    password: string;
 
     constructor( 
         private cookies: CookieService, 
@@ -25,11 +25,13 @@ export class LoginComponent implements OnInit{
 
     login() {
        // var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-
+        console.log("login button clicked");
+        console.log(this.username);
+        console.log(this.password);
         // Credentials of our userpool
         var poolData = { 
             UserPoolId : 'us-east-2_9g9079yQ6', // Screenforce's user pool id
-            ClientId : '7r1d35gav9lo9dm4dfjbgkmlks' // Screenforce's app client id
+            ClientId : '5uif01evi71ca2dcsqecdsqj9q' // Screenforce's app client id
          };
 
         // Create a pool object with the pool data
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit{
         // Create a user instance for cognito
         var cognitoUser = new CognitoUser(userData);
        // var cogUser = new AmazonCognitoIdentity.cognitoUser(userData);
-        
+        console.log(cognitoUser);
         // Method that calls Cognito
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
@@ -66,11 +68,12 @@ export class LoginComponent implements OnInit{
                 var refreshToken = result.getRefreshToken().getToken();
                 // Logs for testing purposes only
                 console.log(accessToken);
-                console.log(idToken);
-                console.log(refreshToken);
+                //console.log(idToken);
+               // console.log(refreshToken);
             },
             onFailure: function(err) {
-                alert(err);
+                alert("Authenticate user failure");
+                console.log(err);
             },
         });
         // Add local storage check for token validation here
