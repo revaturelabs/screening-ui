@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { CognitoUserPool, CognitoUserAttribute, CognitoUser } from 'amazon-cognito-identity-js';
+import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 
 @Component({
 	selector: 'app-login',
@@ -16,18 +16,16 @@ export class LoginComponent implements OnInit{
 
     constructor( 
         private cookies: CookieService, 
-        // private cognitoUserPool: CognitoUserPool, 
-        // private cognitoUserAttribute: CognitoUserAttribute,
-        // private cognitoUser: CognitoUser
+        // private authenticationDetails: AuthenticationDetails,
+        // private cognitoUser: CognitoUser,
+        // private cognitoUserPool: CognitoUserPool,
          ) {}
 
     ngOnInit() {}
 
     login() {
-        var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-    
-    // This is needed set up the Cognito user pool in JS
-    //setUserPool(){
+       // var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
         // Credentials of our userpool
         var poolData = { 
             UserPoolId : 'us-east-2_9g9079yQ6', // Screenforce's user pool id
@@ -35,33 +33,37 @@ export class LoginComponent implements OnInit{
          };
 
         // Create a pool object with the pool data
-        var userPool = new AmazonCognitoIdentity.cognitoUserPool(poolData);
+        var userPool = new CognitoUserPool(poolData);
+        //var userPool = new AmazonCognitoIdentity.cognitoUserPool(poolData);
         
         // Set up the user data with the Pool object and our username
         var userData = {
-           Username : 'username',
+           Username : this.username, // Username of the person signing in
            Pool : userPool
         };
-    //}
 
         // Username/password of the user we are logging in
         var authenticationData = { 
-            Username : 'username', 
-            Password : 'password',
+            Username : this.username, // Username of the person signing in
+            Password : this.password,
             };
         
         // Create an authDetail object based on our credentials
-        var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+        var authenticationDetails = new AuthenticationDetails(authenticationData);
+        //var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
 
         // Create a user instance for cognito
-        var cogUser = new AmazonCognitoIdentity.cognitoUser(userData);
+        var cognitoUser = new CognitoUser(userData);
+       // var cogUser = new AmazonCognitoIdentity.cognitoUser(userData);
         
-        // Method that calls 
-        cogUser.authenticateUser(authenticationDetails, {
+        // Method that calls Cognito
+        cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
+                // We should only need the access token for creating our cookies
                 var accessToken = result.getAccessToken().getJwtToken();
-                var idToken = result.idToken.jwtToken;
-                var refreshToken = result.refreshToken.jwtToken;
+                var idToken = result.getIdToken().getJwtToken();
+                // Refresh token is used for restoring the other token(s) once they have ran out
+                var refreshToken = result.getRefreshToken().getToken();
                 // Logs for testing purposes only
                 console.log(accessToken);
                 console.log(idToken);
@@ -71,12 +73,12 @@ export class LoginComponent implements OnInit{
                 alert(err);
             },
         });
-   
+        // Add local storage check for token validation here
     }
 
     // This method will set the cookie we will use to authenticate in the rest of the applicaiton
     setCookie(role:string){
-        // This cookie, Role, is what will be called throught the application
+        // This cookie, role, is what will be called throught the application
         this.cookies.set( 'role', role);
     }
 
