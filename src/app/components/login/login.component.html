@@ -1,0 +1,18 @@
+<div id="login-container">
+    <h1>ScreenForce</h1>
+    <!-- Sign in form -->
+    <form class="text-center" #loginForm="ngForm" (ngSubmit)="login()">
+        <!-- Credential Field-->
+        <div>
+            <input type="username" id="loginCred" class="form-control" name="username" [(ngModel)]="username" data-error="Invalid Credentials" data-success="Valid Credentials">
+            <label for="loginCred">Username</label>
+        </div>
+        <!-- Password Field -->
+        <div>
+            <input type="password" id="loginPassword" class="form-control" name="password" [(ngModel)]="password" data-error="Invalid Password" data-success="Valid Password">
+            <label for="loginPassword">Password</label>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit"> Sign in </button>
+    </form>
+</div>

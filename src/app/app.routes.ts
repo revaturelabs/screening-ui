@@ -9,21 +9,28 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   {
     path: '',
+    component: LoginComponent,
+  },
+  {
+    path: 'list',
     component: CandidatesScreeningListComponent,
+      canActivate: [RoleGuard],
+      data: {
+        roles: [ roles.screenerRole, roles.vpRole ]
+      },
   },
   {
     path: 'screening',
     component: ScreeningComponent,
-    // canActivate: [RoleGuard],
-    // data: {
-    //   roles: [
-    //     roles.screenerRole, roles.vpRole
-    //   ]
-    // },
+      canActivate: [RoleGuard],
+      data: {
+        roles: [ roles.screenerRole, roles.vpRole ]
+      },
     children: [
       {
         path: 'intro',
@@ -46,10 +53,10 @@ export const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
-    // canActivate: [RoleGuard],
-    // data: {
-    //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
-    // },
+      canActivate: [RoleGuard],
+      data: {
+        roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
+      },
     children: [
       {
         path: 'main',
@@ -63,7 +70,11 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: CandidatesScreeningListComponent,
+    component: LoginComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: '**',
