@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 // Classes
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
+import { SkillType } from '../../entities/SkillType';
 
 // Services
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
@@ -78,8 +79,8 @@ export class CandidatesScreeningListComponent implements OnInit {
       window.location.reload(true);
     }
     console.log("getting tracklist");
-    this.skillTypesService.getSkillTypes().subscribe({
-      tracklist =>
+    this.skillTypesService.getSkillTypes().subscribe(
+      tracklist =>{
       tracklist.forEach(function(element){
         this.tracks[element.skillTypeId] = element;
       });
