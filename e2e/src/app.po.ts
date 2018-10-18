@@ -49,3 +49,4 @@ export class HomePage {
     return element(by.css('h1')).getText();
   }
 }
+

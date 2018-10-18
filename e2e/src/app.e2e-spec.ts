@@ -47,4 +47,6 @@ describe('workspace-project App', () => {
     //element.all(by.css('.list-group-item')).get(0).element(by.tagName('a')).getText().toEqual('Beta Skills');
     expect(element.all(by.css('.list-group-item')).get(0).getText()).toEqual('Beta Skills');
   });
+
+  
 });

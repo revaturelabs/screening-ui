@@ -135,7 +135,7 @@ export class SkillTypesComponent implements OnInit {
     getAssociated() { //When editing, get bucket(categories) that area associated with skillType(track)
         this.unassociatedSkillTypeBuckets = [];
         // Make deep copy of allBuckets into unassociatedSkillTypeBuckets
-        for (let i = 0; i < this.allBuckets.length; i++) { 
+        for (let i = 0; i < this.allBuckets.length; i++) {
             this.unassociatedSkillTypeBuckets.push(this.allBuckets[i]);
         }
 
@@ -143,7 +143,7 @@ export class SkillTypesComponent implements OnInit {
         for (let i = 0; i < this.allWeights.length; i++) {
             if (this.allWeights[i].skillType.skillTypeId === this.singleSkillType.skillTypeId) {
                 this.skillTypeWeights.push(this.allWeights[i]);
-               // this.singleSkillTypeBuckets.push(this.allWeights[i].bucket);
+                // this.singleSkillTypeBuckets.push(this.allWeights[i].bucket);
 
                 let index = this.unassociatedSkillTypeBuckets.findIndex(temp => temp.bucketId === this.allWeights[i].bucket.bucketId);
                 this.unassociatedSkillTypeBuckets.splice(index, 1);
@@ -194,7 +194,6 @@ export class SkillTypesComponent implements OnInit {
                 weightValue: 0,
                 weightId: 0
             };
-            console.log(relationship);
             this.skillTypeBucketService.newSkillTypeForBucket(relationship).subscribe(results => {
                 this.getAllWeights();
             });
@@ -246,7 +245,6 @@ export class SkillTypesComponent implements OnInit {
         } else if (weight.weightValue < 0) {
             let index = this.skillTypeWeights.findIndex(temp => temp.weightId === weight.weightId);
             this.skillTypeWeights[index].weightValue = 0;
-
         }
     }
 
@@ -271,14 +269,31 @@ export class SkillTypesComponent implements OnInit {
             const bucketsId = [];
             for (const weight of this.skillTypeWeights) {
                 bucketsId.push(weight.bucket.bucketId);
-                this.skillTypeBucketService.updateWeight(weight).subscribe(results => { });
+                this.updateWeight(weight);
             }
             this.skillTypeService.updateSkillTypeBuckets(this.skillType, bucketsId).subscribe(results => {
                 this.grabAllSkillTypes();
+                this.getAllWeights();
             });
             this.savedSuccessfully();
+
         } else {
             this.error = true;
+        }
+    }
+
+    /**
+     * Finds correct weightId from all Weights. Updates weight using weight param.
+     * @param weight: weight object to update
+     */
+    updateWeight(weight: Weight) {
+        for (let i = 0; i < this.allWeights.length; i++) {
+            if (this.allWeights[i].skillType.skillTypeId === weight.skillType.skillTypeId) {
+                if (this.allWeights[i].bucket.bucketId === weight.bucket.bucketId) {
+                    this.allWeights[i].weightValue = weight.weightValue;
+                    this.skillTypeBucketService.updateWeight(this.allWeights[i]).subscribe(results => { });
+                }
+            }
         }
     }
 
@@ -293,6 +308,24 @@ export class SkillTypesComponent implements OnInit {
             this.grabAllSkillTypes();
         });
         this.savedSuccessfully();
+    }
+
+    /**
+     * Delete weights associated with skillType. Delete skillType
+     * @param skillType: skillType to be deleted
+     */
+    deleteSkillType(skillType: SkillType) {
+        console.log("delete")
+        //Delete weights associated with skillType
+        for (let i = 0; i < this.allWeights.length; i++) {
+            if (this.allWeights[i].skillType.skillTypeId === skillType.skillTypeId) {
+                this.skillTypeBucketService.deleteWeight(this.allWeights[i].weightId).subscribe(results => { });
+            }
+        }
+        this.skillTypeService.deleteSkillTypeById(skillType.skillTypeId).subscribe(results => {
+            this.grabAllSkillTypes();
+        });
+        this.getAllWeights();
     }
 
     /**
@@ -363,6 +396,7 @@ export class SkillTypesComponent implements OnInit {
         this.skillTypeBucketService.getAllWeights().subscribe(results => {
             this.allWeights = results;
         });
+
     }
     ngOnInit() {
         this.grabAllSkillTypes();

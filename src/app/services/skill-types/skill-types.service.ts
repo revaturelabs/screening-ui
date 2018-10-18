@@ -62,4 +62,7 @@ export class SkillTypesService {
     getBucketsBySkillType(skillTypeId: number) {
         return this.http.get<Bucket[]>(this.urlService.skillTypes.getBucketBySkillType(skillTypeId));
     }
+    deleteSkillTypeById(skillTypeId: number){
+        return this.http.delete<any>(`${this.urlService.skillTypes.delete(skillTypeId)}`);
+    }
 }

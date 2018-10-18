@@ -44,6 +44,14 @@ h6 {
   color: #F26925;
 }
 
+#traIcon {
+  color: red;
+}
+
+#traIcon:hover {
+  color:black;
+}
+
 #penIcon:hover{
   color:black;
 }

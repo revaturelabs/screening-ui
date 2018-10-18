@@ -108,11 +108,4 @@ describe('QuestionsTableComponent', () => {
     expect(component.submitAllowed()).toBeFalsy();
   });
 
-  // it('should set comment', () => {
-  //   const mine = new QuestionsTableComponent(null, null, null, null, null,
-  //     new ScreeningService(new HttpClient({} as HttpHandler), null), null, null);
-  //   mine.generalComment = 'hi';
-  //   expect(mine.saveFeedback()).toBeTruthy();
-  // });
-
 });
