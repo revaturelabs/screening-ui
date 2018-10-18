@@ -143,15 +143,14 @@ export class QuestionComponent implements OnInit {
       this.question.sampleAnswer5 = this.sampleAnswers[4];
 
       if (this.question.questionId) {
-        this.questionService.updateQuestion(this.question).subscribe();
+        this.questionService.updateQuestion(this.question).subscribe(() => this.updateQuestions());
         this.updatedSuccessfully();
       } else {
         this.question.isActive = true;
         this.question.bucket = this.currentBucket;
-        this.questionService.createNewQuestion(this.question).subscribe();
+        this.questionService.createNewQuestion(this.question).subscribe(() => this.updateQuestions());
         this.savedSuccessfully();
       }
-      this.updateQuestions();
       this.setQuestionNull();
       this.sampleAnswers = [];
     } else {
