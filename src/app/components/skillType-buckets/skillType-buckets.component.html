@@ -6,13 +6,13 @@
       <h6 class="card-header">All Categories</h6>
 
       <div class="card-body" id="allSkillTypesDiv">
-      <!--  <div class="form-group row">
+       <div class="form-group row">
           <div class="col-sm-12">
-            <!--A search bar to help sift through the unadded tags for when the amount of tags is increased
+            <!-- A search bar to help sift through the unadded tags for when the amount of tags is increased -->
             <input type="text" name="bucket" [(ngModel)]="filter.bucketCategory" placeholder="Search Categories" min="0"
               max="100" class="form-control">
           </div>
-        </div> -->
+        </div>
 
         <!-- List of all buckets -->
         <div class="list-group">
@@ -33,7 +33,7 @@
                 </label>
               </i>
             </div>
-            <i id="penIcon" class="fas fa-pencil pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
+            <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
               ngbTooltip="edit">
             </i>
 

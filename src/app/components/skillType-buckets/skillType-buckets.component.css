@@ -38,7 +38,8 @@ h6 {
 
 #penIcon {
 	color: #F26925;
-	margin-right: 10px;
+  margin-right: 10px;
+  float:right;
 }
 
 a {

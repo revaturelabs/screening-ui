@@ -98,7 +98,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     TrainerPipePipe,
   ],
   entryComponents: [
-    AnswerComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
