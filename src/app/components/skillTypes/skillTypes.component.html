@@ -12,11 +12,16 @@
                         <i id="xIcon">
                             <label class="switch">
                                 <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)">
-                                <span class="slider round" placement="top" ngbTooltip="Active"></span>
+                                <span class="slider round" placement="top" ngbTooltip="active"></span>
                             </label>
                         </i>
+                        <span>&nbsp;</span>
                         <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editSkillType(skillType); open(content)"
                             placement="top" ngbTooltip="edit">
+                        </i>
+                        <span>&nbsp;&nbsp;</span>
+                        <i id="traIcon" class="fas fa-trash-alt pull-right" (click)="deleteSkillType(skillType)" 
+                            placement="top" ngbTooltip="delete">
                         </i>
                     </a>
                 </div>

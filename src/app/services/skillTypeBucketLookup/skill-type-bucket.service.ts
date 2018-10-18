@@ -70,8 +70,7 @@ export class SkillTypeBucketService {
   }
 
   updateWeight(weight: Weight){
-    return this.httpClient.put(`${this.urlService.weights.updateWeight()}`, { weightId: weight.weightId,
-        weightValue: weight.weightValue, skillType: weight.skillType, bucket: weight.bucket}, httpOptions);
+    return this.httpClient.put(`${this.urlService.weights.updateWeight()}`, weight, httpOptions);
   }
 
 /*
