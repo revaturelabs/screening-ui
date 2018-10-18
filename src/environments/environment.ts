@@ -16,7 +16,7 @@
  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
  */
 
-  const adminContext = 'http://10.252.2.248:9001';
+  const adminContext = 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8181';
   const screeningContext = 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8183';
 
 const bam = '';
@@ -28,7 +28,7 @@ export const environment = {
   /** Assets endpoints for like pictures  */
   assets: 'http://52.87.205.55:8086/angular/assets/',
 
-  adminContext: 'http://10.252.2.248:9001',
+  adminContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8181',
   screeningContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8183',
   bam: bam,
   url: 'http://54.166.255.85:8085',
