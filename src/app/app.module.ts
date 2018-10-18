@@ -98,11 +98,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     TrainerPipePipe,
   ],
   entryComponents: [
-<<<<<<< HEAD
     AnswerComponent
-=======
-    AnswerComponent,
->>>>>>> origin/1808-editSkillType
   ],
   imports: [
     BrowserModule,
