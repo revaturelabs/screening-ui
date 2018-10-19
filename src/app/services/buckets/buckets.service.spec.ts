@@ -1,6 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 import { BucketsService } from "./buckets.service";
 import { UrlService } from "../urls/url.service";
+<<<<<<< HEAD
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Bucket } from "src/app/entities/Bucket";
 
@@ -13,11 +14,23 @@ describe('BucketsService', () => {
     TestBed.configureTestingModule({ 
       imports: [
         HttpClientTestingModule,
+=======
+import { HttpClientModule } from "@angular/common/http";
+
+describe('BucketsService', () => {
+  let service: BucketsService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({ 
+      imports: [
+        HttpClientModule,
+>>>>>>> 31172cc85e796679c0c2a66ef32ae85ba4bf6bee
       ],
       providers: [
         BucketsService,
         UrlService,
       ]});
+<<<<<<< HEAD
 
     service = TestBed.get(BucketsService);
     bucket = { 
@@ -76,15 +89,38 @@ describe('BucketsService', () => {
     const req = httpTestingController.expectOne('http://ec2-54-210-14-237.compute-1.amazonaws.com:8181/bucket');
     expect(req.request.method).toEqual('POST');
     req.flush(bucket);
+=======
+>>>>>>> 31172cc85e796679c0c2a66ef32ae85ba4bf6bee
   });
 
   it('should set a bucket', () => {
     let service = TestBed.get(BucketsService);
+<<<<<<< HEAD
+=======
+
+    let bucket = {
+      bucketId: 0,
+      bucketDescription: 'description',
+      isActive: true
+    };
+
+>>>>>>> 31172cc85e796679c0c2a66ef32ae85ba4bf6bee
     service.setBucket(bucket);
     expect(service.currentBucket).toEqual(bucket);
   });
 
   it('should get the current bucket', () => {
+<<<<<<< HEAD
+=======
+    let service = TestBed.get(BucketsService);
+    
+    let bucket = {
+      bucketId: 0,
+      bucketDescription: 'description',
+      isActive: true
+    };
+    
+>>>>>>> 31172cc85e796679c0c2a66ef32ae85ba4bf6bee
     service.setBucket(bucket);
     let currentBucket = service.getCurrentBucket();
     expect(currentBucket).toEqual(bucket);
@@ -92,6 +128,16 @@ describe('BucketsService', () => {
 
   it('should set the current bucket\'s description', () => {
     let service = TestBed.get(BucketsService);
+<<<<<<< HEAD
+=======
+
+    let bucket = {
+      bucketId: 0,
+      bucketDescription: 'description',
+      isActive: true
+    };
+
+>>>>>>> 31172cc85e796679c0c2a66ef32ae85ba4bf6bee
     service.setBucket(bucket);
     let description = 'new description';
     service.setDescription(description);
@@ -99,6 +145,17 @@ describe('BucketsService', () => {
   });
 
   it('should get the current bucket\'s description', () => {
+<<<<<<< HEAD
+=======
+    let service = TestBed.get(BucketsService);
+
+    let bucket = {
+      bucketId: 0,
+      bucketDescription: 'description',
+      isActive: true
+    };
+
+>>>>>>> 31172cc85e796679c0c2a66ef32ae85ba4bf6bee
     service.setBucket(bucket);
     let description = service.getDescription();
     expect(description).toEqual(bucket.bucketDescription);
