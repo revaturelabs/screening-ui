@@ -45,7 +45,34 @@ describe('workspace-project App', () => {
     browser.get('http://localhost:4200/#/settings/main');
     element(by.id('tab-2')).click();
     //element.all(by.css('.list-group-item')).get(0).element(by.tagName('a')).getText().toEqual('Beta Skills');
-    expect(element.all(by.css('.list-group-item')).get(0).getText()).toEqual('Beta Skills');
+    expect(element.all(by.css('.list-group-item')).get(0).getText()).toContain('Beta Skills');
+  });
+
+  //need to make a for loop to check all buttons for name
+
+  // it('click penIcon and check Java Applied button', function() {
+  //   browser.get('http://localhost:4200/#/settings/main');
+  //   element(by.id('tab-2')).click();
+  //   element(by.id('penIcon')).click();
+  //   //element.all(by.css('.list-group-item')).get(0).element(by.tagName('a')).getText().toEqual('Beta Skills');
+  //   expect(element.all(by.css('.pillButtons')).get(0).getText()).toContain('Java Applied');
+  // });
+
+  // it('click on penIcon and check Hibernate button', function() {
+  //   browser.get('http://localhost:4200/#/settings/main');
+  //   element(by.id('tab-2')).click();
+  //   element(by.id('penIcon')).click();
+  //   //element.all(by.css('.list-group-item')).get(0).element(by.tagName('a')).getText().toEqual('Beta Skills');
+  //   expect(element.all(by.css('.pillButtons')).get(1).getText()).toContain('Hibernate');
+  // });
+
+  it('click on different penIcon and check another button', function() {
+    browser.get('http://localhost:4200/#/settings/main');
+    element(by.id('tab-2')).click();
+    //element(by.id('penIcon')).click();
+    element.all(by.id('penIcon')).click();
+    //element.all(by.css('.list-group-item')).get(0).element(by.tagName('a')).getText().toEqual('Beta Skills');
+    expect(element.all(by.css('.list-group-item')).get(0).getText()).toContain('Beta Skills');
   });
 
   
