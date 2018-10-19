@@ -9,6 +9,7 @@ import { ViolationTypeService } from '../../services/violationType/violationType
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
 import { UrlService } from '../../services/urls/url.service';
+import { ScreeningService } from 'src/app/services/screening/screening.service';
 
 // Author: David Gustafson
 
@@ -22,7 +23,7 @@ describe('ViolationFlagComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ViolationFlagComponent ],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
-      SkillTypesService, ViolationTypeService, AlertsService, UrlService ]
+      SkillTypesService, ViolationTypeService, AlertsService, UrlService, ScreeningService ]
     })
     .compileComponents();
   }));
