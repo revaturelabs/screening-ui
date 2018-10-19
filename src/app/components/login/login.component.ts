@@ -10,9 +10,9 @@ import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cogn
 
 export class LoginComponent implements OnInit{
     @Input()
-    username:string;
+    username: string;
     @Input()
-    password:string;
+    password: string;
 
     constructor(
         private cookies: CookieService
@@ -21,8 +21,10 @@ export class LoginComponent implements OnInit{
     ngOnInit() {}
 
     login() {
-        //var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-
+       // var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+        console.log("login button clicked");
+        console.log(this.username);
+        console.log(this.password);
         // Credentials of our userpool
         var poolData = {
             UserPoolId : 'us-east-2_9g9079yQ6', // Screenforce's user pool id
@@ -50,8 +52,8 @@ export class LoginComponent implements OnInit{
             console.log(authenticationDetails);
         // Create a user instance for cognito
         var cognitoUser = new CognitoUser(userData);
-        //var cognitoUser = new AmazonCognitoIdentity.cognitoUser(userData);
-            console.log(cognitoUser);
+       // var cogUser = new AmazonCognitoIdentity.cognitoUser(userData);
+        console.log(cognitoUser);
         // Method that calls Cognito
         cognitoUser.authenticateUser(authenticationDetails, {
           newPasswordRequired: function(userAttributes, requiredAttributes) {
@@ -67,8 +69,8 @@ export class LoginComponent implements OnInit{
                 var refreshToken = result.getRefreshToken().getToken();
                 // Logs for testing purposes only
                 console.log(accessToken);
-                console.log(idToken);
-                console.log(refreshToken);
+                //console.log(idToken);
+               // console.log(refreshToken);
             },
             onFailure: function(err) {
                 alert(err.message || JSON.stringify(err));
