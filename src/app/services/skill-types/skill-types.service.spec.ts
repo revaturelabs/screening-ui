@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { SkillTypesService } from './skill-types.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { UrlService } from '../urls/url.service';
 
 describe('SkillTypesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SkillTypesService]
+      providers: [SkillTypesService, HttpClient, HttpHandler, UrlService]
     });
   });
 

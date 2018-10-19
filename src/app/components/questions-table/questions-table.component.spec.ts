@@ -21,6 +21,7 @@ import { ViolationFlagComponent } from '../violation-flag/violation-flag.compone
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { UrlService } from '../../services/urls/url.service';
 
 // Author: David Gustafson
 
@@ -61,7 +62,7 @@ describe('QuestionsTableComponent', () => {
       imports: [FormsModule],
       providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
         SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
-        SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService]
+        SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {

@@ -9,6 +9,7 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { UrlService } from '../../services/urls/url.service';
 
 // Author: David Gustafson
 
@@ -22,7 +23,7 @@ describe('PassFailComponent', () => {
     TestBed.configureTestingModule({
       declarations: [PassFailComponent, ViolationFlagComponent],
       providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, SimpleTraineeService,
-        ViolationTypeService, AlertsService]
+        ViolationTypeService, AlertsService, UrlService, SkillTypesService]
     })
       .compileComponents();
   }));

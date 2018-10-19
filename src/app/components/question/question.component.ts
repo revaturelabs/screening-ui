@@ -11,7 +11,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 
 @Component({
   selector: 'app-question',
-  templateUrl: './question.component.html',
+  template: './question.component.html',
   styleUrls: ['./question.component.css'],
   animations: [
     trigger('move', [
@@ -99,12 +99,12 @@ export class QuestionComponent implements OnInit {
    * or from deactive to active based on its current status
    **/
   changeQuestionStatus(question) {
+    question.isActive = !question.isActive;
+    
     if (question.isActive) {
-      question.isActive = false;
-      this.questionService.deactivateQuestion(question.questionId).subscribe();
-   } else {
-      question.isActive = true;
       this.questionService.activateQuestion(question.questionId).subscribe();
+   } else {
+      this.questionService.deactivateQuestion(question.questionId).subscribe();
    }
   }
 
@@ -136,30 +136,21 @@ export class QuestionComponent implements OnInit {
    **/
   addNewQuestion() {
     if (this.sampleAnswers.length === 5 && this.question.questionText) {
+      this.question.sampleAnswer1 = this.sampleAnswers[0];
+      this.question.sampleAnswer2 = this.sampleAnswers[1];
+      this.question.sampleAnswer3 = this.sampleAnswers[2];
+      this.question.sampleAnswer4 = this.sampleAnswers[3];
+      this.question.sampleAnswer5 = this.sampleAnswers[4];
+
       if (this.question.questionId) {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.updateQuestion(this.question).subscribe();
+        this.questionService.updateQuestion(this.question).subscribe(() => this.updateQuestions());
         this.updatedSuccessfully();
       } else {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
-        
-        // The bucket and isActive fields are null and undefined, respectively,
-        // which prevents new questions from being added to a bucket.
+        this.question.isActive = true;
         this.question.bucket = this.currentBucket;
-        this.question.isActive = false;
-
-        this.questionService.createNewQuestion(this.question).subscribe();
+        this.questionService.createNewQuestion(this.question).subscribe(() => this.updateQuestions());
         this.savedSuccessfully();
       }
-      this.updateQuestions();
       this.setQuestionNull();
       this.sampleAnswers = [];
     } else {

@@ -75,5 +75,20 @@ describe('workspace-project App', () => {
     expect(element.all(by.css('.list-group-item')).get(0).getText()).toContain('Beta Skills');
   });
 
-  
+  it('click on tab2, click on pen icon, get first pill button', function() {
+    browser.get('http://localhost:4200/#/settings/main');
+    element(by.id('tab-2')).click();
+    element(by.id('penIcon')).click();
+    //expect(element.all(by.css('.list-group-item')).get(0).getText()).toEqual('Beta Skills');
+    expect(element.all(by.css('.pillButtons')).get(0).getText()).toContain('Java Applied');
+  });
+
+   it('click on tab2 and populate list group item', function() {
+     browser.get('http://localhost:4200/#/settings/main');
+     element(by.id('tab-2')).click();
+     element(by.id('penIcon')).click();
+     element.all(by.css('.pillButtons')).click();
+     //expect(element.all(by.css('.list-group-item')).get(0).getText()).toEqual('Beta Skills');
+     expect(element(by.id('font-fix')).getText()).toContain('Java Applied');
+   }); 
 });

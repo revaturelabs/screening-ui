@@ -10,6 +10,14 @@ import { QuestionComponent } from './question.component';
 // Mock Data
 import { QUESTIONS } from '../../mock-data/mock-questions';
 import { Question } from '../../entities/Question';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, FormBuilder } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AlertsService } from 'src/app/services/alert-service/alerts.service';
+import { BucketsService } from 'src/app/services/buckets/buckets.service';
+import { QuestionsService } from 'src/app/services/questions/questions.service';
+import { UrlService } from 'src/app/services/urls/url.service';
+import { NgbModal, ModalDismissReasons, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * Test for methods on the question component.
@@ -25,20 +33,26 @@ import { Question } from '../../entities/Question';
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
   let fixture: ComponentFixture<QuestionComponent>;
-  // const t0: Tag = new Tag();
-  // t0.tagId = 1;
-  // t0.tagName = 'Java';
-  // const t1: Tag = new Tag();
-  // t1.tagId = 2;
-  // t1.tagName = 'HTML';
 
   /**
    * Import dependencies and set the TestBed to configure the testing module.
    **/
   beforeEach(async(() => {
-    TestBed.configureTestingModule(Dependencies)
+    TestBed.configureTestingModule({
+    declarations: [
+      QuestionComponent
+    ],
+    imports: [FormsModule, HttpClientModule, NgbModalModule],
+    providers: [
+      AlertsService,
+      BucketsService,
+      FormBuilder,
+      QuestionsService,
+      UrlService,
+      NgbModal
+    ]})
     .compileComponents();
-  }), 1440000);
+  }));
 
   /**
    * Set up a fixture to use instead of using testbed. This allows us to use
@@ -69,6 +83,7 @@ describe('QuestionComponent', () => {
     component.open(content);
     document.querySelector('.modal-content');
     expect(content).toBeDefined('defined');
+    // spyOn(component, this.open());
   });
 
   /**

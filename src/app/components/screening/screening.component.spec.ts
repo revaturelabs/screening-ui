@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScreeningComponent } from './screening.component';
 import { RouterOutlet, ChildrenOutletContexts } from '@angular/router';
+import { SkillTypeBucketsComponent } from '../skillType-buckets/skillType-buckets.component';
+import { FormsModule } from '@angular/forms';
 
 // Author: David Gustafson
 
@@ -11,7 +13,8 @@ describe('ScreeningComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScreeningComponent, RouterOutlet ],
+      declarations: [ ScreeningComponent, RouterOutlet, SkillTypeBucketsComponent ],
+      imports: [FormsModule],
       providers: [ ChildrenOutletContexts ]
     })
     .compileComponents();
