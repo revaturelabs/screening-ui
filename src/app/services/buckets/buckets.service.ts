@@ -21,6 +21,7 @@ import { UrlService } from '../urls/url.service';
 const httpOptions = {
     headers: new HttpHeaders({
             'Content-Type':  'application/json',
+            'Access-Control-Allow-Origin': '*'
         })
     };
 
@@ -38,14 +39,17 @@ export class BucketsService {
     ) {}
 
   getAllBuckets(): Observable<Bucket[]> {
+      console.log(this.urlService.bucket.getAllBuckets());
       return this.http.get<Bucket[]>(this.urlService.bucket.getAllBuckets());
   }
 
   getBucketById(bucketId: number) {
+      console.log(this.urlService.bucket.getBucketById(bucketId));
       return this.http.get<Bucket>(this.urlService.bucket.getBucketById(bucketId));
   }
 
   updateBucket (bucket: Bucket) {
+    console.log(this.urlService.bucket.updateBucket());
     return this.http.put<Bucket>(this.urlService.bucket.updateBucket(), bucket, httpOptions);
   }
 
@@ -61,14 +65,6 @@ export class BucketsService {
      if (this.currentBucket != null) {
          return this.currentBucket;
      }
-  }
-
-  setName(name: string) {
-      this.currentBucket.bucketDescription = name;
-  }
-
-  getName(id: number) {
-      return this.currentBucket.bucketDescription;
   }
 
   setDescription(desc: string) {
