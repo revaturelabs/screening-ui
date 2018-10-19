@@ -34,7 +34,7 @@ export class ScreeningService {
   });
 
   public introComment:string;
-  
+  public curScreening:Screening;
   public softSkillsResult: string;
   public generalComments: string;
   public screeningID$: Observable<Screening>;
@@ -106,22 +106,32 @@ export class ScreeningService {
       return undefined;
     }
   }
-  createScreening() {
+  createScreening(scheduledScreening: ScheduledScreening,trainerId:number,skillTypeId:number) {
     this.httpClient.post(this.urlService.screening.startScreening(),
       {
         'status': 'In Progress',
-        'softSkillVerdict': 0,
-        'screenerId': 0,
-        'aboutComments': '',
-        'generalComments': '',
+        'softSkillsVerdict': 0,
+        'screenerId': trainerId,
+        'aboutMeCommentary': '',
+        'generalCommentary': '',
         'softSkillCommentary': '',
-        'startDate': new Date(),
+        'startDateTime': new Date(),
         'endDateTime': '',
-        'screeningId': localStorage.getItem('screeningID'),
-        'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+        'screeningId': 0,
+        'skillType': skillTypeId,
+        'scheduledScreening':scheduledScreening,
         'compositeScore': 0
       }
-    );
+    ).subscribe(data=>{console.log(data);
+      console.log(scheduledScreening);
+      console.log((data as Screening));
+      this.curScreening=(data as Screening);
+      console.log(this.curScreening.screeningId);
+      localStorage.setItem('screeningID', ''+this.curScreening.screeningId);
+      console.log(localStorage.getItem('screeningID'));
+    
+    });
+    
   }
   updateScreening(id: number) {
     this.getScreeningById(id).subscribe(

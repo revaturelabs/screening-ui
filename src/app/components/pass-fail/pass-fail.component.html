@@ -18,10 +18,10 @@
             <td colspan="4">No Violations Found</td>
           </tr>
           <tr class="violation" *ngFor="let violation of softSkillViolationService.softSkillViolations; let i = index">
-            <td>{{violation.violationType.violationType}}</td>
-            <td>{{violation.Time | date:'shortTime'}}</td>
-            <td>{{violation.Comment}}</td>
-            <td><button class="btn" (click)="deleteViolation(violation.violationID, i)">Remove</button></td>
+            <td>{{violation.violationType.violationTypeText}}</td>
+            <td>{{violation.time | date:'shortTime'}}</td>
+            <td>{{violation.comment}}</td>
+            <td><button class="btn" (click)="deleteViolation(violation.softViolationId, i)">Remove</button></td>
           </tr>
         </tbody>
       </table>

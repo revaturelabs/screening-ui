@@ -83,7 +83,8 @@ export class ViolationFlagComponent implements OnInit {
       Time: new Date(),
       Comment: comment
     });
-    this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
+    this.violationService.submitViolation(violationType, comment, screeningID).subscribe(data => {
+      console.log(data);
     });
     
   }

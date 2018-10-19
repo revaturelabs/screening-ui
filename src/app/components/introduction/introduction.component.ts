@@ -49,7 +49,7 @@ export class IntroductionComponent implements OnInit {
   onSubmit() {
     // Send the comments to the appropriate service method saves them to the DB
     this.screeningService.introComment= this.comment;
-    this.screeningService.createScreening();
+    //this.screeningService.createScreening();
   }
 
 }
