@@ -36,6 +36,7 @@ export class ScheduleScreeningService {
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
           console.log(e);
+          console.log(e.scheduledStatus);
           const nameArray = e.candidate.name.split(' ');
           let thisLastName = '';
           let thisFirstName = '';

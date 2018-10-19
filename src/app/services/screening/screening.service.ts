@@ -126,7 +126,7 @@ export class ScreeningService {
       console.log(scheduledScreening);
       console.log((data as Screening));
       this.curScreening=(data as Screening);
-      console.log(this.curScreening.screeningId);
+      console.log(this.curScreening);
       localStorage.setItem('screeningID', ''+this.curScreening.screeningId);
       console.log(localStorage.getItem('screeningID'));
     
