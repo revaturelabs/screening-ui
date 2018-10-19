@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { CognitoUserPool, CognitoUserAttribute, CognitoUser } from 'amazon-cognito-identity-js';
+import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 
 @Component({
 	selector: 'app-login',
@@ -14,69 +14,92 @@ export class LoginComponent implements OnInit{
     @Input()
     password:string;
 
-    constructor( 
-        private cookies: CookieService, 
-        // private cognitoUserPool: CognitoUserPool, 
-        // private cognitoUserAttribute: CognitoUserAttribute,
-        // private cognitoUser: CognitoUser
+    constructor(
+        private cookies: CookieService
          ) {}
 
     ngOnInit() {}
 
     login() {
-        var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-    
-    // This is needed set up the Cognito user pool in JS
-    //setUserPool(){
+        //var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
         // Credentials of our userpool
-        var poolData = { 
+        var poolData = {
             UserPoolId : 'us-east-2_9g9079yQ6', // Screenforce's user pool id
-            ClientId : '7r1d35gav9lo9dm4dfjbgkmlks' // Screenforce's app client id
+            ClientId : '5uif01evi71ca2dcsqecdsqj9q' // Screenforce's app client id
          };
 
         // Create a pool object with the pool data
-        var userPool = new AmazonCognitoIdentity.cognitoUserPool(poolData);
-        
+        var userPool = new CognitoUserPool(poolData);
+        //var userPool = new AmazonCognitoIdentity.cognitoUserPool(poolData);
+
         // Set up the user data with the Pool object and our username
         var userData = {
-           Username : 'username',
+           Username : this.username, // Username of the person signing in
            Pool : userPool
         };
-    //}
 
         // Username/password of the user we are logging in
-        var authenticationData = { 
-            Username : 'username', 
-            Password : 'password',
+        var authenticationData = {
+            Username : this.username, // Username of the person signing in
+            Password : this.password,
             };
-        
         // Create an authDetail object based on our credentials
-        var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
-
+        var authenticationDetails = new AuthenticationDetails(authenticationData);
+        //var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+            console.log(authenticationDetails);
         // Create a user instance for cognito
-        var cogUser = new AmazonCognitoIdentity.cognitoUser(userData);
-        
-        // Method that calls 
-        cogUser.authenticateUser(authenticationDetails, {
+        var cognitoUser = new CognitoUser(userData);
+        //var cognitoUser = new AmazonCognitoIdentity.cognitoUser(userData);
+            console.log(cognitoUser);
+        // Method that calls Cognito
+        cognitoUser.authenticateUser(authenticationDetails, {
+          newPasswordRequired: function(userAttributes, requiredAttributes) {
+            console.log('password required');
+            delete userAttributes.email_verified;
+            cognitoUser.completeNewPasswordChallenge('password', userAttributes, this);
+          },
             onSuccess: function (result) {
+                // We should only need the access token for creating our cookies
                 var accessToken = result.getAccessToken().getJwtToken();
-                var idToken = result.idToken.jwtToken;
-                var refreshToken = result.refreshToken.jwtToken;
+                var idToken = result.getIdToken().getJwtToken();
+                // Refresh token is used for restoring the other token(s) once they have ran out
+                var refreshToken = result.getRefreshToken().getToken();
                 // Logs for testing purposes only
                 console.log(accessToken);
                 console.log(idToken);
                 console.log(refreshToken);
             },
             onFailure: function(err) {
-                alert(err);
+                alert(err.message || JSON.stringify(err));
+                console.log(err);
             },
         });
-   
+        // Add local storage check for token validation here
+        if (cognitoUser != null) {
+          cognitoUser.getSession(function(err, session) {
+              if (err) {
+                  alert(err);
+                  return;
+              }
+              console.log('session validity: ' + session.isValid());
+          });
+      }
+        cognitoUser.getUserAttributes(function(err, result) {
+          if (err) {
+            alert(err.message || JSON.stringify(err));
+            console.log('getUserAttributes');
+            return;
+          }
+          for (let i = 0; i < result.length; i++) {
+            console.log('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
+          }
+        });
     }
 
     // This method will set the cookie we will use to authenticate in the rest of the applicaiton
     setCookie(role:string){
-        // This cookie, Role, is what will be called throught the application
+        // This cookie, role, is what will be called throught the application
         this.cookies.set( 'role', role);
     }
 
