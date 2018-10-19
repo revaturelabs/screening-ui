@@ -17,6 +17,7 @@ import { AlertsService } from 'src/app/services/alert-service/alerts.service';
 import { BucketsService } from 'src/app/services/buckets/buckets.service';
 import { QuestionsService } from 'src/app/services/questions/questions.service';
 import { UrlService } from 'src/app/services/urls/url.service';
+import { NgbModal, ModalDismissReasons, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * Test for methods on the question component.
@@ -38,20 +39,17 @@ describe('QuestionComponent', () => {
    **/
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-    imports: [
-      BrowserAnimationsModule,
-      FormsModule,
-      HttpClientModule,
-    ],
     declarations: [
-      QuestionComponent,
+      QuestionComponent
     ],
+    imports: [FormsModule, HttpClientModule, NgbModalModule],
     providers: [
       AlertsService,
       BucketsService,
       FormBuilder,
       QuestionsService,
       UrlService,
+      NgbModal
     ]})
     .compileComponents();
   }));

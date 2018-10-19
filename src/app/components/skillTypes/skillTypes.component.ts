@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder } from '@angular/forms';
 import { SkillType } from '../../entities/SkillType';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { Bucket } from '../../entities/Bucket';
@@ -42,7 +41,6 @@ export class SkillTypesComponent implements OnInit {
 
     constructor(
         private modalService: NgbModal,
-        private fb: FormBuilder,
         private skillTypeService: SkillTypesService,
         private skillTypeBucketService: SkillTypeBucketService,
         private bucketsService: BucketsService,

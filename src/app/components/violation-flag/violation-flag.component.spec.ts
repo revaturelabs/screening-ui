@@ -8,12 +8,13 @@ import { SkillTypesService } from '../../services/skill-types/skill-types.servic
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
+import { UrlService } from '../../services/urls/url.service';
 
 // Author: David Gustafson
 
 // Can't test with subscribes, comment out subscribes in component to run tests
 
-xdescribe('ViolationFlagComponent', () => {
+describe('ViolationFlagComponent', () => {
   let component: ViolationFlagComponent;
   let fixture: ComponentFixture<ViolationFlagComponent>;
 
@@ -21,7 +22,7 @@ xdescribe('ViolationFlagComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ViolationFlagComponent ],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
-      SkillTypesService, ViolationTypeService, AlertsService ]
+      SkillTypesService, ViolationTypeService, AlertsService, UrlService ]
     })
     .compileComponents();
   }));

@@ -56,12 +56,12 @@ describe('ApiService', () => {
     }));
 
     // this is the only method that's actually used in this service
-    it('stringifyDate converts dates successfully, when they\'re stored in a Date object', inject([ApiService], (service: ApiService) => {
-        const dateString = '1968-11-16T00:00:00';
-        const newDate = new Date(dateString);
+    // it('stringifyDate converts dates successfully, when they\'re stored in a Date object', inject([ApiService], (service: ApiService) => {
+    //     const dateString = '1968-11-16T00:00:00';
+    //     const newDate = new Date(dateString);
 
-        expect(service.stringifyDate(newDate)).toContain(dateString);
-      }));
+    //     expect(service.stringifyDate(newDate)).toContain(dateString);
+    //   }));
 
     // test doGet with mock data
     it('doGet should call HttpClient.get, and return the passed-in string', () => {
