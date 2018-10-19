@@ -35,7 +35,8 @@ export class ScheduleScreeningService {
         for (const e of allScheduledScreenings) {
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
-          const nameArray = e.trainee.name.split(' ');
+          console.log(allSkillTypes);
+          const nameArray = e.candidate.name.split(' ');
           let thisLastName = '';
           let thisFirstName = '';
           let i = 0;
@@ -85,21 +86,18 @@ export class ScheduleScreeningService {
           }
           scheduledScreenings.push({
             scheduledScreeningId: e.scheduledScreeningId,
-            trainee: {
-              traineeID: e.trainee.traineeId,
-              firstname: thisFirstName,
-              lastname: thisLastName,
+            candidate: {
+             
+              traineeID:0,
+              firstname: e.candidate.name,
+              lastname: e.candidate.name,
               skillTypeID: e.skillTypeId,
               skillTypeName: skillType.title,
               schedule: e.scheduledDate,
             },
-            track: {
-              skillTypeId: e.skillTypeId,
-              title: skillType.title,
-              isActive: true,
-            },
-            status: e.status,
-            trainer: e.trainer,
+            
+            skillTypeId: e.skillTypeId,
+            scheduledStatus: e.scheduledStatus,
             scheduledDate: e.scheduledDate,
           });
         }

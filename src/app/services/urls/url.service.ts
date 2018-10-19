@@ -67,13 +67,13 @@ export class UrlService {
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = 'screening';
+  screeningEndpoint = this.screeningContext + '/screening';
   screening = {
-    scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${this.screeningContext + this.screening}/new`,
-    endScreening: () => `${this.screeningContext + this.screening}/update`,
-    updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening}/`
+    scheduleScreening: () => `${ this.screeningEndpoint}/scheduled`,
+    startScreening: () => `${ this.screeningEndpoint}/new`,
+    endScreening: () => `${ this.screeningEndpoint}/update`,
+    updateScreening: () => `${this.screeningEndpoint}/update`,
+    getScreening: id => `${this.screeningEndpoint}/`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
@@ -111,6 +111,6 @@ export class UrlService {
     getViolationTypeURL: () => `${this.screeningContext}/violation`,
     getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/${screeningID}/violations`,
     addViolationURL: () => `${this.screeningContext}/violation/new/`,
-    deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
+    deleteViolationURL: (violationID: number) => `${this.screeningContext}/violation/${violationID}`
     };
 }

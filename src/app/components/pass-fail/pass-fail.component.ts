@@ -54,10 +54,12 @@ export class PassFailComponent implements OnInit {
     const violationArray: any[] = [];
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
+      console.log(+localStorage.getItem('screeningID'));
     this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID')).subscribe(data => {
       this.previousViolations = data;
       this.softSkillViolationService.softSkillViolations = this.previousViolations;
     });
+    console.log(this.previousViolations);
     this.violationTypeService.getAllViolationTypes().subscribe(violationTypes => {
       this.getViolations().subscribe(data => {
         // e = our violations
@@ -136,12 +138,9 @@ export class PassFailComponent implements OnInit {
   // Method to delete a violation when clicking the "Remove" button
   deleteViolation(violationId: number, i: number) {
     this.violationService.deleteViolation(violationId).subscribe(
-      data => {
-        this.previousViolations = data;
-        this.softSkillViolationService.updateSoftSkillViolations(this.previousViolations);
-      }
+      
     );
-
+    this.softSkillViolationService.updateSoftSkillViolations(this.previousViolations);
     if (this.softSkillViolationService.softSkillViolations.length > 1) {
       this.softSkillViolationService.softSkillViolations.splice(i, 1);
     } else {

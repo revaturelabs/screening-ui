@@ -49,9 +49,10 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    
     this.checked = 'false';
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.simpleTraineeService.getSelectedCandidate().lastname;
     this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
     this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(
@@ -66,6 +67,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
         )
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
+        
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
         this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];
@@ -74,16 +76,25 @@ export class FinalReportComponent implements OnInit, OnDestroy {
         this.bucketStringArray.forEach(bucketString => {
           this.allTextString += bucketString + '\n';
         });
+        
         this.allTextString += this.overallScoreString + '\n';
       });
     // this.overallScoreString = "Overall: 71%";
-    this.generalNotesString = this.screeningService.generalComments;
+    if(this.screeningService.generalComments)
+     this.generalNotesString = "General Feedback: "+ this.screeningService.generalComments + "<br/>";
+    if(this.screeningService.introComment)
+     this.generalNotesString += "Intro Feedback: "+ this.screeningService.introComment + "<br/>";
+    if(this.screeningService.finalSoftSkillComment)
+     this.generalNotesString +="Final Soft Skill Assesment: "+ this.screeningService.finalSoftSkillComment + "<br/>";
+
     this.allTextString += '"' + this.generalNotesString + '"';
 
+    console.log(this.softSkillsViolationService.currentSoftSkillViolations);
     this.screeningService.endScreening(this.generalNotesString);
     this.subscriptions.push(this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
       softSkillViolations => (this.softSkillViolations = softSkillViolations)
     ));
+    console.log(this.softSkillViolations);
   }
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)
@@ -112,6 +123,8 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.softSkillsViolationService.updateSoftSkillViolations(this.softSkillViolations);
     localStorage.removeItem('screeningID');
     localStorage.removeItem('scheduledScreeningID');
-    this.subscriptions.forEach(s => s.unsubscribe);
+    console.log(this.subscriptions);
+    this.subscriptions.forEach(s => s.unsubscribe());
+    console.log(this.subscriptions);
   }
 }

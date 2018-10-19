@@ -1,7 +1,7 @@
 import { SoftSkillViolation } from '../entities/SoftSkillViolation';
 
 export const MOCK_VIOLATIONS: SoftSkillViolation[] = [
-  { violationID: 11,
+ /*  { violationID: 11,
     screeningID: 1,
     violationType: {
       violationTypeId: 1,
@@ -37,5 +37,5 @@ export const MOCK_VIOLATIONS: SoftSkillViolation[] = [
     },
     Time: new Date(),
     Comment: 'Children constantly interrupted the screening.'
-  }
+  } */
 ];

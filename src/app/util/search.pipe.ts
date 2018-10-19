@@ -22,8 +22,8 @@ export class SearchPipe implements PipeTransform {
     return items.filter(it => {
       // return only the screenings whose firstname includes the search text
       // or last name includes the search text.
-      return it.trainee.firstname.toLowerCase().includes(searchText) || it.trainee.lastname.toLowerCase().includes(searchText)
-      || (it.trainee.firstname.toLowerCase() + ' ' + it.trainee.lastname.toLowerCase()).includes(searchText);
+      return it.candidate.firstname.toLowerCase().includes(searchText) || it.candidate.lastname.toLowerCase().includes(searchText)
+      || (it.candidate.firstname.toLowerCase() + ' ' + it.candidate.lastname.toLowerCase()).includes(searchText);
     });
   }
 }

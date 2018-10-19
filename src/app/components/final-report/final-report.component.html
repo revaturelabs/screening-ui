@@ -9,9 +9,12 @@
 			<p id="softskills">{{softSkillString}}</p>			
 			<div>
 				<p *ngFor="let bucket of bucketStringArray">{{bucket}}</p>
-			</div>			
-			<p id="overallScoreString">{{overallScoreString}}</p>
-			<p id="generalNotesString">"{{generalNotesString}}"</p>
+			</div>
+			<p [innerHTML]="generalNotesString"></p>			
+		
+			<div>
+				<p *ngFor="let violation of softSkillViolations">{{violation.violationType.violationTypeText }}: {{violation.Comment}}</p>
+			</div>
 		</div>
 	</div>
 	<br>

@@ -52,7 +52,7 @@ export class ViolationFlagComponent implements OnInit {
   getViolationTypes(): void {
     this.violationTypeService.getViolationTypes().subscribe(
       violationTypes => {
-        this.violationTypes.push(... violationTypes);
+        this.violationTypes =violationTypes;
       }
     );
   }
@@ -83,8 +83,10 @@ export class ViolationFlagComponent implements OnInit {
       Time: new Date(),
       Comment: comment
     });
-    this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
+    this.violationService.submitViolation(violationType, comment, screeningID).subscribe(data => {
+      console.log(data);
     });
+    
   }
 
   cancelViolation() {
