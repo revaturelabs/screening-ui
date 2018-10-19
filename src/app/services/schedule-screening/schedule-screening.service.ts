@@ -35,7 +35,7 @@ export class ScheduleScreeningService {
         for (const e of allScheduledScreenings) {
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
-          console.log(e);
+          console.log(allSkillTypes);
           const nameArray = e.candidate.name.split(' ');
           let thisLastName = '';
           let thisFirstName = '';
@@ -67,7 +67,7 @@ export class ScheduleScreeningService {
             }
             thisLastName = thisLastName.trim();
           }
-          console.log(thisFirstName + thisLastName);
+         
           /*
           // If the record is stored with lastname first, save it backwards without the comma
           if (nameArray[0].charAt(nameArray[0].length-1) == ',') {
@@ -87,7 +87,7 @@ export class ScheduleScreeningService {
               skillType = s;
             }
           }
-          if(!skillType)skillType=allSkillTypes[1];
+          if(!skillType)skillType=allSkillTypes[2];
           scheduledScreenings.push({
             scheduledScreeningId: e.scheduledScreeningId,
             candidate: {
@@ -95,12 +95,12 @@ export class ScheduleScreeningService {
               traineeID:0,
               firstname: thisFirstName,
               lastname: thisLastName,
-              skillTypeID: e.skillTypeId,
+              skillTypeID: skillType.skillTypeId,
               skillTypeName: skillType.title,
               schedule: e.scheduledDate,
             },
             
-            skillTypeId: e.skillTypeId,
+            skillTypeId: skillType.skillTypeId,
             scheduledStatus: e.scheduledStatus,
             scheduledDate: e.scheduledDate,
           });

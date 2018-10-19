@@ -31,15 +31,10 @@ export class ScoresToBucketsUtil {
          }
        );
        for(var key in bucketScores){
-         score += (bucketScores[key]/qCount[key])*bucketWeights[key].weightValue;
-         tempScore = (((bucketScores[key]/qCount[key])*20) - 20) *1.25;
-         parts.push(bucketWeights[key].bucket.bucketDescription +": " + tempScore.toFixed(0) +"% " );
-       }
-       if(score>0){
-        score /=5;
-        score -= 20;
-        score *= 1.25;
-       }
-       return ["Overall: " + score.toFixed(0) + "%"].concat(parts);
+        tempScore = ((bucketScores[key]/qCount[key])-1)*25;
+        score += tempScore*bucketWeights[key].weightValue/100;
+        parts.push(bucketWeights[key].bucket.bucketDescription +": " + tempScore.toFixed(0) +"% " );
+      }
+      return parts.concat(["Overall: " + score.toFixed(0) + "%",score]);
     }
 }

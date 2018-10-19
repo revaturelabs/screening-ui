@@ -18,7 +18,7 @@
          <!-- The paginate pipe must be at the end of all the filters -->
         <ng-container *ngFor="let i = index; let scheduledScreening of scheduledScreenings | searchPipe: searchText | paginate: { itemsPerPage: 10, currentPage: p } ">
           <tr (click)="showBeginScreeningPrompt = !showBeginScreeningPrompt; selectedCandidate = scheduledScreening.candidate; selectedScheduledScreening = scheduledScreening">
-            <td>{{scheduledScreening.candidate.firstname}}</td>
+            <td>{{scheduledScreening.candidate.firstname}} {{scheduledScreening.candidate.lastname}}</td>
             <td>{{scheduledScreening.candidate.skillTypeName}}</td>
             <td>{{scheduledScreening.candidate.schedule | date:'short'}}</td>
           </tr>
