@@ -113,6 +113,7 @@ export class CandidatesScreeningListComponent implements OnInit {
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
     this.simpleTraineeService.setSelectedCandidate(this.selectedCandidate);
+    localStorage.setItem('scheduledScreeningID', this.selectedScheduledScreening.scheduledScreeningId.toString()); 
   }
 
   // clicking "Begin Interview" will create a new screening entry in the database

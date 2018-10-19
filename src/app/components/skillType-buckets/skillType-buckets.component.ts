@@ -13,6 +13,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
+  //template: './skillType-buckets.component.html',
   styleUrls: ['./skillType-buckets.component.css']
 })
 
@@ -106,7 +107,7 @@ export class SkillTypeBucketsComponent implements OnInit {
       this.newBucket.bucketDescription = '';
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    event.stopPropagation();
+    //event.stopPropagation();
   }
 
   private getDismissReason(reason: any): string {

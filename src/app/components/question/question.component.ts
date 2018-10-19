@@ -7,11 +7,12 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
+import { CandidatesScreeningListComponent } from '../candidates-screening-list/candidates-screening-list.component';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
+ // template: './question.component.html',
   styleUrls: ['./question.component.css'],
   animations: [
     trigger('move', [
@@ -142,7 +143,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.updateQuestion(this.question).subscribe();
+        this.questionService.updateQuestion(this.question).subscribe(()=>this.updateQuestions());
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -154,12 +155,11 @@ export class QuestionComponent implements OnInit {
         // The bucket and isActive fields are null and undefined, respectively,
         // which prevents new questions from being added to a bucket.
         this.question.bucket = this.currentBucket;
-        this.question.isActive = false;
+        this.question.isActive = true;
 
-        this.questionService.createNewQuestion(this.question).subscribe();
+        this.questionService.createNewQuestion(this.question).subscribe(()=>this.updateQuestions());
         this.savedSuccessfully();
       }
-      this.updateQuestions();
       this.setQuestionNull();
       this.sampleAnswers = [];
     } else {
@@ -173,7 +173,9 @@ export class QuestionComponent implements OnInit {
    **/
   updateQuestions() {
     if (this.currentBucket) {
-      this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
+      this.questionService.getBucketQuestions(this.currentBucket.bucketId)
+      .subscribe(
+        data => {
         this.questions = (data as Question[]);
       });
     }
