@@ -31,15 +31,14 @@ export class ScoresToBucketsUtil {
          }
        );
        for(var key in bucketScores){
-         score += (bucketScores[key]/qCount[key])*bucketWeights[key].weightValue;
-         tempScore = (((bucketScores[key]/qCount[key])*20) - 20) *1.25;
-         parts.push(bucketWeights[key].bucket.bucketDescription +": " + tempScore.toFixed(0) +"% " );
-       }
-       if(score>0){
-        score /=5;
-        score -= 20;
-        score *= 1.25;
-       }
-       return ["Overall: " + score.toFixed(0) + "%"].concat(parts);
+         //find percent of each bucket
+        tempScore = ((bucketScores[key]/qCount[key])-1)*25;
+         //add each bucket score to overall score, with its weight
+        score += tempScore*bucketWeights[key].weightValue/100;
+         //make string for each bucket with its name and percent
+        parts.push(bucketWeights[key].bucket.bucketDescription +": " + tempScore.toFixed(0) +"% " );
+      }
+      //returning string array with, bucket string, overallscore string, and just the score by itself as a string
+      return parts.concat(["Overall: " + score.toFixed(0) + "%",score]);
     }
 }

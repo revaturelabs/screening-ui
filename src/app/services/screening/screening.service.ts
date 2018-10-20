@@ -126,17 +126,19 @@ export class ScreeningService {
       console.log(scheduledScreening);
       console.log((data as Screening));
       this.curScreening=(data as Screening);
-      console.log(this.curScreening.screeningId);
+      console.log(this.curScreening);
       localStorage.setItem('screeningID', ''+this.curScreening.screeningId);
       console.log(localStorage.getItem('screeningID'));
     
     });
     
   }
+  //To be fixed
   updateScreening(id: number) {
-    this.getScreeningById(id).subscribe(
+   /*  this.getScreeningById(id).subscribe(
       screening => this.httpClient.post(this.urlService.screening.updateScreening(), screening)
-    );
+    ); */
+    this.httpClient.put(this.urlService.screening.updateScreening(), this.curScreening).subscribe(data=>{console.log(data)});
   }
   // Submit comments related to the candidate's self-introduction
   // From the IntroductionComponent

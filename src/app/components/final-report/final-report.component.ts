@@ -63,21 +63,24 @@ export class FinalReportComponent implements OnInit, OnDestroy {
           {
             this.bucketStringArray =
             this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+             // Set the composite score in the screening service
+             console.log(this.bucketStringArray);
+            this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
+            this.screeningService.curScreening.compositeScore=+this.screeningService.compositeScore.toFixed(1);
+            this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+            this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
+
+            this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];
+            this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
+
+            this.bucketStringArray.forEach(bucketString => {
+              this.allTextString += bucketString + '\n';
+            });
+            
+            this.allTextString += this.overallScoreString + '\n';
           }
         )
-        // Set the composite score in the screening service
-        this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
-        
-        this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
-
-        this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];
-        this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
-
-        this.bucketStringArray.forEach(bucketString => {
-          this.allTextString += bucketString + '\n';
-        });
-        
-        this.allTextString += this.overallScoreString + '\n';
+       
       });
     // this.overallScoreString = "Overall: 71%";
     if(this.screeningService.generalComments)
@@ -88,12 +91,14 @@ export class FinalReportComponent implements OnInit, OnDestroy {
      this.generalNotesString +="Final Soft Skill Assesment: "+ this.screeningService.finalSoftSkillComment + "<br/>";
 
     this.allTextString += '"' + this.generalNotesString + '"';
+    console.log(this.softSkillsViolationService.softSkillViolations);
 
     console.log(this.softSkillsViolationService.currentSoftSkillViolations);
     this.screeningService.endScreening(this.generalNotesString);
     this.subscriptions.push(this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
       softSkillViolations => (this.softSkillViolations = softSkillViolations)
     ));
+    this.softSkillViolations = this.softSkillsViolationService.softSkillViolations;
     console.log(this.softSkillViolations);
   }
 
