@@ -17,7 +17,6 @@ import { SkillTypesService } from '../../services/skill-types/skill-types.servic
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
 import { UrlService } from '../../services/urls/url.service';
-
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;

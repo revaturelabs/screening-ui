@@ -54,6 +54,9 @@ export class BucketsService {
       return this.http.post<Bucket>(this.urlService.bucket.createNewBucket(), bucket, httpOptions);
   }
 
+  deleteBucket(bucketId: number) {
+      return this.http.delete<Bucket>(this.urlService.bucket.deleteBucket(bucketId));
+  }
   setBucket(bucket: Bucket) {
      this.currentBucket = bucket;
   }

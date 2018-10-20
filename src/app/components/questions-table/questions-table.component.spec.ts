@@ -21,7 +21,9 @@ import { ViolationFlagComponent } from '../violation-flag/violation-flag.compone
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { UrlService } from '../../services/urls/url.service';
+import { UrlService } from 'src/app/services/urls/url.service';
+
+import { TRAINEES } from 'src/app/mock-data/mock-simpleTrainees';
 
 // Author: David Gustafson
 
@@ -55,6 +57,16 @@ const BUCKETS: Bucket[] = [
 describe('QuestionsTableComponent', () => {
   let component: QuestionsTableComponent;
   let fixture: ComponentFixture<QuestionsTableComponent>;
+  let simpleTraineeServiceStub: Partial<SimpleTraineeService>;
+  simpleTraineeServiceStub = {
+    getSelectedCandidate() {
+      return TRAINEES[0];
+    }
+  }
+  let modalServiceStub: Partial<NgbModal>;
+  modalServiceStub = {
+
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -96,26 +108,27 @@ describe('QuestionsTableComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should return false', () => {
+  it('should return false 1', () => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
   });
 
-  // it('should return true', () => {
-  //   component.questionScores.push({
-  //     qSID: 1,
-  //     questionId: 1,
-  //     screeningID: 1,
-  //     score: 1,
-  //     commentary: 'string',
-  //     beginTime: new Date});
-  //   expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
-  // });
+  it('should return true 1', () => {
+    component.questionScores.push({
+      qSID: 1,
+      questionId: 1,
+      screeningID: 1,
+      score: 1,
+      commentary: 'string',
+      bucketId: 1,
+      beginTime: new Date});
+    expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
+  });
 
-  it('should return true', () => {
+  it('should return true 2', () => {
     expect(component.submitAllowed()).toBeTruthy();
   });
 
-  it('should return false', () => {
+  it('should return false 2', () => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
   });
