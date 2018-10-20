@@ -19,6 +19,8 @@
   const adminContext = 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8181';
   const screeningContext = 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8183';
 
+  const tempContext = 'http://10.252.1.159:9001';
+
 const bam = '';
 
 export const environment = {
@@ -28,7 +30,7 @@ export const environment = {
   /** Assets endpoints for like pictures  */
   assets: 'http://52.87.205.55:8086/angular/assets/',
 
-  adminContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8181',
+  adminContext: adminContext,
   screeningContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8183',
   bam: bam,
   url: 'http://54.166.255.85:8085',

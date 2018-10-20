@@ -11,7 +11,13 @@ describe('QuestionScoreService', () => {
     });
   });
 
-  it('QuestionScoreService should be created', inject([QuestionScoreService], (service: QuestionScoreService) => {
+  // it('should be created', inject([QuestionScoreService], (service: QuestionScoreService) => {
+  //   expect(service).toBeTruthy();
+  // }));
+
+  it('should create an instance', () => {
+    let http: HttpClient;
+    const service= new QuestionScoreService(http, new UrlService);
     expect(service).toBeTruthy();
-  }));
+  })
 });

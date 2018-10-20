@@ -2,22 +2,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 // Modules
-import { Dependencies } from '../../caliber.test.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, FormBuilder } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
 import { QuestionComponent } from './question.component';
 
-// Mock Data
-import { QUESTIONS } from '../../mock-data/mock-questions';
-import { Question } from '../../entities/Question';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, FormBuilder } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+// Services
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
 import { BucketsService } from 'src/app/services/buckets/buckets.service';
 import { QuestionsService } from 'src/app/services/questions/questions.service';
 import { UrlService } from 'src/app/services/urls/url.service';
-import { NgbModal, ModalDismissReasons, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+// Classes
+import { Bucket } from '../../entities/Bucket';
+import { Question } from '../../entities/Question';
+import { Observable, from, of } from 'rxjs';
+
+// Mock Data
+import { BUCKETS } from '../../mock-data/mock-buckets';
+import { QUESTIONS } from '../../mock-data/mock-questions';
+
+//import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 
 /**
  * Test for methods on the question component.
@@ -33,24 +41,58 @@ import { NgbModal, ModalDismissReasons, NgbModalModule } from '@ng-bootstrap/ng-
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
   let fixture: ComponentFixture<QuestionComponent>;
+  let bucketServiceStub: Partial<BucketsService>;
+  bucketServiceStub = {
+    getCurrentBucket(): Bucket {
+      return BUCKETS[0];
+    }
+  }
+  let questionsServiceStub: Partial<QuestionsService>;
+  questionsServiceStub = {
+    getBucketQuestions(id: number): Observable<Question[]> {
+      return of(QUESTIONS);
+    }
+  }
+  let sampleAnswers: string[] = [
+    QUESTIONS[0].sampleAnswer1,
+    QUESTIONS[0].sampleAnswer2,
+    QUESTIONS[0].sampleAnswer3,
+    QUESTIONS[0].sampleAnswer4,
+    QUESTIONS[0].sampleAnswer5
+  ];
+  // const t0: Tag = new Tag();
+  // t0.tagId = 1;
+  // t0.tagName = 'Java';
+  // const t1: Tag = new Tag();
+  // t1.tagId = 2;
+  // t1.tagName = 'HTML';
 
   /**
    * Import dependencies and set the TestBed to configure the testing module.
    **/
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-    declarations: [
-      QuestionComponent
-    ],
-    imports: [FormsModule, HttpClientModule, NgbModalModule],
-    providers: [
-      AlertsService,
-      BucketsService,
-      FormBuilder,
-      QuestionsService,
-      UrlService,
-      NgbModal
-    ]})
+      declarations: [
+        QuestionComponent,
+      ],
+      imports: [
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NgbModule
+      ],
+      providers: [
+        AlertsService, 
+        {provide: BucketsService, useValue: bucketServiceStub},
+        QuestionsService,
+        FormBuilder,
+        HttpClient,
+        UrlService,
+        NgbModal,
+      //  NgbModalBackdrop
+      ]
+    })
+    
     .compileComponents();
   }));
 
@@ -58,33 +100,40 @@ describe('QuestionComponent', () => {
    * Set up a fixture to use instead of using testbed. This allows us to use
    * the question component as an instace of the question component for testing.
    **/
-  beforeEach(() => {
+  beforeEach(async(() => {
     fixture = TestBed.createComponent(QuestionComponent);
-    component = fixture.componentInstance;
+    component = fixture.debugElement.componentInstance;
+
+    component.currentBucket = bucketServiceStub.getCurrentBucket();
+
+    component.questions=QUESTIONS;
+    component.question = QUESTIONS[0];
+    component.sampleAnswers= sampleAnswers;
+
     fixture.detectChanges();
-  });
+  }));
 
   /**
    * Test if the components is created.
    *
    * Function tested: None, just check if the component gets created.
    **/
-  it('should create', () => {
+  it('should create', async(() => {    
+    fixture.detectChanges();
     expect(component).toBeTruthy();
-  });
+  }));
 
   /**
   * Test if it opens an modal given a modal id.
   *
   * Function tested: open()
   **/
-  it('should open modal-content', () => {
+  it('should open modal-content', async(() => {
     const content = document.querySelector('.modal-content');
     component.open(content);
     document.querySelector('.modal-content');
     expect(content).toBeDefined('defined');
-    // spyOn(component, this.open());
-  });
+  }));
 
   /**
    *  Used to validate the create/update question form.
@@ -136,6 +185,16 @@ describe('QuestionComponent', () => {
   //     });
   //   });
   // });
+
+  /**
+   * Test if the question gets edited or not.
+   * 
+   * Function Tested: editQuestion()
+   **/
+  it('should edit a question', ()=> {
+    component.editQuestion(QUESTIONS[1]);
+    expect(component.question).toEqual(QUESTIONS[1]);
+  })
 
   /**
    * Test for a newTag method to assigned a newTag to the newTagString and resets the new string.
@@ -220,6 +279,21 @@ describe('QuestionComponent', () => {
   //   component.updateQuestions();
   //   expect(component.questions).toBe(Question['test']);
   // });
+
+  /**
+   * populate the current question with the selected question
+   * 
+   * Function tested: updateQuestions()
+   **/
+  it('should update questions from the bucket', () => {
+    component.questions=QUESTIONS.slice(0,2); //set questions to subset of QUESTIONS from mock-data
+    questionsServiceStub.getBucketQuestions(component.currentBucket.bucketId).subscribe(
+      data=>component.questions=data
+    ); //updates questions to QUESTIONS
+    component.updateQuestions(); //
+    expect(component.questions).toEqual(QUESTIONS);
+  })
+  
 
   /**
    * Test to check if it adds new tags to the questions.

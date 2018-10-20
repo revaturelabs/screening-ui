@@ -27,19 +27,21 @@
                 * open(edit), calls modal to open. -->
             <div class="col-sm" (click)="$event.cancelBubble=true; ">
               <i id="xIcon">
+                <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
+                  ngbTooltip="edit">
+                </i>
                 <label class="switch">
                   <input type="checkbox" [(ngModel)]="bucket.isActive" (change)="updateBucket(bucket);">
-                  <span class="slider round" placement="top" ngbTooltip="active"></span>
+                  <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="bucket.isActive"></span>
+                  <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="!bucket.isActive"></span>
                 </label>
+                <i id="traIcon" class="fas fa-trash-alt pull-right" (click)="editBucket(bucket);open(delete)" placement="top" 
+                  ngbTooltip="delete">
+                </i>
               </i>
             </div>
-            <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
-              ngbTooltip="edit">
-            </i>
-
           </a>
         </div>
-
       </div>
 
       <!--* 'open(create)' -->
@@ -103,5 +105,25 @@
     <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
     <!--* create(), creates new bucket in the database -->
     <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="createBucket(); c('Close click')">Create</button>
+  </div>
+</ng-template>
+
+<ng-template #delete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h6 class="modal-title">Delete</h6>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="currBucket">
+    Are you sure you wish to delete this category?
+    <br>
+    Name: {{currBucket.bucketCategory}}
+    <br>
+    Description: {{currBucket.bucketDescription}}
+    <br><br>
+    <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+    <button type="button" data-dismiss="modal" class="btn btn-warning" (click)="deleteBucket();c('Close click')">Delete</button>
   </div>
 </ng-template>

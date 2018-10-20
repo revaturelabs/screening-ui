@@ -28,15 +28,17 @@
             <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
               <i id="xIcon">
+                <!-- Edit button/function enabled by changing "fa fa-pencil pull-right" to "fas fa-pencil-alt pull-right" -->
+                <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editQuestion(question); open(content)" placement="top"
+                  ngbTooltip="edit"></i>
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
                   <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
                   <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!question.isActive"></span>
                 </label>
+                <i id="traIcon" class="fas fa-trash-alt pull-right" (click)="editQuestion(question);open(delete)" placement="top" 
+                  ngbTooltip="delete"></i>
               </i>
-              <!-- Edit button/function enabled by changing "fa fa-pencil pull-right" to "fas fa-pencil-alt pull-right" -->
-              <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editQuestion(question); open(content)" placement="top"
-                ngbTooltip="edit"></i>
             </a>
           </div>
         </div>
@@ -124,3 +126,21 @@
   </div>
 </ng-template>
 <!--Ending of the add new question modal -->
+
+<ng-template #delete let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h6 class="modal-title">Delete</h6>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  
+    <div class="modal-body" *ngIf="question">
+      Are you sure you wish to delete this question?
+      <br>
+      Question: {{question.questionText}}
+      <br><br>
+      <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+      <button type="button" data-dismiss="modal" class="btn btn-warning" (click)="editQuestion(question);deleteQuestion();c('Close click')">Delete</button>
+    </div>
+  </ng-template>
