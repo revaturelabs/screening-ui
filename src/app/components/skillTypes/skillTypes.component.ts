@@ -185,10 +185,11 @@ export class SkillTypesComponent implements OnInit {
             };
             this.skillTypeBucketService.newSkillTypeForBucket(relationship).subscribe(results => {
                 this.getAllWeights();
+                this.grabAllBuckets();
+                this.removeUnassociatedBucket(results.bucket);
+                this.skillTypeWeights.push(results);
+                console.log(this.skillTypeWeights);
             });
-            this.grabAllBuckets();
-            this.removeUnassociatedBucket(relationship.bucket);
-            this.skillTypeWeights.push(relationship);
         }
     }
 
@@ -275,14 +276,9 @@ export class SkillTypesComponent implements OnInit {
      * @param weight: weight object to update
      */
     updateWeight(weight: Weight) {
-        for (let i = 0; i < this.allWeights.length; i++) {
-            if (this.allWeights[i].skillType.skillTypeId === weight.skillType.skillTypeId) {
-                if (this.allWeights[i].bucket.bucketId === weight.bucket.bucketId) {
-                    this.allWeights[i].weightValue = weight.weightValue;
-                    this.skillTypeBucketService.updateWeight(this.allWeights[i]).subscribe(results => { });
-                }
-            }
-        }
+        let index = this.allWeights.findIndex(temp => temp.weightId === weight.weightId);
+                    this.allWeights[index].weightValue = weight.weightValue;
+                    this.skillTypeBucketService.updateWeight(this.allWeights[index]).subscribe(results => { });
     }
 
     /**
@@ -383,6 +379,7 @@ export class SkillTypesComponent implements OnInit {
     getAllWeights() {
         this.skillTypeBucketService.getAllWeights().subscribe(results => {
             this.allWeights = results;
+            console.log(this.allWeights);
         });
 
     }
