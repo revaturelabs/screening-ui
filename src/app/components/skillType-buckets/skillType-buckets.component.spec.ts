@@ -105,4 +105,50 @@ describe('SkillTypeBucketsComponent', () => {
     expect(component.currBucket).toEqual(bucket);
   });
 
+  it('should update buckets', async(() => {
+    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
+    let component = fixture.debugElement.componentInstance;
+    let bucketsService = fixture.debugElement.injector.get(BucketsService);
+    let bucket: Bucket = {
+      bucketId: 0,
+      bucketDescription: 'description',
+      isActive: true
+    };
+    spyOn(bucketsService, 'updateBucket').and.returnValue(of(bucket));
+    let bucketsObservable = bucketsService.updateBucket(bucket);
+    bucketsObservable.subscribe(data => spyOn(bucketsService, 'getAllBuckets').and.returnValue(of([data])));
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.buckets[0]).toEqual(bucket);
+    });
+  }));
+
+  it('should create a new bucket', async(() => {
+    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
+    let component = fixture.debugElement.componentInstance;
+    let bucketsService = fixture.debugElement.injector.get(BucketsService);
+    let bucket: Bucket = {
+      bucketId: 0,
+      bucketDescription: 'description',
+      isActive: true
+    };
+    spyOn(bucketsService, 'createNewBucket').and.returnValue(of(bucket));
+    let bucketsObservable = bucketsService.createNewBucket(bucket);
+    bucketsObservable.subscribe(data => component.buckets = [data]);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.buckets[0]).toEqual(bucket);
+    });
+  }));
+
+  it('should call the alert service\'s success()', () => {
+    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
+    let component = fixture.debugElement.componentInstance;
+    let alertsService = TestBed.get(AlertsService);
+    alertsService.subject.subscribe((data) => {
+      expect(data).toEqual('{ type: \'success\', text: message }');
+    });
+    
+  });
+
 });
