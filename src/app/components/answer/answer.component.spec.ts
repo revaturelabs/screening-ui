@@ -12,6 +12,7 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { ScreeningService } from '../../services/screening/screening.service';
 
 describe('AnswerComponent', () => {
   let component: AnswerComponent;
@@ -21,7 +22,7 @@ describe('AnswerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AnswerComponent, ViolationFlagComponent ],
       imports: [FormsModule],
-      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService, SimpleTraineeService, SkillTypesService, ViolationTypeService, AlertsService]
+      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService, ScreeningService, SimpleTraineeService, SkillTypesService, ViolationTypeService, AlertsService]
     })
     .compileComponents();
   }));

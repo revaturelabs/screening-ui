@@ -5,4 +5,5 @@ describe('SearchPipe', () => {
     const pipe = new SearchPipe();
     expect(pipe).toBeTruthy();
   });
+
 });
