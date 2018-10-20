@@ -66,6 +66,10 @@ export class QuestionsService {
       );
   }
 
+  deleteQuestion(questionId: number) {
+    return this.http.delete(this.urlService.question.deleteQuestion(questionId));
+  }
+
   /**
    * deactivates question
    * add urlService to get endpoint for deactivating a question

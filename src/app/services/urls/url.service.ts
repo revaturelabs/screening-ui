@@ -27,7 +27,8 @@ export class UrlService {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}/update`,
-    createNewBucket: () => `${this.bucketEndpoint}`
+    createNewBucket: () => `${this.bucketEndpoint}`,
+    deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`
   };
 
   /**
@@ -45,6 +46,7 @@ export class UrlService {
   question = {
     postQuestion: () => `${this.questionEndpoint}/new`,
     putQuestion: () => `${this.questionEndpoint}/update`,
+    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/delete/${questionId}`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
