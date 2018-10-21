@@ -1,7 +1,13 @@
 import { async, ComponentFixture, TestBed, ComponentFixtureAutoDetect } from '@angular/core/testing';
-import { RouterOutlet, ChildrenOutletContexts, Router } from '@angular/router';
 import { SkillTypeBucketsComponent } from './skillType-buckets.component';
-import { routes } from '../../app.routes';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
+import { BucketsService } from '../../services/buckets/buckets.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { UrlService } from '../../services/urls/url.service';
+import { QuestionsService } from '../../services/questions/questions.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
+
 describe('SkillTypeBucketsComponent', () => {
   let component: SkillTypeBucketsComponent;
   let fixture: ComponentFixture<SkillTypeBucketsComponent>;
@@ -10,14 +16,10 @@ describe('SkillTypeBucketsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        SkillTypeBucketsComponent,
-        RouterOutlet
+        SkillTypeBucketsComponent
       ],
-      providers: [
-        ChildrenOutletContexts,
-        Router,
-        { provide: ComponentFixtureAutoDetect, useValue: true }
-      ]
+      imports: [RouterTestingModule, FormsModule],
+      providers: [BucketsService, HttpClient, HttpHandler, UrlService, QuestionsService, AlertsService]
     })
     .compileComponents();
   }));
@@ -32,8 +34,8 @@ describe('SkillTypeBucketsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('getBuckets should return all buckets', () => {
-  //   httpClientSpyOnGet = jasmine.createSpyObj('http',['get']);
+  it('getBuckets should return all buckets', () => {
+    httpClientSpyOnGet = jasmine.createSpyObj('http',['get']);
 
-  // });
+  });
 });

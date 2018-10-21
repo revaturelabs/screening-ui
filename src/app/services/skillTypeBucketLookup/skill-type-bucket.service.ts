@@ -72,11 +72,4 @@ export class SkillTypeBucketService {
   updateWeight(weight: Weight){
     return this.httpClient.put(`${this.urlService.weights.updateWeight()}`, weight, httpOptions);
   }
-
-/*
-  getSkillTypeBuckets(skillTypeID: number): Observable<SkillTypeBucketLookUp>{
-    return of(SKILL_TYPE_BUCKET_LOOKUP);
-  }
-*/
-
 }
