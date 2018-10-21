@@ -31,7 +31,6 @@ export class SkillTypesComponent implements OnInit {
     public bucketWeightSum = 0;
     public skillType: SkillType;
     public singleSkillType: SkillType;
-    //public singleSkillTypeBuckets: Bucket[] = [];
     public unassociatedSkillTypeBuckets: Bucket[] = [];
     public error: boolean;
     public modalServiceRef;
@@ -111,7 +110,6 @@ export class SkillTypesComponent implements OnInit {
     * @param skillType: selected skill type
     */
     editSkillType(skillType) {
-        //this.singleSkillTypeBuckets = [];
         this.skillTypeWeights = [];
         this.singleSkillType = {
             title: skillType.title,
@@ -141,7 +139,6 @@ export class SkillTypesComponent implements OnInit {
         for (let i = 0; i < this.allWeights.length; i++) {
             if (this.allWeights[i].skillType.skillTypeId === this.singleSkillType.skillTypeId) {
                 this.skillTypeWeights.push(this.allWeights[i]);
-                // this.singleSkillTypeBuckets.push(this.allWeights[i].bucket);
 
                 let index = this.unassociatedSkillTypeBuckets.findIndex(temp => temp.bucketId === this.allWeights[i].bucket.bucketId);
                 this.unassociatedSkillTypeBuckets.splice(index, 1);
@@ -155,13 +152,9 @@ export class SkillTypesComponent implements OnInit {
     * @param bucket: Add/Remove bucket from arrays
     */
     removeUnassociatedBucket(bucket: Bucket) {
-        // //Add bucket to associated arr
-        // this.singleSkillTypeBuckets.push(bucket);
-
         //Remove bucket from unassociated arr
         let index = this.unassociatedSkillTypeBuckets.findIndex(temp => temp.bucketId === bucket.bucketId);
         this.unassociatedSkillTypeBuckets.splice(index, 1);
-
     }
 
     /** 
@@ -172,10 +165,6 @@ export class SkillTypesComponent implements OnInit {
     addUnassociatedBucket(bucket: Bucket) {
         //Add bucket to unassociated arr
         this.unassociatedSkillTypeBuckets.push(bucket);
-
-        // //Remove bucket from associated arr
-        // let index = this.singleSkillTypeBuckets.findIndex(temp => temp.bucketId === bucket.bucketId);
-        // this.singleSkillTypeBuckets.splice(index, 1);
     }
 
     /**
@@ -194,10 +183,11 @@ export class SkillTypesComponent implements OnInit {
             };
             this.skillTypeBucketService.newSkillTypeForBucket(relationship).subscribe(results => {
                 this.getAllWeights();
+                this.grabAllBuckets();
+                this.removeUnassociatedBucket(results.bucket);
+                this.skillTypeWeights.push(results);
+                console.log(this.skillTypeWeights);
             });
-            this.grabAllBuckets();
-            this.removeUnassociatedBucket(relationship.bucket);
-            this.skillTypeWeights.push(relationship);
         }
     }
 
@@ -274,7 +264,6 @@ export class SkillTypesComponent implements OnInit {
                 this.getAllWeights();
             });
             this.savedSuccessfully();
-
         } else {
             this.error = true;
         }
@@ -285,14 +274,9 @@ export class SkillTypesComponent implements OnInit {
      * @param weight: weight object to update
      */
     updateWeight(weight: Weight) {
-        for (let i = 0; i < this.allWeights.length; i++) {
-            if (this.allWeights[i].skillType.skillTypeId === weight.skillType.skillTypeId) {
-                if (this.allWeights[i].bucket.bucketId === weight.bucket.bucketId) {
-                    this.allWeights[i].weightValue = weight.weightValue;
-                    this.skillTypeBucketService.updateWeight(this.allWeights[i]).subscribe(results => { });
-                }
-            }
-        }
+        let index = this.allWeights.findIndex(temp => temp.weightId === weight.weightId);
+                    this.allWeights[index].weightValue = weight.weightValue;
+                    this.skillTypeBucketService.updateWeight(this.allWeights[index]).subscribe(results => { });
     }
 
     /**
@@ -393,6 +377,7 @@ export class SkillTypesComponent implements OnInit {
     getAllWeights() {
         this.skillTypeBucketService.getAllWeights().subscribe(results => {
             this.allWeights = results;
+            console.log(this.allWeights);
         });
 
     }
