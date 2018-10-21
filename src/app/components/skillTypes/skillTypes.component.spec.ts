@@ -105,4 +105,8 @@ fdescribe('', () => {
     it("Check sum of buckets not equals 100", () => {
 
     });
+
+    it("Check if skillTypeWeights is empty", () => {
+
+    });
 });
