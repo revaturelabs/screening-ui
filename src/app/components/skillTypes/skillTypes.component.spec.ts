@@ -12,6 +12,7 @@ import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/ski
 import { SkillTypesComponent } from './skillTypes.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
+import { RouterTestingModule} from '@angular/router/testing'
 import { componentNeedsResolution } from '@angular/core/src/metadata/resource_loading';
 
 
@@ -22,7 +23,7 @@ describe('', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SkillTypesComponent],
-            imports: [FormsModule],
+            imports: [FormsModule, RouterTestingModule],
             providers: [NgbTabset, HttpClient, HttpHandler, UrlService, BucketsService, SkillTypesService, NgbModal, AlertsService, SkillTypeBucketService]
         })
             .compileComponents();
