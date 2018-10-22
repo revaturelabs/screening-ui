@@ -15,7 +15,7 @@ import { UrlService } from '../../services/urls/url.service';
 import { componentNeedsResolution } from '@angular/core/src/metadata/resource_loading';
 
 
-fdescribe('', () => {
+describe('', () => {
     let component: SkillTypesComponent;
     let fixture: ComponentFixture<SkillTypesComponent>;
 
