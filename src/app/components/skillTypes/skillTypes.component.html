@@ -29,11 +29,10 @@
 
     </div>
 </div>
-<!-- Modal for creating and editting a new Track (SkillType) -->
+<!-- Modal for editting a Track (SkillType) -->
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <!-- If a skillType got clicked, Title is Edit -->
-        <h4 class="modal-title">Edit Track</h4>
+        <h6 class="modal-title">Edit Track</h6>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -88,10 +87,10 @@
     </div>
 </ng-template>
 
+<!-- Modal for creating a new Track (SkillType) -->
 <ng-template #createTrack let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <!-- If a skillType got clicked, Title is Edit -->
-        <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
+        <h6 class="modal-title" *ngIf="!singleSkillType">Create Track</h6>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
