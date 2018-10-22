@@ -8,7 +8,7 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
+import {ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-skill-type-buckets',
@@ -27,6 +27,8 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   /** Modal variables */
   closeResult: string;
+
+  @ViewChild('create') nameInputRef: ElementRef;
 
   constructor(
     private router: Router,
@@ -78,7 +80,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   updateBucket(bucketParam: Bucket) {
     if (!bucketParam) { bucketParam = this.currBucket; }
     if (bucketParam) {
-      console.log(bucketParam.isActive);
+      console.log(bucketParam.bucketDescription);
       this.bucketService.updateBucket(bucketParam).subscribe(bucket => {
         this.getBuckets();
       });
