@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
-import { RouterOutlet, ChildrenOutletContexts } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { RouterTestingModule } from '@angular/router/testing';
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -11,11 +11,10 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        NavComponent,
-        RouterOutlet
+        NavComponent
       ],
+      imports: [RouterTestingModule],
       providers: [
-        ChildrenOutletContexts,
         CookieService
       ]
     }).compileComponents()
