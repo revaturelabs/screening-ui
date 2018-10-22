@@ -9,14 +9,14 @@
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action" *ngFor="let skillType of allSkillTypes">
                         {{skillType.title}}
+                        <i id="traIcon" class="fas fa-trash-alt float-right" (click)="deleteSkillType(skillType)" 
+                            placement="top" ngbTooltip="delete">
+                        </i>
                         <i id="xIcon">
                             <label class="switch">
                                 <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)">
                                 <span class="slider round" placement="top" ngbTooltip="active"></span>
                             </label>
-                        </i>
-                        <i id="traIcon" class="fas fa-trash-alt float-right" (click)="deleteSkillType(skillType)" 
-                            placement="top" ngbTooltip="delete">
                         </i>
                         <i id="penIcon" class="fas fa-pencil-alt float-right" (click)="editSkillType(skillType); open(content)"
                             placement="top" ngbTooltip="edit">

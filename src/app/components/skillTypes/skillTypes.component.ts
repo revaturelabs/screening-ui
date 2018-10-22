@@ -25,8 +25,6 @@ import { MethodCall } from '@angular/compiler';
 */
 export class SkillTypesComponent implements OnInit {
 
-    public skillTypes: SkillType[] = [];
-    public inactiveSkillTypes: any[] = [];
     public allSkillTypes: SkillType[] = [];
     public allBuckets: Bucket[] = [];
     public bucketWeightSum = 0;
@@ -61,26 +59,12 @@ export class SkillTypesComponent implements OnInit {
                     this.skillTypeService.activateSkillType(thing.skillTypeId).subscribe();
                 }
             }
-            this.setSkillTypes();
-        }
-    }
-
-    setSkillTypes() {
-        let thing: any;
-        this.skillTypes = [];
-        this.inactiveSkillTypes = [];
-        for (let i = 0; i < this.allSkillTypes.length; i++) {
-            thing = this.allSkillTypes[i];
-            if (thing.isActive === true) {
-                this.skillTypes[this.skillTypes.length] = thing;
-            } else if (thing.isActive === false) {
-                this.inactiveSkillTypes[this.inactiveSkillTypes.length] = thing;
-            }
         }
     }
 
     //Updates a skillType then retrieves all Skill types
     skillTypeUpdate(skillType: SkillType) {
+        console.log(skillType);
         this.skillTypeService.updateSkillType(skillType).subscribe(results => {
             this.grabAllSkillTypes();
         });
@@ -112,7 +96,7 @@ export class SkillTypesComponent implements OnInit {
         this.singleSkillType = {
             title: skillType.title,
             skillTypeId: skillType.skillTypeId,
-            isActive: true,
+            active: true,
         };
         this.getAssociated();
     }
@@ -319,14 +303,14 @@ export class SkillTypesComponent implements OnInit {
     grabAllSkillTypes() {
         this.skillTypeService.getSkillTypes().subscribe((results) => {
             this.allSkillTypes = results;
-            this.setSkillTypes();
             this.allSkillTypes.sort(this.compare);
+            console.log(this.allSkillTypes);
         });
     }
 
     /** used to compare SkillType Array to sort it based on status */
     compare(a: SkillType, b: SkillType) {
-        if (a.isActive) {
+        if (a.active) {
             return -1;
         } else {
             return 1;
