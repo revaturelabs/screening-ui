@@ -3,7 +3,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CandidateComponent } from './candidate.component';
 import { FormsModule } from '@angular/forms';
 
-fdescribe('CandidateComponent', () => {
+describe('CandidateComponent', () => {
   let component: CandidateComponent;
   let fixture: ComponentFixture<CandidateComponent>;
 

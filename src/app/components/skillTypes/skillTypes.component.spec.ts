@@ -12,37 +12,10 @@ import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/ski
 import { SkillTypesComponent } from './skillTypes.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
-<<<<<<< HEAD
-
-
-describe('', () => {
-    let component: SkillTypesComponent;
-    let fixture: ComponentFixture<SkillTypesComponent>;
-  
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [ SkillTypesComponent],
-        imports: [FormsModule],
-        providers: [NgbTabset, HttpClient, HttpHandler, UrlService, BucketsService, SkillTypesService, NgbModal, AlertsService, SkillTypeBucketService]
-      })
-      .compileComponents ();
-    }));
-  
-    beforeEach(() => {
-      fixture = TestBed.createComponent(SkillTypesComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
-  
-    it('SkillTypes should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });
-=======
 import { componentNeedsResolution } from '@angular/core/src/metadata/resource_loading';
 
 
-fdescribe('', () => {
+describe('', () => {
     let component: SkillTypesComponent;
     let fixture: ComponentFixture<SkillTypesComponent>;
 
@@ -133,4 +106,3 @@ fdescribe('', () => {
 
     });
 });
->>>>>>> origin/1808-editSkillType

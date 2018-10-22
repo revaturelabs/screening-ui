@@ -95,16 +95,16 @@
       <div class="form-group">
         <label>Name:</label>
         <br>
-        <input class="form-control" type="text" [(ngModel)]="newBucket.bucketDescription" [ngModelOptions]="{standalone: true}" />
+        <input class="form-control" id="createInput" type="text" [(ngModel)]="newBucket.bucketDescription" [ngModelOptions]="{standalone: true}" />
         <br>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+    <button type="button" id="closeButton" class="btn btn-primary" (click)="c('Close click')">Close</button>
     <!--* create(), creates new bucket in the database -->
-    <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="createBucket(); c('Close click')">Create</button>
+    <button type="button" id="createButton" data-dismiss="modal" class="btn btn-primary" (click)="createBucket(); c('Close click')">Create</button>
   </div>
 </ng-template>
 

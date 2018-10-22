@@ -14,7 +14,6 @@ import { httpFactory } from '@angular/http/src/http_module';
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
-  //template: './skillType-buckets.component.html',
   styleUrls: ['./skillType-buckets.component.css']
 })
 
