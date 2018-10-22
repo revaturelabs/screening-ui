@@ -79,22 +79,6 @@ export class CandidatesScreeningListComponent implements OnInit {
     this.scheduleScreeningService.getScheduleScreenings().subscribe(data => {
       this.scheduledScreenings = data;
     });
-    // Mock data for testing without endpoints
-    this.scheduledScreenings.push({
-      scheduledScreeningId: 0,
-      candidate: { //Mock Data used for test screening
-          traineeID: 0,
-          firstname: 'Landon',
-          lastname: 'Renzullo',
-          skillTypeID: 53,
-          skillTypeName: 'Java',
-          schedule: new Date((new Date()).getTime() + 100000)
-        },
-      
-      scheduledStatus: 'in progress',
-      skillTypeId: 0,
-      scheduledDate: new Date()
-    });
   }
   // End mock data!!!!!!!
   /* ###########################
