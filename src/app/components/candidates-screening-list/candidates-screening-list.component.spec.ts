@@ -16,18 +16,34 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
-
+import { UrlService } from '../../services/urls/url.service';
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CandidatesScreeningListComponent, SearchPipe, PaginatePipe, PaginationControlsComponent,
-        PaginationControlsDirective],
-      imports: [FormsModule, HttpClientModule],
-      providers: [SimpleTraineeService, ScreeningService, ScheduleScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypesService, PaginationService]
+      declarations: [
+        CandidatesScreeningListComponent, 
+        SearchPipe, 
+        PaginatePipe, 
+        PaginationControlsComponent,
+        PaginationControlsDirective
+      ],
+      imports: [
+        FormsModule, 
+        HttpClientModule
+      ],
+      providers: [
+        SimpleTraineeService, 
+        ScreeningService, 
+        ScheduleScreeningService, 
+        SoftSkillsViolationService,
+        QuestionScoreService, 
+        SkillTypesService, 
+        PaginationService, 
+        UrlService
+      ]
     })
       .compileComponents();
   }));

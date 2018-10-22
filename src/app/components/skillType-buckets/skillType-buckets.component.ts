@@ -8,11 +8,13 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { httpFactory } from '@angular/http/src/http_module';
 
 
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
+  //template: './skillType-buckets.component.html',
   styleUrls: ['./skillType-buckets.component.css']
 })
 
@@ -70,6 +72,15 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.currBucket = bucket;
   }
 
+  deleteBucket() {
+    if(this.currBucket) {
+      this.bucketService.deleteBucket(this.currBucket.bucketId)
+      .subscribe(bucket => {
+        this.getBuckets();
+      });
+    }
+  }
+
   /**
    * resposible for making call for updating a bucket
    * when edited or activity toggled
@@ -78,7 +89,6 @@ export class SkillTypeBucketsComponent implements OnInit {
   updateBucket(bucketParam: Bucket) {
     if (!bucketParam) { bucketParam = this.currBucket; }
     if (bucketParam) {
-      console.log(bucketParam.isActive);
       this.bucketService.updateBucket(bucketParam).subscribe(bucket => {
         this.getBuckets();
       });
@@ -92,6 +102,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.bucketService.createNewBucket(this.newBucket)
       .subscribe(bucket => {
         this.buckets.push(bucket);
+        this.getBuckets();
       });
   }
 
@@ -107,7 +118,7 @@ export class SkillTypeBucketsComponent implements OnInit {
       this.newBucket.bucketDescription = '';
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    event.stopPropagation();
+    //event.stopPropagation();
   }
 
   private getDismissReason(reason: any): string {

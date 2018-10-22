@@ -7,11 +7,12 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
+import { CandidatesScreeningListComponent } from '../candidates-screening-list/candidates-screening-list.component';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
+ // template: './question.component.html',
   styleUrls: ['./question.component.css'],
   animations: [
     trigger('move', [
@@ -80,6 +81,15 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  /** used to compare buckets Array to sort it based on status */
+  compare(a: Question, b: Question) {
+    if (a.isActive) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
   /**
    * A currently unused function that will give the reason for a modal closing
    * May be used later for giving different results based on how a modal is closed
@@ -101,10 +111,12 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question.questionId).subscribe();
+      this.questionService.deactivateQuestion(question.questionId)
+      .subscribe(questions=>this.updateQuestions());
    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question.questionId).subscribe();
+      this.questionService.activateQuestion(question.questionId)
+      .subscribe(questions=>this.updateQuestions());
    }
   }
 
@@ -142,7 +154,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.updateQuestion(this.question).subscribe();
+        this.questionService.updateQuestion(this.question).subscribe(()=>this.updateQuestions());
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -150,10 +162,15 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.createNewQuestion(this.question).subscribe();
+        
+        // The bucket and isActive fields are null and undefined, respectively,
+        // which prevents new questions from being added to a bucket.
+        this.question.bucket = this.currentBucket;
+        this.question.isActive = true;
+
+        this.questionService.createNewQuestion(this.question).subscribe(()=>this.updateQuestions());
         this.savedSuccessfully();
       }
-      this.updateQuestions();
       this.setQuestionNull();
       this.sampleAnswers = [];
     } else {
@@ -167,9 +184,21 @@ export class QuestionComponent implements OnInit {
    **/
   updateQuestions() {
     if (this.currentBucket) {
-      this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
+      this.questionService.getBucketQuestions(this.currentBucket.bucketId)
+      .subscribe(
+        data => {
         this.questions = (data as Question[]);
+        this.questions.sort(this.compare);
       });
+    }
+  }
+
+  deleteQuestion() {
+    if(this.question) {
+      this.questionService.deleteQuestion(this.question.questionId)
+      .subscribe(bucket=>{
+        this.updateQuestions();
+      })
     }
   }
 
@@ -182,4 +211,5 @@ export class QuestionComponent implements OnInit {
   savedUnsuccessfull() {
     this.alertsService.error('All Fields Must be Filled');
   }
+
 }
