@@ -32,6 +32,12 @@ describe('BucketsService', () => {
     httpTestingController.verify();
   });
 
+  /**
+  * Check that the correct url is called, that the correct request method is called, 
+  * and that the flushed in data equals the data retrieved from the get request. 
+  *
+  * Function tested: getAllBuckets()
+  */
   it('should get buckets', () => {
     let buckets: Bucket[] = [
       {
@@ -57,6 +63,12 @@ describe('BucketsService', () => {
     req.flush(buckets);
   });
 
+  /**
+  * Check that the correct url is called, that the correct request method is called, 
+  * and that the flushed in data equals the data retrieved from the get request. 
+  *
+  * Function tested: getBucketById(bucketId: number)
+  */
   it('should get a bucket by id', () => {
     service.getBucketById(0).subscribe(data => expect(data).toEqual(bucket));
     const req = httpTestingController.expectOne('http://ec2-54-210-14-237.compute-1.amazonaws.com:8181/bucket/0');
@@ -64,6 +76,12 @@ describe('BucketsService', () => {
     req.flush(bucket);
   });
 
+  /**
+  * Check that the correct url is called, that the correct request method is called, 
+  * and that the flushed in data equals the data retrieved from the get request. 
+  *
+  * Function tested: updateBucket (bucket: Bucket)
+  */
   it('should update a bucket', () => {
     service.updateBucket(bucket).subscribe(data => expect(data).toEqual(bucket));
     const req = httpTestingController.expectOne('http://ec2-54-210-14-237.compute-1.amazonaws.com:8181/bucket/update');
@@ -71,6 +89,12 @@ describe('BucketsService', () => {
     req.flush(bucket);
   });
 
+  /**
+  * Check that the correct url is called, that the correct request method is called, 
+  * and that the flushed in data equals the data retrieved from the get request. 
+  *
+  * Function tested: createNewBucket(bucket: Bucket)
+  */
   it('should create a new bucket', () => {
     service.createNewBucket(bucket).subscribe(data => expect(data).toEqual(bucket));
     const req = httpTestingController.expectOne('http://ec2-54-210-14-237.compute-1.amazonaws.com:8181/bucket');
@@ -78,18 +102,38 @@ describe('BucketsService', () => {
     req.flush(bucket);
   });
 
+  /**
+  * Test that the current bucket is assigned a value after setBucket() is called.
+  *
+  * Function tested: setBucket(bucket: Bucket)
+  */
   it('should set a bucket', () => {
     let service = TestBed.get(BucketsService);
     service.setBucket(bucket);
     expect(service.currentBucket).toEqual(bucket);
   });
 
+  /**
+  * Test that getCurrentBucket() retrieves the current bucket
+  * if the current bucket isn't null and that an undefined value
+  * is returned if the the current bucket is null.
+  *
+  * Function tested: getCurrentBucket()
+  */
   it('should get the current bucket', () => {
     service.setBucket(bucket);
     let currentBucket = service.getCurrentBucket();
     expect(currentBucket).toEqual(bucket);
+    service.setBucket(null);
+    let testNullBucketArg = service.getCurrentBucket();
+    expect(testNullBucketArg).toBe(undefined);
   });
 
+  /**
+  * Test that the current bucket's description is set after setDescription is called.
+  *
+  * Function tested: setDescription(desc: string)
+  */
   it('should set the current bucket\'s description', () => {
     let service = TestBed.get(BucketsService);
     service.setBucket(bucket);
@@ -98,6 +142,12 @@ describe('BucketsService', () => {
     expect(service.currentBucket.bucketDescription).toEqual(description);
   });
 
+  /**
+  * Test that the current bucket's description is returned
+  * after getDescription is called.
+  *
+  * Function tested: getDescription()
+  */
   it('should get the current bucket\'s description', () => {
     service.setBucket(bucket);
     let description = service.getDescription();
