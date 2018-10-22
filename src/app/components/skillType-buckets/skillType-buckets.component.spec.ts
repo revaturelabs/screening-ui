@@ -11,9 +11,16 @@ import { Bucket } from 'src/app/entities/Bucket';
 import { of } from 'rxjs';
 import { NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
+/**
+ * Setting up the testing environment for skill type buckets component.
+ **/
 describe('SkillTypeBucketsComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
+  /**
+  * Import dependencies and set the TestBed to configure the testing module.
+  **/
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -35,12 +42,23 @@ describe('SkillTypeBucketsComponent', () => {
     .compileComponents();
   });
 
+  /**
+  * Test if the components is created.
+  *
+  * Function tested: None, just check if the component gets created.
+  **/
   it('should create the component', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 
+  /**
+  * Test if buckets are retrieved, assigned to buckets, and then sorted correctly
+  * w/ inactive buckets being ordered after active buckets.
+  *
+  * Function tested: getBuckets()
+  **/
   it('should get and sort buckets', async(() => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
@@ -80,6 +98,12 @@ describe('SkillTypeBucketsComponent', () => {
       });
   }));
 
+  /**
+  * Test if compare algorithm returns the correct number based on active status
+  * and the order in which the bucket arguments being supplied.
+  *
+  * Function tested: compare(a: Bucket, b: Bucket)
+  */
   it('should return -1 if the first bucket is active and 1 if it\'s not', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
@@ -100,6 +124,11 @@ describe('SkillTypeBucketsComponent', () => {
     expect(secondBucketIsActiveValue).toEqual(1);
   });
 
+  /**
+  * Test if setBucket() gets called and if router.navigate() calls the expected url 
+  *
+  * Function tested: routeToBucket(item: Bucket)
+  **/
   it('should set a bucket and call the expected url when routing', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
@@ -117,6 +146,11 @@ describe('SkillTypeBucketsComponent', () => {
     expect(navArgs).toEqual(['settings/bucket']);
   });
 
+  /**
+  * Test if current bucket is set after being edited.
+  *
+  * Function tested: reditBucket(bucket: Bucket)
+  **/
   it('should edit the current bucket', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
@@ -129,7 +163,15 @@ describe('SkillTypeBucketsComponent', () => {
     expect(component.currBucket).toEqual(bucket);
   });
 
-  it('should update buckets with the current bucket if the argument is falsy and with the argument if not.', () => {
+  /**
+  * Test if the methods to update a bucket, retrieve a bucket, and emit a message
+  * indicating success are called.
+  *
+  * Also, test if a null argument causes the bucket parameter to be set with the current bucket value.
+  * 
+  * Function tested: updateBucket(bucketParam: Bucket)
+  **/
+  it('should update buckets with the current bucket if the argument is falsy and with the argument if not', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
     let bucketsService = fixture.debugElement.injector.get(BucketsService);
@@ -161,6 +203,11 @@ describe('SkillTypeBucketsComponent', () => {
     expect(component.savedSuccessfully.calls.count()).toEqual(1);
   });
 
+  /**
+  * Test if the create bucket method being called causes the buckets variable to be set.
+  *
+  * Function tested: createBucket()
+  **/
   it('should create a new bucket', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
@@ -177,6 +224,11 @@ describe('SkillTypeBucketsComponent', () => {
     expect(component.buckets).toContain(bucket);
   });
 
+  /**
+  * Test if savedSuccessfully() can trigger a "success" message from the alert services' subject
+  *
+  * Function tested: savedSuccessfully()
+  **/
   it('should emit the success message from alertsService', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
@@ -187,8 +239,14 @@ describe('SkillTypeBucketsComponent', () => {
       expect(data).toEqual({type: "success", text: "Saved successfully"});
     })
     component.savedSuccessfully();
+
   });
   
+  /**
+  * Test if the modal can be opened and if the new bucket variable is instantiated.
+  *
+  * Function tested: open(content)
+  **/
   it('should open the modal', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
@@ -198,6 +256,7 @@ describe('SkillTypeBucketsComponent', () => {
     spyOn(modalService, "open").and.returnValue(modalRef);
     component.open(component.nameInputRef);
     expect(modalService.open).toHaveBeenCalled();
+    expect(component.newBucket).toEqual(new Bucket());
   });
 
 });
