@@ -17,10 +17,10 @@ describe('SkillTypeBucketsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpClientTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [
-        SkillTypeBucketsComponent, 
+        SkillTypeBucketsComponent
       ],
       providers: [ 
         { provide: Router, useValue: routerSpy },

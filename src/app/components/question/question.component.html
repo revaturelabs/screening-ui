@@ -112,9 +112,9 @@
       </div>
       <!--Answers Tab End-->
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" id="closeModal" (click)="c('Close click')">Close</button>
         <!--The save button will save/update a question so long as all of the fields have been filled and display a message that the question has been saved-->
-        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)=" addNewQuestion();c('Close click')">Save</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary" id="saveModal" (click)=" addNewQuestion();c('Close click')">Save</button>
         <br>
         <br>
         <br>
@@ -140,7 +140,7 @@
       <br>
       Question: {{question.questionText}}
       <br><br>
-      <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
-      <button type="button" data-dismiss="modal" class="btn btn-warning" (click)="editQuestion(question);deleteQuestion();c('Close click')">Delete</button>
+      <button type="button" class="btn btn-primary" id="confirmClose" (click)="c('Close click')">Close</button>
+      <button type="button" data-dismiss="modal" id="confirmDelete" class="btn btn-warning" (click)="editQuestion(question);deleteQuestion();c('Close click')">Delete</button>
     </div>
   </ng-template>

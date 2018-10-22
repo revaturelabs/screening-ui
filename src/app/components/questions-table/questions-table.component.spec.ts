@@ -24,6 +24,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from 'src/app/services/urls/url.service';
 
 import { TRAINEES } from 'src/app/mock-data/mock-simpleTrainees';
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Author: David Gustafson
 
@@ -70,19 +71,13 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
-      imports: [FormsModule],
+      declarations: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
+      imports: [FormsModule, RouterTestingModule],
       providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
         SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });
 
-    TestBed.overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
-      }
-    })
-      .compileComponents();
   }));
 
   beforeEach(() => {

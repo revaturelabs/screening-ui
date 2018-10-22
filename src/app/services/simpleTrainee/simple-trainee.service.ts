@@ -58,6 +58,7 @@ export class SimpleTraineeService {
         schedule: null,
       }
       return s;
-    }  }
+    }
+  }
 
 }
