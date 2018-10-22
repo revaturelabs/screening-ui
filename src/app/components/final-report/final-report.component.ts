@@ -67,7 +67,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
              console.log(this.bucketStringArray);
             this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
             this.screeningService.curScreening.compositeScore=+this.screeningService.compositeScore.toFixed(1);
-            this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+            this.screeningService.updateScreening(+ localStorage.getItem('screeningID') );
             this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
             this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];

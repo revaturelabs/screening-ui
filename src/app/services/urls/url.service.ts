@@ -72,7 +72,7 @@ export class UrlService {
     scheduleScreening: () => `${ this.screeningEndpoint}/scheduled`,
     startScreening: () => `${ this.screeningEndpoint}/new`,
     endScreening: () => `${ this.screeningEndpoint}/update`,
-    updateScreening: () => `${this.screeningEndpoint}/update`,
+    updateScreening: (screenId:number) => `${this.screeningEndpoint}/${screenId}`,
     getScreening: id => `${this.screeningEndpoint}/`
    };
   weightsEndpoint = this.adminContext + '/weight';

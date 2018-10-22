@@ -1,1 +1,12 @@
 <router-outlet></router-outlet>
+<!-- The Modal -->
+    <div id="myModal" class="modal animated fadeIn" [style.display]="toggleBeginScreeningPrompt()">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <h2 >Would You Like To? </h2>
+        <div class="buttons">
+          <button id ="leave" class="btn" (click)="leaveCheck =true" routerLink="/home">Leave Screening</button>
+          <button id="stay" class="btn" (click)="showBeginScreeningPrompt = false; leaveCheck=false">Return to screening</button>
+        </div>
+    </div>
+</div>
