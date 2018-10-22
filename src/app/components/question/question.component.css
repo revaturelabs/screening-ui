@@ -30,6 +30,7 @@ a{
   float: left;
 }
 #traIcon {
+  color: red;
   float: right;
   margin-left: 10px;
 }
