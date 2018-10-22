@@ -16,7 +16,6 @@ export const routes: Routes = [
   {
     path: '',
     component: CandidatesScreeningListComponent,
-    canDeactivate: [CanDeactivateGuard],
   },
   {
     path: 'screening',

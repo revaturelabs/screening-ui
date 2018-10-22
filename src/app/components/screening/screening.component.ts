@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, of, fromEvent }    from 'rxjs';
+import { Observable, of,fromEvent }    from 'rxjs';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -12,17 +12,17 @@ export class ScreeningComponent implements OnInit {
   showBeginScreeningPrompt = false;
 
   constructor( private modalService: NgbModal ) { }
-  
+  leaveCheck = of(false);
 
   ngOnInit() {
   }
   canDeactivate(): boolean | Observable<boolean>{
     console.log('test');
     this.showBeginScreeningPrompt = true;
-    let leaveCheck: boolean;
-      return leaveCheck = true;
+    
+    return this.leaveCheck;
 
-    return of(leaveCheck);
+    
   }
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {

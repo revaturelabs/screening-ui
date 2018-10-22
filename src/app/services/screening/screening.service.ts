@@ -122,13 +122,10 @@ export class ScreeningService {
         'scheduledScreening':scheduledScreening,
         'compositeScore': 0
       }
-    ).subscribe(data=>{console.log(data);
-      console.log(scheduledScreening);
-      console.log((data as Screening));
+    ).subscribe(data=>{
       this.curScreening=(data as Screening);
-      console.log(this.curScreening);
       localStorage.setItem('screeningID', ''+this.curScreening.screeningId);
-      console.log(localStorage.getItem('screeningID'));
+     
     
     });
     
@@ -138,7 +135,7 @@ export class ScreeningService {
    /*  this.getScreeningById(id).subscribe(
       screening => this.httpClient.post(this.urlService.screening.updateScreening(), screening)
     ); */
-    this.httpClient.put(this.urlService.screening.updateScreening(), this.curScreening).subscribe(data=>{console.log(data)});
+    this.httpClient.put(this.urlService.screening.updateScreening(id), this.curScreening).subscribe(data=>{console.log(data)});
   }
   // Submit comments related to the candidate's self-introduction
   // From the IntroductionComponent

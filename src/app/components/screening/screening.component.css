@@ -14,7 +14,6 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.583); /* Black w/ opacity */
 }
-
 /* Modal Content/Box */
 .modal-content {
     text-align: center;

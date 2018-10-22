@@ -86,7 +86,7 @@ export class ViolationFlagComponent implements OnInit {
       comment: comment
     });
     this.violationService.submitViolation(violationType, comment, screeningID).subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
     
   }

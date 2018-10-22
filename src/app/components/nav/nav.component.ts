@@ -28,7 +28,7 @@ export class NavComponent implements OnInit {
   showReports = true;
 
   constructor( private cookies: CookieService,
-    private router: Router) {
+    private router: Router ) {
    }
 
   ngOnInit() {
