@@ -88,9 +88,6 @@ export class SkillTypesComponent implements OnInit {
     /**
     * Opens the modal for creating and editing skill SkillType
     * Resets fields clears the data within set fields
-    * ____________________
-    * THIS DOES NOT ACTUALLY CLEAR DATA SET IN FIELDS
-    * --------------------
     * Creates a variable to reference the open modal service
     */
     open(content) {
@@ -147,7 +144,6 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /** 
-    * Adds bucket to singleSkillTypeBuckets
     * Removes bucket from unassociatedSkillTypeBuckets 
     * @param bucket: Add/Remove bucket from arrays
     */
@@ -155,16 +151,6 @@ export class SkillTypesComponent implements OnInit {
         //Remove bucket from unassociated arr
         let index = this.unassociatedSkillTypeBuckets.findIndex(temp => temp.bucketId === bucket.bucketId);
         this.unassociatedSkillTypeBuckets.splice(index, 1);
-    }
-
-    /** 
-    * Adds bucket to unassociatedSkillTypeBuckets
-    * Removes bucket from singleSkillTypeBuckets 
-    * @param bucket: Add/Remove bucket object from arrays
-    */
-    addUnassociatedBucket(bucket: Bucket) {
-        //Add bucket to unassociated arr
-        this.unassociatedSkillTypeBuckets.push(bucket);
     }
 
     /**
@@ -186,7 +172,6 @@ export class SkillTypesComponent implements OnInit {
                 this.grabAllBuckets();
                 this.removeUnassociatedBucket(results.bucket);
                 this.skillTypeWeights.push(results);
-                console.log(this.skillTypeWeights);
             });
         }
     }
@@ -205,7 +190,7 @@ export class SkillTypesComponent implements OnInit {
                             this.getAllWeights();
                         });
                         //Remove from associated and add to unassociated buckets
-                        this.addUnassociatedBucket(this.allWeights[j].bucket);
+                        this.unassociatedSkillTypeBuckets.push(this.allWeights[j].bucket);
                         this.removeWeight(this.allWeights[j].weightId);
                     }
                 }
@@ -297,7 +282,6 @@ export class SkillTypesComponent implements OnInit {
      * @param skillType: skillType to be deleted
      */
     deleteSkillType(skillType: SkillType) {
-        console.log("delete")
         //Delete weights associated with skillType
         for (let i = 0; i < this.allWeights.length; i++) {
             if (this.allWeights[i].skillType.skillTypeId === skillType.skillTypeId) {
@@ -377,7 +361,6 @@ export class SkillTypesComponent implements OnInit {
     getAllWeights() {
         this.skillTypeBucketService.getAllWeights().subscribe(results => {
             this.allWeights = results;
-            console.log(this.allWeights);
         });
 
     }

@@ -6,11 +6,16 @@ import { ScreeningComponent } from './screening.component';
 import { SkillTypeBucketsComponent } from '../skillType-buckets/skillType-buckets.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { UrlService } from '../../services/urls/url.service';
+import { Router } from '@angular/router';
+
 
 
 // Author: David Gustafson
 
 describe('ScreeningComponent', () => {
+  const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
   let component: ScreeningComponent;
   let fixture: ComponentFixture<ScreeningComponent>;
 
@@ -18,7 +23,7 @@ describe('ScreeningComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ScreeningComponent, SkillTypeBucketsComponent ],
       imports: [FormsModule, RouterTestingModule],
-      providers: []
+      providers: [HttpClient, HttpHandler, UrlService]
     })
     .compileComponents();
   }));

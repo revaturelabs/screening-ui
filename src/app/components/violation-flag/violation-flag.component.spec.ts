@@ -10,6 +10,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
 import { UrlService } from '../../services/urls/url.service';
 import { ScreeningService } from 'src/app/services/screening/screening.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Author: David Gustafson
 
@@ -22,6 +23,7 @@ describe('ViolationFlagComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ViolationFlagComponent ],
+      imports: [RouterTestingModule],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
       SkillTypesService, ViolationTypeService, AlertsService, UrlService, ScreeningService ]
     })

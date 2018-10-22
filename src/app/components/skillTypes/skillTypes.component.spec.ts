@@ -99,10 +99,36 @@ describe('', () => {
     });
 
     it("Check sum of buckets equals 100", () => {
+        component.skillTypeWeights = [];
+        let weight: Weight = {
+            weightId: 0,
+            weightValue: 50,
+            skillType: new SkillType(),
+            bucket: new Bucket(), 
+        };
+        component.skillTypeWeights.push(weight);
 
+        let weight2: Weight = {
+            weightId: 1,
+            weightValue: 50,
+            skillType: new SkillType(),
+            bucket: new Bucket()
+        };
+        component.skillTypeWeights.push(weight2);
+        
+        component.checkBucketSum();
+        expect(component.error).toBeFalsy();
     });
 
     it("Check sum of buckets not equals 100", () => {
+        component.checkBucketSum()
+        expect(component.error).toBeTruthy();
 
+    });
+
+    it("Check if skillTypeWeights is empty", () => {
+        component.skillTypeWeights = [];
+        component.checkBucketSum();
+        expect(component.error).toBeFalsy();
     });
 });
