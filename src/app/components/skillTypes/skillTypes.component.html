@@ -15,13 +15,11 @@
                                 <span class="slider round" placement="top" ngbTooltip="active"></span>
                             </label>
                         </i>
-                        <span>&nbsp;</span>
-                        <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editSkillType(skillType); open(content)"
-                            placement="top" ngbTooltip="edit">
-                        </i>
-                        <span>&nbsp;&nbsp;</span>
-                        <i id="traIcon" class="fas fa-trash-alt pull-right" (click)="deleteSkillType(skillType)" 
+                        <i id="traIcon" class="fas fa-trash-alt float-right" (click)="deleteSkillType(skillType)" 
                             placement="top" ngbTooltip="delete">
+                        </i>
+                        <i id="penIcon" class="fas fa-pencil-alt float-right" (click)="editSkillType(skillType); open(content)"
+                            placement="top" ngbTooltip="edit">
                         </i>
                     </a>
                 </div>
