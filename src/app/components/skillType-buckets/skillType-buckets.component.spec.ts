@@ -19,6 +19,7 @@ describe('SkillTypeBucketsComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
   let component: SkillTypeBucketsComponent;
   let fixture: ComponentFixture<SkillTypeBucketsComponent>;
+  let bucket: Bucket;
 
   /**
   * Import dependencies and set the TestBed to configure the testing module.
@@ -45,6 +46,11 @@ describe('SkillTypeBucketsComponent', () => {
 
     fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     component = fixture.debugElement.componentInstance;
+    bucket = {
+      bucketId: 0,
+      bucketDescription: 'description',
+      isActive: true
+    };
   });
 
   /**
@@ -95,7 +101,7 @@ describe('SkillTypeBucketsComponent', () => {
       var i: number;
       for (i = 1; i < component.buckets.length; ++i) {
         if (component.buckets[i].isActive === true)
-          expect(component.buckets[i - 1].isActive).toEqual('true');
+          expect(component.buckets[i - 1].isActive).toEqual(true);
         }
       });
   }));
@@ -153,11 +159,6 @@ describe('SkillTypeBucketsComponent', () => {
   * Function tested: reditBucket(bucket: Bucket)
   **/
   it('should edit the current bucket', () => {
-    let bucket: Bucket = {
-      bucketId: 0,
-      bucketDescription: 'description',
-      isActive: true
-    };
     component.editBucket(bucket);
     expect(component.currBucket).toEqual(bucket);
   });
@@ -171,16 +172,11 @@ describe('SkillTypeBucketsComponent', () => {
   * 
   * Function tested: updateBucket(bucketParam: Bucket)
   **/
-  it('should update buckets with the current bucket if the argument is falsy and with the argument if not', () => {
+  it('should update a bucket and call a method to emit a success message', () => {
     let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
     let component = fixture.debugElement.componentInstance;
     let bucketsService = fixture.debugElement.injector.get(BucketsService);
     let nullBucket: Bucket = null;
-    let bucket: Bucket = {
-      bucketId: 0,
-      bucketDescription: 'description',
-      isActive: true
-    };
     spyOn(bucketsService, 'updateBucket').and.returnValue(of(bucket));
     spyOn(component, 'getBuckets');
     spyOn(component, 'savedSuccessfully');
@@ -211,11 +207,6 @@ describe('SkillTypeBucketsComponent', () => {
   **/
   it('should create a new bucket', () => {
     let bucketsService = fixture.debugElement.injector.get(BucketsService);
-    let bucket: Bucket = {
-      bucketId: 0,
-      bucketDescription: 'description',
-      isActive: true
-    };
     spyOn(bucketsService, 'createNewBucket').and.returnValue(of(bucket));
     component.buckets = [];
     component.createBucket();
