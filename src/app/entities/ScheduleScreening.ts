@@ -8,9 +8,8 @@ import { SkillType } from './SkillType';
 */
 export interface ScheduledScreening {
   scheduledScreeningId: number;
-  trainee: SimpleTrainee;
-  track: SkillType;
-  status: string;
-  trainer: number;
+  candidate: SimpleTrainee;
+  scheduledStatus: string;
+  skillTypeId: number;
   scheduledDate: Date;
 }

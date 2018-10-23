@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
+import { ScheduledScreening } from '../entities/ScheduleScreening';
 
 @Pipe({
     name: 'searchPipe'
@@ -22,34 +23,25 @@ export class SearchPipe implements PipeTransform {
      * @param field the field of the array to be filtered on.
      * @param value the term being searched.
      */
-    transform(items: any[], field: string, value: string): any[] {
-        if (!items) {
+    transform(SS: ScheduledScreening[], searchText = ""): ScheduledScreening[] {
+        if (!SS){
             return [];
         }
-        if (!field || !value) {
-            return items;
+        if(searchText){
+            searchText = searchText.toLowerCase();
         }
-        if (field === 'all') {
-            return items.filter(item => {
-                for (const i in item) {
-                    if (item[i] !== undefined) {
-                        if (item[i].toString().toLowerCase().includes(value.toLowerCase())) {
-                            return true;
-                        }
-                    }
-                }
-            });
+        
+        if(!searchText){
+            return SS;
         }
-        if (field.split(',').length > 1) {
-            const fields = field.split(',');
-            return items.filter(item => {
-                for (const f in fields) {
-                    if (item[fields[f].trim()].toLowerCase().includes(value.toLowerCase())) {
-                        return true;
-                    }
-                }
-            });
-        }
-        return items.filter(item => item[field].toLowerCase().includes(value.toLowerCase()));
+        return SS.filter (SS => {
+            const searchNumber: number = +searchText;
+            let search: boolean;
+            let name = SS.candidate.firstname +" "+ SS.candidate.lastname;
+            search = name.toLowerCase().includes(searchText) 
+                || SS.candidate.skillTypeName.toLowerCase().includes(searchText);
+        
+            return search;
+        })
     }
 }

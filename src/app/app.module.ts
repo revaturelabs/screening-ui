@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -67,6 +67,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
 
 @NgModule({
+  
   declarations: [
     // components
     AlertsComponent,
@@ -96,6 +97,9 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ToolbarFilterPipe,
     TraineeSearch,
     TrainerPipePipe,
+  ],
+  entryComponents: [
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
