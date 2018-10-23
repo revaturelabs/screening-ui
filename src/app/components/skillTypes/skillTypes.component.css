@@ -42,11 +42,11 @@ h6 {
 
 #penIcon {
   color: #F26925;
+  margin-right: 10px;
 }
 
 #traIcon {
   color: red;
-  margin-right: 10px;
 }
 
 #traIcon:hover {
