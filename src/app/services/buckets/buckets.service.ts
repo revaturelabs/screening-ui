@@ -47,7 +47,7 @@ export class BucketsService {
   }
 
   updateBucket (bucket: Bucket) {
-    return this.http.put<Bucket>(this.urlService.bucket.updateBucket(), bucket, httpOptions);
+    return this.http.put<Bucket>(this.urlService.bucket.updateBucket(bucket.bucketId), bucket, httpOptions);
   }
 
   createNewBucket(bucket: Bucket): Observable<Bucket> {

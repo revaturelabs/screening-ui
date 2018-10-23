@@ -82,8 +82,26 @@ export class QuestionComponent implements OnInit {
   }
 
   /** used to compare buckets Array to sort it based on status */
-  compare(a: Question, b: Question) {
-    if (a.isActive) {
+  compare(questions: Question[]): Question[] {
+    let active: Question[] = [];
+    let inactive: Question[] = [];
+    questions.forEach(function(question) {
+      if(question.isActive) {
+        active.push(question);
+      } else {
+        inactive.push(question);
+      }
+    });
+    active.sort(this.alphabetize);
+    inactive.sort(this.alphabetize);
+    inactive.forEach(function(question) {
+      active.push(question);
+    })
+    return active;
+  }
+
+  alphabetize(a: Question, b: Question) {
+    if(a.questionText<b.questionText) {
       return -1;
     } else {
       return 1;
@@ -187,8 +205,7 @@ export class QuestionComponent implements OnInit {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId)
       .subscribe(
         data => {
-        this.questions = (data as Question[]);
-        this.questions.sort(this.compare);
+        this.questions = this.compare((data as Question[]));
       });
     }
   }

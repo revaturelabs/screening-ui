@@ -14,7 +14,6 @@ import { httpFactory } from '@angular/http/src/http_module';
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
-  //template: './skillType-buckets.component.html',
   styleUrls: ['./skillType-buckets.component.css']
 })
 
@@ -44,14 +43,31 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   getBuckets(): void {
     this.bucketService.getAllBuckets().subscribe(buckets => {
-      this.buckets = buckets;
-      this.buckets.sort(this.compare);
+      this.buckets = this.compare(buckets);
     });
   }
 
   /** used to compare buckets Array to sort it based on status */
-  compare(a: Bucket, b: Bucket) {
-    if (a.isActive) {
+  compare(buckets: Bucket[]): Bucket[] {
+    let active: Bucket[] = [];
+    let inactive: Bucket[] = [];
+    buckets.forEach(function(bucket) {
+      if(bucket.isActive) {
+        active.push(bucket);
+      } else {
+        inactive.push(bucket);
+      }
+    });
+    active.sort(this.alphabetize);
+    inactive.sort(this.alphabetize);
+    inactive.forEach(function(bucket){
+      active.push(bucket);
+    });
+    return active;
+  }
+
+  alphabetize(a:Bucket, b: Bucket) {
+    if(a.bucketDescription.toUpperCase()<b.bucketDescription.toUpperCase()) {
       return -1;
     } else {
       return 1;
