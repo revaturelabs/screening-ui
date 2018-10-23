@@ -9,7 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { Bucket } from 'src/app/entities/Bucket';
 import { of } from 'rxjs';
-import { NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbModule, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 /**
@@ -233,21 +233,50 @@ describe('SkillTypeBucketsComponent', () => {
   });
   
   /**
-  * Test if the modal can be opened and if the new bucket variable 
-  * is instantiated.
+  * Test if the modal gets opened. And test if the close event 
+  * triggering causes the new bucket variable to be instantiated
+  * and the close result to be assigned a message indicating that
+  * the modal closed.
   * 
-  * Test is incomplete right now.
+  * Function tested: open(content)
+  **/
+  it('should open the modal and trigger the modal\'s close event', () => {
+    let modalService = TestBed.get(NgbModal);
+    let modalRef: NgbModalRef = modalService.open(component.createModalRef);
+    spyOn(modalService, "open").and.returnValue(modalRef);
+    component.open(component.createModalRef);
+    expect(modalService.open).toHaveBeenCalled();
+    let modalRefReturnObj = modalService.open(component.createModalRef);
+    modalRef.close();
+    modalRefReturnObj.result.then(() => {
+      expect(component.newBucket).toEqual(new Bucket());
+      expect(component.closeResult).toEqual('Closed with: undefined');
+    }, () => {
+    });
+  });
+
+  /**
+  * Test if the modal gets opened. And test if the dismiss event 
+  * triggering causes the new bucket's description field to be 
+  * assigned an empty string as well as the dismiss result to be assigned a 
+  * message indicating that the modal was dismissed. 
   *
   * Function tested: open(content)
   **/
-  it('should open the modal', () => {
+  it('should open the modal and call the modal\'s dismiss event', () => {
     let modalService = TestBed.get(NgbModal);
-    let modalRef: NgbModalRef;
-    modalRef = modalService.open(component.nameInputRef);
+    let modalRef: NgbModalRef = modalService.open(component.createModalRef);
     spyOn(modalService, "open").and.returnValue(modalRef);
-    component.open(component.nameInputRef);
+    component.open(component.createModalRef);
     expect(modalService.open).toHaveBeenCalled();
     expect(component.newBucket).toEqual(new Bucket());
+    let modalRefReturnObj = modalService.open(component.createModalRef);
+    modalRef.dismiss();
+    modalRefReturnObj.result.then(() => {
+    }, () => {
+      expect(component.newBucket.bucketDescription).toEqual('');
+      expect(component.dismissResult).toEqual('Dismissed with: undefined');
+    });
   });
 
 });

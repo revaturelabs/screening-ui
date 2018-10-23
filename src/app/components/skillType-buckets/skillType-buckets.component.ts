@@ -27,8 +27,9 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   /** Modal variables */
   closeResult: string;
+  dismissResult: string;
 
-  @ViewChild('create') nameInputRef: ElementRef;
+  @ViewChild('create') createModalRef: ElementRef;
 
   constructor(
     private router: Router,
@@ -116,7 +117,7 @@ export class SkillTypeBucketsComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.newBucket.bucketDescription = '';
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.dismissResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
     //event.stopPropagation();
   }

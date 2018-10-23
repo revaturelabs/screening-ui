@@ -28,6 +28,7 @@
     "jquery": "^3.3.1",
     "ngx-cookie-service": "^1.0.10",
     "ngx-pagination": "^3.2.1",
+    "npm-install-peers": "^1.2.1",
     "rxjs": "^6.3.3",
     "zone.js": "~0.8.26"
   },
