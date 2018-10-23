@@ -8,7 +8,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouteService } from '../../services/routes/route.service';
+
 
 
 
@@ -22,8 +25,8 @@ describe('ScreeningComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ScreeningComponent, SkillTypeBucketsComponent ],
-      imports: [FormsModule, RouterTestingModule],
-      providers: [HttpClient, HttpHandler, UrlService]
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule, RouterModule],
+      providers: [ HttpClient, HttpHandler, UrlService, RouteService]
     })
     .compileComponents();
   }));

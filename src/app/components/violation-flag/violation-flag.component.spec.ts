@@ -11,6 +11,7 @@ import { ViolationType } from '../../entities/ViolationType';
 import { UrlService } from '../../services/urls/url.service';
 import { ScreeningService } from 'src/app/services/screening/screening.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Http } from '@angular/http';
 
 // Author: David Gustafson
 
@@ -25,7 +26,7 @@ describe('ViolationFlagComponent', () => {
       declarations: [ ViolationFlagComponent ],
       imports: [RouterTestingModule],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
-      SkillTypesService, ViolationTypeService, AlertsService, UrlService, ScreeningService ]
+      SkillTypesService, ViolationTypeService, AlertsService, UrlService, ScreeningService, Http]
     })
     .compileComponents();
   }));

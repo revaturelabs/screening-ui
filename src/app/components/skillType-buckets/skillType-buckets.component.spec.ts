@@ -9,6 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { Bucket } from 'src/app/entities/Bucket';
 import { of } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SkillTypeBucketsComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
@@ -17,7 +18,7 @@ describe('SkillTypeBucketsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpClientTestingModule
+        HttpClientTestingModule, RouterTestingModule
       ],
       declarations: [
         SkillTypeBucketsComponent
