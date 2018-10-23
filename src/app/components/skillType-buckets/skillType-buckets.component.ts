@@ -80,7 +80,6 @@ export class SkillTypeBucketsComponent implements OnInit {
   updateBucket(bucketParam: Bucket) {
     if (!bucketParam) { bucketParam = this.currBucket; }
     if (bucketParam) {
-      console.log(bucketParam.bucketDescription);
       this.bucketService.updateBucket(bucketParam).subscribe(bucket => {
         this.getBuckets();
       });
