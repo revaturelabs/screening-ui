@@ -49,9 +49,9 @@ export class SkillTypesService {
             skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
-    updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(), { title: skillType.title,
-            skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+    updateSkillTypeBuckets(skillType: SkillType, bucketIds) {
+        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(skillType.skillTypeId), { title: skillType.title,
+            skillTypeId: skillType.skillTypeId, bucketIds: bucketIds }, httpOptions);
     }
 
     getSkillTypeById(skillTypeId: number) {
@@ -61,5 +61,8 @@ export class SkillTypesService {
     /** Temporary solution for this func, need to double check with back-end **/
     getBucketsBySkillType(skillTypeId: number) {
         return this.http.get<Bucket[]>(this.urlService.skillTypes.getBucketBySkillType(skillTypeId));
+    }
+    deleteSkillTypeById(skillTypeId: number){
+        return this.http.delete<any>(`${this.urlService.skillTypes.delete(skillTypeId)}`);
     }
 }

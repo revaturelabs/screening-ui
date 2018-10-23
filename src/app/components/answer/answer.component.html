@@ -12,10 +12,29 @@
   <p>4 - {{question.sampleAnswer4}}</p>
   <p>5 - {{question.sampleAnswer5}}</p>
   <p>Score: {{questionScore.score}}</p>
-  <div class="slidecontainer container text-center">
-    <input [(ngModel)]="questionScore.score" type="range" min="0" max="5" class="slider" id="score">
+  
+  <div class="wrapper text-center" id="scoreselector">
+  <div [(ngModel)]="questionScore.score" ngbRadioGroup name="radioBasic" class="btn-group btn-group-toggle text-center" role="group">
+    <label ngbButtonLabel class="btn btn-outline-dark">
+      <input ngbButton type="radio" [value]=1>1
+    </label>
+    <label ngbButtonLabel class="btn btn-outline-dark">
+        <input ngbButton type="radio" [value]=2>2
+    </label>
+    <label ngbButtonLabel class="btn btn-outline-dark">
+        <input ngbButton type="radio" [value]=3>3
+    </label>
+    <label ngbButtonLabel class="btn btn-outline-dark">
+        <input ngbButton type="radio" [value]=4>4
+    </label>
+    <label ngbButtonLabel class="btn btn-outline-dark">
+        <input ngbButton type="radio" [value]=5>5
+    </label>
+      
   </div>
-  <textarea class="form-control" placeholder="Optional Feedback"></textarea>
+  <p> </p>
+</div>
+  <textarea class="form-control" placeholder="Optional Feedback" [value]="questionScore.commentary"></textarea>
 </div>
 <div class="modal-footer answer-bank-end">
     <span data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class="flag-button glyphicon glyphicon-flag color-red"></span>

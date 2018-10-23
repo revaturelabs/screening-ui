@@ -23,13 +23,23 @@ a{
 }
 
 #xIcon {
-    float: right;
+  float: right;
 }
-
 #penIcon {
   color: #F26925;
+  float: left;
 }
-
+#traIcon {
+  color: red;
+  float: left;
+  margin-left: 10px;
+}
+#penIcon:hover{
+  color:black;
+}
+#traIcon:hover{
+color: black;
+}
 .revatureOrange{
   background-color: #F26925;
   color: white;
@@ -47,24 +57,19 @@ a{
   margin-left: 10px;
 }
 
-#xIcon:hover{
-    color:black;
-}
-
-#penIcon {
-  color: #F26925;
-}
 #allTagsDiv{
   overflow : auto;
   height: 100px;
   width: 430px;
 }
+
 #questionTable{
   margin: auto;
   overflow : auto;
   height: 500px;
   width: 1300px;
 }
+
 #allQuestionsDiv{
   overflow : auto;
   height: 380px;
@@ -87,9 +92,7 @@ a{
   background: #6c757d; 
   border-radius: 5px;
 }
-#penIcon:hover{
-    color:black;
-}
+
 i {
   cursor: pointer;
   cursor: hand;
@@ -141,9 +144,7 @@ input:focus + .slider {
 input:checked + .slider:before {
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
-  transform: translateX(16px);
-
-  
+  transform: translateX(16px);  
 }
 
 /* Rounded sliders */
@@ -158,18 +159,19 @@ input:checked + .slider:before {
 #xIcon:hover .removeToolTip{
   visibility: visible;
 }
+
 .removeToolTip{
   visibility: hidden;
   position: absolute;
   float: right;
   left: 90%;
-  top:70%;
-  
+  top:70%;  
 }
 
 #penIcon:hover .editToolTip{
 visibility: visible;
 }
+
 .editToolTip{
 color: black;
 visibility: hidden;
@@ -178,8 +180,8 @@ float: right;
 width: 10%;
 left: 87%;
 top:70%;
-
 }
+
 .accordion-toggle { display: block; }
 p{
   color: #F26925;
@@ -201,4 +203,27 @@ fixed-modal .modal-content {
   height: 87%;
   justify-content: center;
   font-size: 12px;
+}
+
+.switch:hover{
+  color: black;
+}
+
+
+.modal-header {
+	background-color: #F26925;
+}
+
+.modal-title {
+  text-align: center;
+  color: white;
+}
+
+.close {
+  color:white;
+}
+
+.btn-warning {
+  color: white;
+  background-color: red;
 }

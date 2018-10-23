@@ -38,7 +38,28 @@ h6 {
 
 #penIcon {
 	color: #F26925;
-	margin-right: 10px;
+  float:left;
+}
+
+#traIcon {
+  color: red;
+  float: left;
+  margin-left: 10px;
+}
+
+#penIcon:hover {
+  color:black;
+}
+
+#traIcon:hover {
+  color: black;
+}
+
+.search-bar{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 a {

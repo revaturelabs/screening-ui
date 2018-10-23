@@ -82,17 +82,17 @@ export class CandidatesScreeningListComponent implements OnInit {
     // Mock data for testing without endpoints
     this.scheduledScreenings.push({
       scheduledScreeningId: 0,
-      trainee: { //Mock Data used for test screening
+      candidate: { //Mock Data used for test screening
           traineeID: 0,
           firstname: 'Landon',
           lastname: 'Renzullo',
-          skillTypeID: 56,
+          skillTypeID: 53,
           skillTypeName: 'Java',
           schedule: new Date((new Date()).getTime() + 100000)
         },
-      track: {skillTypeId: 56, title: 'Java', isActive: true},
-      status: 'in progress',
-      trainer: 0,
+      
+      scheduledStatus: 'in progress',
+      skillTypeId: 0,
       scheduledDate: new Date()
     });
   }
@@ -113,30 +113,24 @@ export class CandidatesScreeningListComponent implements OnInit {
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
     this.simpleTraineeService.setSelectedCandidate(this.selectedCandidate);
+    localStorage.setItem('scheduledScreeningID', this.selectedScheduledScreening.scheduledScreeningId.toString()); 
   }
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
     // create a new screening entry in the database by calling the screening service
     this.screeningService
-      .beginScreening(
+      .createScreening(
         // must provide the current scheduled interview object
         this.selectedScheduledScreening,
         // create a new date which signifies the start of the interview
-        new Date(),
+       
         // This was not part of our iteration, but the "1" must be replaced
         // with the trainer's ID so that their is an association
         // between the interviewer and the person who screened them.
-        this.selectedScheduledScreening.trainer,
+        this.selectedScheduledScreening.candidate.traineeID,
         // provide the track of the selected candidate for later use.
         this.selectedCandidate.skillTypeID
-      )
-      .subscribe(
-        // take the data from the response from the database
-        data => {
-        // and save the screening ID as a cookie to localStorage.
-        localStorage.setItem('screeningID', data.toString());
-        console.log(localStorage.getItem('screeningID'));
-      });
+      );
   }
 }

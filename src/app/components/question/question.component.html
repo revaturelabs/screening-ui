@@ -28,14 +28,17 @@
             <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
               <i id="xIcon">
+                <!-- Edit button/function enabled by changing "fa fa-pencil pull-right" to "fas fa-pencil-alt pull-right" -->
+                <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editQuestion(question); open(content)" placement="top"
+                  ngbTooltip="edit"></i>
+                  <i id="traIcon" class="fas fa-trash-alt pull-right" (click)="editQuestion(question);open(delete)" placement="top" 
+                  ngbTooltip="delete"></i>
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
                   <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
                   <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!question.isActive"></span>
                 </label>
               </i>
-              <i id="penIcon" class="fa fa-pencil pull-right" (click)="editQuestion(question); open(content)" placement="top"
-                ngbTooltip="edit"></i>
             </a>
           </div>
         </div>
@@ -48,8 +51,8 @@
 <!--Add new question modal Start-->
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" *ngIf="!testSingleTrack">Question Editor</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <h6 class="modal-title" *ngIf="!testSingleTrack">Question Editor</h6>
+    <button type="button" class="close" aria-label="Close" (click)="updateQuestions();d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -109,17 +112,34 @@
       </div>
       <!--Answers Tab End-->
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-danger" (click)="updateQuestions();c('Close click')">Close</button>
         <!--The save button will save/update a question so long as all of the fields have been filled and display a message that the question has been saved-->
         <button type="button" data-dismiss="modal" class="btn btn-primary" (click)=" addNewQuestion();c('Close click')">Save</button>
         <br>
-        <br>
-        <br>
-      </div>
-      <div class="form-group row">
       </div>
     </form>
     <!--Question Form End-->
   </div>
 </ng-template>
 <!--Ending of the add new question modal -->
+
+<ng-template #delete let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h6 class="modal-title">Delete</h6>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  
+    <div class="modal-body" *ngIf="question">
+      Are you sure you wish to delete this question?
+      <br>
+      Question: {{question.questionText}}
+      <br>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+      <button type="button" data-dismiss="modal" class="btn btn-danger" (click)="editQuestion(question);deleteQuestion();c('Close click')">Delete</button>
+    </div>
+  </ng-template>

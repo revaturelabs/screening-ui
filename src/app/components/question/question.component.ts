@@ -7,7 +7,7 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
+import { CandidatesScreeningListComponent } from '../candidates-screening-list/candidates-screening-list.component';
 
 @Component({
   selector: 'app-question',
@@ -80,6 +80,33 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  /** used to compare buckets Array to sort it based on status */
+  compare(questions: Question[]): Question[] {
+    let active: Question[] = [];
+    let inactive: Question[] = [];
+    questions.forEach(function(question) {
+      if(question.isActive) {
+        active.push(question);
+      } else {
+        inactive.push(question);
+      }
+    });
+    active.sort(this.alphabetize);
+    inactive.sort(this.alphabetize);
+    inactive.forEach(function(question) {
+      active.push(question);
+    })
+    return active;
+  }
+
+  alphabetize(a: Question, b: Question) {
+    if(a.questionText<b.questionText) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
   /**
    * A currently unused function that will give the reason for a modal closing
    * May be used later for giving different results based on how a modal is closed
@@ -99,12 +126,12 @@ export class QuestionComponent implements OnInit {
    * or from deactive to active based on its current status
    **/
   changeQuestionStatus(question) {
+    question.isActive = !question.isActive;
+    
     if (question.isActive) {
-      question.isActive = false;
-      this.questionService.deactivateQuestion(question.questionId).subscribe();
+      this.questionService.activateQuestion(question.questionId).subscribe(() => this.updateQuestions());
    } else {
-      question.isActive = true;
-      this.questionService.activateQuestion(question.questionId).subscribe();
+      this.questionService.deactivateQuestion(question.questionId).subscribe(() => this.updateQuestions());
    }
   }
 
@@ -136,24 +163,21 @@ export class QuestionComponent implements OnInit {
    **/
   addNewQuestion() {
     if (this.sampleAnswers.length === 5 && this.question.questionText) {
+      this.question.sampleAnswer1 = this.sampleAnswers[0];
+      this.question.sampleAnswer2 = this.sampleAnswers[1];
+      this.question.sampleAnswer3 = this.sampleAnswers[2];
+      this.question.sampleAnswer4 = this.sampleAnswers[3];
+      this.question.sampleAnswer5 = this.sampleAnswers[4];
+
       if (this.question.questionId) {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.updateQuestion(this.question).subscribe();
+        this.questionService.updateQuestion(this.question).subscribe(() => this.updateQuestions());
         this.updatedSuccessfully();
       } else {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.createNewQuestion(this.question).subscribe();
+        this.question.isActive = true;
+        this.question.bucket = this.currentBucket;
+        this.questionService.createNewQuestion(this.question).subscribe(() => this.updateQuestions());
         this.savedSuccessfully();
       }
-      this.updateQuestions();
       this.setQuestionNull();
       this.sampleAnswers = [];
     } else {
@@ -167,9 +191,20 @@ export class QuestionComponent implements OnInit {
    **/
   updateQuestions() {
     if (this.currentBucket) {
-      this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
-        this.questions = (data as Question[]);
+      this.questionService.getBucketQuestions(this.currentBucket.bucketId)
+      .subscribe(
+        data => {
+        this.questions = this.compare((data as Question[]));
       });
+    }
+  }
+
+  deleteQuestion() {
+    if(this.question) {
+      this.questionService.deleteQuestion(this.question.questionId)
+      .subscribe(bucket=>{
+        this.updateQuestions();
+      })
     }
   }
 
@@ -182,4 +217,5 @@ export class QuestionComponent implements OnInit {
   savedUnsuccessfull() {
     this.alertsService.error('All Fields Must be Filled');
   }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { NavBarService } from 'src/app/services/nav-bar/nav-bar.service';
+import { Router } from '@angular/router';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -31,9 +32,9 @@ export class NavComponent implements OnInit {
 
   constructor( 
     private cookies: CookieService,
-    public nav: NavBarService
-     ) {
-   }
+    public nav: NavBarService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.userRole = this.cookies.get('role');

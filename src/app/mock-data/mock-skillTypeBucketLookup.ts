@@ -6,7 +6,7 @@ export const SKILL_TYPE_BUCKET_LOOKUP: SkillTypeBucketLookUp = {
       skillType: {
           skillTypeId: 51,
           title: 'Java EE/Microservices',
-          isActive: true
+          active: true
       },
       buckets: [
         { bucketId: 1,

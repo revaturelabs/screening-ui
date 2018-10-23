@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
 import { UrlService } from '../urls/url.service';
 import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
 import { Bucket } from '../../entities/Bucket';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 /**
   * Used url Service to input endpoints to our services
@@ -59,8 +60,14 @@ export class QuestionsService {
    * @param question
    * @param newTagIds
    */
-  updateQuestion(question: Question) {
-    return this.http.put(this.urlService.question.putQuestion(), question, httpOptions);
+  updateQuestion(question: Question): Observable<Question> {
+    return this.http.put<Question>(this.urlService.question.putQuestion(question.questionId), question, httpOptions).pipe(
+        catchError(err=>{return this.handleError(err,question)})
+      );
+  }
+
+  deleteQuestion(questionId: number) {
+    return this.http.delete(this.urlService.question.deleteQuestion(questionId));
   }
 
   /**
@@ -68,8 +75,11 @@ export class QuestionsService {
    * add urlService to get endpoint for deactivating a question
    * @param questionId
   */
-  deactivateQuestion(questionId: number) {
-    return this.http.put(this.urlService.question.deactivateQuestion(questionId), httpOptions);
+  deactivateQuestion(questionId: number): Observable<Object> {
+    return this.http.put(this.urlService.question.deactivateQuestion(questionId), httpOptions)
+      .pipe(
+        catchError(err=>{return this.handleError(err,questionId)})
+    );
   }
 
   /**
@@ -156,5 +166,8 @@ export class QuestionsService {
     return this.returnBuckets;
   }
 
+  private handleError(error: HttpErrorResponse, cause: any) {
+    return throwError(error);
+  };
 
 }
