@@ -1,14 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnswerComponent } from './answer.component';
-
+import { QuestionScoreService } from '../../services/question-score/question-score.service';
 describe('AnswerComponent', () => {
   let component: AnswerComponent;
   let fixture: ComponentFixture<AnswerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnswerComponent ]
+      declarations: [ 
+        AnswerComponent 
+      ],
+      imports: [
+      ],
+      providers: [
+        
+        QuestionScoreService
+      ]
     })
     .compileComponents();
   }));

@@ -21,6 +21,9 @@ import { ViolationFlagComponent } from '../violation-flag/violation-flag.compone
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { UrlService } from 'src/app/services/urls/url.service';
+
+import { TRAINEES } from 'src/app/mock-data/mock-simpleTrainees';
 
 // Author: David Gustafson
 
@@ -54,22 +57,50 @@ const BUCKETS: Bucket[] = [
 describe('QuestionsTableComponent', () => {
   let component: QuestionsTableComponent;
   let fixture: ComponentFixture<QuestionsTableComponent>;
+  let simpleTraineeServiceStub: Partial<SimpleTraineeService>;
+  simpleTraineeServiceStub = {
+    getSelectedCandidate() {
+      return TRAINEES[0];
+    }
+  }
+  let modalServiceStub: Partial<NgbModal>;
+  modalServiceStub = {
+
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
-      imports: [FormsModule],
-      providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
-        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
-        SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService]
-    });
+      declarations: [
+        QuestionsTableComponent,
+        AnswerComponent,
+        ViolationFlagComponent
+      ], //cut out NgbModalBackdrop, NgbModalWindow,
+      imports: [
+        FormsModule
+      ],
+      providers: [
+        HttpClient, 
+        HttpHandler, 
+        QuestionsService, 
+        {provide: SimpleTraineeService, useValue: simpleTraineeServiceStub},
+        SkillTypesService, 
+        QuestionScoreService, 
+        {provide: NgbModal, useValue: modalServiceStub},
+        ScreeningService, //cut out NgbModalStack, 
+        SkillTypeBucketService, 
+        SoftSkillsViolationService, 
+        ViolationTypeService, 
+        AlertsService,
+        UrlService
+      ]
+    }).compileComponents();
 
-    TestBed.overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
-      }
-    })
-      .compileComponents();
+    // TestBed.overrideModule(BrowserDynamicTestingModule, {
+    //   set: {
+    //     entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
+    //   }
+    // })
+    //   .compileComponents();
   }));
 
   beforeEach(() => {
@@ -114,7 +145,7 @@ describe('QuestionsTableComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should return false', () => {
+  it('should return false 1', () => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
   });
 
@@ -129,11 +160,12 @@ describe('QuestionsTableComponent', () => {
   //   expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
   // });
 
-  it('should return true', () => {
+
+  it('should return true 2', () => {
     expect(component.submitAllowed()).toBeTruthy();
   });
 
-  it('should return false', () => {
+  it('should return false 2', () => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
   });
