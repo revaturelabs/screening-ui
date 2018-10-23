@@ -81,8 +81,9 @@ export class UrlService {
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
-    newWeight: () => `${this.weightsEndpoint}/new`,
-    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`
+    newWeight: () => `${this.weightsEndpoint}`,
+    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}`,
+    updateWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}` 
   };
 
   /**
