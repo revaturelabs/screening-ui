@@ -12,7 +12,6 @@ import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/ski
 import { SkillTypesComponent } from './skillTypes.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
-import { componentNeedsResolution } from '@angular/core/src/metadata/resource_loading';
 
 
 describe('', () => {
@@ -127,6 +126,12 @@ describe('', () => {
     });
 
     it("Check if skillTypeWeights is empty", () => {
+        component.skillTypeWeights = [];
+        component.checkBucketSum();
+        expect(component.error).toBeFalsy();
+    });
+
+    it("check result of compare", () => {
         component.skillTypeWeights = [];
         component.checkBucketSum();
         expect(component.error).toBeFalsy();
