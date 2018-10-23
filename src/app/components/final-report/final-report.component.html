@@ -6,12 +6,18 @@
 		<h2 class="text-center">Interview has been submitted</h2>
 		<br>
 		<div class="container-fluid rounded" id ="finalcon">
-			<p id="softskills">{{softSkillString}}</p>			
+			<p>{{overallScoreString}}</p>		
 			<div>
 				<p *ngFor="let bucket of bucketStringArray">{{bucket}}</p>
-			</div>			
-			<p id="overallScoreString">{{overallScoreString}}</p>
-			<p id="generalNotesString">"{{generalNotesString}}"</p>
+			</div>
+			<p id="softskills">{{softSkillString}}</p>	
+			
+			<p [innerHTML]="generalNotesString"></p>			
+		
+			<div *ngIf="softSkillViolations.length > 0">
+				<h2>Violations:</h2>
+				<p *ngFor="let violation of softSkillViolations" ><li>{{violation.violationType.violationTypeText }}: {{violation.comment}}</li></p>
+			</div>
 		</div>
 	</div>
 	<br>

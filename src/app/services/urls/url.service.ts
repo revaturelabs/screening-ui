@@ -27,7 +27,8 @@ export class UrlService {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}/update`,
-    createNewBucket: () => `${this.bucketEndpoint}`
+    createNewBucket: () => `${this.bucketEndpoint}`,
+    deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`
   };
 
   /**
@@ -45,6 +46,7 @@ export class UrlService {
   question = {
     postQuestion: () => `${this.questionEndpoint}/new`,
     putQuestion: () => `${this.questionEndpoint}/update`,
+    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/delete/${questionId}`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
@@ -67,13 +69,13 @@ export class UrlService {
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = 'screening';
+  screeningEndpoint = this.screeningContext + '/screening';
   screening = {
-    scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${this.screeningContext + this.screening}/new`,
-    endScreening: () => `${this.screeningContext + this.screening}/update`,
-    updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening}/`
+    scheduleScreening: () => `${ this.screeningEndpoint}/scheduled`,
+    startScreening: () => `${ this.screeningEndpoint}/new`,
+    endScreening: () => `${ this.screeningEndpoint}/update`,
+    updateScreening: (screenId:number) => `${this.screeningEndpoint}/${screenId}`,
+    getScreening: id => `${this.screeningEndpoint}/`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
@@ -111,6 +113,6 @@ export class UrlService {
     getViolationTypeURL: () => `${this.screeningContext}/violation`,
     getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/${screeningID}/violations`,
     addViolationURL: () => `${this.screeningContext}/violation/new/`,
-    deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
+    deleteViolationURL: (violationID: number) => `${this.screeningContext}/violation/${violationID}`
     };
 }

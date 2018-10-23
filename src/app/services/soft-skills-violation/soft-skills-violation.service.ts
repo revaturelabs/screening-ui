@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { ViolationType } from '../../entities/ViolationType';
 import { UrlService } from '../urls/url.service';
+import { ScreeningService } from '../screening/screening.service';
 
 /**
 * Separate from but related to the Soft Skills service,
@@ -26,7 +27,8 @@ export class SoftSkillsViolationService {
 
   constructor(
     private http: HttpClient,
-    private urlService: UrlService
+    private urlService: UrlService,
+    private screeningService: ScreeningService
   ) { }
 
   headers = new HttpHeaders({
@@ -81,17 +83,19 @@ export class SoftSkillsViolationService {
   }
 
   // Submit a violation with the appropriate comment, screening ID and timestamp.
-  submitViolation(typeID: number, comment: string, screeningID: number): Observable<SoftSkillViolation[]> {
+  submitViolation(vtype: ViolationType, comment: string, screeningID: number): Observable<SoftSkillViolation[]> {
+    console.log(this.softSkillViolations);
     return this.http.post<any[]>(
       this.urlService.softSkillsViolation.addViolationURL(),
       {
-        'violationTypeId': [typeID],
-        'softSkillComment': comment,
-        'violationTime': new Date(),
-        'screeningId': screeningID
+        'violationType': vtype,
+        'comment': comment,
+        'time': new Date(),
+        'screening': this.screeningService.curScreening
       },
       { headers: this.headers }
     );
+    
   }
 
   /**
@@ -105,7 +109,7 @@ export class SoftSkillsViolationService {
   * in response to a change in the observable. Hence, deleteViolation returns an Observable.
   */
   deleteViolation(violationID: number): Observable<any[]> {
-    return this.http.get<any[]>(this.urlService.softSkillsViolation.deleteViolationURL(violationID));
+    return this.http.delete<any[]>(this.urlService.softSkillsViolation.deleteViolationURL(violationID));
   }
 
   updateSoftSkillViolations(softSkillviolations: any[]) {

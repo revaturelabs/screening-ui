@@ -38,8 +38,21 @@ h6 {
 
 #penIcon {
 	color: #F26925;
-  margin-right: 10px;
+  float:left;
+}
+
+#traIcon {
+  color: red;
   float:right;
+  margin-left: 10px;
+}
+
+#penIcon:hover {
+  color:black;
+}
+
+#traIcon:hover {
+  color: black;
 }
 
 a {

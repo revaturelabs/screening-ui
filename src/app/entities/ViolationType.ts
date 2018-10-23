@@ -3,5 +3,6 @@
 */
 export interface ViolationType {
     violationTypeId: number;
-    violationType: string;
+    violationTypeText: string;
+    
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
@@ -24,7 +24,7 @@ The screener must specify if the candidate passed or failed the
 soft skills portion of the interview before they can view the final summary.
 */
 
-export class PassFailComponent implements OnInit {
+export class PassFailComponent implements OnInit,OnChanges {
 
   public candidateName: string;
   previousViolations: any[];
@@ -46,6 +46,9 @@ export class PassFailComponent implements OnInit {
     public softSkillViolationService: SoftSkillsViolationService
   ) {
   }
+  ngOnChanges(){
+    console.log(this.softSkillViolationService.currentSoftSkillViolations);
+  }
 
   ngOnInit() {
     this.disabled = true;
@@ -54,10 +57,12 @@ export class PassFailComponent implements OnInit {
     const violationArray: any[] = [];
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
+      console.log(+localStorage.getItem('screeningID'));
     this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID')).subscribe(data => {
       this.previousViolations = data;
       this.softSkillViolationService.softSkillViolations = this.previousViolations;
     });
+    console.log(this.previousViolations);
     this.violationTypeService.getAllViolationTypes().subscribe(violationTypes => {
       this.getViolations().subscribe(data => {
         // e = our violations
@@ -114,6 +119,11 @@ export class PassFailComponent implements OnInit {
       this.fail();
     }
     this.screeningService.finalSoftSkillComment = this.softSkillFeedback;
+    this.screeningService.curScreening.softSkillCommentary = this.softSkillFeedback;
+    this.screeningService.curScreening.endDateTime = new Date();
+    this.screeningService.curScreening.compositeScore = 100;
+    if(this.passed)this.screeningService.curScreening.softSkillsVerdict = true;
+    this.screeningService.updateScreening(+localStorage.getItem('screeningID') );
   }
 
   pass() {
@@ -135,13 +145,8 @@ export class PassFailComponent implements OnInit {
 
   // Method to delete a violation when clicking the "Remove" button
   deleteViolation(violationId: number, i: number) {
-    this.violationService.deleteViolation(violationId).subscribe(
-      data => {
-        this.previousViolations = data;
-        this.softSkillViolationService.updateSoftSkillViolations(this.previousViolations);
-      }
-    );
-
+    this.violationService.deleteViolation(violationId);
+    this.softSkillViolationService.updateSoftSkillViolations(this.previousViolations);
     if (this.softSkillViolationService.softSkillViolations.length > 1) {
       this.softSkillViolationService.softSkillViolations.splice(i, 1);
     } else {

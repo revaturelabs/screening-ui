@@ -1,12 +1,29 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NavComponent } from './components/nav/nav.component';
+import { RouterOutlet, ChildrenOutletContexts } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let h1: HTMLElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        NavComponent,
+        RouterOutlet
       ],
-    }).compileComponents();
+      providers: [
+        ChildrenOutletContexts,
+        CookieService
+      ]
+    }).compileComponents()
+    .then(()=> {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.debugElement.componentInstance;
+        h1 = fixture.nativeElement.querySelectorAll('router-outlet','app-nav');
+    });
   }));
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);

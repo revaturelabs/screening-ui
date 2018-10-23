@@ -179,7 +179,6 @@ input:checked + .slider:before {
   top: 50%;
   left: 50%;
   font-size: 15px;
-  font-family: 'Futura-Std-Book';
 }
 
 input:checked+ .slider .on

@@ -5,10 +5,10 @@ import { Bucket } from '../../entities/Bucket';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */
-import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
+import { BucketFilterPipe } from '../..z/pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
+import {ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-skill-type-buckets',
@@ -27,6 +27,8 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   /** Modal variables */
   closeResult: string;
+
+  @ViewChild('create') nameInputRef: ElementRef;
 
   constructor(
     private router: Router,
@@ -70,6 +72,15 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.currBucket = bucket;
   }
 
+  deleteBucket() {
+    if(this.currBucket) {
+      this.bucketService.deleteBucket(this.currBucket.bucketId)
+      .subscribe(bucket => {
+        this.getBuckets();
+      });
+    }
+  }
+
   /**
    * resposible for making call for updating a bucket
    * when edited or activity toggled
@@ -91,6 +102,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.bucketService.createNewBucket(this.newBucket)
       .subscribe(bucket => {
         this.buckets.push(bucket);
+        this.getBuckets();
       });
   }
 
@@ -106,7 +118,7 @@ export class SkillTypeBucketsComponent implements OnInit {
       this.newBucket.bucketDescription = '';
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    event.stopPropagation();
+    //event.stopPropagation();
   }
 
   private getDismissReason(reason: any): string {
