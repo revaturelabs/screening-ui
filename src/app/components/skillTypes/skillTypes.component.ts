@@ -33,7 +33,6 @@ export class SkillTypesComponent implements OnInit {
     public unassociatedSkillTypeBuckets: Bucket[] = [];
     public error: boolean;
     public modalServiceRef;
-
     public skillTypeWeights: Weight[] = [];
     public allWeights: Weight[] = [];
 
@@ -45,22 +44,6 @@ export class SkillTypesComponent implements OnInit {
         private alertsService: AlertsService,
         private tab: NgbTabset,
     ) { }
-
-    removeElement(item: any) {
-        let thing: any;
-        for (let i = 0; i < this.allSkillTypes.length; i++) {
-            thing = this.allSkillTypes[i];
-            if (thing.skillTypeName === item.skillTypeName) {
-                if (thing.isActive) {
-                    thing.isActive = !thing.isActive;
-                    this.skillTypeService.deactivateSkillType(thing.skillTypeId).subscribe();
-                } else {
-                    thing.isActive = !thing.isActive;
-                    this.skillTypeService.activateSkillType(thing.skillTypeId).subscribe();
-                }
-            }
-        }
-    }
 
     //Updates a skillType then retrieves all Skill types
     skillTypeUpdate(skillType: SkillType) {
@@ -95,7 +78,7 @@ export class SkillTypesComponent implements OnInit {
         this.singleSkillType = {
             title: skillType.title,
             skillTypeId: skillType.skillTypeId,
-            active: true,
+            active: skillType.active,
         };
         this.getAssociated();
     }
@@ -215,7 +198,6 @@ export class SkillTypesComponent implements OnInit {
     updateSkillType(modal: SkillType) {
         this.skillType = modal;
         this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
-        this.skillType.active = false;
         this.bucketWeightSum = 0;
         if (this.skillTypeWeights.length !== 0) {
             for (const index of this.skillTypeWeights) {
@@ -276,7 +258,7 @@ export class SkillTypesComponent implements OnInit {
         this.skillTypeService.deleteSkillTypeById(skillType.skillTypeId).subscribe(results => {
             this.grabAllSkillTypes();
         });
-        this.getAllWeights();
+        this.getAllWeights();   
     }
 
     /**
