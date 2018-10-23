@@ -33,11 +33,13 @@ export class ScreeningService {
     'Content-type': 'application/json'
   });
 
+  public introComment:string;
+  public curScreening:Screening;
   public softSkillsResult: string;
   public generalComments: string;
   public screeningID$: Observable<Screening>;
   compositeScore: number;
-  finalSoftSkillComment: string;
+  public finalSoftSkillComment: string;
 
 
   // When the screening begins, the following information will be sent,
@@ -104,27 +106,36 @@ export class ScreeningService {
       return undefined;
     }
   }
-  createScreening() {
+  createScreening(scheduledScreening: ScheduledScreening,trainerId:number,skillTypeId:number) {
     this.httpClient.post(this.urlService.screening.startScreening(),
       {
         'status': 'In Progress',
-        'softSkillVerdict': 0,
-        'screenerId': 0,
-        'aboutComments': '',
-        'generalComments': '',
+        'softSkillsVerdict': 0,
+        'screenerId': trainerId,
+        'aboutMeCommentary': '',
+        'generalCommentary': '',
         'softSkillCommentary': '',
-        'startDate': new Date(),
+        'startDateTime': new Date(),
         'endDateTime': '',
-        'screeningId': localStorage.getItem('screeningID'),
-        'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+        'screeningId': 0,
+        'skillType': skillTypeId,
+        'scheduledScreening':scheduledScreening,
         'compositeScore': 0
       }
-    );
+    ).subscribe(data=>{
+      this.curScreening=(data as Screening);
+      localStorage.setItem('screeningID', ''+this.curScreening.screeningId);
+     
+    
+    });
+    
   }
+  //To be fixed
   updateScreening(id: number) {
-    this.getScreeningById(id).subscribe(
+   /*  this.getScreeningById(id).subscribe(
       screening => this.httpClient.post(this.urlService.screening.updateScreening(), screening)
-    );
+    ); */
+    this.httpClient.put(this.urlService.screening.updateScreening(id), this.curScreening).subscribe(data=>{console.log(data)});
   }
   // Submit comments related to the candidate's self-introduction
   // From the IntroductionComponent
