@@ -34,7 +34,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   allTextString: string;
 
   questionScores: QuestionScore[];
-  softSkillViolations: SoftSkillViolation[];
+  softSkillViolations: SoftSkillViolation[] = [];
   public checked: string;
   subscriptions: Subscription[] = [];
 
