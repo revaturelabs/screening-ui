@@ -114,12 +114,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="updateQuestions();c('Close click')">Close</button>
         <!--The save button will save/update a question so long as all of the fields have been filled and display a message that the question has been saved-->
-        <button type="button" data-dismiss="modal" class="save-button" (click)=" addNewQuestion();c('Close click')">Save</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)=" addNewQuestion();c('Close click')">Save</button>
         <br>
-        <br>
-        <br>
-      </div>
-      <div class="form-group row">
       </div>
     </form>
     <!--Question Form End-->
@@ -139,7 +135,10 @@
       Are you sure you wish to delete this question?
       <br>
       Question: {{question.questionText}}
-      <br><br>
+      <br>
+    </div>
+
+    <div class="modal-footer">
       <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
       <button type="button" data-dismiss="modal" class="btn btn-danger" (click)="editQuestion(question);deleteQuestion();c('Close click')">Delete</button>
     </div>
