@@ -5,16 +5,14 @@ import { Bucket } from '../../entities/Bucket';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */
-import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
+import { BucketFilterPipe } from '../..z/pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { httpFactory } from '@angular/http/src/http_module';
-
+import {ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
-  //template: './skillType-buckets.component.html',
   styleUrls: ['./skillType-buckets.component.css']
 })
 
@@ -29,6 +27,8 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   /** Modal variables */
   closeResult: string;
+
+  @ViewChild('create') nameInputRef: ElementRef;
 
   constructor(
     private router: Router,
