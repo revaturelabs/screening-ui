@@ -48,27 +48,19 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   getBuckets(): void {
     this.bucketService.getAllBuckets().subscribe(buckets => {
-      this.buckets = this.compare(buckets);
+      this.buckets = this.customSort(buckets);
     });
   }
 
-  /** used to compare buckets Array to sort it based on status */
-  compare(buckets: Bucket[]): Bucket[] {
-    let active: Bucket[] = [];
-    let inactive: Bucket[] = [];
-    buckets.forEach(function(bucket) {
-      if(bucket.isActive) {
-        active.push(bucket);
-      } else {
-        inactive.push(bucket);
-      }
-    });
-    active.sort(this.alphabetize);
-    inactive.sort(this.alphabetize);
-    inactive.forEach(function(bucket){
-      active.push(bucket);
-    });
-    return active;
+  customSort(buckets: Bucket[]): Bucket[] {
+    buckets.sort(this.compare);
+    let active: Bucket[];
+    let inactive: Bucket[];
+    const index = buckets.indexOf(buckets.find(bucket=>bucket.isActive===false));
+    active=buckets.slice(0,index).sort(this.alphabetize);
+    inactive=buckets.slice(index).sort(this.alphabetize);
+    buckets=active.concat(inactive);
+    return buckets;
   }
 
   alphabetize(a:Bucket, b: Bucket) {
@@ -78,6 +70,15 @@ export class SkillTypeBucketsComponent implements OnInit {
       return 1;
     }
   }
+
+  compare(a: Bucket, b: Bucket) {
+    if(a.isActive) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
 
   /** Save the selected 'bucket' in 'bucket.service' to be used in
     * 'bucket.component'.

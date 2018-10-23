@@ -81,22 +81,23 @@ export class QuestionComponent implements OnInit {
   }
 
   /** used to compare buckets Array to sort it based on status */
-  compare(questions: Question[]): Question[] {
+  customSort(questions: Question[]): Question[] {
+    questions.sort(this.compare);
     let active: Question[] = [];
     let inactive: Question[] = [];
-    questions.forEach(function(question) {
-      if(question.isActive) {
-        active.push(question);
-      } else {
-        inactive.push(question);
-      }
-    });
-    active.sort(this.alphabetize);
-    inactive.sort(this.alphabetize);
-    inactive.forEach(function(question) {
-      active.push(question);
-    })
-    return active;
+    const index = questions.indexOf(questions.find(question=>question.isActive===false));
+    active=questions.slice(0,index).sort(this.alphabetize);
+    inactive=questions.slice(index).sort(this.alphabetize);
+    questions=active.concat(inactive);
+    return questions;    
+  }
+
+  compare(a: Question, b: Question) {
+    if(a.isActive) {
+      return -1;
+    } else {
+      return 1;
+    }
   }
 
   alphabetize(a: Question, b: Question) {
@@ -194,7 +195,7 @@ export class QuestionComponent implements OnInit {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId)
       .subscribe(
         data => {
-        this.questions = this.compare((data as Question[]));
+        this.questions = this.customSort((data as Question[]));
       });
     }
   }
