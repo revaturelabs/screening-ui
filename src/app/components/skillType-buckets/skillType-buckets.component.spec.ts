@@ -107,8 +107,9 @@ describe('SkillTypeBucketsComponent', () => {
   }));
 
   /**
-  * Test if compare algorithm returns the correct number based on active status
-  * and the order in which the bucket arguments being supplied.
+  * Test if compare function returns the right number based on
+  * the bucket arguments supplied (and they're isActive status)
+  * as well as the order in which they're supplied to the function
   *
   * Function tested: compare(a: Bucket, b: Bucket)
   */
