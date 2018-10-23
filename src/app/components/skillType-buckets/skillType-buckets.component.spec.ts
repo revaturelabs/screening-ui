@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { SkillTypeBucketsComponent } from './skillType-buckets.component';
 import { FormsModule } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
@@ -17,6 +17,8 @@ import { NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
  **/
 describe('SkillTypeBucketsComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  let component: SkillTypeBucketsComponent;
+  let fixture: ComponentFixture<SkillTypeBucketsComponent>;
 
   /**
   * Import dependencies and set the TestBed to configure the testing module.
@@ -40,6 +42,9 @@ describe('SkillTypeBucketsComponent', () => {
       ]
     })
     .compileComponents();
+
+    fixture = TestBed.createComponent(SkillTypeBucketsComponent);
+    component = fixture.debugElement.componentInstance;
   });
 
   /**
@@ -48,20 +53,17 @@ describe('SkillTypeBucketsComponent', () => {
   * Function tested: None, just check if the component gets created.
   **/
   it('should create the component', () => {
-    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
-    let component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 
   /**
-  * Test if buckets are retrieved, assigned to buckets, and then sorted correctly
-  * w/ inactive buckets being ordered after active buckets.
+  * Test if buckets are retrieved, assigned to buckets, and 
+  * then sorted correctly w/ inactive buckets being ordered 
+  * after active buckets.
   *
   * Function tested: getBuckets()
   **/
   it('should get and sort buckets', async(() => {
-    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
-    let component = fixture.debugElement.componentInstance;
     let bucketsService = fixture.debugElement.injector.get(BucketsService);
     let buckets: Bucket[] = [
       {
@@ -92,7 +94,7 @@ describe('SkillTypeBucketsComponent', () => {
       expect(component.buckets).toEqual(buckets);
       var i: number;
       for (i = 1; i < component.buckets.length; ++i) {
-        if (component.buckets[i].isActive === 'true')
+        if (component.buckets[i].isActive === true)
           expect(component.buckets[i - 1].isActive).toEqual('true');
         }
       });
@@ -105,8 +107,6 @@ describe('SkillTypeBucketsComponent', () => {
   * Function tested: compare(a: Bucket, b: Bucket)
   */
   it('should return -1 if the first bucket is active and 1 if it\'s not', () => {
-    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
-    let component = fixture.debugElement.componentInstance;
     let buckets: Bucket[] = [{
       bucketId: 0,
       bucketDescription: 'description1',
@@ -125,7 +125,8 @@ describe('SkillTypeBucketsComponent', () => {
   });
 
   /**
-  * Test if setBucket() gets called and if router.navigate() calls the expected url 
+  * Test if setBucket() gets called and if router.navigate() calls 
+  * the expected url 
   *
   * Function tested: routeToBucket(item: Bucket)
   **/
@@ -152,8 +153,6 @@ describe('SkillTypeBucketsComponent', () => {
   * Function tested: reditBucket(bucket: Bucket)
   **/
   it('should edit the current bucket', () => {
-    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
-    let component = fixture.debugElement.componentInstance;
     let bucket: Bucket = {
       bucketId: 0,
       bucketDescription: 'description',
@@ -164,10 +163,11 @@ describe('SkillTypeBucketsComponent', () => {
   });
 
   /**
-  * Test if the methods to update a bucket, retrieve a bucket, and emit a message
-  * indicating success are called.
+  * Test if the methods to update a bucket, retrieve a bucket, and emit 
+  * a message indicating success are called.
   *
-  * Also, test if a null argument causes the bucket parameter to be set with the current bucket value.
+  * Also, test if a null argument causes the bucket parameter to be set 
+  * with the current bucket value.
   * 
   * Function tested: updateBucket(bucketParam: Bucket)
   **/
@@ -204,13 +204,12 @@ describe('SkillTypeBucketsComponent', () => {
   });
 
   /**
-  * Test if the create bucket method being called causes the buckets variable to be set.
+  * Test if the create bucket method being called causes the buckets 
+  * variable to be set.
   *
   * Function tested: createBucket()
   **/
   it('should create a new bucket', () => {
-    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
-    let component = fixture.debugElement.componentInstance;
     let bucketsService = fixture.debugElement.injector.get(BucketsService);
     let bucket: Bucket = {
       bucketId: 0,
@@ -225,13 +224,12 @@ describe('SkillTypeBucketsComponent', () => {
   });
 
   /**
-  * Test if savedSuccessfully() can trigger a "success" message from the alert services' subject
+  * Test if savedSuccessfully() can trigger a "success" message 
+  * from the alert services' subject
   *
   * Function tested: savedSuccessfully()
   **/
   it('should emit the success message from alertsService', () => {
-    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
-    let component = fixture.debugElement.componentInstance;
     let alertsService = TestBed.get(AlertsService);
     spyOn(alertsService, 'getMessage').and.returnValue(alertsService.subject);
     let alertsServicesSubj = alertsService.getMessage();
@@ -243,13 +241,14 @@ describe('SkillTypeBucketsComponent', () => {
   });
   
   /**
-  * Test if the modal can be opened and if the new bucket variable is instantiated.
+  * Test if the modal can be opened and if the new bucket variable 
+  * is instantiated.
+  * 
+  * Test is incomplete right now.
   *
   * Function tested: open(content)
   **/
   it('should open the modal', () => {
-    let fixture = TestBed.createComponent(SkillTypeBucketsComponent);
-    let component = fixture.debugElement.componentInstance;
     let modalService = TestBed.get(NgbModal);
     let modalRef: NgbModalRef;
     modalRef = modalService.open(component.nameInputRef);
