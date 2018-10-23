@@ -7,10 +7,16 @@
 
       <div class="card-body" id="allSkillTypesDiv">
        <div class="form-group row">
+          <!-- <div class="col-sm-12">
+            A search bar to help sift through the unadded tags for when the amount of tags is increased -->
+            <!-- <input type="text" name="bucket" [(ngModel)]="filter.bucketCategory" placeholder="Search Categories" min="0"
+              max="100" class="form-scontrol">
+          </div> -->
           <div class="col-sm-12">
-            <!-- A search bar to help sift through the unadded tags for when the amount of tags is increased -->
-            <input type="text" name="bucket" [(ngModel)]="filter.bucketCategory" placeholder="Search Categories" min="0"
-              max="100" class="form-control">
+          <div class="filters">
+            <!-- Search Bar -->
+            <input [(ngModel)]="searchText" placeholder="Search Categories" class="search-bar">
+          </div>
           </div>
         </div>
 
@@ -18,7 +24,7 @@
         <div class="list-group">
           <!-- clickable to route to Bucket -->
           <!--* routeToBucket() -->
-          <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);">
+          <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets | bucketFilter: searchText" (click)="routeToBucket(bucket);">
             <b>{{bucket.bucketCategory}}</b>
             <br>
             <small>{{bucket.bucketDescription}}</small>
@@ -120,10 +126,12 @@
   <div class="modal-body" *ngIf="currBucket">
     Are you sure you wish to delete this category?
     <br>
-    Name: {{currBucket.bucketCategory}}
     <br>
-    Description: {{currBucket.bucketDescription}}
-    <br><br>
+    Name: {{currBucket.bucketDescription}}
+    <br>
+  </div>
+
+  <div class="modal-footer" *ngIf="currBucket">
     <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
     <button type="button" data-dismiss="modal" class="btn btn-danger" (click)="deleteBucket();c('Close click')">Delete</button>
   </div>

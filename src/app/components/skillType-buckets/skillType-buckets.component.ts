@@ -5,7 +5,7 @@ import { Bucket } from '../../entities/Bucket';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */
-import { BucketFilterPipe } from '../..z/pipes/skillType-buckets.filter';
+import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import {ViewChild, ElementRef} from '@angular/core';
@@ -13,7 +13,8 @@ import {ViewChild, ElementRef} from '@angular/core';
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
-  styleUrls: ['./skillType-buckets.component.css']
+  styleUrls: ['./skillType-buckets.component.css'],
+  providers: [BucketFilterPipe]
 })
 
 export class SkillTypeBucketsComponent implements OnInit {
@@ -28,6 +29,8 @@ export class SkillTypeBucketsComponent implements OnInit {
   /** Modal variables */
   closeResult: string;
 
+  bucketFilter: BucketFilterPipe;
+
   @ViewChild('create') nameInputRef: ElementRef;
 
   constructor(
@@ -35,7 +38,8 @@ export class SkillTypeBucketsComponent implements OnInit {
     private bucketService: BucketsService,
     private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService: AlertsService, ) { }
+    private alertsService: AlertsService
+    ) { }
 
   filter: Bucket = new Bucket();
   ngOnInit() {

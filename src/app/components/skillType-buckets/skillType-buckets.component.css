@@ -55,6 +55,13 @@ h6 {
   color: black;
 }
 
+.search-bar{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 a {
   cursor: pointer;
   cursor: hand;
