@@ -20,4 +20,20 @@ describe('utils', () => {
         expect(stringifyDate(sampleDate)).toContain('1979-03-12T00:00:00.0');
     });
 
+    it('should append T to date', () =>{
+        class DateAsStringArray{
+            year: string;
+            month: string;
+            day: string;
+        }
+
+        const sampleDate: DateAsStringArray = {
+            year: '1875',
+            month: '11',
+            day: '30',
+        };
+
+        expect(stringifyDate(sampleDate)).toMatch('1875-11-30T00:00:00.0');
+    });
+
 });
