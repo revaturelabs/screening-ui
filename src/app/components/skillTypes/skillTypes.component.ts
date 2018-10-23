@@ -64,7 +64,6 @@ export class SkillTypesComponent implements OnInit {
 
     //Updates a skillType then retrieves all Skill types
     skillTypeUpdate(skillType: SkillType) {
-        console.log(skillType);
         this.skillTypeService.updateSkillType(skillType).subscribe(results => {
             this.grabAllSkillTypes();
         });
@@ -216,6 +215,7 @@ export class SkillTypesComponent implements OnInit {
     updateSkillType(modal: SkillType) {
         this.skillType = modal;
         this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
+        this.skillType.active = false;
         this.bucketWeightSum = 0;
         if (this.skillTypeWeights.length !== 0) {
             for (const index of this.skillTypeWeights) {
@@ -245,8 +245,8 @@ export class SkillTypesComponent implements OnInit {
      */
     updateWeight(weight: Weight) {
         let index = this.allWeights.findIndex(temp => temp.weightId === weight.weightId);
-                    this.allWeights[index].weightValue = weight.weightValue;
-                    this.skillTypeBucketService.updateWeight(this.allWeights[index]).subscribe(results => { });
+        this.allWeights[index].weightValue = weight.weightValue;
+        this.skillTypeBucketService.updateWeight(this.allWeights[index]).subscribe(results => { });
     }
 
     /**
@@ -302,15 +302,31 @@ export class SkillTypesComponent implements OnInit {
     */
     grabAllSkillTypes() {
         this.skillTypeService.getSkillTypes().subscribe((results) => {
-            this.allSkillTypes = results;
-            this.allSkillTypes.sort(this.compare);
-            console.log(this.allSkillTypes);
+            this.allSkillTypes = this.compare(results);
         });
     }
 
-    /** used to compare SkillType Array to sort it based on status */
-    compare(a: SkillType, b: SkillType) {
-        if (a.active) {
+    /** used to compare SkillType Array to sort it based on status. skillType array is then alphabetized */
+    compare(skillTypes: SkillType[]): SkillType[] {
+        let active: SkillType[] = [];
+        let inactive: SkillType[] = [];
+        skillTypes.forEach(function (skillType) {
+            if (skillType.active) {
+                active.push(skillType);
+            } else {
+                inactive.push(skillType);
+            }
+        });
+        active.sort(this.alphabetize);
+        inactive.sort(this.alphabetize);
+        inactive.forEach(function (skillType) {
+            active.push(skillType);
+        });
+        return active;
+    }
+
+    alphabetize(a: SkillType, b: SkillType) {
+        if (a.title.toUpperCase() < b.title.toUpperCase()) {
             return -1;
         } else {
             return 1;
