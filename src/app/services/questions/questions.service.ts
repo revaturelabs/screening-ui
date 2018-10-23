@@ -61,7 +61,7 @@ export class QuestionsService {
    * @param newTagIds
    */
   updateQuestion(question: Question): Observable<Question> {
-    return this.http.put<Question>(this.urlService.question.putQuestion(), question, httpOptions).pipe(
+    return this.http.put<Question>(this.urlService.question.putQuestion(question.questionId), question, httpOptions).pipe(
         catchError(err=>{return this.handleError(err,question)})
       );
   }

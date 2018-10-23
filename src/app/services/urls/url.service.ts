@@ -26,7 +26,7 @@ export class UrlService {
   bucket = {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
-    updateBucket: () => `${this.bucketEndpoint}/update`,
+    updateBucket: (bucketId) => `${this.bucketEndpoint}/${bucketId}`,
     createNewBucket: () => `${this.bucketEndpoint}`,
     deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`
   };
@@ -44,12 +44,12 @@ export class UrlService {
    */
   private questionEndpoint = (this.adminContext + '/question');
   question = {
-    postQuestion: () => `${this.questionEndpoint}/new`,
-    putQuestion: () => `${this.questionEndpoint}/update`,
-    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/delete/${questionId}`,
+    postQuestion: () => `${this.questionEndpoint}/`,
+    putQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
+    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
    };
 
