@@ -33,8 +33,8 @@ describe('BucketsService', () => {
   });
 
   /**
-  * Check that the correct url is called, that the correct request method is called, 
-  * and that the flushed in data equals the data retrieved from the get request. 
+  * Test that a request to the url was made, that the correct request method was made,
+  * and that the response equals our mock data. 
   *
   * Function tested: getAllBuckets()
   */
@@ -64,8 +64,8 @@ describe('BucketsService', () => {
   });
 
   /**
-  * Check that the correct url is called, that the correct request method is called, 
-  * and that the flushed in data equals the data retrieved from the get request. 
+  * Test that a request to the url was made, that the correct request method was made,
+  * and that the response equals our mock data.
   *
   * Function tested: getBucketById(bucketId: number)
   */
@@ -77,8 +77,8 @@ describe('BucketsService', () => {
   });
 
   /**
-  * Check that the correct url is called, that the correct request method is called, 
-  * and that the flushed in data equals the data retrieved from the get request. 
+  * Test that a request to the url was made, that the correct request method was made,
+  * and that the response equals our mock data.
   *
   * Function tested: updateBucket (bucket: Bucket)
   */
@@ -90,8 +90,8 @@ describe('BucketsService', () => {
   });
 
   /**
-  * Check that the correct url is called, that the correct request method is called, 
-  * and that the flushed in data equals the data retrieved from the get request. 
+  * Test that a request to the url was made, that the correct request method was made,
+  * and that the response equals our mock data.
   *
   * Function tested: createNewBucket(bucket: Bucket)
   */
