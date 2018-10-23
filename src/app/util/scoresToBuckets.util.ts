@@ -31,6 +31,7 @@ export class ScoresToBucketsUtil {
              bucketScores[qs.bucketId] += qs.score;
          }
        );
+
        for(var key in bucketWeights){
         tempScore = 0;
          //find percent of each bucket
@@ -40,6 +41,7 @@ export class ScoresToBucketsUtil {
           score += tempScore*bucketWeights[key].weightValue/100;
           //make string for each bucket with its name and percent
         }
+
         parts.push(bucketWeights[key].bucket.bucketDescription +": " + tempScore.toFixed(0) +"% " );
       }
       //returning string array with, bucket string, overallscore string, and just the score by itself as a string
