@@ -66,6 +66,7 @@ import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { NavBarService } from './services/nav-bar/nav-bar.service';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,8 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
-    ViolationTypeService
+    ViolationTypeService,
+    NavBarService
   ],
   bootstrap: [AppComponent]
 })

@@ -17,6 +17,14 @@ export const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'home',
+    component: CandidatesScreeningListComponent,
+      canActivate: [RoleGuard],
+      data: {
+        roles: [ roles.screenerRole, roles.vpRole ]
+      },
+  },
+  {
     path: 'list',
     component: CandidatesScreeningListComponent,
       canActivate: [RoleGuard],
@@ -69,16 +77,12 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'home',
-    component: LoginComponent,
-  },
-  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: '/home'
+    redirectTo: '/login'
   }
 ];
