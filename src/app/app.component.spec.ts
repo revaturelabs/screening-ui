@@ -54,5 +54,6 @@ describe('AppComponent', () => {
   //   const compiled = fixture.debugElement.nativeElement;
   //   console.log(compiled);
   //   expect(compiled.querySelectorAll('h1').textContent).toContain('Welcome to screening-ui-gen!');
+  //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to screening-ui-gen!');
   // }));
 });

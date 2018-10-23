@@ -12,6 +12,8 @@ import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/ski
 import { SkillTypesComponent } from './skillTypes.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
+import { RouterTestingModule} from '@angular/router/testing'
+import { componentNeedsResolution } from '@angular/core/src/metadata/resource_loading';
 
 
 describe('', () => {
@@ -21,7 +23,7 @@ describe('', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SkillTypesComponent],
-            imports: [FormsModule],
+            imports: [FormsModule, RouterTestingModule],
             providers: [NgbTabset, HttpClient, HttpHandler, UrlService, BucketsService, SkillTypesService, NgbModal, AlertsService, SkillTypeBucketService]
         })
             .compileComponents();
@@ -35,7 +37,7 @@ describe('', () => {
         let track: SkillType ={
             skillTypeId: 1,
             title: "Test",
-            isActive: true,
+            active: true,
         }
 
         let weight: Weight = {

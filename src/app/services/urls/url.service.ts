@@ -81,9 +81,9 @@ export class UrlService {
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
-    newWeight: () => `${this.weightsEndpoint}/new`,
-    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`,
-    updateWeight: () => `${this.weightsEndpoint}/update` 
+    newWeight: () => `${this.weightsEndpoint}/`,
+    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}`,
+    updateWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}` 
   };
 
   /**
@@ -103,7 +103,7 @@ export class UrlService {
     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
     putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/updateSkillTypeBucket`,
+    updateSkillTypeBuckets: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
     setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
     getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
 

@@ -12,7 +12,6 @@ import { CandidatesScreeningListComponent } from '../candidates-screening-list/c
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
- // template: './question.component.html',
   styleUrls: ['./question.component.css'],
   animations: [
     trigger('move', [
@@ -112,13 +111,9 @@ export class QuestionComponent implements OnInit {
     question.isActive = !question.isActive;
     
     if (question.isActive) {
-      question.isActive = false;
-      this.questionService.deactivateQuestion(question.questionId)
-      .subscribe(questions=>this.updateQuestions());
+      this.questionService.activateQuestion(question.questionId).subscribe(() => this.updateQuestions());
    } else {
-      question.isActive = true;
-      this.questionService.activateQuestion(question.questionId)
-      .subscribe(questions=>this.updateQuestions());
+      this.questionService.deactivateQuestion(question.questionId).subscribe(() => this.updateQuestions());
    }
   }
 
