@@ -123,7 +123,7 @@ export class PassFailComponent implements OnInit,OnChanges {
     this.screeningService.curScreening.endDateTime = new Date();
     this.screeningService.curScreening.compositeScore = 100;
     if(this.passed)this.screeningService.curScreening.softSkillsVerdict = true;
-    this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+    this.screeningService.updateScreening(+localStorage.getItem('screeningID') );
   }
 
   pass() {

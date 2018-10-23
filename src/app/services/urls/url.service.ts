@@ -72,9 +72,9 @@ export class UrlService {
   screeningEndpoint = this.screeningContext + '/screening';
   screening = {
     scheduleScreening: () => `${ this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${ this.screeningEndpoint}/new`,
-    endScreening: () => `${ this.screeningEndpoint}/update`,
-    updateScreening: () => `${this.screeningEndpoint}/update`,
+    startScreening: () => `${ this.screeningEndpoint}/`,
+    endScreening: () => `${ this.screeningEndpoint}/`,
+    updateScreening: (screenId:number) => `${this.screeningEndpoint}/${screenId}`,
     getScreening: id => `${this.screeningEndpoint}/`
    };
   weightsEndpoint = this.adminContext + '/weight';
@@ -112,7 +112,7 @@ export class UrlService {
   softSkillsViolation = {
     getViolationTypeURL: () => `${this.screeningContext}/violation`,
     getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/${screeningID}/violations`,
-    addViolationURL: () => `${this.screeningContext}/violation/new/`,
+    addViolationURL: () => `${this.screeningContext}/violation/`,
     deleteViolationURL: (violationID: number) => `${this.screeningContext}/violation/${violationID}`
     };
 }

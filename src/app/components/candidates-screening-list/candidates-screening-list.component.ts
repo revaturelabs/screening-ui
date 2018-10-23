@@ -118,10 +118,7 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
-    console.log(+localStorage.getItem('screeningID'));
-    console.log(this.selectedScheduledScreening);
-    console.log(this.selectedScheduledScreening.candidate.traineeID);
-    console.log(this.selectedCandidate.skillTypeID);
+   ;
     // create a new screening entry in the database by calling the screening service
     this.screeningService
       .createScreening(
