@@ -31,7 +31,7 @@ a{
 }
 #traIcon {
   color: red;
-  float: right;
+  float: left;
   margin-left: 10px;
 }
 #penIcon:hover{
@@ -207,4 +207,23 @@ fixed-modal .modal-content {
 
 .switch:hover{
   color: black;
+}
+
+
+.modal-header {
+	background-color: #F26925;
+}
+
+.modal-title {
+  text-align: center;
+  color: white;
+}
+
+.close {
+  color:white;
+}
+
+.btn-warning {
+  color: white;
+  background-color: red;
 }
