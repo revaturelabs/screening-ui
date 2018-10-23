@@ -49,10 +49,12 @@ export class ViolationFlagComponent implements OnInit {
       this.simpleTraineeService.getSelectedCandidate().lastname;
   }
 
+  
+
   getViolationTypes(): void {
     this.violationTypeService.getViolationTypes().subscribe(
       violationTypes => {
-        this.violationTypes.push(... violationTypes);
+        this.violationTypes =violationTypes;
       }
     );
   }
@@ -80,11 +82,13 @@ export class ViolationFlagComponent implements OnInit {
       violationID: undefined,
       screeningID: +localStorage.getItem('screeningID'),
       violationType: violationType,
-      Time: new Date(),
-      Comment: comment
+      time: new Date(),
+      comment: comment
     });
-    this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
+    this.violationService.submitViolation(violationType, comment, screeningID).subscribe(data => {
+      //console.log(data);
     });
+    
   }
 
   cancelViolation() {

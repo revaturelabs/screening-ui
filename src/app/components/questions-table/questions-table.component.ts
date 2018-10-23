@@ -77,6 +77,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
     const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
+    //console.log(this.simpleTraineeService.getSelectedCandidate());
     this.subscriptions.push(
       this.skillTypeBucketService.
       getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
@@ -90,6 +91,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
           }
         );
       }
+      console.log(myBuckets);
       this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
       this.questionBuckets = bucketsWithWeights;
     }));
@@ -141,6 +143,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
         return true;
       }
     }
+    //console.log(this.questionScores);
   }
 
   // Method that controls whether the user is allowed to click the submit button
@@ -160,6 +163,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     // tslint:disable-next-line:radix
-    this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+    this.screeningService.generalComments=this.generalComment;
+    this.screeningService.curScreening.generalCommentary=this.generalComment;
+    this.screeningService.updateScreening(+localStorage.getItem('screeningID'));
   }
 }

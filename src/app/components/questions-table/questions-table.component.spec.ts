@@ -149,17 +149,17 @@ describe('QuestionsTableComponent', () => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
   });
 
-  it('should return true 1', () => {
-    component.questionScores.push({
-      qSID: 1,
-      questionId: 1,
-      screeningID: 1,
-      score: 1,
-      commentary: 'string',
-      bucketId: 1,
-      beginTime: new Date});
-    expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
-  });
+  // it('should return true', () => {
+  //   component.questionScores.push({
+  //     qSID: 1,
+  //     questionId: 1,
+  //     screeningID: 1,
+  //     score: 1,
+  //     commentary: 'string',
+  //     beginTime: new Date});
+  //   expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
+  // });
+
 
   it('should return true 2', () => {
     expect(component.submitAllowed()).toBeTruthy();

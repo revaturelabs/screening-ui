@@ -10,6 +10,8 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
 
+import { CanDeactivateGuard }    from './can-deactivate.guard';
+
 export const routes: Routes = [
   {
     path: '',
@@ -17,6 +19,7 @@ export const routes: Routes = [
   },
   {
     path: 'screening',
+    canDeactivate: [CanDeactivateGuard],
     component: ScreeningComponent,
     // canActivate: [RoleGuard],
     // data: {
