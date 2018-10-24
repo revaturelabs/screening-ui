@@ -10,6 +10,8 @@ import { UrlService } from 'src/app/services/urls/url.service';
 import { Bucket } from 'src/app/entities/Bucket';
 import { of } from 'rxjs';
 import { NgbModal, NgbModalRef, NgbModule, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { BucketFilterPipe } from 'src/app/pipes/skillType-buckets.filter';
+import { first } from 'rxjs/operators';
 
 
 /**
@@ -32,6 +34,7 @@ describe('SkillTypeBucketsComponent', () => {
         NgbModule.forRoot(),
       ],
       declarations: [
+        BucketFilterPipe,
         SkillTypeBucketsComponent, 
       ],
       providers: [ 
@@ -54,7 +57,7 @@ describe('SkillTypeBucketsComponent', () => {
   });
 
   /**
-  * Test if the components is created.
+  * Test if the component is created.
   *
   * Function tested: None, just check if the component gets created.
   **/
@@ -63,9 +66,10 @@ describe('SkillTypeBucketsComponent', () => {
   });
 
   /**
-  * Test if buckets are retrieved, assigned to buckets, and 
-  * then sorted correctly w/ inactive buckets being ordered 
-  * after active buckets.
+  * Test if buckets are retrieved and assigned to buckets variable.
+  * Also test if buckets are sorted correctly w/ inactive buckets being ordered 
+  * after active buckets, and active and inactive buckets both being
+  * sorted alphabetically.
   *
   * Function tested: getBuckets()
   **/
@@ -73,62 +77,104 @@ describe('SkillTypeBucketsComponent', () => {
     let bucketsService = fixture.debugElement.injector.get(BucketsService);
     let buckets: Bucket[] = [
       {
-        bucketId: 0,
-        bucketDescription: 'description1',
-        isActive: false
-      },
-      {
         bucketId: 1,
-        bucketDescription: 'description2',
+        bucketDescription: 'descriptionA',
         isActive: true
       },
       {
         bucketId: 2,
-        bucketDescription: 'description3',
-        isActive: false
+        bucketDescription: 'descriptionB',
+        isActive: true
       },
       {
         bucketId: 3,
-        bucketDescription: 'description4',
-        isActive: true
-      }
+        bucketDescription: 'descriptionC',
+        isActive: false
+      },
+      {
+        bucketId: 4,
+        bucketDescription: 'descriptionD',
+        isActive: false
+      },
     ];
     spyOn(bucketsService, 'getAllBuckets').and.returnValue(of(buckets));
     component.getBuckets();
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(component.buckets).toEqual(buckets);
-      var i: number;
+      var i: number = 0;
+      var alphabetical: boolean;
       for (i = 1; i < component.buckets.length; ++i) {
-        if (component.buckets[i].isActive === true)
+        if (component.buckets[i].isActive === true) {
           expect(component.buckets[i - 1].isActive).toEqual(true);
+          alphabetical = component.buckets[i - 1].bucketDescription.toLowerCase() < component.buckets[i].bucketDescription.toLowerCase();
+          expect(alphabetical).toBe(true);
         }
+
+        if (component.buckets[i].isActive === false && component.buckets[i - 1].isActive === false) {
+          alphabetical = component.buckets[i - 1].bucketDescription.toLowerCase() < component.buckets[i].bucketDescription.toLowerCase();
+          expect(alphabetical).toBe(true);
+        }
+      }
       });
   }));
 
   /**
-  * Test if compare function returns the right number based on
-  * the bucket arguments supplied (and they're isActive status)
-  * as well as the order in which they're supplied to the function
+  * Test if compare function sorts the buckets based on
+  * the isActive status (inactive buckets should come after
+  * active buckets) and if active and inactive buckets are
+  * sorted alphabetically by their description.
   *
   * Function tested: compare(a: Bucket, b: Bucket)
   */
   it('should return -1 if the first bucket is active and 1 if it\'s not', () => {
-    let buckets: Bucket[] = [{
-      bucketId: 0,
-      bucketDescription: 'description1',
-      isActive: true
-    },
-    {
-      bucketId: 1,
-      bucketDescription: 'description2',
-      isActive: false
-    }
-  ];
-    let firstBucketIsActiveValue = component.compare(buckets[0], buckets[1]);
-    expect(firstBucketIsActiveValue).toEqual(-1);
-    let secondBucketIsActiveValue = component.compare(buckets[1], buckets[0]);
-    expect(secondBucketIsActiveValue).toEqual(1);
+    let buckets: Bucket[] = [
+      {
+        bucketId: 1,
+        bucketDescription: 'descriptionB',
+        isActive: true
+      },
+      {
+        bucketId: 2,
+        bucketDescription: 'descriptionD',
+        isActive: false
+      },
+      {
+        bucketId: 3,
+        bucketDescription: 'descriptionA',
+        isActive: true
+      },
+      {
+        bucketId: 4,
+        bucketDescription: 'descriptionC',
+        isActive: false
+      },
+    ];
+
+    let comparisonBuckets: Bucket[] = [
+      {
+        bucketId: 3,
+        bucketDescription: 'descriptionA',
+        isActive: true
+      },
+      {
+        bucketId: 1,
+        bucketDescription: 'descriptionB',
+        isActive: true
+      },
+      {
+        bucketId: 4,
+        bucketDescription: 'descriptionC',
+        isActive: false
+      },
+      {
+        bucketId: 2,
+        bucketDescription: 'descriptionD',
+        isActive: false
+      },
+    ];
+    let sortedBuckets = component.compare(buckets);
+    expect(sortedBuckets).toEqual(comparisonBuckets);
   });
 
   /**

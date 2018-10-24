@@ -86,7 +86,6 @@ describe('CandidatesScreeningListComponent', () => {
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedScheduledScreening.trainer = 1;
     component.selectedCandidate = {} as SimpleTrainee;
     component.selectedCandidate.skillTypeID = 1;
     component.beginScreening();
@@ -96,7 +95,6 @@ describe('CandidatesScreeningListComponent', () => {
   it('should populate localStorage', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedScheduledScreening.trainer = 1;
     component.selectedCandidate = {} as SimpleTrainee;
     component.selectedCandidate.skillTypeID = 1;
     component.beginScreening();
