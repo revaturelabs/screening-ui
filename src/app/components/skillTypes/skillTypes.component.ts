@@ -312,7 +312,6 @@ export class SkillTypesComponent implements OnInit {
             return -1;
         } else {
             return 1;
-            return 1;
         }
     }
 
