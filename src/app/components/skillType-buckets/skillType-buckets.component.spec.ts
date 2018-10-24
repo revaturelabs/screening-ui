@@ -41,6 +41,7 @@ describe('SkillTypeBucketsComponent', () => {
         { provide: Router, useValue: routerSpy },
         AlertsService,
         BucketsService,
+        BucketFilterPipe,
         QuestionsService,
         UrlService,
       ]

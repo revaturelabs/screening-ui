@@ -8,6 +8,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { CandidatesScreeningListComponent } from '../candidates-screening-list/candidates-screening-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-question',
@@ -43,7 +44,8 @@ export class QuestionComponent implements OnInit {
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService,
+    private router: Router) { }
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -58,6 +60,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
+    if(!this.currentBucket) {this.goToBuckets();}
     this.question = new Question();
     this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
     this.updateQuestions();
@@ -80,27 +83,32 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  goToBuckets() {
+    this.router.navigate(['settings/main']);
+  }
+
   /** used to compare buckets Array to sort it based on status */
-  compare(questions: Question[]): Question[] {
-    let active: Question[] = [];
-    let inactive: Question[] = [];
-    questions.forEach(function(question) {
-      if(question.isActive) {
-        active.push(question);
-      } else {
-        inactive.push(question);
-      }
-    });
-    active.sort(this.alphabetize);
-    inactive.sort(this.alphabetize);
-    inactive.forEach(function(question) {
-      active.push(question);
-    })
-    return active;
+  customSort(questions: Question[]): Question[] {
+    questions.sort(this.compare);
+    let active: Question[];
+    let inactive: Question[];
+    const index = questions.indexOf(questions.find(question=>question.isActive===false));
+    active=questions.slice(0,index).sort(this.alphabetize);
+    inactive=questions.slice(index).sort(this.alphabetize);
+    questions= index!==-1 ? active.concat(inactive) : questions.sort(this.alphabetize);
+    return questions;    
+  }
+
+  compare(a: Question, b: Question) {
+    if(a.isActive) {
+      return -1;
+    } else {
+      return 1;
+    }
   }
 
   alphabetize(a: Question, b: Question) {
-    if(a.questionText<b.questionText) {
+    if(a.questionText.toUpperCase()<b.questionText.toUpperCase()) {
       return -1;
     } else {
       return 1;
@@ -126,13 +134,10 @@ export class QuestionComponent implements OnInit {
    * or from deactive to active based on its current status
    **/
   changeQuestionStatus(question) {
-    question.isActive = !question.isActive;
-    
-    if (question.isActive) {
-      this.questionService.activateQuestion(question.questionId).subscribe(() => this.updateQuestions());
-   } else {
-      this.questionService.deactivateQuestion(question.questionId).subscribe(() => this.updateQuestions());
-   }
+    this.questionService.updateQuestion(question)
+    .subscribe(
+      () => this.updateQuestions()
+    );
   }
 
   /**
@@ -194,7 +199,7 @@ export class QuestionComponent implements OnInit {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId)
       .subscribe(
         data => {
-        this.questions = this.compare((data as Question[]));
+        this.questions = this.customSort(data);
       });
     }
   }
@@ -217,5 +222,7 @@ export class QuestionComponent implements OnInit {
   savedUnsuccessfull() {
     this.alertsService.error('All Fields Must be Filled');
   }
+
+
 
 }
