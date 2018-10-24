@@ -10,7 +10,7 @@ import { UrlService } from 'src/app/services/urls/url.service';
 import { Bucket } from 'src/app/entities/Bucket';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NgbModal, NgbModalRef, NgbModule, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 /**
@@ -126,9 +126,9 @@ describe('SkillTypeBucketsComponent', () => {
       isActive: false
     }
   ];
-    let firstBucketIsActiveValue = component.compare(buckets[0], buckets[1]);
+    let firstBucketIsActiveValue = component.alphabetize(buckets[0], buckets[1]);
     expect(firstBucketIsActiveValue).toEqual(-1);
-    let secondBucketIsActiveValue = component.compare(buckets[1], buckets[0]);
+    let secondBucketIsActiveValue = component.alphabetize(buckets[1], buckets[0]);
     expect(secondBucketIsActiveValue).toEqual(1);
   });
 
