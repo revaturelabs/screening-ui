@@ -59,7 +59,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     const index = buckets.indexOf(buckets.find(bucket=>bucket.isActive===false));
     active=buckets.slice(0,index).sort(this.alphabetize);
     inactive=buckets.slice(index).sort(this.alphabetize);
-    buckets=active.concat(inactive);
+    buckets= index!==-1 ? active.concat(inactive) : buckets.sort(this.alphabetize);
     return buckets;
   }
 

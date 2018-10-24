@@ -19,7 +19,7 @@
               </a>
             </div>
             <div class="col-sm-6">
-              <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div>
+              <div id="daTitle" *ngIf="currentBucket" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
                   <i id="traIcon" class="fas fa-trash-alt pull-right" (click)="editQuestion(question);open(delete)" placement="top" 
                   ngbTooltip="delete"></i>
                 <label class="switch">
-                  <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
+                  <input type="checkbox" [(ngModel)]="question.isActive" (change)="changeQuestionStatus(question)">
                   <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
                   <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!question.isActive"></span>
                 </label>
@@ -42,7 +42,7 @@
             </a>
           </div>
         </div>
-        <button class="btn btn-primary btn-sm" (click)='setQuestionNull(); open(content);'>Create New Question</button>
+        <button class="btn btn-primary btn-sm" *ngIf="currentBucket" (click)='setQuestionNull(); open(content);'>Create New Question</button>
       </div>
     </div>
   </div>
