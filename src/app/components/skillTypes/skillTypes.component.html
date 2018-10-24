@@ -81,7 +81,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
         <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType);"
             [disabled]="error" *ngIf="singleSkillType">Save</button>
     </div>
@@ -109,7 +109,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
         <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value);"
             *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
     </div>

@@ -118,7 +118,6 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
-   ;
     // create a new screening entry in the database by calling the screening service
     this.screeningService
       .createScreening(

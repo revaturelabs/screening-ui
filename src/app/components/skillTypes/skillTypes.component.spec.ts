@@ -37,7 +37,7 @@ describe('', () => {
         let track: SkillType ={
             skillTypeId: 1,
             title: "Test",
-            isActive: true,
+            active: true,
         }
 
         let weight: Weight = {
