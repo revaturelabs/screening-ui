@@ -55,7 +55,7 @@ export class ViolationFlagComponent implements OnInit {
     this.violationTypeService.getViolationTypes().subscribe(
       violationTypes => {
         this.violationTypes =violationTypes;
-      }
+      }, err => console.error('Observer got an error: ' + err)
     );
   }
 
@@ -75,7 +75,9 @@ export class ViolationFlagComponent implements OnInit {
     // Send request with the violation + comments
     const screeningID = Number.parseInt(localStorage.getItem('screeningID'));
     this.alertsService.success('Soft Skill Violation Added');
-    this.violationTypeService.getAllViolationTypes().subscribe(data => console.log(data));
+    this.violationTypeService.getAllViolationTypes().subscribe(data => {console.log(data)
+    }, err => console.error('Observer got an error: ' + err)
+    );
     this.flagChange();
 
     this.violationService.softSkillViolations.push({
@@ -86,8 +88,9 @@ export class ViolationFlagComponent implements OnInit {
       comment: comment
     });
     this.violationService.submitViolation(violationType, comment, screeningID).subscribe(data => {
-      //console.log(data);
-    });
+      console.log(data);
+    }, err => console.error('Observer got an error: ' + err)
+    );
     
   }
 

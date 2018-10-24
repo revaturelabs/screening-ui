@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CandidateComponent } from './candidate.component';
+import { FormsModule } from '@angular/forms';
 
 describe('CandidateComponent', () => {
   let component: CandidateComponent;
@@ -8,7 +9,9 @@ describe('CandidateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CandidateComponent ]
+      declarations: [ CandidateComponent ],
+      imports: [FormsModule, NgbModule],
+      providers: [NgbModal]
     })
     .compileComponents();
   }));

@@ -24,6 +24,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from 'src/app/services/urls/url.service';
 
 import { TRAINEES } from 'src/app/mock-data/mock-simpleTrainees';
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Author: David Gustafson
 
@@ -70,37 +71,13 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        QuestionsTableComponent,
-        AnswerComponent,
-        ViolationFlagComponent
-      ], //cut out NgbModalBackdrop, NgbModalWindow,
-      imports: [
-        FormsModule
-      ],
-      providers: [
-        HttpClient, 
-        HttpHandler, 
-        QuestionsService, 
-        {provide: SimpleTraineeService, useValue: simpleTraineeServiceStub},
-        SkillTypesService, 
-        QuestionScoreService, 
-        {provide: NgbModal, useValue: modalServiceStub},
-        ScreeningService, //cut out NgbModalStack, 
-        SkillTypeBucketService, 
-        SoftSkillsViolationService, 
-        ViolationTypeService, 
-        AlertsService,
-        UrlService
-      ]
-    }).compileComponents();
+      declarations: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
+      imports: [FormsModule, RouterTestingModule],
+      providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
+        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
+        SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
+    });
 
-    // TestBed.overrideModule(BrowserDynamicTestingModule, {
-    //   set: {
-    //     entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
-    //   }
-    // })
-    //   .compileComponents();
   }));
 
   beforeEach(() => {
@@ -130,7 +107,19 @@ describe('QuestionsTableComponent', () => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
   });
 
-  it('should return true', () => {
+  it('should return true 1', () => {
+    component.questionScores.push({
+      qSID: 1,
+      questionId: 1,
+      screeningID: 1,
+      score: 1,
+      commentary: 'string',
+      bucketId: 1,
+      beginTime: new Date});
+    expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
+  });
+
+  it('should return true 2', () => {
     expect(component.submitAllowed()).toBeTruthy();
   });
 

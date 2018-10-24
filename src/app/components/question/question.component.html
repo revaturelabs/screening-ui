@@ -114,7 +114,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="updateQuestions();c('Close click')">Close</button>
         <!--The save button will save/update a question so long as all of the fields have been filled and display a message that the question has been saved-->
-        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)=" addNewQuestion();c('Close click')">Save</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary" id="saveModal" (click)=" addNewQuestion();c('Close click')">Save</button>
         <br>
       </div>
     </form>

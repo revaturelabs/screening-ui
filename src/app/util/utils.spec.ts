@@ -20,11 +20,20 @@ describe('utils', () => {
         expect(stringifyDate(sampleDate)).toContain('1979-03-12T00:00:00.0');
     });
 
-    // this is the only method that's actually used in this service
-    it('stringifyDate converts dates successfully, when they\'re stored in a Date object', () => {
-        const dateString = '1968-11-16T00:00:00';
-        const newDate = new Date(dateString);
+    it('should append T to date', () =>{
+        class DateAsStringArray{
+            year: string;
+            month: string;
+            day: string;
+        }
 
-        expect(stringifyDate(newDate)).toContain(dateString);
-      });
+        const sampleDate: DateAsStringArray = {
+            year: '1875',
+            month: '11',
+            day: '30',
+        };
+
+        expect(stringifyDate(sampleDate)).toMatch('1875-11-30T00:00:00.0');
+    });
+
 });

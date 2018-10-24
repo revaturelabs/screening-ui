@@ -371,3 +371,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# duplicate src folder
+/src/coverage

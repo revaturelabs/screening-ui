@@ -9,6 +9,7 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { UrlService } from '../../services/urls/url.service';
 
 // Author: David Gustafson
 
@@ -22,7 +23,7 @@ describe('PassFailComponent', () => {
     TestBed.configureTestingModule({
       declarations: [PassFailComponent, ViolationFlagComponent],
       providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, SimpleTraineeService,
-        ViolationTypeService, AlertsService]
+        ViolationTypeService, AlertsService, UrlService, SkillTypesService]
     })
       .compileComponents();
   }));
@@ -36,4 +37,60 @@ describe('PassFailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return true', () => {
+    const result = component.wasClicked();
+    expect(result).toEqual(true);
+  });
+
+  it('should return true when wasClicked is called', () => {
+    component.passChecked = false;
+    const result = component.wasClicked();
+    expect(result).toEqual(true);
+  });
+
+  it('endScreeningPrompt should return none when endScreening is false', ()=>{
+    component.endScreening = false;
+    const result = component.endScreeningPrompt();
+    expect(result).toEqual('none');
+  });
+
+  it('disabled should be false when updateCheckedFail is called', () => {
+    component.failChecked = false;
+    const result = component.updateCheckedFail(true) ;
+    expect(component.disabled).toEqual(false);
+  });
+
+  it('pass should set endScreening to true', () => {
+    const result = component.pass() ;
+    expect(component.endScreening).toEqual(true);
+  });
+
+  it('fail should set endScreening to true', () => {
+    const result = component.fail() ;
+    expect(component.endScreening).toEqual(true);
+  });
+
+  it('getPassed should return false when not set', () => {
+    const result = component.getPassed() ;
+    expect(component.endScreening).toEqual(false);
+  });
+
+  it('endScreeningPrompt should return block when endScreening is true', () => {
+    component.endScreening = true;
+    const result = component.endScreeningPrompt() ;
+    expect(result).toEqual('block');
+  });
+
+  it('should return false if softskillviolation is undefined', () => {
+    const result = component.hasViolations() ;
+    expect(result).toEqual(false);
+  });
+
+  it('should call pass() if passChecked is true when calling submit', () => {
+    component.passChecked = true;
+    const result = component.submit();
+    expect(component.endScreening).toEqual(true);
+  });
+  
 });
