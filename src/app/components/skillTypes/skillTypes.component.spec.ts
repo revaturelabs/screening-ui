@@ -14,7 +14,7 @@ import { UrlService } from '../../services/urls/url.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 
-fdescribe('', () => {
+describe('', () => {
     let component: SkillTypesComponent;
     let fixture: ComponentFixture<SkillTypesComponent>;
     let stbs: SkillTypeBucketService;
