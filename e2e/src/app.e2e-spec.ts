@@ -36,17 +36,4 @@ describe('workspace-project App', () => {
     expect(page4.getH1Text()).toEqual('Candidate List');
   });
 
-  it('should display link name Back to Categories', () => {
-    page5.navigateTo();
-    expect(page5.getBBText()).toEqual('Back to Categories');
-  });
-
-  it('click on tab2 and populate list group item', function() {
-    browser.get('http://localhost:4200/#/settings/main');
-    element(by.id('tab-2')).click();
-    //element.all(by.css('.list-group-item')).get(0).element(by.tagName('a')).getText().toEqual('Beta Skills');
-    expect(element.all(by.css('.list-group-item')).get(0).getText()).toEqual('Beta Skills');
-  });
-
-  
 });

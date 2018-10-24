@@ -1,8 +1,11 @@
-import { TestBed } from "@angular/core/testing";
+import { TestBed, inject } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { BucketsService } from "./buckets.service";
 import { UrlService } from "../urls/url.service";
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Bucket } from "src/app/entities/Bucket";
+
+
 
 describe('BucketsService', () => {
   let service: BucketsService;
@@ -10,6 +13,9 @@ describe('BucketsService', () => {
   let httpTestingController: HttpTestingController;
   
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [BucketsService, HttpClient, HttpHandler, UrlService]
+    });
     TestBed.configureTestingModule({ 
       imports: [
         HttpClientTestingModule,

@@ -20,15 +20,15 @@ export class SettingsPage {
   }
 }
 
-export class SettingsBucketPage {
-  navigateTo() {
-    return browser.get('/#/settings/bucket');
-  }
+ export class SettingsBucketPage {
+   navigateTo() {
+     return browser.get('/#/settings/bucket');
+   }
 
-  getBBText() {
-    return element(by.css('[routerlink="/settings/main"]')).getText();
-  }
-}
+   getBBText() {
+     return element(by.css('[routerlink="/settings/main"]')).getText();
+   }
+ }
 
 export class ScreeningQuestionPage {
   navigateTo() {

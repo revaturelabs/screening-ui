@@ -7,17 +7,17 @@
 
       <div class="card-body" id="allSkillTypesDiv">
         <!-- List of all buckets -->
-        <div class="list-group">
+        <!-- <div class="list-group"> -->
           <!-- clickable to route to Bucket -->
           <!--* routeToBucket() -->
-          <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets| bucketFilter:filter" (click)="routeToBucket(bucket);">
+          <!-- <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets| bucketFilter:filter" (click)="routeToBucket(bucket);">
             <b>{{bucket.bucketCategory}}</b>
             <br>
-            <small>{{bucket.bucketDescription}}</small>
+            <small>{{bucket.bucketDescription}}</small> -->
 
             <!--* editBucket(bucket), passes the bucket selected to component side.
                 * open(edit), calls modal to open. -->
-            <div class="col-sm" (click)="$event.cancelBubble=true; ">
+            <!-- <div class="col-sm" (click)="$event.cancelBubble=true; ">
               <i id="xIcon">
                 <label class="switch">
                   <input type="checkbox" [(ngModel)]="bucket.isActive" (change)="updateBucket(bucket);">
@@ -27,10 +27,10 @@
             </div>
             <i id="penIcon" class="fa fa-pencil pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
               ngbTooltip="edit">
-            </i>
+            </i> -->
 
-          </a>
-        </div>
+          <!-- </a>
+        </div> -->
 
       </div>
 

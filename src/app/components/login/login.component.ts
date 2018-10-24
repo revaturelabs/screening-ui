@@ -41,11 +41,8 @@ export class LoginComponent implements OnInit{
         this.userData = { Username: this.username, Pool: this.userPool };
         this.authenticationData = { Username : this.username, Password : this.password };
         this.authenticationDetails = new AuthenticationDetails(this.authenticationData);
-       
+
         this.autheniticateUser();
-   
-        // Due to issues with Asynchronization we added a forced wait
-        this.sleep(1000);
 
         // Call the setCookie method to take the role form local storage and place it in the cookie
         this.setCookie(localStorage.getItem('role'));
@@ -55,7 +52,7 @@ export class LoginComponent implements OnInit{
     autheniticateUser(){
         var cognitoUser = new CognitoUser(this.userData);
         this.cognitoUser = cognitoUser;
-        
+
         // Method that calls Cognito
         cognitoUser.authenticateUser(this.authenticationDetails, {
             newPasswordRequired: function(userAttributes, requiredAttributes) {
@@ -63,7 +60,7 @@ export class LoginComponent implements OnInit{
                 delete userAttributes.email_verified;
                 cognitoUser.completeNewPasswordChallenge(newPassword, userAttributes, this);
             },
-            // Called when a dataset updated/downloaded 
+            // Called when a dataset updated/downloaded
             onSuccess: function (result) {
                 // Turns the result into an object we can interact with
                 const decPayload = result.getIdToken().decodePayload();
@@ -71,9 +68,9 @@ export class LoginComponent implements OnInit{
                 for (const value of Object.values(decPayload)) {
                     switch(value.toString()){
                         // Each type of user will have it's own case
-                        case "ROLE_VP":                  
-                        case "ROLE_SCREENER":      
-                            localStorage.setItem('role', value.toString());     
+                        case "ROLE_VP":
+                        case "ROLE_SCREENER":
+                            localStorage.setItem('role', value.toString());
                             break;
                         default: // do nothing
                             break;
@@ -95,21 +92,22 @@ export class LoginComponent implements OnInit{
           }
         }
       }
-      
+
     // This will run after you press the login button to see if the credentials were correct
     // If they are navigate to the home screen
     checkCookie(){
         var cookie = this.cookies.get('role');
         switch (cookie){
-            case "ROLE_VP":                  
-            case "ROLE_SCREENER":     
+            case "ROLE_VP":
+            case "ROLE_SCREENER":
+                this.nav.show();
                 this.router.navigate(['/home']);
                 break;
             default: // do nothing
                 break;
         }
     }
-    
+
     // Sets the cookie we will use to authenticate in the application
     setCookie(role:string){
         this.cookies.set('role', role);

@@ -23,27 +23,11 @@ describe('CandidatesScreeningListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CandidatesScreeningListComponent, 
-        SearchPipe, 
-        PaginatePipe, 
-        PaginationControlsComponent,
-        PaginationControlsDirective
-      ],
-      imports: [
-        FormsModule, 
-        HttpClientModule
-      ],
-      providers: [
-        SimpleTraineeService, 
-        ScreeningService, 
-        ScheduleScreeningService, 
-        SoftSkillsViolationService,
-        QuestionScoreService, 
-        SkillTypesService, 
-        PaginationService, 
-        UrlService
-      ]
+      declarations: [CandidatesScreeningListComponent, SearchPipe, PaginatePipe, PaginationControlsComponent,
+        PaginationControlsDirective],
+      imports: [FormsModule, HttpClientModule],
+      providers: [UrlService, SimpleTraineeService, ScreeningService, ScheduleScreeningService, SoftSkillsViolationService,
+        QuestionScoreService, SkillTypesService, PaginationService]
     })
       .compileComponents();
   }));
@@ -68,20 +52,6 @@ describe('CandidatesScreeningListComponent', () => {
     const result = component.toggleBeginScreeningPrompt();
     expect(result).toEqual('block');
   });
-
-  it('should update storage', () => {
-    component.selectedScheduledScreening = {} as ScheduledScreening;
-    component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.confirmSelectedCandidate();
-    const confirm = localStorage.getItem('scheduledScreeningID');
-    expect(confirm).toEqual('1');
-  });
-
-  // it('should reload window', () => {
-  //   const spy = spyOn(window.location, 'reload');
-  //   component.ngOnInit();
-  //   expect(spy).toHaveBeenCalled();
-  // });
 
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;

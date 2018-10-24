@@ -8,20 +8,25 @@ import { SkillTypesService } from '../../services/skill-types/skill-types.servic
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
+import { UrlService } from '../../services/urls/url.service';
+import { ScreeningService } from 'src/app/services/screening/screening.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Http } from '@angular/http';
 
 // Author: David Gustafson
 
 // Can't test with subscribes, comment out subscribes in component to run tests
 
-xdescribe('ViolationFlagComponent', () => {
+describe('ViolationFlagComponent', () => {
   let component: ViolationFlagComponent;
   let fixture: ComponentFixture<ViolationFlagComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ViolationFlagComponent ],
+      imports: [RouterTestingModule],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
-      SkillTypesService, ViolationTypeService, AlertsService ]
+      SkillTypesService, ViolationTypeService, AlertsService, UrlService, ScreeningService, Http]
     })
     .compileComponents();
   }));

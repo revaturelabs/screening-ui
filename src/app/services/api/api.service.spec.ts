@@ -55,15 +55,12 @@ describe('ApiService', () => {
         expect(service.stringifyDate(sampleDate)).toContain('1979-03-12T00:00:00.0');
     }));
 
-    // this is the only method that's actually used in this service
-    it('stringifyDate converts dates successfully, when they\'re stored in a Date object', inject([ApiService], (service: ApiService) => {
+    it('testing if block for stringifyDate', inject([ApiService], (service: ApiService) => {
         const dateString = '1968-11-16T00:00:00';
-        const newDate = new Date(dateString);
 
-        expect(service.stringifyDate(newDate)).toContain(dateString);
+        expect(service.stringifyDate(['1968-11-16'])).toContain(dateString);
       }));
 
-    // test doGet with mock data
     it('doGet should call HttpClient.get, and return the passed-in string', () => {
         httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
         apiService = new ApiService(<any> httpClientSpyOnGet);
@@ -80,7 +77,7 @@ describe('ApiService', () => {
         expect(httpClientSpyOnGet.get.calls.count()).toBe(1, 'one call');
     });
 
-    // test doPost with mock data
+    
     it('doPost should call HttpClient.post, and return the passed-in string', () => {
         httpClientSpyOnPost = jasmine.createSpyObj('http', ['post']);
         apiService = new ApiService(<any> httpClientSpyOnPost);
@@ -97,7 +94,6 @@ describe('ApiService', () => {
         expect(httpClientSpyOnPost.post.calls.count()).toBe(1, 'one call');
     });
 
-    // test doPut with mock data
     it('doPut should call HttpClient.put, and return the passed-in string', () => {
         httpClientSpyOnPut = jasmine.createSpyObj('http', ['put']);
         apiService = new ApiService(<any> httpClientSpyOnPut);
@@ -114,7 +110,7 @@ describe('ApiService', () => {
         expect(httpClientSpyOnPut.put.calls.count()).toBe(1, 'one call');
     });
 
-    // test doDelete with mock data
+    
     it('doDelete should call HttpClient.delete, and return the passed-in string', () => {
         httpClientSpyOnDelete = jasmine.createSpyObj('http', ['delete']);
         apiService = new ApiService(<any> httpClientSpyOnDelete);

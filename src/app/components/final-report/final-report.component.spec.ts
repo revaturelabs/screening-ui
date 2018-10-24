@@ -10,6 +10,7 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
+import { UrlService } from '../../services/urls/url.service';
 
 // Author: David Gustafson
 // Can't test because of error: "Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https"
@@ -22,7 +23,7 @@ describe('FinalReportComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ FinalReportComponent ],
       providers: [ ScreeningService, HttpClient, HttpHandler, SimpleTraineeService, SkillTypesService,
-        SkillTypeBucketService, QuestionScoreService, ScoresToBucketsUtil, AlertsService, SoftSkillsViolationService ]
+        SkillTypeBucketService, QuestionScoreService, ScoresToBucketsUtil, AlertsService, SoftSkillsViolationService, UrlService ]
     })
     .compileComponents();
   }));
@@ -33,4 +34,7 @@ describe('FinalReportComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

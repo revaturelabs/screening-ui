@@ -151,7 +151,7 @@ describe('QuestionComponent', () => {
   **/
   it('should change question status', () => {
     component.changeQuestionStatus(QUESTIONS[0]);
-    expect(QUESTIONS[0].isActive).toBe(false);
+    expect(QUESTIONS[0].isActive).toBe(true);
     component.changeQuestionStatus(QUESTIONS[0]);
     expect(QUESTIONS[0].isActive).toBe(true);
   });

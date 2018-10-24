@@ -125,7 +125,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     this.currentBucket = bucketID;
     this.questionService.getBucketQuestions(bucketID).subscribe(questions=>{
         this.questionsInBucket = questions;
-      }
+      }, err => console.error('Observer got an error: ' + err)
     );
   }
 

@@ -5,4 +5,5 @@ describe('ToStringPipe', () => {
     const pipe = new ArrToStringPipe();
     expect(pipe).toBeTruthy();
   });
+
 });

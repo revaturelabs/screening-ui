@@ -9,6 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { Bucket } from 'src/app/entities/Bucket';
 import { of } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModal, NgbModalRef, NgbModule, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { BucketFilterPipe } from 'src/app/pipes/skillType-buckets.filter';
 import { first } from 'rxjs/operators';
@@ -30,7 +31,7 @@ describe('SkillTypeBucketsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpClientTestingModule,
+        HttpClientTestingModule, RouterTestingModule,
         NgbModule.forRoot(),
       ],
       declarations: [
@@ -41,6 +42,7 @@ describe('SkillTypeBucketsComponent', () => {
         { provide: Router, useValue: routerSpy },
         AlertsService,
         BucketsService,
+        BucketFilterPipe,
         QuestionsService,
         UrlService,
       ]
@@ -128,53 +130,21 @@ describe('SkillTypeBucketsComponent', () => {
   * Function tested: compare(a: Bucket, b: Bucket)
   */
   it('should return -1 if the first bucket is active and 1 if it\'s not', () => {
-    let buckets: Bucket[] = [
-      {
-        bucketId: 1,
-        bucketDescription: 'descriptionB',
-        isActive: true
-      },
-      {
-        bucketId: 2,
-        bucketDescription: 'descriptionD',
-        isActive: false
-      },
-      {
-        bucketId: 3,
-        bucketDescription: 'descriptionA',
-        isActive: true
-      },
-      {
-        bucketId: 4,
-        bucketDescription: 'descriptionC',
-        isActive: false
-      },
-    ];
-
-    let comparisonBuckets: Bucket[] = [
-      {
-        bucketId: 3,
-        bucketDescription: 'descriptionA',
-        isActive: true
-      },
-      {
-        bucketId: 1,
-        bucketDescription: 'descriptionB',
-        isActive: true
-      },
-      {
-        bucketId: 4,
-        bucketDescription: 'descriptionC',
-        isActive: false
-      },
-      {
-        bucketId: 2,
-        bucketDescription: 'descriptionD',
-        isActive: false
-      },
-    ];
-    let sortedBuckets = component.compare(buckets);
-    expect(sortedBuckets).toEqual(comparisonBuckets);
+    let buckets: Bucket[] = [{
+      bucketId: 0,
+      bucketDescription: 'description1',
+      isActive: true
+    },
+    {
+      bucketId: 1,
+      bucketDescription: 'description2',
+      isActive: false
+    }
+  ];
+    let firstBucketIsActiveValue = component.alphabetize(buckets[0], buckets[1]);
+    expect(firstBucketIsActiveValue).toEqual(-1);
+    let secondBucketIsActiveValue = component.alphabetize(buckets[1], buckets[0]);
+    expect(secondBucketIsActiveValue).toEqual(1);
   });
 
   /**

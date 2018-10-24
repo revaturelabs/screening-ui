@@ -45,7 +45,20 @@ export class SimpleTraineeService {
 
   // Return the current selected candidate
   getSelectedCandidate(): SimpleTrainee {
-    return this.selectedCandidate;
+    if(this.selectedCandidate){
+      return this.selectedCandidate;
+    }
+    else {
+      let s: SimpleTrainee = {
+        traineeID: 0,
+        firstname: " ",
+        lastname: " ",
+        skillTypeID: 0,
+        skillTypeName: " ",
+        schedule: null,
+      }
+      return s;
+    }
   }
 
 }

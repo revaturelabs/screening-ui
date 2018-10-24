@@ -9,14 +9,15 @@
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action" *ngFor="let skillType of allSkillTypes">
                         {{skillType.title}}
-                        <i id="traIcon" class="fas fa-trash-alt float-right" (click)="deleteSkillType(skillType)" 
-                            placement="top" ngbTooltip="delete">
-                        </i>
                         <i id="xIcon">
                             <label class="switch">
                                 <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)">
-                                <span class="slider round" placement="top" ngbTooltip="active"></span>
+                                <span class="slider round" placement="top" ngbTooltip="activate" *ngIf=!skillType.active></span>
+                                <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf=skillType.active></span>
                             </label>
+                        </i>
+                        <i id="traIcon" class="fas fa-trash-alt float-right" (click)="deleteSkillType(skillType)" 
+                            placement="top" ngbTooltip="delete">
                         </i>
                         <i id="penIcon" class="fas fa-pencil-alt float-right" (click)="editSkillType(skillType); open(content)"
                             placement="top" ngbTooltip="edit">
@@ -56,7 +57,7 @@
                             <span class="input-group-addon col-sm-5 revatureOrange" id="font-fix">{{weight.bucket.bucketDescription}}</span>
                             <input type="number" class="form-control border-right-0 bucketWeight"
                                 min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}"
-                                (keyup)="checkBucketSum(); checkMinMax(weight)">
+                                (change)="checkBucketSum(); checkMinMax(weight)">
                             <input type="number" name="sum" class="form-control border-right-0" [hidden]="true"
                                 [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
                             <span class="input-group-addon percentSign" style="border-top-right-radius: 11%; border-bottom-right-radius: 11%;">%</span>
