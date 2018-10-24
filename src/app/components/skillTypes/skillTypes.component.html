@@ -12,7 +12,8 @@
                         <i id="xIcon">
                             <label class="switch">
                                 <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)">
-                                <span class="slider round" placement="top" ngbTooltip="active"></span>
+                                <span class="slider round" placement="top" ngbTooltip="activate" *ngIf=!skillType.active></span>
+                                <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf=skillType.active></span>
                             </label>
                         </i>
                         <i id="traIcon" class="fas fa-trash-alt float-right" (click)="deleteSkillType(skillType)" 
