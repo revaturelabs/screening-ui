@@ -26,7 +26,7 @@ export class UrlService {
   bucket = {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
-    updateBucket: () => `${this.bucketEndpoint}/update`,
+    updateBucket: (bucketId) => `${this.bucketEndpoint}/${bucketId}`,
     createNewBucket: () => `${this.bucketEndpoint}`,
     deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`
   };
@@ -44,12 +44,12 @@ export class UrlService {
    */
   private questionEndpoint = (this.adminContext + '/question');
   question = {
-    postQuestion: () => `${this.questionEndpoint}/new`,
-    putQuestion: () => `${this.questionEndpoint}/update`,
-    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/delete/${questionId}`,
+    postQuestion: () => `${this.questionEndpoint}/`,
+    putQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
+    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
    };
 
@@ -72,18 +72,18 @@ export class UrlService {
   screeningEndpoint = this.screeningContext + '/screening';
   screening = {
     scheduleScreening: () => `${ this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${ this.screeningEndpoint}/new`,
-    endScreening: () => `${ this.screeningEndpoint}/update`,
-    updateScreening: () => `${this.screeningEndpoint}/update`,
+    startScreening: () => `${ this.screeningEndpoint}/`,
+    endScreening: () => `${ this.screeningEndpoint}/`,
+    updateScreening: (screenId:number) => `${this.screeningEndpoint}/${screenId}`,
     getScreening: id => `${this.screeningEndpoint}/`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
-    newWeight: () => `${this.weightsEndpoint}/new`,
-    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`,
-    updateWeight: () => `${this.weightsEndpoint}/update` 
+    newWeight: () => `${this.weightsEndpoint}/`,
+    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}`,
+    updateWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}` 
   };
 
   /**
@@ -103,7 +103,7 @@ export class UrlService {
     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
     putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/updateSkillTypeBucket`,
+    updateSkillTypeBuckets: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
     setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
     getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
 
@@ -112,7 +112,7 @@ export class UrlService {
   softSkillsViolation = {
     getViolationTypeURL: () => `${this.screeningContext}/violation`,
     getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/${screeningID}/violations`,
-    addViolationURL: () => `${this.screeningContext}/violation/new/`,
+    addViolationURL: () => `${this.screeningContext}/violation/`,
     deleteViolationURL: (violationID: number) => `${this.screeningContext}/violation/${violationID}`
     };
 }

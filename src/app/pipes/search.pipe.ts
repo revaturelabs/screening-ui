@@ -37,7 +37,8 @@ export class SearchPipe implements PipeTransform {
         return SS.filter (SS => {
             const searchNumber: number = +searchText;
             let search: boolean;
-            search = SS.candidate.firstname.toLowerCase().includes(searchText) 
+            let name = SS.candidate.firstname +" "+ SS.candidate.lastname;
+            search = name.toLowerCase().includes(searchText) 
                 || SS.candidate.skillTypeName.toLowerCase().includes(searchText);
         
             return search;

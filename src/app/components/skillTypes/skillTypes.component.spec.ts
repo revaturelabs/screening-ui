@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SkillType } from '../../entities/SkillType';
@@ -38,7 +37,7 @@ fdescribe('', () => {
         let track: SkillType ={
             skillTypeId: 1,
             title: "Test",
-            isActive: true,
+            active: true,
         }
 
         let weight: Weight = {

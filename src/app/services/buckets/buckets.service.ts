@@ -47,7 +47,7 @@ export class BucketsService {
   }
 
   updateBucket (bucket: Bucket) {
-    return this.http.put<Bucket>(this.urlService.bucket.updateBucket(), bucket, httpOptions);
+    return this.http.put<Bucket>(this.urlService.bucket.updateBucket(bucket.bucketId), bucket, httpOptions);
   }
 
   createNewBucket(bucket: Bucket): Observable<Bucket> {
@@ -65,14 +65,6 @@ export class BucketsService {
      if (this.currentBucket != null) {
          return this.currentBucket;
      }
-  }
-
-  setName(name: string) {
-      this.currentBucket.bucketDescription = name;
-  }
-
-  getName(id: number) {
-      return this.currentBucket.bucketDescription;
   }
 
   setDescription(desc: string) {

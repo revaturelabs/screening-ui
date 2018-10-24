@@ -27,7 +27,6 @@ export class AnswerComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private questionScoreService: QuestionScoreService) { }
 
   ngOnInit() {
-    if(typeof this.questionScore !== 'undefined'){
       this.questionScore = {
         qSID: null,
         questionId: this.question.questionId,
@@ -40,7 +39,6 @@ export class AnswerComponent implements OnInit {
       // update answeredQuestions array to match our question service's answeredQuestions array.
       this.questionScoreService.currentQuestionScores.subscribe(answeredQuestions => this.questionScores = answeredQuestions);
     
-    }
     }
   // when a score is set and submitted, update the array of questions scores
   saveQuestionScore(): void {

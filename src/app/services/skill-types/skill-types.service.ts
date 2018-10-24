@@ -50,7 +50,7 @@ export class SkillTypesService {
     }
 
     updateSkillTypeBuckets(skillType: SkillType, bucketIds) {
-        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(), { title: skillType.title,
+        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(skillType.skillTypeId), { title: skillType.title,
             skillTypeId: skillType.skillTypeId, bucketIds: bucketIds }, httpOptions);
     }
 

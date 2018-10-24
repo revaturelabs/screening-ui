@@ -42,7 +42,6 @@ h6 {
 
 #penIcon {
   color: #F26925;
-  margin-right: 10px;
 }
 
 #traIcon {
@@ -56,6 +55,10 @@ h6 {
 
 #penIcon:hover{
   color:black;
+}
+
+#xIcon{
+  margin-right: 10px;
 }
 
 i {
@@ -88,6 +91,19 @@ i {
 .percentSign{
   background-color: inherit;
   border-right: 1px solid #ccc;
+}
+
+.modal-header {
+	background-color: #F26925;
+}
+
+.modal-title {
+  text-align: center;
+  color: white;
+}
+
+.close {
+	color: white;
 }
 
 .bucketWeight{

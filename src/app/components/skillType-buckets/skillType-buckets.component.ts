@@ -8,13 +8,13 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { httpFactory } from '@angular/http/src/http_module';
-
+import {ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
-  styleUrls: ['./skillType-buckets.component.css']
+  styleUrls: ['./skillType-buckets.component.css'],
+  providers: [BucketFilterPipe]
 })
 
 export class SkillTypeBucketsComponent implements OnInit {
@@ -29,12 +29,17 @@ export class SkillTypeBucketsComponent implements OnInit {
   /** Modal variables */
   closeResult: string;
 
+  bucketFilter: BucketFilterPipe;
+
+  @ViewChild('create') nameInputRef: ElementRef;
+
   constructor(
     private router: Router,
     private bucketService: BucketsService,
     private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService: AlertsService, ) { }
+    private alertsService: AlertsService
+    ) { }
 
   filter: Bucket = new Bucket();
   ngOnInit() {
@@ -43,14 +48,31 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   getBuckets(): void {
     this.bucketService.getAllBuckets().subscribe(buckets => {
-      this.buckets = buckets;
-      this.buckets.sort(this.compare);
+      this.buckets = this.compare(buckets);
     });
   }
 
   /** used to compare buckets Array to sort it based on status */
-  compare(a: Bucket, b: Bucket) {
-    if (a.isActive) {
+  compare(buckets: Bucket[]): Bucket[] {
+    let active: Bucket[] = [];
+    let inactive: Bucket[] = [];
+    buckets.forEach(function(bucket) {
+      if(bucket.isActive) {
+        active.push(bucket);
+      } else {
+        inactive.push(bucket);
+      }
+    });
+    active.sort(this.alphabetize);
+    inactive.sort(this.alphabetize);
+    inactive.forEach(function(bucket){
+      active.push(bucket);
+    });
+    return active;
+  }
+
+  alphabetize(a:Bucket, b: Bucket) {
+    if(a.bucketDescription.toUpperCase()<b.bucketDescription.toUpperCase()) {
       return -1;
     } else {
       return 1;

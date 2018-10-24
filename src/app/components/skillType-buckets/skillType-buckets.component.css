@@ -42,8 +42,8 @@ h6 {
 }
 
 #traIcon {
-  color: #F26925;
-  float:right;
+  color: red;
+  float: left;
   margin-left: 10px;
 }
 
@@ -53,6 +53,13 @@ h6 {
 
 #traIcon:hover {
   color: black;
+}
+
+.search-bar{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 a {

@@ -91,9 +91,7 @@ describe('QuestionComponent', () => {
         NgbModal,
       //  NgbModalBackdrop
       ]
-    })
-    
-    .compileComponents();
+    }).compileComponents();
   }));
 
   /**
