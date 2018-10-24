@@ -57,11 +57,11 @@ export class SkillTypeBucketsComponent implements OnInit {
   compare(buckets: Bucket[]): Bucket[] {
     let active: Bucket[] = [];
     let inactive: Bucket[] = [];
-    buckets.forEach(function(bucket) {
-      if(bucket.isActive) {
-        active.push(bucket);
+    Object.keys(buckets).forEach(function(key) {
+      if(buckets[key].isActive) {
+        active.push(buckets[key]);
       } else {
-        inactive.push(bucket);
+        inactive.push(buckets[key]);
       }
     });
     active.sort(this.alphabetize);
