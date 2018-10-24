@@ -113,25 +113,6 @@ describe('QuestionsTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should set questionBuckets to [] false', () => {
-  //   component.ngOnDestroy();
-  //   if (component.questionBuckets !== undefined) {
-  //     for (const bucket of component.questionBuckets) {
-  //       expect(bucket.questions).toEqual([]);
-  //     }
-  //   }
-  // });
-
-  // it('should set questionBuckets to [] true', () => {
-  //   component.questionBuckets = BUCKETS;
-  //   component.ngOnDestroy();
-  //   if (component.questionBuckets !== undefined) {
-  //     for (const bucket of component.questionBuckets) {
-  //       expect(bucket.questions).toEqual([]);
-  //     }
-  //   }
-  // });
-
   it('should set currentCategory to bucket', () => {
     component.questionBuckets = BUCKETS;
     component.questionBuckets[0].bucketId = 1;
@@ -149,19 +130,7 @@ describe('QuestionsTableComponent', () => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
   });
 
-  // it('should return true', () => {
-  //   component.questionScores.push({
-  //     qSID: 1,
-  //     questionId: 1,
-  //     screeningID: 1,
-  //     score: 1,
-  //     commentary: 'string',
-  //     beginTime: new Date});
-  //   expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
-  // });
-
-
-  it('should return true 2', () => {
+  it('should return true', () => {
     expect(component.submitAllowed()).toBeTruthy();
   });
 
@@ -169,12 +138,5 @@ describe('QuestionsTableComponent', () => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
   });
-
-  // it('should set comment', () => {
-  //   const mine = new QuestionsTableComponent(null, null, null, null, null,
-  //     new ScreeningService(new HttpClient({} as HttpHandler), null), null, null);
-  //   mine.generalComment = 'hi';
-  //   expect(mine.saveFeedback()).toBeTruthy();
-  // });
 
 });

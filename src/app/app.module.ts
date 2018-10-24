@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { NgbModule,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+import { LoginComponent } from './components/login/login.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
@@ -65,6 +66,7 @@ import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { NavBarService } from './services/nav-bar/nav-bar.service';
 
 @NgModule({
   
@@ -76,6 +78,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
+    LoginComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
@@ -104,7 +107,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
   imports: [
     BrowserModule,
     HttpModule,
-    NgbModule.forRoot(),
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
@@ -131,7 +134,8 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
-    ViolationTypeService
+    ViolationTypeService,
+    NavBarService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-light display-front nav-pad">
+<nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-light display-front nav-pad"  *ngIf="nav.visible">
   <div class="navbar-header c-pointer shift-left">
     <img  class="img-adjust-position" routerLink="/dashboard" class="rev-logo" src="assets/rev-logo.png" alt="revature">
   </div>
@@ -23,9 +23,12 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="home" routerLinkActive="activeLink">Home</a>
       </li>
-      <li class="nav-item"> 
+      <li class="nav-item">
           <a class="nav-link" routerLink="settings/main">Settings</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" routerLink="login">Logout</a>
+    </li>
     </ul>
   </div>
 </nav>

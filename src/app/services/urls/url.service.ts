@@ -72,8 +72,8 @@ export class UrlService {
   screeningEndpoint = this.screeningContext + '/screening';
   screening = {
     scheduleScreening: () => `${ this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${ this.screeningEndpoint}/new`,
-    endScreening: () => `${ this.screeningEndpoint}/update`,
+    startScreening: () => `${ this.screeningEndpoint}/`,
+    endScreening: () => `${ this.screeningEndpoint}/`,
     updateScreening: (screenId:number) => `${this.screeningEndpoint}/${screenId}`,
     getScreening: id => `${this.screeningEndpoint}/`
    };
@@ -81,8 +81,9 @@ export class UrlService {
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
-    newWeight: () => `${this.weightsEndpoint}/new`,
-    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`
+    newWeight: () => `${this.weightsEndpoint}/`,
+    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}`,
+    updateWeight: (weightId: number) => `${this.weightsEndpoint}/${weightId}` 
   };
 
   /**
@@ -102,7 +103,7 @@ export class UrlService {
     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
     putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/updateSkillTypeBucket`,
+    updateSkillTypeBuckets: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
     setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
     getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
 
@@ -111,7 +112,7 @@ export class UrlService {
   softSkillsViolation = {
     getViolationTypeURL: () => `${this.screeningContext}/violation`,
     getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/${screeningID}/violations`,
-    addViolationURL: () => `${this.screeningContext}/violation/new/`,
+    addViolationURL: () => `${this.screeningContext}/violation/`,
     deleteViolationURL: (violationID: number) => `${this.screeningContext}/violation/${violationID}`
     };
 }

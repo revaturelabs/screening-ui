@@ -84,7 +84,7 @@ describe('BucketsService', () => {
   */
   it('should update a bucket', () => {
     service.updateBucket(bucket).subscribe(data => expect(data).toEqual(bucket));
-    const req = httpTestingController.expectOne('http://ec2-54-210-14-237.compute-1.amazonaws.com:8181/bucket/update');
+    const req = httpTestingController.expectOne('http://ec2-54-210-14-237.compute-1.amazonaws.com:8181/bucket/' + bucket.bucketId);
     expect(req.request.method).toEqual('PUT');
     req.flush(bucket);
   });
@@ -101,6 +101,19 @@ describe('BucketsService', () => {
     expect(req.request.method).toEqual('POST');
     req.flush(bucket);
   });
+
+  /**
+  * Test that a request to the url was made, that the correct request method was made,
+  * and that the response equals our mock data.
+  *
+  * Function tested: deleteBucket(bucketId: number)
+  */
+ it('should delete a bucket', () => {
+  service.deleteBucket(bucket.bucketId).subscribe(data => expect(data).toEqual(bucket));
+  const req = httpTestingController.expectOne('http://ec2-54-210-14-237.compute-1.amazonaws.com:8181/bucket/' + bucket.bucketId);
+  expect(req.request.method).toEqual('DELETE');
+  req.flush(bucket);
+});
 
   /**
   * Test that the current bucket is assigned a value after setBucket() is called.
