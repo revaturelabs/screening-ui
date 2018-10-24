@@ -296,7 +296,7 @@ export class SkillTypesComponent implements OnInit {
         const index = skillTypes.indexOf(skillTypes.find(skillType=>skillType.active===false));
         active=skillTypes.slice(0,index).sort(this.alphabetize);
         inactive=skillTypes.slice(index).sort(this.alphabetize);
-        skillTypes=active.concat(inactive);
+        skillTypes= index!==-1 ? active.concat(inactive) : skillTypes.sort(this.alphabetize);
         return skillTypes;    
       }
     
