@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,17 +12,19 @@ import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/ski
 import { SkillTypesComponent } from './skillTypes.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 
-describe('', () => {
+fdescribe('', () => {
     let component: SkillTypesComponent;
     let fixture: ComponentFixture<SkillTypesComponent>;
-
+    let stbs: SkillTypeBucketService;
+    let urlService: UrlService;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SkillTypesComponent],
-            imports: [FormsModule],
-            providers: [NgbTabset, HttpClient, HttpHandler, UrlService, BucketsService, SkillTypesService, NgbModal, AlertsService, SkillTypeBucketService]
+            imports: [FormsModule, HttpClientTestingModule],
+            providers: [NgbTabset, HttpClient, HttpHandler, UrlService, BucketsService, SkillTypesService, NgbModal, AlertsService, SkillTypeBucketService, HttpTestingController]
         })
             .compileComponents();
     }));
@@ -32,6 +34,7 @@ describe('', () => {
         component = fixture.componentInstance;
         fixture.detectChanges();
 
+        //locationService = TestBed.get(SkillTypeBucketService);
         let track: SkillType ={
             skillTypeId: 1,
             title: "Test",
@@ -136,4 +139,36 @@ describe('', () => {
         component.checkBucketSum();
         expect(component.error).toBeFalsy();
     });
+
+    it('returns mock with id of 3', inject([HttpClient, HttpTestingController], (http: HttpClient, httpMock: HttpTestingController) => {
+        const mockResponse = [
+          {
+            weightId: 3,
+            weightValue: 50,
+            skillType: new SkillType(),
+            bucket: new Bucket()
+          },
+          {
+            weightId: 2,
+            weightValue: 500,
+            skillType: new SkillType(),
+            bucket: new Bucket()
+          }
+        ];
+        stbs = TestBed.get(SkillTypeBucketService);
+        urlService = TestBed.get(UrlService);
+        stbs.getAllWeights().subscribe(
+          actualWeights => {
+            expect(actualWeights.length).toBe(1);
+            expect(actualWeights[0].id).toEqual(3);
+          }
+        );
+        let urlR = urlService.weights.getAll();
+        const req = httpMock.expectOne({ method: 'GET', url: urlR });
+        expect(req.request.method).toEqual('GET');
+  
+        req.flush(mockResponse);
+        httpMock.verify();
+      }));
+
 });
