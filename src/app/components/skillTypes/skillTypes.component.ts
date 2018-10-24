@@ -257,7 +257,7 @@ export class SkillTypesComponent implements OnInit {
         this.skillTypeService.deleteSkillTypeById(skillType.skillTypeId).subscribe(results => {
             this.grabAllSkillTypes();
         });
-        this.getAllWeights();   
+        this.getAllWeights();
     }
 
     /**
@@ -286,34 +286,34 @@ export class SkillTypesComponent implements OnInit {
             this.allSkillTypes = this.customSort(results);
         });
     }
-
     /** used to compare SkillType Array to sort it based on status. skillType array is then alphabetized */
     customSort(skillTypes: SkillType[]): SkillType[] {
         skillTypes.sort(this.compare);
         let active: SkillType[] = [];
         let inactive: SkillType[] = [];
-        const index = skillTypes.indexOf(skillTypes.find(skillType=>skillType.active===false));
-        active=skillTypes.slice(0,index).sort(this.alphabetize);
-        inactive=skillTypes.slice(index).sort(this.alphabetize);
-        skillTypes= index!==-1 ? active.concat(inactive) : skillTypes.sort(this.alphabetize);
-        return skillTypes;    
-      }
-    
-      compare(a: SkillType, b: SkillType) {
-        if(a.active) {
-          return -1;
+        const index = skillTypes.indexOf(skillTypes.find(skillType => skillType.active === false));
+        active = skillTypes.slice(0, index).sort(this.alphabetize);
+        inactive = skillTypes.slice(index).sort(this.alphabetize);
+        skillTypes = index !== -1 ? active.concat(inactive) : skillTypes.sort(this.alphabetize);
+        return skillTypes;
+    }
+
+    compare(a: SkillType, b: SkillType) {
+        if (a.active) {
+            return -1;
         } else {
-          return 1;
+            return 1;
         }
-      }
-    
-      alphabetize(a: SkillType, b: SkillType) {
-        if(a.title<b.title) {
-          return -1;
+    }
+
+    alphabetize(a: SkillType, b: SkillType) {
+        if (a.title.toUpperCase() < b.title.toUpperCase()) {
+            return -1;
         } else {
-          return 1;
+            return 1;
         }
-      }
+    }
+
 
     /**
     * Grabs all buckets and stores the information into a variable
