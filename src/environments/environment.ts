@@ -28,8 +28,8 @@ export const environment = {
   /** Assets endpoints for like pictures  */
   assets: 'http://52.87.205.55:8086/angular/assets/',
 
-  adminContext: 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8181',
-  screeningContext: 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8183',
+  adminContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8181',
+  screeningContext: 'http://ec2-54-210-14-237.compute-1.amazonaws.com:8183',
   bam: bam,
   url: 'http://54.166.255.85:8085',
   msurl: 'http://34.227.178.103:',

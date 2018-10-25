@@ -48,6 +48,9 @@ export class QuestionsService {
    * @param tagIds - array of tag ids
    */
   createNewQuestion(question: Question) {
+    console.log(question);
+    console.log(this.urlService.question.postQuestion());
+    console.log(httpOptions);
     return this.http.post(this.urlService.question.postQuestion(), question, httpOptions);
   }
 
