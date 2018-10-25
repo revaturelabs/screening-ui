@@ -181,9 +181,11 @@ export class SkillTypesComponent implements OnInit {
         if (weight.weightValue > 100) {
             let index = this.skillTypeWeights.findIndex(temp => temp.weightId === weight.weightId);
             this.skillTypeWeights[index].weightValue = 100;
+            this.checkBucketSum();
         } else if (weight.weightValue < 0) {
             let index = this.skillTypeWeights.findIndex(temp => temp.weightId === weight.weightId);
             this.skillTypeWeights[index].weightValue = 0;
+            this.checkBucketSum();
         }
     }
 
@@ -211,9 +213,8 @@ export class SkillTypesComponent implements OnInit {
                 this.updateWeight(weight);
             }
             this.skillTypeService.updateSkillTypeBuckets(this.skillType, bucketsId).subscribe(results => {
-                this.grabAllSkillTypes();
-                this.getAllWeights();
             });
+            this.grabAllSkillTypes();
             this.savedSuccessfully();
         } else {
             this.error = true;
@@ -251,13 +252,14 @@ export class SkillTypesComponent implements OnInit {
         //Delete weights associated with skillType
         for (let i = 0; i < this.allWeights.length; i++) {
             if (this.allWeights[i].skillType.skillTypeId === skillType.skillTypeId) {
+                this.allWeights.splice(i,1);
                 this.skillTypeBucketService.deleteWeight(this.allWeights[i].weightId).subscribe(results => { });
             }
         }
+        let index = this.allSkillTypes.findIndex(temp => temp.skillTypeId === skillType.skillTypeId);
+        this.allSkillTypes.splice(index, 1);
         this.skillTypeService.deleteSkillTypeById(skillType.skillTypeId).subscribe(results => {
-            this.grabAllSkillTypes();
         });
-        this.getAllWeights();
     }
 
     /**
