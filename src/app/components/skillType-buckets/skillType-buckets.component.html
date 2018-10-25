@@ -29,7 +29,8 @@
               <i id="xIcon">
                 <label class="switch">
                   <input type="checkbox" [(ngModel)]="bucket.isActive" (change)="updateBucket(bucket);">
-                  <span class="slider round" placement="top" ngbTooltip="active"></span>
+                  <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="bucket.isActive"></span>
+                  <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!bucket.isActive"></span>
                 </label>
               </i>
             </div>
