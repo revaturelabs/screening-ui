@@ -21,27 +21,27 @@ export const routes: Routes = [
   {
     path: 'home',
     component: CandidatesScreeningListComponent,
-      // canActivate: [RoleGuard],
-      // data: {
-      //   roles: [ roles.screenerRole, roles.vpRole ]
-      // },
+      canActivate: [RoleGuard],
+      data: {
+        roles: [ roles.screenerRole, roles.vpRole ]
+      },
   },
   {
     path: 'list',
     component: CandidatesScreeningListComponent,
-      // canActivate: [RoleGuard],
-      // data: {
-      //   roles: [ roles.screenerRole, roles.vpRole ]
-      // },
+      canActivate: [RoleGuard],
+      data: {
+        roles: [ roles.screenerRole, roles.vpRole ]
+      },
   },
   {
     path: 'screening',
     canDeactivate: [CanDeactivateGuard],
     component: ScreeningComponent,
-      // canActivate: [RoleGuard],
-      // data: {
-      //   roles: [ roles.screenerRole, roles.vpRole ]
-      // },
+      canActivate: [RoleGuard],
+      data: {
+        roles: [ roles.screenerRole, roles.vpRole ]
+      },
     children: [
       {
         path: 'intro',
@@ -64,10 +64,10 @@ export const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
-      // canActivate: [RoleGuard],
-      // data: {
-      //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
-      // },
+      canActivate: [RoleGuard],
+      data: {
+        roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
+      },
     children: [
       {
         path: 'main',
