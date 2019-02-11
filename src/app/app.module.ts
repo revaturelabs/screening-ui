@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import  { ChartModule } from 'angular2-highcharts';
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -26,7 +26,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
-
+import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -85,6 +85,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     SkillTypesComponent,
     ViolationFlagComponent,
     CandidateComponent,
+    AverageSkillComponent,
     // pipes
     ArrToStringPipe,
     BucketFilterPipe,
@@ -107,7 +108,8 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     NgxPaginationModule,
     NavModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartModule.forRoot(require('highcharts'))
   ],
   providers: [
     AlertsService,
@@ -127,7 +129,8 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
-    ViolationTypeService
+    ViolationTypeService,
+    ChartModule
   ],
   bootstrap: [AppComponent]
 })
