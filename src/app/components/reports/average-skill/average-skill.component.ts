@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-average-skill',
@@ -9,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class AverageSkillComponent implements OnInit {
 
   options: Object;
+  @Input() barData: object[] =  [{name: 'Soft Skills', y: 80.7}, {name: 'Tech Skills', y: 75.2},{name: 'Time Hacking Skills', y: 60.0},
+  {name: 'Basic Math Skils', y: 90.0},{name: 'Advance Math Skills', y: 84.5}, {name: 'Beta Skills', y: 87.0}];
   constructor() {
     this.options = { 
       title: { text: "Average Score By Skill Type"},
@@ -24,12 +25,13 @@ export class AverageSkillComponent implements OnInit {
         enabled: false 
     },
       chart: { zoomType: 'x', type: 'column'},
-      series: [{name: 'Skill Type', colorByPoint: true, data: [{name: 'Soft Skills', y: 80.7}, {name: 'Tech Skills', y: 75.2},{name: 'Time Hacking Skills', y: 60.0},{name: 'Basic Math Skils', y: 90.0},{name: 'Advance Math Skills', y: 84.5}, {name: 'Beta Skills', y: 87.0}], }]
+      series: [{name: 'Skill Type', colorByPoint: true, data: this.barData, }]
     };
     
    }
 
   ngOnInit() {
   }
+
 
 }

@@ -65,6 +65,7 @@ import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ToolbarFilterPipe,
     TraineeSearch,
     TrainerPipePipe,
+    AverageBucketTypeComponent,
   ],
   imports: [
     BrowserModule,
