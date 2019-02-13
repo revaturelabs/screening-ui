@@ -17,6 +17,7 @@ import { TRAINEES } from '../../mock-data/mock-simpleTrainees';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { SearchPipe } from '../../pipes/search.pipe';
 
+
 @Component({
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
