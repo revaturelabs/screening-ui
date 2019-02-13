@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import  { ChartModule } from 'angular2-highcharts';
+// import  { ChartModule } from 'angular2-highcharts';
+import { HighchartsChartModule} from 'highcharts-angular';
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -27,6 +28,7 @@ import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillT
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
+import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -65,7 +67,7 @@ import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
-import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
+
 
 @NgModule({
   declarations: [
@@ -111,7 +113,8 @@ import { AverageBucketTypeComponent } from './components/reports/average-bucket-
     NavModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ChartModule.forRoot(require('highcharts'))
+    // ChartModule.forRoot(require('highcharts'))'
+    HighchartsChartModule
   ],
   providers: [
     AlertsService,
@@ -132,7 +135,6 @@ import { AverageBucketTypeComponent } from './components/reports/average-bucket-
     SoftSkillsViolationService,
     UrlService,
     ViolationTypeService,
-    ChartModule
   ],
   bootstrap: [AppComponent]
 })

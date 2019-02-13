@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as HighCharts from 'highcharts';
 
 @Component({
   selector: 'app-average-skill',
@@ -7,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AverageSkillComponent implements OnInit {
 
+  Highcharts = HighCharts;
   options: Object;
   @Input() barData: object[] =  [{name: 'Soft Skills', y: 80.7}, {name: 'Tech Skills', y: 75.2},{name: 'Time Hacking Skills', y: 60.0},
   {name: 'Basic Math Skils', y: 90.0},{name: 'Advance Math Skills', y: 84.5}, {name: 'Beta Skills', y: 87.0}];

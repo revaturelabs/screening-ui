@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as HighCharts from 'highcharts';
 
 @Component({
   selector: 'app-average-bucket-type',
@@ -7,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AverageBucketTypeComponent implements OnInit {
 
+  Highcharts = HighCharts;
   options2: Object;
   @Input() barData2: object[] =  [{name: 'Java Applied', y: 92.7}, {name: 'Hibernate', y: 70.2},{name: 'SQL', y: 95.0},
   {name: 'Angular', y: 90.3},{name: 'Spring AoP', y: 60.0}, {name: 'Java Concepts', y: 82.6},{name: 'SOAP', y: 87.0}, 
