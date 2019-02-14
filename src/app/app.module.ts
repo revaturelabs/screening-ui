@@ -67,6 +67,8 @@ import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { MasterReportComponent } from './components/reports/master-report/master-report.component';
+import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
 
 
 @NgModule({
@@ -101,6 +103,8 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     TraineeSearch,
     TrainerPipePipe,
     AverageBucketTypeComponent,
+    MasterReportComponent,
+    ReportSidebarComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,13 +9,13 @@ import * as HighCharts from 'highcharts';
 export class AverageBucketTypeComponent implements OnInit {
 
   Highcharts = HighCharts;
-  options2: Object;
+  options: Object;
   @Input() barData2: object[] =  [{name: 'Java Applied', y: 92.7}, {name: 'Hibernate', y: 70.2},{name: 'SQL', y: 95.0},
   {name: 'Angular', y: 90.3},{name: 'Spring AoP', y: 60.0}, {name: 'Java Concepts', y: 82.6},{name: 'SOAP', y: 87.0}, 
   {name: 'JDBC', y: 87.0}, {name: 'REST', y: 87.0}];
 
   constructor() { 
-    this.options2 = { 
+    this.options = { 
       title: { text: "Average Score By Bucket Type"},
       xAxis: {
         type: 'category'
