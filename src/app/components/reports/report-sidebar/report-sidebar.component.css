@@ -1,0 +1,25 @@
+.search-bar{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    padding: 5px;
+    border-radius: 5px;
+}
+body {
+    background-color: #f8f9fa!important
+}
+
+.orange-header {
+    background: #f26925;
+    color: white;
+    min-width: 260px;
+    width: 100%;
+    margin-bottom: 0px;
+    padding: 12px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-color: #f26925;
+    text-align: center;
+    font-size: 25px;
+    white-space:nowrap;
+}
