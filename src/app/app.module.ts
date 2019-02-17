@@ -69,6 +69,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
 import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
+import { HardestQuestionsComponent } from './components/reports/hardest-questions/hardest-questions.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { ReportSidebarComponent } from './components/reports/report-sidebar/repo
     AverageBucketTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
+    HardestQuestionsComponent,
   ],
   imports: [
     BrowserModule,

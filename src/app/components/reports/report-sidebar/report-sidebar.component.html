@@ -1,3 +1,9 @@
 <h1 class='orange-header text-align-center'>Reports</h1>
-<input placeholder="Search" class="search-bar">
+<input #searchBox (input)='search(searchBox.value)' placeholder="Search by email" class="search-bar" />
+<ul class='search-result'>
+    <li *ngFor='let email of screenerEmails$ | async'>
+        <a>{{email}}</a>
+    </li>
+</ul>
 <hr>
+
