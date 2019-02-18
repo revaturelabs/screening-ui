@@ -1,5 +1,12 @@
-<ol>
-  <li *ngFor='let question of hardestQuestions'>
-    {{question}}
-  </li>
-</ol>
+<article> 
+  <h2>  
+    Hardest Questions  
+  </h2>  
+  <ol>  
+    <!-- This will iterate through the hardestQuestions list,
+    currently hard coded in this components ts file-->
+    <li *ngFor="let hardestQuestion of hardestQuestions">
+      {{hardestQuestion}}       
+    </li>   
+  </ol>  
+</article>
