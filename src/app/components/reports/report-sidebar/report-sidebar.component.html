@@ -7,16 +7,18 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+            <div class="custom-slider">
                 <ng5-slider [options]="sliderOptions" [formControl]="sliderControl" (userChange)="onSliderChange($event)"></ng5-slider>
-                <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm' 
-                placeholder="Search by email" class="search-bar" />
-                <ul class='search-result'>
-                    <li *ngFor='let email of screenerEmails$ | async'>
-                        <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
-                    </li>
-                </ul>
-                <hr>
+            </div>
                 
+            <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm' 
+            placeholder="Search by email" class="search-bar" />
+            <ul class='search-result'>
+                <li *ngFor='let email of screenerEmails$ | async'>
+                    <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
+                </li>
+            </ul>
+            <hr>                
         </div>
     </div>
 </div>
