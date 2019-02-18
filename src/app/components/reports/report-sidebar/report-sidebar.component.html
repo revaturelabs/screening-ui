@@ -1,9 +1,26 @@
-<h1 class='orange-header text-align-center'>Reports</h1>
-<input #searchBox (input)='search(searchBox.value)' placeholder="Search by email" class="search-bar" />
-<ul class='search-result'>
-    <li *ngFor='let email of screenerEmails$ | async'>
-        <a>{{email}}</a>
-    </li>
-</ul>
-<hr>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class='orange-header text-align-center'>Reports</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+                <ng5-slider [options]="sliderOptions" [formControl]="sliderControl" (userChange)="onSliderChange($event)"></ng5-slider>
+                <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm' 
+                placeholder="Search by email" class="search-bar" />
+                <ul class='search-result'>
+                    <li *ngFor='let email of screenerEmails$ | async'>
+                        <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
+                    </li>
+                </ul>
+                <hr>
+                
+        </div>
+    </div>
+</div>
+
+
+
 

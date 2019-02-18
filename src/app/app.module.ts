@@ -1,34 +1,43 @@
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HighchartsChartModule} from 'highcharts-angular';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import  { ChartModule } from 'angular2-highcharts';
-import { HighchartsChartModule} from 'highcharts-angular';
+import { RouterModule } from '@angular/router';
+import { NavModule } from './nav.module';
+import { Ng5SliderModule } from 'ng5-slider';
+import { NgModule } from '@angular/core';
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
+
 // Component Imports Alphabetically
-import { AnswerComponent } from './components/answer/answer.component';
+// Root Component
+import { AppComponent } from './app.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
+import { AnswerComponent } from './components/answer/answer.component';
+import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
+import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
+import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
+import { HardestQuestionsComponent } from './components/reports/hardest-questions/hardest-questions.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+import { MasterReportComponent } from './components/reports/master-report/master-report.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
+import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
 import { ScreeningComponent } from './components/screening/screening.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
-import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
-import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -62,15 +71,7 @@ import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
 import { TraineeSearch } from './pipes/trainee-search.pipe';
 import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
-
-import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
-import { HttpClientModule } from '@angular/common/http';
-import { CandidateComponent } from './components/candidate/candidate.component';
-import { MasterReportComponent } from './components/reports/master-report/master-report.component';
-import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
-import { HardestQuestionsComponent } from './components/reports/hardest-questions/hardest-questions.component';
-
 
 @NgModule({
   declarations: [
@@ -108,19 +109,19 @@ import { HardestQuestionsComponent } from './components/reports/hardest-question
     ReportSidebarComponent,
     HardestQuestionsComponent,
   ],
-  imports: [
-    BrowserModule,
+  imports: [    
+    BrowserAnimationsModule,
+    BrowserModule,    
+    FormsModule,        
+    HighchartsChartModule,
+    HttpClientModule,
     HttpModule,
+    NavModule,
     NgbModule.forRoot(),
-    FormsModule,
+    NgxPaginationModule,
+    Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    NgxPaginationModule,
-    NavModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    // ChartModule.forRoot(require('highcharts'))'
-    HighchartsChartModule
   ],
   providers: [
     AlertsService,
