@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { EMAILS } from 'src/app/mock-data/mock-emails'
+import { MockAllScreeners, MockSingleScreeners } from 'src/app/mock-data/mock-reports';
 import { ReportData } from 'src/app/entities/ReportData';
 
 
@@ -30,9 +31,33 @@ export class ReportService {
       return this.http.get<string[]>(this.urlService.reports.getScreenersByPartialEmail(partialEmail));
   }
   getScreenerDataByWeeks(weeks: number, email: string): Observable<ReportData> {
-    return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(weeks, email));
+    if (this.debug) {
+      switch(weeks) {
+        case 52: weeks = 5; break;
+        case 26: weeks = 4; break;
+        default: weeks -= 1; break;
+      }
+      let data = MockSingleScreeners[weeks];
+      let nameTokens = email.split(/[.@]+/);
+      let name = `${nameTokens[1]}, ${nameTokens[0]}`;
+      data.screener = { name: name, email: email};
+      return of(data);
+    }
+    else
+      return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(weeks, email));
   }    
+
   getAllScreenerDataByWeeks(weeks: number): Observable<ReportData> {
-    return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(weeks));
+    if (this.debug) {
+      switch(weeks) {
+        case 52: weeks = 5; break;
+        case 26: weeks = 4; break;
+        default: weeks -= 1; break;
+      }
+      let data = MockAllScreeners[weeks];
+      return of(data);
+    }
+    else
+      return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(weeks));
   }
 }

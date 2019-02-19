@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { NgForm } from '@angular/forms'
@@ -16,11 +16,15 @@ import { WeekDay } from '@angular/common';
   styleUrls: ['./report-sidebar.component.scss']
 })
 export class ReportSidebarComponent implements OnInit {
+  @Input() initialSliderValue: number = 1;
   screenerEmails$: Observable<string[]>;
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
-  sliderControl: FormControl = new FormControl(4);
+  sliderControl: FormControl;
+  // Used to emit slider events to master-component
   @Output() sliderChange = new EventEmitter();
+  // Used to emit searchbar changes to master-component
+  @Output() searchChange = new EventEmitter();
 
   sliderOptions: Options = {
     floor: 1,
@@ -50,19 +54,26 @@ export class ReportSidebarComponent implements OnInit {
 
   search(term: string): void {
     this.searchTerms.next(term);
-    this.sliderControl.registerOnChange(this.onSliderChange);
+    if (term === '')
+      this.searchChange.emit('');
   }
 
   onClickScreenerEmail(screener) {
-    console.log(screener);
+    console.log(`clicked on ${screener}`);
     this.emailSearchTerm = screener;
     this.searchTerms.next('');
+    this.searchChange.emit(screener);
   }
   onSliderChange(changeContext: ChangeContext): void {
-    console.log(`onUserChangeStart(${this.getChangeContextString(changeContext)})\n`);
-    this.sliderChange.emit(changeContext.value);
+    // console.log(`onUserChangeStart(${this.getChangeContextString(changeContext)})\n`);
+    let actualWeeks = changeContext.value;
+    switch(actualWeeks) {
+      case 5: actualWeeks = 26; break;
+      case 6: actualWeeks = 52; break;
+    }
+    this.sliderChange.emit(actualWeeks);
   }
-
+  
   // onUserChange(changeContext: ChangeContext): void {
   //   this.logText += `onUserChange(${this.getChangeContextString(changeContext)})\n`;
   // }
@@ -80,6 +91,7 @@ export class ReportSidebarComponent implements OnInit {
   ngOnInit() {
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
+    this.sliderControl = new FormControl(this.initialSliderValue);
     this.screenerEmails$ = this.searchTerms.pipe(
       
       debounceTime(300),

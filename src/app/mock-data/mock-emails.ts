@@ -2,7 +2,7 @@ export const EMAILS: string[] = [
     'Ryan.Bossman@Revature.com',
     'Justice.Fears@Revature.com',
     'Boyd.Thurston@Revature.com',
-    'John.De.Jesus@Revature.com',
+    'John.Jesus@Revature.com',
     'Mehrab.Rahman@Revature.com',
     'Derrick.Cheah@Revature.com',
     'Christian.Meyer@Revature.com',

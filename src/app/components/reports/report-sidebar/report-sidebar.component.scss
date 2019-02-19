@@ -43,8 +43,6 @@ ul.search-result{
     
 }
 
-
-
 .orange-header {
     background: #f26925;
     color: white;
@@ -68,7 +66,7 @@ ul.search-result{
       height: 2px;
     }
     .custom-slider .ng5-slider .ng5-slider-selection {
-      background: orange;
+      background: #f26925;
     }
   
     .custom-slider .ng5-slider .ng5-slider-pointer {
@@ -91,12 +89,12 @@ ul.search-result{
   
     .custom-slider .ng5-slider .ng5-slider-limit {
       font-weight: bold;
-      color: orange;
+      color: #f26925;
     }
   
     .custom-slider .ng5-slider .ng5-slider-tick {
-      width: 1px;
-      height: 10px;
+      width: 3px;
+      height: 15px;
       margin-left: 4px;
       border-radius: 0;
       background: #ffe4d1;
@@ -104,6 +102,6 @@ ul.search-result{
     }
   
     .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
-      background: orange;
+      background: #f26925;
     }
   }
