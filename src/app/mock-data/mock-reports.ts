@@ -1,7 +1,7 @@
 import { ReportData, Screener, BarChartData } from "../entities/ReportData";
 
 export const MockAllScreeners: ReportData[] = [
-        { 
+    { 
         hardestQuestions:   [
             "What is the difference betwwen JRE, JDK, and JVM?",
             "How can I create a alias in SQL?",
@@ -119,7 +119,7 @@ export const MockAllScreeners: ReportData[] = [
 ]; 
 
 export const MockSingleScreeners: ReportData[] = [
-        {
+    {
         hardestQuestions: [
             "What is the producer and consumer problem?",
             "What are the different assert methods of JUnit?",
