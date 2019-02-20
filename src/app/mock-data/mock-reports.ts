@@ -17,7 +17,7 @@ export const MockAllScreeners: ReportData[] = [
         violationsByType: [{ name: 'Profanity', y: 6}, { name: 'Dress', y: 8},{ name: 'Attitude', y: 7},
             { name: 'Conduct', y: 5}],
         numApplicantsPassed: 123,
-        numApplicantsFailed: 23,
+        numApplicantsFailed: 23, 
         screener: null
     },
     { 
@@ -55,8 +55,8 @@ export const MockAllScreeners: ReportData[] = [
             {name: 'JDBC', y: 80.0}, {name: 'REST', y: 82.0}],
         violationsByType: [{ name: 'Profanity', y: 15}, { name: 'Dress', y: 14},{ name: 'Attitude', y: 11},
             { name: 'Conduct', y: 13}],
-        numApplicantsPassed: 60,
-        numApplicantsFailed: 10,
+        numApplicantsPassed: 201,
+        numApplicantsFailed: 35,
         screener: null
     },
     { 
@@ -116,7 +116,7 @@ export const MockAllScreeners: ReportData[] = [
         numApplicantsFailed: 431,
         screener: null,
     }
-];
+]; 
 
 export const MockSingleScreeners: ReportData[] = [
         {
@@ -129,8 +129,9 @@ export const MockSingleScreeners: ReportData[] = [
           ], 
         avgSkillTypeScore: [{name: 'Soft Skills', y: 63.7}, {name: 'Tech Skills', y: 54.7},{name: 'Time Hacking Skills', y: 48.6},
             {name: 'Basic Math Skils', y: 74.9},{name: 'Advance Math Skills', y: 62.4}, {name: 'Beta Skills', y: 84.9}],
-        avgBucketTypeScore: [{name: 'Soft Skills', y: 50.7}, {name: 'Tech Skills', y: 80.2},{name: 'Time Hacking Skills', y: 60.7},
-            {name: 'Basic Math Skils', y: 93.0},{name: 'Advance Math Skills', y: 70.5}, {name: 'Beta Skills', y: 85.2}],
+        avgBucketTypeScore: [{name: 'Java Applied', y: 92.7}, {name: 'Hibernate', y: 66.28},{name: 'SQL', y: 87.5},
+            {name: 'Angular', y: 72.3},{name: 'Spring AoP', y: 45.0}, {name: 'Java Concepts', y: 86.6},{name: 'SOAP', y: 97.6}, 
+            {name: 'JDBC', y: 91.0}, {name: 'REST', y: 83.2}],
         violationsByType: [{ name: 'Profanity', y: 2}, { name: 'Dress', y: 1},{ name: 'Attitude', y: 4},
             { name: 'Conduct', y: 3}],
         numApplicantsPassed: 22,
@@ -147,8 +148,9 @@ export const MockSingleScreeners: ReportData[] = [
           ], 
         avgSkillTypeScore: [{name: 'Soft Skills', y: 90.3}, {name: 'Tech Skills', y: 87.6},{name: 'Time Hacking Skills', y: 93.5},
             {name: 'Basic Math Skils', y: 94.5},{name: 'Advance Math Skills', y: 90.7}, {name: 'Beta Skills', y: 82.1}],
-        avgBucketTypeScore: [{name: 'Soft Skills', y: 99.0}, {name: 'Tech Skills', y: 70.2},{name: 'Time Hacking Skills', y: 80.0},
-            {name: 'Basic Math Skils', y: 70.0},{name: 'Advance Math Skills', y: 60.5}, {name: 'Beta Skills', y: 90.0}],
+        avgBucketTypeScore: [{name: 'Java Applied', y: 55.9}, {name: 'Hibernate', y: 79.9},{name: 'SQL', y: 98.0},
+            {name: 'Angular', y: 78.2},{name: 'Spring AoP', y: 90.0}, {name: 'Java Concepts', y: 85.4},{name: 'SOAP', y: 81.2}, 
+            {name: 'JDBC', y: 82.3}, {name: 'REST', y: 80.4}],
         violationsByType: [{ name: 'Profanity', y: 3}, { name: 'Dress', y: 3},{ name: 'Attitude', y: 6},
             { name: 'Conduct', y: 5}],
         numApplicantsPassed: 35,
@@ -165,9 +167,9 @@ export const MockSingleScreeners: ReportData[] = [
           ], 
         avgSkillTypeScore: [{name: 'Soft Skills', y: 76.6}, {name: 'Tech Skills', y: 89.6},{name: 'Time Hacking Skills', y: 67.2},
             {name: 'Basic Math Skils', y: 83.6},{name: 'Advance Math Skills', y: 80.0}, {name: 'Beta Skills', y: 81.6}],
-        avgBucketTypeScore:
-        [{name: 'Soft Skills', y: 53.7}, {name: 'Tech Skills', y: 76.2},{name: 'Time Hacking Skills', y: 55.0},
-            {name: 'Basic Math Skils', y: 100.0},{name: 'Advance Math Skills', y: 90.5}, {name: 'Beta Skills', y: 80.0}],
+        avgBucketTypeScore: [{name: 'Java Applied', y: 90.7}, {name: 'Hibernate', y: 77.2},{name: 'SQL', y: 66.0},
+        {name: 'Angular', y: 89.3},{name: 'Spring AoP', y: 89.0}, {name: 'Java Concepts', y: 90.6},{name: 'SOAP', y: 78.0}, 
+        {name: 'JDBC', y: 90.0}, {name: 'REST', y: 81.4}],
         violationsByType: [{ name: 'Profanity', y: 7}, { name: 'Dress', y: 6},{ name: 'Attitude', y: 10},
             { name: 'Conduct', y: 8}],
         numApplicantsPassed: 50,
@@ -184,8 +186,9 @@ export const MockSingleScreeners: ReportData[] = [
           ], 
         avgSkillTypeScore: [{name: 'Soft Skills', y: 76.1}, {name: 'Tech Skills', y: 80.9},{name: 'Time Hacking Skills', y: 70.0},
             {name: 'Basic Math Skils', y: 69.8},{name: 'Advance Math Skills', y: 65.7}, {name: 'Beta Skills', y: 57.2}],
-        avgBucketTypeScore: [{name: 'Soft Skills', y: 80.7}, {name: 'Tech Skills', y: 75.2},{name: 'Time Hacking Skills', y: 60.0},
-            {name: 'Basic Math Skils', y: 90.0},{name: 'Advance Math Skills', y: 84.5}, {name: 'Beta Skills', y: 87.0}],
+        avgBucketTypeScore: [{name: 'Java Applied', y: 89.1}, {name: 'Hibernate', y: 79.5},{name: 'SQL', y: 85.3},
+            {name: 'Angular', y: 88.3},{name: 'Spring AoP', y: 84.4}, {name: 'Java Concepts', y: 87.3},{name: 'SOAP', y: 90.2}, 
+            {name: 'JDBC', y: 89.0}, {name: 'REST', y: 54.0}],
         violationsByType: [{ name: 'Profanity', y: 10}, { name: 'Dress', y: 9},{ name: 'Attitude', y: 13},
             { name: 'Conduct', y: 10}],
         numApplicantsPassed: 12,
@@ -202,8 +205,9 @@ export const MockSingleScreeners: ReportData[] = [
           ], 
         avgSkillTypeScore: [{name: 'Soft Skills', y: 70.7}, {name: 'Tech Skills', y: 55.2},{name: 'Time Hacking Skills', y: 57.0},
             {name: 'Basic Math Skils', y: 70.0},{name: 'Advance Math Skills', y: 64.5}, {name: 'Beta Skills', y: 65.4}],
-        avgBucketTypeScore: [{name: 'Soft Skills', y: 99.7}, {name: 'Tech Skills', y: 60.2},{name: 'Time Hacking Skills', y: 80.0},
-            {name: 'Basic Math Skils', y: 75.0},{name: 'Advance Math Skills', y: 73.5}, {name: 'Beta Skills', y: 85.0}],
+        avgBucketTypeScore:  [{name: 'Java Applied', y: 84.3}, {name: 'Hibernate', y: 56.2},{name: 'SQL', y: 97.6},
+        {name: 'Angular', y: 91.3},{name: 'Spring AoP', y: 68.3}, {name: 'Java Concepts', y: 77.6},{name: 'SOAP', y: 65.0}, 
+        {name: 'JDBC', y: 77.0}, {name: 'REST', y: 92.0}],
         violationsByType: [{ name: 'Profanity', y: 20}, { name: 'Dress', y: 24},{ name: 'Attitude', y: 20},
             { name: 'Conduct', y: 13}],
         numApplicantsPassed: 312,
@@ -220,8 +224,9 @@ export const MockSingleScreeners: ReportData[] = [
           ], 
         avgSkillTypeScore: [{name: 'Soft Skills', y: 85.7}, {name: 'Tech Skills', y: 87.5},{name: 'Time Hacking Skills', y: 66.9},
             {name: 'Basic Math Skils', y: 98.0},{name: 'Advance Math Skills', y: 87.5}, {name: 'Beta Skills', y: 77.0}],
-        avgBucketTypeScore: [{name: 'Soft Skills', y: 69.5}, {name: 'Tech Skills', y: 75.2},{name: 'Time Hacking Skills', y: 60.0},
-            {name: 'Basic Math Skils', y: 89.0},{name: 'Advance Math Skills', y: 81.5}, {name: 'Beta Skills', y: 89.0}],
+        avgBucketTypeScore: [{name: 'Java Applied', y: 88.7}, {name: 'Hibernate', y: 65.2},{name: 'SQL', y: 87.0},
+            {name: 'Angular', y: 93.8},{name: 'Spring AoP', y: 78.8}, {name: 'Java Concepts', y: 85.6},{name: 'SOAP', y: 80.0}, 
+            {name: 'JDBC', y: 99.0}, {name: 'REST', y: 78.9}],
         violationsByType: [{ name: 'Profanity', y: 40}, { name: 'Dress', y: 35},{ name: 'Attitude', y: 37},
             { name: 'Conduct', y: 20}],
         numApplicantsPassed: 630,

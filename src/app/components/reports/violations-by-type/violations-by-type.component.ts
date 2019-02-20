@@ -27,7 +27,7 @@ export class ViolationsByTypeComponent implements OnInit {
    this.options = {
      title: { text: "Violations By Types"},
      xAxis: {
-       type: 'Types'
+       type: 'category'
    },
    yAxis: {
      title: {
