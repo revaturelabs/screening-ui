@@ -18,7 +18,15 @@
                     <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
                 </li>
             </ul>
-            <hr>                
+            <hr>   
+            <section *ngIf='_reportData'>
+                <h4 *ngIf='_reportData.screener; else allScreeners' class='text-center'>
+                    Screener - {{_reportData.screener.name}}:</h4>
+                    <ng-template #allScreeners><h4 class='text-center'>All Screeners:</h4></ng-template>
+                <h4 class='text-center'>Applicants Passed: {{_reportData.numApplicantsPassed}}</h4>        
+                <h4 class='text-center'>Applicants Failed: {{_reportData.numApplicantsFailed}}</h4>      
+            </section>
+           
         </div>
     </div>
 </div>

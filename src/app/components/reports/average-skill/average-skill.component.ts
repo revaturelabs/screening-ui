@@ -10,9 +10,22 @@ export class AverageSkillComponent implements OnInit {
 
   Highcharts = HighCharts;
   options: Object;
-  @Input() barData: object[] =  [{name: 'Soft Skills', y: 80.7}, {name: 'Tech Skills', y: 75.2},{name: 'Time Hacking Skills', y: 60.0},
-  {name: 'Basic Math Skils', y: 90.0},{name: 'Advance Math Skills', y: 84.5}, {name: 'Beta Skills', y: 87.0}];
-  constructor() {
+  _barData: object[] = [];
+
+  @Input()
+  set barData(barData: object[]) {
+    this.setOptions(barData);
+  }
+
+  constructor() { 
+  }
+
+  ngOnInit() {
+    
+  }
+
+  setOptions(data: object[]) {
+    this._barData = data;
     this.options = { 
       title: { text: "Average Score By Skill Type"},
       xAxis: {
@@ -27,12 +40,8 @@ export class AverageSkillComponent implements OnInit {
         enabled: false 
     },
       chart: { zoomType: 'x', type: 'column'},
-      series: [{name: 'Skill Type', colorByPoint: true, data: this.barData, }]
+      series: [{name: 'Skill Type', colorByPoint: true, data: this._barData }]
     };
-    
-   }
-
-  ngOnInit() {
   }
 
 

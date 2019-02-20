@@ -10,12 +10,22 @@ export class AverageBucketTypeComponent implements OnInit {
 
   Highcharts = HighCharts;
   options: Object;
-  @Input() barData2: object[] =  [{name: 'Java Applied', y: 92.7}, {name: 'Hibernate', y: 70.2},{name: 'SQL', y: 95.0},
-  {name: 'Angular', y: 90.3},{name: 'Spring AoP', y: 60.0}, {name: 'Java Concepts', y: 82.6},{name: 'SOAP', y: 87.0}, 
-  {name: 'JDBC', y: 87.0}, {name: 'REST', y: 87.0}];
+  _barData: object[] = [];
+  
+  @Input()
+  set barData(barData: object[]) {
+    this.setOptions(barData);
+  }
   
 
-  constructor() { 
+  constructor() {  
+  }
+
+  ngOnInit() {
+    this.setOptions(this._barData);
+  }
+  setOptions(data: object[]) {
+    this._barData = data;
     this.options = { 
       title: { text: "Average Score By Bucket Type"},
       xAxis: {
@@ -30,12 +40,8 @@ export class AverageBucketTypeComponent implements OnInit {
         enabled: false 
     },
       chart: { zoomType: 'x', type: 'column'},
-      series: [{name: 'Bucket Type', colorByPoint: true, data: this.barData2, }]
+      series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
     };
-    
-   }
-
-  ngOnInit() {
   }
 
 }

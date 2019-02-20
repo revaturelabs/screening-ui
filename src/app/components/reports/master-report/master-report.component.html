@@ -1,12 +1,12 @@
 <main class="container mt-5" *ngIf='reportData'>
   <div class="row">
     <div class="col-sm-12 col-lg-4">
-      <app-report-sidebar (sliderChange)='onSliderChange($event)' (searchChange)='onSearchChange($event)'></app-report-sidebar>
+      <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)' (searchChange)='onSearchChange($event)'></app-report-sidebar>
     </div>
     <div class="col-sm-12 col-lg-8">
       <div class="row" id='report-graphs'>
-          <app-average-bucket-type class='col-sm-12 mx-auto'></app-average-bucket-type>
-          <app-average-skill class='col-sm-12 mx-auto'></app-average-skill>
+          <app-average-bucket-type [barData]='reportData.avgBucketTypeScore' class='col-sm-12 mx-auto'></app-average-bucket-type>
+          <app-average-skill [barData]='reportData.avgSkillTypeScore' class='col-sm-12 mx-auto'></app-average-skill>
           <app-hardest-questions [hardestQuestions]='reportData.hardestQuestions' class='card col-sm-12 col-md-6 mx-auto'></app-hardest-questions>
         </div>         
     </div>

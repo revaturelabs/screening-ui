@@ -39,7 +39,8 @@ export class ReportService {
       }
       let data = MockSingleScreeners[weeks];
       let nameTokens = email.split(/[.@]+/);
-      let name = `${nameTokens[1]}, ${nameTokens[0]}`;
+      // let name = `${nameTokens[1]}, ${nameTokens[0]}`;
+      let name = `${nameTokens[0]} ${nameTokens[1]}`;
       data.screener = { name: name, email: email};
       return of(data);
     }

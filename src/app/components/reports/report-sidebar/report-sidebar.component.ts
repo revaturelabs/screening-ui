@@ -8,6 +8,7 @@ import { ReportService } from 'src/app/services/reports/report.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { EMAILS } from 'src/app/mock-data/mock-emails';
 import { WeekDay } from '@angular/common';
+import { ReportData } from 'src/app/entities/ReportData';
 
 
 @Component({
@@ -21,6 +22,11 @@ export class ReportSidebarComponent implements OnInit {
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
   sliderControl: FormControl;
+  _reportData: ReportData;
+  @Input()
+  set reportData(reportData: ReportData){
+    this._reportData = reportData;
+  }
   // Used to emit slider events to master-component
   @Output() sliderChange = new EventEmitter();
   // Used to emit searchbar changes to master-component
