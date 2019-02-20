@@ -1,0 +1,35 @@
+p {
+    margin: 5px;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Helvetica,sans-serif; 
+    text-align: center;
+    color:#333333;
+    font-size: 18px;
+    fill:#333333;
+}
+h2 {
+    font-weight: normal;
+}
+
+ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ol li {
+    font-size: 1em;
+    counter-increment: step-counter;
+    margin: 10px;
+}
+
+ol li::before {
+        list-style-type: none;
+        content: counter(step-counter);
+        font-size: 80%;
+        background-color: #f26925;
+        color: white;
+        font-weight: bold;
+        padding: 7px 15px;
+        margin-right: 5px;
+        border-radius: 3px;
+}

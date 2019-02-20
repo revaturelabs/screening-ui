@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 // Classes
@@ -16,6 +16,7 @@ import { TRAINEES } from '../../mock-data/mock-simpleTrainees';
 // npm install ngx-pagination --save
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { SearchPipe } from '../../pipes/search.pipe';
+
 
 @Component({
   selector: 'app-candidates-screening-list',
