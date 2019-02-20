@@ -26,6 +26,7 @@ export class ReportCacheService {
   // getAllScreenerDataByWeeks(weeks: number): Observable<ReportData> {
 
   // }
+  }
 
 
 
