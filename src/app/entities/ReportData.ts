@@ -10,6 +10,7 @@ export interface ReportData {
     hardestQuestions: string[];
     avgSkillTypeScore: BarChartData[];
     avgBucketTypeScore: BarChartData[];
+    violationsByType: BarChartData[];
     numApplicantsPassed: number;
     numApplicantsFailed: number;
     screener: Screener;

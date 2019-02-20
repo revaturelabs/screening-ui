@@ -5,9 +5,9 @@
     </div>
     <div class="col-sm-12 col-lg-8">
       <div class="row" id='report-graphs'>
-          <app-average-bucket-type [barData]='reportData.avgBucketTypeScore' class='col-sm-12 mx-auto'></app-average-bucket-type>
-          <app-average-skill [barData]='reportData.avgSkillTypeScore' class='col-sm-12 mx-auto'></app-average-skill>
-          <app-hardest-questions [hardestQuestions]='reportData.hardestQuestions' class='card col-sm-12 col-md-6 mx-auto'></app-hardest-questions>
+          <app-average-bucket-type [barData]='reportData.avgBucketTypeScore' class='card col-sm-12 mx-auto'></app-average-bucket-type>
+          <app-average-skill [barData]='reportData.avgSkillTypeScore' class='card col-sm-12 mx-auto'></app-average-skill>
+          <app-violations-by-type [barData]='reportData.violationsByType' class='card col-sm-12 mx-auto'></app-violations-by-type>
         </div>         
     </div>
   </div>

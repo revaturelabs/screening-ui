@@ -37,6 +37,7 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
+import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 
 // Services
@@ -73,6 +74,7 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
 import { RoleGuard } from './role-guard';
 
+
 @NgModule({
   declarations: [
     // components
@@ -108,6 +110,7 @@ import { RoleGuard } from './role-guard';
     MasterReportComponent,
     ReportSidebarComponent,
     HardestQuestionsComponent,
+    ViolationsByTypeComponent,
   ],
   imports: [    
     BrowserAnimationsModule,

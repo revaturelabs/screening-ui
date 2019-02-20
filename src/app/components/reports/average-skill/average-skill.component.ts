@@ -20,8 +20,7 @@ export class AverageSkillComponent implements OnInit {
   constructor() { 
   }
 
-  ngOnInit() {
-    
+  ngOnInit() {    
   }
 
   setOptions(data: object[]) {
@@ -43,6 +42,4 @@ export class AverageSkillComponent implements OnInit {
       series: [{name: 'Skill Type', colorByPoint: true, data: this._barData }]
     };
   }
-
-
 }

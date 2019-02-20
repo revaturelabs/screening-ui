@@ -13,7 +13,6 @@ export class MasterReportComponent implements OnInit {
   currentWeekValue: number = 1;
   constructor(private reportService: ReportService) { }
   
-  
   ngOnInit() {
     this.reportService.getAllScreenerDataByWeeks(1)
       .subscribe(data => this.handleNewReportData(data));
