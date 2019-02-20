@@ -65,7 +65,7 @@ export class ReportSidebarComponent implements OnInit {
   }
 
   onClickScreenerEmail(screener) {
-    console.log(`clicked on ${screener}`);
+    //console.log(`clicked on ${screener}`);
     this.emailSearchTerm = screener;
     this.searchTerms.next('');
     this.searchChange.emit(screener);
