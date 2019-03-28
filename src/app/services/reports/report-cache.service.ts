@@ -23,7 +23,7 @@ export class ReportCacheService {
       return of(this.cacheMap[key]);
     }      
     else{
-      console.log(`Requesting ${key} from server`)''
+      console.log(`Requesting ${key} from server`);
       return this.reportService.getScreenersByPartialEmail(partialEmail).pipe(
         tap(data => this.cacheMap[key] = data),);
     }
