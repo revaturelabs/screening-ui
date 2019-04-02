@@ -39,6 +39,7 @@ import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillT
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
+import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -95,6 +96,7 @@ import { RoleGuard } from './role-guard';
     ViolationFlagComponent,
     CandidateComponent,
     AverageSkillComponent,
+    AdminTabComponent,
     // pipes
     ArrToStringPipe,
     BucketFilterPipe,
