@@ -11,11 +11,16 @@ import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
+import {LoginComponent} from './components/login/login.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: CandidatesScreeningListComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'reports',
