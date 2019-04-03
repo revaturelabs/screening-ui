@@ -46,6 +46,7 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -97,6 +98,7 @@ export const Dependencies = {
     GambitBatchUtilService,
     GambitBatchUtilService,
     UrlService,
+    AuthenticationService
   ],
   bootstrap: [
   ],
