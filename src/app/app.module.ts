@@ -40,6 +40,9 @@ import { SkillTypesComponent } from './components/skillTypes/skillTypes.componen
 import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
+import { LoginComponent } from './components/login/login.component';
+
+
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -59,6 +62,7 @@ import { SoftSkillsViolationService } from './services/soft-skills-violation/sof
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
 import { ApiService } from './services/api/api.service';
+import {AuthenticationService} from './services/authentication/authentication.service';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
@@ -97,6 +101,8 @@ import { RoleGuard } from './role-guard';
     CandidateComponent,
     AverageSkillComponent,
     AdminTabComponent,
+    LoginComponent,
+
     // pipes
     ArrToStringPipe,
     BucketFilterPipe,
@@ -113,6 +119,7 @@ import { RoleGuard } from './role-guard';
     ReportSidebarComponent,
     HardestQuestionsComponent,
     ViolationsByTypeComponent,
+
   ],
   imports: [    
     BrowserAnimationsModule,
@@ -147,6 +154,7 @@ import { RoleGuard } from './role-guard';
     SoftSkillsViolationService,
     UrlService,
     ViolationTypeService,
+    AuthenticationService,
   ],
   bootstrap: [AppComponent]
 })
