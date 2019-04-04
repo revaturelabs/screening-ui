@@ -19,6 +19,8 @@ export class NavComponent implements OnInit {
   // private routeService: RouteService;
   // private routeSubscription: Subscription;
   private userRole;
+  //Dummy variable. Waiting for authentication to be set up.
+  private isAdmin;
   showHome = true;
   showManage: boolean;
   showAssess: boolean;
@@ -38,6 +40,7 @@ export class NavComponent implements OnInit {
     this.showQuality = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_QC';
     this.showPanel = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_PANEL';
     this.showReports = true;
+    this.isAdmin = true;
   }
   toggleCollapse() {
     this.collapsed = !this.collapsed;
