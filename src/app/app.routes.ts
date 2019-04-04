@@ -14,18 +14,23 @@ import { MasterReportComponent } from './components/reports/master-report/master
 import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 import {LoginComponent} from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { FullBarDirective } from 'ng5-slider/slider.component';
+import { AdminAuthenticationService } from './services/adminAuthentication/admin-authentication.service';
 
 
 export const routes: Routes = [
   {
-    path: '',
-    component: CandidatesScreeningListComponent,
-  },
-  {
     path: 'login',
-    canActivate: [AuthenticationService],
     component: LoginComponent,
   },
+  
+  {
+    path: '',
+    canActivate: [AuthenticationService],
+    component: CandidatesScreeningListComponent,
+    children: [
+  
+  
   {
     path: 'reports',
     component: MasterReportComponent
@@ -62,10 +67,12 @@ export const routes: Routes = [
   
   {
     path: 'admin-tab',
+    canActivate: [AdminAuthenticationService],
     component: AdminTabComponent
   },
   {
     path: 'settings',
+    canActivate: [AdminAuthenticationService],
     component: SettingsComponent,
     // canActivate: [RoleGuard],
     // data: {
@@ -85,10 +92,10 @@ export const routes: Routes = [
   {
     path: 'home',
     component: CandidatesScreeningListComponent,
-  },
+  }]},
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: '/home'
+    redirectTo: '/login'
   }
 ];
