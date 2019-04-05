@@ -50,13 +50,15 @@ export class ReportService {
 
   getAllScreenerDataByWeeks(weeks: number): Observable<ReportData> {
     if (this.debug) {
-      switch(weeks) {
-        case 52: weeks = 5; break;
-        case 26: weeks = 4; break;
-        default: weeks -= 1; break;
-      }
-      let data = MockAllScreeners[weeks];
-      return of(data);
+      weeks = weeks + 52;
+      return this.http.get<ReportData>(`http://localhost:8185/getReport?weeks=${weeks}`);
+      // switch(weeks) {
+      //   case 52: weeks = 5; break;
+      //   case 26: weeks = 4; break;
+      //   default: weeks -= 1; break;
+      // }
+      // let data = MockAllScreeners[weeks];
+      // return of(data);
     }
     else
       return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(weeks));

@@ -10,7 +10,7 @@ export class AuthenticationService implements CanActivate {
 
   canActivate(): boolean
   {
-    return false;
+    return true;
   }
   login(username: string, password: string){
     return this.http.post<any>(`user/authenticate`,{username:username, password:password})
