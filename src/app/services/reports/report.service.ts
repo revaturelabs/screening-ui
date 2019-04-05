@@ -12,55 +12,28 @@ import { ReportData } from 'src/app/entities/ReportData';
   providedIn: 'root'
 })
 export class ReportService {
-  debug = true;
   constructor(
     private urlService: UrlService,
     private http: HttpClient
     ) { }
 
   getScreenersByPartialEmail(partialEmail: string): Observable<string[]> {
-    // console.log('In getScreenersByEmail');
-    if (partialEmail === '')
+    if (partialEmail === '') {
       return of([]);
-    else if (this.debug) {
-      let partials = of(EMAILS.filter(email => email.startsWith(partialEmail)))
-      // console.log(partials);
-      return partials
-    }    
-    else 
-      return this.http.get<string[]>(this.urlService.reports.getScreenersByPartialEmail(partialEmail));
+    } else {
+      return this.http.get<string[]>(`http://localhost:8185/getEmails?email=${partialEmail}`);
+    }
   }
   getScreenerDataByWeeks(weeks: number, email: string): Observable<ReportData> {
-    if (this.debug) {
-      switch(weeks) {
-        case 52: weeks = 5; break;
-        case 26: weeks = 4; break;
-        default: weeks -= 1; break;
-      }
-      let data = MockSingleScreeners[weeks];
-      let nameTokens = email.split(/[.@]+/);
-      // let name = `${nameTokens[1]}, ${nameTokens[0]}`;
-      let name = `${nameTokens[0]} ${nameTokens[1]}`;
-      data.screener = { name: name, email: email};
-      return of(data);
-    }
-    else
-      return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(weeks, email));
+    //this line exists because all the data on the server is more than 1yr old
+    weeks = weeks + 52;
+    return this.http.get<ReportData>(
+        `http://localhost:8185/getReportWithEmail?weeks=${weeks}&email=${email}`);
   }    
 
   getAllScreenerDataByWeeks(weeks: number): Observable<ReportData> {
-    if (this.debug) {
+      //this line cause all data on server more than 1yr old
       weeks = weeks + 52;
-      return this.http.get<ReportData>(`http://localhost:8185/getReport?weeks=${weeks}`);
-      // switch(weeks) {
-      //   case 52: weeks = 5; break;
-      //   case 26: weeks = 4; break;
-      //   default: weeks -= 1; break;
-      // }
-      // let data = MockAllScreeners[weeks];
-      // return of(data);
-    }
-    else
-      return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(weeks));
+      return this.http.get<ReportData>(`http://localhost:8185/getWeeksReport?weeks=${weeks}`);
   }
 }
