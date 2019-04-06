@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { NavModule } from './nav.module';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
+
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -41,7 +43,6 @@ import { ViolationsByTypeComponent } from  './components/reports/violations-by-t
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { LoginComponent } from './components/login/login.component';
 
-
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
@@ -61,6 +62,7 @@ import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
 import { ApiService } from './services/api/api.service';
 import {AuthenticationService} from './services/authentication/authentication.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
@@ -130,6 +132,7 @@ import { RoleGuard } from './role-guard';
     Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
+    AmplifyAngularModule
   ],
   providers: [
     AlertsService,
@@ -151,6 +154,7 @@ import { RoleGuard } from './role-guard';
     UrlService,
     ViolationTypeService,
     AuthenticationService,
+    AmplifyService
   ],
   bootstrap: [AppComponent]
 })
