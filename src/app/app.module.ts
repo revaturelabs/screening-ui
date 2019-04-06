@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule} from 'highcharts-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { NavModule } from './nav.module';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
-
+import {SpringInterceptor} from './interceptors/spring.interceptor'
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -154,7 +154,8 @@ import { RoleGuard } from './role-guard';
     UrlService,
     ViolationTypeService,
     AuthenticationService,
-    AmplifyService
+    AmplifyService,
+    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
