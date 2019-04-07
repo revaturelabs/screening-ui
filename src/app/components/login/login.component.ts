@@ -12,10 +12,10 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
+  // loginForm: FormGroup;
+  // loading = false;
+  // submitted = false;
+  // returnUrl: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,33 +24,41 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private alertService: AlertsService) {}
   
+    authUser:any;
 
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-    this.authenticationService.logout();
-
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
-  get f(){return this.loginForm.controls;}
-
-  onSubmit(){
-    this.submitted = true;
-
-    if(this.loginForm.invalid){
-      return;
+    getUser(username:string,password:string): void {
+     this.authenticationService.login(username,password)
+     this.router.navigate(['/home']);
+      // .then(data => console.log(data));
+      // console.log(localStorage.getItem('user'))
+     
     }
+  ngOnInit() {
+    // this.loginForm = this.formBuilder.group({
+    //   username: ['', Validators.required],
+    //   password: ['', Validators.required]
+    // });
+    // this.authenticationService.logout();
 
-    this.loading=true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first()).subscribe(data => {
-        this.router.navigate([this.returnUrl]);
-      }, 
-      error => {
-        this.alertService.onError(error);
-        this.loading = false;
-      });
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
+  // get f(){return this.loginForm.controls;}
+
+  // onSubmit(){
+  //   this.submitted = true;
+
+  //   if(this.loginForm.invalid){
+  //     return;
+  //   }
+
+  //   this.loading=true;
+    // this.authenticationService.login(this.f.username.value, this.f.password.value)
+    //   .pipe(first()).subscribe(data => {
+    //     this.router.navigate([this.returnUrl]);
+    //   }, 
+    //   error => {
+    //     this.alertService.onError(error);
+    //     this.loading = false;
+    //   });
+  // }
 }

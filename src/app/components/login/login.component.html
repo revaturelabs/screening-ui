@@ -1,4 +1,4 @@
-<div class="login-div">
+<!-- <div class="login-div">
   <div class="img-div">
     <img  class="login-img" routerLink="/dashboard" class="rev-logo" src="assets/rev-logo.png" alt="revature">
   </div>
@@ -25,4 +25,22 @@
       <a [routerLink]="['/register']" class="btn btn-link">Register</a>
     </div>
   </form>
-</div>
+</div> -->
+
+<div class='login'>
+  <h2 class='title'>Login</h2>
+  <div>
+    <input class='un' type="text" name="username" #username placeholder="username"/><br>
+    <input class='pass' type="password" name="password" #password placeholder="password"/>
+  </div>
+  <a><button class='button' (click)= getUser(username.value,password.value)>Submit</button></a>
+  
+  
+  <div id="message" style="color:red; display:none" >
+    <p>Bad username/password</p>
+  </div>
+  
+  </div>
+  <!-- <amplify-authenticator></amplify-authenticator> -->
+  <!-- <amplify-auth-sign-in-core></amplify-auth-sign-in-core> -->
+
