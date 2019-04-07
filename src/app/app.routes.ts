@@ -27,7 +27,7 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [AuthenticationService],
-    component: CandidatesScreeningListComponent,
+    //component: CandidatesScreeningListComponent,
     children: [
   
   
