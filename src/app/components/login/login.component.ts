@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
     private alertService: AlertsService) {}
   
     authUser:any;
-
+    debug = true;
+    
     getUser(username:string,password:string): void {
      this.authenticationService.login(username,password)
      this.router.navigate(['/home']);

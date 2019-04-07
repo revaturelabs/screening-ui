@@ -39,6 +39,12 @@
   <div id="message" style="color:red; display:none" >
     <p>Bad username/password</p>
   </div>
+
+  <div *ngIf="debug" style="border: 5px solid red; width:500px;">
+    <h3>Debug Panel</h3>
+    <h5>user : John.Smith@revature.com</h5>
+    <h5>pass : R3vatur3!</h5>
+  </div>
   
   </div>
   <!-- <amplify-authenticator></amplify-authenticator> -->
