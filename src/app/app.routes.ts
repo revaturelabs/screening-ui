@@ -30,7 +30,6 @@ export const routes: Routes = [
     //component: CandidatesScreeningListComponent,
     children: [
   
-  
   {
     path: 'reports',
     component: MasterReportComponent
@@ -67,12 +66,12 @@ export const routes: Routes = [
   
   {
     path: 'admin-tab',
-    canActivate: [AdminAuthenticationService],
+    //canActivate: [AdminAuthenticationService],
     component: AdminTabComponent
   },
   {
     path: 'settings',
-    canActivate: [AdminAuthenticationService],
+    //canActivate: [AdminAuthenticationService],
     component: SettingsComponent,
     // canActivate: [RoleGuard],
     // data: {
