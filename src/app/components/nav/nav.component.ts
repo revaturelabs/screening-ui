@@ -32,7 +32,8 @@ export class NavComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.userRole = this.cookies.get('role');
+    //this.userRole = this.cookies.get('role');
+    this.userRole = 'ROLE_VP';
     this.showHome = true;
     this.showManage = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER' ||
       this.userRole === 'ROLE_QC' || this.userRole === 'ROLE_PANEL';

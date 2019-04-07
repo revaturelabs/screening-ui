@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule} from 'highcharts-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { NavModule } from './nav.module';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
+import {SpringInterceptor} from './interceptors/spring.interceptor'
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -43,7 +45,6 @@ import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 import { LoginComponent } from './components/login/login.component';
 
 
-
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
@@ -63,6 +64,7 @@ import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
 import { ApiService } from './services/api/api.service';
 import {AuthenticationService} from './services/authentication/authentication.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
@@ -136,6 +138,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
+    AmplifyAngularModule
   ],
   providers: [
     AlertsService,
@@ -158,6 +161,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     ViolationTypeService,
     AuthenticationService,
     AdminAuthenticationService
+    AmplifyService,
+    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
