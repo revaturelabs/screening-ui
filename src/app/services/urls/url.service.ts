@@ -112,6 +112,7 @@ export class UrlService {
     addViolationURL: () => `${this.screeningContext}/violation/new/`,
     deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
     };
+
   private reportEndpoint = this.adminContext + '/reports';
   reports = {
     getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/email?email=${partialEmail}`,
