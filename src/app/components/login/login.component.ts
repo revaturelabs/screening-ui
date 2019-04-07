@@ -28,8 +28,9 @@ export class LoginComponent implements OnInit {
 
     getUser(username:string,password:string): void {
      this.authenticationService.login(username,password)
+     this.router.navigate(['/home']);
       // .then(data => console.log(data));
-      console.log(localStorage.getItem('user'))
+      // console.log(localStorage.getItem('user'))
      
     }
   ngOnInit() {

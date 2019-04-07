@@ -24,19 +24,12 @@ export class SpringInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let user = JSON.parse(localStorage.getItem('user'));
       console.log(user)
-
-    // this.amplifyService.auth().currentSession()
-    //   .then(data => {
-    //     console.log(data)
-    //     user = data;
-    //   })
-    //   .catch(err => console.log(err));
     const modifiedRequest = request.clone({
       // withCredentials: true,
       setHeaders: {
         'Content-Type': 'application/json',
         'Accept': 'application/json, text/*',
-        'AccessToken': user.signInUserSession
+        'Tokens': user.signInUserSession
       }
     });
 

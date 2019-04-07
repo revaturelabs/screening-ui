@@ -44,8 +44,9 @@ export class AuthenticationService implements CanActivate {
         // );
         }else {
           // The user directly signs in
-          console.log(user);
-          localStorage.setItem('user',JSON.stringify(user))
+          // console.log(user);
+         await localStorage.setItem('user',JSON.stringify(user))
+        // console.log(localStorage.getItem('user'))
       } 
   
     }catch (err) {
