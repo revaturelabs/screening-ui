@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -27,8 +28,9 @@ export class NavComponent implements OnInit {
   showQuality: boolean;
   showPanel: boolean;
   showReports = true;
+  attemptLogout = false;
 
-  constructor( private cookies: CookieService ) {
+  constructor( private cookies: CookieService, private authenticationService: AuthenticationService) {
    }
 
   ngOnInit() {
@@ -46,5 +48,16 @@ export class NavComponent implements OnInit {
   toggleCollapse() {
     this.collapsed = !this.collapsed;
     this.collapse.emit(this.collapsed);
+  }
+  toggleLogout() {
+    if (this.attemptLogout) {
+      return "block";
+    } else {
+      return "none";
+    }
+  }
+  logout() {
+    this.authenticationService.logout();
+    this.attemptLogout = false;
   }
 }

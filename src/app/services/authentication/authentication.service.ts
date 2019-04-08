@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { AmplifyService } from 'aws-amplify-angular';
 import { async } from 'q';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Injectable()
@@ -12,12 +12,17 @@ export class AuthenticationService implements CanActivate {
 
   constructor(private http: HttpClient, private router:Router, private amplifyService:AmplifyService) { }
 
-  canActivate(): boolean
+  canActivate(route: ActivatedRouteSnapshot): boolean
   {
     let user = JSON.parse(localStorage.getItem('user'));
-    if(user)
-    {
-      return true;
+    if(user) {
+      let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
+      console.log(groups);
+      let accessRoles = route.data['roles'];
+      console.log(accessRoles);
+      for (let role of groups) {
+        if (accessRoles.includes(role)) return true;
+      }
     }
     this.router.navigateByUrl('/login');
     return false;
@@ -78,7 +83,7 @@ export class AuthenticationService implements CanActivate {
   }
 
   logout(){
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('user');
   }
 
   isLoggedIn(){

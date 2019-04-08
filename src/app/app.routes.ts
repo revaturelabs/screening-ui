@@ -26,52 +26,53 @@ export const routes: Routes = [
   
   {
     path: '',
-    //canActivate: [AuthenticationService],
-    //component: CandidatesScreeningListComponent,
+    canActivate: [AuthenticationService],
+    // a list of roles that can access the resource -- in this case all of them
+    data: {roles: ['ROLE_STAGING', 'ROLE_TRAINER', 'ROLE_QC', 'ROLE_PANEL', 'ROLE_VP', 'Screener-Users']},
     children: [
-  
-  {
-    path: 'reports',
-    component: MasterReportComponent
-  },
-  {
-    path: 'screening',
-    component: ScreeningComponent,
-    // canActivate: [RoleGuard],
-    // data: {
-    //   roles: [
-    //     roles.screenerRole, roles.vpRole
-    //   ]nng
-    // },
-    children: [
-      {
-        path: 'intro',
-        component: IntroductionComponent,
-      },
-      
-      {
-        path: 'questions',
-        component: QuestionsTableComponent,
-      },
-      {
-        path: 'finalReport',
-        component: FinalReportComponent,
-      },
-      {
-        path: 'passFail',
-        component: PassFailComponent
-      }
-    ]
-  },
-  
+    
+    {
+      path: 'reports',
+      component: MasterReportComponent
+    },
+    {
+      path: 'screening',
+      component: ScreeningComponent,
+      // canActivate: [RoleGuard],
+      // data: {
+      //   roles: [
+      //     roles.screenerRole, roles.vpRole
+      //   ]nng
+      // },
+      children: [
+        {
+          path: 'intro',
+          component: IntroductionComponent,
+        },
+        {
+          path: 'questions',
+          component: QuestionsTableComponent,
+        },
+        {
+          path: 'finalReport',
+          component: FinalReportComponent,
+        },
+        {
+          path: 'passFail',
+          component: PassFailComponent
+        }
+      ]
+    },
+    
   {
     path: 'admin-tab',
-    //canActivate: [AdminAuthenticationService],
+    canActivate: [AuthenticationService],
+    data: {roles: ['ROLE_VP']},
     component: AdminTabComponent
   },
   {
     path: 'settings',
-    //canActivate: [AdminAuthenticationService],
+    canActivate: [AuthenticationService],
     component: SettingsComponent,
     // canActivate: [RoleGuard],
     // data: {
