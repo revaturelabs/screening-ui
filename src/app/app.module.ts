@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NavModule } from './nav.module';
+//import { NavModule } from './nav.module';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
@@ -30,6 +30,7 @@ import { FinalReportComponent } from './components/final-report/final-report.com
 import { HardestQuestionsComponent } from './components/reports/hardest-questions/hardest-questions.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
+import { NavComponent } from './components/nav/nav.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
@@ -48,6 +49,7 @@ import { LoginComponent } from './components/login/login.component';
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
+import { CookieService } from 'ngx-cookie-service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
@@ -93,6 +95,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
+    NavComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
@@ -132,7 +135,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     HighchartsChartModule,
     HttpClientModule,
     HttpModule,
-    NavModule,
+    //NavModule,
     NgbModule.forRoot(),
     NgxPaginationModule,
     Ng5SliderModule,
@@ -144,6 +147,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     AlertsService,
     ApiService,
     BucketsService,
+    CookieService,
     GambitBatchUtilService,
     HttpErrorHandlerService,
     QuestionScoreService,
@@ -160,7 +164,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     UrlService,
     ViolationTypeService,
     AuthenticationService,
-    AdminAuthenticationService
+    AdminAuthenticationService,
     AmplifyService,
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],

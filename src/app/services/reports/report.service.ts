@@ -24,16 +24,16 @@ export class ReportService {
       return this.http.get<string[]>(`http://localhost:8185/getEmails?email=${partialEmail}`);
     }
   }
-  getScreenerDataByWeeks(weeks: number, email: string): Observable<ReportData> {
+  getScreenerDataByWeeks(weeks: Array<number>, email: string): Observable<ReportData> {
     //this line exists because all the data on the server is more than 1yr old
-    weeks = weeks + 52;
+    //weeks = weeks + 52;
     return this.http.get<ReportData>(
         `http://localhost:8185/getReportWithEmail?weeks=${weeks}&email=${email}`);
   }    
 
-  getAllScreenerDataByWeeks(weeks: number): Observable<ReportData> {
+  getAllScreenerDataByWeeks(weeks: Array<number>): Observable<ReportData> {
       //this line cause all data on server more than 1yr old
-      weeks = weeks + 52;
+      //weeks = weeks + 52;
       return this.http.get<ReportData>(`http://localhost:8185/getWeeksReport?weeks=${weeks}`);
   }
 }
