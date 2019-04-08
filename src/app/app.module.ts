@@ -164,7 +164,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     UrlService,
     ViolationTypeService,
     AuthenticationService,
-    AdminAuthenticationService
+    AdminAuthenticationService,
     AmplifyService,
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
