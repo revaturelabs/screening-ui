@@ -18,7 +18,7 @@ import { ReportData } from 'src/app/entities/ReportData';
 })
 export class ReportSidebarComponent implements OnInit {
   //@Input() initialSliderValue: number = 1;
-  minSliderValue: number = 1;
+  minSliderValue: number = 0;
   maxSliderValue: number = 208;
   screenerEmails$: Observable<string[]>;
   private searchTerms = new Subject<string>();
@@ -35,11 +35,14 @@ export class ReportSidebarComponent implements OnInit {
   @Output() searchChange = new EventEmitter();
 
   sliderOptions: Options = {
-    floor: 1,
+    floor: 0,
     ceil: 208,
     //showTicks: true,
     translate: (value: number): string => {
-      if(value === 1) {
+      if(value === 0) {
+        return "Present Day";
+      }
+      else if (value === 1) {
         return "1 Week";
       }
       if(value === 52) {
