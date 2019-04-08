@@ -29,7 +29,7 @@ export class ReportCacheService {
     }
   }
  
-  getScreenerDataByWeeks(weeks: number, email: string): Observable<ReportData> {
+  getScreenerDataByWeeks(weeks: Array<number>, email: string): Observable<ReportData> {
     let key = `$weeks=${weeks}&email=${email}`;
     if (key in this.cacheMap){
       console.log(`Retrieving ${key} from cache`);
@@ -42,7 +42,7 @@ export class ReportCacheService {
     }
   }  
 
-  getAllScreenerDataByWeeks(weeks: number): Observable<ReportData> {
+  getAllScreenerDataByWeeks(weeks: Array<number>): Observable<ReportData> {
     let key = `weeks=${weeks}`;
     if (key in this.cacheMap){
       console.log(`Retrieving ${key} from cache`);
