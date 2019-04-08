@@ -11,13 +11,13 @@ import { ReportCacheService } from 'src/app/services/reports/report-cache.servic
 export class MasterReportComponent implements OnInit {
   reportData: ReportData;
   currentSearchTerm: string = '';
-  currentWeekValue: number = 1;
+  currentWeeksValue: Array<number> = [1, 50];
   constructor(
     private reportService: ReportService,
     private reportCache: ReportCacheService) { }
   
   ngOnInit() {
-    this.reportCache.getAllScreenerDataByWeeks(1)
+    this.reportCache.getAllScreenerDataByWeeks(this.currentWeeksValue)
       .subscribe(data => this.handleNewReportData(data));
   }
   handleNewReportData(data: ReportData) {
@@ -25,10 +25,10 @@ export class MasterReportComponent implements OnInit {
     this.reportData = data;
   }
 
-  onSliderChange(weeks: number) {
+  onSliderChange(weeks: Array<number>) {
     //console.log('slider change: ' + weeks);
-    if (weeks != this.currentWeekValue) {
-      this.currentWeekValue = weeks;
+    if (weeks[0] != this.currentWeeksValue[0] || weeks[1] != this.currentWeeksValue[1]) {
+      this.currentWeeksValue = weeks;
       this.updateReportData();
     }    
   }
@@ -40,13 +40,13 @@ export class MasterReportComponent implements OnInit {
     }
   }
   updateReportData() {
-    //console.log('weeks: ' + this.currentWeekValue + ', search: ' + this.currentSearchTerm);
+    //console.log('weeks: ' + this.currentWeeksValue + ', search: ' + this.currentSearchTerm);
     if (this.currentSearchTerm === '') {
-      this.reportCache.getAllScreenerDataByWeeks(this.currentWeekValue)
+      this.reportCache.getAllScreenerDataByWeeks(this.currentWeeksValue)
         .subscribe(data => this.handleNewReportData(data));
     }
     else {
-      this.reportCache.getScreenerDataByWeeks(this.currentWeekValue, this.currentSearchTerm)
+      this.reportCache.getScreenerDataByWeeks(this.currentWeeksValue, this.currentSearchTerm)
       .subscribe(data => this.handleNewReportData(data));
     }
   }

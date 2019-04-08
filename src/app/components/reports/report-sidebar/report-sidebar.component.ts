@@ -17,11 +17,13 @@ import { ReportData } from 'src/app/entities/ReportData';
   styleUrls: ['./report-sidebar.component.scss']
 })
 export class ReportSidebarComponent implements OnInit {
-  @Input() initialSliderValue: number = 1;
+  //@Input() initialSliderValue: number = 1;
+  minSliderValue: number = 1;
+  maxSliderValue: number = 50;
   screenerEmails$: Observable<string[]>;
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
-  sliderControl: FormControl;
+  //sliderControl: FormControl;
   _reportData: ReportData;
   @Input()
   set reportData(reportData: ReportData){
@@ -34,9 +36,9 @@ export class ReportSidebarComponent implements OnInit {
 
   sliderOptions: Options = {
     floor: 1,
-    ceil: 6,
-    showTicks: true,
-    translate: (value: number): string => {
+    ceil: 100,
+    //showTicks: true,
+    /*translate: (value: number): string => {
       switch(value){
         case 1:
           return "1 Week";
@@ -51,7 +53,7 @@ export class ReportSidebarComponent implements OnInit {
         case 6:
           return "1 Year";
       }
-    },
+    },*/
   };
 
   constructor(
@@ -72,12 +74,14 @@ export class ReportSidebarComponent implements OnInit {
   }
   onSliderChange(changeContext: ChangeContext): void {
     // console.log(`onUserChangeStart(${this.getChangeContextString(changeContext)})\n`);
-    let actualWeeks = changeContext.value;
-    switch(actualWeeks) {
+    let actualWeeksMinValue = changeContext.value;
+    let actualWeeksMaxValue = changeContext.highValue;
+    let weeksArray = [actualWeeksMinValue, actualWeeksMaxValue]
+    /*switch(actualWeeks) {
       case 5: actualWeeks = 26; break;
       case 6: actualWeeks = 52; break;
-    }
-    this.sliderChange.emit(actualWeeks);
+    }*/
+    this.sliderChange.emit(weeksArray);
   }
   
   // onUserChange(changeContext: ChangeContext): void {
@@ -97,7 +101,7 @@ export class ReportSidebarComponent implements OnInit {
   ngOnInit() {
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
-    this.sliderControl = new FormControl(this.initialSliderValue);
+    //this.sliderControl = new FormControl(this.initialSliderValue);
     this.screenerEmails$ = this.searchTerms.pipe(
       
       debounceTime(300),
