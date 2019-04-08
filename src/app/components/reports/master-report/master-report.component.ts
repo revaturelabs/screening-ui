@@ -11,7 +11,7 @@ import { ReportCacheService } from 'src/app/services/reports/report-cache.servic
 export class MasterReportComponent implements OnInit {
   reportData: ReportData;
   currentSearchTerm: string = '';
-  currentWeeksValue: Array<number> = [1, 50];
+  currentWeeksValue: Array<number> = [1, 208];
   constructor(
     private reportService: ReportService,
     private reportCache: ReportCacheService) { }

@@ -19,7 +19,7 @@ import { ReportData } from 'src/app/entities/ReportData';
 export class ReportSidebarComponent implements OnInit {
   //@Input() initialSliderValue: number = 1;
   minSliderValue: number = 1;
-  maxSliderValue: number = 50;
+  maxSliderValue: number = 208;
   screenerEmails$: Observable<string[]>;
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
@@ -36,24 +36,55 @@ export class ReportSidebarComponent implements OnInit {
 
   sliderOptions: Options = {
     floor: 1,
-    ceil: 100,
+    ceil: 208,
     //showTicks: true,
-    /*translate: (value: number): string => {
-      switch(value){
-        case 1:
-          return "1 Week";
-        case 2:
-          return "2 Weeks";
-        case 3:
-          return "3 Weeks";
-        case 4:
-          return "1 Month";
-        case 5:
-          return "1/2 Year";
-        case 6:
-          return "1 Year";
+    translate: (value: number): string => {
+      if(value === 1) {
+        return "1 Week";
       }
-    },*/
+      if(value === 52) {
+        return "1 Year";
+      }
+      else if(value > 52 && value < 104) {
+        let weeks = value-52;
+        if(weeks === 1) {
+          return `1 Year ${weeks} Week`;
+        }
+        else {
+          return `1 Year ${weeks} Weeks`;
+        }
+      }
+      else if(value === 104) {
+        return "2 Years";
+      }
+      else if(value > 104 && value < 156) {
+        let weeks = value-104;
+        if(weeks === 1) {
+          return `2 Years ${weeks} Week`;
+        }
+        else {
+          return `2 Years ${weeks} Weeks`;
+        }
+      }
+      else if(value === 156) {
+        return "3 Years";
+      }
+      else if(value > 156 && value < 208) {
+        let weeks = value-156;
+        if(weeks === 1) {
+          return `3 Years ${weeks} Week`;
+        }
+        else {
+          return `3 Years ${weeks} Weeks`;
+        }
+      }
+      else if(value === 208) {
+        return "4 Years";
+      }
+      else {
+        return `${value} Weeks`;
+      }
+    },
   };
 
   constructor(
