@@ -14,6 +14,7 @@ import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
 import {SpringInterceptor} from './interceptors/spring.interceptor'
 
+
 // Importing the routes from app routes
 import { routes } from './app.routes';
 
@@ -86,6 +87,7 @@ import { AdminAuthenticationService } from './services/adminAuthentication/admin
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 
+
 @NgModule({
   declarations: [
     // components
@@ -129,6 +131,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
   ],
   imports: [    
+    
     BrowserAnimationsModule,
     BrowserModule,    
     FormsModule,        
