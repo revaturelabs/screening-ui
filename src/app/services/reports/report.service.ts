@@ -21,19 +21,18 @@ export class ReportService {
     if (partialEmail === '') {
       return of([]);
     } else {
-      return this.http.get<string[]>(`http://localhost:8185/getEmails?email=${partialEmail}`);
+      return this.http.get<string[]>(this.urlService.reports.getScreenersByPartialEmail(partialEmail));
     }
   }
   getScreenerDataByWeeks(weeks: Array<number>, email: string): Observable<ReportData> {
     //this line exists because all the data on the server is more than 1yr old
     //weeks = weeks + 52;
-    return this.http.get<ReportData>(
-        `http://localhost:8185/getReportWithEmail?weeks=${weeks}&email=${email}`);
+    return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(weeks, email));
   }    
 
   getAllScreenerDataByWeeks(weeks: Array<number>): Observable<ReportData> {
       //this line cause all data on server more than 1yr old
       //weeks = weeks + 52;
-      return this.http.get<ReportData>(`http://localhost:8185/getWeeksReport?weeks=${weeks}`);
+      return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(weeks));
   }
 }
