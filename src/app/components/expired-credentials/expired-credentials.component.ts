@@ -27,7 +27,7 @@ function redirectTimer(router: RouterModule) {
       'Your credentials have expired for this session. ' +  
       'You will be redirected in ' + seconds + ' seconds.';
       console.log(seconds);
-      seconds--
+      seconds--;
       if (seconds === 0) {
         console.log(router);
         // doesn't redirect. no idea why. (hoisting?)

@@ -15,6 +15,7 @@ export class ReportService {
   constructor(
     private urlService: UrlService,
     private http: HttpClient
+    
     ) { }
 
   getScreenersByPartialEmail(partialEmail: string): Observable<string[]> {
