@@ -1,12 +1,49 @@
 <!-- <p>
   admin-tab works!
 </p> -->
-<form>
-<div class="form-group">
-  <label for="description"><strong>Create Question</strong></label>
-  <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Question"  ngModel></textarea>
-</div>
-<br>
-<br>
-<input type="submit"class="btn btn-outline-dark" value="SUBMIT">
-</form>
+<form #createQuestionForm="ngForm" method="GET" (ngSubmit)="submitForm(createQuestionForm)">
+
+  <div class="form-group">
+    <label for="description"><strong>Create Question</strong></label>
+    <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Question" ngModel></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Answer" ngModel></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Answer" ngModel></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Answer" ngModel></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Answer" ngModel></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Answer" ngModel></textarea>
+  </div>
+  <br>
+  <br>
+  
+  <input type="submit"class="btn btn-outline-dark" value="SUBMIT">
+  </form>
+  <br>
+  
+  <h6 id="createLocationNotifier">{{notifier}}</h6>
+  
+  
