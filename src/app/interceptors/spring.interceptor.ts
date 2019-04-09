@@ -23,13 +23,18 @@ export class SpringInterceptor implements HttpInterceptor {
   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let user = JSON.parse(localStorage.getItem('user'));
+    let groups;
+    if(user) {
+      groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
       console.log(user)
+    }
     const modifiedRequest = request.clone({
       // withCredentials: true,
       setHeaders: {
         'Content-Type': 'application/json',
         'Accept': 'application/json, text/*',
-        'Tokens': user.signInUserSession
+        'Tokens': JSON.stringify(user.signInUserSession.idToken.jwtToken),
+        'Role' : JSON.stringify(groups)
       }
     });
 
