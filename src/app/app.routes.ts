@@ -11,11 +11,14 @@ import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
+import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 import {LoginComponent} from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import {NotLoggedInComponent} from './components/not-logged-in/not-logged-in.component';
 import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
 import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
+import { FullBarDirective } from 'ng5-slider/slider.component';
+import { AdminAuthenticationService } from './services/adminAuthentication/admin-authentication.service';
  
 export const routes: Routes = [
   {
@@ -36,9 +39,15 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [AuthenticationService],
     component: LoginComponent,
   },
+  
+  {
+    path: '',
+    canActivate: [AuthenticationService],
+    //component: CandidatesScreeningListComponent,
+    children: [
+  
   {
     path: 'reports',
     component: MasterReportComponent
@@ -57,6 +66,7 @@ export const routes: Routes = [
         path: 'intro',
         component: IntroductionComponent,
       },
+      
       {
         path: 'questions',
         component: QuestionsTableComponent,
@@ -71,8 +81,15 @@ export const routes: Routes = [
       }
     ]
   },
+  
+  {
+    path: 'admin-tab',
+    //canActivate: [AdminAuthenticationService],
+    component: AdminTabComponent
+  },
   {
     path: 'settings',
+    //canActivate: [AdminAuthenticationService],
     component: SettingsComponent,
     // canActivate: [RoleGuard],
     // data: {
@@ -92,11 +109,13 @@ export const routes: Routes = [
   {
     path: 'home',
     component: CandidatesScreeningListComponent,
-  },
+  }]},
   {
     path: '**',
     pathMatch: 'full',
+
     redirectTo: '/home'
   },
-  
+    redirectTo: '/login'
+  }
 ];

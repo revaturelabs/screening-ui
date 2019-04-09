@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import { CanActivate } from '@angular/router';
 import { AmplifyService } from 'aws-amplify-angular';
 import { async } from 'q';
+import { CanActivate, Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Injectable()
 export class AuthenticationService implements CanActivate {
 
-  constructor(private http: HttpClient, private amplifyService:AmplifyService) { }
+
+  constructor(private http: HttpClient, private router:Router, private amplifyService:AmplifyService) { }
 
   canActivate(): boolean
   {
-    return true;
+    let user = JSON.parse(localStorage.getItem('user'));
+    if(user)
+    {
+      return true;
+    }
+    this.router.navigateByUrl('/login');
+    return false;
   }
   // login(username: string, password: string){
   //   return this.http.post<any>(`user/authenticate`,{username:username, password:password})

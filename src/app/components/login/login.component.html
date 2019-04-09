@@ -1,4 +1,4 @@
-<!-- <div class="login-div">
+<div class="login-div">
   <div class="img-div">
     <img  class="login-img" routerLink="/dashboard" class="rev-logo" src="assets/rev-logo.png" alt="revature">
   </div>
@@ -25,9 +25,9 @@
       <a [routerLink]="['/register']" class="btn btn-link">Register</a>
     </div>
   </form>
-</div> -->
+</div>
 
-<div class='login'>
+<!-- <div class='login'>
   <h2 class='title'>Login</h2>
   <div>
     <input class='un' type="text" name="username" #username placeholder="username"/><br>
@@ -38,15 +38,21 @@
   
   <div id="message" style="color:red; display:none" >
     <p>Bad username/password</p>
-  </div>
+  </div> -->
 
   <div *ngIf="debug" style="border: 5px solid red; width:500px;">
     <h3>Debug Panel</h3>
     <h5>user : John.Smith@revature.com</h5>
     <h5>pass : R3vatur3!</h5>
+    <h3>Debug Panel</h3>
+    <h5>user : Jane.Smith@revature.com</h5>
+    <h5>pass : Password!2</h5>
+    <h3>Debug Panel</h3>
+    <h5>user : Paul.Walker@revature.com</h5>
+    <h5>pass : Password!2</h5>
   </div>
   
-  </div>
+  <!-- </div> -->
   <!-- <amplify-authenticator></amplify-authenticator> -->
   <!-- <amplify-auth-sign-in-core></amplify-auth-sign-in-core> -->
 
