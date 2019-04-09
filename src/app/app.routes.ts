@@ -40,7 +40,7 @@ export const routes: Routes = [
   },
   
   {
-    path: ' ',
+    path: '',
     canActivate: [AuthenticationService],
     //component: CandidatesScreeningListComponent,
     children: [
@@ -117,3 +117,4 @@ export const routes: Routes = [
   
 
 ];
+
