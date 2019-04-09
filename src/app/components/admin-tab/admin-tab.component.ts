@@ -42,9 +42,16 @@ export class AdminTabComponent implements OnInit {
     send.sampleAnswer3 = this.answer3;
     send.sampleAnswer4 = this.answer4;
     send.sampleAnswer5 = this.answer5;
-
+  
     console.group(JSON.stringify(send));
     this.http.post(`http://localhost:8185/question`,JSON.stringify(send)).subscribe();
+    
+    this.text = '';
+    this.answer1 = '';
+    this.answer2 = '';
+    this.answer3 = '';
+    this.answer4 = '';
+    this.answer5 = '';
     
   }
   getBucketId(input:String) :number {
