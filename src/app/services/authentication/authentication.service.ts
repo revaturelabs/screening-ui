@@ -22,15 +22,7 @@ export class AuthenticationService implements CanActivate {
     this.router.navigateByUrl('/login');
     return false;
   }
-  // login(username: string, password: string){
-  //   return this.http.post<any>(`user/authenticate`,{username:username, password:password})
-  //     .pipe(map(user =>{
-  //       if(user && user.token){
-  //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //       }
-  //       return user;
-  //     }));
-  // }
+  
   async login(username: string, password: string){
     try{
       const user = await this.amplifyService.auth().signIn(username,password);
