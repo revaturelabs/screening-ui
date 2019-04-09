@@ -30,6 +30,7 @@
     "jquery": "^3.3.1",
     "ng5-slider": "^1.1.13",
     "ngx-cookie-service": "^1.0.10",
+    "ngx-countdown-timer": "^0.1.9",
     "ngx-pagination": "^3.2.0",
     "popper.js": "^1.14.7",
     "rxjs": "^6.3.3",
