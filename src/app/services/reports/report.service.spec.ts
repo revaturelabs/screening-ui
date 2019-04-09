@@ -17,7 +17,7 @@ describe('ReportService', () => {
     imports: [HttpClientModule],
     providers: [UrlService]
   }));
-
+ 
   it('should be created', () => {
     const service: ReportService = TestBed.get(ReportService);
     expect(service).toBeTruthy();
@@ -50,8 +50,8 @@ describe('ReportService', () => {
     const service: ReportService = TestBed.get(ReportService);
     let myString: String;
 
-    let testStringURL: string = JSON.stringify(service.getAllScreenerDataByWeeks(52).source.source.source.value.url);
-    let testStringMethod: string = JSON.stringify(service.getAllScreenerDataByWeeks(52).source.source.source.value.method);
+    let testStringURL: string = JSON.stringify(service.getAllScreenerDataByWeeks([52]).source.source.source.value.url);
+    let testStringMethod: string = JSON.stringify(service.getAllScreenerDataByWeeks([52]).source.source.source.value.method);
 
     expect(testStringURL).toContain('http://localhost:8185/getWeeksReport?weeks');
     expect(testStringMethod).toContain('GET');
@@ -60,7 +60,7 @@ describe('ReportService', () => {
   it('should get all screeners by weeks', (done:DoneFn)=> {
     const service: ReportService = TestBed.get(ReportService);
     let myString: String;
-    let observ = service.getAllScreenerDataByWeeks(52);
+    let observ = service.getAllScreenerDataByWeeks([52]);
     observ.subscribe(x =>
       {
         expect(x != null);
@@ -71,8 +71,8 @@ describe('ReportService', () => {
     const service: ReportService = TestBed.get(ReportService);
     let myString: String;
 
-    let testStringURL: string = JSON.stringify(service.getScreenerDataByWeeks(52, '').source.source.source.value.url);
-    let testStringMethod: string = JSON.stringify(service.getScreenerDataByWeeks(52, '').source.source.source.value.method);
+    let testStringURL: string = JSON.stringify(service.getScreenerDataByWeeks([52], '').source.source.source.value.url);
+    let testStringMethod: string = JSON.stringify(service.getScreenerDataByWeeks([52], '').source.source.source.value.method);
 
     expect(testStringURL).toContain('http://localhost:8185/getReportWithEmail?weeks=');
     expect(testStringMethod).toContain('GET');
@@ -81,7 +81,7 @@ describe('ReportService', () => {
   it('should get all screeners by weeks and email', (done:DoneFn)=> {
     const service: ReportService = TestBed.get(ReportService);
     let myString: String;
-    let observ = service.getScreenerDataByWeeks(52, 'John.Smith@revature.com');
+    let observ = service.getScreenerDataByWeeks([52], 'John.Smith@revature.com');
 
     observ.subscribe(x =>
       {

@@ -17,6 +17,7 @@ import { timer } from 'rxjs';
 
 
 
+
 // Importing the routes from app routes
 import { routes } from './app.routes';
 
@@ -93,6 +94,7 @@ import { InsufficientPrivilagesComponent } from './components/insufficient-privi
 import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.component';
 
 
+
 @NgModule({
   declarations: [
     // components
@@ -139,6 +141,7 @@ import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.c
 
   ],
   imports: [    
+    
     BrowserAnimationsModule,
     BrowserModule,    
     FormsModule,        

@@ -33,21 +33,18 @@ export const routes: Routes = [
     path: 'nolog',
     component: NotLoggedInComponent
   },
-  {
-    path: '',
-    component: CandidatesScreeningListComponent,
-  },
+  
   {
     path: 'login',
     component: LoginComponent,
   },
   
   {
-    path: '',
+    path: ' ',
     canActivate: [AuthenticationService],
     //component: CandidatesScreeningListComponent,
     children: [
-  
+ 
   {
     path: 'reports',
     component: MasterReportComponent
@@ -115,7 +112,8 @@ export const routes: Routes = [
     pathMatch: 'full',
 
     redirectTo: '/home'
+
   },
-    redirectTo: '/login'
-  }
+  
+
 ];
