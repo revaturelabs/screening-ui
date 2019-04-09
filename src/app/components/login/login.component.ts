@@ -12,10 +12,10 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // loginForm: FormGroup;
-  // loading = false;
-  // submitted = false;
-  // returnUrl: string;
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,31 +35,27 @@ export class LoginComponent implements OnInit {
      
     }
   ngOnInit() {
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
-    // this.authenticationService.logout();
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    this.authenticationService.logout();
 
-    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  // get f(){return this.loginForm.controls;}
+  get f(){return this.loginForm.controls;}
 
-  // onSubmit(){
-  //   this.submitted = true;
+  onSubmit(){
+    console.log(this.f.username.value + this.f.password.value);
+    this.submitted = true;
 
-  //   if(this.loginForm.invalid){
-  //     return;
-  //   }
-
-  //   this.loading=true;
-    // this.authenticationService.login(this.f.username.value, this.f.password.value)
-    //   .pipe(first()).subscribe(data => {
-    //     this.router.navigate([this.returnUrl]);
-    //   }, 
-    //   error => {
-    //     this.alertService.onError(error);
-    //     this.loading = false;
-    //   });
-  // }
+    if(this.loginForm.invalid){
+      return;
+    }
+    else{
+      this.loading=true;
+      this.authenticationService.login(this.f.username.value, this.f.password.value);
+      this.router.navigate(['/home']);
+    }
+  }
 }
