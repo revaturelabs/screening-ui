@@ -13,6 +13,9 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
 import {SpringInterceptor} from './interceptors/spring.interceptor'
+import { timer } from 'rxjs';
+
+
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -79,6 +82,10 @@ import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
 import { RoleGuard } from './role-guard';
 
+import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
+import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
+import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.component';
+
 
 @NgModule({
   declarations: [
@@ -117,6 +124,9 @@ import { RoleGuard } from './role-guard';
     ReportSidebarComponent,
     HardestQuestionsComponent,
     ViolationsByTypeComponent,
+    ExpiredCredentialsComponent,
+    InsufficientPrivilagesComponent,
+    NotLoggedInComponent,
 
   ],
   imports: [    
