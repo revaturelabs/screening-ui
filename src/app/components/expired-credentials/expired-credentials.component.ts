@@ -24,7 +24,8 @@ function redirectTimer(router: RouterModule) {
     if (seconds >= 0) {
 
       document.getElementById('timeoutMessage').innerHTML =
-        'You will be redirected in ' + seconds + ' seconds.';
+      'Your credentials have expired for this session. ' +  
+      'You will be redirected in ' + seconds + ' seconds.';
       console.log(seconds);
       seconds--
       if (seconds === 0) {

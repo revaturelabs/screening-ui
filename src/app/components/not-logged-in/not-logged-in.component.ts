@@ -23,7 +23,8 @@ export class NotLoggedInComponent implements OnInit {
       if (seconds >= 0) {
   
         document.getElementById('timeoutMessage').innerHTML =
-          'You will be redirected in ' + seconds + ' seconds.';
+        'Uh-oh! You aren\'t logged in! ' +  
+        'You will be redirected in ' + seconds + ' seconds.';
         console.log(seconds);
         seconds--
         if (seconds === 0) {

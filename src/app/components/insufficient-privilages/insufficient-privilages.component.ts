@@ -24,7 +24,8 @@ export class InsufficientPrivilagesComponent implements OnInit {
       if (seconds >= 0) {
   
         document.getElementById('timeoutMessage').innerHTML =
-          'You will be redirected in ' + seconds + ' seconds.';
+        'Sorry, you don\'t have access to this content. ' +
+        'You will be redirected in ' + seconds + ' seconds.';
         console.log(seconds);
         seconds--
         if (seconds === 0) {
