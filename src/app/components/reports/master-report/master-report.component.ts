@@ -32,6 +32,7 @@ export class MasterReportComponent implements OnInit {
       this.updateReportData();
     }    
   }
+  
   onSearchChange(newTerm: string) {
     //console.log('search change: ' + newTerm)
     if (this.currentSearchTerm != newTerm) {
