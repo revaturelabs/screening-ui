@@ -24,21 +24,49 @@ export class ViolationsByTypeComponent implements OnInit {
  
  setOptions(barData: object[]) {
    this._barData = barData;
-   this.options = {
-     title: { text: "Violations By Types"},
-     xAxis: {
-       type: 'category'
-   },
-   yAxis: {
-     title: {
-         text: 'Number of Violations'
-     }
-   },
-     legend: {
-       enabled: false
-   },
-     chart: { zoomType: 'x', type: 'column'},
-     series: [{name: 'Violation Type', colorByPoint: true, data: this._barData }]
-   };
+   if(this._barData.length > 0) {
+    this.options = {
+      title: { 
+        text: "Violations By Types",
+        y: 10,
+        floating: false
+      },
+      xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+      title: {
+          text: 'Number of Violations'
+      }
+    },
+      legend: {
+        enabled: false
+    },
+      chart: { zoomType: 'x', type: 'column'},
+      series: [{name: 'Violation Type', colorByPoint: true, data: this._barData }]
+    };
+   }
+   else {
+    this.options = {
+      title: { 
+        text: "Violations By Types Graph is N/A",
+        y: 200,
+        floating: true
+      },
+      xAxis: {
+        type: 'category',
+    },
+    yAxis: {
+      title: {
+          text: ''
+      }
+    },
+      legend: {
+        enabled: false
+    },
+      chart: { zoomType: 'x', type: 'column'},
+      series: [{name: 'Violation Type', colorByPoint: true, data: this._barData }]
+    };
+   }
  }
 }

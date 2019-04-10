@@ -9,7 +9,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class AdminAuthenticationService implements CanActivate {
   
 
-  constructor(private auth:AuthenticationService, private router:Router) { }
+  constructor() { }
   canActivate():boolean {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user)

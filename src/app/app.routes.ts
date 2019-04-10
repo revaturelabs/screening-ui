@@ -14,21 +14,36 @@ import { MasterReportComponent } from './components/reports/master-report/master
 import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 import {LoginComponent} from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import {NotLoggedInComponent} from './components/not-logged-in/not-logged-in.component';
+import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
+import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
 import { FullBarDirective } from 'ng5-slider/slider.component';
 import { AdminAuthenticationService } from './services/adminAuthentication/admin-authentication.service';
-
-
+ 
 export const routes: Routes = [
+  {
+    path: 'expcreds',
+    component: ExpiredCredentialsComponent
+  },
+  {
+    path: 'noprivs',
+    component: InsufficientPrivilagesComponent
+  },
+  { 
+    path: 'nolog',
+    component: NotLoggedInComponent
+  },
+  
   {
     path: 'login',
     component: LoginComponent,
   },
   
   {
-    path: '',
+    path: 'home',
     canActivate: [AuthenticationService],
     // a list of roles that can access the resource -- in this case all of them
-    data: {roles: ['ROLE_STAGING', 'ROLE_TRAINER', 'ROLE_QC', 'ROLE_PANEL', 'ROLE_VP', 'Screener-Users']},
+    data: {roles: ['ROLE_STAGING', 'ROLE_TRAINER', 'ROLE_QC', 'ROLE_PANEL', 'ROLE_VP']},
     children: [
     
     {
@@ -36,14 +51,12 @@ export const routes: Routes = [
       component: MasterReportComponent
     },
     {
+      path: '',
+      component: CandidatesScreeningListComponent
+    }
+    {
       path: 'screening',
       component: ScreeningComponent,
-      // canActivate: [RoleGuard],
-      // data: {
-      //   roles: [
-      //     roles.screenerRole, roles.vpRole
-      //   ]nng
-      // },
       children: [
         {
           path: 'intro',
@@ -73,11 +86,8 @@ export const routes: Routes = [
   {
     path: 'settings',
     canActivate: [AuthenticationService],
+    data: {roles: ['ROLE_VP']},
     component: SettingsComponent,
-    // canActivate: [RoleGuard],
-    // data: {
-    //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
-    // },
     children: [
       {
         path: 'main',
@@ -89,13 +99,14 @@ export const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'home',
-    component: CandidatesScreeningListComponent,
-  }]},
+
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: '/login'
-  }
+    redirectTo: '/home'
+
+  },
+  
+
 ];
+

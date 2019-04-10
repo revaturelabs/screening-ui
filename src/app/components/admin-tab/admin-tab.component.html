@@ -1,12 +1,64 @@
 <!-- <p>
   admin-tab works!
 </p> -->
-<form>
-<div class="form-group">
-  <label for="description"><strong>Create Question</strong></label>
-  <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Question"  ngModel></textarea>
-</div>
-<br>
-<br>
-<input type="submit"class="btn btn-outline-dark" value="SUBMIT">
-</form>
+<form #createQuestionForm="ngForm" method="POST">
+  <div class="form-group">
+    <label for="description"><strong>Select Bucket</strong></label>
+    <select [(ngModel)]="bucket" [ngModelOptions]="{standalone: true}">
+      <option selected="selected">Java Applied</option>
+      <option>Hibernate</option>
+      <option>SQL</option>
+      <option>Angular</option>
+      <option>Spring AoP</option>
+      <option>JavaScript</option>
+      <option>Java Concepts</option>
+      <option>SOAP</option>
+      <option>JDBC</option>
+      <option>REST</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="description"><strong>Create Question</strong></label>
+    <textarea class="form-control rounded-0" name="Question" id="Question" rows="5" placeholder="Question" [(ngModel)]="text" [ngModelOptions]="{standalone: true}"></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="answer1" id="Question" rows="5" placeholder="Answer" [(ngModel)]="answer1" [ngModelOptions]="{standalone: true}"></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="answer2" id="Question" rows="5" placeholder="Answer" [(ngModel)]="answer2" [ngModelOptions]="{standalone: true}"></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="answer3" id="Question" rows="5" placeholder="Answer" [(ngModel)]="answer3" [ngModelOptions]="{standalone: true}"></textarea>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="answer4" id="Question" rows="5" placeholder="Answer" [(ngModel)]="answer4" [ngModelOptions]="{standalone: true}"></textarea>
+  </div>
+  
+  <br>
+  <br>
+  <div class="form-group">
+    <label for="description"><strong>Answer Question</strong></label>
+    <textarea class="form-control rounded-0" name="answer5" id="Question" rows="5" placeholder="Answer" [(ngModel)]="answer5" [ngModelOptions]="{standalone: true}"></textarea>
+  </div>
+  <br>
+  <br>
+  
+  <input type="button"class="btn btn-outline-dark" value="SUBMIT" (click)="submitForm(createQuestionForm)">
+  </form>
+  <br>
+  
+  <h6 id="createLocationNotifier">{{notifier}}</h6>
+  
+  

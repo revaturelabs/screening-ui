@@ -17,11 +17,13 @@ import { ReportData } from 'src/app/entities/ReportData';
   styleUrls: ['./report-sidebar.component.scss']
 })
 export class ReportSidebarComponent implements OnInit {
-  @Input() initialSliderValue: number = 1;
+  //@Input() initialSliderValue: number = 1;
+  minSliderValue: number = 1;
+  maxSliderValue: number = 208;
   screenerEmails$: Observable<string[]>;
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
-  sliderControl: FormControl;
+  //sliderControl: FormControl;
   _reportData: ReportData;
   @Input()
   set reportData(reportData: ReportData){
@@ -34,22 +36,53 @@ export class ReportSidebarComponent implements OnInit {
 
   sliderOptions: Options = {
     floor: 1,
-    ceil: 6,
-    showTicks: true,
+    ceil: 208,
+    //showTicks: true,
     translate: (value: number): string => {
-      switch(value){
-        case 1:
-          return "1 Week";
-        case 2:
-          return "2 Weeks";
-        case 3:
-          return "3 Weeks";
-        case 4:
-          return "1 Month";
-        case 5:
-          return "1/2 Year";
-        case 6:
-          return "1 Year";
+      if(value === 1) {
+        return "1 Week";
+      }
+      if(value === 52) {
+        return "1 Year";
+      }
+      else if(value > 52 && value < 104) {
+        let weeks = value-52;
+        if(weeks === 1) {
+          return `1 Year ${weeks} Week`;
+        }
+        else {
+          return `1 Year ${weeks} Weeks`;
+        }
+      }
+      else if(value === 104) {
+        return "2 Years";
+      }
+      else if(value > 104 && value < 156) {
+        let weeks = value-104;
+        if(weeks === 1) {
+          return `2 Years ${weeks} Week`;
+        }
+        else {
+          return `2 Years ${weeks} Weeks`;
+        }
+      }
+      else if(value === 156) {
+        return "3 Years";
+      }
+      else if(value > 156 && value < 208) {
+        let weeks = value-156;
+        if(weeks === 1) {
+          return `3 Years ${weeks} Week`;
+        }
+        else {
+          return `3 Years ${weeks} Weeks`;
+        }
+      }
+      else if(value === 208) {
+        return "4 Years";
+      }
+      else {
+        return `${value} Weeks`;
       }
     },
   };
@@ -72,12 +105,14 @@ export class ReportSidebarComponent implements OnInit {
   }
   onSliderChange(changeContext: ChangeContext): void {
     // console.log(`onUserChangeStart(${this.getChangeContextString(changeContext)})\n`);
-    let actualWeeks = changeContext.value;
-    switch(actualWeeks) {
+    let actualWeeksMinValue = changeContext.value;
+    let actualWeeksMaxValue = changeContext.highValue;
+    let weeksArray = [actualWeeksMinValue, actualWeeksMaxValue]
+    /*switch(actualWeeks) {
       case 5: actualWeeks = 26; break;
       case 6: actualWeeks = 52; break;
-    }
-    this.sliderChange.emit(actualWeeks);
+    }*/
+    this.sliderChange.emit(weeksArray);
   }
   
   // onUserChange(changeContext: ChangeContext): void {
@@ -97,7 +132,7 @@ export class ReportSidebarComponent implements OnInit {
   ngOnInit() {
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
-    this.sliderControl = new FormControl(this.initialSliderValue);
+    //this.sliderControl = new FormControl(this.initialSliderValue);
     this.screenerEmails$ = this.searchTerms.pipe(
       
       debounceTime(300),

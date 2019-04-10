@@ -26,22 +26,50 @@ export class AverageBucketTypeComponent implements OnInit {
   }
   setOptions(data: object[]) {
     this._barData = data;
-    this.options = { 
-      title: { text: "Average Score By Bucket Type"},
-      xAxis: {
-        type: 'category'
-    },
-    yAxis: {
-      title: {
-          text: 'Average Score Values'
-      }
-    },
-      legend: {
-        enabled: false 
-    },
-      chart: { zoomType: 'x', type: 'column'},
-      series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
-    };
+    if(this._barData.length > 0) {
+      this.options = { 
+        title: { 
+          text: "Average Score By Bucket Type",
+          y: 10,
+          floating: false
+        },
+        xAxis: {
+          type: 'category'
+      },
+      yAxis: {
+        title: {
+            text: 'Average Score Values'
+        }
+      },
+        legend: {
+          enabled: false 
+      },
+        chart: { zoomType: 'x', type: 'column'},
+        series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
+      };
+    }
+    else {
+      this.options = { 
+        title: { 
+          text: "Average Score By Bucket Type Graph is N/A",
+          y: 200,
+          floating: true
+        },
+        xAxis: {
+          type: 'category'
+      },
+      yAxis: {
+        title: {
+            text: ''
+        }
+      },
+        legend: {
+          enabled: false 
+      },
+        chart: { zoomType: 'x', type: 'column'},
+        series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
+      };
+    }
   }
 
 }
