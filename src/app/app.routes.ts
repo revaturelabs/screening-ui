@@ -12,7 +12,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
 import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
-import {LoginComponent} from './components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import {NotLoggedInComponent} from './components/not-logged-in/not-logged-in.component';
 import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
@@ -23,59 +23,60 @@ import { AdminAuthenticationService } from './services/adminAuthentication/admin
 export const routes: Routes = [
   {
     path: 'expcreds',
-    component: ExpiredCredentialsComponent
+  component: ExpiredCredentialsComponent
   },
   {
     path: 'noprivs',
     component: InsufficientPrivilagesComponent
-  },
+  },  
   { 
-    path: 'nolog',
-    component: NotLoggedInComponent
-  },
+path: 'nolog',
+      component: NotLoggedInComponent
+      }, 
   
   {
-    path: 'login',
-    component: LoginComponent,
-  },
+      path: 'login',
+        component: LoginComponent,
+      }, 
   
-  {
-    path: 'home',
+      {
+        path: '',
     canActivate: [AuthenticationService],
     // a list of roles that can access the resource -- in this case all of them
     data: {roles: ['ROLE_STAGING', 'ROLE_TRAINER', 'ROLE_QC', 'ROLE_PANEL', 'ROLE_VP']},
-    children: [
-    
-    {
-      path: 'reports',
-      component: MasterReportComponent
+          children: [
+            
+    {  
+          path: 'reports',
+          component: MasterReportComponent
     },
     {
-      path: '',
-      component: CandidatesScreeningListComponent
-    }
+            path: 'home',
+            component: CandidatesScreeningListComponent
+          }, 
     {
       path: 'screening',
-      component: ScreeningComponent,
+        component: ScreeningComponent,
       children: [
-        {
-          path: 'intro',
+      {
+      path: 'intro',
           component: IntroductionComponent,
         },
         {
-          path: 'questions',
+          path: 'questions', 
           component: QuestionsTableComponent,
         },
         {
           path: 'finalReport',
           component: FinalReportComponent,
-        },
+        },  
         {
           path: 'passFail',
           component: PassFailComponent
         }
       ]
     },
+    ]},   
     
   {
     path: 'admin-tab',
@@ -106,7 +107,6 @@ export const routes: Routes = [
     redirectTo: '/home'
 
   },
-  
-
 ];
+
 

@@ -17,12 +17,15 @@ export class AuthenticationService implements CanActivate {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user) {
       let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
-      console.log(groups);
       let accessRoles = route.data['roles'];
-      console.log(accessRoles);
       for (let role of groups) {
         if (accessRoles.includes(role)) return true;
       }
+      this.router.navigateByUrl('/noprivs')
+      return false;
+    } else {
+      this.router.navigateByUrl('/nolog');
+      return false;  
     }
     this.router.navigateByUrl('/login');
     return false;
@@ -50,7 +53,8 @@ export class AuthenticationService implements CanActivate {
         }else {
           // The user directly signs in
           // console.log(user);
-         await localStorage.setItem('user',JSON.stringify(user))
+         await localStorage.setItem('user',JSON.stringify(user));
+         await this.router.navigateByUrl('/home');
         // console.log(localStorage.getItem('user'))
       } 
   
