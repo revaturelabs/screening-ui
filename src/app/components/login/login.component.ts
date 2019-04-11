@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private alertService: AlertsService) {}
   
     authUser:any;
-    debug = true;
+    debug = false;
     
     getUser(username:string,password:string): void {
      this.authenticationService.login(username,password)
