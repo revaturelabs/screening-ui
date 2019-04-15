@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { AmplifyService } from 'aws-amplify-angular';
 import { async } from 'q';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Injectable()
@@ -12,25 +12,25 @@ export class AuthenticationService implements CanActivate {
 
   constructor(private http: HttpClient, private router:Router, private amplifyService:AmplifyService) { }
 
-  canActivate(): boolean
+  canActivate(route: ActivatedRouteSnapshot): boolean
   {
     let user = JSON.parse(localStorage.getItem('user'));
-    if(user)
-    {
-      return true;
+    if(user) {
+      let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
+      let accessRoles = route.data['roles'];
+      for (let role of groups) {
+        if (accessRoles.includes(role)) return true;
+      }
+      this.router.navigateByUrl('/noprivs')
+      return false;
+    } else {
+      this.router.navigateByUrl('/nolog');
+      return false;  
     }
     this.router.navigateByUrl('/login');
     return false;
   }
-  // login(username: string, password: string){
-  //   return this.http.post<any>(`user/authenticate`,{username:username, password:password})
-  //     .pipe(map(user =>{
-  //       if(user && user.token){
-  //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //       }
-  //       return user;
-  //     }));
-  // }
+  
   async login(username: string, password: string){
     try{
       const user = await this.amplifyService.auth().signIn(username,password);
@@ -53,7 +53,8 @@ export class AuthenticationService implements CanActivate {
         }else {
           // The user directly signs in
           // console.log(user);
-         await localStorage.setItem('user',JSON.stringify(user))
+         await localStorage.setItem('user',JSON.stringify(user));
+         await this.router.navigateByUrl('/home');
         // console.log(localStorage.getItem('user'))
       } 
   
@@ -78,7 +79,7 @@ export class AuthenticationService implements CanActivate {
   }
 
   logout(){
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('user');
   }
 
   isLoggedIn(){

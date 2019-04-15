@@ -11,7 +11,7 @@ import { ReportCacheService } from 'src/app/services/reports/report-cache.servic
 export class MasterReportComponent implements OnInit {
   reportData: ReportData;
   currentSearchTerm: string = '';
-  currentWeeksValue: Array<number> = [1, 208];
+  currentWeeksValue: Array<number> = [0, 208];
   constructor(
     private reportService: ReportService,
     private reportCache: ReportCacheService) { }
@@ -32,6 +32,7 @@ export class MasterReportComponent implements OnInit {
       this.updateReportData();
     }    
   }
+  
   onSearchChange(newTerm: string) {
     //console.log('search change: ' + newTerm)
     if (this.currentSearchTerm != newTerm) {

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private alertService: AlertsService) {}
   
     authUser:any;
-    debug = true;
+    debug = false;
     
     getUser(username:string,password:string): void {
      this.authenticationService.login(username,password)
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
   get f(){return this.loginForm.controls;}
 
   onSubmit(){
-    console.log(this.f.username.value + this.f.password.value);
     this.submitted = true;
 
     if(this.loginForm.invalid){
@@ -55,7 +54,6 @@ export class LoginComponent implements OnInit {
     else{
       this.loading=true;
       this.authenticationService.login(this.f.username.value, this.f.password.value);
-      this.router.navigate(['/home']);
     }
   }
 }

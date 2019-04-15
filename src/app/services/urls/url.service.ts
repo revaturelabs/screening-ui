@@ -6,6 +6,7 @@ import { Weight } from '../../entities/Weight';
 export class UrlService {
   public readonly adminContext: string =  environment.adminContext;
   public readonly screeningContext: string =  environment.screeningContext;
+  public readonly reportContext: string = environment.reportContext;
 
   constructor() {
   }
@@ -113,10 +114,10 @@ export class UrlService {
     deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
     };
 
-  private reportEndpoint = this.adminContext + '/reports';
+  private reportEndpoint = this.reportContext;
   reports = {
-    getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/email?email=${partialEmail}`,
-    getScreenerDataByWeeks: (weeks: number, email: string): string => `${this.reportEndpoint}/data?weeks=${weeks}&email=${email}`,
-    getAllScreenerDataByWeeks: (weeks: number): string => `${this.reportEndpoint}/data?weeks=${weeks}`
+    getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
+    getScreenerDataByWeeks: (weeks: number[], email: string): string => `${this.reportEndpoint}/getReportWithEmail?weeks=${weeks}&email=${email}`,
+    getAllScreenerDataByWeeks: (weeks: number[]): string => `${this.reportEndpoint}/getWeeksReport?weeks=${weeks}`
   }
 }

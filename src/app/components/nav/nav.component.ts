@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { Router, Event, NavigationEnd, NavigationCancel} from '@angular/router';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,32 +21,60 @@ export class NavComponent implements OnInit {
   // private routeService: RouteService;
   // private routeSubscription: Subscription;
   private userRole;
-  //Dummy variable. Waiting for authentication to be set up.
-  private isAdmin;
-  showHome = true;
-  showManage: boolean;
-  showAssess: boolean;
-  showQuality: boolean;
-  showPanel: boolean;
-  showReports = true;
+  showHome: boolean;
+  showLogin: boolean;
+  showLogout: boolean;
+  showReports: boolean;
+  showAdmin: boolean;
+  showSettings: boolean;
+  attemptLogout: boolean = false;
 
-  constructor( private cookies: CookieService ) {
+  constructor( private router: Router, private authenticationService: AuthenticationService) {
+    router.events.subscribe( (event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.checkRoles();
+      }
+      if (event instanceof NavigationCancel) {
+        console.log(event);
+      }
+    })
    }
 
   ngOnInit() {
-    //this.userRole = this.cookies.get('role');
-    this.userRole = 'ROLE_VP';
-    this.showHome = true;
-    this.showManage = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER' ||
-      this.userRole === 'ROLE_QC' || this.userRole === 'ROLE_PANEL';
-    this.showAssess = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER';
-    this.showQuality = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_QC';
-    this.showPanel = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_PANEL';
-    this.showReports = true;
-    this.isAdmin = true;
+    this.checkRoles();
   }
+
   toggleCollapse() {
     this.collapsed = !this.collapsed;
     this.collapse.emit(this.collapsed);
+  }
+
+  toggleLogout() {
+    if (this.attemptLogout) {
+      return "block";
+    } else {
+      return "none";
+    }
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.attemptLogout = false;
+  }
+
+  checkRoles() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    if(user) {
+      this.userRole = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"][0];
+    } else {
+      this.userRole = '';
+    }
+    this.showHome = this.userRole !== '';
+    this.showLogin = this.userRole === '';
+    this.showLogout = this.userRole !== '';
+    this.showReports = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER' ||
+        this.userRole === 'ROLE_QC' || this.userRole === 'ROLE_PANEL';
+    this.showAdmin = this.userRole === 'ROLE_VP';
+    this.showSettings = this.userRole === 'ROLE_VP';
   }
 }
