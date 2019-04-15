@@ -6,7 +6,7 @@ import { Options, ChangeContext, PointerType } from 'ng5-slider';
 
 import { ReportService } from 'src/app/services/reports/report.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { EMAILS } from 'src/app/mock-data/mock-emails';
+
 import { WeekDay } from '@angular/common';
 import { ReportData } from 'src/app/entities/ReportData';
 

@@ -11,7 +11,7 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduleScreeningService } from '../../services/schedule-screening/schedule-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { TRAINEES } from '../../mock-data/mock-simpleTrainees';
+
 // Installed Modules
 // npm install ngx-pagination --save
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module

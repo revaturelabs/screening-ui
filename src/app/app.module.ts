@@ -86,7 +86,7 @@ import { TraineeSearch } from './pipes/trainee-search.pipe';
 import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
 import { RoleGuard } from './role-guard';
-import { AdminAuthenticationService } from './services/adminAuthentication/admin-authentication.service';
+
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
@@ -177,7 +177,7 @@ import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.c
     UrlService,
     ViolationTypeService,
     AuthenticationService,
-    AdminAuthenticationService,
+    
     AmplifyService,
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],

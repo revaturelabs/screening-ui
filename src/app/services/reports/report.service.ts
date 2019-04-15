@@ -3,8 +3,8 @@ import { UrlService } from '../urls/url.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { EMAILS } from 'src/app/mock-data/mock-emails'
-import { MockAllScreeners, MockSingleScreeners } from 'src/app/mock-data/mock-reports';
+
+
 import { ReportData } from 'src/app/entities/ReportData';
 
 

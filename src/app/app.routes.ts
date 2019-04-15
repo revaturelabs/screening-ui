@@ -18,7 +18,7 @@ import {NotLoggedInComponent} from './components/not-logged-in/not-logged-in.com
 import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
 import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
 import { FullBarDirective } from 'ng5-slider/slider.component';
-import { AdminAuthenticationService } from './services/adminAuthentication/admin-authentication.service';
+
  
 export const routes: Routes = [
   {
