@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import {AlertsService} from 'src/app/services/alert-service/alerts.service';
 import {first} from 'rxjs/operators';
+import {Auth} from 'aws-amplify';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       // console.log(localStorage.getItem('user'))
      
     }
+    
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -55,5 +57,7 @@ export class LoginComponent implements OnInit {
       this.loading=true;
       this.authenticationService.login(this.f.username.value, this.f.password.value);
     }
+    
   }
+  
 }

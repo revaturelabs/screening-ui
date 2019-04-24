@@ -35,7 +35,8 @@ export class AuthenticationService implements CanActivate {
     try{
       const user = await this.amplifyService.auth().signIn(username,password);
       if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-        const { requiredAttributes } = user.challengeParam; // the array of required attributes, e.g ['email', 'phone_number']
+        const { requiredAttributes } = user.challengeParam; 
+        // the array of required attributes, e.g ['email', 'phone_number']
         // You need to get the new password and required attributes from the UI inputs
         // and then trigger the following function with a button click
         // For example, the email and phone_number are required attributes
