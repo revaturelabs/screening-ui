@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import {AlertsService} from 'src/app/services/alert-service/alerts.service';
 import {first} from 'rxjs/operators';
-import {Auth} from 'aws-amplify';
 
 
 @Component({
@@ -51,9 +50,12 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if(this.loginForm.invalid){
+      console.log("if")
       return;
     }
     else{
+      //checks to make sure form is valid, regardless of user being able to login or not
+      console.log("else")
       this.loading=true;
       this.authenticationService.login(this.f.username.value, this.f.password.value);
     }

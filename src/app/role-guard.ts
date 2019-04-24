@@ -42,12 +42,17 @@ export class RoleGuard implements CanActivate {
 /**
  * roles is a convenience object that holds the different Strings that will
  * be found in the role cookie.
+ * 
+ * 
+ * 
+ * Role names were established in AWS prior to being imported here
+ * For future reference make role names all capital to retain the previously established convention.
  */
 export const roles = {
-  vpRole: 'ROLE_VP',
-  panelRole: 'ROLE_PANEL',
-  qcRole: 'ROLE_QC',
-  trainerRole: 'ROLE_TRAINER',
-  stagingRole: 'ROLE_STAGING',
-  screenerRole: 'ROLE_SCREENER',
+//  vpRole: 'ROLE_VP',
+//  panelRole: 'ROLE_PANEL',
+//  qcRole: 'ROLE_QC',
+  adminRole: 'Role_Admin',
+  reportingRole: 'Role_Reporting',
+  screenerRole: 'Role_Screener',  //this role property was not altered by 1902-Richard
 };

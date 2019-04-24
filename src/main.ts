@@ -19,7 +19,7 @@ let config = {
 };
 
 //Ensures that we are connecting to the right user pool and havethe right id
-Amplify.configure({    //.configure(amplify)
+Amplify.configure({   
   Auth: {
     mandatorySignIn: true,
     region: config.dev.awscloudformation.Region,
