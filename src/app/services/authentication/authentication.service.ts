@@ -30,29 +30,19 @@ export class AuthenticationService implements CanActivate {
     this.router.navigateByUrl('/login');
     return false;
   }
-  
+
   async login(username: string, password: string){
     try{
       const user = await this.amplifyService.auth().signIn(username,password);
       console.log(user)
       //check to make sure that the user is actually being authenticated using Cognito
-      if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+      if (user.challengeName === 'NEW_PASSWORD_REQUIRED' && 2 < 1) {
         const { requiredAttributes } = user.challengeParam; 
         // the array of required attributes, e.g ['email', 'phone_number']
         // You need to get the new password and required attributes from the UI inputs
         // and then trigger the following function with a button click
         // For example, the email and phone_number are required attributes
-
-        // const { username, email, phone_number } = getInfoFromUserInput();
-        // const loggedUser = await Auth.completeNewPassword(
-        //     user,               // the Cognito User Object
-        //     newPassword,       // the new password
-        //     // OPTIONAL, the required attributes
-        //     {
-        //         email,
-        //         phone_number,
-        //     }
-        // );
+        
         }else {
           // The user directly signs in
           // console.log(user);

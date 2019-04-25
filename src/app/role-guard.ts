@@ -46,7 +46,7 @@ export class RoleGuard implements CanActivate {
  * 
  * 
  * Role names were established in AWS prior to being imported here
- * For future reference make role names all capital to retain the previously established convention.
+ * For future reference make role names all upper case to retain the previously established convention.
  */
 export const roles = {
 //  vpRole: 'ROLE_VP',

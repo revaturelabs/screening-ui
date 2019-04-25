@@ -3,10 +3,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
-//import App from './App';
 import Amplify from 'aws-amplify';
 //import amplify from './aws-exports';
 
+// if this config section does not exist then you need to use aws-exports 
+// in 1902-Richard we are importing the credentials for the user pool directly using the config section below
+// all information needed for the user pool is in the Cognito document associated with this project
 let config = {
 
   "dev": {
@@ -18,7 +20,7 @@ let config = {
   }
 };
 
-//Ensures that we are connecting to the right user pool and havethe right id
+//Ensures that we are connecting to the right user pool and have the right id
 Amplify.configure({   
   Auth: {
     mandatorySignIn: true,

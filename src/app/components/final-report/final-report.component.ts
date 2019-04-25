@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 
 /*
 A simple text summary of how the candidate performed
-in each category on technical skills,the overall feedback thereon,
+in each category on technical skills, the overall feedback therein,
 and if the candidate passed or failed their soft skills evaluation.
 Screener can copy the summary to the clipboard, and return to the candidate list.
 */

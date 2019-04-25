@@ -50,12 +50,12 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if(this.loginForm.invalid){
-      console.log("if")
+      console.log("if");
       return;
     }
     else{
       //checks to make sure form is valid, regardless of user being able to login or not
-      console.log("else")
+      console.log("else");
       this.loading=true;
       this.authenticationService.login(this.f.username.value, this.f.password.value);
     }

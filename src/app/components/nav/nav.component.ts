@@ -72,9 +72,8 @@ export class NavComponent implements OnInit {
     this.showHome = this.userRole !== '';
     this.showLogin = this.userRole === '';
     this.showLogout = this.userRole !== '';
-    this.showReports = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER' ||
-        this.userRole === 'ROLE_QC' || this.userRole === 'ROLE_PANEL';
-    this.showAdmin = this.userRole === 'ROLE_VP';
-    this.showSettings = this.userRole === 'ROLE_VP';
+    this.showReports = this.userRole === 'Role_Admin' || this.userRole === 'Role_Reporting' || this.userRole === 'Role_Screener';
+    this.showAdmin = this.userRole === 'Role_Admin';
+    this.showSettings = this.userRole === 'Role_Admin';
   }
 }
