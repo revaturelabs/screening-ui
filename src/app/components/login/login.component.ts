@@ -55,6 +55,8 @@ export class LoginComponent implements OnInit {
     }
     else{
       //checks to make sure form is valid, regardless of user being able to login or not
+      // This needs to be fixed, if the user accidentaly puts in invalid login credentials the 
+      // .loading freezes the login button, thus [disabled] was commented out in the html
       console.log("else");
       this.loading=true;
       this.authenticationService.login(this.f.username.value, this.f.password.value);

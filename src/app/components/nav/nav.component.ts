@@ -65,15 +65,28 @@ export class NavComponent implements OnInit {
   checkRoles() {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user) {
-      this.userRole = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"][0];
+      //this.userRole = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"][0];
+      this.showHome = true;
+      this.showLogout = true;
+      this.showReports = true;
+      this.showAdmin = true;
+      this.showSettings = true;
+      this.showLogin = false;
     } else {
-      this.userRole = '';
+      //this.userRole = '';
+      this.showHome = false;
+      this.showLogout = false;
+      this.showReports = false;
+      this.showAdmin = false;
+      this.showSettings = false;
+      this.showLogin = true;
     }
-    this.showHome = this.userRole !== '';
-    this.showLogin = this.userRole === '';
-    this.showLogout = this.userRole !== '';
-    this.showReports = this.userRole === 'Role_Admin' || this.userRole === 'Role_Reporting' || this.userRole === 'Role_Screener';
-    this.showAdmin = this.userRole === 'Role_Admin';
-    this.showSettings = this.userRole === 'Role_Admin';
+    //Need to change this to reflect the correct Roles
+    // this.showHome = this.userRole !== '';
+    // this.showLogin = this.userRole === '';
+    // this.showLogout = this.userRole !== '';
+    // this.showReports = this.userRole === 'Role_Admin' || this.userRole === 'Role_Reporting' || this.userRole === 'Role_Screener';
+    // this.showAdmin = this.userRole === 'Role_Admin';
+    // this.showSettings = this.userRole === 'Role_Admin';
   }
 }
