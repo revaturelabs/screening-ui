@@ -16,11 +16,11 @@ export class AuthenticationService implements CanActivate {
   {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user) {
-      let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
-      let accessRoles = route.data['roles'];
-      for (let role of groups) {
-        if (accessRoles.includes(role)) return true;
-      }
+    //  let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
+    //  let accessRoles = route.data['roles'];
+    //  for (let role of groups) {
+    //    if (accessRoles.includes(role)) return true;
+    //  }
       this.router.navigateByUrl('/noprivs')
       return false;
     } else {
