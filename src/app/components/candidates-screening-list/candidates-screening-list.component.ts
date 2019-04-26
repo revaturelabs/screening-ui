@@ -85,15 +85,15 @@ export class CandidatesScreeningListComponent implements OnInit {
       scheduledScreeningId: 0,
       trainee: { //Mock Data used for test screening
           traineeID: 0,
-          firstname: 'Landon',
-          lastname: 'Renzullo',
-          skillTypeID: 56,
-          skillTypeName: 'Java',
+          firstname: 'Richard',
+          lastname: 'Orr',
+          skillTypeID: 99,
+          skillTypeName: 'Angular',
           schedule: new Date((new Date()).getTime() + 100000)
         },
-      track: {skillTypeId: 56, title: 'Java', isActive: true},
+      track: {skillTypeId: 99, title: 'Angular', isActive: true},
       status: 'in progress',
-      trainer: 0,
+      trainer: 1,
       scheduledDate: new Date()
     });
   }
