@@ -15,11 +15,8 @@ export class UrlService {
    * Endpoints for bucket service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    *
    */
@@ -35,11 +32,8 @@ export class UrlService {
    * Endpoints for questions service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
   private questionEndpoint = (this.adminContext + '/question');
@@ -61,11 +55,8 @@ export class UrlService {
    * Endpoints for screen services
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
   screeningEndpoint = 'screening';

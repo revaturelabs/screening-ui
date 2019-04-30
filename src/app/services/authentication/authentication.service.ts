@@ -15,13 +15,25 @@ export class AuthenticationService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean {
     let user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      //Fix these roles section for later, up to emily's specs
-
-      // let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
-      // let accessRoles = route.data['roles'];
-      // for (let role of groups) {
-      //   if (accessRoles.includes(role)) return true;
+      let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
+      //let groups;
+      // if (user.username == "david.west@revature.portal"){
+      //   groups = "ROLE_ADMIN";
       // }
+      // else if (user.user == "adam.jones@revature.portal"){
+      //   groups = "ROLE_SCREENER";
+      // }
+      // else{
+      //   groups = "ROLE_REPORTING";
+      // }
+
+      let accessRoles = route.data['roles'];
+      for (let role of groups) {
+         if (accessRoles.includes(role)) return true;
+      }
+      
+
+      
       return true;
 
       this.router.navigateByUrl('/noprivs')
@@ -37,11 +49,10 @@ export class AuthenticationService implements CanActivate {
   async login(username: string, password: string) {
     try {
       const user = await this.amplifyService.auth().signIn(username, password);
-      let temp = await this.amplifyService.auth().currentAuthenticatedUser();
 
       console.log(user)
       //check to make sure that the user is actually being authenticated using Cognito
-      if (user.challengeName === 'NEW_PASSWORD_REQUIRED' && 2 < 1) {
+      if (user.challengeName === 'NEW_PASSWORD_REQUIRED' && false) {
         const { requiredAttributes } = user.challengeParam;
         // the array of required attributes, e.g ['email', 'phone_number']
         // You need to get the new password and required attributes from the UI inputs
@@ -51,8 +62,11 @@ export class AuthenticationService implements CanActivate {
       } else {
         // The user directly signs in
         // console.log(user);
-        await localStorage.setItem('user', JSON.stringify(user));
+
+        //let temp = await this.amplifyService.auth().completeNewPassword(user, "PassWord", null);
         //await localStorage.setItem('temp', JSON.stringify(temp));
+
+        await localStorage.setItem('user', JSON.stringify(user));
         await this.router.navigateByUrl('/home');
 
         // console.log(localStorage.getItem('user'))

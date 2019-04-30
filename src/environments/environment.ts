@@ -8,14 +8,11 @@
  * removed smelly code
  *
  * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
- *
  * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
- *
  * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
- *
  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
  */
-
+  // screenforce gateway is 8080
   const adminContext = 'http://localhost:8181';
   const screeningContext = 'http://localhost:8183';
   const reportContext = 'http://localhost:8185';
