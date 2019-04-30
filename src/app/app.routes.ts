@@ -43,7 +43,7 @@ path: 'nolog',
         path: '',
     canActivate: [AuthenticationService],
     // a list of roles that can access the resource -- in this case all of them
-    data: {roles: ['ROLE_STAGING', 'ROLE_TRAINER', 'ROLE_QC', 'ROLE_PANEL', 'ROLE_VP']},
+    data: {roles: ['ROLE_REPORTING', 'ROLE_SCREENER', 'ROLE_ADMIN']},
           children: [
             
     {  
@@ -81,13 +81,13 @@ path: 'nolog',
   {
     path: 'admin-tab',
     canActivate: [AuthenticationService],
-    data: {roles: ['ROLE_VP']},
+    data: {roles: ['ROLE_ADMIN']},
     component: AdminTabComponent
   },
   {
     path: 'settings',
     canActivate: [AuthenticationService],
-    data: {roles: ['ROLE_VP']},
+    data: {roles: ['ROLE_ADMIN']},
     component: SettingsComponent,
     children: [
       {

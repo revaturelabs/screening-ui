@@ -5,6 +5,8 @@
             "UnauthRoleArn": "arn:aws:iam::649904559026:role/screening-ui-20190405223204-unauthRole",
             "AuthRoleArn": "arn:aws:iam::649904559026:role/screening-ui-20190405223204-authRole",
             "Region": "us-east-2",
+            "User_Pool_Id": "us-east-2_Nv5CbdfXW",
+            "App_Client_Id": "62bqmamg880buch1h6qsjup9cc",
             "DeploymentBucketName": "screening-ui-20190405223204-deployment",
             "UnauthRoleName": "screening-ui-20190405223204-unauthRole",
             "StackName": "screening-ui-20190405223204",

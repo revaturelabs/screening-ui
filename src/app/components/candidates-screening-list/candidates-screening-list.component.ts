@@ -47,7 +47,7 @@ export class CandidatesScreeningListComponent implements OnInit {
   selectedScheduledScreening: ScheduledScreening;
   // Flag for displaying the "Begin Interview" prompt
   showBeginScreeningPrompt = false;
-  // random fields that are necessary for Jenkins to build.
+  // fields that are necessary for Jenkins to build.
   // Do not delete
   searchText; // text in search bar
   p; // current page
@@ -85,15 +85,15 @@ export class CandidatesScreeningListComponent implements OnInit {
       scheduledScreeningId: 0,
       trainee: { //Mock Data used for test screening
           traineeID: 0,
-          firstname: 'Landon',
-          lastname: 'Renzullo',
-          skillTypeID: 56,
-          skillTypeName: 'Java',
+          firstname: 'Richard',
+          lastname: 'Orr',
+          skillTypeID: 99,
+          skillTypeName: 'Angular',
           schedule: new Date((new Date()).getTime() + 100000)
         },
-      track: {skillTypeId: 56, title: 'Java', isActive: true},
+      track: {skillTypeId: 99, title: 'Angular', isActive: true},
       status: 'in progress',
-      trainer: 0,
+      trainer: 1,
       scheduledDate: new Date()
     });
   }
@@ -102,7 +102,7 @@ export class CandidatesScreeningListComponent implements OnInit {
         FUNCTIONS
   ########################### */
 
-  // Unhides the "Begin Interview" prompt
+  // Reveals the "Begin Interview" prompt
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {
       return 'block';
@@ -126,7 +126,7 @@ export class CandidatesScreeningListComponent implements OnInit {
         // create a new date which signifies the start of the interview
         new Date(),
         // This was not part of our iteration, but the "1" must be replaced
-        // with the trainer's ID so that their is an association
+        // with the trainer's ID so that there is an association
         // between the interviewer and the person who screened them.
         this.selectedScheduledScreening.trainer,
         // provide the track of the selected candidate for later use.

@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       // console.log(localStorage.getItem('user'))
      
     }
+    
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -49,11 +50,18 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if(this.loginForm.invalid){
+      console.log("if");
       return;
     }
     else{
+      //checks to make sure form is valid, regardless of user being able to login or not
+      // This needs to be fixed, if the user accidentaly puts in invalid login credentials the 
+      // .loading freezes the login button, thus [disabled] was commented out in the html
+      console.log("else");
       this.loading=true;
       this.authenticationService.login(this.f.username.value, this.f.password.value);
     }
+    
   }
+  
 }

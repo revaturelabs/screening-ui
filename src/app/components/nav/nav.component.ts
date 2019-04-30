@@ -66,15 +66,15 @@ export class NavComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user) {
       this.userRole = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"][0];
+      
     } else {
       this.userRole = '';
     }
-    this.showHome = this.userRole !== '';
-    this.showLogin = this.userRole === '';
-    this.showLogout = this.userRole !== '';
-    this.showReports = this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER' ||
-        this.userRole === 'ROLE_QC' || this.userRole === 'ROLE_PANEL';
-    this.showAdmin = this.userRole === 'ROLE_VP';
-    this.showSettings = this.userRole === 'ROLE_VP';
+    this.showHome = (this.userRole !== '');
+    this.showLogin = (this.userRole === '');
+    this.showLogout = (this.userRole !== '');
+    this.showReports = (this.userRole === 'ROLE_ADMIN' || this.userRole === 'ROLE_REPORTING' || this.userRole === 'ROLE_SCREENER');
+    this.showAdmin = (this.userRole === 'ROLE_ADMIN');
+    this.showSettings = (this.userRole === 'ROLE_ADMIN');
   }
 }
