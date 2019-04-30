@@ -16,16 +16,6 @@ export class AuthenticationService implements CanActivate {
     let user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
-      //let groups;
-      // if (user.username == "david.west@revature.portal"){
-      //   groups = "ROLE_ADMIN";
-      // }
-      // else if (user.user == "adam.jones@revature.portal"){
-      //   groups = "ROLE_SCREENER";
-      // }
-      // else{
-      //   groups = "ROLE_REPORTING";
-      // }
 
       let accessRoles = route.data['roles'];
       for (let role of groups) {
@@ -52,8 +42,10 @@ export class AuthenticationService implements CanActivate {
 
       console.log(user)
       //check to make sure that the user is actually being authenticated using Cognito
-      if (user.challengeName === 'NEW_PASSWORD_REQUIRED' && false) {
+      if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
         const { requiredAttributes } = user.challengeParam;
+        let temp = await this.amplifyService.auth().completeNewPassword(user, "PassWord", null);
+        
         // the array of required attributes, e.g ['email', 'phone_number']
         // You need to get the new password and required attributes from the UI inputs
         // and then trigger the following function with a button click

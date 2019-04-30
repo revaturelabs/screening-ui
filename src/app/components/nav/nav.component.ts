@@ -66,29 +66,9 @@ export class NavComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user) {
       this.userRole = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"][0];
-      // if (user.username == "david.west@revature.portal"){
-      //   this.userRole = "ROLE_ADMIN";
-      // }
-      // else if (user.user == "adam.jones@revature.portal"){
-      //   this.userRole = "ROLE_SCREENER";
-      // }
-      // else{
-      //   this.userRole = "ROLE_REPORTING";
-      // }
-      // this.showHome = true;
-      // this.showLogout = true;
-      // this.showReports = true;
-      // this.showAdmin = true;
-      // this.showSettings = true;
-      // this.showLogin = false;
+
     } else {
       this.userRole = '';
-      // this.showHome = false;
-      // this.showLogout = false;
-      // this.showReports = false;
-      // this.showAdmin = false;
-      // this.showSettings = false;
-      // this.showLogin = true;
     }
     this.showHome = (this.userRole !== '');
     this.showLogin = (this.userRole === '');
