@@ -66,7 +66,7 @@ export class NavComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user) {
       this.userRole = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"][0];
-
+      
     } else {
       this.userRole = '';
     }

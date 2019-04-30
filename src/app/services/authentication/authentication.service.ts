@@ -21,11 +21,7 @@ export class AuthenticationService implements CanActivate {
       for (let role of groups) {
          if (accessRoles.includes(role)) return true;
       }
-      
-
-      
-      return true;
-
+    
       this.router.navigateByUrl('/noprivs')
       return false;
     } else {
@@ -53,10 +49,6 @@ export class AuthenticationService implements CanActivate {
 
       } else {
         // The user directly signs in
-        // console.log(user);
-
-        //let temp = await this.amplifyService.auth().completeNewPassword(user, "PassWord", null);
-        //await localStorage.setItem('temp', JSON.stringify(temp));
 
         await localStorage.setItem('user', JSON.stringify(user));
         await this.router.navigateByUrl('/home');
