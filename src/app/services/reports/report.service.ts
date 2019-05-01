@@ -25,10 +25,10 @@ export class ReportService {
       return this.http.get<string[]>(this.urlService.reports.getScreenersByPartialEmail(partialEmail));
     }
   }
-  getScreenerDataByWeeks(weeks: Array<number>, email: string): Observable<ReportData> {
+  getScreenerDataByWeeks(startDate: string, endDate: string, email: string): Observable<ReportData> {
     //this line exists because all the data on the server is more than 1yr old
     //weeks = weeks + 52;
-    return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(weeks, email));
+    return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(startDate, endDate, email));
   }    
 
   getAllScreenerDataByWeeks(startDate: string, endDate: string): Observable<ReportData> {

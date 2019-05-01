@@ -29,21 +29,21 @@ export class ReportCacheService {
     }
   }
  
-  getScreenerDataByWeeks(weeks: Array<number>, email: string): Observable<ReportData> {
-    let key = `$weeks=${weeks}&email=${email}`;
+  getScreenerDataByWeeks(startDate: string, endDate: string, email: string): Observable<ReportData> {
+    let key = `$startDate=${startDate}&endDate=${endDate}&email=${email}`;
     if (key in this.cacheMap){
       console.log(`Retrieving ${key} from cache`);
       return of(this.cacheMap[key]);
     }    
     else{      
       console.log(`Requesting ${key} from server`); 
-      return this.reportService.getScreenerDataByWeeks(weeks, email).pipe(
+      return this.reportService.getScreenerDataByWeeks(startDate, endDate, email).pipe(
         tap(data => this.cacheMap[key] = data));
     }
   }  
 
   getAllScreenerDataByWeeks(startDate, endDate): Observable<ReportData> {
-    let key = `weeks=${startDate}`;
+    let key = `weeks=${startDate}&endDate=${endDate}`;
 
     if (key in this.cacheMap){
       console.log(`Retrieving ${key} from cache`);
