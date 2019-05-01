@@ -42,7 +42,7 @@ export class MasterReportComponent implements OnInit {
 
     //Weeks is an array that is set by the slider
     //Weeks[0] is the endDate and begins at 0 (which equals 2019-01-01)
-    //Weeks[1] is the startDate and ends at 208 (which equals 2015-01-01)...  since 208 weeks is 4 years
+    //Weeks[1] is the startDate and ends at 52 (which equals 2018-01-23)...  since 52 weeks is ~1 year
     //the following code converts weeks[0] & [1] to be REAL dates, so that getScreenerDataByWeeks() can function properly
 
     if (weeks[0] != this.currentWeeksValue[0] || weeks[1] != this.currentWeeksValue[1]) {
