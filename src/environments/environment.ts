@@ -12,7 +12,14 @@
  * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
  */
-  // screenforce gateway is 8080
+
+
+  /* screenforce gateway is 8080
+  * ideal routing would have all the services running through the gateway
+  * however we ran into constant Cors errors when using anything but these urls
+  * for future iteration you will want to route all services to said gateway however we ran out of time to implement this process
+  */
+
   const adminContext = 'http://localhost:8182';
   const screeningContext = 'http://localhost:8183';
   const reportContext = 'http://localhost:8185';

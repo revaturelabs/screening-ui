@@ -110,6 +110,6 @@ export class UrlService {
   reports = {
     getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
     getScreenerDataByWeeks: (weeks: number[], email: string): string => `${this.reportEndpoint}/getReportWithEmail?weeks=${weeks}&email=${email}`,
-    getAllScreenerDataByWeeks: (startDate: string, endDate: String): string => `${this.reportEndpoint}/getWeeksReport?weeks=${startDate},${endDate}`
+    getAllScreenerDataByWeeks: (startDate: string, endDate: String): string => `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
   }
 }
