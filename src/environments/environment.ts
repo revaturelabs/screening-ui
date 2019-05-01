@@ -13,7 +13,7 @@
  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
  */
   // screenforce gateway is 8080
-  const adminContext = 'http://localhost:8181';
+  const adminContext = 'http://localhost:8182';
   const screeningContext = 'http://localhost:8183';
   const reportContext = 'http://localhost:8185';
 
@@ -26,7 +26,7 @@ export const environment = {
   /** Assets endpoints for like pictures  */
   assets: 'http://52.87.205.55:8086/angular/assets/',
 
-  adminContext: 'http://localhost:8181',
+  adminContext: 'http://localhost:8182',
   screeningContext: 'http://localhost:8183',
   reportContext: 'http://localhost:8185',
   bam: bam,
