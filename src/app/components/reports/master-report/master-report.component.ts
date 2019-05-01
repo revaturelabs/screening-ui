@@ -12,12 +12,16 @@ export class MasterReportComponent implements OnInit {
   reportData: ReportData;
   currentSearchTerm: string = '';
   currentWeeksValue: Array<number> = [0, 208];
+  
+  startDate: string = "2016-01-01";
+  endDate: string = "2019-01-01"
+
   constructor(
     private reportService: ReportService,
     private reportCache: ReportCacheService) { }
-  
+
   ngOnInit() {
-    this.reportCache.getAllScreenerDataByWeeks(this.currentWeeksValue)
+    this.reportCache.getAllScreenerDataByWeeks(this.startDate, this.endDate)
       .subscribe(data => this.handleNewReportData(data));
   }
   handleNewReportData(data: ReportData) {
@@ -43,7 +47,7 @@ export class MasterReportComponent implements OnInit {
   updateReportData() {
     //console.log('weeks: ' + this.currentWeeksValue + ', search: ' + this.currentSearchTerm);
     if (this.currentSearchTerm === '') {
-      this.reportCache.getAllScreenerDataByWeeks(this.currentWeeksValue)
+      this.reportCache.getAllScreenerDataByWeeks(this.startDate, this.endDate)
         .subscribe(data => this.handleNewReportData(data));
     }
     else {

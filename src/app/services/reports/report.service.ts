@@ -31,9 +31,9 @@ export class ReportService {
     return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(weeks, email));
   }    
 
-  getAllScreenerDataByWeeks(weeks: Array<number>): Observable<ReportData> {
+  getAllScreenerDataByWeeks(startDate: string, endDate: string): Observable<ReportData> {
       //this line cause all data on server more than 1yr old
       //weeks = weeks + 52;
-      return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(weeks));
+      return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(startDate, endDate));
   }
 }
