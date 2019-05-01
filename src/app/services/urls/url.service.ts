@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Weight } from '../../entities/Weight';
+import { String } from 'aws-sdk/clients/cloudhsmv2';
 
 @Injectable()
 export class UrlService {
@@ -109,6 +110,6 @@ export class UrlService {
   reports = {
     getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
     getScreenerDataByWeeks: (weeks: number[], email: string): string => `${this.reportEndpoint}/getReportWithEmail?weeks=${weeks}&email=${email}`,
-    getAllScreenerDataByWeeks: (weeks: number[]): string => `${this.reportEndpoint}/getWeeksReport?weeks=${weeks}`
+    getAllScreenerDataByWeeks: (startDate: string, endDate: String): string => `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
   }
 }

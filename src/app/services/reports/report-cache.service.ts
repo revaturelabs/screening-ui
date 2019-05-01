@@ -42,15 +42,16 @@ export class ReportCacheService {
     }
   }  
 
-  getAllScreenerDataByWeeks(weeks: Array<number>): Observable<ReportData> {
-    let key = `weeks=${weeks}`;
+  getAllScreenerDataByWeeks(startDate, endDate): Observable<ReportData> {
+    let key = `weeks=${startDate}`;
+
     if (key in this.cacheMap){
       console.log(`Retrieving ${key} from cache`);
       return of(this.cacheMap[key]);
     }      
     else{      
       console.log(`Requesting ${key} from server`); 
-      return this.reportService.getAllScreenerDataByWeeks(weeks).pipe(
+      return this.reportService.getAllScreenerDataByWeeks(startDate, endDate).pipe(
        tap(data => this.cacheMap[key] = data));
     }
   }
