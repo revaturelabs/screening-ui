@@ -21,10 +21,11 @@ export class MasterReportComponent implements OnInit {
                           "2018-01-16","2018-01-09","2018-01-02","2017-12-26","2017-12-19","2017-12-12","2017-12-05","2017-11-28","2017-11-21","2017-11-14","2017-11-07","2017-10-31","2017-10-24",
                           "2017-10-17","2017-10-10","2017-10-03","2017-09-26","2017-09-19","2017-09-12","2017-09-05","2017-08-29","2017-08-22","2017-08-15","2017-08-08","2017-08-01","2017-07-25",
                           "2017-07-18","2017-07-11","2017-07-04","2017-06-27","2017-06-20","2017-06-13","2017-06-06","2017-05-30","2017-05-23","2017-05-16","2017-05-09","2017-05-02","2017-04-25",
-                          "2017-04-18","2017-04-11","2017-04-04","2017-03-28","2017-03-21","2017-03-14","2017-03-07","2017-02-28","2017-02-21","2017-02-14","2017-02-07","2017-01-31","2017-01-24"
-                          ]
+                          "2017-04-18","2017-04-11","2017-04-04","2017-03-28","2017-03-21","2017-03-14","2017-03-07","2017-02-28","2017-02-21","2017-02-14","2017-02-07","2017-01-31","2017-01-24",
+                          "2017-01-17"
+                        ]
   
-  startDate: string = "2015-01-01";
+  startDate: string = "2017-01-17";
   endDate: string = "2019-01-01";
 
   constructor(
@@ -45,7 +46,7 @@ export class MasterReportComponent implements OnInit {
   /*
     Weeks is an array that is set by the slider
     Weeks[0] is the endDate and begins at 0 (which equals 2019-01-01)
-    Weeks[1] is the startDate and ends at 52 (which equals 2017-01-24)...  since 104 weeks is ~1 year
+    Weeks[1] is the startDate and ends at  (which equals 2017-01-17)...  since 104 weeks is ~1 year
     the following code converts weeks[0] & [1] to be REAL dates, so that getScreenerDataByWeeks() can function properly
   */
   onSliderChange(weeks: Array<number>) {
