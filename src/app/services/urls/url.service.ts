@@ -109,7 +109,9 @@ export class UrlService {
   private reportEndpoint = this.reportContext;
   reports = {
     getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
-    getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string => `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
-    getAllScreenerDataByWeeks: (startDate: string, endDate: String): string => `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
-  }
+    getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
+    `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
+    getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>
+    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
+  };
 }

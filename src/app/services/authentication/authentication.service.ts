@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AmplifyService } from 'aws-amplify-angular';
 import { async } from 'q';
@@ -10,19 +9,17 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class AuthenticationService implements CanActivate {
 
 
-  constructor(private http: HttpClient, private router: Router, private amplifyService: AmplifyService) { }
+  constructor(private router: Router, private amplifyService: AmplifyService) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      let groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
-
+      let groups = user['signInUserSession']['idToken']['payload']['cognito:groups'];
       let accessRoles = route.data['roles'];
       for (let role of groups) {
-         if (accessRoles.includes(role)) return true;
+        if (accessRoles.includes(role)) { return true; }
       }
-    
-      this.router.navigateByUrl('/noprivs')
+      this.router.navigateByUrl('/noprivs');
       return false;
     } else {
       this.router.navigateByUrl('/nolog');
@@ -35,13 +32,11 @@ export class AuthenticationService implements CanActivate {
   async login(username: string, password: string) {
     try {
       const user = await this.amplifyService.auth().signIn(username, password);
-
-      console.log(user)
-      //check to make sure that the user is actually being authenticated using Cognito
+      console.log(user);
+      // check to make sure that the user is actually being authenticated using Cognito
       if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
         const { requiredAttributes } = user.challengeParam;
-        let temp = await this.amplifyService.auth().completeNewPassword(user, "PassWord", null);
-        
+        let temp = await this.amplifyService.auth().completeNewPassword(user, 'PassWord', null);
         // the array of required attributes, e.g ['email', 'phone_number']
         // You need to get the new password and required attributes from the UI inputs
         // and then trigger the following function with a button click
@@ -49,11 +44,8 @@ export class AuthenticationService implements CanActivate {
 
       } else {
         // The user directly signs in
-
         await localStorage.setItem('user', JSON.stringify(user));
         await this.router.navigateByUrl('/home');
-
-        // console.log(localStorage.getItem('user'))
       }
 
     } catch (err) {
@@ -73,13 +65,10 @@ export class AuthenticationService implements CanActivate {
         console.log(err);
       }
     }
-
   }
-
   logout() {
     localStorage.removeItem('user');
   }
-
   isLoggedIn() {
     return true;
   }

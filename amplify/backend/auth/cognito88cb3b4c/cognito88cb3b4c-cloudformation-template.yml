@@ -129,7 +129,10 @@ Parameters:
                   
   usernameAttributes:
     Type: CommaDelimitedList
-    
+        
+  hostedUI:
+    Type: String
+        
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
 
@@ -172,6 +175,7 @@ Resources:
     UpdateReplacePolicy: Retain
     Properties:
       UserPoolName: !If [ShouldNotCreateEnvResources, !Ref userPoolName, !Join ['',[!Ref userPoolName, '-', !Ref env]]]
+      
       Schema: 
         
         -
@@ -180,11 +184,9 @@ Resources:
           Mutable: true
         
       
+      
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
-      
-      EmailVerificationMessage: !Ref emailVerificationMessage
-      EmailVerificationSubject: !Ref emailVerificationSubject
             
       Policies:
         PasswordPolicy:

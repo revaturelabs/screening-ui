@@ -1,17 +1,22 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "screening-ui-20190405223204-authRole",
-            "UnauthRoleArn": "arn:aws:iam::649904559026:role/screening-ui-20190405223204-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::649904559026:role/screening-ui-20190405223204-authRole",
-            "Region": "us-east-2",
-            "User_Pool_Id": "us-east-2_Nv5CbdfXW",
-            "App_Client_Id": "62bqmamg880buch1h6qsjup9cc",
-            "DeploymentBucketName": "screening-ui-20190405223204-deployment",
-            "UnauthRoleName": "screening-ui-20190405223204-unauthRole",
-            "StackName": "screening-ui-20190405223204",
-            "StackId": "arn:aws:cloudformation:us-east-2:649904559026:stack/screening-ui-20190405223204/8b25a720-581c-11e9-a713-0a84bc2bb20a"
+            "AuthRoleName": "screening-ui-batch-20190517012723-authRole",
+            "UnauthRoleArn": "arn:aws:iam::638981830196:role/screening-ui-batch-20190517012723-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::638981830196:role/screening-ui-batch-20190517012723-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "screening-ui-batch-20190517012723-deployment",
+            "UnauthRoleName": "screening-ui-batch-20190517012723-unauthRole",
+            "StackName": "screening-ui-batch-20190517012723",
+            "StackId": "arn:aws:cloudformation:us-east-1:638981830196:stack/screening-ui-batch-20190517012723/73fbdf20-7864-11e9-a03f-0ad7f2019cc4"
         },
+        "categories": {
+            "auth": {
+                "cognito88cb3b4c": {}
+            }
+        }
+    },
+    "batch": {
         "categories": {
             "auth": {
                 "cognito88cb3b4c": {}

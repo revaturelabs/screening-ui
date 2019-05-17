@@ -8,7 +8,7 @@
     "openIdLogPolicy": "cognito88cb3b4c_openid_lambda_log_policy",
     "userPoolName": "cognito88cb3b4c_userpool_88cb3b4c",
     "autoVerifiedAttributes": [
-        "email"
+        "phone_number"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
@@ -72,5 +72,6 @@
     "useDefault": "default",
     "usernameAttributes": [
         "email"
-    ]
+    ],
+    "hostedUI": false
 }
