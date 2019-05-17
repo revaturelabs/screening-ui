@@ -14,8 +14,8 @@ export class AuthenticationService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      let groups = user['signInUserSession']['idToken']['payload']['cognito:groups'];
-      let accessRoles = route.data['roles'];
+      const groups: String[] = user.signInUserSession.idToken.payload['cognito:groups'];
+      const accessRoles: String[] = route.data['roles'];
       for (let role of groups) {
         if (accessRoles.includes(role)) { return true; }
       }
