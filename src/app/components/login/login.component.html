@@ -1,20 +1,23 @@
 <div class="login-div">
+    <div class ="container">
   <div class="img-div">
-    <img  class="login-img" routerLink="/dashboard" class="rev-logo" src="assets/rev-logo.png" alt="revature">
+   <img  class="login-img" routerLink="/dashboard" class="rev-logo" src="assets/rev-logo.png" alt="revature"><br><br>
   </div>
-  <h2>Login</h2>
+  <!--<h2>Login</h2>-->
+
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" class="form-control" 
+        <label for="username">Username</label><br>
+        <input type="text" formControlName="username" class="form-control" placeholder="Username" id="username"
         [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">Username is required</div>
         </div>
     </div>
+    
     <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" 
+        <label for="password">Password</label><br>
+        <input type="password" formControlName="password" class="form-control" placeholder="Password" id="password" 
         [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.password.errors.required">Password is required</div>
@@ -25,6 +28,7 @@
       <a [routerLink]="['/register']" class="btn btn-link">Register</a>
     </div>
   </form>
+  </div>
 </div>
 
 <!-- <div class='login'>
@@ -40,7 +44,7 @@
     <p>Bad username/password</p>
   </div> -->
 
-  <div *ngIf="debug" style="border: 5px solid red; width:300px;">
+  <!--div *ngIf="debug" style="border: 5px solid red; width:300px;">
     <h3>Debug Panel</h3>
     <h5>user : John.Smith@revature.com</h5>
     <h5>pass : R3vatur3!</h5>
@@ -50,7 +54,7 @@
     <h3>Debug Panel</h3>
     <h5>user : Paul.Walker@revature.com</h5>
     <h5>pass : Password!2</h5>
-  </div>
+  </div>-->
   
   <!-- </div> -->
   <!-- <amplify-authenticator></amplify-authenticator> -->
