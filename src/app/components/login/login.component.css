@@ -1,13 +1,36 @@
-.form-control
+
+
+.logo
+{	
+	max-width: 1000px;
+	height: auto;
+	vertical-align: middle;
+	margin-left: 30px;
+    display: flex;
+    align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+} 
+
+.input-group-text
 {
-    width: 400px;
+    width: 320px;
 }
-.login-div
+
+
+/* fieldset{
+    display: inline-block;
+    border-color: #F00;
+    border-style: solid;
+} */
+
+.card
 {
+   
     display: flex;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 400px;
     justify-content: center;
     align-items: center;
 	flex-direction: column;
@@ -21,15 +44,48 @@
 }
 
 
+.container {
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    display: flex;
+    position: absolute;
+    width: 400.5px;
+    height: 400.5px;
+    justify-content: center;
+    align-items: center;
+	/* flex-direction: column; */
+	
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;   
+}
+
+.card-body{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+	flex-direction: column;
+    top:0;
+	bottom: 0;
+	left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+
 input#username, input#password {
-    -webkit-box-shadow: inset 0px 0px 39px 48px rgb(0, 0, 0);
-    -moz-box-shadow: inset 0px 0px 39px 48px rgb(0, 0, 0);
-    box-shadow: inset 0px 0px 39px 48px rgba(255, 84, 84, 0.568);
-    border-radius: 10px;
+    
+    border-radius: px;
     border-width: 1px;
     display: inline-block;
     text-align: center;
-    width: 300px;
+    width: 100%;
     height: 35px;
     line-height: 50px;
     font-size: 16px;
@@ -38,19 +94,32 @@ input#username, input#password {
     border-color: rgba(0, 0, 0, 0.493);
  
 }
-.container {
-    -webkit-box-shadow: 0px 0px 84px 13px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 84px 13px rgba(0,0,0,0.55);
-    box-shadow: 0px 0px 84px 13px rgba(0, 0, 0, 0.55);
-    display: flexbox;
-    width: 100%;
-    margin: 0 auto;
+
+
+
+button{
+    margin-top: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
     text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    padding: 20px;
-    background: rgba(148, 137, 137, 0.212);
-    border-radius: 20px;
-    
+    vertical-align: middle;
+    width: 100%;
+    background-color: rgb(242, 105, 37);
+    color: rgb(255, 255, 255);
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    transition: border 0.15s linear 0s;
+    border-color: rgb(242, 105, 37);
+
+}
+
+button:hover
+{
+   background-color: rgb(211, 93, 34);
+   border-color: rgb(211, 93, 34);
+}
+
+.form-group-register{
+    text-align: left;
 }
