@@ -13,7 +13,35 @@ body {
 ul.search-result{
     padding-left: 0%; 
 };
-.search-result {
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+#myInput:focus {outline: 3px solid #ddd;}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+/* .search-result {
     
     li {
         width: 100%;
@@ -41,7 +69,7 @@ ul.search-result{
         background-color: #eee;
     }
     
-}
+} */
 h4 {
   font-weight: normal;
 }
@@ -60,9 +88,9 @@ h4 {
     white-space:nowrap;
 }
 
-/* Slider CSS */
-// We need to use ::ng-deep to overcome view encapsulation
-::ng-deep {
+/* Slider CSS 
+We need to use ::ng-deep to overcome view encapsulation*/
+/* ::ng-deep {
     .custom-slider .ng5-slider .ng5-slider-bar {
       background: #ffe4d1;
       height: 2px;
@@ -74,7 +102,7 @@ h4 {
     .custom-slider .ng5-slider .ng5-slider-pointer {
       width: 8px;
       height: 16px;
-      top: auto; /* to remove the default positioning */
+      top: auto; /* to remove the default positioning 
       bottom: 0;
       background-color: #333;
       border-top-left-radius: 3px;
@@ -106,4 +134,4 @@ h4 {
     .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
       background: #f26925;
     }
-  }
+  } */
