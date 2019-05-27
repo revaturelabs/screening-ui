@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <!-- <div class="custom-slider">
                 <ng5-slider [options]="sliderOptions" [(value)]="minSliderValue" [(highValue)]="maxSliderValue"
                     (userChange)="onSliderChange($event)"></ng5-slider>
@@ -13,11 +13,7 @@
             <div class="dropdown">
             <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm'
                 placeholder="Search by email" class="search-bar" />
-            <!-- <ul class='search-result'>
-                <li *ngFor='let email of screenerEmails$ | async'>
-                    <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
-                </li>
-            </ul> -->
+    
             <div class="dropdown-content">
                 <ul *ngFor='let email of screenerEmails$ | async'>
                     <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
@@ -48,12 +44,31 @@
                 <h4 class="text-center">Failed: N/A</h4>
             </ng-template>-->
      <!-- </section> -->
-    
         </div>
-        <div class="col-lg-4">
-            <h4>A selector goes here</h4>
+        <div class="col-lg-3">
+                <div class="dropdown">
+                <input #searchBox2 (input)='search(searchBox2.value)' [(ngModel)]='skillSearchTerm'
+                    placeholder="Search by skill" class="search-bar" />
+                <div class="dropdown-content">
+                    <!-- <ul *ngFor='let email of screenerEmails$ | async'>
+                        <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
+                    </ul> -->
+                </div>
+            </div>
         </div>
-     
+        <div class="col-lg-3">
+            <div class="datePicker">
+            <input class="dateText" type="text" placeholder="Start Date" ngbDatepicker #d="ngbDatepicker"/>
+            <button (click)="d.toggle()">^</button>
+        </div>
+        </div>
+        <div class="col-lg-3">
+                <div class="datePicker">
+                <input class="dateText" type="text" placeholder="End Date" ngbDatepicker #d2="ngbDatepicker"/>
+                <button (click)="d2.toggle()">^</button>
+                </div>
+            </div>
+
     </div>
 </div>
 <hr>

@@ -1,12 +1,12 @@
-<main class="container mt-5" *ngIf='reportData'>
+<main class="container mt-5 justify-content-center" *ngIf='reportData'>
   <div class="row">
-     <div class="col-sm-12 col-lg-2">
+     <div class="col-sm-12 col-lg-1">
            <!-- <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
             (searchChange)='onSearchChange($event)'></app-report-sidebar>-->
         </div> 
-    <div class="col-sm-12 col-lg-8">
-        <div class="card">  
-            <div class="card-body" style="border-width: 10rem;"> 
+    <div class="col-sm-12 col-lg-10">
+        <div class="card ">  
+            <div class="card-body" style="border-width: 10rem;" > 
       <div>
           <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
           (searchChange)='onSearchChange($event)'></app-report-sidebar>

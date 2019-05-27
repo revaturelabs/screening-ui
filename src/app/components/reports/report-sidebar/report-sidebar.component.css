@@ -37,6 +37,18 @@ ul.search-result{
 .dropdown-content a:hover {background-color: #f1f1f1}
 .dropdown:hover .dropdown-content {display: block;}
 
+.datePicker{
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.dateText{
+  width: 80%;
+}
+
+
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) 
 .show {display:block;}
 /* .search-result {
