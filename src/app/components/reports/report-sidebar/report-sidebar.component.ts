@@ -10,11 +10,12 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { WeekDay } from '@angular/common';
 import { ReportData } from 'src/app/entities/ReportData';
 
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-report-sidebar',
   templateUrl: './report-sidebar.component.html',
-  styleUrls: ['./report-sidebar.component.scss']
+  styleUrls: ['./report-sidebar.component.css']
 })
 export class ReportSidebarComponent implements OnInit {
   //@Input() initialSliderValue: number = 1;
@@ -25,6 +26,8 @@ export class ReportSidebarComponent implements OnInit {
   emailSearchTerm: string = '';
   //sliderControl: FormControl;
   _reportData: ReportData;
+
+
   @Input()
   set reportData(reportData: ReportData){
     this._reportData = reportData;

@@ -1,20 +1,30 @@
 <div class="container">
-    <div class="login-div">   
-        <div class="card">  
-            <div class="card-body" style="border-width: 10rem;"> 
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            
-        <img src="assets/rev-logo.png"  class="logo" alt="Revature loves chisel!" height=95px width=250px><br><br>
-    
-        <div class="form-group">
-              <div class="input-group-text">
-                <img src="https://png.pngtree.com/svg/20170726/ebda612d9e.svg" height=25 width=25>
-            <input type="text" formControlName="username" class="form-control" placeholder="Username" id="username"
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                <div *ngIf="f.username.errors.required">Username is required</div>
-            </div>
+
+<div class="login-div">   
+    <div class="card">  
+        <div class="card-body" style="border-width: 10rem;"> 
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+    <img src="assets/rev-logo.png"  class="logo" alt="Revature loves chisel!" height=95px width=250px><br><br>
+
+    <div class="form-group">
+          <div class="input-group-text">
+            <img src="https://png.pngtree.com/svg/20170726/ebda612d9e.svg" height=25 width=25>
+        <input type="text" formControlName="username" class="form-control" placeholder="Username" id="username"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
         </div>
+    </div>
+    </div>
+
+    <div class="form-group">
+          <div class="input-group-text">
+            <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_password-512.png" height=22.5 width=25>
+        <input type="password" formControlName="password" class="form-control" placeholder="Password" id="password" 
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
         </div>
     
         <div class="form-group">
@@ -40,4 +50,50 @@
           </form>
     
     </div>
+
     </div>
+    
+    
+    
+
+    <div class="form-group-register">
+      <button class="btn btn-outline-dark">Login</button> <!-- [disabled]="loading"  -->
+      <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+    </div>
+  
+     
+      </form>
+
+</div>
+</div>
+
+<!-- <div class='login'>
+  <h2 class='title'>Login</h2>
+  <div>
+    <input class='un' type="text" name="username" #username placeholder="username"/><br>
+    <input class='pass' type="password" name="password" #password placeholder="password"/>
+  </div>
+  <a><button class='button' (click)= getUser(username.value,password.value)>Submit</button></a>
+  
+  
+  <div id="message" style="color:red; display:none" >
+    <p>Bad username/password</p>
+  </div> -->
+
+  <!--div *ngIf="debug" style="border: 5px solid red; width:300px;">
+    <h3>Debug Panel</h3>
+    <h5>user : John.Smith@revature.com</h5>
+    <h5>pass : R3vatur3!</h5>
+    <h3>Debug Panel</h3>
+    <h5>user : Jane.Smith@revature.com</h5>
+    <h5>pass : Password!2</h5>
+    <h3>Debug Panel</h3>
+    <h5>user : Paul.Walker@revature.com</h5>
+    <h5>pass : Password!2</h5>
+  </div>-->
+  
+  <!-- </div> -->
+  <!-- <amplify-authenticator></amplify-authenticator> -->
+  <!-- <amplify-auth-sign-in-core></amplify-auth-sign-in-core> -->
+
+

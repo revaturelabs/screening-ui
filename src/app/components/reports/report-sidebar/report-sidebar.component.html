@@ -5,40 +5,55 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="custom-slider">
+        <div class="col-lg-4">
+            <!-- <div class="custom-slider">
                 <ng5-slider [options]="sliderOptions" [(value)]="minSliderValue" [(highValue)]="maxSliderValue"
                     (userChange)="onSliderChange($event)"></ng5-slider>
-            </div>
-
+            </div> -->
+            <div class="dropdown">
             <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm'
                 placeholder="Search by email" class="search-bar" />
-            <ul class='search-result'>
+            <!-- <ul class='search-result'>
                 <li *ngFor='let email of screenerEmails$ | async'>
                     <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
                 </li>
-            </ul>
-            <hr>
-            <section *ngIf='_reportData'>
+            </ul> -->
+            <div class="dropdown-content">
+                <ul *ngFor='let email of screenerEmails$ | async'>
+                    <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
+                </ul>
+            </div>
+        </div>
+           
+        
+          <!--  <app-hardest-questions [hardestQuestions]='_reportData.hardestQuestions' class='card mx-auto mt-4'>
+            </app-hardest-questions>-->
+
+       <!-- <section *ngIf='_reportData'>
                 <h4 *ngIf='_reportData.screener; else allScreeners' class='text-center'>
                     Screener - {{_reportData.screener.name}}:</h4>
                 <ng-template #allScreeners>
                     <h4 class='text-center'>All Screeners: N/A</h4>
-                </ng-template>
-                <!--<h4 class='text-center' *ngIf="_reportData.numApplicantsPassed; else applicantsPassed">Applicants
-                    Passed: {{_reportData.numApplicantsPassed}}</h4>
-                <ng-template #applicantsPassed>
-                    <h4 class="text-center">Passed: N/A</h4>
-                </ng-template>
-                <h4 class='text-center' *ngIf="_reportData.numApplicantsFailed; else applicantsFailed">Applicants
-                    Failed: {{_reportData.numApplicantsFailed}}</h4>
-                <ng-template #applicantsFailed>
-                    <h4 class="text-center">Failed: N/A</h4>
-                </ng-template>-->
-            </section>
-            <app-hardest-questions [hardestQuestions]='_reportData.hardestQuestions' class='card mx-auto mt-4'>
-            </app-hardest-questions>
+                </ng-template> -->
 
+
+            <!--<h4 class='text-center' *ngIf="_reportData.numApplicantsPassed; else applicantsPassed">Applicants
+                Passed: {{_reportData.numApplicantsPassed}}</h4>
+            <ng-template #applicantsPassed>
+                <h4 class="text-center">Passed: N/A</h4>
+            </ng-template>
+            <h4 class='text-center' *ngIf="_reportData.numApplicantsFailed; else applicantsFailed">Applicants
+                Failed: {{_reportData.numApplicantsFailed}}</h4>
+            <ng-template #applicantsFailed>
+                <h4 class="text-center">Failed: N/A</h4>
+            </ng-template>-->
+     <!-- </section> -->
+    
         </div>
+        <div class="col-lg-4">
+            <h4>A selector goes here</h4>
+        </div>
+     
     </div>
 </div>
+<hr>
