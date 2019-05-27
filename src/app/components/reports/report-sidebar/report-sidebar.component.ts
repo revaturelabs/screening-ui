@@ -10,7 +10,6 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { WeekDay } from '@angular/common';
 import { ReportData } from 'src/app/entities/ReportData';
 
-import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-report-sidebar',
