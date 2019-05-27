@@ -30,7 +30,7 @@ export class NotLoggedInComponent implements OnInit {
         if (seconds === 0) {
           console.log(router);
           // doesn't redirect. no idea why. (inconvenient hoisting?)
-          router.navigateByUrl('/login');
+          router.navigateByUrl('login');
   
         }
       }

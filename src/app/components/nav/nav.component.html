@@ -1,44 +1,33 @@
 <nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-light display-front nav-pad">
-
-  <div class="navbar-header c-pointer shift-left">
-    <img  class="img-adjust-position" routerLink="/dashboard" class="rev-logo" src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"  height=30 width=110 alt="revature">
-  </div>
-
-  <button class="navbar-toggler c-pointer shift-right" (click)="toggleCollapse()" aria-label="Toggle navigation">
-    <span class="current-app-position">{{currentApp}}</span>
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
-
-    <!-- <ul class="navbar-nav mr-auto module-select">
-      <li ngbDropdown class="d-inline-block">
-        <a class="nav-link dropdown-toggle c-pointer janus-links-collapse-support shift-down" id="dropdownBasic1" ngbDropdownToggle>{{currentApp}}</a>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" (click)="toggleCollapse()">
-          <a *ngFor="let app of apps" class="dropdown-item dropdown-size" [routerLink]="app.homeUrl" (click)="keepLinkActive()"> {{ app.name }} </a>
-        </div>
-      </li>
-    </ul> -->
-
-    <ul class="navbar-nav ml-auto margin-nav">
-      <li class="nav-item" *ngIf="showHome">
-        <a class="nav-link" routerLink="home" routerLinkActive="activeLink">Home</a>
-      </li>
-      <li class="nav-item" *ngIf="showReports">
-          <a class="nav-link" routerLink="reports" routerLinkActive="activeLink">Reports</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdmin">
-        <a class="nav-link" routerLink="admin-tab" routerLinkActive="activeLink">Admin</a>
-    </li>
-      <li class="nav-item" *ngIf="showSettings"> 
-          <a class="nav-link" routerLink="settings/main">Settings</a>
-      </li>
-      <li class="nav-item" *ngIf="showLogin">
-        <a class="nav-link" routerLink="login">Login</a>
-      </li>
-      <li class="nav-item" (click)="attemptLogout=true;" *ngIf="showLogout">
-        <a class="nav-link" style="cursor:pointer">Logout</a>  
-
+    <div class="navbar-header c-pointer shift-left">
+      <img  class="img-adjust-position" routerLink="/dashboard" class="rev-logo" src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"  height=30 width=110 alt="revature">
+    </div>
+  
+    <button class="navbar-toggler c-pointer shift-right" (click)="toggleCollapse()" aria-label="Toggle navigation">
+      <span class="current-app-position">{{currentApp}}</span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+  
+      <!-- <ul class="navbar-nav mr-auto module-select">
+        <li ngbDropdown class="d-inline-block">
+          <a class="nav-link dropdown-toggle c-pointer janus-links-collapse-support shift-down" id="dropdownBasic1" ngbDropdownToggle>{{currentApp}}</a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" (click)="toggleCollapse()">
+            <a *ngFor="let app of apps" class="dropdown-item dropdown-size" [routerLink]="app.homeUrl" (click)="keepLinkActive()"> {{ app.name }} </a>
+          </div>
+        </li>
+      </ul> -->
+  
+      <ul class="navbar-nav ml-auto margin-nav">
+        <li class="nav-item" *ngIf="showHome">
+          <a class="nav-link" routerLink="home" routerLinkActive="activeLink">Home</a>
+        </li>
+        <li class="nav-item" *ngIf="showReports">
+            <a class="nav-link" routerLink="reports" routerLinkActive="activeLink">Reports</a>
+        </li>
+        <li class="nav-item" *ngIf="showAdmin">
+          <a class="nav-link" routerLink="admin-tab" routerLinkActive="activeLink">Admin</a>
       </li>
         <li class="nav-item" *ngIf="showSettings"> 
             <a class="nav-link" routerLink="settings/main">Settings</a>

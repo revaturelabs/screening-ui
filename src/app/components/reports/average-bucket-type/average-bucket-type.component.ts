@@ -44,7 +44,7 @@ export class AverageBucketTypeComponent implements OnInit {
         legend: {
           enabled: false 
       },
-        chart: { zoomType: 'x', type: 'line'},
+        chart: { zoomType: 'x', type: 'column'},
         series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
       };
     }
@@ -66,7 +66,7 @@ export class AverageBucketTypeComponent implements OnInit {
         legend: {
           enabled: false 
       },
-        chart: { zoomType: 'x', type: 'line'},
+        chart: { zoomType: 'x', type: 'column'},
         series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
       };
     }
