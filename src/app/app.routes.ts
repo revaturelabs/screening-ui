@@ -28,10 +28,10 @@ export const routes: Routes = [
     path: 'noprivs',
     component: InsufficientPrivilagesComponent
   },
-  {
-    path: 'nolog',
-    component: NotLoggedInComponent
-  },
+  // {
+  //   path: 'nolog',
+  //   component: NotLoggedInComponent
+  // },
   {
     path: 'login',
     component: LoginComponent,
