@@ -9,21 +9,18 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
+
 import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
+
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
 import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.component';
 import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
-import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
 import { FullBarDirective } from 'ng5-slider/slider.component';
 
 export const routes: Routes = [
-  {
-    path: 'expcreds',
-    component: ExpiredCredentialsComponent
-  },
   {
     path: 'noprivs',
     component: InsufficientPrivilagesComponent
