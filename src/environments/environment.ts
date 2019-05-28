@@ -33,7 +33,7 @@ export const environment = {
   /** Assets endpoints for like pictures  */
   assets: 'http://52.87.205.55:8086/angular/assets/',
 
-  adminContext: 'http://localhost:8182',
+  adminContext: 'http://localhost:8181',
   screeningContext: 'http://localhost:8183',
   reportContext: 'http://localhost:8185',
   bam: bam,
