@@ -11,7 +11,7 @@ import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
-import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.component';
