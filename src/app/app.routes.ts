@@ -14,15 +14,9 @@ import { MasterReportComponent } from './components/reports/master-report/master
 
 import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
-import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.component';
-// import { FullBarDirective } from 'ng5-slider/slider.component';
+import { FullBarDirective } from 'ng5-slider/slider.component';
 
 export const routes: Routes = [
-
-  {
-    path: 'nolog',
-    component: NotLoggedInComponent
-  },
   {
     path: 'login',
     component: LoginComponent,
