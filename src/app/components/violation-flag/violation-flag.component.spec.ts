@@ -8,6 +8,8 @@ import { SkillTypesService } from '../../services/skill-types/skill-types.servic
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
+import { UrlService } from '../../services/urls/url.service';
+import { RouterTestingModule } from '@angular/router/testing'; 
 
 // Author: David Gustafson
 
@@ -19,9 +21,10 @@ describe('ViolationFlagComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ ViolationFlagComponent ],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
-      SkillTypesService, ViolationTypeService, AlertsService ]
+      SkillTypesService, ViolationTypeService, AlertsService, UrlService ]
     })
     .compileComponents();
   }));
@@ -29,7 +32,7 @@ describe('ViolationFlagComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViolationFlagComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {
