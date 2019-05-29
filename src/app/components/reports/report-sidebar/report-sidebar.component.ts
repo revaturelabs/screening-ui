@@ -70,32 +70,32 @@ export class ReportSidebarComponent implements OnInit {
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
     //this.sliderControl = new FormControl(this.initialSliderValue);
-    this.reportService.getAllScreeners()
-    .subscribe(response => {
-      this.screenerEmail = response.map(item => {
-        return new Screening(
-            item.screeningId,
-            item.scheduledScreening.candidate.name,
-            item.scheduledScreening.scheduledStatus,
-            item.scheduledScreening.skillTypeId,
-            item.scheduledScreening.scheduledDate
-        );
-      });
-      console.log(this.screenerEmail);
-      for (let i = 0; i < this.screenerEmail.length; i++){
-        this.screenerEmail[i].name;
-        console.log(this.screenerEmail[i].name);
-      }
-
-      this.screenerEmail$ = this.searchTerms.pipe(
+    // this.reportService.getAllScreeners()
+    // .subscribe(response => {
+    //   this.screenerEmail = response.map(item => {
+    //     return new Screening(
+    //         item.screeningId,
+    //         item.scheduledScreening.candidate.name,
+    //         item.scheduledScreening.scheduledStatus,
+    //         item.scheduledScreening.skillTypeId,
+    //         item.scheduledScreening.scheduledDate
+    //     );
+    //   });
+    //   console.log(this.screenerEmail);
+    //   for (let i = 0; i < this.screenerEmail.length; i++){
+    //     this.screenerEmail[i].name;
+    //     console.log(this.screenerEmail[i].name);
+    //   }
+    // }
+      // this.screenerEmail$ = this.searchTerms.pipe(
       
-        debounceTime(300),
-        distinctUntilChanged(),
+        // debounceTime(300),
+        // distinctUntilChanged(),
         // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
-        switchMap((name: any) => this.screenerEmail[].name)
-      );
+        // switchMap((name: any) => this.screenerEmail[].name)
+      // );
      // console.log( this.screenerEmail[0].scheduledScreening.candidate.name);
-    })
+    // })
     
         //this.screenerName = data.scheduledScreening.candidate.name;
       
@@ -109,6 +109,7 @@ export class ReportSidebarComponent implements OnInit {
     ); */
     
     
-  }
+  // }
 
+}
 }
