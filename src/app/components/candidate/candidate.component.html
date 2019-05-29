@@ -43,8 +43,8 @@
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
     <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType)"
       [disabled]="error" *ngIf="singleSkillType">Save</button>
-    <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)"
-      *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
+    <!-- <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)"
+      *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button> -->
   </div>
 </form>
 </div>

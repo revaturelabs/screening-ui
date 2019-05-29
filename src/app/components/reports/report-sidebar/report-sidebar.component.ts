@@ -12,8 +12,6 @@ import { ReportData } from 'src/app/entities/ReportData';
 
 
 import { Screening } from 'src/app/entities/Screening.model';
-import { map } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-report-sidebar',
@@ -22,7 +20,7 @@ import { map } from 'rxjs/operators';
 })
 export class ReportSidebarComponent implements OnInit {
  
-  // screenerEmails$: Observable<string[]>;
+
   screenerEmails$: Observable<Screening>;
   screenerEmail = new Array<Screening>();
   screenerName = [];
@@ -36,8 +34,7 @@ export class ReportSidebarComponent implements OnInit {
   }
   // Used to emit slider events to master-component
   @Output() sliderChange = new EventEmitter();
-  // Used to emit searchbar changes to master-component
-  @Output() searchChange = new EventEmitter();
+ 
 
   
   constructor(
@@ -46,8 +43,8 @@ export class ReportSidebarComponent implements OnInit {
 
   search(term: string): void {
     this.searchTerms.next(term);
-    if (term === '')
-      this.searchChange.emit('');
+   //if (term === '')
+     // this.searchChange.emit('');
   }
 
   /*onClickScreenerEmail(screener) {
@@ -70,23 +67,29 @@ export class ReportSidebarComponent implements OnInit {
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
     //this.sliderControl = new FormControl(this.initialSliderValue);
-    // this.reportService.getAllScreeners()
-    // .subscribe(response => {
-    //   this.screenerEmail = response.map(item => {
-    //     return new Screening(
-    //         item.screeningId,
-    //         item.scheduledScreening.candidate.name,
-    //         item.scheduledScreening.scheduledStatus,
-    //         item.scheduledScreening.skillTypeId,
-    //         item.scheduledScreening.scheduledDate
-    //     );
-    //   });
-    //   console.log(this.screenerEmail);
-    //   for (let i = 0; i < this.screenerEmail.length; i++){
-    //     this.screenerEmail[i].name;
-    //     console.log(this.screenerEmail[i].name);
-    //   }
-    // }
+     this.reportService.getAllScreeners()
+    .subscribe(response => {
+     this.screenerEmail = response.map(item => {
+    return new Screening(
+            item.screeningId,
+            item.scheduledScreening.candidate.name,
+            item.scheduledScreening.scheduledStatus,
+            item.scheduledScreening.skillTypeId,
+            item.scheduledScreening.scheduledDate
+      );
+    });
+    })
+
+    for (let i = 0; i < this.screenerEmail.length; i++){
+          this.screenerEmail[i].name;
+          this.searchTerms.pipe(
+            switchMap((name: any) => this.screenerEmail[i].name)
+          )
+          console.log(this.screenerEmail[i].name);
+        }
+  }
+}
+
       // this.screenerEmail$ = this.searchTerms.pipe(
       
         // debounceTime(300),
@@ -110,6 +113,3 @@ export class ReportSidebarComponent implements OnInit {
     
     
   // }
-
-}
-}
