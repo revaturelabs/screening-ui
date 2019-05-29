@@ -38,9 +38,7 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
@@ -102,9 +100,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
-    ScreeningComponent,
     ScreeningConfigComponent,
-    SettingsComponent,
     SkillTypeBucketsComponent,
     SkillTypesComponent,
     ViolationFlagComponent,
