@@ -29,7 +29,7 @@ export class AverageBucketTypeComponent implements OnInit {
     if(this._barData.length > 0) {
       this.options = { 
         title: { 
-          text: "Average Score By Bucket Type",
+          text: "Average Score By Screener",
           y: 10,
           floating: false
         },
@@ -44,14 +44,14 @@ export class AverageBucketTypeComponent implements OnInit {
         legend: {
           enabled: false 
       },
-        chart: { zoomType: 'x', type: 'column'},
-        series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
+        chart: { zoomType: 'x', type: 'line'},
+        series: [{name: 'Category', colorByPoint: true, data: this._barData }]
       };
     }
     else {
       this.options = { 
         title: { 
-          text: "Average Score By Bucket Type Graph is N/A",
+          text: "Average Score By Category is N/A",
           y: 200,
           floating: true
         },
@@ -66,8 +66,8 @@ export class AverageBucketTypeComponent implements OnInit {
         legend: {
           enabled: false 
       },
-        chart: { zoomType: 'x', type: 'column'},
-        series: [{name: 'Bucket Type', colorByPoint: true, data: this._barData }]
+        chart: { zoomType: 'x', type: 'line'},
+        series: [{name: 'Category', colorByPoint: true, data: this._barData }]
       };
     }
   }

@@ -22,6 +22,12 @@
 
 
 
+
+  // const adminContext = 'http://localhost:8182';
+  // const screeningContext = 'http://localhost:8183';
+  // const reportContext = 'http://localhost:8185';
+
+
 const bam = '';
 
 export const environment = {

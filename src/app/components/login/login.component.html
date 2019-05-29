@@ -1,58 +1,51 @@
-<div class="login-div">
-  <div class="img-div">
-    <img  class="login-img" routerLink="/dashboard" class="rev-logo" src="assets/rev-logo.png" alt="revature">
-  </div>
-  <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" class="form-control" 
-        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Username is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" 
-        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-outline-dark">Login</button> <!-- [disabled]="loading"  -->
-      <a [routerLink]="['/register']" class="btn btn-link">Register</a>
-    </div>
-  </form>
-</div>
+<div class="container1">
+<div class="container-flex">
+        <div class="card">  
+            <div class="card-header-light text-center">
+                <img src="assets/rev-logo.png"  class="ml-4 mt-4" alt="Revature Logo!">
+                <br>
+                <br>
+            </div> <!--End Card Header-->
+                <div class="card-body" > 
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                   <div class="form-group justify-content-center">
+                                  <div class="input-group-text">
+                                    <div class="input-group-append">
+                                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                      <input type="text" formControlName="username" class="form-control" placeholder="Username" id="username"
+                                      [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                        <div *ngIf="f.username.errors.required">Username is required</div>
+                                    </div>
+                                  </div>
+                                </div>
 
-<!-- <div class='login'>
-  <h2 class='title'>Login</h2>
-  <div>
-    <input class='un' type="text" name="username" #username placeholder="username"/><br>
-    <input class='pass' type="password" name="password" #password placeholder="password"/>
-  </div>
-  <a><button class='button' (click)= getUser(username.value,password.value)>Submit</button></a>
-  
-  
-  <div id="message" style="color:red; display:none" >
-    <p>Bad username/password</p>
-  </div> -->
-
-  <div *ngIf="debug" style="border: 5px solid red; width:300px;">
-    <h3>Debug Panel</h3>
-    <h5>user : John.Smith@revature.com</h5>
-    <h5>pass : R3vatur3!</h5>
-    <h3>Debug Panel</h3>
-    <h5>user : Jane.Smith@revature.com</h5>
-    <h5>pass : Password!2</h5>
-    <h3>Debug Panel</h3>
-    <h5>user : Paul.Walker@revature.com</h5>
-    <h5>pass : Password!2</h5>
-  </div>
-  
-  <!-- </div> -->
-  <!-- <amplify-authenticator></amplify-authenticator> -->
-  <!-- <amplify-auth-sign-in-core></amplify-auth-sign-in-core> -->
-
+                        <!--TS needed to change how the invalid state appears-->
+                            <div class="form-group">
+                                  <div class="input-group-text">
+                                      <div class="input-group-append">
+                                          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        </div>
+                                      <input type="password" formControlName="password" class="form-control" placeholder="Password" id="password" 
+                                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required
+                                        </div>
+                                      </div>
+                                   </div>
+                            </div>
+                        
+                            <div class="form-group-register">
+                              <button class="btn btn-outline-dark w-100">Login</button> <!-- [disabled]="loading"  -->
+                              
+                              <a [routerLink]="['/register']">Register</a>
+                            </div>
+                            <br>
+                  </form>
+                  <br>
+                 </div> <!--End Card Body-->
+              </div> <!--End Card-->
+          
+      </div> <!--End Container-->
+   </div>
