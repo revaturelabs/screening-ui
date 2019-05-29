@@ -6,7 +6,7 @@
 .modal {
     display: none; /* Hidden by default */
     margin: auto;
-    position: fixed; /* Stay in place */
+    position: auto; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
@@ -40,7 +40,6 @@ h2{
     color: white;
     font-weight: strong;
 }
-
 
 .navbar{
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);

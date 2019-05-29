@@ -22,11 +22,9 @@ export class AuthenticationService implements CanActivate {
       this.router.navigateByUrl('/noprivs');
       return false;
     } else {
-      this.router.navigateByUrl('/nolog');
-      return false;
-    }
-    this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');
     return false;
+    }
   }
 
   async login(username: string, password: string) {
