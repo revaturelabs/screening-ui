@@ -63,20 +63,7 @@ h1{
 }
 
 
-/* // .button {
-//   padding: 1px;
-//   color: white !important;
-//   font-size: 20px;
-//   border-radius: 0px;
-//   background: #f26925;
-//   border: 0px solid #f26925;
-//   margin: 0px;
-// }
-// .buttons{ */
-/* //   display: grid;
-//   grid-template-columns: 1fr;
-   grid-gap: 10px;
- } */
+
 .btn{
   font-size: 18px;
   margin-top: 20px;
