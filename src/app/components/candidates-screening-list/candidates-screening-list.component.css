@@ -2,9 +2,12 @@
         GENERAL STYLES
 ############################# */
 #pending-screening-list-container{
-    margin: 25px 10%;
+    margin: auto;
+    margin-top: 10px;
+    padding: auto;
     min-width: 400px;
     max-width: 95vw;
+    width: 50%;
     border-style: solid;
     border-width: 1px;
     border-color: #ddd;
@@ -16,6 +19,7 @@ h1{
     min-width: 260px;
     width: 100%;
     margin-bottom: 0px;
+    margin-top: 0px;
     padding: 12px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -44,6 +48,7 @@ h1{
 #screenings-table{
     max-height: 300px;
     margin-bottom: 20px;
+    font-size: 2em !important;
 }
 
 .table thead th, .table td, .table th{
@@ -53,6 +58,7 @@ h1{
 }
 .table td, .table th{
     padding: .5rem;
+    font-size: .7em;
 }
 .table td{
     cursor: pointer;
