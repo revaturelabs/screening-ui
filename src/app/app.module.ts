@@ -31,7 +31,6 @@ import { AverageSkillComponent} from './components/reports/average-skill/average
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
-import { HardestQuestionsComponent } from './components/reports/hardest-questions/hardest-questions.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -39,14 +38,11 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
-import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 import { LoginComponent } from './components/login/login.component';
 
 
@@ -55,7 +51,6 @@ import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { CookieService } from 'ngx-cookie-service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
-import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
@@ -89,10 +84,6 @@ import { RoleGuard } from './role-guard';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
-import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
-import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
-import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.component';
-
 
 
 @NgModule({
@@ -108,15 +99,12 @@ import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.c
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
-    ScreeningComponent,
     ScreeningConfigComponent,
-    SettingsComponent,
     SkillTypeBucketsComponent,
     SkillTypesComponent,
     ViolationFlagComponent,
     CandidateComponent,
     AverageSkillComponent,
-    AdminTabComponent,
     LoginComponent,
 
     // pipes
@@ -133,12 +121,7 @@ import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.c
     AverageBucketTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
-    HardestQuestionsComponent,
-    ViolationsByTypeComponent,
-    ExpiredCredentialsComponent,
-    InsufficientPrivilagesComponent,
-    NotLoggedInComponent,
-
+    ViolationsByTypeComponent
   ],
   imports: [    
     
@@ -162,7 +145,6 @@ import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.c
     BucketsService,
     CookieService,
     GambitBatchUtilService,
-    HttpErrorHandlerService,
     QuestionScoreService,
     QuestionsService,
     SimpleTraineeService,
