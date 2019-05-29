@@ -1,6 +1,21 @@
 /* The Modal (background) */
 
-
+h1{
+    background: #f26925;
+    color: white;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 12px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-color: #f26925;
+    text-align: center;
+    font-size: 25px;
+    white-space:nowrap;
+}
 
 .modal {
     display: none; /* Hidden by default*/
@@ -44,6 +59,9 @@
     color: white;
     font-weight: strong;
 } 
-
+.col-lg-10 {
+    margin: auto;
+    margin-top: 25px;
+}
 
 

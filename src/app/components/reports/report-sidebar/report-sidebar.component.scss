@@ -1,6 +1,4 @@
 
-
-
 .search-bar{
     width: 100%;
     margin-top: 20px;
@@ -23,7 +21,7 @@ h1{
   border-color: #f26925;
   text-align: center;
   font-size: 25px;
-  white-space:nowrap;
+  // white-space:nowrap;
 }
 
 .dropdown {
@@ -60,6 +58,36 @@ h1{
   width: 80%;
 }
 
+.dataText{
+  width: 80%;
+}
+
+
+// .button {
+//   padding: 1px;
+//   color: white !important;
+//   font-size: 20px;
+//   border-radius: 0px;
+//   background: #f26925;
+//   border: 0px solid #f26925;
+//   margin: 0px;
+// }
+// .buttons{
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   grid-gap: 10px;
+// }
+.btn{
+  font-size: 18px;
+  margin-top: 20px;
+  height: 35px;
+  width: 180px;
+  background: #f26925;
+  border-color: #f26925;
+  color: white;
+  font-weight: strong;
+  padding: 1px;
+} 
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) 
 .show {display:block;}

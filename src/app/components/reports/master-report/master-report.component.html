@@ -1,24 +1,16 @@
 
 
 <body>
-<main class="container mt-5 justify-content-center" *ngIf="reportData">
+
+
+<main class="container mt-8 justify-content-center" *ngIf="reportData">
   <div class="row">
     <div class="col-sm-12 col-lg-10">
-      <!-- <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
-              (searchChange)='onSearchChange($event)'></app-report-sidebar>-->
-      <!-- Trigger the modal with a button -->
-      <button
-        type="button"
-        class="btn btn-info btn-lg"
-        data-toggle="modal"
-        data-target="#myModal"
-      >
-        Open Modal
-      </button>
-    </div>
-    <div class="col-sm-12 col-lg-10">
-      <div class="card ">
+      <div class="card">
         <div class="card-body" style="border-width: 10rem;">
+            <div>
+                <h1>Reports</h1>
+            </div>
           <div>
             <app-report-sidebar
               [reportData]="reportData"
@@ -28,7 +20,7 @@
           </div>
           <div class="container">
             <ngb-tabset>
-              <ngb-tab title="Screener" id="tab-1">
+              <ngb-tab title="Average Scores" id="tab-1">
                 <br />
                 <ng-template ngbTabContent>
                   <div class="row" id="report-graphs">
@@ -42,7 +34,7 @@
                 </ng-template>
               </ngb-tab>
 
-              <ngb-tab title="Trends" id="tab-2">
+              <ngb-tab title="Number of Screenings" id="tab-2">
                 <ng-template ngbTabContent>
                   <div class="row" id="report-graphs">
                     <br />
@@ -51,19 +43,6 @@
                       class="card col-sm-12 mx-auto my-5"
                     >
                     </app-average-skill>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-
-              <ngb-tab title="Category" id="tab-3">
-                <ng-template ngbTabContent>
-                  <div class="row" id="report-graphs">
-                    <br />
-                    <app-violations-by-type
-                      [barData]="reportData.violationsByType"
-                      class="card col-sm-12 mx-auto mt-5"
-                    >
-                    </app-violations-by-type>
                   </div>
                 </ng-template>
               </ngb-tab>
