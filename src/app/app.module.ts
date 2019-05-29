@@ -51,7 +51,6 @@ import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { CookieService } from 'ngx-cookie-service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
-import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
@@ -146,7 +145,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     BucketsService,
     CookieService,
     GambitBatchUtilService,
-    HttpErrorHandlerService,
     QuestionScoreService,
     QuestionsService,
     SimpleTraineeService,
