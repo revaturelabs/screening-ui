@@ -10,6 +10,9 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { WeekDay } from '@angular/common';
 import { ReportData } from 'src/app/entities/ReportData';
 
+import {map, startWith} from 'rxjs/operators';
+import { Screening } from 'src/app/entities/Screening.model';
+
 
 @Component({
   selector: 'app-report-sidebar',
@@ -17,10 +20,9 @@ import { ReportData } from 'src/app/entities/ReportData';
   styleUrls: ['./report-sidebar.component.scss']
 })
 export class ReportSidebarComponent implements OnInit {
-  //@Input() initialSliderValue: number = 1;
-  minSliderValue: number = 0;
-  maxSliderValue: number = 104;    //was 208
-  screenerEmails$: Observable<string[]>;
+ 
+  // screenerEmails$: Observable<string[]>;
+  screenerEmails$: Observable<Screening>;
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
   //sliderControl: FormControl;
@@ -34,62 +36,7 @@ export class ReportSidebarComponent implements OnInit {
   // Used to emit searchbar changes to master-component
   @Output() searchChange = new EventEmitter();
 
-  sliderOptions: Options = {
-    floor: 0,
-    ceil: 104,  //was 208
-    //showTicks: true,
-    translate: (value: number): string => {
-      if(value === 0) {
-        return "Present Day";
-      }
-      else if (value === 1) {
-        return "1 Week";
-      }
-      if(value === 52) {
-        return "1 Year";
-      }
-      else if(value > 52 && value < 104) {
-        let weeks = value-52;
-        if(weeks === 1) {
-          return `1 Year ${weeks} Week`;
-        }
-        else {
-          return `1 Year ${weeks} Weeks`;
-        }
-      }
-      else if(value === 104) {
-        return "2 Years";
-      }
-      else if(value > 104 && value < 156) {
-        let weeks = value-104;
-        if(weeks === 1) {
-          return `2 Years ${weeks} Week`;
-        }
-        else {
-          return `2 Years ${weeks} Weeks`;
-        }
-      }
-      else if(value === 156) {
-        return "3 Years";
-      }
-      else if(value > 156 && value < 208) {
-        let weeks = value-156;
-        if(weeks === 1) {
-          return `3 Years ${weeks} Week`;
-        }
-        else {
-          return `3 Years ${weeks} Weeks`;
-        }
-      }
-      else if(value === 208) {
-        return "4 Years";
-      }
-      else {
-        return `${value} Weeks`;
-      }
-    },
-  };
-
+  
   constructor(
     private reportService: ReportService
   ) { }
@@ -106,26 +53,8 @@ export class ReportSidebarComponent implements OnInit {
     this.searchTerms.next('');
     this.searchChange.emit(screener);
   }
-  onSliderChange(changeContext: ChangeContext): void {
-    // console.log(`onUserChangeStart(${this.getChangeContextString(changeContext)})\n`);
-    let actualWeeksMinValue = changeContext.value;
-    let actualWeeksMaxValue = changeContext.highValue;
-    let weeksArray = [actualWeeksMinValue, actualWeeksMaxValue]
-    /*switch(actualWeeks) {
-      case 5: actualWeeks = 26; break;
-      case 6: actualWeeks = 52; break;
-    }*/
-    this.sliderChange.emit(weeksArray);
-  }
+
   
-  // onUserChange(changeContext: ChangeContext): void {
-  //   this.logText += `onUserChange(${this.getChangeContextString(changeContext)})\n`;
-  // }
-
-  // onUserChangeEnd(changeContext: ChangeContext): void {
-  //   console.log(`onUserChangeEnd(${this.getChangeContextString(changeContext)})\n`);
-  // }
-
   getChangeContextString(changeContext: ChangeContext): string {
     return `{pointerType: ${changeContext.pointerType === PointerType.Min ? 'Min' : 'Max'}, ` +
            `value: ${changeContext.value}, ` +
@@ -140,8 +69,12 @@ export class ReportSidebarComponent implements OnInit {
       
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
+      // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
+      switchMap((partialEmail: any) => this.reportService.getAllScreeners())
+   
     );
+
+    
   }
 
 }

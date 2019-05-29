@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as HighCharts from 'highcharts';
+import { ReportService } from 'src/app/services/reports/report.service';
 
 @Component({
   selector: 'app-average-bucket-type',
@@ -18,7 +19,7 @@ export class AverageBucketTypeComponent implements OnInit {
   }
   
 
-  constructor() {  
+  constructor(private reportService: ReportService) {  
   }
 
   ngOnInit() {
