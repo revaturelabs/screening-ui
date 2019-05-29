@@ -67,23 +67,28 @@ h1{
 #screenings-table{
     max-height: 300px;
     margin-bottom: 20px;
-    font-size: 2em !important;
+    font-size: 20px !important;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
 }
 
 .table thead th, .table td, .table th{
     border-top: 1px solid #b1b8bd;
     border-bottom: 1px solid #7f97a8;
-    font-size: 15px;
+    font-size: 12px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
 }
 .table td, .table th{
     padding: .5rem;
     font-size: .7em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
 }
 .table td{
     cursor: pointer;
+    
 }
 .table-hover{
     width: 100%;
+    
     
 }
 
