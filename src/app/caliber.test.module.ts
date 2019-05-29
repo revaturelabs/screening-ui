@@ -37,7 +37,6 @@ import { SearchPipe } from './pipes/search.pipe';
 
 // components
 import { SettingsComponent } from './components/settings/settings.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
@@ -78,8 +77,7 @@ export const Dependencies = {
     ViolationFlagComponent,
     SkillTypesComponent,
     SkillTypeBucketsComponent,
-    QuestionComponent,
-    ScreeningComponent
+    QuestionComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests

@@ -7,7 +7,6 @@ import { FinalReportComponent } from './components/final-report/final-report.com
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
 
 import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
@@ -42,7 +41,6 @@ export const routes: Routes = [
       },
       {
         path: 'screening',
-        component: ScreeningComponent,
         children: [
           {
             path: 'intro',
