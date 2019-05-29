@@ -39,7 +39,6 @@ import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
@@ -101,7 +100,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     QuestionComponent,
     QuestionsTableComponent,
     ScreeningConfigComponent,
-    SettingsComponent,
     SkillTypeBucketsComponent,
     SkillTypesComponent,
     ViolationFlagComponent,

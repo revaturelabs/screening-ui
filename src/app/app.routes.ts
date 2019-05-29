@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { RoleGuard, roles } from './role-guard';
-import { SettingsComponent } from './components/settings/settings.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
@@ -66,7 +65,6 @@ export const routes: Routes = [
     path: 'settings',
     canActivate: [AuthenticationService],
     data: { roles: ['ROLE_ADMIN'] },
-    component: SettingsComponent,
     children: [
       {
         path: 'main',
