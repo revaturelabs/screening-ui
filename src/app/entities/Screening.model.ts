@@ -1,11 +1,19 @@
 
 export class Screening{
     screeningId: number;
-    scheduledScreening: ScheduleScreening;
+    name: string;
+    scheduledStatus:string;
+    skillTypeId: number;
+    scheduledDate:string;
+    map: any;
 
-    constructor( screeningId: number, scheduledScreening: any){
+
+    constructor( screeningId: number, name: string, scheduledStatus: string, skillTypeId: number, scheduledDate: string){
             this.screeningId = screeningId;
-            this.scheduledScreening = scheduledScreening;
+            this.name = name;
+        this.scheduledStatus = scheduledStatus;
+        this.skillTypeId = skillTypeId;
+        this.scheduledDate = scheduledDate;
         }
 }
 
@@ -17,6 +25,7 @@ export class ScheduleScreening{
     skillTypeId: number;
     scheduledDate:string;
 
+    
     constructor( scheduledScreeningId: number, candidate: any, scheduledStatus: string, skillTypeId: number, scheduledDate: string){
         this.scheduledScreeningId = scheduledScreeningId;
         this.candidate = candidate;

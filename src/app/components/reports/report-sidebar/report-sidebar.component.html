@@ -1,15 +1,37 @@
-<div class="container">
-       
-            <div class="flex">
-                <h1>Reports</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class='orange-header text-align-center'>Reports</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <!-- <div class="custom-slider">
+                <ng5-slider [options]="sliderOptions" [(value)]="minSliderValue" [(highValue)]="maxSliderValue"
+                    (userChange)="onSliderChange($event)"></ng5-slider>
+            </div> -->
+            <div class="dropdown">
+            <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm'
+                placeholder="Search by name" class="search-bar" />
+    
+            <!-- <div class="dropdown-content">
+                <ul *ngFor='let email of screenerEmails$ | async'>
+                    <a (click)='onClickScreenerEmail(email)'>{{screenerName}}</a>
+                </ul>
+            </div> -->
+
+            <div class="dropdown-content">
+                <ul *ngFor='let name of screenerEmail | async'>
+                    <a (click)='onClickScreenerEmail(name)'>{{screenerName}}</a>
+                </ul>
             </div>
 
-        <div class="row ">
+        <!-- <div class="row ">
             <div class="col-lg-3">
                 <div class="dropdown"> 
                     <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm'
                         placeholder="Search by Screener" class="search-bar" />
-                        <!--Need to edit to represent screener not email ~EB-->
+                        Need to edit to represent screener not email ~EB-->
                     <div class="dropdown-content">
                         <ul *ngFor='let email of screenerEmails$ | async'>
                             <a (click)='onClickScreenerEmail(email)'>{{email}}</a>

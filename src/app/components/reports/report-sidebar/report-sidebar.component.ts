@@ -10,19 +10,22 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { WeekDay } from '@angular/common';
 import { ReportData } from 'src/app/entities/ReportData';
 
-import {map, startWith} from 'rxjs/operators';
+
 import { Screening } from 'src/app/entities/Screening.model';
+import { map } from 'rxjs/operators';
 
 
 @Component({
   selector: 'app-report-sidebar',
   templateUrl: './report-sidebar.component.html',
-  styleUrls: ['./report-sidebar.component.scss']
+  styleUrls: ['./report-sidebar.component.css']
 })
 export class ReportSidebarComponent implements OnInit {
  
   // screenerEmails$: Observable<string[]>;
   screenerEmails$: Observable<Screening>;
+  screenerEmail = new Array<Screening>();
+  screenerName = [];
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
   //sliderControl: FormControl;
@@ -47,12 +50,12 @@ export class ReportSidebarComponent implements OnInit {
       this.searchChange.emit('');
   }
 
-  onClickScreenerEmail(screener) {
+  /*onClickScreenerEmail(screener) {
     //console.log(`clicked on ${screener}`);
     this.emailSearchTerm = screener;
     this.searchTerms.next('');
     this.searchChange.emit(screener);
-  }
+  }*/
 
   
   getChangeContextString(changeContext: ChangeContext): string {
@@ -62,18 +65,49 @@ export class ReportSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    //console.log(this.reportService.getAllScreeners());
+    //alert(this.reportService.getAllScreeners());
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
     //this.sliderControl = new FormControl(this.initialSliderValue);
-    this.screenerEmails$ = this.searchTerms.pipe(
+    this.reportService.getAllScreeners()
+    .subscribe(response => {
+      this.screenerEmail = response.map(item => {
+        return new Screening(
+            item.screeningId,
+            item.scheduledScreening.candidate.name,
+            item.scheduledScreening.scheduledStatus,
+            item.scheduledScreening.skillTypeId,
+            item.scheduledScreening.scheduledDate
+        );
+      });
+      console.log(this.screenerEmail);
+      for (let i = 0; i < this.screenerEmail.length; i++){
+        this.screenerEmail[i].name;
+        console.log(this.screenerEmail[i].name);
+      }
+
+      this.screenerEmail$ = this.searchTerms.pipe(
+      
+        debounceTime(300),
+        distinctUntilChanged(),
+        // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
+        switchMap((name: any) => this.screenerEmail[].name)
+      );
+     // console.log( this.screenerEmail[0].scheduledScreening.candidate.name);
+    })
+    
+        //this.screenerName = data.scheduledScreening.candidate.name;
+      
+    /*this.screenerEmails$ = this.searchTerms.pipe(
       
       debounceTime(300),
       distinctUntilChanged(),
       // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
       switchMap((partialEmail: any) => this.reportService.getAllScreeners())
-   
-    );
-
+    
+    ); */
+    
     
   }
 
