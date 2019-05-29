@@ -1,49 +1,21 @@
 
-.logo
-{	
-	max-width: 1000px;
-	height: auto;
-	vertical-align: middle;
-	margin-left: 30px;
-    display: flex;
-    align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-} 
-
-.input-group-text
-{
-    width: 320px;
-}
-
-
-/* fieldset{
-    display: inline-block;
-    border-color: #F00;
-    border-style: solid;
-} */
-
 .card
 {
-   
     display: flex;
     position: absolute;
     width: 400px;
     height: 400px;
-    justify-content: center;
     align-items: center;
 	flex-direction: column;
-	
 	top:0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-  	
 	margin: auto;
 }
 
-
-.container {
+/* shadow for container */
+.container-flex {
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
@@ -53,64 +25,34 @@
     height: 400.5px;
     justify-content: center;
     align-items: center;
-	/* flex-direction: column; */
-	
+	flex-direction: column;
 	top:0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-  	
 	margin: auto;   
 }
 
-.card-body{
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-	flex-direction: column;
-    top:0;
-	bottom: 0;
-	left: 0;
-    right: 0;
-    margin: auto;
+
+.input-group-append span{
+    width: 45px;
+    color: black;
+    border:0 !important;
 }
 
-
-
 input#username, input#password {
-    
     border-radius: px;
     border-width: 1px;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-    height: 35px;
-    line-height: 50px;
-    font-size: 16px;
     color: rgb(0, 0, 0);
     vertical-align: middle;
-    border-color: rgba(0, 0, 0, 0.493);
- 
 }
 
 
 
 button{
-    margin-top: 20px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    width: 100%;
     background-color: rgb(242, 105, 37);
     color: rgb(255, 255, 255);
-    border-width: 1px;
-    border-style: solid;
-    border-image: initial;
-    transition: border 0.15s linear 0s;
-    border-color: rgb(242, 105, 37);
-
+    border-color:rgb(255, 255, 255);
 }
 
 button:hover
@@ -121,5 +63,8 @@ button:hover
 
 .form-group-register{
     text-align: left;
+} 
 
-}
+.container1 {
+    background-color:rgb(250, 250, 249);
+   }

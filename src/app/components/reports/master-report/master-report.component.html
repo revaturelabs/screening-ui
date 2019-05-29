@@ -1,52 +1,54 @@
 <main class="container mt-5 justify-content-center" *ngIf='reportData'>
-  <div class="row">
-     <div class="col-sm-12 col-lg-1">
-           <!-- <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
-            (searchChange)='onSearchChange($event)'></app-report-sidebar>-->
-        </div> 
-    <div class="col-sm-12 col-lg-10">
-        <div class="card ">  
-            <div class="card-body" style="border-width: 10rem;" > 
-      <div>
-          <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
-          (searchChange)='onSearchChange($event)'></app-report-sidebar>
-      </div>
-        <div class="container">
-            <ngb-tabset>
-           
-                    <ngb-tab title="Screener" id="tab-1">
-                            <ng-template ngbTabContent>
-                                <div class="row" id='report-graphs'>
-                                    <br>
-                                    <app-average-bucket-type [barData]='reportData.avgBucketTypeScore' class='card col-sm-12 mx-auto'>
-                                    </app-average-bucket-type>
-                                  </div>
-                            </ng-template>
-                        </ngb-tab>
+    <div class="row">
+       <div class="col-sm-12 col-lg-1">
+             <!-- <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
+              (searchChange)='onSearchChange($event)'></app-report-sidebar>-->
+          </div> 
+      <div class="col-sm-12 col-lg-10">
+          <div class="card ">  
+              <div class="card-body" style="border-width: 10rem;" > 
+        <div>
+            <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
+            (searchChange)='onSearchChange($event)'></app-report-sidebar>
+        </div>
+          <div class="container">
+              <ngb-tabset>
+             
+                      <ngb-tab title="Screener" id="tab-1">
+                        <br>
+                              <ng-template ngbTabContent>
+                                  <div class="row" id='report-graphs'>
+                                      <br>
+                                      <app-average-bucket-type [barData]='reportData.avgBucketTypeScore' class='card col-sm-12 mt-5'>
+                                      </app-average-bucket-type>
+                                    </div>
+                              </ng-template>
+                          </ngb-tab>
+                
+                          <ngb-tab title="Trends" id="tab-2">
+                              <ng-template ngbTabContent>
+                                  <div class="row" id='report-graphs'>
+                                      <br>
+                                      <app-average-skill [barData]='reportData.avgSkillTypeScore' class='card col-sm-12 mx-auto my-5'>
+                                        </app-average-skill>
+                                      </div>
+                              </ng-template>
+                          </ngb-tab>
               
-                        <ngb-tab title="Trends" id="tab-2">
-                            <ng-template ngbTabContent>
-                                <div class="row" id='report-graphs'>
-                                    <br>
-                                    <app-average-skill [barData]='reportData.avgSkillTypeScore' class='card col-sm-12 mx-auto my-5'>
-                                      </app-average-skill>
-                                    </div>
-                            </ng-template>
-                        </ngb-tab>
-            
-                        <ngb-tab title="Category" id="tab-3">
-                            <ng-template ngbTabContent>
-                                <div class="row" id='report-graphs'>
-                                    <br>
-                                    <app-violations-by-type [barData]='reportData.violationsByType' class='card col-sm-12 mx-auto'>
-                                      </app-violations-by-type>
-                                    </div>
-                            </ng-template>
-                        </ngb-tab>
-                </ngb-tabset>
-                </div>
+                          <ngb-tab title="Category" id="tab-3">
+                              <ng-template ngbTabContent>
+                                  <div class="row" id='report-graphs'>
+                                      <br>
+                                      <app-violations-by-type [barData]='reportData.violationsByType' class='card col-sm-12 mx-auto mt-5'>
+                                        </app-violations-by-type>
+                                      </div>
+                              </ng-template>
+                          </ngb-tab>
+                  </ngb-tabset>
+                  </div>
+    </div>
+    </div>
   </div>
   </div>
-</div>
-</div>
-</main>
+  </main>
+  

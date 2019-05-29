@@ -31,7 +31,6 @@ import { AverageSkillComponent} from './components/reports/average-skill/average
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
-import { HardestQuestionsComponent } from './components/reports/hardest-questions/hardest-questions.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -46,7 +45,6 @@ import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillT
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
-import { AdminTabComponent } from './components/admin-tab/admin-tab.component';
 import { LoginComponent } from './components/login/login.component';
 
 
@@ -89,10 +87,6 @@ import { RoleGuard } from './role-guard';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
-import { ExpiredCredentialsComponent } from './components/expired-credentials/expired-credentials.component';
-import { InsufficientPrivilagesComponent } from './components/insufficient-privilages/insufficient-privilages.component';
-import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.component';
-
 
 
 @NgModule({
@@ -116,7 +110,6 @@ import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.c
     ViolationFlagComponent,
     CandidateComponent,
     AverageSkillComponent,
-    AdminTabComponent,
     LoginComponent,
 
     // pipes
@@ -133,12 +126,7 @@ import { NotLoggedInComponent } from './components/not-logged-in/not-logged-in.c
     AverageBucketTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
-    HardestQuestionsComponent,
-    ViolationsByTypeComponent,
-    ExpiredCredentialsComponent,
-    InsufficientPrivilagesComponent,
-    NotLoggedInComponent,
-
+    ViolationsByTypeComponent
   ],
   imports: [    
     
