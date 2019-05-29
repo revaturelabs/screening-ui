@@ -41,10 +41,71 @@ h2{
     font-weight: strong;
 }
 
+.button {
+    padding: 10px;
+    color: white !important;
+    font-size: 20px;
+    border-radius: 0px;
+    background: #f26925;
+    border: 0px solid #f26925;
+    margin: 5px;
+}
+
+.nav-link
+{
+    text-align:left;
+    margin-right: 0px;
+    margin-left: 2px;
+    padding-left: 20px;
+    width: 150px;
+}
+
+li a:hover
+{
+    
+   border-radius: 5px;
+   -webkit-box-shadow: -7px 0px 10px 0px rgba(245, 179, 179, 0.815), 7px 0px 10px 0px rgba(245, 179, 179, 0.815);
+   -moz-box-shadow: -7px 0px 20px 0px rgba(245, 179, 179, 0.815), 7px 0px 20px 0px rgba(245, 179, 179, 0.815);
+   box-shadow: -7px 0px 10px 0px rgba(245, 179, 179, 0.815), rgba(245, 179, 179, 0.815)rgba(255, 255, 255, 0.664); 
+   background-color:  #f26925;
+   transition-duration: .75s;
+}
 
 .navbar{
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    
 }
+/* .dropdown-menu{
+   
+} */
+li.nav-item.dropdown {
+  margin-right: 150px;
+  width: 150px;
+  position: relative;
+}
+/* ::after {
+    width: 50%;
+    margin-right: 50px;
+} */
+li.nav-item {
+    width: 30px !important;
+    margin-right: 50px;
+}
+.li.nav-item.dropdown.show {
+    width: 300px;
 
+}
+.nav-link.dropdown-toggle.button {
+    width: 200px;
+    margin-right: 50px;
+    
+}
+.nav-link.dropdown-toggle.button {
+    margin-right: 20px; 
+}
+a#navbarDropdown.nav-link.dropdown-toggle.button {
+    width: 150px;
+    
+}

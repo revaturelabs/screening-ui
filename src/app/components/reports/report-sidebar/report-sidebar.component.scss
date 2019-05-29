@@ -1,7 +1,5 @@
 
-body {
-    background-color: #f8f9fa!important
-}
+
 
 .search-bar{
     width: 100%;
@@ -13,6 +11,20 @@ body {
 ul.search-result{
     padding-left: 0%; 
 };
+
+
+h1{
+  background: #f26925;
+  color: white;
+  min-width: 260px;
+  width: 100%;
+  margin-bottom: 0px;
+  padding: 12px;
+  border-color: #f26925;
+  text-align: center;
+  font-size: 25px;
+  white-space:nowrap;
+}
 
 .dropdown {
   position: relative;
@@ -52,6 +64,7 @@ ul.search-result{
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) 
 .show {display:block;}
 /* .search-result {
+
     
     li {
         width: 100%;
@@ -79,7 +92,7 @@ ul.search-result{
         background-color: #eee;
     }
     
-} */
+}
 h4 {
   font-weight: normal;
 }
@@ -98,50 +111,50 @@ h4 {
     white-space:nowrap;
 }
 
-/* Slider CSS 
-We need to use ::ng-deep to overcome view encapsulation*/
-/* ::ng-deep {
-    .custom-slider .ng5-slider .ng5-slider-bar {
-      background: #ffe4d1;
-      height: 2px;
-    }
-    .custom-slider .ng5-slider .ng5-slider-selection {
-      background: #f26925;
-    }
+/* Slider CSS */
+// We need to use ::ng-deep to overcome view encapsulation
+// ::ng-deep {
+//     .custom-slider .ng5-slider .ng5-slider-bar {
+//       background: #ffe4d1;
+//       height: 2px;
+//     }
+//     .custom-slider .ng5-slider .ng5-slider-selection {
+//       background: #f26925;
+//     }
   
-    .custom-slider .ng5-slider .ng5-slider-pointer {
-      width: 8px;
-      height: 16px;
-      top: auto; /* to remove the default positioning 
-      bottom: 0;
-      background-color: #333;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-    }
+//     .custom-slider .ng5-slider .ng5-slider-pointer {
+//       width: 8px;
+//       height: 16px;
+//       top: auto; /* to remove the default positioning */
+//       bottom: 0;
+//       background-color: #333;
+//       border-top-left-radius: 3px;
+//       border-top-right-radius: 3px;
+//     }
   
-    .custom-slider .ng5-slider .ng5-slider-pointer:after {
-      display: none;
-    }
+//     .custom-slider .ng5-slider .ng5-slider-pointer:after {
+//       display: none;
+//     }
   
-    .custom-slider .ng5-slider .ng5-slider-bubble {
-      bottom: 14px;
-    }
+//     .custom-slider .ng5-slider .ng5-slider-bubble {
+//       bottom: 14px;
+//     }
   
-    .custom-slider .ng5-slider .ng5-slider-limit {
-      font-weight: bold;
-      color: #f26925;
-    }
+//     .custom-slider .ng5-slider .ng5-slider-limit {
+//       font-weight: bold;
+//       color: #f26925;
+//     }
   
-    .custom-slider .ng5-slider .ng5-slider-tick {
-      width: 3px;
-      height: 15px;
-      margin-left: 4px;
-      border-radius: 0;
-      background: #ffe4d1;
-      top: -1px;
-    }
+//     .custom-slider .ng5-slider .ng5-slider-tick {
+//       width: 3px;
+//       height: 15px;
+//       margin-left: 4px;
+//       border-radius: 0;
+//       background: #ffe4d1;
+//       top: -1px;
+//     }
   
-    .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
-      background: #f26925;
-    }
-  } */
+//     .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+//       background: #f26925;
+//     }
+//   }

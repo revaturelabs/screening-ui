@@ -13,10 +13,11 @@ import { ReportData } from 'src/app/entities/ReportData';
 import {map, startWith} from 'rxjs/operators';
 import { Screening } from 'src/app/entities/Screening.model';
 
+
 @Component({
   selector: 'app-report-sidebar',
   templateUrl: './report-sidebar.component.html',
-  styleUrls: ['./report-sidebar.component.css']
+  styleUrls: ['./report-sidebar.component.scss']
 })
 export class ReportSidebarComponent implements OnInit {
  
@@ -26,8 +27,6 @@ export class ReportSidebarComponent implements OnInit {
   emailSearchTerm: string = '';
   //sliderControl: FormControl;
   _reportData: ReportData;
-
-
   @Input()
   set reportData(reportData: ReportData){
     this._reportData = reportData;
