@@ -38,9 +38,7 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
@@ -53,7 +51,6 @@ import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { CookieService } from 'ngx-cookie-service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
-import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
@@ -102,9 +99,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
-    ScreeningComponent,
     ScreeningConfigComponent,
-    SettingsComponent,
     SkillTypeBucketsComponent,
     SkillTypesComponent,
     ViolationFlagComponent,
@@ -150,7 +145,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     BucketsService,
     CookieService,
     GambitBatchUtilService,
-    HttpErrorHandlerService,
     QuestionScoreService,
     QuestionsService,
     SimpleTraineeService,

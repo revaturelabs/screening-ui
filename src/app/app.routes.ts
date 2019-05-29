@@ -1,13 +1,11 @@
 import { Routes } from '@angular/router';
 import { RoleGuard, roles } from './role-guard';
-import { SettingsComponent } from './components/settings/settings.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
 
 import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
@@ -42,7 +40,6 @@ export const routes: Routes = [
       },
       {
         path: 'screening',
-        component: ScreeningComponent,
         children: [
           {
             path: 'intro',
@@ -68,7 +65,6 @@ export const routes: Routes = [
     path: 'settings',
     canActivate: [AuthenticationService],
     data: { roles: ['ROLE_ADMIN'] },
-    component: SettingsComponent,
     children: [
       {
         path: 'main',

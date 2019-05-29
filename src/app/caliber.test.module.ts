@@ -36,8 +36,6 @@ import { ApiService } from './services/api/api.service';
 import { SearchPipe } from './pipes/search.pipe';
 
 // components
-import { SettingsComponent } from './components/settings/settings.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
@@ -68,9 +66,8 @@ export const Dependencies = {
   declarations: [
     // pipes
     SearchPipe,
-    SettingsComponent,
+
     // components
-    SettingsComponent,
     ScreeningConfigComponent,
     IntroductionComponent,
     AnswerComponent,
@@ -79,7 +76,7 @@ export const Dependencies = {
     SkillTypesComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
-    ScreeningComponent
+  
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
