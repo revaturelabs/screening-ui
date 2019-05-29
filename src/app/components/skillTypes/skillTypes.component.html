@@ -23,26 +23,24 @@
                 </div>
             </div>
             <button class="btn btn-primary btn-sm" (click)='open(content)'>Create new Track</button>
+
+
+            
         </div>
 
     </div>
 </div>
 
-
-
 <!-- Modal for creating and editting a new Track (SkillType) -->
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-      <!-- If a skillType got clicked, Title is Edit -->
-    <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
-    <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-
-
-
+        <div class="modal-header">
+            <!-- If a skillType got clicked, Title is Edit -->
+          <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
+          <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
   <div class="modal-body">
       <form  #addSkillTypeForm="ngForm">
@@ -96,3 +94,6 @@
         <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
     </div>
 </ng-template>
+
+
+

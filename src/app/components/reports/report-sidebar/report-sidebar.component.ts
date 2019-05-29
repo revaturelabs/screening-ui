@@ -14,6 +14,7 @@ import { ReportData } from 'src/app/entities/ReportData';
 import { Screening } from 'src/app/entities/Screening.model';
 import { map } from 'rxjs/operators';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-report-sidebar',
@@ -22,6 +23,8 @@ import { map } from 'rxjs/operators';
 })
 export class ReportSidebarComponent implements OnInit {
  
+  
+
   // screenerEmails$: Observable<string[]>;
   screenerEmails$: Observable<Screening>;
   screenerEmail = new Array<Screening>();
@@ -41,13 +44,18 @@ export class ReportSidebarComponent implements OnInit {
 
   
   constructor(
-    private reportService: ReportService
+    private reportService: ReportService,
+    private modalService: NgbModal
   ) { }
 
   search(term: string): void {
     this.searchTerms.next(term);
     if (term === '')
       this.searchChange.emit('');
+  }
+
+  open(content) {
+    this.modalService.open(content, { windowClass: 'fixed-modal' });
   }
 
   /*onClickScreenerEmail(screener) {
