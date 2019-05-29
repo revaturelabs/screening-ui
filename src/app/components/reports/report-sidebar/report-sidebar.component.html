@@ -16,7 +16,7 @@
     
             <div class="dropdown-content">
                 <ul *ngFor='let email of screenerEmails$ | async'>
-                    <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
+                    <a (click)='onClickScreenerEmail(email)'>{{screenerName}}</a>
                 </ul>
             </div>
         </div>
