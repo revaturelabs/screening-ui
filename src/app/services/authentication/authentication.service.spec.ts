@@ -9,4 +9,5 @@ describe('AuthenticationService', () => {
     const service: AuthenticationService = TestBed.get(AuthenticationService);
     expect(service).toBeTruthy();
   });
+
 });
