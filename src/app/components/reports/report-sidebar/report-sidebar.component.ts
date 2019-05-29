@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-report-sidebar',
   templateUrl: './report-sidebar.component.html',
-  styleUrls: ['./report-sidebar.component.scss']
+  styleUrls: ['./report-sidebar.component.css']
 })
 export class ReportSidebarComponent implements OnInit {
  
@@ -83,17 +83,22 @@ export class ReportSidebarComponent implements OnInit {
       });
       console.log(this.screenerEmail);
       for (let i = 0; i < this.screenerEmail.length; i++){
-        this.screenerEmail[i].name 
+        this.screenerEmail[i].name;
+        console.log(this.screenerEmail[i].name);
       }
+
+      this.screenerEmail$ = this.searchTerms.pipe(
+      
+        debounceTime(300),
+        distinctUntilChanged(),
+        // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
+        switchMap((name: any) => this.screenerEmail[].name)
+      );
      // console.log( this.screenerEmail[0].scheduledScreening.candidate.name);
     })
     
         //this.screenerName = data.scheduledScreening.candidate.name;
-        
       
-        
-      
-    
     /*this.screenerEmails$ = this.searchTerms.pipe(
       
       debounceTime(300),

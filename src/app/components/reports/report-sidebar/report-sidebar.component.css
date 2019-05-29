@@ -111,7 +111,7 @@ h4 {
     white-space:nowrap;
 }
 
-/* Slider CSS */
+/* Slider CSS 
 // We need to use ::ng-deep to overcome view encapsulation
 // ::ng-deep {
 //     .custom-slider .ng5-slider .ng5-slider-bar {
@@ -125,7 +125,7 @@ h4 {
 //     .custom-slider .ng5-slider .ng5-slider-pointer {
 //       width: 8px;
 //       height: 16px;
-//       top: auto; /* to remove the default positioning */
+//       top: auto; /* to remove the default positioning 
 //       bottom: 0;
 //       background-color: #333;
 //       border-top-left-radius: 3px;
@@ -157,4 +157,4 @@ h4 {
 //     .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
 //       background: #f26925;
 //     }
-//   }
+//   }*/
