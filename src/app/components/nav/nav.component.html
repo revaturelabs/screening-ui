@@ -30,10 +30,8 @@
       <li class="nav-item" *ngIf="showSettings"> 
           <a class="nav-link" routerLink="settings/main">Settings</a>
       </li>
-      <li class="nav-item" *ngIf="showLogin">
-        <a class="nav-link" routerLink="login">Login</a>
-      </li>
       <li class="nav-item" (click)="attemptLogout=true;" *ngIf="showLogout">
+
         <a class="nav-link" style="cursor:pointer">Logout</a>  
 
       </ul>
@@ -49,4 +47,5 @@
       </div>
     </div>
   </div>
+
   
