@@ -1,11 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UrlService } from '../../services/urls/url.service';
 
 import { SkillTypeBucketService } from './skill-type-bucket.service';
 
 describe('SkillTypeBucketService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SkillTypeBucketService]
+      imports: [RouterTestingModule , HttpClientModule ],
+
+      providers: [SkillTypeBucketService,UrlService]
     });
   });
 
@@ -13,3 +18,4 @@ describe('SkillTypeBucketService', () => {
     expect(service).toBeTruthy();
   }));
 });
+

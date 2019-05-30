@@ -43,7 +43,6 @@ export class ViolationFlagComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log()
     this.getViolationTypes();
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
