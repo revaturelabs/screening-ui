@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Classes
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
-import { ScheduledScreening } from '../../entities/ScheduleScreening';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
 
 // Services
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';

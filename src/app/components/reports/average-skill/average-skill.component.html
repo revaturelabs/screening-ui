@@ -1,3 +1,13 @@
 <highcharts-chart [Highcharts] = "Highcharts" [options] = "options"></highcharts-chart>
 
+<div class="modal" [style.display]="toggleLogout()">
+    <div class="modal-content">
+      <div class="buttons">
+        <h2>Are you sure you want to Logout?</h2>
+        <button class="btn" (click)="logout()" routerLink="/login">Logout</button>
+        <button class="btn" (click)="attemptLogout=false;">Back</button>
+      </div>
+    </div>
+  </div>
+
 

@@ -11,16 +11,26 @@ import { WeekDay } from '@angular/common';
 import { ReportData } from 'src/app/entities/ReportData';
 
 
+import { Screening } from 'src/app/entities/Screening.model';
+
+import { map } from 'rxjs/operators';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+
 @Component({
   selector: 'app-report-sidebar',
   templateUrl: './report-sidebar.component.html',
-  styleUrls: ['./report-sidebar.component.scss']
+  styleUrls: ['./report-sidebar.component.css']
 })
 export class ReportSidebarComponent implements OnInit {
-  //@Input() initialSliderValue: number = 1;
-  minSliderValue: number = 0;
-  maxSliderValue: number = 104;    //was 208
-  screenerEmails$: Observable<string[]>;
+ 
+
+
+
+  screenerEmails$: Observable<Screening>;
+  screenerEmail = new Array<Screening>();
+  screenerName = [];
   private searchTerms = new Subject<string>();
   emailSearchTerm: string = '';
   //sliderControl: FormControl;
@@ -31,101 +41,32 @@ export class ReportSidebarComponent implements OnInit {
   }
   // Used to emit slider events to master-component
   @Output() sliderChange = new EventEmitter();
-  // Used to emit searchbar changes to master-component
-  @Output() searchChange = new EventEmitter();
+ 
 
-  sliderOptions: Options = {
-    floor: 0,
-    ceil: 104,  //was 208
-    //showTicks: true,
-    translate: (value: number): string => {
-      if(value === 0) {
-        return "Present Day";
-      }
-      else if (value === 1) {
-        return "1 Week";
-      }
-      if(value === 52) {
-        return "1 Year";
-      }
-      else if(value > 52 && value < 104) {
-        let weeks = value-52;
-        if(weeks === 1) {
-          return `1 Year ${weeks} Week`;
-        }
-        else {
-          return `1 Year ${weeks} Weeks`;
-        }
-      }
-      else if(value === 104) {
-        return "2 Years";
-      }
-      else if(value > 104 && value < 156) {
-        let weeks = value-104;
-        if(weeks === 1) {
-          return `2 Years ${weeks} Week`;
-        }
-        else {
-          return `2 Years ${weeks} Weeks`;
-        }
-      }
-      else if(value === 156) {
-        return "3 Years";
-      }
-      else if(value > 156 && value < 208) {
-        let weeks = value-156;
-        if(weeks === 1) {
-          return `3 Years ${weeks} Week`;
-        }
-        else {
-          return `3 Years ${weeks} Weeks`;
-        }
-      }
-      else if(value === 208) {
-        return "4 Years";
-      }
-      else {
-        return `${value} Weeks`;
-      }
-    },
-  };
-
+  
   constructor(
-    private reportService: ReportService
+    private reportService: ReportService,
+    private modalService: NgbModal
   ) { }
 
   search(term: string): void {
     this.searchTerms.next(term);
-    if (term === '')
-      this.searchChange.emit('');
+   //if (term === '')
+     // this.searchChange.emit('');
   }
 
-  onClickScreenerEmail(screener) {
+  open(content) {
+    this.modalService.open(content, { windowClass: 'fixed-modal' });
+  }
+
+  /*onClickScreenerEmail(screener) {
     //console.log(`clicked on ${screener}`);
     this.emailSearchTerm = screener;
     this.searchTerms.next('');
     this.searchChange.emit(screener);
-  }
-  onSliderChange(changeContext: ChangeContext): void {
-    // console.log(`onUserChangeStart(${this.getChangeContextString(changeContext)})\n`);
-    let actualWeeksMinValue = changeContext.value;
-    let actualWeeksMaxValue = changeContext.highValue;
-    let weeksArray = [actualWeeksMinValue, actualWeeksMaxValue]
-    /*switch(actualWeeks) {
-      case 5: actualWeeks = 26; break;
-      case 6: actualWeeks = 52; break;
-    }*/
-    this.sliderChange.emit(weeksArray);
-  }
+  }*/
+
   
-  // onUserChange(changeContext: ChangeContext): void {
-  //   this.logText += `onUserChange(${this.getChangeContextString(changeContext)})\n`;
-  // }
-
-  // onUserChangeEnd(changeContext: ChangeContext): void {
-  //   console.log(`onUserChangeEnd(${this.getChangeContextString(changeContext)})\n`);
-  // }
-
   getChangeContextString(changeContext: ChangeContext): string {
     return `{pointerType: ${changeContext.pointerType === PointerType.Min ? 'Min' : 'Max'}, ` +
            `value: ${changeContext.value}, ` +
@@ -133,15 +74,54 @@ export class ReportSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    //console.log(this.reportService.getAllScreeners());
+    //alert(this.reportService.getAllScreeners());
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
     //this.sliderControl = new FormControl(this.initialSliderValue);
-    this.screenerEmails$ = this.searchTerms.pipe(
+     this.reportService.getAllScreeners()
+    .subscribe(response => {
+     this.screenerEmail = response.map(item => {
+    return new Screening(
+            item.screeningId,
+            item.scheduledScreening.candidate.name,
+            item.scheduledScreening.scheduledStatus,
+            item.scheduledScreening.skillTypeId,
+            item.scheduledScreening.scheduledDate
+      );
+    });
+    })
+
+    for (let i = 0; i < this.screenerEmail.length; i++){
+          this.screenerEmail[i].name;
+          this.searchTerms.pipe(
+            switchMap((name: any) => this.screenerEmail[i].name)
+          )
+          console.log(this.screenerEmail[i].name);
+        }
+  }
+}
+
+      // this.screenerEmail$ = this.searchTerms.pipe(
+      
+        // debounceTime(300),
+        // distinctUntilChanged(),
+        // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
+        // switchMap((name: any) => this.screenerEmail[].name)
+      // );
+     // console.log( this.screenerEmail[0].scheduledScreening.candidate.name);
+    // })
+    
+        //this.screenerName = data.scheduledScreening.candidate.name;
+      
+    /*this.screenerEmails$ = this.searchTerms.pipe(
       
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
-    );
-  }
-
-}
+      // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
+      switchMap((partialEmail: any) => this.reportService.getAllScreeners())
+    
+    ); */
+    
+    
+  // }

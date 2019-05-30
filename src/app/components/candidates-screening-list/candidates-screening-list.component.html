@@ -1,7 +1,10 @@
-<div id="pending-screening-list-container" class="animated fadeIn">
-  <h1>Candidate List</h1>
-  <div id="pending-screening-list-contents">
-    <div class="filters">
+<body>
+    <div class="row">
+        <div class=" col-lg-10">
+          <div class="card">
+            <div class="card-body" style="border-width: 10rem;">
+        <h1>Candidate List</h1>
+        <br>
       <!-- Search Bar -->
       <input [(ngModel)]="searchText" placeholder="Search" class="search-bar">
     </div>
@@ -37,6 +40,8 @@
       </div>
     </div>
     <!-- Pagination section -->
-    <pagination-controls class="pagination" (pageChange)="p = $event" maxSize="5" previousLabel="" nextLabel=""></pagination-controls>
+    <pagination-controls class="pagination" (pageChange)="p = $event" maxSize="5" previousLabel="" nextLabel=""></pagination-controls><br>
+  </div>
   </div>
 </div>
+</body>

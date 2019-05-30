@@ -19,8 +19,6 @@ import { FullBarDirective } from 'ng5-slider/slider.component';
 
 export const routes: Routes = [
   {
-
-
     path: 'login',
     component: LoginComponent,
   },

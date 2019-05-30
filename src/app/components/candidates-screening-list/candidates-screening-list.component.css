@@ -3,21 +3,35 @@
 ############################# */
 #pending-screening-list-container{
     margin: auto;
-    margin-top: 10px;
+    margin-top: 25px;
     padding: auto;
-    min-width: 400px;
-    max-width: 95vw;
     width: 50%;
     border-style: solid;
     border-width: 1px;
     border-color: #ddd;
     border-radius: 4px;
 }
+.col-lg-10 {
+    margin: auto;
+    margin-top: 25px;
+}
+
+.card{
+    margin: auto;
+    width: 81%;
+}
+
+#screenings-table{
+    margin: auto;
+    width: 95%;
+}
+
 h1{
     background: #f26925;
     color: white;
-    min-width: 260px;
-    width: 100%;
+    min-width: 100%;
+    max-width: 50%;
+    width: 50%;
     margin-bottom: 0px;
     margin-top: 0px;
     padding: 12px;
@@ -31,12 +45,17 @@ h1{
 
 #pending-screening-list-contents{
     padding: 25px 5%;
+    min-width: 100%;
+    max-width: 50%;
+    width: 50%;
 }
 /* #############################
         SEARCH BAR STYLES
 ############################# */
 .search-bar{
-    width: 100%;
+    margin-left: 25%;
+    text-align: center;
+    width: 50%;
     margin-bottom: 20px;
     padding: 5px;
     border-radius: 5px;
@@ -48,23 +67,28 @@ h1{
 #screenings-table{
     max-height: 300px;
     margin-bottom: 20px;
-    font-size: 2em !important;
+    font-size: 20px !important;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
 }
 
 .table thead th, .table td, .table th{
     border-top: 1px solid #b1b8bd;
     border-bottom: 1px solid #7f97a8;
-    font-size: 15px;
+    font-size: 12px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
 }
 .table td, .table th{
     padding: .5rem;
     font-size: .7em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
 }
 .table td{
     cursor: pointer;
+    
 }
 .table-hover{
     width: 100%;
+    
     
 }
 

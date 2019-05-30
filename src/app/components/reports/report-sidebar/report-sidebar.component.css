@@ -1,6 +1,4 @@
 
-
-
 .search-bar{
     width: 100%;
     margin-top: 20px;
@@ -23,7 +21,7 @@ h1{
   border-color: #f26925;
   text-align: center;
   font-size: 25px;
-  white-space:nowrap;
+ /* white-space:nowrap; */
 }
 
 .dropdown {
@@ -60,6 +58,23 @@ h1{
   width: 80%;
 }
 
+.dataText{
+  width: 80%;
+}
+
+
+
+.btn{
+  font-size: 18px;
+  margin-top: 20px;
+  height: 35px;
+  width: 180px;
+  background: #f26925;
+  border-color: #f26925;
+  color: white;
+  font-weight: strong;
+  padding: 1px;
+} 
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) 
 .show {display:block;}
@@ -111,7 +126,7 @@ h4 {
     white-space:nowrap;
 }
 
-/* Slider CSS */
+/* Slider CSS 
 // We need to use ::ng-deep to overcome view encapsulation
 // ::ng-deep {
 //     .custom-slider .ng5-slider .ng5-slider-bar {
@@ -125,7 +140,7 @@ h4 {
 //     .custom-slider .ng5-slider .ng5-slider-pointer {
 //       width: 8px;
 //       height: 16px;
-//       top: auto; /* to remove the default positioning */
+//       top: auto; /* to remove the default positioning 
 //       bottom: 0;
 //       background-color: #333;
 //       border-top-left-radius: 3px;
@@ -157,4 +172,4 @@ h4 {
 //     .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
 //       background: #f26925;
 //     }
-//   }
+//   }*/
