@@ -16,7 +16,5 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-artifacts:
-  files:
-    - '**/*'
+   Break things - '**/*'
   base-directory: dist/screening-ui-gen/
