@@ -1,5 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { AlertsService } from './alerts.service';
+import { RouterTestingModule } from '@angular/router/testing'; 
+
 /**
  * Author: Jordan Young
  */
@@ -9,6 +11,7 @@ describe('AlertsService', () => {
   // set up
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       providers: [AlertsService]
     });
   });

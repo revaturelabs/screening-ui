@@ -1,0 +1,97 @@
+
+<div class="container-fluid">
+    <div class="row">
+        
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <!-- <div class="custom-slider">
+                <ng5-slider [options]="sliderOptions" [(value)]="minSliderValue" [(highValue)]="maxSliderValue"
+                    (userChange)="onSliderChange($event)"></ng5-slider>
+            </div> -->
+            <div class="dropdown">
+            <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm'
+                placeholder="Search by name" class="search-bar" />
+    
+            <div class="dropdown-content">
+                <ul *ngFor='let email of screenerEmails$ | async'>
+                    <a (click)='onClickScreenerEmail(email)'>{{screenerName}}</a>
+                </ul>
+            </div> 
+
+
+        <!-- <div class="row ">
+
+<div class="container">
+        <div class="row ml-2">
+            <div class="col-lg-3">
+                <div class="dropdown"> 
+                    <input #searchBox (input)='search(searchBox.value)' [(ngModel)]='emailSearchTerm'
+                        placeholder="Search by Screener" class="search-bar" />
+                        Need to edit to represent screener not email ~EB
+                    <div class="dropdown-content">
+                        <ul *ngFor='let email of screenerEmails$ | async'>
+                            <a (click)='onClickScreenerEmail(email)'>{{email}}</a>
+                        </ul>
+                    </div>-->
+                </div>          
+            </div>
+            <div class="col-lg-3">
+                <div class="datePicker">
+                    <input class="dataText" type="text" placeholder="Start Date" ngbDatepicker #d="ngbDatepicker"/>
+                    <button (click)="d.toggle()"><i class="fas fa-chevron-up"></i></button>
+                 </div>
+            </div>
+            <div class="col-lg-3">
+                    <div class="datePicker">
+                        <input class="dateText" type="text" placeholder="End Date" ngbDatepicker #d2="ngbDatepicker"/>
+                        <button (click)="d2.toggle()"><i class="fas fa-chevron-up"></i></button>
+                    </div>
+            </div>
+            
+                    <!-- <app-report-sidebar [reportData]='reportData' (sliderChange)='onSliderChange($event)'
+                            (searchChange)='onSearchChange($event)'></app-report-sidebar>-->
+                    <!-- Trigger the modal with a button -->
+                    
+                    <button class="btn btn-primary btn-sm" (click)='open(content1)'>Select Track</button>
+        </div>
+    </div>
+    <br>
+
+
+    <!-- Modal for select a track-->
+<ng-template #content1 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <!-- If a skillType got clicked, Title is Edit -->
+        <h4 class="modal-title">Select A Track</h4>
+
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+
+        <p>insert checkboxes here to select different tracks
+        </p> 
+        
+        
+        <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+        </div>
+    </div>
+</ng-template>
+      
+      <!--Ending of Select a track modal -->
+
+
+    
+
+    
+
+
+    
+
+    
+
+
