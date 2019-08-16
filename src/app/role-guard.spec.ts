@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { RoleGuard } from './role-guard';
 
-xdescribe('RoleGuardService', () => {
+describe('RoleGuardService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [RoleGuard]
