@@ -1,0 +1,26 @@
+
+// array of srings with mock questions to display in  reports page. ~ 5 questions 
+hardestQuestions:   [
+            "What is the difference betwwen JRE, JDK, and JVM?",
+            "How can I create a alias in SQL?",
+            "What is the doctype declaration in HTML?",
+            "What is ECMA script?",
+            "What are template literals and arrow notation?"
+          ],
+// mock data for skill types, contain name and a floating point number of each type, ~1-125 range.
+        avgSkillTypeScore: [{name: 'Soft Skills', y: 64.9}, {name: 'Tech Skills', y: 79.3},{name: 'Time Hacking Skills', y: 67.1},
+            {name: 'Basic Math Skils', y: 84.5},{name: 'Advance Math Skills', y: 87.2}, {name: 'Beta Skills', y: 88.2}],
+// mock data for technology skills, contain name and floating point number of each type, ~1-100 range.
+        avgBucketTypeScore: [{name: 'Java Applied', y: 88.7}, {name: 'Hibernate', y: 60.2},{name: 'SQL', y: 88.0},
+            {name: 'Angular', y: 89.3},{name: 'Spring AoP', y: 55.0}, {name: 'Java Concepts', y: 73.6},{name: 'SOAP', y: 78.0},
+            {name: 'JDBC', y: 78.0}, {name: 'REST', y: 80.0}],
+// mock data for violations, contain name and integer of each type of violation, ~1-50 range.
+        violationsByType: [{ name: 'Profanity', y: 6}, { name: 'Dress', y: 8},{ name: 'Attitude', y: 7},
+            { name: 'Conduct', y: 5}],
+// mock data for number of applicants that passed, variable type =  integer
+        numApplicantsPassed: 123,
+// mock data for number of applicants that failed, varibale type = integer
+        numApplicantsFailed: 23, 
+// Screener object, should contain name and email of current screener.
+        screener: null
+    }

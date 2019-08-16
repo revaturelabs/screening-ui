@@ -5,7 +5,7 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-import { VIOLATION_TYPES } from '../../mock-data/mock-violationTypes';
+
 @Component({
   selector: 'app-violation-flag',
   templateUrl: './violation-flag.component.html',
@@ -27,7 +27,7 @@ export class ViolationFlagComponent implements OnInit {
 
   @Output() flagEvent = new EventEmitter<string>();
 
-  violationTypes: ViolationType[] = VIOLATION_TYPES; //Mock Data taken from mock-violationTypes
+  violationTypes: ViolationType[]; //Mock Data taken from mock-violationTypes
   violationTypesChecked: ViolationType[] = [];
   softSkillViolations: SoftSkillViolation[];
   selectedViolation: ViolationType;
@@ -43,7 +43,6 @@ export class ViolationFlagComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log()
     this.getViolationTypes();
     this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;

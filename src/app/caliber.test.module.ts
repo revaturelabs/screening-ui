@@ -36,8 +36,6 @@ import { ApiService } from './services/api/api.service';
 import { SearchPipe } from './pipes/search.pipe';
 
 // components
-import { SettingsComponent } from './components/settings/settings.component';
-import { ScreeningComponent } from './components/screening/screening.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
@@ -46,6 +44,8 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
+
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -66,9 +66,8 @@ export const Dependencies = {
   declarations: [
     // pipes
     SearchPipe,
-    SettingsComponent,
+
     // components
-    SettingsComponent,
     ScreeningConfigComponent,
     IntroductionComponent,
     AnswerComponent,
@@ -77,7 +76,7 @@ export const Dependencies = {
     SkillTypesComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
-    ScreeningComponent
+  
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
@@ -97,6 +96,7 @@ export const Dependencies = {
     GambitBatchUtilService,
     GambitBatchUtilService,
     UrlService,
+    AuthenticationService
   ],
   bootstrap: [
   ],

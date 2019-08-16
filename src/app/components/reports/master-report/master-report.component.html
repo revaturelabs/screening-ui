@@ -1,0 +1,84 @@
+
+
+<body>
+
+
+<main class="container mt-8 justify-content-center" *ngIf="reportData">
+  <div class="row">
+    <div class="col-sm-12 col-lg-10">
+      <div class="card">
+        <div class="card-body" style="border-width: 10rem;">
+            <div>
+                <h1>Reports</h1>
+            </div>
+          <div>
+            <app-report-sidebar
+              [reportData]="reportData"
+              (sliderChange)="onSliderChange($event)"
+              (searchChange)="onSearchChange($event)"
+            ></app-report-sidebar>
+          </div>
+          <div class="container">
+            <ngb-tabset>
+              <ngb-tab title="Average Scores" id="tab-1">
+                <br />
+                <ng-template ngbTabContent>
+                  <div class="row" id="report-graphs">
+                    <br />
+                    <app-average-bucket-type
+                      [barData]="reportData.avgBucketTypeScore"
+                      class="card col-sm-12 mt-5"
+                    >
+                    </app-average-bucket-type>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab title="Number of Screenings" id="tab-2">
+                <ng-template ngbTabContent>
+                  <div class="row" id="report-graphs">
+                    <br />
+                    <app-average-skill
+                      [barData]="reportData.avgSkillTypeScore"
+                      class="card col-sm-12 mx-auto my-5"
+                    >
+                    </app-average-skill>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<!-- Modal -->
+<!-- <div id="myModal" class= "modal fade" role="dialog">
+        <div class="modal-dialog">
+          Modal content-->
+          <!-- <div class="modal-content">
+            <div>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+              <h4 class="modal-title">Select Options:</h4>
+            </div>
+            <div class="modal-body">
+              <p>
+                Modal Text Goes Here <br />
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>  -->
+</body>

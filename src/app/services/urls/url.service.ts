@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Weight } from '../../entities/Weight';
+import { String } from 'aws-sdk/clients/cloudhsmv2';
 
 @Injectable()
 export class UrlService {
   public readonly adminContext: string =  environment.adminContext;
   public readonly screeningContext: string =  environment.screeningContext;
+  public readonly reportContext: string = environment.reportContext;
 
   constructor() {
   }
@@ -14,11 +16,8 @@ export class UrlService {
    * Endpoints for bucket service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    *
    */
@@ -34,11 +33,8 @@ export class UrlService {
    * Endpoints for questions service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
   private questionEndpoint = (this.adminContext + '/question');
@@ -60,11 +56,8 @@ export class UrlService {
    * Endpoints for screen services
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
   screeningEndpoint = 'screening';
@@ -112,4 +105,15 @@ export class UrlService {
     addViolationURL: () => `${this.screeningContext}/violation/new/`,
     deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
     };
+
+  private reportEndpoint = this.reportContext;
+  reports = {
+    getAllScreeners: () => `${this.reportEndpoint}/screenings`, /*Chisel was here*/ 
+    getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
+    getScreenerByName:(partialName: string): string => `${this.reportEndpoint}/screenings`,
+    getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
+    `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
+    getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>
+    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
+  };
 }

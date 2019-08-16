@@ -1,38 +1,56 @@
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HighchartsChartModule} from 'highcharts-angular';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+//import { NavModule } from './nav.module';
+import { Ng5SliderModule } from 'ng5-slider';
+import { NgModule } from '@angular/core';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
+import {SpringInterceptor} from './interceptors/spring.interceptor'
+import { timer } from 'rxjs';
+
+
 
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
+
 // Component Imports Alphabetically
-import { AnswerComponent } from './components/answer/answer.component';
+// Root Component
+import { AppComponent } from './app.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
+import { AnswerComponent } from './components/answer/answer.component';
+import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
+import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
+import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+import { MasterReportComponent } from './components/reports/master-report/master-report.component';
+import { NavComponent } from './components/nav/nav.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
-import { ScreeningComponent } from './components/screening/screening.component';
+import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
+import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
+import { CookieService } from 'ngx-cookie-service';
 import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
-import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
@@ -46,6 +64,8 @@ import { SoftSkillsViolationService } from './services/soft-skills-violation/sof
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
 import { ApiService } from './services/api/api.service';
+import {AuthenticationService} from './services/authentication/authentication.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
@@ -60,11 +80,11 @@ import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
 import { TraineeSearch } from './pipes/trainee-search.pipe';
 import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
-
-import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
-import { HttpClientModule } from '@angular/common/http';
-import { CandidateComponent } from './components/candidate/candidate.component';
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
+
+
 
 @NgModule({
   declarations: [
@@ -75,16 +95,18 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
+    NavComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
-    ScreeningComponent,
     ScreeningConfigComponent,
-    SettingsComponent,
     SkillTypeBucketsComponent,
     SkillTypesComponent,
     ViolationFlagComponent,
     CandidateComponent,
+    AverageSkillComponent,
+    LoginComponent,
+
     // pipes
     ArrToStringPipe,
     BucketFilterPipe,
@@ -96,25 +118,33 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ToolbarFilterPipe,
     TraineeSearch,
     TrainerPipePipe,
+    AverageBucketTypeComponent,
+    MasterReportComponent,
+    ReportSidebarComponent,
+    ViolationsByTypeComponent
   ],
-  imports: [
-    BrowserModule,
+  imports: [    
+    
+    BrowserAnimationsModule,
+    BrowserModule,    
+    FormsModule,        
+    HighchartsChartModule,
+    HttpClientModule,
     HttpModule,
+    //NavModule,
     NgbModule.forRoot(),
-    FormsModule,
+    NgxPaginationModule,
+    Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    NgxPaginationModule,
-    NavModule,
-    HttpClientModule,
-    BrowserAnimationsModule
+    AmplifyAngularModule
   ],
   providers: [
     AlertsService,
     ApiService,
     BucketsService,
+    CookieService,
     GambitBatchUtilService,
-    HttpErrorHandlerService,
     QuestionScoreService,
     QuestionsService,
     SimpleTraineeService,
@@ -127,7 +157,11 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
-    ViolationTypeService
+    ViolationTypeService,
+    AuthenticationService,
+    
+    AmplifyService,
+    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
