@@ -43,8 +43,8 @@ export class UrlService {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
+    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
    };
 
