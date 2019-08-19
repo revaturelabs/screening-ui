@@ -152,11 +152,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-<<<<<<< HEAD
-        this.question.bucket = this.currentBucket;
-=======
         this.question.bucket=this.currentBucket;
->>>>>>> 2bb9f1a46a3b2199542a13ca32211fe0b403aa72
         this.questionService.createNewQuestion(this.question).subscribe();
         this.savedSuccessfully();
       }
