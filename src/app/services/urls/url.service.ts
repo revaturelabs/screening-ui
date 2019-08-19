@@ -39,7 +39,7 @@ export class UrlService {
    */
   private questionEndpoint = (this.adminContext + '/question');
   question = {
-    postQuestion: () => `${this.questionEndpoint}/new`,
+    postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
