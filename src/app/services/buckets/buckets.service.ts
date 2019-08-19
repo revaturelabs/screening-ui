@@ -47,6 +47,13 @@ export class BucketsService {
 
   updateBucket (bucket: Bucket) {
     return this.http.put<Bucket>(this.urlService.bucket.updateBucket()+"/"+bucket.bucketId, bucket, httpOptions);
+<<<<<<< HEAD
+=======
+  }
+  // Delete bucket
+  deleteBucket(bucket:Bucket){
+      return this.http.delete<Bucket>(this.urlService.bucket.deleteBucket()+"/"+bucket.bucketId, httpOptions );
+>>>>>>> 7ff26c663e9e3c49ba8941480d45d6c68b25c158
   }
 
   createNewBucket(bucket: Bucket): Observable<Bucket> {
