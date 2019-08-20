@@ -10,7 +10,7 @@ import { SearchPipe } from '../../util/search.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { ScheduleScreeningService } from '../../services/schedule-screening/schedule-screening.service';
+import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
@@ -26,7 +26,7 @@ describe('CandidatesScreeningListComponent', () => {
       declarations: [CandidatesScreeningListComponent, SearchPipe, PaginatePipe, PaginationControlsComponent,
         PaginationControlsDirective],
       imports: [FormsModule, HttpClientModule],
-      providers: [SimpleTraineeService, ScreeningService, ScheduleScreeningService, SoftSkillsViolationService,
+      providers: [SimpleTraineeService, ScreeningService, ScheduledScreeningService, SoftSkillsViolationService,
         QuestionScoreService, SkillTypesService, PaginationService]
     })
       .compileComponents();

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { SkillTypesService } from '../skill-types/skill-types.service';
 import { SkillType } from '../../entities/SkillType';
 import { UrlService } from '../urls/url.service';
 
 @Injectable()
-export class ScheduleScreeningService {
+export class ScheduledScreeningService {
   constructor(
     private httpClient: HttpClient,
     private skillTypesService: SkillTypesService,

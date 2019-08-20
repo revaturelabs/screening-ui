@@ -22,12 +22,8 @@ import { ScreeningService } from './services/screening/screening.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { BucketsService } from './services/buckets/buckets.service';
-/** for in memory data service
-  * executed, 'npm i angular-in-memory-web-api --save', remove from packange.json if not in use.
-  */
-import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { UrlService } from './services/urls/url.service';
-import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
+import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 
 // N.T.
 import { ApiService } from './services/api/api.service';
@@ -86,15 +82,13 @@ export const Dependencies = {
     SkillTypesService,
     ScreeningService,
     SkillTypeBucketService,
-    ScheduleScreeningService,
+    ScheduledScreeningService,
     HttpClient,
     NgbModal,
     AlertsService,
     ApiService,
     NgbActiveModal,
     { provide: Router, useValue: {} },
-    GambitBatchUtilService,
-    GambitBatchUtilService,
     UrlService,
     AuthenticationService
   ],

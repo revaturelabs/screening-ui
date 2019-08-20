@@ -8,7 +8,7 @@ import { ScheduledScreening } from '../../entities/ScheduledScreening';
 // Services
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { ScheduleScreeningService } from '../../services/schedule-screening/schedule-screening.service';
+import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 
@@ -59,7 +59,7 @@ export class CandidatesScreeningListComponent implements OnInit {
     private http: HttpClientModule,
     private simpleTraineeService: SimpleTraineeService,
     private screeningService: ScreeningService,
-    private scheduleScreeningService: ScheduleScreeningService,
+    private scheduleScreeningService: ScheduledScreeningService,
     private softSkillsViolationService: SoftSkillsViolationService,
     private questionScoreService: QuestionScoreService,
     private searchPipe: SearchPipe
