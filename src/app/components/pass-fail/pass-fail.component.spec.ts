@@ -9,6 +9,10 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { UrlService } from '../../services/urls/url.service';
+import { RouterTestingModule } from '@angular/router/testing'; 
+
+
 
 // Author: David Gustafson
 
@@ -20,9 +24,10 @@ describe('PassFailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [PassFailComponent, ViolationFlagComponent],
       providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, SimpleTraineeService,
-        ViolationTypeService, AlertsService]
+        ViolationTypeService, AlertsService, UrlService, SkillTypesService]
     })
       .compileComponents();
   }));
@@ -30,7 +35,7 @@ describe('PassFailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PassFailComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {

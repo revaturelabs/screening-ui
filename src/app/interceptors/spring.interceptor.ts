@@ -4,6 +4,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 // rxjs
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AmplifyService } from 'aws-amplify-angular';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/of';
 
@@ -15,17 +16,25 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class SpringInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private amplifyService:AmplifyService) { }
 
   /**
   * Intercept each HTTP rquest and return a modified request
   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let user = JSON.parse(localStorage.getItem('user'));
+    let groups;
+    if(user) {
+      groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
+      console.log(user)
+    }
     const modifiedRequest = request.clone({
-      withCredentials: true,
+      // withCredentials: true,
       setHeaders: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json, text/*'
+        'Accept': 'application/json, text/*',
+        'Tokens': JSON.stringify(user.signInUserSession.idToken.jwtToken),
+        'Role' : JSON.stringify(groups)
       }
     });
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ScheduledScreening } from '../../entities/ScheduleScreening';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { SkillType } from '../../entities/SkillType';
 import { UrlService } from '../urls/url.service';
