@@ -101,10 +101,10 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question.questionId).subscribe();
+      this.questionService.deactivateQuestion(question).subscribe();
    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question.questionId).subscribe();
+      this.questionService.activateQuestion(question).subscribe();
    }
   }
 
@@ -142,7 +142,10 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
+        this.question.bucket = this.currentBucket;
+        
         this.questionService.updateQuestion(this.question).subscribe();
+       
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -150,6 +153,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
+        this.question.bucket=this.currentBucket;
         this.questionService.createNewQuestion(this.question).subscribe();
         this.savedSuccessfully();
       }

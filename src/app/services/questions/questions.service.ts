@@ -68,8 +68,8 @@ export class QuestionsService {
    * add urlService to get endpoint for deactivating a question
    * @param questionId
   */
-  deactivateQuestion(questionId: number) {
-    return this.http.put(this.urlService.question.deactivateQuestion(questionId), httpOptions);
+  deactivateQuestion(question: Question) {
+    return this.http.put(this.urlService.question.deactivateQuestion(question.questionId),question, httpOptions);
   }
 
   /**
@@ -77,8 +77,8 @@ export class QuestionsService {
    * add urlService to get endpoint for activating a question
    * @param questionId
   */
-  activateQuestion(questionId: number) {
-    return this.http.put(this.urlService.question.activateQuestion(questionId), httpOptions);
+  activateQuestion(question: Question) {
+    return this.http.put(this.urlService.question.activateQuestion(question.questionId),question, httpOptions);
   }
 
   /**
