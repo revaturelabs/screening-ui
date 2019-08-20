@@ -15,8 +15,6 @@ import { MasterReportComponent } from './components/reports/master-report/master
 import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 
-import { FullBarDirective } from 'ng5-slider/slider.component';
-
 export const routes: Routes = [
   {
     path: 'login',
