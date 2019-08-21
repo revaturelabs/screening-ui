@@ -11,7 +11,7 @@ import { WeekDay } from '@angular/common';
 import { ReportData } from 'src/app/entities/ReportData';
 
 
-import { Screening } from 'src/app/entities/Screening.model';
+import { Screening } from 'src/app/entities/Screening';
 
 import { map } from 'rxjs/operators';
 
@@ -79,8 +79,8 @@ export class ReportSidebarComponent implements OnInit {
     // TODO: Change to reportCache
     // this.screenerEmails$ = of(EMAILS);
     //this.sliderControl = new FormControl(this.initialSliderValue);
-     this.reportService.getAllScreeners()
-    .subscribe(response => {
+     this.reportService.getAllScreeners().subscribe(response => {
+      console.log(response); } /*
      this.screenerEmail = response.map(item => {
     return new Screening(
             item.screeningId,
@@ -89,17 +89,17 @@ export class ReportSidebarComponent implements OnInit {
             item.scheduledScreening.skillTypeId,
             item.scheduledScreening.scheduledDate
       );
-    });
-    })
+    });*/
+    )
 
-    for (let i = 0; i < this.screenerEmail.length; i++){
+   /* for (let i = 0; i < this.screenerEmail.length; i++){
           this.screenerEmail[i].name;
           this.searchTerms.pipe(
             switchMap((name: any) => this.screenerEmail[i].name)
           )
           console.log(this.screenerEmail[i].name);
         }
-  }
+  } */
 }
 
       // this.screenerEmail$ = this.searchTerms.pipe(
@@ -124,4 +124,5 @@ export class ReportSidebarComponent implements OnInit {
     ); */
     
     
-  // }
+  // 
+}

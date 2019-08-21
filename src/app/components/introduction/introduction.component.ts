@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { ViolationTypeService } from '../../services/violationType/violationType.service';
-import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AnswerComponent } from '../answer/answer.component';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
 
 @Component({
   selector: 'app-introduction',
@@ -18,20 +13,16 @@ import { AnswerComponent } from '../answer/answer.component';
 /*
   When the interview begins, candidate will give a short intro about themselves
   including a list of their technical skills (Java, SQL, HTML, etc).
-  The screener will check the skills the candidate lists (required),
-  flag any soft skill violations (optional) and give general
+  The screener will flag any soft skill violations (optional) and give general
   feedback on the candidates introduction (optional).
 */
 export class IntroductionComponent implements OnInit {
 
   constructor(
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private screeningService: ScreeningService) { }
 
-
-  public traineeName: string;
-  public traineeTrack: string;
-
+  public currentScreening: ScheduledScreening;
   public comment: string;
 
   form = new FormGroup({
@@ -39,13 +30,10 @@ export class IntroductionComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.traineeName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-    this.simpleTraineeService.getSelectedCandidate().lastname;
-    this.traineeTrack = this.simpleTraineeService.getSelectedCandidate().skillTypeName;
+    this.currentScreening = this.screeningStateService.getCurrentScreening();
   }
 
-
-  // Submit the comments on the Introduction view when the "Begin Questions" buton is clicked
+  // Submit the comments on the Introduction view when the "Begin Questions" button is clicked
   onSubmit() {
     // Send the comments to the appropriate service method saves them to the DB
     this.screeningService.createScreening();
