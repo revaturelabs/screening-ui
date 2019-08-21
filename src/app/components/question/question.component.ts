@@ -101,10 +101,14 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question).subscribe();
+      this.questionService.deactivateQuestion(question).subscribe( question => {
+        this.updateQuestions()
+      });
    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question).subscribe();
+      this.questionService.activateQuestion(question).subscribe( question => {
+        this.updateQuestions()
+      });
    }
   }
 
@@ -172,8 +176,28 @@ export class QuestionComponent implements OnInit {
   updateQuestions() {
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
-        this.questions = (data as Question[]);
+        this.questions = data;
+        this.questions.sort(this.compare);
+        this.questions.sort(this.compare2);
       });
+    }
+  }
+
+  /** used to compare questions Array to sort it based on status */
+  compare(a: Question, b: Question) {
+    if(a.isActive)
+    {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
+  compare2(a: Question, b: Question){
+    if(a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()){
+      return -1;
+    }else{
+      return 1;
     }
   }
 
