@@ -19,10 +19,8 @@
           <!-- clickable to route to Bucket -->
           <!--* routeToBucket() -->
           <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);">
-            <b>{{bucket.bucketCategory}}</b>
-            <br>
-            <small>{{bucket.bucketDescription}}</small>
-
+          <!--  <b>{{bucket.bucketCategory}}</b>
+            <br> -->
             <!--* editBucket(bucket), passes the bucket selected to component side.
                 * open(edit), calls modal to open. -->
             <div class="col-sm" (click)="$event.cancelBubble=true; ">
@@ -33,11 +31,12 @@
                 </label>
               </i>
             </div>
+            <small>{{bucket.bucketDescription}}  </small>
             <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket); open(edit)" placement="right"
-              ngbTooltip="edit">
-            </i>
-
+            ngbTooltip="edit">
+          </i>
           </a>
+          
         </div>
 
       </div>
