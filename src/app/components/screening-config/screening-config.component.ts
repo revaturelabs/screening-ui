@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class ScreeningConfigComponent implements OnInit {
 
   constructor() {}
-
-
   ngOnInit() {}
 
 }

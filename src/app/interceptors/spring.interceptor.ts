@@ -5,9 +5,6 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AmplifyService } from 'aws-amplify-angular';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/observable/of';
-
 /**
  * This class intercepts each HTTP request, clones it,
  * and adds criteria before actually performing the

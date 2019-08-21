@@ -1,12 +1,11 @@
+import { ScheduledScreening } from "./ScheduledScreening";
 
 /*
   Entity representing all data related to the screening of a candidate
 */
-export interface Screening {
-  screeningID: number;
-  traineeID: number;
-  screenerID: number;
-  skillTypeID: number;
+export class Screening {
+  screeningId: number;
+  screenerId: number;
   compositeScore: number;
   aboutMeCommentary: string;
   generalCommentary: string;
@@ -15,4 +14,5 @@ export interface Screening {
   endDateTime: Date;
   softSkillsVerdict: boolean;
   status: string;
+  scheduledScreening: ScheduledScreening;
 }
