@@ -31,7 +31,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   constructor(
     private router: Router,
     private bucketService: BucketsService,
-    private questionService: QuestionsService,
+   
     private modalService: NgbModal,
     private alertsService: AlertsService, ) { }
 
