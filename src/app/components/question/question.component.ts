@@ -178,6 +178,7 @@ export class QuestionComponent implements OnInit {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
         this.questions = data;
         this.questions.sort(this.compare);
+        this.questions.sort(this.compare2);
       });
     }
   }
@@ -188,6 +189,14 @@ export class QuestionComponent implements OnInit {
     {
       return -1;
     } else {
+      return 1;
+    }
+  }
+
+  compare2(a: Question, b: Question){
+    if(a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()){
+      return -1;
+    }else{
       return 1;
     }
   }
