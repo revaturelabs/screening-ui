@@ -61,13 +61,10 @@ export class UrlService {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = 'screening';
   screening = {
-    scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${this.screeningContext + this.screening}/new`,
-    endScreening: () => `${this.screeningContext + this.screening}/update`,
-    updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening}/`
+    scheduledScreeningUrl: () => `${this.screeningContext}/screening/scheduled`,
+    screeningUrl: () => `${this.screeningContext}/screening/`,
+    screeningUrlById: id => `${this.screeningContext}/screening/${id}`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {

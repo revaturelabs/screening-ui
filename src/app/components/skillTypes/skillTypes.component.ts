@@ -16,25 +16,6 @@ import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/ski
 })
 
 /**
- * TO DO:
- *  REWRITE THIS WHOLE DUMPSTER FIRE
- * DO NOT EVEN ATTEMPT TO MAKE THIS MESS WORK
- * IT IS TRASH
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- * Abandon hope all ye who enter here
- */
-
-/**
 * Skill Type Component displays a template containing all the skill types from the database
 * It also has access to modals that can create or edit a skill types
 *
@@ -138,7 +119,7 @@ export class SkillTypesComponent implements OnInit {
         this.singleSkillType = {
             title: skillType.title,
             skillTypeId: skillType.skillTypeId,
-            isActive: true,
+            active: true,
         };
         this.getAssociated();
     }
@@ -337,7 +318,7 @@ export class SkillTypesComponent implements OnInit {
 
     /** used to compare SkillType Array to sort it based on status */
     compare(a: SkillType, b: SkillType) {
-        if (a.isActive) {
+        if (a.active) {
             return -1;
         } else {
             return 1;

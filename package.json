@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@ng-bootstrap/ng-bootstrap": "^3.2.2",
-    "aws-amplify": "^1.1.26",
+    "aws-amplify": "^1.1.36",
     "aws-amplify-angular": "^2.1.12",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",

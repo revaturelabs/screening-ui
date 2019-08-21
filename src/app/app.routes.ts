@@ -7,15 +7,9 @@ import { IntroductionComponent } from './components/introduction/introduction.co
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { QuestionComponent } from './components/question/question.component';
-
-import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
-
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
-
 import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
-
-import { FullBarDirective } from 'ng5-slider/slider.component';
 
 export const routes: Routes = [
   {
