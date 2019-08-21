@@ -45,7 +45,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
-import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
@@ -126,7 +125,6 @@ import { RoleGuard } from './role-guard';
     QuestionsService,
     ScreeningStateService,
     ScheduledScreeningService,
-    ScreenerBucketsService,
     ScreeningService,
     RoleGuard,
     SkillTypesService,

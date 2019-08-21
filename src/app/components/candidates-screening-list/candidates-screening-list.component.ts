@@ -101,7 +101,7 @@ export class CandidatesScreeningListComponent implements OnInit {
         // create a new date which signifies the start of the interview
         new Date(),
         // This was not part of our iteration, but the "1" must be replaced
-        // with the trainer's ID so that there is an association
+        // with the screenerr's ID so that there is an association
         // between the interviewer and the person who screened them.
         1
       )

@@ -1,7 +1,3 @@
-
-/*
-    Entity representing the candidate being screened
-*/
 export class Candidate {
     candidateId: number;
     resourceId: number;
