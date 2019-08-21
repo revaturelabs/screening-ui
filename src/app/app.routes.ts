@@ -10,14 +10,12 @@ import { QuestionComponent } from './components/question/question.component';
 import { MasterReportComponent } from './components/reports/master-report/master-report.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
     path: '',
+    component: AppComponent,
     canActivate: [AuthenticationService],
     // a list of roles that can access the resource -- in this case all of them
     data: { roles: ['ROLE_REPORTING', 'ROLE_SCREENER', 'ROLE_ADMIN'] },
@@ -25,6 +23,10 @@ export const routes: Routes = [
       {
         path: 'reports',
         component: MasterReportComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
       {
         path: 'home',
