@@ -44,6 +44,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.bucketService.getAllBuckets().subscribe(buckets => {
       this.buckets = buckets;
       this.buckets.sort(this.compare);
+      this.buckets.sort(this.compare2);
     });
   }
 
@@ -55,6 +56,15 @@ export class SkillTypeBucketsComponent implements OnInit {
       return 1;
     }
   }
+
+  compare2(a: Bucket, b: Bucket){
+    if(a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()){
+      return -1;
+    }else{
+      return 1;
+    }
+  }
+  
 
   /** Save the selected 'bucket' in 'bucket.service' to be used in
     * 'bucket.component'.
@@ -92,6 +102,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.bucketService.createNewBucket(this.newBucket)
       .subscribe(bucket => {
         this.buckets.push(bucket);
+        this.getBuckets();
       });
   }
 
