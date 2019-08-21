@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { Observable } from 'rxjs';
@@ -41,7 +41,7 @@ export class PassFailComponent implements OnInit {
 
   constructor(private violationService: SoftSkillsViolationService,
     private screeningService: ScreeningService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private violationTypeService: ViolationTypeService,
     public softSkillViolationService: SoftSkillsViolationService
   ) {
@@ -52,9 +52,8 @@ export class PassFailComponent implements OnInit {
     this.passChecked = false;
     this.failChecked = false;
     const violationArray: any[] = [];
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
-    this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID')).subscribe(data => {
+    this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
+    this.softSkillViolationService.getPreviousViolations(parseInt(localStorage.getItem('screeningID'))).subscribe(data => {
       this.previousViolations = data;
       this.softSkillViolationService.softSkillViolations = this.previousViolations;
     });

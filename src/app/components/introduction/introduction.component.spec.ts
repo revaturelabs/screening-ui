@@ -4,15 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
 import { IntroductionComponent } from './introduction.component';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
-
-
 
 
 
@@ -24,7 +21,7 @@ describe('IntroductionComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
       declarations: [ IntroductionComponent, ViolationFlagComponent],
-      providers: [ SimpleTraineeService, UrlService, SkillTypesService, ScreeningService, 
+      providers: [ ScreeningStateService, UrlService, SkillTypesService, ScreeningService, 
       SoftSkillsViolationService,ViolationTypeService,AlertsService],
     })
     .compileComponents();

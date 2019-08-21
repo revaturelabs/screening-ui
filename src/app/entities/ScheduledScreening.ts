@@ -1,16 +1,10 @@
-import { SimpleTrainee } from './SimpleTrainee';
+import { Candidate } from './Candidate';
 import { SkillType } from './SkillType';
 
-/*
-  Entity representing a screening scheduled to take place
-  Specifies candidate, screener (as a CaliberTrainer object's ID, subject to change),
-  technical track, completion status, and time.
-*/
-export interface ScheduledScreening {
+export class ScheduledScreening {
   scheduledScreeningId: number;
-  trainee: SimpleTrainee;
+  candidate: Candidate;
   track: SkillType;
-  status: string;
-  trainer: number;
+  scheduledStatus: string;
   scheduledDate: Date;
 }

@@ -1,8 +1,4 @@
-
-/*
-  Entity representing the response to a specific quesition asked during a screening
-*/
-export interface QuestionScore {
+export class QuestionScore {
   qSID: number;
   questionId: number;
   screeningID: number;

@@ -1,8 +1,5 @@
 import { Bucket } from './Bucket';
 
-/*
-    DB entity representing a question corresponding to a particular skill (bucket)
-*/
 export class Question {
     questionId: number;
     questionText: string;

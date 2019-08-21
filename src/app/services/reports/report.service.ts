@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { ReportData } from 'src/app/entities/ReportData';
-import { Screening } from 'src/app/entities/Screening.model';
+import { Screening } from 'src/app/entities/Screening';
 
 @Injectable({
   providedIn: 'root'
