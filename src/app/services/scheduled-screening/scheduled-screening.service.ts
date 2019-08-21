@@ -5,6 +5,7 @@ import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { SkillTypesService } from '../skill-types/skill-types.service';
 import { SkillType } from '../../entities/SkillType';
 import { UrlService } from '../urls/url.service';
+import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 
 @Injectable()
 export class ScheduledScreeningService {
@@ -13,6 +14,9 @@ export class ScheduledScreeningService {
     private skillTypesService: SkillTypesService,
     private urlService: UrlService
   ) { }
+
+  private skillTypes: SkillType[] = [];
+  private scheduledScreenings: ScheduledScreening[] = [];
 
   /**
    * Returns an observable array of all scheduled screenings for the Candidate Screening List component
@@ -28,11 +32,31 @@ export class ScheduledScreeningService {
    * removed forward slash at the start of the screening-service
    * i.e. '/screening-service/screening/scheduledScreenings' to 'screening-service/screening/scheduledScreenings'
    */
-  getScheduleScreenings(): Observable<ScheduledScreening[]> {
-    const scheduledScreenings: ScheduledScreening[] = [];
-    this.skillTypesService.getSkillTypes().subscribe(allSkillTypes => {
-      this.httpClient.get<any[]>(this.urlService.screening.scheduleScreening()).subscribe(allScheduledScreenings => {
-        for (const e of allScheduledScreenings) {
+  getScheduledScreenings(): ScheduledScreening[] {
+    //const scheduledScreenings: ScheduledScreening[] = [];
+    //this.skillTypesService.getSkillTypes().subscribe(allSkillTypes => {
+      this.skillTypesService.getSkillTypes().subscribe( skillTypeData => {this.skillTypes = skillTypeData});
+      this.httpClient.get<any[]>(this.urlService.screening.scheduledScreeningUrl()).subscribe( scheduledScreeningData => {
+        for (const scheduledScreening of scheduledScreeningData) {
+          let s: ScheduledScreening = new ScheduledScreening();
+          s.scheduledScreeningId = scheduledScreening.scheduledScreeningId;
+          s.scheduledStatus = scheduledScreening.scheduledStatus;
+          s.scheduledDate = scheduledScreening.scheduledDate;
+          s.candidate = scheduledScreening.candidate;
+          for (const skillType of this.skillTypes) {
+            if (skillType.skillTypeId === scheduledScreening.skillTypeId) {
+              s.track = skillType;
+              break;
+            }
+          }
+          this.scheduledScreenings.push(s);
+          console.log(s);
+        }
+      });
+      
+      return this.scheduledScreenings;
+      //console.log(allScheduledScreenings);
+        /*for (const e of allScheduledScreenings) {
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
           const nameArray = e.trainee.name.split(' ');
@@ -64,7 +88,7 @@ export class ScheduledScreeningService {
             }
             thisLastName = thisLastName.trim();
           }
-          /*
+          
           // If the record is stored with lastname first, save it backwards without the comma
           if (nameArray[0].charAt(nameArray[0].length-1) == ',') {
             thisLastName = nameArray[0].substring(0, nameArray[0].length-1);
@@ -75,7 +99,7 @@ export class ScheduledScreeningService {
             thisFirstName = nameArray[0];
             thisLastName = nameArray[1];
           }
-          */
+          
 
           let skillType: SkillType;
           for (const s of allSkillTypes) {
@@ -83,28 +107,10 @@ export class ScheduledScreeningService {
               skillType = s;
             }
           }
-          scheduledScreenings.push({
-            scheduledScreeningId: e.scheduledScreeningId,
-            trainee: {
-              traineeID: e.trainee.traineeId,
-              firstname: thisFirstName,
-              lastname: thisLastName,
-              skillTypeID: e.skillTypeId,
-              skillTypeName: skillType.title,
-              schedule: e.scheduledDate,
-            },
-            track: {
-              skillTypeId: e.skillTypeId,
-              title: skillType.title,
-              isActive: true,
-            },
-            status: e.status,
-            trainer: e.trainer,
-            scheduledDate: e.scheduledDate,
-          });
-        }
-      });
-    });
-    return of(scheduledScreenings);
+          scheduledScreenings.push(e);
+        }*/
+      //})
+   // });
+    //return of(scheduledScreenings);
   }
 }

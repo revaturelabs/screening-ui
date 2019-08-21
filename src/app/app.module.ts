@@ -47,7 +47,7 @@ import { QuestionsService } from './services/questions/questions.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
@@ -67,9 +67,6 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
-import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
-import { TraineeSearch } from './pipes/trainee-search.pipe';
-import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
 import { RoleGuard } from './role-guard';
 
@@ -100,9 +97,6 @@ import { RoleGuard } from './role-guard';
     OrderByPipe,
     SearchPipe,
     TierPipe,
-    ToolbarFilterPipe,
-    TraineeSearch,
-    TrainerPipePipe,
     AverageBucketTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
@@ -130,7 +124,7 @@ import { RoleGuard } from './role-guard';
     CookieService,
     QuestionScoreService,
     QuestionsService,
-    SimpleTraineeService,
+    ScreeningStateService,
     ScheduledScreeningService,
     ScreenerBucketsService,
     ScreeningService,
@@ -142,9 +136,8 @@ import { RoleGuard } from './role-guard';
     UrlService,
     ViolationTypeService,
     AuthenticationService,
-    
     AmplifyService,
-    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
+     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

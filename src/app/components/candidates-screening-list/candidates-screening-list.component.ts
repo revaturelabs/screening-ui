@@ -2,11 +2,11 @@ import { Component, OnInit, } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 // Classes
-import { SimpleTrainee } from '../../entities/SimpleTrainee';
+import { Candidate } from '../../entities/Candidate';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 
 // Services
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
@@ -43,7 +43,7 @@ export class CandidatesScreeningListComponent implements OnInit {
   // when a screener (user) clicks on a screening,
   // save the candidate and scheduled screening
   // to their respective services.
-  selectedCandidate: SimpleTrainee;
+  selectedCandidate: Candidate;
   selectedScheduledScreening: ScheduledScreening;
   // Flag for displaying the "Begin Interview" prompt
   showBeginScreeningPrompt = false;
@@ -56,10 +56,9 @@ export class CandidatesScreeningListComponent implements OnInit {
        CONSTRUCTOR and INIT
   ########################### */
   constructor(
-    private http: HttpClientModule,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private screeningService: ScreeningService,
-    private scheduleScreeningService: ScheduledScreeningService,
+    private scheduledScreeningService: ScheduledScreeningService,
     private softSkillsViolationService: SoftSkillsViolationService,
     private questionScoreService: QuestionScoreService,
     private searchPipe: SearchPipe
@@ -75,33 +74,9 @@ export class CandidatesScreeningListComponent implements OnInit {
     ) {
       window.location.reload(true);
     }
-
-    // retrieve all scheduled interviews and populate the table of screenings.
-    this.scheduleScreeningService.getScheduleScreenings().subscribe(data => {
-      this.scheduledScreenings = data;
-    });
-    // Mock data for testing without endpoints
-    this.scheduledScreenings.push({
-      scheduledScreeningId: 0,
-      trainee: { //Mock Data used for test screening
-          traineeID: 0,
-          firstname: 'Richard',
-          lastname: 'Orr',
-          skillTypeID: 99,
-          skillTypeName: 'Angular',
-          schedule: new Date((new Date()).getTime() + 100000)
-        },
-      track: {skillTypeId: 99, title: 'Angular', isActive: true},
-      status: 'in progress',
-      trainer: 1,
-      scheduledDate: new Date()
-    });
+    this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
   }
-  // End mock data!!!!!!!
-  /* ###########################
-        FUNCTIONS
-  ########################### */
-
+ 
   // Reveals the "Begin Interview" prompt
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {
@@ -113,7 +88,7 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
-    this.simpleTraineeService.setSelectedCandidate(this.selectedCandidate);
+    this.screeningStateService.setCurrentScreening(this.selectedScheduledScreening);
   }
 
   // clicking "Begin Interview" will create a new screening entry in the database
@@ -128,16 +103,14 @@ export class CandidatesScreeningListComponent implements OnInit {
         // This was not part of our iteration, but the "1" must be replaced
         // with the trainer's ID so that there is an association
         // between the interviewer and the person who screened them.
-        this.selectedScheduledScreening.trainer,
-        // provide the track of the selected candidate for later use.
-        this.selectedCandidate.skillTypeID
+        1
       )
       .subscribe(
         // take the data from the response from the database
         data => {
         // and save the screening ID as a cookie to localStorage.
         localStorage.setItem('screeningID', data.toString());
-        console.log(localStorage.getItem('screeningID'));
+        localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
       });
   }
 }

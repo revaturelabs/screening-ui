@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
@@ -9,6 +9,8 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { Subscription } from 'rxjs';
+import { SkillType } from '../../entities/SkillType';
+import { Candidate } from '../../entities/Candidate';
 
 @Component({
   selector: 'app-final-report',
@@ -26,7 +28,8 @@ Screener can copy the summary to the clipboard, and return to the candidate list
 
 export class FinalReportComponent implements OnInit, OnDestroy {
 
-  public candidateName: string;
+  candidate: Candidate;
+  skillType: SkillType;
   softSkillString: string;
   bucketStringArray: string[];
   overallScoreString: string;
@@ -40,7 +43,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
 
   constructor(
     private screeningService: ScreeningService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private skillTypeBucketService: SkillTypeBucketService,
     private questionScoreService: QuestionScoreService,
     private scoresToBucketsUtil: ScoresToBucketsUtil,
@@ -50,14 +53,14 @@ export class FinalReportComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.checked = 'false';
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.candidate = this.screeningStateService.getCurrentScreening().candidate;
     this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
     this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(
+        // need to get the skilltype of the screening from something other than the Candidate. 
+        this.skillTypeBucketService.getWeightsBySkillType(0).subscribe(
           weights =>
           {
             this.bucketStringArray =
