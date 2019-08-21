@@ -4,11 +4,11 @@
     <div class="info">
       <div class="name">
         <label>Name: </label>
-        <p>{{traineeName}}</p>
+        <p>{{currentScreening.candidate.name}}</p>
       </div>
       <div class="skillType">
         <label>Track: </label>
-        <p>{{traineeTrack}}</p>
+        <p>{{currentScreening.track.title}}</p>
       </div>
     </div>
     <hr>
@@ -24,19 +24,6 @@
           <button class="btn" (click)="onSubmit()" id="submit-button" routerLink="/screening/questions" routerLinkActive="activeLink">Begin Questions</button>
         </div>
       </div>
-
-      <!--<form (ngSubmit)="onSubmit()" [formGroup]="form" id="commentForm">
-        <div class="form-group comment-container">
-          <br>
-          <label for="inputComment">Overall Introduction Feedback</label>
-          <br>
-          <textarea class="form-control" formControlName="comment" id="inputComment" name="commentBox" form="commentForm" placeholder="Optional Feedback"></textarea>
-
-        </div>
-        <button class="btn" type="submit" id="submit-button" [disabled]="skillChosen()" routerLink="/Caliber/screening/questions" routerLinkActive="activeLink">Begin Questions</button>
-      </form>-->
-
-
     </div>
   </div>
 </div>
