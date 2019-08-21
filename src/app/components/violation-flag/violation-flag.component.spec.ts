@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ViolationFlagComponent } from './violation-flag.component';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
@@ -23,7 +23,7 @@ describe('ViolationFlagComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [ ViolationFlagComponent ],
-      providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, SimpleTraineeService,
+      providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningStateService,
       SkillTypesService, ViolationTypeService, AlertsService, UrlService ]
     })
     .compileComponents();

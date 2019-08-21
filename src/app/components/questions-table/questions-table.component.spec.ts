@@ -4,7 +4,7 @@ import { QuestionsTableComponent } from './questions-table.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { QuestionsService } from '../../services/questions/questions.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -62,7 +62,7 @@ describe('QuestionsTableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule, RouterTestingModule],
-      providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
+      providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
         SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });

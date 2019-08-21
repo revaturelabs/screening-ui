@@ -26,7 +26,8 @@ export class UrlService {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
-    createNewBucket: () => `${this.bucketEndpoint}`
+    createNewBucket: () => `${this.bucketEndpoint}`,
+    deleteBucket: ()=> `${this.bucketEndpoint}`
   };
 
   /**
@@ -39,11 +40,11 @@ export class UrlService {
    */
   private questionEndpoint = (this.adminContext + '/question');
   question = {
-    postQuestion: () => `${this.questionEndpoint}/new`,
+    postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
+    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
    };
 
@@ -60,13 +61,10 @@ export class UrlService {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = 'screening';
   screening = {
-    scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${this.screeningContext + this.screening}/new`,
-    endScreening: () => `${this.screeningContext + this.screening}/update`,
-    updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening}/`
+    scheduledScreeningUrl: () => `${this.screeningContext}/screening/scheduled`,
+    screeningUrl: () => `${this.screeningContext}/screening/`,
+    screeningUrlById: id => `${this.screeningContext}/screening/${id}`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {

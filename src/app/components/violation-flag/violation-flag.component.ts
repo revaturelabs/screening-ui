@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ViolationType } from '../../entities/ViolationType';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 
@@ -27,9 +27,9 @@ export class ViolationFlagComponent implements OnInit {
 
   @Output() flagEvent = new EventEmitter<string>();
 
-  violationTypes: ViolationType[]; //Mock Data taken from mock-violationTypes
+  violationTypes: ViolationType[] = [];
   violationTypesChecked: ViolationType[] = [];
-  softSkillViolations: SoftSkillViolation[];
+  softSkillViolations: SoftSkillViolation[] = [];
   selectedViolation: ViolationType;
   public candidateName: string;
   public addViolation = false;
@@ -37,15 +37,14 @@ export class ViolationFlagComponent implements OnInit {
 
   constructor(
     private violationService: SoftSkillsViolationService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private violationTypeService: ViolationTypeService,
     private alertsService: AlertsService,
   ) { }
 
   ngOnInit() {
     this.getViolationTypes();
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
   }
 
   getViolationTypes(): void {

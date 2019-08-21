@@ -8,21 +8,13 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-//import { NavModule } from './nav.module';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
 import {SpringInterceptor} from './interceptors/spring.interceptor'
-import { timer } from 'rxjs';
 
-
-
-
-// Importing the routes from app routes
 import { routes } from './app.routes';
 
-// Component Imports Alphabetically
-// Root Component
 import { AppComponent } from './app.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { AnswerComponent } from './components/answer/answer.component';
@@ -50,13 +42,11 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { CookieService } from 'ngx-cookie-service';
-import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
-import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
-import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
+import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
@@ -76,19 +66,12 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
-import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
-import { TraineeSearch } from './pipes/trainee-search.pipe';
-import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
 import { RoleGuard } from './role-guard';
-
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
-
 
 
 @NgModule({
   declarations: [
-    // components
     AlertsComponent,
     AppComponent,
     AnswerComponent,
@@ -106,8 +89,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     CandidateComponent,
     AverageSkillComponent,
     LoginComponent,
-
-    // pipes
     ArrToStringPipe,
     BucketFilterPipe,
     FilterByPipe,
@@ -115,16 +96,12 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     OrderByPipe,
     SearchPipe,
     TierPipe,
-    ToolbarFilterPipe,
-    TraineeSearch,
-    TrainerPipePipe,
     AverageBucketTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
     ViolationsByTypeComponent
   ],
   imports: [    
-    
     BrowserAnimationsModule,
     BrowserModule,    
     FormsModule,        
@@ -144,12 +121,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     ApiService,
     BucketsService,
     CookieService,
-    GambitBatchUtilService,
     QuestionScoreService,
     QuestionsService,
-    SimpleTraineeService,
-    ScheduleScreeningService,
-    ScreenerBucketsService,
+    ScreeningStateService,
+    ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
     SkillTypesService,
@@ -159,9 +134,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     UrlService,
     ViolationTypeService,
     AuthenticationService,
-    
     AmplifyService,
-    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
+     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

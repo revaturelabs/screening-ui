@@ -48,19 +48,16 @@ export class ScreeningService {
   // skillTypeId - the ID of the track
   beginScreening(
     scheduledScreening: ScheduledScreening,
-    beginTime: Date,
-    trainerId: number,
-    skillTypeId: number,
+    startDateTime: Date,
+    screenerId: number,
   ): Observable<Number> {
+    let screening: Screening = new Screening();
+    screening.scheduledScreening = scheduledScreening;
+    screening.startDateTime = startDateTime;
+    screening.screenerId = screenerId;
     return this.httpClient
       .post<Number>(
-        this.urlService.screening.startScreening(),
-        {
-          'scheduledScreening': scheduledScreening.scheduledScreeningId,
-          'beginTime': beginTime,
-          'trainerId': trainerId,
-          'skillTypeId': skillTypeId
-        },
+        this.urlService.screening.screeningUrl(), screening,
         { headers: this.headers }
       );
   }
@@ -79,7 +76,7 @@ export class ScreeningService {
     } else if (this.softSkillsResult === 'Fail') {
       verdict = 0;
     }
-    this.httpClient.post(this.urlService.screening.endScreening(),
+    this.httpClient.post(this.urlService.screening.screeningUrlById(this.screeningID$),
       {
         'status': 'Completed',
         'softSkillVerdict': verdict,
@@ -93,7 +90,7 @@ export class ScreeningService {
   }
 
   getScreeningById(id) {
-    return this.httpClient.get<Screening>(this.urlService.screening.getScreening(id));
+    return this.httpClient.get<Screening>(this.urlService.screening.screeningUrlById(id));
   }
 
   // Helper method that converts an input string to a boolean
@@ -105,7 +102,7 @@ export class ScreeningService {
     }
   }
   createScreening() {
-    this.httpClient.post(this.urlService.screening.startScreening(),
+    this.httpClient.post(this.urlService.screening.screeningUrl(),
       {
         'status': 'In Progress',
         'softSkillVerdict': 0,
@@ -123,7 +120,7 @@ export class ScreeningService {
   }
   updateScreening(id: number) {
     this.getScreeningById(id).subscribe(
-      screening => this.httpClient.post(this.urlService.screening.updateScreening(), screening)
+      screening => this.httpClient.post(this.urlService.screening.screeningUrlById(id), screening)
     );
   }
   // Submit comments related to the candidate's self-introduction

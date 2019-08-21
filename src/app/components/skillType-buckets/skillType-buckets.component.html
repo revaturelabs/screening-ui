@@ -33,7 +33,7 @@
                 </label>
               </i>
             </div>
-            <i id="penIcon" class="fas fa-pencil pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
+            <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket); open(edit)" placement="right"
               ngbTooltip="edit">
             </i>
 
@@ -74,7 +74,8 @@
 
   <div class="modal-footer">
     <!--* updateBucket(), updates the selected bucket to update database -->
-    <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="updateBucket(); c('Close click')">Close</button>
+    <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="c('Close click')">Cancel</button>
+    <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="updateBucket(); c('Close click')">Update</button>
   </div>
 </ng-template>
 

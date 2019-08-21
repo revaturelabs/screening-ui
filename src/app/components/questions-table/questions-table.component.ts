@@ -17,7 +17,7 @@ import { AnswerComponent } from '../answer/answer.component';
 // ngbootstrap modal
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 
 @Component({
   selector: 'app-questions-table',
@@ -28,8 +28,7 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 /*
 After the candidate has given their introduction,
 the screener will proceed to the question-and-answer part of the interview.
-A list of questions will be fetched from the server / database,
-based on the skills that the screener input on the candidate introduction page.
+A list of questions will be fetched from the server / database.
 Screener will be able to see a set of category tabs,
 each of which has a set of questions in a table.
 
@@ -70,13 +69,14 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private questionScoreService: QuestionScoreService,
     private modalService: NgbModal,
     private screeningService: ScreeningService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private skillTypeBucketService: SkillTypeBucketService,
   ) {}
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
-    const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
+    // need to retrieve skillTypeID from somewhere other than the Candidate. 
+    const skillTypeID = 0;
     this.subscriptions.push(
       this.skillTypeBucketService.
       getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
@@ -94,8 +94,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
       this.questionBuckets = bucketsWithWeights;
     }));
 
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-                          this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
 
     // update the answeredQuestions variable in our service to track the
     // questions that have been given a score by the screener.

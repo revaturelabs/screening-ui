@@ -9,7 +9,7 @@ import { QuestionScoreService } from 'src/app/services/question-score/question-s
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { SoftSkillsViolationService } from 'src/app/services/soft-skills-violation/soft-skills-violation.service';
-import { SimpleTraineeService } from 'src/app/services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from 'src/app/services/screening-state/screening-state.service';
 import { SkillTypesService } from 'src/app/services/skill-types/skill-types.service';
 import { ViolationTypeService } from 'src/app/services/violationType/violationType.service';
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
@@ -27,7 +27,7 @@ describe('AnswerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AnswerComponent, ViolationFlagComponent ],
       imports: [FormsModule, RouterTestingModule],
-      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService, SimpleTraineeService,
+      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService, ScreeningStateService,
       SkillTypesService, ViolationTypeService, AlertsService, Question]
     })
     .compileComponents();
