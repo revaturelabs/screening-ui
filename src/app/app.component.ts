@@ -12,5 +12,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 export class AppComponent {
   title = 'screening-ui-gen';
   constructor() {}
+  
 }
 
