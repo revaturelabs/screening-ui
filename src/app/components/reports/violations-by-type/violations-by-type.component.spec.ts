@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViolationsByTypeComponent } from './violations-by-type.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 describe('ViolationsByTypeComponent', () => {
   let component: ViolationsByTypeComponent;
@@ -8,6 +9,7 @@ describe('ViolationsByTypeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HighchartsChartModule],
       declarations: [ ViolationsByTypeComponent ]
     })
     .compileComponents();

@@ -10,21 +10,22 @@ export class ViolationsByTypeComponent implements OnInit {
 
  Highcharts = HighCharts;
  options: Object;
- _barData: object[];
- @Input()
- set barData(barData: object[]) {
-   this.setOptions(barData);
- }
+ //barData: object[];
+ @Input('barData') barData: object[];
+//  set barData(barData: object[]) {
+//    this.setOptions(barData);
+//  }
 
  constructor() {
   }
 
  ngOnInit() {
+  //this.setOptions(this.barData);
  }
  
  setOptions(barData: object[]) {
-   this._barData = barData;
-   if(this._barData.length > 0) {
+   this.barData = barData;
+   if(this.barData.length > 0) {
     this.options = {
       title: { 
         text: "Violations By Types",
@@ -43,7 +44,7 @@ export class ViolationsByTypeComponent implements OnInit {
         enabled: false
     },
       chart: { zoomType: 'x', type: 'column'},
-      series: [{name: 'Violation Type', colorByPoint: true, data: this._barData }]
+      series: [{name: 'Violation Type', colorByPoint: true, data: this.barData }]
     };
    }
    else {
@@ -65,7 +66,7 @@ export class ViolationsByTypeComponent implements OnInit {
         enabled: false
     },
       chart: { zoomType: 'x', type: 'column'},
-      series: [{name: 'Violation Type', colorByPoint: true, data: this._barData }]
+      series: [{name: 'Violation Type', colorByPoint: true, data: this.barData }]
     };
    }
  }
