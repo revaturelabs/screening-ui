@@ -1,14 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import * as HighCharts from 'highcharts';
 import { AverageSkillComponent } from './average-skill.component';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import * as Highcharts from 'highcharts';
 describe('AverageSkillComponent', () => {
   let component: AverageSkillComponent;
   let fixture: ComponentFixture<AverageSkillComponent>;
-
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AverageSkillComponent ]
+      imports:[RouterTestingModule],
+      declarations:[AverageSkillComponent],
+      providers:[]
     })
     .compileComponents();
   }));
