@@ -23,7 +23,7 @@ h1 {
   color: white;
   min-width: 260px;
   text-align: center;
-  font-size: 25px;
+  font-size: 1.66rem;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   width: 100%;
@@ -34,10 +34,12 @@ h1 {
 }
 
 h2 {
-  font-size: 20px;
+ 
+  font-size: 1.5rem;
 }
 p {
-  font-size: 15px;
+  
+  font-size: 1.33rem;
   margin-bottom: 5px;
 }
 /* #############################
@@ -48,10 +50,11 @@ p {
   margin: 0 auto;
   justify-content: center;
   white-space: nowrap;
-  font-size: 20px;
+  font-size: 1.33rem;
 }
 .info div p {
-  font-size: 20px;
+  
+  font-size: 1.5rem;
 }
 .name,
 .skillType {
@@ -71,7 +74,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   overflow: hidden;
-  font-size: 18px;
+  font-size: 1.33rem;
 }
 #skills-checkbox label {
   width: 100%;
@@ -89,7 +92,8 @@ p {
 }
 
 .comment-container {
-  font-size: 20px;
+  
+  font-size: 1.5rem;
   margin-right:10px;
   margin-left: 10px;
 }
