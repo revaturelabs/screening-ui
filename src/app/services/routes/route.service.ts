@@ -99,7 +99,7 @@ export class RouteService {
    */
   private fetchAll(): void {
     const root = routes.find(route => {
-      return route.component === AppComponent;
+      return route.path === '';
     });
     const nodes = root.children;
     nodes.forEach( (node) => {
