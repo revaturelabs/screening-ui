@@ -167,9 +167,8 @@ export class SkillTypesComponent implements OnInit {
     * @param bucket: bucket object needed to be added to skill types.
     */
     addToSkillTypeBuckets(bucky: Bucket) {
-        console.log(bucky);
         if (this.singleSkillType) {
-            console.log('if called');
+            console.log('if called ' + bucky.bucketDescription);
             const relationship: Weight = {
                 bucket: bucky,
                 skillType: this.singleSkillType,
