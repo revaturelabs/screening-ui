@@ -206,7 +206,7 @@ export class SkillTypesComponent implements OnInit {
                     removed = j;
                 }
             }
-            this.allWeights.splice( removed, 1);
+            this.allWeights.splice(removed, 1);
         }
     }
 
