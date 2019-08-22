@@ -17,7 +17,8 @@ describe('ViolationsByTypeComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ViolationsByTypeComponent);
-    component = fixture.componentInstance;
+    component = fixture.debugElement.componentInstance;
+    component.barData = new Array();
     fixture.detectChanges();
   });
 

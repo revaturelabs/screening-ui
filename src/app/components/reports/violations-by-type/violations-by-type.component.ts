@@ -10,25 +10,24 @@ export class ViolationsByTypeComponent implements OnInit {
 
  Highcharts = HighCharts;
  options: Object;
- //barData: object[];
  @Input('barData') barData: object[];
-//  set barData(barData: object[]) {
-//    this.setOptions(barData);
-//  }
+  set data(barData: object[]) {
+  this.setOptions(barData);
+  }
 
  constructor() {
   }
 
  ngOnInit() {
-  //this.setOptions(this.barData);
+  this.setOptions(this.data);
  }
- 
+
  setOptions(barData: object[]) {
-   this.barData = barData;
-   if(this.barData.length > 0) {
+   barData = this.data;
+   if (this.barData.length > 0) {
     this.options = {
-      title: { 
-        text: "Violations By Types",
+      title: {
+        text: 'Violations By Types',
         y: 10,
         floating: false
       },
@@ -46,11 +45,10 @@ export class ViolationsByTypeComponent implements OnInit {
       chart: { zoomType: 'x', type: 'column'},
       series: [{name: 'Violation Type', colorByPoint: true, data: this.barData }]
     };
-   }
-   else {
+   } else {
     this.options = {
       title: { 
-        text: "Violations By Types Graph is N/A",
+        text: 'Violations By Types Graph is N/A',
         y: 200,
         floating: true
       },

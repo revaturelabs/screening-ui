@@ -23,8 +23,8 @@ describe('LoginComponent', () => {
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, HttpModule, HttpClientModule],
       declarations: [ LoginComponent ],
       providers: [AuthenticationService, AmplifyService, AlertsService,UrlService]
-    })
-  
+    });
+
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     mockAuthenticationService =TestBed.get(AuthenticationService);
