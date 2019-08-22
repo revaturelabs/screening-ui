@@ -98,7 +98,9 @@ export class RouteService {
    * AppComponent and pushed them on the "all" subject
    */
   private fetchAll(): void {
-    const root = routes.find((route) => route.component === AppComponent);
+    const root = routes.find(route => {
+      return route.path === '';
+    });
     const nodes = root.children;
     nodes.forEach( (node) => {
       node.path = [ this.rootNode, node.path].join('/');
