@@ -27,7 +27,8 @@
     width: 350px; /* Could be more or less, depending on screen size */
 }
 h2{
-    font-size: 1.25em;
+    
+    font-size: 1.25rem;
     margin-bottom: 15px;
 }
 .buttons{

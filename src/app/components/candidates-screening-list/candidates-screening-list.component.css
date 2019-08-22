@@ -39,7 +39,7 @@ h1{
     border-top-right-radius: 4px;
     border-color: #f26925;
     text-align: center;
-    font-size: 25px;
+    font-size: 1.65rem;
     white-space:nowrap;
 }
 
@@ -67,20 +67,18 @@ h1{
 #screenings-table{
     max-height: 300px;
     margin-bottom: 20px;
-    font-size: 20px !important;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+    font-size: 1.25rem !important;
 }
 
 .table thead th, .table td, .table th{
     border-top: 1px solid #b1b8bd;
     border-bottom: 1px solid #7f97a8;
-    font-size: 12px;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+    font-size: 1.25rem;
+   
 }
 .table td, .table th{
     padding: .5rem;
-    font-size: .7em;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+    font-size: .88rem;
 }
 .table td{
     cursor: pointer;
@@ -99,7 +97,8 @@ h1{
 .pagination {
     margin: auto;
     width: 100%;
-    font-size: 15px;
+    font-size: 1.25rem;
+    
 }
 .pagination /deep/ pagination-template{
     width: 100%;
