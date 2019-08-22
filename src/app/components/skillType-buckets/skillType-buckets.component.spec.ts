@@ -37,7 +37,7 @@ beforeEach(()=>{
 });
 
 
-it(`Something`,()=>{
+it(`Checking if all buckets were returned`,()=>{
    spyOn(fakeBucketService,`getAllBuckets`)
    .and.returnValues(of(fakeBukets));
   
