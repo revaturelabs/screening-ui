@@ -26,7 +26,8 @@ export class UrlService {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
-    createNewBucket: () => `${this.bucketEndpoint}`
+    createNewBucket: () => `${this.bucketEndpoint}`,
+    deleteBucket: ()=> `${this.bucketEndpoint}`
   };
 
   /**
@@ -39,11 +40,11 @@ export class UrlService {
    */
   private questionEndpoint = (this.adminContext + '/question');
   question = {
-    postQuestion: () => `${this.questionEndpoint}/new`,
+    postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
+    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
    };
 

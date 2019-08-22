@@ -14,7 +14,7 @@ h1{
     min-width: 260px;
     background: #f26925;
     color: white;  
-    font-size: 20px;
+    font-size: 1.5rem;
     border-color: #f26925;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -25,16 +25,16 @@ h1{
 }
 h2{
     margin-bottom: 5px;
-    font-size: 18px;
+    font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 3px;
 }
 p{
-    font-size: 15px;  
+    font-size: 1.33rem;  
     margin-bottom: 0px;
 }
 #candidate-name{
-    font-size:20px;
+    font-size:1.5rem;
 }
 #q-and-a-content{
     padding: 20px 5%;
@@ -84,7 +84,7 @@ li .inActive{
 #question-table-title{
     margin-top: 15px;
     margin-bottom: 5px;
-    font-size: 18px;
+    font-size: 1.33rem;
 }
 .question-col{
     padding: 0px !important;
@@ -94,7 +94,7 @@ li .inActive{
 .table[_ngcontent-c11] td[_ngcontent-c11], 
 .table[_ngcontent-c11] th[_ngcontent-c11] {
     border-top:0px;
-    font-size: 15px;
+    font-size: 1.33rem;
 }
 
 .table td, .table th{
@@ -143,12 +143,12 @@ li .inActive{
 }
 
 #footsie{
-	font-size: 16px;
+	font-size: 1.33rem;
 	border: 1px solid #ccc;
     border-radius: 4px;
 }
 h3{
-    font-size: 18px;
+    font-size: 1.33rem;
     white-space: nowrap;
     margin-top: 15px;
     margin-bottom: 10px;

@@ -101,10 +101,14 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question.questionId).subscribe();
+      this.questionService.deactivateQuestion(question).subscribe( question => {
+        this.updateQuestions()
+      });
    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question.questionId).subscribe();
+      this.questionService.activateQuestion(question).subscribe( question => {
+        this.updateQuestions()
+      });
    }
   }
 
@@ -142,7 +146,10 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
+        this.question.bucket = this.currentBucket;
+        
         this.questionService.updateQuestion(this.question).subscribe();
+       
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -150,6 +157,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
+        this.question.bucket=this.currentBucket;
         this.questionService.createNewQuestion(this.question).subscribe();
         this.savedSuccessfully();
       }
@@ -168,8 +176,28 @@ export class QuestionComponent implements OnInit {
   updateQuestions() {
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
-        this.questions = (data as Question[]);
+        this.questions = data;
+        this.questions.sort(this.compare);
+        this.questions.sort(this.compare2);
       });
+    }
+  }
+
+  /** used to compare questions Array to sort it based on status */
+  compare(a: Question, b: Question) {
+    if(a.isActive)
+    {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
+  compare2(a: Question, b: Question){
+    if(a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()){
+      return -1;
+    }else{
+      return 1;
     }
   }
 

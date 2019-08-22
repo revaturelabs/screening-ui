@@ -21,8 +21,9 @@ h1{
   border-top-right-radius: 4px;
   border-color: #f26925;
   text-align: center;
-  font-size: 25px;
+  font-size: 1.66rem;
   white-space:nowrap;
+  
 }
 
 
@@ -248,11 +249,11 @@ input:checked + .slider:before {
   width: 85px;
   height: 47px;
   justify-content: center;
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 #font-fix{
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 
