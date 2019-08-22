@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CandidatesScreeningListComponent } from './candidates-screening-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {
   PaginatePipe, PaginationControlsComponent,
   PaginationControlsDirective, PaginationService
@@ -15,6 +15,9 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { Candidate } from '../../entities/Candidate';
+import { SearchPipe } from 'src/app/pipes/search.pipe';
+import { UrlService } from 'src/app/services/urls/url.service';
+import { SkillType } from 'src/app/entities/SkillType';
 
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
@@ -23,10 +26,10 @@ describe('CandidatesScreeningListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CandidatesScreeningListComponent, PaginatePipe, PaginationControlsComponent,
-        PaginationControlsDirective],
-      imports: [FormsModule, HttpClientModule],
+        PaginationControlsDirective,SearchPipe],
+      imports: [FormsModule, HttpClientModule,ReactiveFormsModule],
       providers: [ScreeningStateService, ScreeningService, ScheduledScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypesService, PaginationService]
+        QuestionScoreService, SkillTypesService, PaginationService,UrlService]
     })
       .compileComponents();
   }));
@@ -56,8 +59,8 @@ describe('CandidatesScreeningListComponent', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
     component.confirmSelectedCandidate();
-    const confirm = localStorage.getItem('scheduledScreeningID');
-    expect(confirm).toEqual('1');
+    const confirm = component.selectedScheduledScreening.scheduledScreeningId;
+    expect(confirm).toEqual(1);
   });
 
   // it('should reload window', () => {
@@ -70,7 +73,8 @@ describe('CandidatesScreeningListComponent', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
     component.selectedCandidate = {} as Candidate;
-    component.selectedScheduledScreening.track.skillTypeId = 1;
+    component.selectedScheduledScreening.track={} as SkillType;
+    component.selectedScheduledScreening.track.skillTypeId=1;
     component.beginScreening();
     expect(component.scheduledScreenings).toBeDefined();
   });
@@ -79,6 +83,7 @@ describe('CandidatesScreeningListComponent', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
     component.selectedCandidate = {} as Candidate;
+    component.selectedScheduledScreening.track={} as SkillType;
     component.selectedScheduledScreening.track.skillTypeId = 1;
     component.beginScreening();
     expect(localStorage.getItem('screeningID')).not.toBeNull();
