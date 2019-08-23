@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScreeningConfigComponent } from './screening-config.component';
 import { SkillTypeBucketsComponent } from '../skillType-buckets/skillType-buckets.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { SkillTypesComponent } from '../skillTypes/skillTypes.component';
 import { CandidateComponent } from '../candidate/candidate.component';
 import { FormsModule, FormBuilder } from '@angular/forms';
@@ -22,7 +22,7 @@ describe('ScreeningConfigComponent', () => {
     TestBed.configureTestingModule({
       imports: [NgbModule, FormsModule, RouterTestingModule, HttpClientModule],
       declarations: [ ScreeningConfigComponent, SkillTypeBucketsComponent, SkillTypesComponent, CandidateComponent ],
-      providers: [BucketsService, UrlService, AlertsService, FormBuilder, SkillTypesService, SkillTypeBucketService]
+      providers: [BucketsService, UrlService, AlertsService, FormBuilder, SkillTypesService, SkillTypeBucketService, NgbTabset]
     })
     .compileComponents();
   }));
