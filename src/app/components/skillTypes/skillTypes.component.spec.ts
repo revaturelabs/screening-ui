@@ -1,6 +1,6 @@
 import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { SkillTypesComponent } from './skillTypes.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, FormBuilder } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,8 @@ describe('skillTypesComponent', () => {
         TestBed.configureTestingModule({
             imports: [NgbModule, FormsModule, RouterTestingModule, HttpClientModule],
             declarations: [SkillTypesComponent],
-            providers: [BucketsService, UrlService, AlertsService, FormBuilder, SkillTypesService, SkillTypeBucketService]
+            providers: [BucketsService, UrlService, AlertsService, FormBuilder, SkillTypesService, SkillTypeBucketService,
+            NgbTabset]
         }) .compileComponents();
     }));
 
