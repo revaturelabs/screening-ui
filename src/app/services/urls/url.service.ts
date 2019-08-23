@@ -91,7 +91,7 @@ export class UrlService {
     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
     putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/updateSkillTypeBucket`,
+    updateSkillTypeBuckets: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
     getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
 
