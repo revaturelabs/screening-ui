@@ -37,7 +37,7 @@ beforeEach(() => {
 });
 
 
-it(`Checking if all buckets were returned`,(done: DoneFn) => {
+it(`Checking if all buckets were returned`, (done: DoneFn) => {
    spyOn(fakeBucketService, `getAllBuckets`)
    .and.returnValues(of(fakeBukets));
   done();

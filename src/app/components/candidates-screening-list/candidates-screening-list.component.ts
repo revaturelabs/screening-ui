@@ -76,7 +76,7 @@ export class CandidatesScreeningListComponent implements OnInit {
     }
     this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
   }
- 
+
   // Reveals the "Begin Interview" prompt
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {
@@ -110,7 +110,7 @@ export class CandidatesScreeningListComponent implements OnInit {
         data => {
         // and save the screening ID as a cookie to localStorage.
         localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
-        localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());;
+        localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
       });
   }
 }
