@@ -312,7 +312,16 @@ export class SkillTypesComponent implements OnInit {
             this.allSkillTypes = results;
             this.setSkillTypes();
             this.allSkillTypes.sort(this.compare);
+            this.allSkillTypes.sort(this.compareAlphabetically);
         });
+    }
+
+    compareAlphabetically(a: SkillType, b: SkillType){
+        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
+            return -1;
+        }else{
+            return 1;
+        }
     }
 
     /** used to compare SkillType Array to sort it based on status */
