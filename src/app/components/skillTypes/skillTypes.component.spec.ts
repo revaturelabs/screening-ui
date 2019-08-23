@@ -1,3 +1,3 @@
-describe('skillTypesComponent', ()=>{
-    
-})
+describe('skillTypesComponent', () => {
+
+});

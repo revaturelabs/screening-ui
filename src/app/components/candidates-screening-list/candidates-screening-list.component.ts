@@ -22,7 +22,7 @@ import { SearchPipe } from '../../pipes/search.pipe';
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
   styleUrls: ['./candidates-screening-list.component.css'],
-  providers: [SearchPipe]
+  providers: [SearchPipe, NgxPaginationModule]
 })
 
 /**
@@ -109,8 +109,8 @@ export class CandidatesScreeningListComponent implements OnInit {
         // take the data from the response from the database
         data => {
         // and save the screening ID as a cookie to localStorage.
-        localStorage.setItem('screeningID', data.toString());
-        localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
+        localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
+        localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());;
       });
   }
 }
