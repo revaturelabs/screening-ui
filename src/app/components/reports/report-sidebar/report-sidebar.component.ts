@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { NgForm } from '@angular/forms'
+import { NgForm } from '@angular/forms';
 import { Options, ChangeContext, PointerType } from 'ng5-slider';
 
 import { ReportService } from 'src/app/services/reports/report.service';
@@ -24,7 +24,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./report-sidebar.component.css']
 })
 export class ReportSidebarComponent implements OnInit {
- 
+
 
 
 
@@ -32,18 +32,19 @@ export class ReportSidebarComponent implements OnInit {
   screenerEmail = new Array<Screening>();
   screenerName = [];
   private searchTerms = new Subject<string>();
-  emailSearchTerm: string = '';
-  //sliderControl: FormControl;
+  emailSearchTerm = '';
+  // sliderControl: FormControl;
   _reportData: ReportData;
-  @Input('reportData') reportData:ReportData
+  @Input('reportData')
+  reportData: ReportData;
   // set reportData(reportData: ReportData){
   //   this._reportData = reportData;
   // }
   // Used to emit slider events to master-component
   @Output() sliderChange = new EventEmitter();
- 
 
-  
+
+
   constructor(
     private reportService: ReportService,
     private modalService: NgbModal
@@ -51,7 +52,7 @@ export class ReportSidebarComponent implements OnInit {
 
   search(term: string): void {
     this.searchTerms.next(term);
-   //if (term === '')
+   // if (term === '')
      // this.searchChange.emit('');
   }
 
@@ -60,13 +61,13 @@ export class ReportSidebarComponent implements OnInit {
   }
 
   /*onClickScreenerEmail(screener) {
-    //console.log(`clicked on ${screener}`);
+    console.log(`clicked on ${screener}`);
     this.emailSearchTerm = screener;
     this.searchTerms.next('');
     this.searchChange.emit(screener);
   }*/
 
-  
+
   getChangeContextString(changeContext: ChangeContext): string {
     return `{pointerType: ${changeContext.pointerType === PointerType.Min ? 'Min' : 'Max'}, ` +
            `value: ${changeContext.value}, ` +
@@ -90,7 +91,7 @@ export class ReportSidebarComponent implements OnInit {
             item.scheduledScreening.scheduledDate
       );
     });*/
-    )
+    );
 
    /* for (let i = 0; i < this.screenerEmail.length; i++){
           this.screenerEmail[i].name;
@@ -103,7 +104,7 @@ export class ReportSidebarComponent implements OnInit {
 }
 
       // this.screenerEmail$ = this.searchTerms.pipe(
-      
+
         // debounceTime(300),
         // distinctUntilChanged(),
         // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
@@ -111,18 +112,15 @@ export class ReportSidebarComponent implements OnInit {
       // );
      // console.log( this.screenerEmail[0].scheduledScreening.candidate.name);
     // })
-    
+
         //this.screenerName = data.scheduledScreening.candidate.name;
-      
+
     /*this.screenerEmails$ = this.searchTerms.pipe(
-      
+
       debounceTime(300),
       distinctUntilChanged(),
       // switchMap((partialEmail: string) => this.reportService.getScreenersByPartialEmail(partialEmail))
       switchMap((partialEmail: any) => this.reportService.getAllScreeners())
-    
+
     ); */
-    
-    
-  // 
 }

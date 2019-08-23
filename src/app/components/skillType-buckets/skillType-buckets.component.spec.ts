@@ -23,14 +23,14 @@ describe('SkillTypeBucketsComponent', () => {
 let fixture: ComponentFixture<SkillTypeBucketsComponent>;
 let component: SkillTypeBucketsComponent;
 let fakeBucketService: BucketsService;
-let fakeBukets: Bucket[] = [null];
+const fakeBukets: Bucket[] = [null];
 
-beforeEach(()=>{
+beforeEach(() => {
   TestBed.configureTestingModule({
-    imports:[RouterTestingModule, FormsModule, HttpClientModule],
-    declarations:[SkillTypeBucketsComponent],
-    providers:[BucketsService, AlertsService, UrlService]
-  })
+    imports: [RouterTestingModule, FormsModule, HttpClientModule],
+    declarations: [SkillTypeBucketsComponent],
+    providers: [BucketsService, AlertsService, UrlService]
+  });
   fixture = TestBed.createComponent(SkillTypeBucketsComponent);
   component = fixture.componentInstance;
   fakeBucketService = TestBed.get(BucketsService);

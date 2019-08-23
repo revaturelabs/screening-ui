@@ -25,8 +25,4 @@ describe('ReportSidebarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', (done: DoneFn) => {
-    expect(component).toBeTruthy();
-    done();
-  });
 });

@@ -5,23 +5,24 @@ import { SkillTypeBucketsComponent } from '../skillType-buckets/skillType-bucket
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SkillTypesComponent } from '../skillTypes/skillTypes.component';
 import { CandidateComponent } from '../candidate/candidate.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BucketsService } from 'src/app/services/buckets/buckets.service';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
+import { SkillTypesService } from 'src/app/services/skill-types/skill-types.service';
+import { SkillTypeBucketService } from 'src/app/services/skillTypeBucketLookup/skill-type-bucket.service';
 
-describe('ScreeningComponent', () => {
+describe('ScreeningConfigComponent', () => {
   let component: ScreeningConfigComponent;
   let fixture: ComponentFixture<ScreeningConfigComponent>;
-let mockBucketService:BucketsService;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgbModule.forRoot(), FormsModule, RouterTestingModule, HttpClientModule, HttpModule],
+      imports: [NgbModule, FormsModule, RouterTestingModule, HttpClientModule],
       declarations: [ ScreeningConfigComponent, SkillTypeBucketsComponent, SkillTypesComponent, CandidateComponent ],
-      providers: [BucketsService, UrlService, AlertsService]
+      providers: [BucketsService, UrlService, AlertsService, FormBuilder, SkillTypesService, SkillTypeBucketService]
     })
     .compileComponents();
   }));
