@@ -2,6 +2,7 @@ import {BucketsService} from './buckets.service';
 import { Bucket } from 'src/app/entities/Bucket';
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
+import { inject } from '@angular/core/testing';
 
 export function asyncData<T>(data: T) {
     return defer(() => Promise.resolve(data));

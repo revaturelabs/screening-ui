@@ -23,6 +23,8 @@ import { ViolationTypeService } from '../../services/violationType/violationType
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
 import { RouterTestingModule } from '@angular/router/testing'; 
+import { QuestionScore } from 'src/app/entities/QuestionScore';
+import { BucketsService } from 'src/app/services/buckets/buckets.service';
 
 
 // Author: David Gustafson
@@ -40,6 +42,15 @@ const QUESTION: Question = {
   sampleAnswer5: 'string',
   isActive: true,
   bucket: new Bucket()
+};
+const mockQuestionScore:QuestionScore = {
+  qSID: 1,
+  questionId: 1,
+  screeningID: 1,
+  score: 1,
+  commentary: 'string',
+  bucketId: 1,
+  beginTime: new Date
 };
 
 const BUCKETS: Bucket[] = [
@@ -78,33 +89,21 @@ describe('QuestionsTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionsTableComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should set questionBuckets to [] false', () => {
-  //   component.ngOnDestroy();
-  //   if (component.questionBuckets !== undefined) {
-  //     for (const bucket of component.questionBuckets) {
-  //       expect(bucket.questions).toEqual([]);
-  //     }
-  //   }
-  // });
-
-  // it('should set questionBuckets to [] true', () => {
-  //   component.questionBuckets = BUCKETS;
-  //   component.ngOnDestroy();
-  //   if (component.questionBuckets !== undefined) {
-  //     for (const bucket of component.questionBuckets) {
-  //       expect(bucket.questions).toEqual([]);
-  //     }
-  //   }
-  // });
-
-  
+  it('should set questionBuckets to [] false', () => {
+    component.ngOnDestroy();
+    if (component.questionBuckets !== undefined) {
+      for (const bucket of component.questionBuckets) {
+        let bs = jasmine.createSpyObj('QuestionService', ['getBucketQuestions']);
+        expect(bs.getBucketQuestions(bucket.bucketId)).toEqual([]);
+      }
+    }
+  });
 
   it('should set run open', () => {
     const spy = spyOn(component, 'open');
@@ -116,16 +115,10 @@ describe('QuestionsTableComponent', () => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
   });
 
-  // it('should return true', () => {
-  //   component.questionScores.push({
-  //     qSID: 1,
-  //     questionId: 1,
-  //     screeningID: 1,
-  //     score: 1,
-  //     commentary: 'string',
-  //     beginTime: new Date});
-  //   expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
-  // });
+  it('should return true', () => {
+    component.questionScores.push(mockQuestionScore);
+    expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
+  });
 
   it('should return true', () => {
     expect(component.submitAllowed()).toBeTruthy();
@@ -135,12 +128,5 @@ describe('QuestionsTableComponent', () => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
   });
-
-  // it('should set comment', () => {
-  //   const mine = new QuestionsTableComponent(null, null, null, null, null,
-  //     new ScreeningService(new HttpClient({} as HttpHandler), null), null, null);
-  //   mine.generalComment = 'hi';
-  //   expect(mine.saveFeedback()).toBeTruthy();
-  // });
 
 });
