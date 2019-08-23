@@ -63,12 +63,6 @@ describe('CandidatesScreeningListComponent', () => {
     expect(confirm).toEqual(1);
   });
 
-  // it('should reload window', () => {
-  //   const spy = spyOn(window.location, 'reload');
-  //   component.ngOnInit();
-  //   expect(spy).toHaveBeenCalled();
-  // });
-
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
