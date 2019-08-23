@@ -30,7 +30,8 @@ describe('LoginComponent', () => {
     mockAuthenticationService =TestBed.get(AuthenticationService);
   });
 
-  it('should create', () => {
+  it('should create', (done: DoneFn) => {
     expect(component).toBeTruthy();
+    done();
   });
 });

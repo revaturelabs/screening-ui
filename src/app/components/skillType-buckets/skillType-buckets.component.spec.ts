@@ -20,28 +20,28 @@ import { UrlService } from 'src/app/services/urls/url.service';
 
 describe('SkillTypeBucketsComponent', () => {
 
-let fixture:ComponentFixture<SkillTypeBucketsComponent>;
-let component:SkillTypeBucketsComponent;
-let fakeBucketService:BucketsService;
-let fakeBukets:Bucket[]=[null];
+let fixture: ComponentFixture<SkillTypeBucketsComponent>;
+let component: SkillTypeBucketsComponent;
+let fakeBucketService: BucketsService;
+let fakeBukets: Bucket[] = [null];
 
 beforeEach(()=>{
   TestBed.configureTestingModule({
-    imports:[RouterTestingModule,FormsModule,HttpModule,HttpClientModule],
+    imports:[RouterTestingModule, FormsModule, HttpClientModule],
     declarations:[SkillTypeBucketsComponent],
-    providers:[BucketsService,AlertsService,UrlService]
+    providers:[BucketsService, AlertsService, UrlService]
   })
-  fixture=TestBed.createComponent(SkillTypeBucketsComponent);
-  component=fixture.componentInstance;
-  fakeBucketService=TestBed.get(BucketsService);
+  fixture = TestBed.createComponent(SkillTypeBucketsComponent);
+  component = fixture.componentInstance;
+  fakeBucketService = TestBed.get(BucketsService);
 });
 
 
-it(`Checking if all buckets were returned`,()=>{
-   spyOn(fakeBucketService,`getAllBuckets`)
+it(`Checking if all buckets were returned`,(done: DoneFn) => {
+   spyOn(fakeBucketService, `getAllBuckets`)
    .and.returnValues(of(fakeBukets));
-  
-})
+  done();
+});
 
 
 

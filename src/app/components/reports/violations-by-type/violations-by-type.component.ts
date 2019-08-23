@@ -47,7 +47,7 @@ export class ViolationsByTypeComponent implements OnInit {
     };
    } else {
     this.options = {
-      title: { 
+      title: {
         text: 'Violations By Types Graph is N/A',
         y: 200,
         floating: true
@@ -64,7 +64,7 @@ export class ViolationsByTypeComponent implements OnInit {
         enabled: false
     },
       chart: { zoomType: 'x', type: 'column'},
-      series: [{name: 'Violation Type', colorByPoint: true, data: this.barData }]
+      series: [{name: 'Violation Type', colorByPoint: true, data: this.barData}]
     };
    }
  }

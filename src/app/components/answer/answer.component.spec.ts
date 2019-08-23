@@ -27,7 +27,8 @@ describe('AnswerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AnswerComponent, ViolationFlagComponent ],
       imports: [FormsModule, RouterTestingModule],
-      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService, ScreeningStateService,
+      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, 
+        SoftSkillsViolationService, ScreeningStateService,
       SkillTypesService, ViolationTypeService, AlertsService, Question]
     })
     .compileComponents();
@@ -41,7 +42,8 @@ describe('AnswerComponent', () => {
     //fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', (done: DoneFn) => {
     expect(component).toBeTruthy();
+    done();
   });
 });

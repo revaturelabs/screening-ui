@@ -81,8 +81,9 @@ describe('QuestionsTableComponent', () => {
     //fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', (done: DoneFn) => {
     expect(component).toBeTruthy();
+    done();
   });
 
   // it('should set questionBuckets to [] false', () => {
@@ -106,14 +107,16 @@ describe('QuestionsTableComponent', () => {
 
   
 
-  it('should set run open', () => {
+  it('should set run open', (done: DoneFn) => {
     const spy = spyOn(component, 'open');
     component.open(QUESTION);
     expect(spy).toHaveBeenCalled();
+    done();
   });
 
-  it('should return false', () => {
+  it('should return false', (done: DoneFn) => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
+    done();
   });
 
   // it('should return true', () => {
@@ -127,13 +130,15 @@ describe('QuestionsTableComponent', () => {
   //   expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
   // });
 
-  it('should return true', () => {
+  it('should return true', (done: DoneFn) => {
     expect(component.submitAllowed()).toBeTruthy();
+    done();
   });
 
-  it('should return false', () => {
+  it('should return false', (done: DoneFn) => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
+    done();
   });
 
   // it('should set comment', () => {

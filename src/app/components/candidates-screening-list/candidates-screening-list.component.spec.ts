@@ -40,27 +40,31 @@ describe('CandidatesScreeningListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', (done: DoneFn) => {
     expect(component).toBeTruthy();
+    done();
   });
 
-  it('should return none', () => {
+  it('should return none', (done: DoneFn) => {
     const result = component.toggleBeginScreeningPrompt();
     expect(result).toEqual('none');
+    done();
   });
 
-  it('should return block', () => {
+  it('should return block', (done: DoneFn) => {
     component.showBeginScreeningPrompt = true;
     const result = component.toggleBeginScreeningPrompt();
     expect(result).toEqual('block');
+    done();
   });
 
-  it('should update storage', () => {
+  it('should update storage', (done: DoneFn) => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
     component.confirmSelectedCandidate();
     const confirm = component.selectedScheduledScreening.scheduledScreeningId;
     expect(confirm).toEqual(1);
+    done();
   });
 
   // it('should reload window', () => {
@@ -69,7 +73,7 @@ describe('CandidatesScreeningListComponent', () => {
   //   expect(spy).toHaveBeenCalled();
   // });
 
-  it('should begin screening', () => {
+  it('should begin screening', (done: DoneFn) => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
     component.selectedCandidate = {} as Candidate;
@@ -77,16 +81,18 @@ describe('CandidatesScreeningListComponent', () => {
     component.selectedScheduledScreening.track.skillTypeId = 1;
     component.beginScreening();
     expect(component.scheduledScreenings).toBeDefined();
+    done();
   });
 
-  it('should populate localStorage', () => {
+  it('should populate localStorage', (done: DoneFn) => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
     component.selectedCandidate = {} as Candidate;
     component.selectedScheduledScreening.track = {} as SkillType;
     component.selectedScheduledScreening.track.skillTypeId = 1;
     component.beginScreening();
-    // expect(localStorage.getItem('screeningID')).not.toBeNull();
+    expect(localStorage.getItem('screeningID')).not.toBeNull();
+    done();
   });
 
 });

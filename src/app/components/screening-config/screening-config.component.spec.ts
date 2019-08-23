@@ -32,7 +32,8 @@ let mockBucketService:BucketsService;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', (done: DoneFn) => {
     expect(component).toBeTruthy();
+    done();
   });
 });

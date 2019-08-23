@@ -28,7 +28,8 @@ providers: [ReportService, UrlService]
     mockReportService =TestBed.get(ReportService);
   });
 
-  it('should create', () => {
+  it('should create', (done: DoneFn) => {
     expect(component).toBeTruthy();
+    done();
   });
 });
