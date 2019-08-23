@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReportSidebarComponent } from './report-sidebar.component';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UrlService } from 'src/app/services/urls/url.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 describe('ReportSidebarComponent', () => {
   let component: ReportSidebarComponent;
@@ -8,7 +13,9 @@ describe('ReportSidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReportSidebarComponent ]
+      imports: [FormsModule, NgbModule.forRoot(), HttpModule, HttpClientModule],
+      declarations: [ ReportSidebarComponent],
+      providers:[UrlService]
     })
     .compileComponents();
   }));
