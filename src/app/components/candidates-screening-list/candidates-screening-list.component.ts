@@ -75,6 +75,7 @@ export class CandidatesScreeningListComponent implements OnInit {
       window.location.reload(true);
     }
     this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
+  
   }
  
   // Reveals the "Begin Interview" prompt
@@ -84,6 +85,10 @@ export class CandidatesScreeningListComponent implements OnInit {
     } else {
       return 'none';
     }
+  }
+
+  click(){
+    console.log("has been clicked");
   }
 
   // clicking "Begin Interview" will save the candidate for later use
