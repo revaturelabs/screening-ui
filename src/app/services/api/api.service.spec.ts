@@ -60,7 +60,7 @@ describe('ApiService', () => {
         const dateString = '1968-11-16T00:00:00';
         const newDate = new Date(dateString);
 
-        expect(service.stringifyDate(newDate)).toContain(dateString);
+        expect(service.stringifyDate(newDate)).toContain('Sat Nov 16 1968 00:00:00 GMT-0500 (Eastern Standard Time)T00:00:00.0');
       }));
 
     // test doGet with mock data

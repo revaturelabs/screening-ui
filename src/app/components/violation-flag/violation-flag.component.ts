@@ -79,7 +79,7 @@ export class ViolationFlagComponent implements OnInit {
       screeningID: +localStorage.getItem('screeningID'),
       violationType: violationType,
       Time: new Date(),
-      Comment: comment
+      //Comment: comment
     });
     this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
     });
