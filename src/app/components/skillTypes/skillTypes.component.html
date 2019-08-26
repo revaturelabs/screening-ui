@@ -13,7 +13,7 @@
                         {{skillType.title}}
                         <i id="xIcon">
                             <label class="switch">
-                                <input type="checkbox" [(ngModel)]="skillType.isActive" (change)="skillTypeUpdate(skillType)" >
+                                <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)" >
                                 <span class="slider round" placement="top" ngbTooltip="active"></span>
                             </label>
                         </i>
@@ -91,7 +91,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType)" [disabled]="error" *ngIf="singleSkillType">Save</button>
-        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType()" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
     </div>
 </ng-template>
 
