@@ -5,11 +5,14 @@ import { Subscription } from 'rxjs';
 import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { QuestionScore } from '../../entities/QuestionScore';
+import { ScheduledScreening } from 'src/app/entities/ScheduledScreening';
 
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 
 // Modal for answering the question
 import { AnswerComponent } from '../answer/answer.component';
@@ -18,6 +21,7 @@ import { AnswerComponent } from '../answer/answer.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+
 
 @Component({
   selector: 'app-questions-table',
@@ -49,6 +53,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // holds the current category. Used to control
   // which questions are displayed in the questions table.
   currentBucket: number;
+
+  // Used to display the current track:
+  currentScreenings: ScheduledScreening;
 
   // value entered enables finish button
   generalComment: string;
@@ -95,6 +102,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     }));
 
     this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
+    this.currentScreenings = this.screeningStateService.getCurrentScreening();
 
     // update the answeredQuestions variable in our service to track the
     // questions that have been given a score by the screener.
