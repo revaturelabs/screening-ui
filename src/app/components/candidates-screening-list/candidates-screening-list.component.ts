@@ -43,7 +43,7 @@ export class CandidatesScreeningListComponent implements OnInit {
   // when a screener (user) clicks on a screening,
   // save the candidate and scheduled screening
   // to their respective services.
-  selectedCandidate: Candidate;
+//  selectedCandidate: Candidate;
   selectedScheduledScreening: ScheduledScreening;
   // Flag for displaying the "Begin Interview" prompt
   showBeginScreeningPrompt = false;
