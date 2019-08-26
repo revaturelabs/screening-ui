@@ -29,7 +29,7 @@
               {{question.questionText}}
               <i id="xIcon">
                 <label class="switch">
-                  <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
+                  <input type="checkbox" [checked]=question.isActive (click)="click()" (change)="changeQuestionStatus(question)" >
                   <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
                   <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!question.isActive"></span>
                 </label>
