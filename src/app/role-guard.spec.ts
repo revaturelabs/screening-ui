@@ -1,11 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { RoleGuard } from './role-guard';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('RoleGuardService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RoleGuard]
+      providers: [RoleGuard, CookieService]
     });
   });
 

@@ -27,6 +27,8 @@ const httpOptions = {
   })
 };
 
+
+
 @Injectable()
 export class QuestionsService {
 
@@ -36,6 +38,8 @@ export class QuestionsService {
   ) { }
 
   questions: Question[];
+
+  
 
   private returnBuckets: Bucket[] = [];
 
