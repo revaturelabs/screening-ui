@@ -99,17 +99,16 @@ export class QuestionComponent implements OnInit {
    * or from deactive to active based on its current status
    **/
   changeQuestionStatus(question) {
-    console.log("things")
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question).subscribe()
+      this.questionService.deactivateQuestion(question).subscribe( question => {
         this.updateQuestions()
-      
+      });
    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question).subscribe()
+      this.questionService.activateQuestion(question).subscribe( question => {
         this.updateQuestions()
-    
+      });
    }
   }
 
@@ -182,9 +181,6 @@ export class QuestionComponent implements OnInit {
         this.questions.sort(this.compare2);
       });
     }
-  }
-  click(){
-    console.log("asdasdasdasdasdasd")
   }
 
   /** used to compare questions Array to sort it based on status */
