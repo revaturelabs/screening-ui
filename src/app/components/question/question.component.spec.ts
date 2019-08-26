@@ -105,10 +105,10 @@ describe('Question Component', () => {
         .and.returnValue(of(fakeQuestions));
 
         spyOn(fakeQuestionService,`deactivateQuestion`)
-        .and.returnValue(false);
+        .and.returnValue( of(false));
 
         spyOn(fakeQuestionService,`activateQuestion`)
-        .and.returnValue(true);
+        .and.returnValue(of(true));
 
         spyOn(fakeQuestionService,`updateQuestion`)
 

@@ -102,12 +102,12 @@ export class QuestionComponent implements OnInit {
     console.log("things")
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question)
+      this.questionService.deactivateQuestion(question).subscribe()
         this.updateQuestions()
       
    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question)
+      this.questionService.activateQuestion(question).subscribe()
         this.updateQuestions()
     
    }
