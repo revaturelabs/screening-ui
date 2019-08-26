@@ -324,6 +324,7 @@ export class SkillTypesComponent implements OnInit {
             this.allSkillTypes = results;
             this.setSkillTypes();
             this.allSkillTypes.sort(this.compare);
+            this.allSkillTypes.sort(this.compare2);
         });
     }
 
