@@ -25,7 +25,7 @@ export class SkillTypesService {
     public skillTypeBuckets: Observable<SkillType[]>;
 
     createSkillType(skillType: SkillType) {
-        return this.http.post(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
+        return this.http.post<SkillType>(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
     }
 
     activateSkillType(skillType: SkillType) {
