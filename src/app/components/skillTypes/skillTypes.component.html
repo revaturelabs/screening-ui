@@ -13,8 +13,9 @@
                         {{skillType.title}}
                         <i id="xIcon">
                             <label class="switch">
-                                <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)" >
-                                <span class="slider round" placement="top" ngbTooltip="active"></span>
+                                <input type="checkbox" [checked]=skillType.active (change)="skillTypeUpdate(skillType)" >
+                                <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="skillType.active"></span>
+                                <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!skillType.active"></span>       
                             </label>
                         </i>
                         <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editSkillType(skillType); open(content)" placement="top" ngbTooltip="edit">
@@ -22,7 +23,7 @@
                     </a>
                 </div>
             </div>
-            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create new Track</button>
+            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create New Track</button>
 
 
             

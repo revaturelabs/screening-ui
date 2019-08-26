@@ -85,9 +85,21 @@ export class SkillTypesComponent implements OnInit {
     }
 
     skillTypeUpdate(skillType: SkillType) {
-        this.skillTypeService.updateSkillType(skillType).subscribe(results => {
-            this.grabAllSkillTypes();
-        });
+        // this.skillTypeService.updateSkillType(skillType).subscribe(results => {
+        //     this.grabAllSkillTypes();
+        // });
+        if (skillType.active) {
+            skillType.active = false;
+            this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
+                this.grabAllSkillTypes();
+            
+            });
+        } else {
+            skillType.active = true;
+            this.skillTypeService.activateSkillType(skillType).subscribe( skillType => {
+                this.grabAllSkillTypes();
+            });
+        }
     }
 
     /**
@@ -323,6 +335,14 @@ export class SkillTypesComponent implements OnInit {
             return 1;
         }
     }
+
+    compare2(a: SkillType, b: SkillType){
+        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
+          return -1;
+        }else{
+          return 1;
+        }
+      }
 
     /**
     * Grabs all buckets and stores the information into a variable
