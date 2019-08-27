@@ -43,7 +43,6 @@ export class CandidatesScreeningListComponent implements OnInit {
   // when a screener (user) clicks on a screening,
   // save the candidate and scheduled screening
   // to their respective services.
-//  selectedCandidate: Candidate;
   selectedScheduledScreening: ScheduledScreening;
   // Flag for displaying the "Begin Interview" prompt
   showBeginScreeningPrompt = false;
@@ -75,9 +74,9 @@ export class CandidatesScreeningListComponent implements OnInit {
       window.location.reload(true);
     }
     this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
-  
+
   }
- 
+
   // Reveals the "Begin Interview" prompt
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {
@@ -87,8 +86,7 @@ export class CandidatesScreeningListComponent implements OnInit {
     }
   }
 
-  click(){
-    console.log("has been clicked");
+  click() {
   }
 
   // clicking "Begin Interview" will save the candidate for later use
