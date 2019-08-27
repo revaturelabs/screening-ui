@@ -91,27 +91,6 @@ export class SkillTypesComponent implements OnInit {
     }
 
     skillTypeUpdate(skillType: SkillType) {
-<<<<<<< HEAD
-        if(!skillType) {
-            skillType = this.currSkillType = this.currSkillType;
-        }
-        if(skillType){
-            this.skillTypeService.updateSkillType(skillType).subscribe(skilltype => {
-                this.grabAllSkillTypes();
-                this.setSkillTypes();
-                this.grabAllBuckets();
-            this.getAssociated();
-            });
-        }
-    }
-/*
-        this.skillTypeService.updateSkillType(skillType).subscribe(results => {
-            this.grabAllSkillTypes();
-            this.setSkillTypes();
-            this.grabAllBuckets();
-            this.getAssociated();
-        });
-=======
         // this.skillTypeService.updateSkillType(skillType).subscribe(results => {
         //     this.grabAllSkillTypes();
         // });
@@ -127,9 +106,7 @@ export class SkillTypesComponent implements OnInit {
                 this.grabAllSkillTypes();
             });
         }
->>>>>>> 35bfdfd8bd878b097f5dfbd7e14e51710d9d1350
     }
-  */
  
     /**
     * Opens the modal for creating and editing skill SkillType
@@ -359,7 +336,8 @@ export class SkillTypesComponent implements OnInit {
             this.allSkillTypes = results;
             this.setSkillTypes();
             this.allSkillTypes.sort(this.compare);
-            this.allSkillTypes.sort(this.compareAlphabetically);
+            this.setSkillTypes();
+            this.allSkillTypes.sort(this.compare2);
         });
     }
 

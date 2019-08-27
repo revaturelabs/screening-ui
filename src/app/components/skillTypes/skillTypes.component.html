@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="card w-100">
 
-            <h6 class="card-header">Tracks</h6>
+            <h6 class="card-header">All Tracks</h6>
 
             <div class="card-body" id="skillTypesDiv">
                 <div class="list-group">
@@ -13,14 +13,9 @@
                         {{skillType.title}}
                         <i id="xIcon">
                             <label class="switch">
-<<<<<<< HEAD
-                                <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)" >
-                                <span class="slider round" placement="top" ngbTooltip="active"></span>
-=======
                                 <input type="checkbox" [checked]=skillType.active (change)="skillTypeUpdate(skillType)" >
                                 <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="skillType.active"></span>
                                 <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!skillType.active"></span>       
->>>>>>> 35bfdfd8bd878b097f5dfbd7e14e51710d9d1350
                             </label>
                         </i>
                         <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editSkillType(skillType); open(content)" placement="top" ngbTooltip="edit">
