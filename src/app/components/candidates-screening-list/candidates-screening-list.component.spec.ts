@@ -18,10 +18,46 @@ import { Candidate } from '../../entities/Candidate';
 import { SearchPipe } from 'src/app/pipes/search.pipe';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { SkillType } from 'src/app/entities/SkillType';
+import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
+
 
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;
+  let scheduledScreeningService: ScheduledScreeningService;
+  let screeningStateService: ScreeningStateService;
+
+  const candidateFake: Candidate = {
+    candidateId: 5,
+    resourceId: 5,
+    name: 'Beethoven',
+    phoneNumber: '9156452593',
+    recruiterName: 'Bab',
+    college: 'University',
+    degree: 'Symphony 3',
+    major: 'E flat'
+  };
+
+  const skillTypeFake = {
+    skillTypeId: 5,
+    title: 'SQL',
+    active: true
+  };
+
+  const someScreening: ScheduledScreening = {
+  scheduledScreeningId: 5,
+  candidate: candidateFake,
+  track: skillTypeFake,
+  scheduledStatus: 'Screening in Progress',
+  scheduledDate: new Date()
+  };
+
+  const screeningList: ScheduledScreening[] = [someScreening];
+
+
+
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -38,6 +74,8 @@ describe('CandidatesScreeningListComponent', () => {
     fixture = TestBed.createComponent(CandidatesScreeningListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    scheduledScreeningService = TestBed.get(ScheduledScreeningService);
+    screeningStateService = TestBed.get(ScreeningStateService);
   });
 
   it('should create', () => {
@@ -66,7 +104,6 @@ describe('CandidatesScreeningListComponent', () => {
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedCandidate = {} as Candidate;
     component.selectedScheduledScreening.track = {} as SkillType;
     component.selectedScheduledScreening.track.skillTypeId = 1;
     component.beginScreening();
@@ -76,11 +113,20 @@ describe('CandidatesScreeningListComponent', () => {
   it('should populate localStorage', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedCandidate = {} as Candidate;
     component.selectedScheduledScreening.track = {} as SkillType;
     component.selectedScheduledScreening.track.skillTypeId = 1;
     component.beginScreening();
-    // expect(localStorage.getItem('screeningID')).not.toBeNull();
+    expect(localStorage.getItem('screeningID')).not.toBeNull();
+  });
+
+  it('should populate a list and allow for element selection', () => {
+    spyOn(scheduledScreeningService,'getScheduledScreenings')
+      .and.returnValue( screeningList);
+      component.ngOnInit();
+      fixture.detectChanges();
+      const element = fixture.debugElement.queryAll(By.css('tr'));
+     element[1].nativeElement.click();
+     expect(component.selectedScheduledScreening.scheduledScreeningId).toEqual(5);
   });
 
 });

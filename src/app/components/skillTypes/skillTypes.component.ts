@@ -154,13 +154,11 @@ export class SkillTypesComponent implements OnInit {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
                     if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {
-                        // console.log('this skilltype is associated with : ' + bucket.bucketDescription);
                         return true;
                     }
                 }
             }
         }
-        // console.log('this skilltype is not associated with : ' + bucket.bucketDescription);
         return false;
     }
 
@@ -172,7 +170,6 @@ export class SkillTypesComponent implements OnInit {
     */
     addToSkillTypeBuckets(bucky: Bucket) {
         if (this.singleSkillType) {
-            console.log('if called ' + bucky.bucketDescription);
             const relationship: Weight = {
                 bucket: bucky,
                 skillType: this.singleSkillType,
