@@ -70,6 +70,7 @@ export class SkillTypesComponent implements OnInit {
             this.setSkillTypes();
         }
     }
+
     setSkillTypes() {
         let thing: any;
         this.skillTypes = [];
@@ -85,14 +86,10 @@ export class SkillTypesComponent implements OnInit {
     }
 
     skillTypeUpdate(skillType: SkillType) {
-        // this.skillTypeService.updateSkillType(skillType).subscribe(results => {
-        //     this.grabAllSkillTypes();
-        // });
         if (skillType.active) {
             skillType.active = false;
             this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
                 this.grabAllSkillTypes();
-            
             });
         } else {
             skillType.active = true;
@@ -136,9 +133,6 @@ export class SkillTypesComponent implements OnInit {
         this.getAssociated();
     }
 
-    /**
-     * Only darkness within
-     */
     getAssociated() {
         for (let i = 0; i < this.allBuckets.length; i++) {
             if (this.checkContains(this.allBuckets[i])) {
@@ -323,8 +317,8 @@ export class SkillTypesComponent implements OnInit {
         this.skillTypeService.getSkillTypes().subscribe((results) => {
             this.allSkillTypes = results;
             this.setSkillTypes();
-            this.allSkillTypes.sort(this.compare);
             this.allSkillTypes.sort(this.compare2);
+            this.allSkillTypes.sort(this.compare);
         });
     }
 
@@ -338,12 +332,14 @@ export class SkillTypesComponent implements OnInit {
     }
 
     compare2(a: SkillType, b: SkillType){
-        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
+        if(a.active && a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()){
           return -1;
-        }else{
-          return 1;
-        }
-      }
+        } else{
+            return 1;
+        } 
+    }
+
+
 
     /**
     * Grabs all buckets and stores the information into a variable
