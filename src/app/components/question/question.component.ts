@@ -176,8 +176,7 @@ export class QuestionComponent implements OnInit {
 
   /** used to compare questions Array to sort it based on status */
   compare(a: Question, b: Question) {
-    if(a.isActive)
-    {
+    if (a.isActive) {
       return -1;
     } else {
       return 1;
@@ -185,9 +184,9 @@ export class QuestionComponent implements OnInit {
   }
 
   compare2(a: Question, b: Question){
-    if(a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()){
+    if (a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()) {
       return -1;
-    }else{
+    } else {
       return 1;
     }
   }

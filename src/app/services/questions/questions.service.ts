@@ -39,8 +39,6 @@ export class QuestionsService {
 
   questions: Question[];
 
-  
-
   private returnBuckets: Bucket[] = [];
 
   /**
