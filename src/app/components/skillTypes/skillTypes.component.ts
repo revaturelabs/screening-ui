@@ -150,13 +150,11 @@ export class SkillTypesComponent implements OnInit {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
                     if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {
-                        // console.log('this skilltype is associated with : ' + bucket.bucketDescription);
                         return true;
                     }
                 }
             }
         }
-        // console.log('this skilltype is not associated with : ' + bucket.bucketDescription);
         return false;
     }
 
@@ -168,7 +166,6 @@ export class SkillTypesComponent implements OnInit {
     */
     addToSkillTypeBuckets(bucky: Bucket) {
         if (this.singleSkillType) {
-            console.log('if called ' + bucky.bucketDescription);
             const relationship: Weight = {
                 bucket: bucky,
                 skillType: this.singleSkillType,
@@ -207,25 +204,6 @@ export class SkillTypesComponent implements OnInit {
             }
             this.allWeights.splice(removed, 1);
         }
-    }
-
-    /**
-    * If there are existing buckets, set the current weight percent to the skill types so when
-    * it combines the buckets and weights fields, it has updated data.
-    * Clear the array holding the buckets and weights information.
-    * Combines the buckets and weights field of the selected skill types
-    */
-    combineBucketsAndWeights() {
-        // if (this.bucketsAndWeights.length !== 0) {
-        //     for (const index of this.bucketsAndWeights) {
-        //         this.singleSkillType.weights[index] = this.bucketsAndWeights[index].weights;
-        //     }
-        // }
-        // this.bucketsAndWeights = [];
-        // for (const bucket of this.singleSkillType.buckets) {
-        //     this.bucketsAndWeights.push({'bucketCategory': bucket.bucketCategory,
-        //         'weights': this.singleSkillType.weights});
-        // }
     }
 
     /**
