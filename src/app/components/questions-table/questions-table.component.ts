@@ -6,6 +6,7 @@ import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { QuestionScore } from '../../entities/QuestionScore';
 import { ScheduledScreening } from 'src/app/entities/ScheduledScreening';
+import { SkillTypeBucketLookUp } from 'src/app/entities/SkillTypeBucketLookup';
 
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
@@ -21,6 +22,7 @@ import { AnswerComponent } from '../answer/answer.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { Weight } from 'src/app/entities/Weight';
 
 
 @Component({
@@ -53,12 +55,18 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // holds the current category. Used to control
   // which questions are displayed in the questions table.
   currentBucket: number;
+  skillID: number;
 
   // Used to display the current track:
   currentScreenings: ScheduledScreening;
 
+  // Used to display current buckets in track:
+  skillTypeBucketLookUp: SkillTypeBucketLookUp;
+
   // value entered enables finish button
   generalComment: string;
+
+  weight: Weight;
 
   // Array of questions answered during the interview
   questionScores: QuestionScore[] = [];
@@ -83,10 +91,11 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
     // need to retrieve skillTypeID from somewhere other than the Candidate. 
-    const skillTypeID = 0;
+    //const skillTypeID = this.skillID;
+    this.skillID = this.screeningStateService.getSkillID();
     this.subscriptions.push(
       this.skillTypeBucketService.
-      getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
+      getWeightsBySkillType(this.skillID).subscribe(bucketsWithWeights => {
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights) {
         myBuckets.push(
@@ -103,6 +112,10 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
     this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
     this.currentScreenings = this.screeningStateService.getCurrentScreening();
+    this.skillID = this.screeningStateService.getSkillID();
+    //this.skillID = this.currentScreenings.track.skillTypeId;
+    
+
 
     // update the answeredQuestions variable in our service to track the
     // questions that have been given a score by the screener.
