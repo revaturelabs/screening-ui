@@ -76,6 +76,7 @@ export class SkillTypesComponent implements OnInit {
             this.setSkillTypes();
         }
     }
+    
     setSkillTypes() {
         let thing: any;
         this.skillTypes = [];
