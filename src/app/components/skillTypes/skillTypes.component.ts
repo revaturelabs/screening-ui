@@ -47,9 +47,6 @@ export class SkillTypesComponent implements OnInit {
       /** variable to hold bucket being edited */
     currSkillType: SkillType;
 
-    /** variable to hold new bucket being created  */
-    newSkillType: SkillType = new SkillType();
-
     constructor(
         private modalService: NgbModal,
         private fb: FormBuilder,
@@ -116,11 +113,9 @@ export class SkillTypesComponent implements OnInit {
     open(content) {
         this.modalServiceRef = this.modalService.open(content);
         this.modalServiceRef.result.then((result) => {
-            this.newSkillType = new SkillType();
             this.resetFields();
         }, (reason) => {
-            this.newSkillType.title = " ";
-            
+            this.resetFields();
         });
         event.stopPropagation();
     }
@@ -262,20 +257,6 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Creates a new skill type to be created
-    * Grabs all the skill types after the information has been submitted
-    * @param modal: Form information from the modal, with parameters matching the SkillType entity
-    */
-    createNewSkillType(modal : SkillType) {
-        this.skillTypeService.createSkillType(this.newSkillType)
-        .subscribe(skilltype => {
-            this.skillTypes.push(skilltype);
-           this.grabAllSkillTypes();
-        });
-        this.savedSuccessfully();
-    }
-
-    /**
     * Checks the sum of bucket weights that are associated to the selected skill types
     * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
     */
@@ -300,10 +281,10 @@ export class SkillTypesComponent implements OnInit {
         this.skillTypeService.getSkillTypes().subscribe((results) => {
             this.allSkillTypes = results;
             this.setSkillTypes();
-            this.allSkillTypes.sort(this.compare);
+            this.allSkillTypes.sort(this.compareIfTrackIsActive);
             this.setSkillTypes();
-            this.allSkillTypes.sort(this.compare2);
-            this.allSkillTypes.sort(this.compare3);
+            this.allSkillTypes.sort(this.compareActiveTracks);
+            this.allSkillTypes.sort(this.compareInactiveTracks);
         });
     }
 
@@ -316,7 +297,7 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /** used to compare SkillType Array to sort it based on status */
-    compare(a: SkillType, b: SkillType) {
+    compareIfTrackIsActive(a: SkillType, b: SkillType) {
         if (a.active) {
             return -1;
         } else {
@@ -324,7 +305,7 @@ export class SkillTypesComponent implements OnInit {
         }
     }
 
-    compare2(a: SkillType, b: SkillType) {
+    compareActiveTracks(a: SkillType, b: SkillType) {
         if (a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
           return -1;
         } else {
@@ -332,7 +313,7 @@ export class SkillTypesComponent implements OnInit {
         }
       }
 
-    compare3(a: SkillType, b: SkillType) {
+    compareInactiveTracks(a: SkillType, b: SkillType) {
         if (!a.active && !b.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
             return -1;
         } else {
