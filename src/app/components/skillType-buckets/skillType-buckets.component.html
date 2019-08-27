@@ -17,10 +17,7 @@
           <!-- List of all buckets -->
           <div class="list-group">
             <!-- clickable to route to Bucket -->
-            <!--* routeToBucket() -->
             <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);">
-            <!--  <b>{{bucket.bucketCategory}}</b>
-              <br> -->
               <!--* editBucket(bucket), passes the bucket selected to component side.
                   * open(edit), calls modal to open. -->
               <div class="col-sm" (click)="$event.cancelBubble=true; ">

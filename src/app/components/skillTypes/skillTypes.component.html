@@ -63,7 +63,6 @@
                               <input type="number" #weight name="weight" class="form-control border-left-0 bucketWeight" min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
                               <input type="number" name="sum" class="form-control bucketWeight" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
                               </div>
-                             <!-- <span class="percentSign">%</span> -->
                               <button id = "xButton" type="button" class="close col-sm-2 rounded" aria-label="Close" (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()" >
                               <span aria-hidden="true">&times;</span></button>
                           </div>
