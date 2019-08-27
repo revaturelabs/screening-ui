@@ -48,7 +48,7 @@ export class QuestionComponent implements OnInit {
   createQuestion: FormGroup;
   newQuestion: Question;
   question: Question;
-  sampleAnswers: string[];
+  sampleAnswer: string;
   questions: Question[];
   currentBucket: Bucket;
   public answersCollapsed = true;
@@ -59,7 +59,6 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
     this.question = new Question();
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
     this.updateQuestions();
   }
 
@@ -102,12 +101,12 @@ export class QuestionComponent implements OnInit {
     if (question.isActive) {
       question.isActive = false;
       this.questionService.deactivateQuestion(question).subscribe( question => {
-        this.updateQuestions()
+        this.updateQuestions();
       });
    } else {
       question.isActive = true;
       this.questionService.activateQuestion(question).subscribe( question => {
-        this.updateQuestions()
+        this.updateQuestions();
       });
    }
   }
@@ -118,7 +117,7 @@ export class QuestionComponent implements OnInit {
    **/
   setQuestionNull() {
     this.question = new Question();
-    this.sampleAnswers = [];
+    this.sampleAnswer = '';
   }
 
   /**
@@ -129,7 +128,7 @@ export class QuestionComponent implements OnInit {
    **/
   editQuestion(question) {
     this.question = question;
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    this.sampleAnswer = question.sampleAnswer;
   }
 
   /**
@@ -139,31 +138,23 @@ export class QuestionComponent implements OnInit {
    * question.
    **/
   addNewQuestion() {
-    if (this.sampleAnswers.length === 5 && this.question.questionText) {
+    if (this.question.questionText) {
       if (this.question.questionId) {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
+        this.question.sampleAnswer = this.sampleAnswer;
         this.question.bucket = this.currentBucket;
-        
+
         this.questionService.updateQuestion(this.question).subscribe();
-       
+
         this.updatedSuccessfully();
       } else {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.question.bucket=this.currentBucket;
+        this.question.sampleAnswer = this.sampleAnswer;
+        this.question.bucket = this.currentBucket;
         this.questionService.createNewQuestion(this.question).subscribe();
         this.savedSuccessfully();
       }
       this.updateQuestions();
       this.setQuestionNull();
-      this.sampleAnswers = [];
+      this.sampleAnswer = '';
     } else {
       this.savedUnsuccessfull();
     }
