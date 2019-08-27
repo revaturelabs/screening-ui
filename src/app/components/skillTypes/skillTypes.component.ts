@@ -47,9 +47,6 @@ export class SkillTypesComponent implements OnInit {
       /** variable to hold bucket being edited */
     currSkillType: SkillType;
 
-    /** variable to hold new bucket being created  */
-    newSkillType: SkillType = new SkillType();
-
     constructor(
         private modalService: NgbModal,
         private fb: FormBuilder,
@@ -103,15 +100,6 @@ export class SkillTypesComponent implements OnInit {
             });
         }
     }
-/*
-        this.skillTypeService.updateSkillType(skillType).subscribe(results => {
-            this.grabAllSkillTypes();
-            this.setSkillTypes();
-            this.grabAllBuckets();
-            this.getAssociated();
-        });
-    }
-  */
  
     /**
     * Opens the modal for creating and editing skill SkillType
@@ -124,11 +112,9 @@ export class SkillTypesComponent implements OnInit {
     open(content) {
         this.modalServiceRef = this.modalService.open(content);
         this.modalServiceRef.result.then((result) => {
-            this.newSkillType = new SkillType();
             this.resetFields();
         }, (reason) => {
-            this.newSkillType.title = " ";
-            
+            this.resetFields();
         });
         event.stopPropagation();
     }
@@ -152,9 +138,6 @@ export class SkillTypesComponent implements OnInit {
         this.getAssociated();
     }
 
-    /**
-     * Only darkness within
-     */
     getAssociated() {
         for (let i = 0; i < this.allBuckets.length; i++) {
             if (this.checkContains(this.allBuckets[i])) {
@@ -166,13 +149,6 @@ export class SkillTypesComponent implements OnInit {
         }
     }
 
-    /**
-    * THIS IS BAD!
-    * DONT KEEP THIS IMPLEMENTATION
-    * IM SORRY FOR ANYONE THAT HAS TO FIX THIS,
-    * I WAS GIVIN A PILE OF TRASH AND DIDNT HAVE TIME TO GET TO THIS
-    * @param bucket: Id of single bucket
-    */
     checkContains(bucket: Bucket) {
         if (this.singleSkillType) {
             for (let i = 0; i < this.allWeights.length; i++) {
@@ -238,25 +214,6 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * If there are existing buckets, set the current weight percent to the skill types so when
-    * it combines the buckets and weights fields, it has updated data.
-    * Clear the array holding the buckets and weights information.
-    * Combines the buckets and weights field of the selected skill types
-    */
-    combineBucketsAndWeights() {
-        // if (this.bucketsAndWeights.length !== 0) {
-        //     for (const index of this.bucketsAndWeights) {
-        //         this.singleSkillType.weights[index] = this.bucketsAndWeights[index].weights;
-        //     }
-        // }
-        // this.bucketsAndWeights = [];
-        // for (const bucket of this.singleSkillType.buckets) {
-        //     this.bucketsAndWeights.push({'bucketCategory': bucket.bucketCategory,
-        //         'weights': this.singleSkillType.weights});
-        // }
-    }
-
-    /**
     * Makes sure that the weight percentage input is within 0 and 100
     * @param index: Weight percentage of a single bucket.
     */
@@ -299,20 +256,6 @@ export class SkillTypesComponent implements OnInit {
         } else {
             this.error = true;
         }
-    }
-
-    /**
-    * Creates a new skill type to be created
-    * Grabs all the skill types after the information has been submitted
-    * @param modal: Form information from the modal, with parameters matching the SkillType entity
-    */
-    createNewSkillType(modal : SkillType) {
-        this.skillTypeService.createSkillType(this.newSkillType)
-        .subscribe(skilltype => {
-            this.skillTypes.push(skilltype);
-           this.grabAllSkillTypes();
-        });
-        this.savedSuccessfully();
     }
 
     /**
