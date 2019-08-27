@@ -76,7 +76,7 @@ export class SkillTypesComponent implements OnInit {
             this.setSkillTypes();
         }
     }
-    
+
     setSkillTypes() {
         let thing: any;
         this.skillTypes = [];
@@ -96,7 +96,6 @@ export class SkillTypesComponent implements OnInit {
             skillType.active = false;
             this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
                 this.grabAllSkillTypes();
-            
             });
         } else {
             skillType.active = true;
@@ -145,9 +144,6 @@ export class SkillTypesComponent implements OnInit {
         this.getAssociated();
     }
 
-    /**
-     * Only darkness within
-     */
     getAssociated() {
         for (let i = 0; i < this.allBuckets.length; i++) {
             if (this.checkContains(this.allBuckets[i])) {
