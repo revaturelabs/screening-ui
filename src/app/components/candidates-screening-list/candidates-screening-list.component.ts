@@ -86,9 +86,6 @@ export class CandidatesScreeningListComponent implements OnInit {
     }
   }
 
-  click() {
-  }
-
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
     this.screeningStateService.setCurrentScreening(this.selectedScheduledScreening);
