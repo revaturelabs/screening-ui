@@ -96,7 +96,9 @@ export class SkillTypeBucketsComponent implements OnInit {
       this.savedSuccessfully();
     }
   }
-
+  click(){
+    console.log("HAIL STAN!");
+  }
   /** Creates new bucket */
   createBucket() {
     // The server will generate the id for this new hero
@@ -104,6 +106,7 @@ export class SkillTypeBucketsComponent implements OnInit {
       .subscribe(bucket => {
         this.buckets.push(bucket);
         this.getBuckets();
+        console.log("i'm here");
       });
   }
 
@@ -114,6 +117,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.newBucket = new Bucket();
+      console.log("newBucket: "+this.newBucket);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.newBucket.bucketDescription = '';

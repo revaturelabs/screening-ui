@@ -9,9 +9,11 @@ import { HttpModule } from '@angular/http';
 import { Buckets } from 'aws-sdk/clients/s3';
 import { Bucket } from 'src/app/entities/Bucket';
 import { of } from 'rxjs';
+import { DebugElement } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlService } from 'src/app/services/urls/url.service';
+import { By } from '@angular/platform-browser';
 describe('SkillTypeBucketsComponent', () => {
 let fixture:ComponentFixture<SkillTypeBucketsComponent>;
 let component:SkillTypeBucketsComponent;
@@ -20,6 +22,12 @@ let mockbucket:Bucket={
   bucketId: 1,
   bucketDescription:"Hi",
   isActive:true
+}
+let bucket2: Bucket ={
+  bucketId: 2,
+  bucketDescription:"Hi",
+  isActive:true
+
 }
 let fakeBukets:Bucket[]=[mockbucket];
 beforeEach(()=>{
@@ -37,11 +45,12 @@ it(`Checking if all buckets were returned`,()=>{
    .and.returnValues(of(fakeBukets));
   
 });
-it('Checking if bucket is created', () => {
-  spyOn(fakeBucketService, 'createNewBucket')
-  .and.returnValues(of(fakeBukets[0]));
-})
-});
+  
+  it('Checking if bucket is created', () => {
+    spyOn(fakeBucketService, 'createNewBucket')
+    .and.returnValues(of(fakeBukets[0]));
+  })
+  });
 
 
 
