@@ -154,19 +154,13 @@ export class SkillTypesComponent implements OnInit {
             }
         }
     }
-
-    /**
-    * THIS IS BAD!
-    * DONT KEEP THIS IMPLEMENTATION
-    * IM SORRY FOR ANYONE THAT HAS TO FIX THIS,
-    * I WAS GIVIN A PILE OF TRASH AND DIDNT HAVE TIME TO GET TO THIS
-    * @param bucket: Id of single bucket
-    */
+  
     checkContains(bucket: Bucket) {
         if (this.singleSkillType) {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
-                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        return true;
+                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        
+                      return true;
                     }
                 }
             }
@@ -182,7 +176,6 @@ export class SkillTypesComponent implements OnInit {
     */
     addToSkillTypeBuckets(bucky: Bucket) {
         if (this.singleSkillType) {
-            console.log('if called ' + bucky.bucketDescription);
             const relationship: Weight = {
                 bucket: bucky,
                 skillType: this.singleSkillType,
@@ -219,7 +212,7 @@ export class SkillTypesComponent implements OnInit {
                     removed = j;
                 }
             }
-            this.allWeights.splice(removed, 1);
+            this.allWeights.splice( removed, 1);
         }
     }
 
