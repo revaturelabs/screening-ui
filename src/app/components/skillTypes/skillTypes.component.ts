@@ -325,6 +325,7 @@ export class SkillTypesComponent implements OnInit {
             this.setSkillTypes();
             this.allSkillTypes.sort(this.compare);
             this.allSkillTypes.sort(this.compare2);
+            this.allSkillTypes.sort(this.compare3);
         });
     }
 
@@ -337,13 +338,21 @@ export class SkillTypesComponent implements OnInit {
         }
     }
 
-    compare2(a: SkillType, b: SkillType){
-        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
+    compare2(a: SkillType, b: SkillType) {
+        if (a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
           return -1;
-        }else{
+        } else {
           return 1;
         }
       }
+
+    compare3(a: SkillType, b: SkillType) {
+        if (!a.active && !b.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
 
     /**
     * Grabs all buckets and stores the information into a variable
