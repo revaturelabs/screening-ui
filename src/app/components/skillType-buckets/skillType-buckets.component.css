@@ -1,186 +1,152 @@
-/* #############################
-        GENERAL STYLES
-############################# */
-#pending-screening-list-container{
-    margin: auto;
-    margin-top: 25px;
-    padding: auto;
-    width: 50%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ddd;
-    border-radius: 4px;
-}
-.col-lg-10 {
-    margin: auto;
-    margin-top: 25px;
+#ABcontent {
+	margin-top: 2em;
+	margin-bottom: 2em;
 }
 
-.card{
-    margin: auto;
-    width: 81%;
+h6 {
+  text-align: center;
+  color: white;
 }
 
-#screenings-table{
-    margin: auto;
-    width: 95%;
+.card-header {
+  background-color: #F26925;
 }
 
-h1{
-    background: #f26925;
-    color: white;
-    min-width: 100%;
-    max-width: 50%;
-    width: 50%;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    padding: 12px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-color: #f26925;
-    text-align: center;
-    font-size: 1.65rem;
-    white-space:nowrap;
+#allSkillTypesDiv{
+  overflow : auto;
+  height: 420px;
 }
 
-#pending-screening-list-contents{
-    padding: 25px 5%;
-    min-width: 100%;
-    max-width: 50%;
-    width: 50%;
-}
-/* #############################
-        SEARCH BAR STYLES
-############################# */
-.search-bar{
-    margin-left: 25%;
-    text-align: center;
-    width: 50%;
-    margin-bottom: 20px;
-    padding: 5px;
-    border-radius: 5px;
+/*Custom scrollbar*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* #############################
-        TABLE STYLES
-############################# */
-#screenings-table{
-    max-height: 300px;
-    margin-bottom: 20px;
-    font-size: 1.25rem !important;
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 5px;
 }
 
-.table thead th, .table td, .table th{
-    border-top: 1px solid #b1b8bd;
-    border-bottom: 1px solid #7f97a8;
-    font-size: 1.25rem;
-   
-}
-.table td, .table th{
-    padding: .5rem;
-    font-size: .88rem;
-}
-.table td{
-    cursor: pointer;
-    
-}
-.table-hover{
-    width: 100%;
-    
-    
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6c757d; 
+  border-radius: 5px;
 }
 
-/* #############################
-        PAGINATION STYLES
-############################# */
-
-.pagination {
-    margin: auto;
-    width: 100%;
-    font-size: 1.25rem;
-    
-}
-.pagination /deep/ pagination-template{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.pagination /deep/ ul{
-    padding-left: 0px;
-    margin-left: 0px;
-    margin-bottom: 0px;
-}
-.pagination /deep/ .ngx-pagination .pagination-previous{
-    padding-left: 0px;
-    padding-right: 2.5px;
-}
-.pagination /deep/ .ngx-pagination .current
-{
-    background: #f26925;
+#penIcon {
+  color: #F26925;
+  margin-right: 10px;
 }
 
-/* #############################
-        MODAL STYLES 
-############################# */
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    margin: auto;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.583); /* Black w/ opacity */
+a {
+  cursor: pointer;
+  cursor: hand;
 }
 
-/* Modal Content/Box */
-.modal-content {
-    text-align: center;
-    background-color: #fefefe;
-    margin: 300px auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 350px; /* Could be more or less, depending on screen size */
+i {
+  cursor: pointer;
+  cursor: hand;
 }
-h2{
-    font-size: 1.25em;
-    margin-bottom: 15px;
+
+.modal-header {
+	background-color: #F26925;
 }
-.buttons{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
+
+.modal-title {
+  text-align: center;
+  color: white;
 }
-.btn{
-    background: #f26925;
-    color: white;
-    font-weight: strong;
+
+.close {
+	color: white;
 }
-/* #############################
-        MEDIA STYLES 
-############################# */
-@media(max-width:700px){
-    .filters{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
-        margin: auto 10px;
-    }
-    .filter-buttons{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 10px;
-        margin-bottom: 0px;
-    }
+
+#xIcon {
+  float: right;
 }
-@media(max-width: 508px){
-    .filter-buttons{
-        grid-template-columns: 1fr;
-        grid-gap: 5px;
-    }
+
+.revatureOrange{
+  background-color: #F26925;
+  color: white;
 }
+
+#xIcon:hover .removeToolTip{
+  visibility: visible;
+}
+
+#penIcon:hover .editToolTip{
+  visibility: visible;
+}
+
+.editToolTip{
+  color: black;
+  visibility: hidden;
+  position: absolute;
+  float: right;
+  width: 10%;
+  left: 87%;
+  top:70%;
+
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  margin-left: 10px;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 0px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #F26925;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #F26925;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {display:none;} 
