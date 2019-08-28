@@ -1,17 +1,8 @@
-
-// Entities
 import { Question } from '../../entities/Question';
-
-// Services
 import { QuestionsService } from './questions.service';
-
-// Modules
 import { HttpErrorResponse } from '@angular/common/http';
-//import { QUESTIONS, expectedQuestion } from '../../mock-data/mock-questions';
-
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
-//import { SimpleTraineeService } from '../simpleTrainee/simple-trainee.service';
 import { Bucket } from 'src/app/entities/Bucket';
 
 export function asyncData<T>(data: T) {
@@ -35,25 +26,21 @@ export function asyncError<T>(errorObject: any) {
  * https://angular.io/guide/testing#testing-http-services
  */
 
-let bucket:Bucket={
+const bucket: Bucket = {
     bucketId: 1,
-    bucketDescription:"Hi",
-    isActive:true
-}
+    bucketDescription: 'Hi',
+    isActive: true
+};
 
-let sampleQuestion:Question={
+const sampleQuestion: Question = {
     questionId: 1,
-    questionText: "string",
-    sampleAnswer1: "string",
-    sampleAnswer2: "string",
-    sampleAnswer3: "string",
-    sampleAnswer4: "string",
-    sampleAnswer5: "string",
+    questionText: 'string',
+    sampleAnswer: 'string',
     isActive: true,
     bucket: bucket
-    }
+};
 
-    let QUESTIONS:Question[]=[sampleQuestion];
+    const QUESTIONS: Question[] = [sampleQuestion];
 
 
 
@@ -73,7 +60,7 @@ describe('QuestionsService ', () => {
   it('getBucketQuestions should return expected questions from bucket #' + testBucket + ' (HttpClient called once)', () => {
     httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
     questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService );
-    
+
     const expectedQuestions: Question[] = [sampleQuestion];
 
     httpClientSpyOnGet.get.and.returnValue(asyncData(expectedQuestions));
