@@ -1,17 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AverageBucketTypeComponent } from './average-bucket-type.component';
-import { ReportService } from 'src/app/services/reports/report.service';
+import { ReportService } from '../../../services/reports/report.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { HighchartsChartModule } from 'highcharts-angular';
-import { UrlService } from 'src/app/services/urls/url.service';
+import { UrlService } from '../../../services/urls/url.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
-
 
 describe('AverageBucketTypeComponent', () => {
   let component: AverageBucketTypeComponent;

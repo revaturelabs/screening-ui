@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as HighCharts from 'highcharts';
-import { ReportService } from 'src/app/services/reports/report.service';
+import { ReportService } from '../../../services/reports/report.service';
 
 @Component({
   selector: 'app-average-bucket-type',
@@ -30,7 +30,7 @@ export class AverageBucketTypeComponent implements OnInit {
     if(this._barData.length > 0) {
       this.options = { 
         title: { 
-          text: "Average Score By Screener",
+          text: 'Average Score By Screener',
           y: 10,
           floating: false
         },
@@ -52,7 +52,7 @@ export class AverageBucketTypeComponent implements OnInit {
     else {
       this.options = { 
         title: { 
-          text: "Average Score By Category is N/A",
+          text: 'Average Score By Category is N/A',
           y: 200,
           floating: true
         },

@@ -19,10 +19,10 @@ export class SpringInterceptor implements HttpInterceptor {
   * Intercept each HTTP rquest and return a modified request
   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     let groups;
     if(user) {
-      groups = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"];
+      groups = user['signInUserSession']['idToken']['payload']['cognito:groups'];
       console.log(user)
     }
     const modifiedRequest = request.clone({
