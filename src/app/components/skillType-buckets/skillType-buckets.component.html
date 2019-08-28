@@ -20,13 +20,13 @@
                   <span class="slider round" placement="top" ngbTooltip="active"></span>
                 </label>
               </i>
-              </div>
-              <a>{{bucket.bucketDescription}}  </a>
-                <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket);click(); open(edit)" placement="right" ngbTooltip="edit">
+                        </div>
+                        <a>{{bucket.bucketDescription}}  </a>
+                        <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket);click(); open(edit)" placement="right" ngbTooltip="edit">
                 </i>
-              </a>
+                    </a>
 
-            </div>
+                </div>
 
             </div>
 
@@ -89,8 +89,8 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+        <!-- <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button> -->
         <!--* create(), creates new bucket in the database -->
-        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="createBucket(); click(); c('Close click')">Create</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="createBucket(); c('Close click')">Create</button>
     </div>
 </ng-template>
