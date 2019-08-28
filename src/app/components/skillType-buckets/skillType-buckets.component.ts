@@ -112,7 +112,6 @@ export class SkillTypeBucketsComponent implements OnInit {
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.newBucket = new Bucket();
-      console.log("newBucket: "+this.newBucket);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.newBucket.bucketDescription = '';
