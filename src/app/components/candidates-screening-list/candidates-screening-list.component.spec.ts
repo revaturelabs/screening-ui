@@ -15,10 +15,9 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { Candidate } from '../../entities/Candidate';
-import { SearchPipe } from 'src/app/pipes/search.pipe';
-import { UrlService } from 'src/app/services/urls/url.service';
-import { SkillType } from 'src/app/entities/SkillType';
-import { of } from 'rxjs';
+import { SearchPipe } from '../../pipes/search.pipe';
+import { UrlService } from '../../services/urls/url.service';
+import { SkillType } from '../../entities/SkillType';
 import { By } from '@angular/platform-browser';
 
 
@@ -55,10 +54,6 @@ describe('CandidatesScreeningListComponent', () => {
 
   const screeningList: ScheduledScreening[] = [someScreening];
 
-
-
-
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CandidatesScreeningListComponent, PaginatePipe, PaginationControlsComponent,
@@ -93,14 +88,6 @@ describe('CandidatesScreeningListComponent', () => {
     expect(result).toEqual('block');
   });
 
-  it('should update storage', () => {
-    component.selectedScheduledScreening = {} as ScheduledScreening;
-    component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.confirmSelectedCandidate();
-    const confirm = component.selectedScheduledScreening.scheduledScreeningId;
-    expect(confirm).toEqual(1);
-  });
-
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
@@ -108,15 +95,6 @@ describe('CandidatesScreeningListComponent', () => {
     component.selectedScheduledScreening.track.skillTypeId = 1;
     component.beginScreening();
     expect(component.scheduledScreenings).toBeDefined();
-  });
-
-  it('should populate localStorage', () => {
-    component.selectedScheduledScreening = {} as ScheduledScreening;
-    component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedScheduledScreening.track = {} as SkillType;
-    component.selectedScheduledScreening.track.skillTypeId = 1;
-    component.beginScreening();
-    expect(localStorage.getItem('screeningID')).not.toBeNull();
   });
 
   it('should populate a list and allow for element selection', () => {

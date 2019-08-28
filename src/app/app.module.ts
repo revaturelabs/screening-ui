@@ -108,7 +108,6 @@ import { RoleGuard } from './role-guard';
     HighchartsChartModule,
     HttpClientModule,
     HttpModule,
-    //NavModule,
     NgbModule.forRoot(),
     NgxPaginationModule,
     Ng5SliderModule,
