@@ -25,7 +25,7 @@ export class SkillTypesService {
     public skillTypeBuckets: Observable<SkillType[]>;
 
     createSkillType(skillType: SkillType) {
-        return this.http.post(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
+        return this.http.post<SkillType>(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
     }
 
     activateSkillType(skillType: SkillType) {
@@ -50,7 +50,7 @@ export class SkillTypesService {
     }
 
     updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(), { title: skillType.title,
+        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(skillType.skillTypeId), { title: skillType.title,
             skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
