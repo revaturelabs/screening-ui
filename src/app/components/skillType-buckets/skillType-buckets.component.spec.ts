@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { SkillTypeBucketsComponent } from './skillType-buckets.component';
 import { FormsModule } from '@angular/forms';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
 import { HttpModule } from '@angular/http';
 import { Buckets } from 'aws-sdk/clients/s3';
@@ -50,8 +49,4 @@ it(`Checking if all buckets were returned`,()=>{
     spyOn(fakeBucketService, 'createNewBucket')
     .and.returnValues(of(fakeBukets[0]));
   })
-  });
-
-
-
-
+});

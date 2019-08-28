@@ -6,21 +6,11 @@
             <h6 class="card-header">All Categories</h6>
 
             <div class="card-body" id="allSkillTypesDiv">
-                <!--  <div class="form-group row">
-          <div class="col-sm-12">
-            <!--A search bar to help sift through the unadded tags for when the amount of tags is increased
-            <input type="text" name="bucket" [(ngModel)]="filter.bucketCategory" placeholder="Search Categories" min="0"
-              max="100" class="form-control">
-          </div>
-        </div> -->
-
                 <!-- List of all buckets -->
                 <div class="list-group">
                     <!-- clickable to route to Bucket -->
                     <!--* routeToBucket() -->
                     <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);click();">
-                        <!--  <b>{{bucket.bucketCategory}}</b>
-            <br> -->
                         <!--* editBucket(bucket), passes the bucket selected to component side.
                 * open(edit), calls modal to open. -->
                         <div class="col-sm" (click)="$event.cancelBubble=true;click(); ">
@@ -30,13 +20,13 @@
                   <span class="slider round" placement="top" ngbTooltip="active"></span>
                 </label>
               </i>
-                        </div>
-                        <a>{{bucket.bucketDescription}}  </a>
-                        <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket);click(); open(edit)" placement="right" ngbTooltip="edit">
-          </i>
-                    </a>
+              </div>
+              <a>{{bucket.bucketDescription}}  </a>
+                <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket);click(); open(edit)" placement="right" ngbTooltip="edit">
+                </i>
+              </a>
 
-                </div>
+            </div>
 
             </div>
 

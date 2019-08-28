@@ -64,50 +64,17 @@
             class="form-control bucketWeight" min="0" max="100">
         </div>
       </div>
-      <!--Answers Tab Start-->
+      <!--Answer Tab Start-->
       <br>
-      <h2>Sample Answers:</h2>
+      <h2>Sample Answer:</h2>
       <div class="form-group row">
-        <label for="one point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">One
-          point:</label>
+        <label for="one point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Sample Answer:</label>
         <div class="col-sm-9">
-          <input name="answer1" [(ngModel)]="sampleAnswers[0]" type="text" id="1pointAnswer" placeholder="sample answer"
+          <input name="answer" [(ngModel)]="sampleAnswer" type="text" id= "Answer" placeholder="sample answer"
             class="form-control" min="0" max="100">
         </div>
       </div>
-      <div class="form-group row">
-        <label for="two point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Two
-          point:</label>
-        <div class="col-sm-9">
-          <input name="answer2" [(ngModel)]="sampleAnswers[1]" type="text" id="2pointAnswer" placeholder="sample answer"
-            class="form-control" min="0" max="100">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="three point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Three
-          point:</label>
-        <div class="col-sm-9">
-          <input name="answer3" [(ngModel)]="sampleAnswers[2]" type="text" id="3pointAnswer" placeholder="sample answer"
-            class="form-control" min="0" max="100">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="four point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Four
-          point:</label>
-        <div class="col-sm-9">
-          <input name="answer4" [(ngModel)]="sampleAnswers[3]" type="text" id="4pointAnswer" placeholder="sample answer"
-            class="form-control" min="0" max="100">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="five point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Five
-          point:</label>
-        <div class="col-sm-9">
-          <input name="answer5" [(ngModel)]="sampleAnswers[4]" type="text" id="5pointAnswer" placeholder="sample answer"
-            class="form-control" min="0" max="100">
-        </div>
-      </div>
-      <!--Answers Tab End-->
+      <!--Answer Tab End-->
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
         <!--The save button will save/update a question so long as all of the fields have been filled and display a message that the question has been saved-->

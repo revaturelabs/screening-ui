@@ -143,10 +143,10 @@ i {
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }
 
   /* Hide default HTML checkbox */
-  .switch input {display:none;}
+  .switch input {display:none;} 
