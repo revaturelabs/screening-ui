@@ -64,8 +64,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     }else{
       return 1;
     }
-  }
-  
+  }  
 
   /** Save the selected 'bucket' in 'bucket.service' to be used in
     * 'bucket.component'.

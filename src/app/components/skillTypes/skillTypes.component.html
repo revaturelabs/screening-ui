@@ -4,17 +4,16 @@
 <div id="STcontent" class="container">
     <div class="row justify-content-center">
         <div class="card w-100">
-
-            <h6 class="card-header">Tracks</h6>
-
+            <h6 class="card-header">All Tracks</h6>
             <div class="card-body" id="skillTypesDiv">
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action" *ngFor="let skillType of allSkillTypes">
                         {{skillType.title}}
                         <i id="xIcon">
                             <label class="switch">
-                                <input type="checkbox" [(ngModel)]="skillType.isActive" (change)="skillTypeUpdate(skillType)" >
-                                <span class="slider round" placement="top" ngbTooltip="active"></span>
+                                <input type="checkbox" [checked]=skillType.active (change)="skillTypeUpdate(skillType)" >
+                                <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="skillType.active"></span>
+                                <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!skillType.active"></span>       
                             </label>
                         </i>
                         <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editSkillType(skillType); open(content)" placement="top" ngbTooltip="edit">
@@ -22,12 +21,8 @@
                     </a>
                 </div>
             </div>
-            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create new Track</button>
-
-
-            
-        </div>
-
+            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create New Track</button>
+      </div>
     </div>
 </div>
 
@@ -56,12 +51,13 @@
                   <label for="buckets" class="col-sm-2 col-form-label">Categories:</label>
                   <div class="col-sm-10">
                       <div *ngFor="let bucket of singleSkillTypeBuckets; let index = index">
-                          <div class="input-group col-sm-9 rounded" style="margin-bottom: 0.5%;">
-                              <span class="input-group-addon col-sm-5 revatureOrange" id="font-fix">{{bucket.bucketDescription}}</span>
-                              <input type="number" #weight name="weight" class="form-control border-right-0 bucketWeight" min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
-                              <input type="number" name="sum" class="form-control border-right-0" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
-                              <span class="input-group-addon percentSign" style="border-top-right-radius: 11%; border-bottom-right-radius: 11%;">%</span>
-                              <button id = "xButton" type="button" class="close col-sm-2 revatureOrange rounded" aria-label="Close" (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()" >
+                          <div class="input-group col-sm-9 rounded" style="margin-bottom: 1%;">
+                              <span class="col-sm-5 revatureOrange rounded" id="font-fix">{{bucket.bucketDescription}}</span>
+                              <div class = "placeholder" data-placeholder="%">
+                              <input type="number" #weight name="weight" class="form-control border-left-0 bucketWeight" min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
+                              <input type="number" name="sum" class="form-control bucketWeight" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
+                              </div>
+                              <button id = "xButton" type="button" class="close col-sm-2 rounded" aria-label="Close" (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()" >
                               <span aria-hidden="true">&times;</span></button>
                           </div>
                       </div>
@@ -69,25 +65,17 @@
                       <p *ngIf="error" class="text-danger">The sum of the category weight percentages has to equal <strong>100</strong></p>
                   </div>
               </div>
-              <div class="form-group row">
-
-                    
-                        
-                            
+              <div class="form-group row">                            
                   <!-- <label for="inactiveBuckets" class="col-sm-6 col-form-label">All Categories:</label> -->
                   <div class="col-sm-10 row">
                     <span *ngFor="let bucket of allBuckets">
                         <button type="button" class="input-group-addon pillButtons" (click)="addToSkillTypeBuckets(bucket)" *ngIf="!checkContains(bucket)">{{bucket.bucketDescription}}</button>
                     </span>
-                  </div>
-                                
-
-                    </div>
-                    </div>
-                    
-        </form>
+                </div>                    
+            </div>
+        </div>
+    </form>
     </div>
-
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType)" [disabled]="error" *ngIf="singleSkillType">Save</button>

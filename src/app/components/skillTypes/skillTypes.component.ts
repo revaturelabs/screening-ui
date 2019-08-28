@@ -44,6 +44,9 @@ export class SkillTypesComponent implements OnInit {
 
     public Weight: Weight;
 
+      /** variable to hold bucket being edited */
+    currSkillType: SkillType;
+
     constructor(
         private modalService: NgbModal,
         private fb: FormBuilder,
@@ -59,17 +62,18 @@ export class SkillTypesComponent implements OnInit {
         for (let i = 0; i < this.allSkillTypes.length; i++) {
             thing = this.allSkillTypes[i];
             if (thing.skillTypeName === item.skillTypeName) {
-                if (thing.isActive) {
-                    thing.isActive = !thing.isActive;
+                if (thing.active) {
+                    thing.active = !thing.active;
                     this.skillTypeService.deactivateSkillType(thing.skillTypeId).subscribe();
                 } else {
-                    thing.isActive = !thing.isActive;
+                    thing.active = !thing.active;
                     this.skillTypeService.activateSkillType(thing.skillTypeId).subscribe();
                 }
             }
             this.setSkillTypes();
         }
     }
+
     setSkillTypes() {
         let thing: any;
         this.skillTypes = [];
@@ -85,11 +89,19 @@ export class SkillTypesComponent implements OnInit {
     }
 
     skillTypeUpdate(skillType: SkillType) {
-        this.skillTypeService.updateSkillType(skillType).subscribe(results => {
-            this.grabAllSkillTypes();
-        });
+        if (skillType.active) {
+            skillType.active = false;
+            this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
+                this.grabAllSkillTypes();
+            });
+        } else {
+            skillType.active = true;
+            this.skillTypeService.activateSkillType(skillType).subscribe( skillType => {
+                this.grabAllSkillTypes();
+            });
+        }
     }
-
+ 
     /**
     * Opens the modal for creating and editing skill SkillType
     * Resets fields clears the data within set fields
@@ -114,19 +126,19 @@ export class SkillTypesComponent implements OnInit {
     * set the array to the selected buckets to the array
     * @param skillType: selected skill type
     */
-    editSkillType(skillType) {
+    editSkillType(skillType : SkillType) {
+        this.grabAllSkillTypes();
         this.singleSkillTypeBuckets = [];
         this.singleSkillType = {
             title: skillType.title,
             skillTypeId: skillType.skillTypeId,
             active: true,
         };
+        this.grabAllSkillTypes();
+        this.grabAllBuckets();
         this.getAssociated();
     }
 
-    /**
-     * Only darkness within
-     */
     getAssociated() {
         for (let i = 0; i < this.allBuckets.length; i++) {
             if (this.checkContains(this.allBuckets[i])) {
@@ -137,25 +149,18 @@ export class SkillTypesComponent implements OnInit {
             }
         }
     }
-
-    /**
-    * THIS IS BAD!
-    * DONT KEEP THIS IMPLEMENTATION
-    * IM SORRY FOR ANYONE THAT HAS TO FIX THIS,
-    * I WAS GIVIN A PILE OF TRASH AND DIDNT HAVE TIME TO GET TO THIS
-    * @param bucket: Id of single bucket
-    */
+  
     checkContains(bucket: Bucket) {
         if (this.singleSkillType) {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
-                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {
-                        return true;
+                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        
+                      return true;
                     }
                 }
             }
         }
-        return false;
+                return false;
     }
 
     /**
@@ -252,19 +257,6 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Creates a new skill type to be created
-    * Grabs all the skill types after the information has been submitted
-    * @param modal: Form information from the modal, with parameters matching the SkillType entity
-    */
-    createNewSkillType(modal: SkillType) {
-        this.skillType = modal;
-        this.skillTypeService.createSkillType(this.skillType).subscribe(results => {
-            this.grabAllSkillTypes();
-        });
-        this.savedSuccessfully();
-    }
-
-    /**
     * Checks the sum of bucket weights that are associated to the selected skill types
     * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
     */
@@ -289,13 +281,40 @@ export class SkillTypesComponent implements OnInit {
         this.skillTypeService.getSkillTypes().subscribe((results) => {
             this.allSkillTypes = results;
             this.setSkillTypes();
-            this.allSkillTypes.sort(this.compare);
+            this.allSkillTypes.sort(this.compareIfTrackIsActive);
+            this.setSkillTypes();
+            this.allSkillTypes.sort(this.compareActiveTracks);
+            this.allSkillTypes.sort(this.compareInactiveTracks);
         });
     }
 
+    compareAlphabetically(a: Bucket, b: Bucket) {
+        if(a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()){
+            return -1;
+        }else{
+            return 1;
+        }
+    }
+
     /** used to compare SkillType Array to sort it based on status */
-    compare(a: SkillType, b: SkillType) {
+    compareIfTrackIsActive(a: SkillType, b: SkillType) {
         if (a.active) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
+    compareActiveTracks(a: SkillType, b: SkillType) {
+        if (a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+
+    compareInactiveTracks(a: SkillType, b: SkillType) {
+        if (!a.active && !b.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
             return -1;
         } else {
             return 1;
@@ -308,6 +327,7 @@ export class SkillTypesComponent implements OnInit {
     grabAllBuckets() {
         this.bucketsService.getAllBuckets().subscribe(results => {
             this.allBuckets = results;
+            this.allBuckets.sort(this.compareAlphabetically);
         });
     }
 
@@ -316,9 +336,9 @@ export class SkillTypesComponent implements OnInit {
     */
     resetFields() {
         this.singleSkillType = null;
-        this.bucketsAndWeights = [];
         this.error = false;
         this.singleSkillTypeBucketIds = [];
+
     }
 
     savedSuccessfully() {
