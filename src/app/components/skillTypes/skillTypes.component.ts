@@ -73,6 +73,7 @@ export class SkillTypesComponent implements OnInit {
             this.setSkillTypes();
         }
     }
+
     setSkillTypes() {
         let thing: any;
         this.skillTypes = [];
@@ -88,15 +89,15 @@ export class SkillTypesComponent implements OnInit {
     }
 
     skillTypeUpdate(skillType: SkillType) {
-        if(!skillType) {
-            skillType = this.currSkillType = this.currSkillType;
-        }
-        if(skillType){
-            this.skillTypeService.updateSkillType(skillType).subscribe(skilltype => {
+        if (skillType.active) {
+            skillType.active = false;
+            this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
                 this.grabAllSkillTypes();
-                this.setSkillTypes();
-                this.grabAllBuckets();
-            this.getAssociated();
+            });
+        } else {
+            skillType.active = true;
+            this.skillTypeService.activateSkillType(skillType).subscribe( skillType => {
+                this.grabAllSkillTypes();
             });
         }
     }
@@ -148,18 +149,18 @@ export class SkillTypesComponent implements OnInit {
             }
         }
     }
-
+  
     checkContains(bucket: Bucket) {
         if (this.singleSkillType) {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
-                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {
-                        return true;
+                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        
+                      return true;
                     }
                 }
             }
         }
-        return false;
+                return false;
     }
 
     /**
@@ -280,20 +281,14 @@ export class SkillTypesComponent implements OnInit {
         this.skillTypeService.getSkillTypes().subscribe((results) => {
             this.allSkillTypes = results;
             this.setSkillTypes();
-            this.allSkillTypes.sort(this.compare);
-            this.allSkillTypes.sort(this.compareAlphabetically);
+            this.allSkillTypes.sort(this.compareIfTrackIsActive);
+            this.setSkillTypes();
+            this.allSkillTypes.sort(this.compareActiveTracks);
+            this.allSkillTypes.sort(this.compareInactiveTracks);
         });
     }
 
-    compareAlphabetically(a: SkillType, b: SkillType){
-        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
-            return -1;
-        }else{
-            return 1;
-        }
-    }
-
-    compareAlphabetically2(a: Bucket, b: Bucket) {
+    compareAlphabetically(a: Bucket, b: Bucket) {
         if(a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()){
             return -1;
         }else{
@@ -302,8 +297,24 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /** used to compare SkillType Array to sort it based on status */
-    compare(a: SkillType, b: SkillType) {
+    compareIfTrackIsActive(a: SkillType, b: SkillType) {
         if (a.active) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
+    compareActiveTracks(a: SkillType, b: SkillType) {
+        if (a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+
+    compareInactiveTracks(a: SkillType, b: SkillType) {
+        if (!a.active && !b.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
             return -1;
         } else {
             return 1;
@@ -316,7 +327,7 @@ export class SkillTypesComponent implements OnInit {
     grabAllBuckets() {
         this.bucketsService.getAllBuckets().subscribe(results => {
             this.allBuckets = results;
-            this.allBuckets.sort(this.compareAlphabetically2);
+            this.allBuckets.sort(this.compareAlphabetically);
         });
     }
 
@@ -325,7 +336,6 @@ export class SkillTypesComponent implements OnInit {
     */
     resetFields() {
         this.singleSkillType = null;
-        //this.bucketsAndWeights = [];
         this.error = false;
         this.singleSkillTypeBucketIds = [];
 
