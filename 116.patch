@@ -1,0 +1,1077 @@
+From 2f93f3a59fd892988f6c2326bea44c8d46083c1e Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Thu, 22 Aug 2019 14:14:26 -0400
+Subject: [PATCH 01/16] edit track changes such as how it looks
+
+---
+ .../skillTypes/skillTypes.component.css       | 46 +++++++++++++++----
+ .../skillTypes/skillTypes.component.html      | 21 +++++----
+ .../skillTypes/skillTypes.component.ts        |  2 +-
+ 3 files changed, 48 insertions(+), 21 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.css b/src/app/components/skillTypes/skillTypes.component.css
+index f1d0c57..a8cddec 100644
+--- a/src/app/components/skillTypes/skillTypes.component.css
++++ b/src/app/components/skillTypes/skillTypes.component.css
+@@ -112,11 +112,12 @@ i {
+ 
+ .percentSign{
+   background-color: inherit;
+-  border-right: 1px solid #ccc;
++  position: relative;
+ }
+ 
+ .bucketWeight{
+   text-align: right;
++  position: static;
+ }
+ 
+ .revatureOrange{
+@@ -230,12 +231,12 @@ input:checked + .slider:before {
+ }
+ 
+ #xButton{
+-  left: 109%;
+-  opacity: 1;
+-  position: absolute;
+-  width: 10%;
+-  height: 68%;
+-  padding-bottom: 10%;
++  left: 100%;
++  opacity: 0.6;
++  position: static;
++  width: 2px;
++  height: 0%;
++  padding-bottom: 3%;
+ }
+ 
+ #xButton:hover{
+@@ -245,15 +246,40 @@ input:checked + .slider:before {
+ .pillButtons{
+   margin: 5px;
+   overflow: hidden;
++  overflow-wrap: break-word;
+   border-radius: 9%;
+   width: 85px;
+-  height: 47px;
++  height: 60px;
+   justify-content: center;
+-  font-size: 1rem;
++  font-size: 0.7rem;
+ }
+ 
+ #font-fix{
+-  font-size: 1rem;
++  text-align: center;
++  height: 38px;
++  line-height: 38px;
++  font-size: 0.8rem;
++
+ }
+ 
++.catbox{
++  border-style: solid;
++  position: static;
++  margin:auto;
++  border-radius: 12px;
++  overflow: auto;
++}
++.placeholder
++{
++    position: relative;
++}
+ 
++.placeholder::after
++{
++    position: absolute;
++    left: 71px;
++    top: 7px;
++    content: attr(data-placeholder);
++    pointer-events: none;
++    opacity: 0.6;
++}
+\ No newline at end of file
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index a20c23b..8a2a88a 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -45,7 +45,7 @@ <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+   <div class="modal-body">
+       <form  #addSkillTypeForm="ngForm">
+           <div class="form-group row">
+-              <label for="name" class="col-sm-2 col-form-label">Name:&nbsp;</label>
++              <label for="name" class="col-sm-2 col-form-label"> Name:&nbsp;</label>
+               <div class="col-sm-10">
+                   <input type="text" id="skillTypeName" name=skillTypeName class="form-control" *ngIf="singleSkillType" required #skillTypeName="ngModel" [(ngModel)]="singleSkillType.title">
+                   <input type="text" id="skillTypeName" name="skillTypeName" placeholder="Skill type name" class="form-control" *ngIf="!singleSkillType" required ngModel>
+@@ -56,12 +56,14 @@ <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+                   <label for="buckets" class="col-sm-2 col-form-label">Categories:</label>
+                   <div class="col-sm-10">
+                       <div *ngFor="let bucket of singleSkillTypeBuckets; let index = index">
+-                          <div class="input-group col-sm-9 rounded" style="margin-bottom: 0.5%;">
+-                              <span class="input-group-addon col-sm-5 revatureOrange" id="font-fix">{{bucket.bucketDescription}}</span>
+-                              <input type="number" #weight name="weight" class="form-control border-right-0 bucketWeight" min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
+-                              <input type="number" name="sum" class="form-control border-right-0" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
+-                              <span class="input-group-addon percentSign" style="border-top-right-radius: 11%; border-bottom-right-radius: 11%;">%</span>
+-                              <button id = "xButton" type="button" class="close col-sm-2 revatureOrange rounded" aria-label="Close" (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()" >
++                          <div class="input-group col-sm-9 rounded" style="margin-bottom: 1%;">
++                              <span class="col-sm-5 revatureOrange rounded" id="font-fix">{{bucket.bucketDescription}}</span>
++                              <div class = "placeholder" data-placeholder="%">
++                              <input type="number" #weight name="weight" class="form-control border-left-0 bucketWeight" min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
++                              <input type="number" name="sum" class="form-control bucketWeight" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
++                              </div>
++                             <!-- <span class="percentSign">%</span> -->
++                              <button id = "xButton" type="button" class="close col-sm-2 rounded" aria-label="Close" (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()" >
+                               <span aria-hidden="true">&times;</span></button>
+                           </div>
+                       </div>
+@@ -73,9 +75,8 @@ <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+ 
+                     
+                         
+-                            
+-                  <!-- <label for="inactiveBuckets" class="col-sm-6 col-form-label">All Categories:</label> -->
+-                  <div class="col-sm-10 row">
++                  <label for="inactiveBuckets" class="col-sm-6 col-form-label">All Categories:</label>
++                  <div class="col-sm-10 row catbox">
+                     <span *ngFor="let bucket of allBuckets">
+                         <button type="button" class="input-group-addon pillButtons" (click)="addToSkillTypeBuckets(bucket)" *ngIf="!checkContains(bucket)">{{bucket.bucketDescription}}</button>
+                     </span>
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index 2f79631..fb17ba2 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -206,7 +206,7 @@ export class SkillTypesComponent implements OnInit {
+                     removed = j;
+                 }
+             }
+-            this.allWeights.splice( removed, 1);
++            this.allWeights.splice(removed, 1);
+         }
+     }
+ 
+
+From ebd835563fb3cf788a2a6e5ca803913374c0103a Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Thu, 22 Aug 2019 16:48:18 -0400
+Subject: [PATCH 02/16] tried to fix the list and fixed the active toggle
+ button
+
+---
+ src/app/components/skillTypes/skillTypes.component.html | 2 +-
+ src/app/components/skillTypes/skillTypes.component.ts   | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index 8a2a88a..937dab8 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -13,7 +13,7 @@ <h6 class="card-header">Tracks</h6>
+                         {{skillType.title}}
+                         <i id="xIcon">
+                             <label class="switch">
+-                                <input type="checkbox" [(ngModel)]="skillType.isActive" (change)="skillTypeUpdate(skillType)" >
++                                <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)" >
+                                 <span class="slider round" placement="top" ngbTooltip="active"></span>
+                             </label>
+                         </i>
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index fb17ba2..4463ccc 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -167,9 +167,8 @@ export class SkillTypesComponent implements OnInit {
+     * @param bucket: bucket object needed to be added to skill types.
+     */
+     addToSkillTypeBuckets(bucky: Bucket) {
+-        console.log(bucky);
+         if (this.singleSkillType) {
+-            console.log('if called');
++            console.log('if called ' + bucky.bucketDescription);
+             const relationship: Weight = {
+                 bucket: bucky,
+                 skillType: this.singleSkillType,
+
+From fe69362339c994a8a8392a0877c7c45474dbd0e5 Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Fri, 23 Aug 2019 10:08:24 -0400
+Subject: [PATCH 03/16] revert toggle changes
+
+---
+ src/app/components/skillTypes/skillTypes.component.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index 937dab8..8a2a88a 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -13,7 +13,7 @@ <h6 class="card-header">Tracks</h6>
+                         {{skillType.title}}
+                         <i id="xIcon">
+                             <label class="switch">
+-                                <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)" >
++                                <input type="checkbox" [(ngModel)]="skillType.isActive" (change)="skillTypeUpdate(skillType)" >
+                                 <span class="slider round" placement="top" ngbTooltip="active"></span>
+                             </label>
+                         </i>
+
+From ba8a10fe41ff4da43d375f3f431859d2c05622dd Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Fri, 23 Aug 2019 10:28:10 -0400
+Subject: [PATCH 04/16] tracks are in alphabetical order when loaded and when u
+ deactivate
+
+---
+ src/app/components/skillTypes/skillTypes.component.ts | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index 4463ccc..456fd40 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -312,9 +312,18 @@ export class SkillTypesComponent implements OnInit {
+             this.allSkillTypes = results;
+             this.setSkillTypes();
+             this.allSkillTypes.sort(this.compare);
++            this.allSkillTypes.sort(this.compareAlphabetically);
+         });
+     }
+ 
++    compareAlphabetically(a: SkillType, b: SkillType){
++        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
++            return -1;
++        }else{
++            return 1;
++        }
++    }
++
+     /** used to compare SkillType Array to sort it based on status */
+     compare(a: SkillType, b: SkillType) {
+         if (a.active) {
+
+From 097e9a2f05107d24edbbcd181d7cce2bae66284a Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Fri, 23 Aug 2019 14:20:44 -0400
+Subject: [PATCH 05/16] can edit track and shows up at the proper endpoint
+
+---
+ src/app/services/skill-types/skill-types.service.ts | 2 +-
+ src/app/services/urls/url.service.ts                | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/app/services/skill-types/skill-types.service.ts b/src/app/services/skill-types/skill-types.service.ts
+index 9049def..5613aba 100644
+--- a/src/app/services/skill-types/skill-types.service.ts
++++ b/src/app/services/skill-types/skill-types.service.ts
+@@ -50,7 +50,7 @@ export class SkillTypesService {
+     }
+ 
+     updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
+-        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(), { title: skillType.title,
++        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(skillType.skillTypeId), { title: skillType.title,
+             skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+     }
+ 
+diff --git a/src/app/services/urls/url.service.ts b/src/app/services/urls/url.service.ts
+index 98f44ed..8df4c4c 100644
+--- a/src/app/services/urls/url.service.ts
++++ b/src/app/services/urls/url.service.ts
+@@ -91,7 +91,7 @@ export class UrlService {
+     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
+     putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
+     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
+-    updateSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/updateSkillTypeBucket`,
++    updateSkillTypeBuckets: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
+     setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
+     getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
+ 
+
+From c585d5df18c5ecadded6cd1ae8ea96f013fb5805 Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Mon, 26 Aug 2019 14:38:28 -0400
+Subject: [PATCH 06/16] made some changes to edit tracks some bugs still occur
+
+---
+ .../skillTypes/skillTypes.component.html      |  3 +-
+ .../skillTypes/skillTypes.component.ts        | 61 +++++++++++++++----
+ .../skill-types/skill-types.service.ts        |  2 +-
+ 3 files changed, 52 insertions(+), 14 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index 8a2a88a..527c25c 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -88,11 +88,10 @@ <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+                     
+         </form>
+     </div>
+-
+     <div class="modal-footer">
+         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+         <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType)" [disabled]="error" *ngIf="singleSkillType">Save</button>
+-        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
++        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType()" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
+     </div>
+ </ng-template>
+ 
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index 456fd40..b62bc72 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -44,6 +44,12 @@ export class SkillTypesComponent implements OnInit {
+ 
+     public Weight: Weight;
+ 
++      /** variable to hold bucket being edited */
++    currSkillType: SkillType;
++
++    /** variable to hold new bucket being created  */
++    newSkillType: SkillType = new SkillType();
++
+     constructor(
+         private modalService: NgbModal,
+         private fb: FormBuilder,
+@@ -59,11 +65,11 @@ export class SkillTypesComponent implements OnInit {
+         for (let i = 0; i < this.allSkillTypes.length; i++) {
+             thing = this.allSkillTypes[i];
+             if (thing.skillTypeName === item.skillTypeName) {
+-                if (thing.isActive) {
+-                    thing.isActive = !thing.isActive;
++                if (thing.active) {
++                    thing.active = !thing.active;
+                     this.skillTypeService.deactivateSkillType(thing.skillTypeId).subscribe();
+                 } else {
+-                    thing.isActive = !thing.isActive;
++                    thing.active = !thing.active;
+                     this.skillTypeService.activateSkillType(thing.skillTypeId).subscribe();
+                 }
+             }
+@@ -85,11 +91,28 @@ export class SkillTypesComponent implements OnInit {
+     }
+ 
+     skillTypeUpdate(skillType: SkillType) {
++        if(!skillType) {
++            skillType = this.currSkillType = this.currSkillType;
++        }
++        if(skillType){
++            this.skillTypeService.updateSkillType(skillType).subscribe(skilltype => {
++                this.grabAllSkillTypes();
++                this.setSkillTypes();
++                this.grabAllBuckets();
++            this.getAssociated();
++            });
++        }
++    }
++/*
+         this.skillTypeService.updateSkillType(skillType).subscribe(results => {
+             this.grabAllSkillTypes();
++            this.setSkillTypes();
++            this.grabAllBuckets();
++            this.getAssociated();
+         });
+     }
+-
++  */
++ 
+     /**
+     * Opens the modal for creating and editing skill SkillType
+     * Resets fields clears the data within set fields
+@@ -101,9 +124,11 @@ export class SkillTypesComponent implements OnInit {
+     open(content) {
+         this.modalServiceRef = this.modalService.open(content);
+         this.modalServiceRef.result.then((result) => {
++            this.newSkillType = new SkillType();
+             this.resetFields();
+         }, (reason) => {
+-            this.resetFields();
++            this.newSkillType.title = " ";
++            
+         });
+         event.stopPropagation();
+     }
+@@ -114,13 +139,16 @@ export class SkillTypesComponent implements OnInit {
+     * set the array to the selected buckets to the array
+     * @param skillType: selected skill type
+     */
+-    editSkillType(skillType) {
++    editSkillType(skillType : SkillType) {
++        this.grabAllSkillTypes();
+         this.singleSkillTypeBuckets = [];
+         this.singleSkillType = {
+             title: skillType.title,
+             skillTypeId: skillType.skillTypeId,
+             active: true,
+         };
++        this.grabAllSkillTypes();
++        this.grabAllBuckets();
+         this.getAssociated();
+     }
+ 
+@@ -278,10 +306,11 @@ export class SkillTypesComponent implements OnInit {
+     * Grabs all the skill types after the information has been submitted
+     * @param modal: Form information from the modal, with parameters matching the SkillType entity
+     */
+-    createNewSkillType(modal: SkillType) {
+-        this.skillType = modal;
+-        this.skillTypeService.createSkillType(this.skillType).subscribe(results => {
+-            this.grabAllSkillTypes();
++    createNewSkillType(modal : SkillType) {
++        this.skillTypeService.createSkillType(this.newSkillType)
++        .subscribe(skilltype => {
++            this.skillTypes.push(skilltype);
++           this.grabAllSkillTypes();
+         });
+         this.savedSuccessfully();
+     }
+@@ -324,6 +353,14 @@ export class SkillTypesComponent implements OnInit {
+         }
+     }
+ 
++    compareAlphabetically2(a: Bucket, b: Bucket) {
++        if(a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()){
++            return -1;
++        }else{
++            return 1;
++        }
++    }
++
+     /** used to compare SkillType Array to sort it based on status */
+     compare(a: SkillType, b: SkillType) {
+         if (a.active) {
+@@ -339,6 +376,7 @@ export class SkillTypesComponent implements OnInit {
+     grabAllBuckets() {
+         this.bucketsService.getAllBuckets().subscribe(results => {
+             this.allBuckets = results;
++            this.allBuckets.sort(this.compareAlphabetically2);
+         });
+     }
+ 
+@@ -347,9 +385,10 @@ export class SkillTypesComponent implements OnInit {
+     */
+     resetFields() {
+         this.singleSkillType = null;
+-        this.bucketsAndWeights = [];
++        //this.bucketsAndWeights = [];
+         this.error = false;
+         this.singleSkillTypeBucketIds = [];
++
+     }
+ 
+     savedSuccessfully() {
+diff --git a/src/app/services/skill-types/skill-types.service.ts b/src/app/services/skill-types/skill-types.service.ts
+index 5613aba..0b2bd13 100644
+--- a/src/app/services/skill-types/skill-types.service.ts
++++ b/src/app/services/skill-types/skill-types.service.ts
+@@ -25,7 +25,7 @@ export class SkillTypesService {
+     public skillTypeBuckets: Observable<SkillType[]>;
+ 
+     createSkillType(skillType: SkillType) {
+-        return this.http.post(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
++        return this.http.post<SkillType>(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
+     }
+ 
+     activateSkillType(skillType: SkillType) {
+
+From 35bfdfd8bd878b097f5dfbd7e14e51710d9d1350 Mon Sep 17 00:00:00 2001
+From: Dylan Waser <waserd@etsu.edu>
+Date: Mon, 26 Aug 2019 15:48:59 -0400
+Subject: [PATCH 07/16] corrected "Create New Track" and working on reordering
+
+---
+ .../skillTypes/skillTypes.component.html      |  7 ++---
+ .../skillTypes/skillTypes.component.ts        | 26 ++++++++++++++++---
+ 2 files changed, 27 insertions(+), 6 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index 937dab8..93bf5f4 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -13,8 +13,9 @@ <h6 class="card-header">Tracks</h6>
+                         {{skillType.title}}
+                         <i id="xIcon">
+                             <label class="switch">
+-                                <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)" >
+-                                <span class="slider round" placement="top" ngbTooltip="active"></span>
++                                <input type="checkbox" [checked]=skillType.active (change)="skillTypeUpdate(skillType)" >
++                                <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="skillType.active"></span>
++                                <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!skillType.active"></span>       
+                             </label>
+                         </i>
+                         <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editSkillType(skillType); open(content)" placement="top" ngbTooltip="edit">
+@@ -22,7 +23,7 @@ <h6 class="card-header">Tracks</h6>
+                     </a>
+                 </div>
+             </div>
+-            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create new Track</button>
++            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create New Track</button>
+ 
+ 
+             
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index 4463ccc..fe7fa8e 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -85,9 +85,21 @@ export class SkillTypesComponent implements OnInit {
+     }
+ 
+     skillTypeUpdate(skillType: SkillType) {
+-        this.skillTypeService.updateSkillType(skillType).subscribe(results => {
+-            this.grabAllSkillTypes();
+-        });
++        // this.skillTypeService.updateSkillType(skillType).subscribe(results => {
++        //     this.grabAllSkillTypes();
++        // });
++        if (skillType.active) {
++            skillType.active = false;
++            this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
++                this.grabAllSkillTypes();
++            
++            });
++        } else {
++            skillType.active = true;
++            this.skillTypeService.activateSkillType(skillType).subscribe( skillType => {
++                this.grabAllSkillTypes();
++            });
++        }
+     }
+ 
+     /**
+@@ -324,6 +336,14 @@ export class SkillTypesComponent implements OnInit {
+         }
+     }
+ 
++    compare2(a: SkillType, b: SkillType){
++        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
++          return -1;
++        }else{
++          return 1;
++        }
++      }
++
+     /**
+     * Grabs all buckets and stores the information into a variable
+     */
+
+From 9a5d0f1d535298441956384e9c1e6709cc34d2d8 Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Mon, 26 Aug 2019 15:49:10 -0400
+Subject: [PATCH 08/16] some creating changes
+
+---
+ src/app/components/skillTypes/skillTypes.component.html | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index 527c25c..03f1c21 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -13,7 +13,7 @@ <h6 class="card-header">Tracks</h6>
+                         {{skillType.title}}
+                         <i id="xIcon">
+                             <label class="switch">
+-                                <input type="checkbox" [(ngModel)]="skillType.isActive" (change)="skillTypeUpdate(skillType)" >
++                                <input type="checkbox" [(ngModel)]="skillType.active" (change)="skillTypeUpdate(skillType)" >
+                                 <span class="slider round" placement="top" ngbTooltip="active"></span>
+                             </label>
+                         </i>
+@@ -91,7 +91,7 @@ <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+     <div class="modal-footer">
+         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+         <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType)" [disabled]="error" *ngIf="singleSkillType">Save</button>
+-        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType()" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
++        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
+     </div>
+ </ng-template>
+ 
+
+From 7f58dcc7bd481b4932741aa43b57852de2eafd93 Mon Sep 17 00:00:00 2001
+From: Dylan Waser <waserd@etsu.edu>
+Date: Mon, 26 Aug 2019 16:01:51 -0400
+Subject: [PATCH 09/16] finished ordering of Tracks once toggled
+
+---
+ src/app/components/skillTypes/skillTypes.component.ts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index fe7fa8e..a7a50c9 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -324,6 +324,7 @@ export class SkillTypesComponent implements OnInit {
+             this.allSkillTypes = results;
+             this.setSkillTypes();
+             this.allSkillTypes.sort(this.compare);
++            this.allSkillTypes.sort(this.compare2);
+         });
+     }
+ 
+
+From 742de0f858b5efd75cb27cb47954a262b1a633de Mon Sep 17 00:00:00 2001
+From: Dylan Waser <waserd@etsu.edu>
+Date: Mon, 26 Aug 2019 16:06:58 -0400
+Subject: [PATCH 10/16] changed top bar on Tracks tab to be consistent with
+ Categories tab
+
+---
+ src/app/components/skillTypes/skillTypes.component.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index 93bf5f4..83248ab 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -5,7 +5,7 @@
+     <div class="row justify-content-center">
+         <div class="card w-100">
+ 
+-            <h6 class="card-header">Tracks</h6>
++            <h6 class="card-header">All Tracks</h6>
+ 
+             <div class="card-body" id="skillTypesDiv">
+                 <div class="list-group">
+
+From a4824f8e5086afa0efe57ed7f366323d329ccbef Mon Sep 17 00:00:00 2001
+From: tayoung3 <tyoung3@umassd.edu>
+Date: Tue, 27 Aug 2019 14:34:42 -0400
+Subject: [PATCH 11/16] sorts deactivated skillTypes correctly
+
+---
+ .../components/skillTypes/skillTypes.component.ts | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index a7a50c9..6aabae0 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -325,6 +325,7 @@ export class SkillTypesComponent implements OnInit {
+             this.setSkillTypes();
+             this.allSkillTypes.sort(this.compare);
+             this.allSkillTypes.sort(this.compare2);
++            this.allSkillTypes.sort(this.compare3);
+         });
+     }
+ 
+@@ -337,14 +338,22 @@ export class SkillTypesComponent implements OnInit {
+         }
+     }
+ 
+-    compare2(a: SkillType, b: SkillType){
+-        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
++    compare2(a: SkillType, b: SkillType) {
++        if (a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
+           return -1;
+-        }else{
++        } else {
+           return 1;
+         }
+       }
+ 
++    compare3(a: SkillType, b: SkillType) {
++        if (!a.active && !b.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
++            return -1;
++        } else {
++            return 1;
++        }
++    }
++
+     /**
+     * Grabs all buckets and stores the information into a variable
+     */
+
+From a674bea21201190c922ff0e0f9d82c72e0c7c02b Mon Sep 17 00:00:00 2001
+From: tayoung3 <tyoung3@umassd.edu>
+Date: Tue, 27 Aug 2019 14:35:20 -0400
+Subject: [PATCH 12/16] forgot to save the file. Same as last commit
+
+---
+ src/app/components/skillTypes/skillTypes.component.ts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index 6aabae0..259a2aa 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -70,6 +70,7 @@ export class SkillTypesComponent implements OnInit {
+             this.setSkillTypes();
+         }
+     }
++    
+     setSkillTypes() {
+         let thing: any;
+         this.skillTypes = [];
+
+From fd06c92205534977fcf3cd797752b99a216a10ac Mon Sep 17 00:00:00 2001
+From: Dylan Waser <waserd@etsu.edu>
+Date: Tue, 27 Aug 2019 14:36:34 -0400
+Subject: [PATCH 13/16] modified skillTypes.component
+
+---
+ .../skillTypes/skillTypes.component.ts        | 22 ++++++++-----------
+ 1 file changed, 9 insertions(+), 13 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index a7a50c9..cd4656b 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -70,6 +70,7 @@ export class SkillTypesComponent implements OnInit {
+             this.setSkillTypes();
+         }
+     }
++
+     setSkillTypes() {
+         let thing: any;
+         this.skillTypes = [];
+@@ -85,14 +86,10 @@ export class SkillTypesComponent implements OnInit {
+     }
+ 
+     skillTypeUpdate(skillType: SkillType) {
+-        // this.skillTypeService.updateSkillType(skillType).subscribe(results => {
+-        //     this.grabAllSkillTypes();
+-        // });
+         if (skillType.active) {
+             skillType.active = false;
+             this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
+                 this.grabAllSkillTypes();
+-            
+             });
+         } else {
+             skillType.active = true;
+@@ -136,9 +133,6 @@ export class SkillTypesComponent implements OnInit {
+         this.getAssociated();
+     }
+ 
+-    /**
+-     * Only darkness within
+-     */
+     getAssociated() {
+         for (let i = 0; i < this.allBuckets.length; i++) {
+             if (this.checkContains(this.allBuckets[i])) {
+@@ -323,8 +317,8 @@ export class SkillTypesComponent implements OnInit {
+         this.skillTypeService.getSkillTypes().subscribe((results) => {
+             this.allSkillTypes = results;
+             this.setSkillTypes();
+-            this.allSkillTypes.sort(this.compare);
+             this.allSkillTypes.sort(this.compare2);
++            this.allSkillTypes.sort(this.compare);
+         });
+     }
+ 
+@@ -338,12 +332,14 @@ export class SkillTypesComponent implements OnInit {
+     }
+ 
+     compare2(a: SkillType, b: SkillType){
+-        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
++        if(a.active && a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()){
+           return -1;
+-        }else{
+-          return 1;
+-        }
+-      }
++        } else{
++            return 1;
++        } 
++    }
++
++
+ 
+     /**
+     * Grabs all buckets and stores the information into a variable
+
+From 0cb3ad94139400aaa75046af8689a541efefb806 Mon Sep 17 00:00:00 2001
+From: Yun Ha Jung <jungyunha1994@live.com>
+Date: Tue, 27 Aug 2019 14:50:26 -0400
+Subject: [PATCH 14/16] removed commented code and inactive ordering fixed for
+ both tracks and categories
+
+---
+ .../skillType-buckets.component.html          |  3 --
+ .../skillType-buckets.component.ts            |  9 ++++
+ .../skillTypes/skillTypes.component.html      |  1 -
+ .../skillTypes/skillTypes.component.ts        | 42 ++-----------------
+ 4 files changed, 13 insertions(+), 42 deletions(-)
+
+diff --git a/src/app/components/skillType-buckets/skillType-buckets.component.html b/src/app/components/skillType-buckets/skillType-buckets.component.html
+index d281899..394de31 100644
+--- a/src/app/components/skillType-buckets/skillType-buckets.component.html
++++ b/src/app/components/skillType-buckets/skillType-buckets.component.html
+@@ -17,10 +17,7 @@ <h6 class="card-header">All Categories</h6>
+           <!-- List of all buckets -->
+           <div class="list-group">
+             <!-- clickable to route to Bucket -->
+-            <!--* routeToBucket() -->
+             <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);">
+-            <!--  <b>{{bucket.bucketCategory}}</b>
+-              <br> -->
+               <!--* editBucket(bucket), passes the bucket selected to component side.
+                   * open(edit), calls modal to open. -->
+               <div class="col-sm" (click)="$event.cancelBubble=true; ">
+diff --git a/src/app/components/skillType-buckets/skillType-buckets.component.ts b/src/app/components/skillType-buckets/skillType-buckets.component.ts
+index 4d4ddcf..e0b4c20 100644
+--- a/src/app/components/skillType-buckets/skillType-buckets.component.ts
++++ b/src/app/components/skillType-buckets/skillType-buckets.component.ts
+@@ -45,6 +45,7 @@ export class SkillTypeBucketsComponent implements OnInit {
+       this.buckets = buckets;
+       this.buckets.sort(this.compare); //compares the categories based on them being toggled active or not
+       this.buckets.sort(this.compareAlphabetically); // compares the categories and sorts a;phabetically
++      this.buckets.sort(this.compare3);
+     });
+   }
+ 
+@@ -65,6 +66,14 @@ export class SkillTypeBucketsComponent implements OnInit {
+       return 1;
+     }
+   }
++
++  compare3(a: Bucket, b: Bucket) {
++    if (!a.isActive && !b.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
++        return -1;
++    } else {
++        return 1;
++    }
++}
+   
+ 
+   /** Save the selected 'bucket' in 'bucket.service' to be used in
+diff --git a/src/app/components/skillTypes/skillTypes.component.html b/src/app/components/skillTypes/skillTypes.component.html
+index 194b994..8ed8257 100644
+--- a/src/app/components/skillTypes/skillTypes.component.html
++++ b/src/app/components/skillTypes/skillTypes.component.html
+@@ -63,7 +63,6 @@ <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+                               <input type="number" #weight name="weight" class="form-control border-left-0 bucketWeight" min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
+                               <input type="number" name="sum" class="form-control bucketWeight" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
+                               </div>
+-                             <!-- <span class="percentSign">%</span> -->
+                               <button id = "xButton" type="button" class="close col-sm-2 rounded" aria-label="Close" (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()" >
+                               <span aria-hidden="true">&times;</span></button>
+                           </div>
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index 6d0e294..f0dc635 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -92,9 +92,6 @@ export class SkillTypesComponent implements OnInit {
+     }
+ 
+     skillTypeUpdate(skillType: SkillType) {
+-        // this.skillTypeService.updateSkillType(skillType).subscribe(results => {
+-        //     this.grabAllSkillTypes();
+-        // });
+         if (skillType.active) {
+             skillType.active = false;
+             this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
+@@ -173,15 +170,12 @@ export class SkillTypesComponent implements OnInit {
+         if (this.singleSkillType) {
+             for (let i = 0; i < this.allWeights.length; i++) {
+                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
+-                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {
+-                        // console.log('this skilltype is associated with : ' + bucket.bucketDescription);
+-                        return true;
++                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        return true;
+                     }
+                 }
+             }
+         }
+-        // console.log('this skilltype is not associated with : ' + bucket.bucketDescription);
+-        return false;
++                return false;
+     }
+ 
+     /**
+@@ -233,25 +227,6 @@ export class SkillTypesComponent implements OnInit {
+         }
+     }
+ 
+-    /**
+-    * If there are existing buckets, set the current weight percent to the skill types so when
+-    * it combines the buckets and weights fields, it has updated data.
+-    * Clear the array holding the buckets and weights information.
+-    * Combines the buckets and weights field of the selected skill types
+-    */
+-    combineBucketsAndWeights() {
+-        // if (this.bucketsAndWeights.length !== 0) {
+-        //     for (const index of this.bucketsAndWeights) {
+-        //         this.singleSkillType.weights[index] = this.bucketsAndWeights[index].weights;
+-        //     }
+-        // }
+-        // this.bucketsAndWeights = [];
+-        // for (const bucket of this.singleSkillType.buckets) {
+-        //     this.bucketsAndWeights.push({'bucketCategory': bucket.bucketCategory,
+-        //         'weights': this.singleSkillType.weights});
+-        // }
+-    }
+-
+     /**
+     * Makes sure that the weight percentage input is within 0 and 100
+     * @param index: Weight percentage of a single bucket.
+@@ -343,15 +318,7 @@ export class SkillTypesComponent implements OnInit {
+         });
+     }
+ 
+-    compareAlphabetically(a: SkillType, b: SkillType){
+-        if(a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()){
+-            return -1;
+-        }else{
+-            return 1;
+-        }
+-    }
+-
+-    compareAlphabetically2(a: Bucket, b: Bucket) {
++    compareAlphabetically(a: Bucket, b: Bucket) {
+         if(a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()){
+             return -1;
+         }else{
+@@ -390,7 +357,7 @@ export class SkillTypesComponent implements OnInit {
+     grabAllBuckets() {
+         this.bucketsService.getAllBuckets().subscribe(results => {
+             this.allBuckets = results;
+-            this.allBuckets.sort(this.compareAlphabetically2);
++            this.allBuckets.sort(this.compareAlphabetically);
+         });
+     }
+ 
+@@ -399,7 +366,6 @@ export class SkillTypesComponent implements OnInit {
+     */
+     resetFields() {
+         this.singleSkillType = null;
+-        //this.bucketsAndWeights = [];
+         this.error = false;
+         this.singleSkillTypeBucketIds = [];
+ 
+
+From 4c5d531830361ba5d18f1a7ecd7f2f3588ae0b28 Mon Sep 17 00:00:00 2001
+From: Dylan Waser <waserd@etsu.edu>
+Date: Tue, 27 Aug 2019 16:37:28 -0400
+Subject: [PATCH 15/16] Corrected method names and removed unused code
+
+---
+ .../skillTypes/skillTypes.component.ts        | 33 ++++---------------
+ 1 file changed, 7 insertions(+), 26 deletions(-)
+
+diff --git a/src/app/components/skillTypes/skillTypes.component.ts b/src/app/components/skillTypes/skillTypes.component.ts
+index b88cad4..1951a31 100644
+--- a/src/app/components/skillTypes/skillTypes.component.ts
++++ b/src/app/components/skillTypes/skillTypes.component.ts
+@@ -47,9 +47,6 @@ export class SkillTypesComponent implements OnInit {
+       /** variable to hold bucket being edited */
+     currSkillType: SkillType;
+ 
+-    /** variable to hold new bucket being created  */
+-    newSkillType: SkillType = new SkillType();
+-
+     constructor(
+         private modalService: NgbModal,
+         private fb: FormBuilder,
+@@ -116,11 +113,9 @@ export class SkillTypesComponent implements OnInit {
+     open(content) {
+         this.modalServiceRef = this.modalService.open(content);
+         this.modalServiceRef.result.then((result) => {
+-            this.newSkillType = new SkillType();
+             this.resetFields();
+         }, (reason) => {
+-            this.newSkillType.title = " ";
+-            
++            this.resetFields();
+         });
+         event.stopPropagation();
+     }
+@@ -261,20 +256,6 @@ export class SkillTypesComponent implements OnInit {
+         }
+     }
+ 
+-    /**
+-    * Creates a new skill type to be created
+-    * Grabs all the skill types after the information has been submitted
+-    * @param modal: Form information from the modal, with parameters matching the SkillType entity
+-    */
+-    createNewSkillType(modal : SkillType) {
+-        this.skillTypeService.createSkillType(this.newSkillType)
+-        .subscribe(skilltype => {
+-            this.skillTypes.push(skilltype);
+-           this.grabAllSkillTypes();
+-        });
+-        this.savedSuccessfully();
+-    }
+-
+     /**
+     * Checks the sum of bucket weights that are associated to the selected skill types
+     * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
+@@ -300,10 +281,10 @@ export class SkillTypesComponent implements OnInit {
+         this.skillTypeService.getSkillTypes().subscribe((results) => {
+             this.allSkillTypes = results;
+             this.setSkillTypes();
+-            this.allSkillTypes.sort(this.compare);
++            this.allSkillTypes.sort(this.compareIfTrackIsActive);
+             this.setSkillTypes();
+-            this.allSkillTypes.sort(this.compare2);
+-            this.allSkillTypes.sort(this.compare3);
++            this.allSkillTypes.sort(this.compareActiveTracks);
++            this.allSkillTypes.sort(this.compareInactiveTracks);
+         });
+     }
+ 
+@@ -316,7 +297,7 @@ export class SkillTypesComponent implements OnInit {
+     }
+ 
+     /** used to compare SkillType Array to sort it based on status */
+-    compare(a: SkillType, b: SkillType) {
++    compareIfTrackIsActive(a: SkillType, b: SkillType) {
+         if (a.active) {
+             return -1;
+         } else {
+@@ -324,7 +305,7 @@ export class SkillTypesComponent implements OnInit {
+         }
+     }
+ 
+-    compare2(a: SkillType, b: SkillType) {
++    compareActiveTracks(a: SkillType, b: SkillType) {
+         if (a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
+           return -1;
+         } else {
+@@ -332,7 +313,7 @@ export class SkillTypesComponent implements OnInit {
+         }
+       }
+ 
+-    compare3(a: SkillType, b: SkillType) {
++    compareInactiveTracks(a: SkillType, b: SkillType) {
+         if (!a.active && !b.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
+             return -1;
+         } else {
+
+From 6a4a45b686ce5974d01b35902ac0aa466a055ab1 Mon Sep 17 00:00:00 2001
+From: Dylan Waser <waserd@etsu.edu>
+Date: Tue, 27 Aug 2019 16:42:55 -0400
+Subject: [PATCH 16/16] removed methods that were not suppose to be added in
+ this feature
+
+---
+ .../skillType-buckets/skillType-buckets.component.ts | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+diff --git a/src/app/components/skillType-buckets/skillType-buckets.component.ts b/src/app/components/skillType-buckets/skillType-buckets.component.ts
+index bbedad1..a87aff6 100644
+--- a/src/app/components/skillType-buckets/skillType-buckets.component.ts
++++ b/src/app/components/skillType-buckets/skillType-buckets.component.ts
+@@ -45,7 +45,6 @@ export class SkillTypeBucketsComponent implements OnInit {
+       this.buckets = buckets;
+       this.buckets.sort(this.compare); //compares the categories based on them being toggled active or not
+       this.buckets.sort(this.compareAlphabetically); // compares the categories and sorts a;phabetically
+-      this.buckets.sort(this.compare3);
+     });
+   }
+ 
+@@ -65,16 +64,7 @@ export class SkillTypeBucketsComponent implements OnInit {
+     }else{
+       return 1;
+     }
+-  }
+-
+-  compare3(a: Bucket, b: Bucket) {
+-    if (!a.isActive && !b.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
+-        return -1;
+-    } else {
+-        return 1;
+-    }
+-}
+-  
++  }  
+ 
+   /** Save the selected 'bucket' in 'bucket.service' to be used in
+     * 'bucket.component'.

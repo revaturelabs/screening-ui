@@ -31,7 +31,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   constructor(
     private router: Router,
     private bucketService: BucketsService,
-   
+
     private modalService: NgbModal,
     private alertsService: AlertsService, ) { }
 
@@ -43,7 +43,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   getBuckets(): void {
     this.bucketService.getAllBuckets().subscribe(buckets => {
       this.buckets = buckets;
-      this.buckets.sort(this.compare); //compares the categories based on them being toggled active or not
+      this.buckets.sort(this.compare); // compares the categories based on them being toggled active or not
       this.buckets.sort(this.compareAlphabetically); // compares the categories and sorts a;phabetically
     });
   }
@@ -58,13 +58,21 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   /** used to compare buckets Array to sorts it alphabetically */
-  compareAlphabetically(a: Bucket, b: Bucket){
-    if(a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()){
+  compareAlphabetically(a: Bucket, b: Bucket) {
+    if (a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
       return -1;
-    }else{
+    } else {
       return 1;
     }
-  }  
+  }
+
+  compareInactiveTracks(a: Bucket, b: Bucket) {
+    if (!a.isActive && !b.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
+        return -1;
+    } else {
+        return 1;
+    }
+}
 
   /** Save the selected 'bucket' in 'bucket.service' to be used in
     * 'bucket.component'.

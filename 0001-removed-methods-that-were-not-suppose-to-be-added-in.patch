@@ -1,0 +1,43 @@
+From 6a4a45b686ce5974d01b35902ac0aa466a055ab1 Mon Sep 17 00:00:00 2001
+From: Dylan Waser <waserd@etsu.edu>
+Date: Tue, 27 Aug 2019 16:42:55 -0400
+Subject: [PATCH] removed methods that were not suppose to be added in this
+ feature
+
+---
+ .../skillType-buckets/skillType-buckets.component.ts | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+diff --git a/src/app/components/skillType-buckets/skillType-buckets.component.ts b/src/app/components/skillType-buckets/skillType-buckets.component.ts
+index bbedad1..a87aff6 100644
+--- a/src/app/components/skillType-buckets/skillType-buckets.component.ts
++++ b/src/app/components/skillType-buckets/skillType-buckets.component.ts
+@@ -45,7 +45,6 @@ export class SkillTypeBucketsComponent implements OnInit {
+       this.buckets = buckets;
+       this.buckets.sort(this.compare); //compares the categories based on them being toggled active or not
+       this.buckets.sort(this.compareAlphabetically); // compares the categories and sorts a;phabetically
+       this.buckets.sort(this.compare3);
+     });
+   }
+ 
+@@ -65,16 +64,7 @@ export class SkillTypeBucketsComponent implements OnInit {
+     }else{
+       return 1;
+     }
+ }
+
+ compare3(a: Bucket, b: Bucket) {
+    if (!a.isActive && !b.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
+        return -1;
+    } else {
+        return 1;
+    }
+}
+  
++  }  
+ 
+   /** Save the selected 'bucket' in 'bucket.service' to be used in
+     * 'bucket.component'.
+-- 
+2.22.0.windows.1
+
