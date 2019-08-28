@@ -8,10 +8,7 @@ import { ScreeningStateService } from '../../services/screening-state/screening-
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
-// import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-// import { NgbModalWindow } from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { Bucket } from '../../entities/Bucket';
@@ -22,9 +19,8 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
-import { RouterTestingModule } from '@angular/router/testing'; 
+import { RouterTestingModule } from '@angular/router/testing';
 import { QuestionScore } from 'src/app/entities/QuestionScore';
-import { BucketsService } from 'src/app/services/buckets/buckets.service';
 
 
 // Author: David Gustafson
@@ -35,15 +31,11 @@ import { BucketsService } from 'src/app/services/buckets/buckets.service';
 const QUESTION: Question = {
   questionId: 1,
   questionText: 'string',
-  sampleAnswer1: 'string',
-  sampleAnswer2: 'string',
-  sampleAnswer3: 'string',
-  sampleAnswer4: 'string',
-  sampleAnswer5: 'string',
+  sampleAnswer: 'string',
   isActive: true,
   bucket: new Bucket()
 };
-const mockQuestionScore:QuestionScore = {
+const mockQuestionScore: QuestionScore = {
   qSID: 1,
   questionId: 1,
   screeningID: 1,
@@ -71,16 +63,16 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
+      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], // cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule, RouterTestingModule],
       providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
-        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
+        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
+        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] // cut out NgbModalBackdrop, NgbModalWindow,
       }
     })
       .compileComponents();
@@ -99,7 +91,7 @@ describe('QuestionsTableComponent', () => {
     component.ngOnDestroy();
     if (component.questionBuckets !== undefined) {
       for (const bucket of component.questionBuckets) {
-        let bs = jasmine.createSpyObj('QuestionService', ['getBucketQuestions']);
+        const bs = jasmine.createSpyObj('QuestionService', ['getBucketQuestions']);
         expect(bs.getBucketQuestions(bucket.bucketId)).toEqual([]);
       }
     }
