@@ -94,9 +94,7 @@ export class SkillTypeBucketsComponent implements OnInit {
       this.savedSuccessfully();
     }
   }
-  click(){
-    console.log("HAIL STAN!");
-  }
+  
   /** Creates new bucket */
   createBucket() {
     // The server will generate the id for this new hero
