@@ -4,8 +4,14 @@
   <br>
   <p id="candidate-name" class="text-center">{{candidateName}}</p>
   <div id="q-and-a-content">
-    <h2>Categories</h2>
+      <div>
+        <h2> Current Track: <h5> {{currentScreenings.track.title}}</h5></h2>
+      </div>
+    <h2>Categories:</h2>
     <p>Select a category to begin asking questions</p>
+    <div>
+     <h5> {{skillTypeBucketLookUp.buckets}}</h5>
+    </div>
     <div id="bucket-buttons">
       <ul class="nav nav-tabs">
         <li class="pointer" *ngFor="let weight of questionBuckets">
