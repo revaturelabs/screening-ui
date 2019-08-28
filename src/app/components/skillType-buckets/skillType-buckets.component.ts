@@ -102,7 +102,6 @@ export class SkillTypeBucketsComponent implements OnInit {
       .subscribe(bucket => {
         this.buckets.push(bucket);
         this.getBuckets();
-        console.log("i'm here");
       });
   }
 
