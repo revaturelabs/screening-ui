@@ -8,10 +8,7 @@ import { ScreeningStateService } from '../../services/screening-state/screening-
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
-// import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-// import { NgbModalWindow } from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { Bucket } from '../../entities/Bucket';
@@ -22,7 +19,8 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
-import { RouterTestingModule } from '@angular/router/testing'; 
+import { RouterTestingModule } from '@angular/router/testing';
+import { QuestionScore } from 'src/app/entities/QuestionScore';
 
 
 // Author: David Gustafson
@@ -33,13 +31,18 @@ import { RouterTestingModule } from '@angular/router/testing';
 const QUESTION: Question = {
   questionId: 1,
   questionText: 'string',
-  sampleAnswer1: 'string',
-  sampleAnswer2: 'string',
-  sampleAnswer3: 'string',
-  sampleAnswer4: 'string',
-  sampleAnswer5: 'string',
+  sampleAnswer: 'string',
   isActive: true,
   bucket: new Bucket()
+};
+const mockQuestionScore: QuestionScore = {
+  qSID: 1,
+  questionId: 1,
+  screeningID: 1,
+  score: 1,
+  commentary: 'string',
+  bucketId: 1,
+  beginTime: new Date
 };
 
 const BUCKETS: Bucket[] = [
@@ -60,16 +63,16 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
+      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], // cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule, RouterTestingModule],
       providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
-        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
+        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
         SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
+        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] // cut out NgbModalBackdrop, NgbModalWindow,
       }
     })
       .compileComponents();
@@ -78,33 +81,21 @@ describe('QuestionsTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionsTableComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should set questionBuckets to [] false', () => {
-  //   component.ngOnDestroy();
-  //   if (component.questionBuckets !== undefined) {
-  //     for (const bucket of component.questionBuckets) {
-  //       expect(bucket.questions).toEqual([]);
-  //     }
-  //   }
-  // });
-
-  // it('should set questionBuckets to [] true', () => {
-  //   component.questionBuckets = BUCKETS;
-  //   component.ngOnDestroy();
-  //   if (component.questionBuckets !== undefined) {
-  //     for (const bucket of component.questionBuckets) {
-  //       expect(bucket.questions).toEqual([]);
-  //     }
-  //   }
-  // });
-
-  
+  it('should set questionBuckets to [] false', () => {
+    component.ngOnDestroy();
+    if (component.questionBuckets !== undefined) {
+      for (const bucket of component.questionBuckets) {
+        const bs = jasmine.createSpyObj('QuestionService', ['getBucketQuestions']);
+        expect(bs.getBucketQuestions(bucket.bucketId)).toEqual([]);
+      }
+    }
+  });
 
   it('should set run open', () => {
     const spy = spyOn(component, 'open');
@@ -116,16 +107,10 @@ describe('QuestionsTableComponent', () => {
     expect(component.isAnsweredQuestion(QUESTION)).toBeFalsy();
   });
 
-  // it('should return true', () => {
-  //   component.questionScores.push({
-  //     qSID: 1,
-  //     questionId: 1,
-  //     screeningID: 1,
-  //     score: 1,
-  //     commentary: 'string',
-  //     beginTime: new Date});
-  //   expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
-  // });
+  it('should return true', () => {
+    component.questionScores.push(mockQuestionScore);
+    expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
+  });
 
   it('should return true', () => {
     expect(component.submitAllowed()).toBeTruthy();
@@ -135,12 +120,5 @@ describe('QuestionsTableComponent', () => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
   });
-
-  // it('should set comment', () => {
-  //   const mine = new QuestionsTableComponent(null, null, null, null, null,
-  //     new ScreeningService(new HttpClient({} as HttpHandler), null), null, null);
-  //   mine.generalComment = 'hi';
-  //   expect(mine.saveFeedback()).toBeTruthy();
-  // });
 
 });

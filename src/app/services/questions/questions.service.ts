@@ -27,6 +27,8 @@ const httpOptions = {
   })
 };
 
+
+
 @Injectable()
 export class QuestionsService {
 
@@ -68,8 +70,8 @@ export class QuestionsService {
    * add urlService to get endpoint for deactivating a question
    * @param questionId
   */
-  deactivateQuestion(questionId: number) {
-    return this.http.put(this.urlService.question.deactivateQuestion(questionId), httpOptions);
+  deactivateQuestion(question: Question) {
+    return this.http.put(this.urlService.question.deactivateQuestion(question.questionId),question, httpOptions);
   }
 
   /**
@@ -77,8 +79,8 @@ export class QuestionsService {
    * add urlService to get endpoint for activating a question
    * @param questionId
   */
-  activateQuestion(questionId: number) {
-    return this.http.put(this.urlService.question.activateQuestion(questionId), httpOptions);
+  activateQuestion(question: Question) {
+    return this.http.put(this.urlService.question.activateQuestion(question.questionId),question, httpOptions);
   }
 
   /**
@@ -91,13 +93,7 @@ export class QuestionsService {
   }
 
   getQuestions(skillTypeId: number): Observable<Question[]> {
-    console.log("calling get Questions");
-    // const tagArray: number[] = [];
-    // for (const tag of this.tagService.getCheckedTags()){
-    //   tagArray.push(tag.tagId);
-    // }
     const currSkillTypeID = skillTypeId;
-    // const tagsAndSkill: TagsAndSkill = { tagList : tagArray, skillTypeId : currSkillTypeID };
 
     return this.http.post<Question[]>( // change to get with parameters
       this.urlService.question.filteredQuestions(),
@@ -105,11 +101,6 @@ export class QuestionsService {
     );
   }
 
-
-   // getQuestions(bucketId: number): Observable<Question[]> {
-   //
-   //
-   // }
   /**
    * Originally from a file called "questionsToBuckets.util.ts"
    * That was a gross way to do it, so I incorporated the only method in it
@@ -127,8 +118,6 @@ export class QuestionsService {
         // After adding the new bucket, add the current question to the new bucket
         if (matchingBucket) {
           this.returnBuckets.push(matchingBucket);
-          // this.returnBuckets[this.returnBuckets.length - 1].questions = [];
-          // this.returnBuckets[this.returnBuckets.length - 1].questions.push(question);
         }
         // If the bucket array is not empty, check to see if this question's bucket is already listed
       } else {
@@ -143,12 +132,8 @@ export class QuestionsService {
           // After adding the new bucket, add the current question to the new bucket
           if (matchingBucket) {
             this.returnBuckets.push(matchingBucket);
-            // this.returnBuckets[this.returnBuckets.length - 1].questions = [];
-            // this.returnBuckets[this.returnBuckets.length - 1].questions.push(question);
           }
           // If the bucket exists, add question to it
-        } else {
-          // this.returnBuckets[this.returnBuckets.indexOf(existingBucket)].questions.push(question);
         }
       }
 

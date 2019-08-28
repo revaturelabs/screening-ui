@@ -36,14 +36,14 @@ export class AlertsComponent implements OnInit {
 //   /**
 //    * display success/error notif
 //    */
-//   showNotif() {
-//     this.alertService.getMessage().subscribe(message => {
-//       this.message = message;
-//       if (this.message.type === 'success') {
-//         this.notif.success('Success', this.message.text);
-//       } else {
-//         this.notif.error('Error', this.message.text);
-//       }
-//     });
-//   }
+  // showNotif() {
+  //   this.alertService.getMessage().subscribe(message => {
+  //     this.message = message;
+  //     if (this.message.type === 'success') {
+  //       this.notif.success('Success', this.message.text);
+  //     } else {
+  //       this.notif.error('Error', this.message.text);
+  //     }
+  //   });
+  // }
  }

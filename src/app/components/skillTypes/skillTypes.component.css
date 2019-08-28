@@ -21,8 +21,9 @@ h1{
   border-top-right-radius: 4px;
   border-color: #f26925;
   text-align: center;
-  font-size: 25px;
+  font-size: 1.66rem;
   white-space:nowrap;
+  
 }
 
 
@@ -111,11 +112,12 @@ i {
 
 .percentSign{
   background-color: inherit;
-  border-right: 1px solid #ccc;
+  position: relative;
 }
 
 .bucketWeight{
   text-align: right;
+  position: static;
 }
 
 .revatureOrange{
@@ -229,12 +231,12 @@ input:checked + .slider:before {
 }
 
 #xButton{
-  left: 109%;
-  opacity: 1;
-  position: absolute;
-  width: 10%;
-  height: 68%;
-  padding-bottom: 10%;
+  left: 100%;
+  opacity: 0.6;
+  position: static;
+  width: 2px;
+  height: 0%;
+  padding-bottom: 3%;
 }
 
 #xButton:hover{
@@ -244,15 +246,40 @@ input:checked + .slider:before {
 .pillButtons{
   margin: 5px;
   overflow: hidden;
+  overflow-wrap: break-word;
   border-radius: 9%;
   width: 85px;
-  height: 47px;
+  height: 60px;
   justify-content: center;
-  font-size: 12px;
+  font-size: 0.7rem;
 }
 
 #font-fix{
-  font-size: 13px;
+  text-align: center;
+  height: 38px;
+  line-height: 38px;
+  font-size: 0.8rem;
+
 }
 
+.catbox{
+  border-style: solid;
+  position: static;
+  margin:auto;
+  border-radius: 12px;
+  overflow: auto;
+}
+.placeholder
+{
+    position: relative;
+}
 
+.placeholder::after
+{
+    position: absolute;
+    left: 71px;
+    top: 7px;
+    content: attr(data-placeholder);
+    pointer-events: none;
+    opacity: 0.6;
+}

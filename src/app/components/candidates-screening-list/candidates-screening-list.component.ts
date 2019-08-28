@@ -22,7 +22,7 @@ import { SearchPipe } from '../../pipes/search.pipe';
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
   styleUrls: ['./candidates-screening-list.component.css'],
-  providers: [SearchPipe]
+  providers: [SearchPipe, NgxPaginationModule]
 })
 
 /**
@@ -43,7 +43,6 @@ export class CandidatesScreeningListComponent implements OnInit {
   // when a screener (user) clicks on a screening,
   // save the candidate and scheduled screening
   // to their respective services.
-  selectedCandidate: Candidate;
   selectedScheduledScreening: ScheduledScreening;
   // Flag for displaying the "Begin Interview" prompt
   showBeginScreeningPrompt = false;
@@ -75,8 +74,9 @@ export class CandidatesScreeningListComponent implements OnInit {
       window.location.reload(true);
     }
     this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
+
   }
- 
+
   // Reveals the "Begin Interview" prompt
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {
@@ -93,6 +93,8 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
+    let screeningId: String;
+    let skillTypeId: String;
     // create a new screening entry in the database by calling the screening service
     this.screeningService
       .beginScreening(
@@ -109,8 +111,10 @@ export class CandidatesScreeningListComponent implements OnInit {
         // take the data from the response from the database
         data => {
         // and save the screening ID as a cookie to localStorage.
-        localStorage.setItem('screeningID', data.toString());
-        localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
+        // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
+        // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
+        screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
+        skillTypeId = this.selectedScheduledScreening.track.skillTypeId.toString();
       });
   }
 }

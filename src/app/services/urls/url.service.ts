@@ -26,7 +26,8 @@ export class UrlService {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
-    createNewBucket: () => `${this.bucketEndpoint}`
+    createNewBucket: () => `${this.bucketEndpoint}`,
+    deleteBucket: ()=> `${this.bucketEndpoint}`
   };
 
   /**
@@ -39,11 +40,11 @@ export class UrlService {
    */
   private questionEndpoint = (this.adminContext + '/question');
   question = {
-    postQuestion: () => `${this.questionEndpoint}/new`,
+    postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
     getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
+    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
    };
 
@@ -90,7 +91,7 @@ export class UrlService {
     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
     putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/updateSkillTypeBucket`,
+    updateSkillTypeBuckets: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
     getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
 

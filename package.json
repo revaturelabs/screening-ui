@@ -21,7 +21,7 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^3.2.2",
+    "@ng-bootstrap/ng-bootstrap": "^3.3.1",
     "aws-amplify": "^1.1.36",
     "aws-amplify-angular": "^2.1.12",
     "bootstrap": "^4.3.1",
@@ -32,7 +32,7 @@
     "ng5-slider": "^1.1.13",
     "ngx-cookie-service": "^1.0.10",
     "ngx-countdown-timer": "^0.1.9",
-    "ngx-pagination": "^3.2.0",
+    "ngx-pagination": "^3.3.1",
     "popper.js": "^1.14.7",
     "rxjs": "^6.3.3",
     "zone.js": "~0.8.26"

@@ -35,10 +35,10 @@ export class ReportSidebarComponent implements OnInit {
   emailSearchTerm: string = '';
   //sliderControl: FormControl;
   _reportData: ReportData;
-  @Input()
-  set reportData(reportData: ReportData){
-    this._reportData = reportData;
-  }
+  @Input('reportData') reportData:ReportData
+  // set reportData(reportData: ReportData){
+  //   this._reportData = reportData;
+  // }
   // Used to emit slider events to master-component
   @Output() sliderChange = new EventEmitter();
  
