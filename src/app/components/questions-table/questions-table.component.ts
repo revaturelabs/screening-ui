@@ -42,10 +42,6 @@ Screener has the ability to navigate between tabs ad nauseam,
 asking whichever questions they desire. When a screener asks a question,
 it will invoke an instance of the question component.
 
-Possible change for the future there are no programmatic constraints
-on how many questions a screener can ask, nor are there any constraints
-on what the proportion of questions must be (x% Java, y% HTML, z% SQL, etc).
-Future iterations may change this.
 */
 
 export class QuestionsTableComponent implements OnInit, OnDestroy {
@@ -90,8 +86,6 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
-    // need to retrieve skillTypeID from somewhere other than the Candidate. 
-    //const skillTypeID = this.skillID;
     this.skillID = this.screeningStateService.getSkillID();
     this.subscriptions.push(
       this.skillTypeBucketService.
@@ -112,11 +106,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
     this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
     this.currentScreenings = this.screeningStateService.getCurrentScreening();
-    this.skillID = this.screeningStateService.getSkillID();
-    //this.skillID = this.currentScreenings.track.skillTypeId;
+    //this.skillID = this.screeningStateService.getSkillID();
     
-
-
     // update the answeredQuestions variable in our service to track the
     // questions that have been given a score by the screener.
     this.subscriptions.push(this.questionScoreService.currentQuestionScores.subscribe(
