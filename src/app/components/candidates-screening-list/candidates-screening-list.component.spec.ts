@@ -98,7 +98,7 @@ describe('CandidatesScreeningListComponent', () => {
   });
 
   it('should populate a list and allow for element selection', () => {
-    spyOn(scheduledScreeningService,'getScheduledScreenings')
+    spyOn(scheduledScreeningService, 'getScheduledScreenings')
       .and.returnValue( screeningList);
       component.ngOnInit();
       fixture.detectChanges();

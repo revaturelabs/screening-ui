@@ -12,8 +12,6 @@ import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
 import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 
 // Modal for answering the question
 import { AnswerComponent } from '../answer/answer.component';
@@ -30,7 +28,6 @@ import { Weight } from '../../entities/Weight';
   templateUrl: './questions-table.component.html',
   styleUrls: ['./questions-table.component.css']
 })
-
 /*
 After the candidate has given their introduction,
 the screener will proceed to the question-and-answer part of the interview.
@@ -43,7 +40,6 @@ asking whichever questions they desire. When a screener asks a question,
 it will invoke an instance of the question component.
 
 */
-
 export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Used to display the categories
   questionBuckets: Bucket[];
@@ -137,8 +133,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   }
 
   open(question: Question) {
-    const modalRef = this.modalService.open('AnswerComponent'); // AnswerComponent should be injected into this modal
-    modalRef.componentInstance.question = question;
+    // this is commented out because the modal is failing to open and breaking the page. 
+    // const modalRef = this.modalService.open("AnswerComponent"); //AnswerComponent should be injected into this modal
+    // modalRef.componentInstance.question = question;
   }
 
   // used to display the green question mark on answered questions
