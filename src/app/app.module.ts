@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
-import {SpringInterceptor} from './interceptors/spring.interceptor'
+import {SpringInterceptor} from './interceptors/spring.interceptor';
 
 import { routes } from './app.routes';
 
@@ -101,10 +101,10 @@ import { RoleGuard } from './role-guard';
     ReportSidebarComponent,
     ViolationsByTypeComponent
   ],
-  imports: [    
+  imports: [
     BrowserAnimationsModule,
-    BrowserModule,    
-    FormsModule,        
+    BrowserModule,
+    FormsModule,
     HighchartsChartModule,
     HttpClientModule,
     HttpModule,

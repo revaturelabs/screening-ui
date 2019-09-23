@@ -6,22 +6,21 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { HighchartsChartModule } from 'highcharts-angular';
 import { UrlService } from '../../../services/urls/url.service';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('AverageBucketTypeComponent', () => {
   let component: AverageBucketTypeComponent;
   let fixture: ComponentFixture<AverageBucketTypeComponent>;
-let mockReportService: ReportService;
+  let mockReportService: ReportService;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[ RouterTestingModule, HighchartsChartModule, HttpModule, HttpClientModule],
-      declarations: [ AverageBucketTypeComponent ],
-providers: [ReportService, UrlService]
-    })
+      imports: [RouterTestingModule, HighchartsChartModule, HttpClientModule],
+      declarations: [AverageBucketTypeComponent],
+      providers: [ReportService, UrlService]
+    });
     fixture = TestBed.createComponent(AverageBucketTypeComponent);
     component = fixture.componentInstance;
-    mockReportService =TestBed.get(ReportService);
+    mockReportService = TestBed.get(ReportService);
   });
 
   it('should create', () => {

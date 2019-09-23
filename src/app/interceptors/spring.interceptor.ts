@@ -13,7 +13,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 @Injectable()
 export class SpringInterceptor implements HttpInterceptor {
 
-  constructor(private amplifyService:AmplifyService) { }
+  constructor(private amplifyService: AmplifyService) { }
 
   /**
   * Intercept each HTTP rquest and return a modified request
@@ -21,9 +21,9 @@ export class SpringInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const user = JSON.parse(localStorage.getItem('user'));
     let groups;
-    if(user) {
+    if (user) {
       groups = user['signInUserSession']['idToken']['payload']['cognito:groups'];
-      console.log(user)
+      console.log(user);
     }
     const modifiedRequest = request.clone({
       // withCredentials: true,
