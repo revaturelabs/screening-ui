@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule} from 'highcharts-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -16,7 +15,6 @@ import {SpringInterceptor} from './interceptors/spring.interceptor';
 import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { AlertsComponent } from './components/alerts/alerts.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
 import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
@@ -33,7 +31,7 @@ import { ReportSidebarComponent } from './components/reports/report-sidebar/repo
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
-import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
+import { ViolationsByTypeComponent } from './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -72,7 +70,6 @@ import { RoleGuard } from './role-guard';
 
 @NgModule({
   declarations: [
-    AlertsComponent,
     AppComponent,
     AnswerComponent,
     CandidatesScreeningListComponent,
@@ -107,8 +104,7 @@ import { RoleGuard } from './role-guard';
     FormsModule,
     HighchartsChartModule,
     HttpClientModule,
-    HttpModule,
-    NgbModule.forRoot(),
+    NgbModule,
     NgxPaginationModule,
     Ng5SliderModule,
     ReactiveFormsModule,
