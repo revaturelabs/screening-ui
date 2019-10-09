@@ -172,6 +172,7 @@ export class QuestionComponent implements OnInit {
    * Used to populate the current question and the current tags with a selected question to be
    * edited.
    **/
+
   updateQuestions() {
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
@@ -181,7 +182,6 @@ export class QuestionComponent implements OnInit {
   }
 
   deleteQuestion(question) {
-    console.log(question);
     const index = this.questions.indexOf(question);
     this.questions.splice(index, 1);
     }
