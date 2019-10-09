@@ -129,6 +129,14 @@ export class QuestionComponent implements OnInit {
   editQuestion(question) {
     this.question = question;
     this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    let index=this.questions.indexOf(this.question);
+    this.questions[index].questionText=this.question.questionText;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer1;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer2;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer3;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer4;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer5;
+
   }
 
   /**
