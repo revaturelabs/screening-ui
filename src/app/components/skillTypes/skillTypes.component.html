@@ -16,7 +16,7 @@
                 <input
                   type="checkbox"
                   [(ngModel)]="skillType.isActive"
-                  (change)="skillTypeUpdate(skillType)"
+                  (change)="updateSkillType(skillType)"
                 />
                 <span
                   class="slider round"
@@ -28,7 +28,7 @@
             <i
               id="penIcon"
               class="fas fa-pencil-alt pull-right"
-              (click)="updateSkillType(skillType); open(content)"
+              (click)="editSkillType(skillType); open(content)"
               placement="top"
               ngbTooltip="edit"
             >

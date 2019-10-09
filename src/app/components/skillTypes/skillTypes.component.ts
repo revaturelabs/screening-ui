@@ -167,6 +167,9 @@ export class SkillTypesComponent implements OnInit {
    * set the array to the selected buckets to the array
    * @param skillType: selected skill type
    */
+
+
+   /* This will work for altering a skill type, but it will not display the change on the page. */
   editSkillType(skillType) {
     console.log('in edit skill type');
     this.singleSkillTypeBuckets = [];
@@ -309,11 +312,6 @@ export class SkillTypesComponent implements OnInit {
    * If the buckets
    */
   updateSkillType(modal: SkillType) {
-    this.skillType = ({
-      skillTypeId: 0,
-      title: '',
-      isActive: true
-  });
     this.skillType = modal;
     this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
     this.bucketWeightSum = 0;
