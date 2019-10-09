@@ -52,6 +52,9 @@ export class BucketsService {
   createNewBucket(bucket: Bucket): Observable<Bucket> {
       return this.http.post<Bucket>(this.urlService.bucket.createNewBucket(), bucket, httpOptions);
   }
+//   deleteBucket(bucket: Bucket) {
+//       return this.http.delete<Bucket>(this.urlService.bucket.deleteBucket(), bucket, httpOptions);
+//   }
 
   setBucket(bucket: Bucket) {
      this.currentBucket = bucket;

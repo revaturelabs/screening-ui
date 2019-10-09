@@ -22,6 +22,7 @@
             <b>{{bucket.bucketCategory}}</b>
             <br>
             <small>{{bucket.bucketDescription}}</small>
+            
 
             <!--* editBucket(bucket), passes the bucket selected to component side.
                 * open(edit), calls modal to open. -->
@@ -30,8 +31,10 @@
                 <label class="switch">
                   <input type="checkbox" [(ngModel)]="bucket.isActive" (change)="updateBucket(bucket);">
                   <span class="slider round" placement="top" ngbTooltip="active"></span>
+                  
                 </label>
               </i>
+              <div (click)="deleteBucket()" placement="top" ><span aria-hidden="true">&times;</span></div>
             </div>
             <i id="penIcon" class="fas fa-pencil pull-right" (click)="editBucket(bucket); open(edit)" placement="top"
               ngbTooltip="edit">

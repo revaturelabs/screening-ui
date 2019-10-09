@@ -1,3 +1,4 @@
+import { BUCKETS } from './../../mock-data/mock-buckets';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 /** component, service imports */
@@ -33,7 +34,9 @@ export class SkillTypeBucketsComponent implements OnInit {
     private bucketService: BucketsService,
     private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService: AlertsService, ) { }
+    private alertsService: AlertsService, ) {
+      this.buckets = BUCKETS;
+     }
 
   filter: Bucket = new Bucket();
   ngOnInit() {
@@ -94,7 +97,9 @@ export class SkillTypeBucketsComponent implements OnInit {
         this.buckets.push(bucket);
       });
   }
-
+  deleteBucket() {
+    console.log('delete buck ');
+  }
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
   }
