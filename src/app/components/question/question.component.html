@@ -25,7 +25,7 @@
         </div>
         <div class="card-body" id="allQuestionsDiv">
           <div class="list-group" *ngFor="let question of questions">
-            <a class="list-group-item list-group-item-action" *ngIf="question">
+            <a class="list-group-item list-group-item-action" *ngIf="question.bucket.bucketId == currentBucket.bucketId">
               {{question.questionText}}
               <i id="xIcon">
                 <label class="switch">
@@ -35,7 +35,7 @@
                 </label>
               </i>
               <i id="penIcon" class="fa fa-pencil pull-right" (click)="editQuestion(question); open(content)" placement="top"
-                ngbTooltip="edit"></i>
+                ngbTooltip="edit">Edit</i>
             </a>
           </div>
         </div>
