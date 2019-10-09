@@ -448,3 +448,4 @@ export class SkillTypesComponent implements OnInit {
     this.getAllWaits();
   }
 }
+
