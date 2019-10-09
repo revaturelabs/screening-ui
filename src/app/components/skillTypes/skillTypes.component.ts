@@ -9,6 +9,8 @@ import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
+import { BUCKETS } from 'src/app/mock-data/mock-buckets';
+import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
   selector: 'app-skill-types',
@@ -46,10 +48,17 @@ export class SkillTypesComponent implements OnInit {
   public skillTypes: SkillType[] = [];
   public inactiveSkillTypes: any[] = [];
   public allSkillTypes: SkillType[] = [];
-  public allBuckets: Bucket[] = [];
+  public allBuckets: Bucket[] = BUCKETS;
   public bucketWeightSum = 0;
   public bucketsAndWeights = [];
-  public skillType: SkillType;
+  public skillType = new SkillType();
+
+/*   public skillType = (): SkillType => ({
+    skillTypeId: 0,
+    title: '',
+    isActive: true
+}); */
+
   public singleSkillType: SkillType;
   public singleSkillTypeBuckets: Bucket[] = [];
   public error: boolean;
@@ -124,6 +133,7 @@ export class SkillTypesComponent implements OnInit {
    * Creates a variable to reference the open modal service
    */
   open(content) {
+    console.log('in open');
     this.modalServiceRef = this.modalService.open(content);
     this.modalServiceRef.result.then(
       result => {
@@ -134,8 +144,23 @@ export class SkillTypesComponent implements OnInit {
       }
     );
     event.stopPropagation();
+    console.log(content);
   }
 
+  edit(content) {
+    console.log('in edit');
+    this.modalServiceRef = this.modalService.open(content);
+    this.modalServiceRef.result.then(
+      result => {
+        this.resetFields();
+      },
+      reason => {
+        this.resetFields();
+      }
+    );
+    event.stopPropagation();
+    console.log(content);
+  }
   /**
    * Stores information about the skill type that was selected
    * If there are any buckets associated to the skill type,
@@ -143,6 +168,7 @@ export class SkillTypesComponent implements OnInit {
    * @param skillType: selected skill type
    */
   editSkillType(skillType) {
+    console.log('in edit skill type');
     this.singleSkillTypeBuckets = [];
     this.singleSkillType = {
       title: skillType.title,
@@ -150,6 +176,7 @@ export class SkillTypesComponent implements OnInit {
       isActive: true
     };
     this.getAssociated();
+    console.log(skillType);
   }
 
   /**
@@ -282,6 +309,11 @@ export class SkillTypesComponent implements OnInit {
    * If the buckets
    */
   updateSkillType(modal: SkillType) {
+    this.skillType = ({
+      skillTypeId: 0,
+      title: '',
+      isActive: true
+  });
     this.skillType = modal;
     this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
     this.bucketWeightSum = 0;
@@ -307,6 +339,18 @@ export class SkillTypesComponent implements OnInit {
     } else {
       this.error = true;
     }
+  this.allSkillTypes.forEach(element => {
+      console.log(element.skillTypeId);
+      if (element.skillTypeId == modal.skillTypeId) {
+        console.log('in if statement');
+        element = modal;
+        this.singleSkillType = modal;
+        console.log(element);
+        console.log(this.singleSkillType);
+      }
+    });
+
+    console.log(modal);
   }
 
   /**

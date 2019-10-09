@@ -28,7 +28,7 @@
             <i
               id="penIcon"
               class="fas fa-pencil-alt pull-right"
-              (click)="editSkillType(skillType); open(content)"
+              (click)="updateSkillType(skillType); open(content)"
               placement="top"
               ngbTooltip="edit"
             >
@@ -52,7 +52,7 @@
       type="button"
       class="close"
       aria-label="Close"
-      (click)="d('Cross click')"
+      (click)="updateSkillType(content)"
     >
       <span aria-hidden="true">&times;</span>
     </button>
