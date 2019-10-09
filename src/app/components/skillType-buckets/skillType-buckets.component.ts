@@ -12,16 +12,12 @@ import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 import { QUESTIONS } from '../../mock-data/mock-questions';
 
 
-
-
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
   styleUrls: ['./skillType-buckets.component.css']
 })
-
 export class SkillTypeBucketsComponent implements OnInit {
-
   /** variable to hold an array of 'Bucket' entities */
   buckets: Bucket[];
   bucket: Bucket;
@@ -38,7 +34,11 @@ export class SkillTypeBucketsComponent implements OnInit {
     private bucketService: BucketsService,
     private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService: AlertsService, ) { }
+    private alertsService: AlertsService
+  ) {
+    // Used for diplaying mock data as buckets
+    this.buckets = BUCKETS;
+  }
 
   filter: Bucket = new Bucket();
   ngOnInit() {
@@ -63,9 +63,9 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   /** Save the selected 'bucket' in 'bucket.service' to be used in
-    * 'bucket.component'.
-    * Then route to 'bucket.component'.
-    */
+   * 'bucket.component'.
+   * Then route to 'bucket.component'.
+   */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
     this.router.navigate(['settings/bucket']);
@@ -82,7 +82,9 @@ export class SkillTypeBucketsComponent implements OnInit {
    * @param bucketParam
    */
   updateBucket(bucketParam: Bucket) {
-    if (!bucketParam) { bucketParam = this.currBucket; }
+    if (!bucketParam) {
+      bucketParam = this.currBucket;
+    }
     if (bucketParam) {
       console.log(bucketParam.isActive);
       this.bucketService.updateBucket(bucketParam).subscribe(bucket => {
@@ -95,10 +97,9 @@ export class SkillTypeBucketsComponent implements OnInit {
   /** Creates new bucket */
   createBucket() {
     // The server will generate the id for this new hero
-    this.bucketService.createNewBucket(this.newBucket)
-      .subscribe(bucket => {
-        this.buckets.push(bucket);
-      });
+    this.bucketService.createNewBucket(this.newBucket).subscribe(bucket => {
+      this.buckets.push(bucket);
+    });
   }
 
   savedSuccessfully() {
@@ -106,13 +107,16 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.newBucket = new Bucket();
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.newBucket.bucketDescription = '';
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content).result.then(
+      result => {
+        this.newBucket = new Bucket();
+        this.closeResult = `Closed with: ${result}`;
+      },
+      reason => {
+        this.newBucket.bucketDescription = '';
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
     event.stopPropagation();
   }
 
