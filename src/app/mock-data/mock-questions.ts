@@ -63,7 +63,10 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: '10',
     sampleAnswer5: '0',
     isActive: true,
-    bucket: da
+    bucket: { bucketId: 2,
+      bucketDescription: 'SQL database questions',
+      isActive: true,
+    }
   },
   { questionId: 16,
     questionText: 'Given that the table capitals extends the table cities, when querying cities I will receive results from:',
@@ -73,7 +76,10 @@ export const QUESTIONS: Question[] = [
     sampleAnswer4: 'Only the cities table, because you must explicitly list the inheriting table to include its data',
     sampleAnswer5: 'Only the capitals table',
     isActive: true,
-    bucket: da
+    bucket: { bucketId: 2,
+      bucketDescription: 'SQL database questions',
+      isActive: true,
+    }
   },
   { questionId: 17,
     questionText: 'What is a Circuit Breaker in a microservice application?',
