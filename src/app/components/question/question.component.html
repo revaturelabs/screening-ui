@@ -25,8 +25,9 @@
         </div>
         <div class="card-body" id="allQuestionsDiv">
           <div class="list-group" *ngFor="let question of questions">
-            <a class="list-group-item list-group-item-action" *ngIf="question.bucket.bucketId == currentBucket.bucketId">
+            <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
+              <button class="btn-btn-secondary btn-sm" (click)="deleteQuestion(question)">Delete Question</button>
               <i id="xIcon">
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
@@ -35,7 +36,7 @@
                 </label>
               </i>
               <i id="penIcon" class="fa fa-pencil pull-right" (click)="editQuestion(question); open(content)" placement="top"
-                ngbTooltip="edit"></i>
+                ngbTooltip="edit">Edit</i>
             </a>
           </div>
         </div>

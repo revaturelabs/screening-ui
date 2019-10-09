@@ -180,6 +180,13 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+  deleteQuestion(question) {
+    console.log(question);
+    const index = this.questions.indexOf(question);
+    this.questions.splice(index, 1);
+    }
+
+
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
   }
