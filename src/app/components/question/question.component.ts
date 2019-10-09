@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +8,8 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+
+import { QUESTIONS } from '../../mock-data/mock-questions';
 
 
 @Component({
@@ -43,7 +46,8 @@ export class QuestionComponent implements OnInit {
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService,
+    private router: Router) { }
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -59,8 +63,9 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
     this.question = new Question();
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
-    this.updateQuestions();
+    this.questions = QUESTIONS;
+    // this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    // this.updateQuestions();
   }
 
   /**
@@ -92,6 +97,11 @@ export class QuestionComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  deleteBucket(currentBucket) {
+    this.bucketService.deleteBucket(currentBucket);
+    this.router.navigate(['settings/main']);
   }
 
   /**
