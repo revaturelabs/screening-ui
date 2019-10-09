@@ -7,7 +7,8 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { expectedQuestion } from 'src/app/mock-data/mock-questions';
+import { QUESTIONS } from '../../mock-data/mock-questions';
+
 
 @Component({
   selector: 'app-question',
@@ -60,8 +61,9 @@ export class QuestionComponent implements OnInit {
     this.currentBucket = this.bucketService.getCurrentBucket();
     /* this.currentBucket = expectedQuestion.bucket; */
     this.question = new Question();
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
-    this.updateQuestions();
+    this.questions = QUESTIONS;
+    // this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    // this.updateQuestions();
   }
 
   /**
