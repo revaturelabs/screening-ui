@@ -138,6 +138,7 @@ export class QuestionComponent implements OnInit {
    * question.
    **/
   addNewQuestion() {
+    console.log(this.question);
     if (this.sampleAnswers.length === 5 && this.question.questionText) {
       if (this.question.questionId) {
         this.question.sampleAnswer1 = this.sampleAnswers[0];
@@ -145,6 +146,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
+        this.question.bucket=this.currentBucket;
         this.questionService.updateQuestion(this.question).subscribe();
         this.updatedSuccessfully();
       } else {
@@ -153,7 +155,9 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.createNewQuestion(this.question).subscribe();
+        this.question.bucket=this.currentBucket;
+        this.questions.push(this.question);
+        /* this.questionService.createNewQuestion(this.question).subscribe(); */
         this.savedSuccessfully();
       }
       this.updateQuestions();
