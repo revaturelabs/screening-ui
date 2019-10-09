@@ -1,9 +1,7 @@
 import { Question } from '../entities/Question';
 import { Bucket } from '../entities/Bucket';
 
-
 let da: Bucket;
-
 da = {
   bucketId : 1,
   bucketDescription : 'test',
@@ -140,5 +138,3 @@ export const expectedQuestion: Question = {
         isActive: true,
         bucket: da
 };
-
-
