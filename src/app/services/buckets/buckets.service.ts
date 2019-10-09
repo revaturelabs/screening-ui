@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 
 import { Bucket } from '../../entities/Bucket';
 import { UrlService } from '../urls/url.service';
+import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 
 /**
    * Imported urlservice to replace hardcoded endpoints
@@ -34,7 +35,7 @@ export class BucketsService {
 
   constructor(
     private http: HttpClient,
-    private urlService: UrlService
+    private urlService: UrlService,
     ) {}
 
   getAllBuckets(): Observable<Bucket[]> {
@@ -51,6 +52,17 @@ export class BucketsService {
 
   createNewBucket(bucket: Bucket): Observable<Bucket> {
       return this.http.post<Bucket>(this.urlService.bucket.createNewBucket(), bucket, httpOptions);
+  }
+
+  deleteBucket(bucket: Bucket) {
+    BUCKETS.forEach(function(item, index, object) {
+        console.log('before the currentbucket ' + item.bucketId + ' here ' + bucket.bucketId);
+        if (item.bucketId === bucket.bucketId) {
+            console.log('After the current bucket');
+          object.splice(index, 1);
+        }
+      });
+      console.log(BUCKETS);
   }
 
   setBucket(bucket: Bucket) {
