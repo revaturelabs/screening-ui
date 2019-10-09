@@ -9,6 +9,7 @@ import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
+import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 
 
 @Component({
@@ -47,7 +48,8 @@ export class SkillTypesComponent implements OnInit {
   public skillTypes: SkillType[] = [];
   public inactiveSkillTypes: any[] = [];
   public allSkillTypes: SkillType[] = [];
-  public allBuckets: Bucket[] = [];
+//   public allBuckets: Bucket[] = [];
+  public allBuckets = BUCKETS;
   public bucketWeightSum = 0;
   public bucketsAndWeights = [];
   public skillType: SkillType;
@@ -283,6 +285,7 @@ export class SkillTypesComponent implements OnInit {
    * If the buckets
    */
   updateSkillType(modal: SkillType) {
+      console.log(modal);
     this.skillType = modal;
     this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
     this.bucketWeightSum = 0;
