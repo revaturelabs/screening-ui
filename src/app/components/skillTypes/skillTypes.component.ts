@@ -9,6 +9,7 @@ import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
+import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 
 @Component({
     selector: 'app-skill-types',
@@ -73,8 +74,10 @@ export class SkillTypesComponent implements OnInit {
         private alertsService: AlertsService,
         private tab: NgbTabset) {
         this.allSkillTypes = SKILLTYPES;
+        this.allBuckets = BUCKETS;
     }
 
+    // removes the skill type when deactivated, doesn't actually delete anything-
     removeElement(item: any) {
         let thing: any;
         for (let i = 0; i < this.allSkillTypes.length; i++) {
@@ -300,23 +303,18 @@ export class SkillTypesComponent implements OnInit {
     * Grabs all the skill types after the information has been submitted
     * @param modal: Form information from the modal, with parameters matching the SkillType entity
     */
+
+    // this creates a skill but dies after refresh.
     createNewSkillType(modal) {
-        // this.skillType.title = modal;
         let newSkill: SkillType;
         console.log(modal);
-        // let newskillTypetitle = modal.toString;
-        // console.log(skillTypeName);
-        // console.log(newskillTypetitle);
         newSkill = {
-            skillTypeId: 10,
+            skillTypeId: null, // null assuming there is a trigger for the skillTypeId
             title: modal.skillTypeName,
             isActive: true
         };
-        this.allSkillTypes.push(newSkill);
-        console.log(this.allSkillTypes);
-        this.skillTypeService.createSkillType(this.skillType).subscribe(results => {
-            // console.log(this.grabAllSkillTypes());
-            console.log(newSkill);
+        this.allSkillTypes.push(newSkill); // this allows us to make a new skill for the time being and kept within angular
+        this.skillTypeService.createSkillType(newSkill).subscribe(results => {
             this.grabAllSkillTypes();
         });
         this.savedSuccessfully();
