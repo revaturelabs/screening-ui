@@ -8,6 +8,8 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
+import { QUESTIONS } from '../../mock-data/mock-questions';
+
 
 @Component({
   selector: 'app-question',
@@ -59,8 +61,9 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
     this.question = new Question();
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
-    this.updateQuestions();
+    this.questions = QUESTIONS;
+    // this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    // this.updateQuestions();
   }
 
   /**
@@ -165,6 +168,11 @@ export class QuestionComponent implements OnInit {
    * Used to populate the current question and the current tags with a selected question to be
    * edited.
    **/
+
+   deleteQuestion(q) {
+     const index = this.questions.indexOf(q);
+     this.questions.splice(index, 1);
+   }
   updateQuestions() {
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {

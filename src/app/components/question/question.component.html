@@ -19,7 +19,7 @@
               </a>
             </div>
             <div class="col-sm-6">
-              <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div>
+              <!-- <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div> -->
             </div>
           </div>
         </div>
@@ -36,6 +36,7 @@
               </i>
               <i id="penIcon" class="fa fa-pencil pull-right" (click)="editQuestion(question); open(content)" placement="top"
                 ngbTooltip="edit"></i>
+              <button (click)="deleteQuestion(question)">Delete</button>
             </a>
           </div>
         </div>
