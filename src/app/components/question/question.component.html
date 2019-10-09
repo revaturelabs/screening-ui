@@ -19,7 +19,7 @@
               </a>
             </div>
             <div class="col-sm-6">
-              <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div>
+              <!-- <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div> -->
             </div>
           </div>
         </div>
@@ -27,6 +27,7 @@
           <div class="list-group" *ngFor="let question of questions">
             <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
+              <button class="btn-btn-secondary btn-sm" (click)="deleteQuestion(question)">Delete Question</button>
               <i id="xIcon">
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
@@ -36,6 +37,7 @@
               </i>
               <i id="penIcon" class="fa fa-pencil pull-right" (click)="editQuestion(question); open(content)" placement="top"
                 ngbTooltip="edit">Edit</i>
+              <button id="delBtn" (click)="deleteQuestion(question)">Delete</button>
             </a>
           </div>
         </div>
