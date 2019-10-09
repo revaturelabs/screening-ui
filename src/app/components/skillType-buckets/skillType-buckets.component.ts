@@ -8,6 +8,7 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 
 
 @Component({
@@ -33,7 +34,10 @@ export class SkillTypeBucketsComponent implements OnInit {
     private bucketService: BucketsService,
     private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService: AlertsService, ) { }
+    private alertsService: AlertsService
+     ) {
+       this.buckets = BUCKETS; // this was added to view the mock files
+       }
 
   filter: Bucket = new Bucket();
   ngOnInit() {
@@ -62,6 +66,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
+    console.log()
     this.router.navigate(['settings/bucket']);
   }
 

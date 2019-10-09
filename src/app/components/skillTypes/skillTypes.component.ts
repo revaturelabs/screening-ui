@@ -8,6 +8,7 @@ import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
 
 @Component({
     selector: 'app-skill-types',
@@ -45,7 +46,7 @@ export class SkillTypesComponent implements OnInit {
 
     public skillTypes: SkillType[] = [];
     public inactiveSkillTypes: any[] = [];
-    public allSkillTypes: SkillType[] = [];
+    public allSkillTypes: SkillType[] = [];// used to display all skill types
     public allBuckets: Bucket[] = [];
     public bucketWeightSum = 0;
     public bucketsAndWeights = [];
@@ -70,8 +71,9 @@ export class SkillTypesComponent implements OnInit {
         private skillTypeBucketService: SkillTypeBucketService,
         private bucketsService: BucketsService,
         private alertsService: AlertsService,
-        private tab: NgbTabset,
-    ) { }
+        private tab: NgbTabset) {
+        this.allSkillTypes = SKILLTYPES;
+    }
 
     removeElement(item: any) {
         let thing: any;
@@ -225,7 +227,7 @@ export class SkillTypesComponent implements OnInit {
                     removed = j;
                 }
             }
-            this.allWeights.splice( removed, 1);
+            this.allWeights.splice(removed, 1);
         }
     }
 
@@ -298,9 +300,23 @@ export class SkillTypesComponent implements OnInit {
     * Grabs all the skill types after the information has been submitted
     * @param modal: Form information from the modal, with parameters matching the SkillType entity
     */
-    createNewSkillType(modal: SkillType) {
-        this.skillType = modal;
+    createNewSkillType(modal) {
+        // this.skillType.title = modal;
+        let newSkill: SkillType;
+        console.log(modal);
+        // let newskillTypetitle = modal.toString;
+        // console.log(skillTypeName);
+        // console.log(newskillTypetitle);
+        newSkill = {
+            skillTypeId: 10,
+            title: modal.skillTypeName,
+            isActive: true
+        };
+        this.allSkillTypes.push(newSkill);
+        console.log(this.allSkillTypes);
         this.skillTypeService.createSkillType(this.skillType).subscribe(results => {
+            // console.log(this.grabAllSkillTypes());
+            console.log(newSkill);
             this.grabAllSkillTypes();
         });
         this.savedSuccessfully();
