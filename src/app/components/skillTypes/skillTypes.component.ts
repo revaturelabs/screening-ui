@@ -144,6 +144,8 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
+     * Works with checkContains to set skilltypebucket arrays (singleSkillTypeBuckets and singleSkillTypeBucketIds)
+     * Basically a "get all buckets" method
      * Only darkness within
      */
     getAssociated() {
@@ -192,6 +194,8 @@ export class SkillTypesComponent implements OnInit {
             const relationship: Weight = {
                 bucket: bucky,
                 skillType: this.singleSkillType,
+
+                // TODO: Add functionality to assign a weight value at creation? - Murillo
                 weightValue: 0,
                 weightId: 0
             };
@@ -208,6 +212,8 @@ export class SkillTypesComponent implements OnInit {
     */
     removeFromSkillTypeBuckets(bucket) {
         if (this.singleSkillType) {
+
+            // Modifies this object's local array of this skilltype's buckets
             const modSkillTypeBuckets = [];
             for (let i = 0; i < this.singleSkillTypeBuckets.length; i++) {
                 if (this.singleSkillTypeBuckets[i].bucketId !== bucket.bucketId) {
@@ -215,17 +221,22 @@ export class SkillTypesComponent implements OnInit {
                 }
             }
             this.singleSkillTypeBuckets = modSkillTypeBuckets.slice();
+
+
+            // Modifies the database to delete Weight
             // need a weight ID from bucket
-            let removed: number;
             for (let j = 0; j < this.allWeights.length; j++) {
-                if (this.allWeights[j].bucket.bucketId === bucket.bucketId) {
+
+                if (this.allWeights[j].bucket.bucketId === bucket.bucketId &&
+                    this.allWeights[j].skillType.skillTypeId === this.singleSkillType.skillTypeId) {
                     // delete the weight
                     this.skillTypeBucketService.deleteWeight(this.allWeights[j].weightId);
-                    // remove from list
-                    removed = j;
+                    
+                    // Modifies this object's local array of ALL weights
+                    this.allWeights.splice(j, 1);
+                    break;
                 }
             }
-            this.allWeights.splice( removed, 1);
         }
     }
 
