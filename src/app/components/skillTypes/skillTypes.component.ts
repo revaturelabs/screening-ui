@@ -195,7 +195,6 @@ export class SkillTypesComponent implements OnInit {
                 bucket: bucky,
                 skillType: this.singleSkillType,
 
-                // TODO: Add functionality to assign a weight value at creation? - Murillo
                 weightValue: 0,
                 weightId: 0
             };
