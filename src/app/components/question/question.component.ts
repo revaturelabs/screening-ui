@@ -97,6 +97,12 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+  deleteBucket() {
+    console.log(this.currentBucket);
+    console.log('inside delete bucket question component');
+    this.bucketService.deleteBucket(this.currentBucket);
+  }
+
   /**
    * Switches the question sent in as an argument from active to deactive
    * or from deactive to active based on its current status
