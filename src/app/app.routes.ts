@@ -9,11 +9,16 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { ScreeningComponent } from './components/screening/screening.component';
 import { QuestionComponent } from './components/question/question.component';
+import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: CandidatesScreeningListComponent,
+  },
+  {
+    path: 'questiontesting',
+    component: SkillTypeBucketsComponent
   },
   {
     path: 'screening',

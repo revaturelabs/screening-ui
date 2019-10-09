@@ -8,7 +8,8 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { BUCKETS } from 'src/app/mock-data/mock-buckets'; // Import for mock data
+import { QUESTIONS } from '../../mock-data/mock-questions';
+import { BUCKETS } from '../../mock-data/mock-buckets';
 
 @Component({
   selector: 'app-skill-type-buckets',
@@ -18,6 +19,7 @@ import { BUCKETS } from 'src/app/mock-data/mock-buckets'; // Import for mock dat
 export class SkillTypeBucketsComponent implements OnInit {
   /** variable to hold an array of 'Bucket' entities */
   buckets: Bucket[];
+  bucket: Bucket;
   /** variable to hold bucket being edited */
   currBucket: Bucket;
   /** variable to hold new bucket being created  */
@@ -43,10 +45,11 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   getBuckets(): void {
-    this.bucketService.getAllBuckets().subscribe(buckets => {
-      this.buckets = buckets;
-      this.buckets.sort(this.compare);
-    });
+      this.buckets = BUCKETS;
+    // this.bucketService.getAllBuckets().subscribe(buckets => {
+    //   this.buckets = buckets;
+    //   this.buckets.sort(this.compare);
+    // });
   }
 
   /** used to compare buckets Array to sort it based on status */
