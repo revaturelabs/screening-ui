@@ -168,6 +168,11 @@ export class QuestionComponent implements OnInit {
    * Used to populate the current question and the current tags with a selected question to be
    * edited.
    **/
+
+   deleteQuestion(q) {
+     const index = this.questions.indexOf(q);
+     this.questions.splice(index, 1);
+   }
   updateQuestions() {
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
