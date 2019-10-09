@@ -47,7 +47,7 @@ export class SkillTypesComponent implements OnInit {
 
     public skillTypes: SkillType[] = [];
     public inactiveSkillTypes: any[] = [];
-    public allSkillTypes: SkillType[] = [];// used to display all skill types
+    public allSkillTypes: SkillType[] = []; // used to display all skill types
     public allBuckets: Bucket[] = [];
     public bucketWeightSum = 0;
     public bucketsAndWeights = [];
@@ -318,6 +318,11 @@ export class SkillTypesComponent implements OnInit {
             this.grabAllSkillTypes();
         });
         this.savedSuccessfully();
+    }
+
+    // delete SkillType
+    deleteSkillType() {
+        console.log('in here');
     }
 
     /**
