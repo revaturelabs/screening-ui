@@ -35,7 +35,7 @@ export class BucketsService {
 
   constructor(
     private http: HttpClient,
-    private urlService: UrlService
+    private urlService: UrlService,
     ) {}
 
   getAllBuckets(): Observable<Bucket[]> {
@@ -56,8 +56,8 @@ export class BucketsService {
 
   deleteBucket(bucket: Bucket) {
     BUCKETS.forEach(function(item, index, object) {
-        console.log('before the currentbucket');
-        if (item.bucketId === this.currentBucket.bucketId) {
+        console.log('before the currentbucket ' + item.bucketId + ' here ' + bucket.bucketId);
+        if (item.bucketId === bucket.bucketId) {
             console.log('After the current bucket');
           object.splice(index, 1);
         }

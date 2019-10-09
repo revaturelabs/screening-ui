@@ -97,10 +97,10 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  deleteBucket() {
-    console.log(this.currentBucket);
+  deleteBucket(currentBucket) {
+    console.log('hey  ' + currentBucket);
     console.log('inside delete bucket question component');
-    this.bucketService.deleteBucket(this.currentBucket);
+    this.bucketService.deleteBucket(currentBucket);
   }
 
   /**
