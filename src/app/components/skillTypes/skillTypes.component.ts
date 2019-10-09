@@ -9,6 +9,7 @@ import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 
+
 @Component({
     selector: 'app-skill-types',
     templateUrl: './skillTypes.component.html',
