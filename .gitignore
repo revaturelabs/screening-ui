@@ -371,3 +371,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+# aws-export
+/src/aws-export.js
