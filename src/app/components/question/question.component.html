@@ -19,7 +19,7 @@
               </a>
             </div>
             <div class="col-sm-6">
-              <!-- <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div> -->
+              <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div>
             </div>
           </div>
         </div>
@@ -27,8 +27,8 @@
           <div class="list-group" *ngFor="let question of questions">
             <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
-              <button class="btn-btn-secondary btn-sm" (click)="deleteQuestion(question)">Delete Question</button>
               <i id="xIcon">
+                  <button id="delBtn" (click)="deleteQuestion(question)">Delete</button>
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
                   <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
@@ -41,12 +41,12 @@ Feature-28-Delete_Question
             </a>
           </div>
         </div>
+        <button class="btn btn-danger" (click)='deletebucket(currentBucket)'>Delete bucket</button>
         <button class="btn btn-primary btn-sm" (click)='setQuestionNull(); open(content);'>Create New Question</button>
       </div>
     </div>
   </div>
 </div>
-<div align="center"> <button type="button" class="btn btn-danger" align="right" (click)="deleteBucket(currentBucket)">Delete Bucket</button></div>
 <!--Questions Table End-->
 <!--Add new question modal Start-->
 <ng-template #content let-c="close" let-d="dismiss">
