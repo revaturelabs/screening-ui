@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -45,7 +46,8 @@ export class QuestionComponent implements OnInit {
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService,
+    private router: Router) { }
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -95,6 +97,11 @@ export class QuestionComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  deleteBucket(currentBucket) {
+    this.bucketService.deleteBucket(currentBucket);
+    this.router.navigate(['settings/main']);
   }
 
   /**
@@ -181,12 +188,6 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
 
-   deleteQuestion(q) {
-     const index = this.questions.indexOf(q);
-     this.questions.splice(index, 1);
-     this.questionService.deleteQuestion(q.questionId).subscribe();
-    //  this.updateQuestions();
-   }
 
   updateQuestions() {
     if (this.currentBucket) {
@@ -195,6 +196,12 @@ export class QuestionComponent implements OnInit {
       });
     }
   }
+
+  deleteQuestion(question) {
+    const index = this.questions.indexOf(question);
+    this.questions.splice(index, 1);
+    }
+
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
