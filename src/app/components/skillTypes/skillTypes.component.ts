@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { SkillType } from '../../entities/SkillType';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
@@ -62,6 +62,7 @@ export class SkillTypesComponent implements OnInit {
     public relaventWeights: Weight[] = [];
 
     public Weight: Weight;
+    closeResult: string;
 
     constructor(
         private modalService: NgbModal,
@@ -128,13 +129,25 @@ export class SkillTypesComponent implements OnInit {
         this.modalServiceRef.result.then(
             result => {
                 this.resetFields();
+                this.closeResult = `Closed with: ${result}`;
             },
             reason => {
                 this.resetFields();
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             }
         );
         event.stopPropagation();
     }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+          return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+          return 'by clicking on a backdrop';
+        } else {
+          return `with: ${reason}`;
+        }
+      }
 
     /**
      * Stores information about the skill type that was selected
@@ -150,6 +163,7 @@ export class SkillTypesComponent implements OnInit {
             isActive: true
         };
         this.getAssociated();
+        this.grabAllSkillTypes();
     }
 
     /**
@@ -289,32 +303,45 @@ export class SkillTypesComponent implements OnInit {
      * and an HTTP Request is sent to the endpoint to update the skill type and relations
      * If the buckets
      */
-    updateSkillType(modal: SkillType) {
-        this.skillType = modal;
-        this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
+    updateSkillType(modal) {
+        // this.allSkillTypes.splice(this.allSkillTypes.indexOf(this.singleSkillType), 1);
+        // this.singleSkillType.title = modal.skillTypeName;
+        let num;
+        for (num = 0; num < this.allSkillTypes.length; num++) {
+            if (this.allSkillTypes[num].skillTypeId === this.singleSkillType.skillTypeId) {
+                this.allSkillTypes[num].title = modal.skillTypeName;
+                console.log(this.singleSkillType);
+            }
+        }
+        // this.allSkillTypes[this.allSkillTypes.indexOf(this.singleSkillType)].title = modal.skillTypeName;
+        // console.log(this.singleSkillType);
+        // this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
         this.bucketWeightSum = 0;
         if (this.bucketsAndWeights.length !== 0) {
             for (const index of this.bucketsAndWeights) {
                 this.bucketWeightSum += this.bucketsAndWeights[index].weights;
             }
         }
-        if (this.bucketWeightSum === 100 || this.bucketsAndWeights.length === 0) {
-            this.modalServiceRef.close();
+        // if (this.bucketWeightSum === 100 || this.bucketsAndWeights.length === 0) {
+            // this.modalServiceRef.close();
             const bucketsId = [];
             const weights = [];
             for (const index of this.bucketsAndWeights) {
                 bucketsId.push(this.singleSkillTypeBucketIds[index]);
                 weights.push(this.bucketsAndWeights[index].weights);
             }
-            this.skillTypeService
-                .updateSkillTypeBuckets(this.skillType, bucketsId, weights)
-                .subscribe(results => {
-                    this.grabAllSkillTypes();
-                });
+            // this.skillTypeService
+            //     .updateSkillTypeBuckets(this.singleSkillType, bucketsId, weights)
+            //     .subscribe(results => {
+            //         this.grabAllSkillTypes();
+            //     });
+            this.allSkillTypes.push(this.singleSkillType);
             this.savedSuccessfully();
-        } else {
-            this.error = true;
-        }
+        // } else {
+        //     this.error = true;
+        // }
+        this.getAssociated();
+        this.grabAllSkillTypes();
     }
 
     /**
