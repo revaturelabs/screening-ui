@@ -12,9 +12,6 @@ import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
-import { BUCKETS } from 'src/app/mock-data/mock-buckets';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
   selector: 'app-skill-types',
@@ -61,7 +58,6 @@ export class SkillTypesComponent implements OnInit {
   public error: boolean;
   public modalServiceRef;
   public singleSkillTypeBucketIds: number[] = [];
-  public skillTypeToEdit: SkillType;
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
@@ -79,10 +75,7 @@ export class SkillTypesComponent implements OnInit {
     private bucketsService: BucketsService,
     private alertsService: AlertsService,
     private tab: NgbTabset
-  ) {
-    //this.allSkillTypes = SKILLTYPES;
-    //console.log(this.allSkillTypes);
-  }
+  ) {}
 
   removeElement(item: any) {
     let thing: any;
@@ -187,8 +180,6 @@ export class SkillTypesComponent implements OnInit {
       skillTypeId: skillType.skillTypeId,
       isActive: true
     };
-    //this.skillTypeToEdit = this.singleSkillType;
-    //console.log(this.singleSkillType);
     this.getAssociated();
     console.log(skillType);
   }
