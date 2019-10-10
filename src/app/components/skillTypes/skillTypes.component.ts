@@ -10,11 +10,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
 import { BUCKETS } from 'src/app/mock-data/mock-buckets';
-<<<<<<< HEAD
-
-=======
 import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
->>>>>>> 23f3e399e81d3a87972b4855638495c7cdd79901
 
 @Component({
   selector: 'app-skill-types',
@@ -52,12 +48,7 @@ export class SkillTypesComponent implements OnInit {
   public skillTypes: SkillType[] = [];
   public inactiveSkillTypes: any[] = [];
   public allSkillTypes: SkillType[] = [];
-<<<<<<< HEAD
-//   public allBuckets: Bucket[] = [];
-  public allBuckets = BUCKETS;
-=======
   public allBuckets: Bucket[] = BUCKETS;
->>>>>>> 23f3e399e81d3a87972b4855638495c7cdd79901
   public bucketWeightSum = 0;
   public bucketsAndWeights = [];
   public skillType = new SkillType();
