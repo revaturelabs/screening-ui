@@ -8,7 +8,7 @@ import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
+// import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
 
 @Component({
   selector: 'app-skill-types',
@@ -55,6 +55,7 @@ export class SkillTypesComponent implements OnInit {
   public error: boolean;
   public modalServiceRef;
   public singleSkillTypeBucketIds: number[] = [];
+  public skillTypeToEdit;
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
@@ -72,7 +73,7 @@ export class SkillTypesComponent implements OnInit {
     private alertsService: AlertsService,
     private tab: NgbTabset
   ) {
-    this.allSkillTypes = SKILLTYPES;
+    // this.allSkillTypes = SKILLTYPES;
   }
 
   removeElement(item: any) {
@@ -149,6 +150,7 @@ export class SkillTypesComponent implements OnInit {
       skillTypeId: skillType.skillTypeId,
       isActive: true
     };
+    // this.skillTypeToEdit = this.singleSkillType;
     this.getAssociated();
   }
 
@@ -322,12 +324,11 @@ export class SkillTypesComponent implements OnInit {
       title: modal.skillTypeName,
       isActive: false
     };
-    this.allSkillTypes.push(newSkill);
-    console.log(this.allSkillTypes);
     this.skillTypeService.createSkillType(newSkill).subscribe(results => {
       this.grabAllSkillTypes();
     });
     this.savedSuccessfully();
+    console.log(this.allSkillTypes);
   }
 
   /**
