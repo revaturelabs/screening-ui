@@ -285,7 +285,6 @@ export class SkillTypesComponent implements OnInit {
    * If the buckets
    */
   updateSkillType(modal: SkillType) {
-      console.log(modal);
     this.skillType = modal;
     this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
     this.bucketWeightSum = 0;
