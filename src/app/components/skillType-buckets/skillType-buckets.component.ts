@@ -69,7 +69,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   editBucket(bucket: Bucket) {
     this.bucketService.updateBucket(bucket).subscribe(
       data => {
-        this.currBucket=data;
+        this.currBucket = data;
 
       }
     );
