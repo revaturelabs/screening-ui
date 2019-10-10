@@ -144,6 +144,7 @@ export class QuestionComponent implements OnInit {
     this.questions[index].sampleAnswer1=this.question.sampleAnswer3;
     this.questions[index].sampleAnswer1=this.question.sampleAnswer4;
     this.questions[index].sampleAnswer1=this.question.sampleAnswer5;
+    setTimeout(()=>{this.questionService.updateQuestion(this.question);this.updateQuestions()},1000);
 
   }
 
