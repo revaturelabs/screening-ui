@@ -373,4 +373,6 @@ testem.log
 Thumbs.db
 
 #aws
+
 /src/aws-export.js
+

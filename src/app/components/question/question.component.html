@@ -27,8 +27,8 @@
           <div class="list-group" *ngFor="let question of questions">
             <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
-              <button class="btn-btn-secondary btn-sm" (click)="deleteQuestion(question)">Delete Question</button>
               <i id="xIcon">
+                  <button id="delBtn" (click)="deleteQuestion(question)">Delete</button>
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
                   <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
