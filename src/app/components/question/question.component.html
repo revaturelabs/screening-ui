@@ -27,7 +27,6 @@
           <div class="list-group" *ngFor="let question of questions">
             <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
-              <button class="btn-btn-secondary btn-sm" (click)="deleteQuestion(question)">Delete Question</button>
               <i id="xIcon">
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
