@@ -10,7 +10,7 @@ import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { QUESTIONS } from '../../mock-data/mock-questions';
-import { BUCKETS } from '../../mock-data/mock-buckets';
+
 
 @Component({
   selector: 'app-skill-type-buckets',
@@ -74,7 +74,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   editBucket(bucket: Bucket) {
     this.bucketService.updateBucket(bucket).subscribe(
       data => {
-        this.currBucket=data;
+        this.currBucket = data;
 
       }
     );

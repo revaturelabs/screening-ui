@@ -94,12 +94,12 @@ export class QuestionsService {
    * add urlService to get endpoint for getting Bucket Questions
    * @param buckerId
   */
-  getBucketQuestions(bucketId: number): Observable<Question[]>{
+  getBucketQuestions(bucketId: number): Observable<Question[]> {
     return this.http.get<Question[]>(this.urlService.question.getQuestionsByBucketId(bucketId));
   }
 
   getQuestions(skillTypeId: number): Observable<Question[]> {
-    console.log("calling get Questions");
+    console.log('calling get Questions');
     // const tagArray: number[] = [];
     // for (const tag of this.tagService.getCheckedTags()){
     //   tagArray.push(tag.tagId);
