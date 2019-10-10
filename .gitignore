@@ -372,6 +372,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
+<<<<<<< HEAD
 
 # aws-export
 /src/aws-export.js
+=======
+/src/aws-export.js
+>>>>>>> origin/1907-java-Trevin
