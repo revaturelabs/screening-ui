@@ -33,11 +33,10 @@ export class SkillTypeBucketsComponent implements OnInit {
     private bucketService: BucketsService,
     private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService: AlertsService
-  ) {
-    // Used for diplaying mock data as buckets
-    this.buckets = BUCKETS;
-  }
+
+    private alertsService: AlertsService, ) {
+      this.buckets = BUCKETS;
+     }
 
   filter: Bucket = new Bucket();
   ngOnInit() {
@@ -96,9 +95,16 @@ export class SkillTypeBucketsComponent implements OnInit {
   /** Creates new bucket */
   createBucket() {
     // The server will generate the id for this new hero
-    this.bucketService.createNewBucket(this.newBucket).subscribe(bucket => {
-      this.buckets.push(bucket);
-    });
+
+    // this.bucketService.createNewBucket(this.newBucket)
+    //   .subscribe(bucket => {
+    //     this.buckets.push(bucket);
+    //   });
+    this.newBucket.bucketId = BUCKETS.length + 1;
+    this.newBucket.isActive = true;
+    this.newBucket.bucketDescription = this.newBucket.bucketDescription;
+    BUCKETS.push(this.newBucket);
+    console.log('new buck ' + this.newBucket.bucketDescription + ' ' + this.newBucket.bucketId + ' ' + this.newBucket.isActive);
   }
 
   savedSuccessfully() {
