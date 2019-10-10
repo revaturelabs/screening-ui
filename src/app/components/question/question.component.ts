@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
 import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,8 +7,7 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
-import { QUESTIONS } from '../../mock-data/mock-questions';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -98,11 +96,6 @@ export class QuestionComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
-  }
-
-  deleteBucket(currentBucket) {
-    this.bucketService.deleteBucket(currentBucket);
-    this.router.navigate(['settings/main']);
   }
 
   /**
