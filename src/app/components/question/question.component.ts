@@ -191,7 +191,13 @@ export class QuestionComponent implements OnInit {
      this.questions.splice(index, 1);
 
    }
-
+   deletebucket(bucket: Bucket) {
+    this.bucketService.deleteBucket(bucket).subscribe(
+      buckets =>{
+        this.router.navigate(['settings/main'])
+      }
+    );
+}
 
   updateQuestions() {
     if (this.currentBucket) {

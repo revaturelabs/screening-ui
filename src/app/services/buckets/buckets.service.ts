@@ -55,7 +55,7 @@ export class BucketsService {
   }
 
   deleteBucket(bucket: Bucket): Observable<any> {
-    return this.http.delete(this.urlService.bucket.deleteBucket(bucket.bucketId), httpOptions);
+    return this.http.delete(this.urlService.bucket.deleteBucket(bucket.bucketId));
   }
 
   setBucket(bucket: Bucket) {
