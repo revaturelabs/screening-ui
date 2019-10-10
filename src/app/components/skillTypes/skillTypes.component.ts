@@ -57,6 +57,7 @@ export class SkillTypesComponent implements OnInit {
   public error: boolean;
   public modalServiceRef;
   public singleSkillTypeBucketIds: number[] = [];
+  public skillTypeToEdit: SkillType;
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
@@ -75,7 +76,8 @@ export class SkillTypesComponent implements OnInit {
     private alertsService: AlertsService,
     private tab: NgbTabset
   ) {
-    this.allSkillTypes = SKILLTYPES;
+    //this.allSkillTypes = SKILLTYPES;
+    //console.log(this.allSkillTypes);
   }
 
   removeElement(item: any) {
@@ -182,6 +184,8 @@ export class SkillTypesComponent implements OnInit {
       skillTypeId: skillType.skillTypeId,
       isActive: true
     };
+    //this.skillTypeToEdit = this.singleSkillType;
+    //console.log(this.singleSkillType);
     this.getAssociated();
     console.log(skillType);
   }
@@ -331,12 +335,13 @@ export class SkillTypesComponent implements OnInit {
       title: modal.skillTypeName,
       isActive: false
     };
-    this.allSkillTypes.push(newSkill);
     console.log(this.allSkillTypes);
     this.skillTypeService.createSkillType(newSkill).subscribe(results => {
       this.grabAllSkillTypes();
     });
     this.savedSuccessfully();
+    console.log('after creates');
+    
   }
 
   /**
@@ -365,6 +370,8 @@ export class SkillTypesComponent implements OnInit {
       this.allSkillTypes = results;
       this.setSkillTypes();
       this.allSkillTypes.sort(this.compare);
+      console.log("from grab all skill types")
+      console.log(this.allSkillTypes);
     });
   }
 
@@ -394,6 +401,15 @@ export class SkillTypesComponent implements OnInit {
     this.bucketsAndWeights = [];
     this.error = false;
     this.singleSkillTypeBucketIds = [];
+  }
+
+  // Deletes SkillType from the database 
+  deleteSkillType() {
+   // console.log(this.skillTypeToEdit);
+   console.log(this.singleSkillType);
+  this.skillTypeService.deleteSkillTypebyId(this.singleSkillType.skillTypeId).subscribe(results => {
+    this.grabAllSkillTypes();
+  });
   }
 
   savedSuccessfully() {
