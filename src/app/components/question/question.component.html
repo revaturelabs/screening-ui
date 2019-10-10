@@ -19,7 +19,7 @@
               </a>
             </div>
             <div class="col-sm-6">
-              <!-- <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div> -->
+              <div id="daTitle" style="display:inline-block">Questions for {{currentBucket.bucketDescription}}</div>
             </div>
           </div>
         </div>
@@ -41,12 +41,12 @@ Feature-28-Delete_Question
             </a>
           </div>
         </div>
+        <button class="btn btn-danger" (click)='deletebucket(currentBucket)'>Delete bucket</button>
         <button class="btn btn-primary btn-sm" (click)='setQuestionNull(); open(content);'>Create New Question</button>
       </div>
     </div>
   </div>
 </div>
-<div align="center"> <button type="button" class="btn btn-danger" align="right" (click)="deleteBucket(currentBucket)">Delete Bucket</button></div>
 <!--Questions Table End-->
 <!--Add new question modal Start-->
 <ng-template #content let-c="close" let-d="dismiss">
