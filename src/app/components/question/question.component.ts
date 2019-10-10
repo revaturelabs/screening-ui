@@ -63,8 +63,9 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
     this.question = new Question();
-    this.sampleAnswers = [this.question.sampleAnswer1, this.question.sampleAnswer2, this.question.sampleAnswer3
-                          , this.question.sampleAnswer4, this.question.sampleAnswer5];
+
+    // this.questions = QUESTIONS;
+    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
     this.updateQuestions();
   }
 
@@ -172,7 +173,8 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer5 = this.sampleAnswers[4];
         this.question.bucket=this.currentBucket;
         this.questions.push(this.question);
-        /* this.questionService.createNewQuestion(this.question).subscribe(); */
+        this.questionService.createNewQuestion(this.question).subscribe();
+        this.updateQuestions();
         this.savedSuccessfully();
       }
       this.updateQuestions();
@@ -188,15 +190,13 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
 
+   deleteQuestion(q) {
+     this.questionService.deleteQuestion(q.questionId).subscribe();
 
-  deleteQuestion(q) {
-    console.log(q.questionId);
-    // const index = this.questions.indexOf(q);
-    // this.questions.splice(index, 1);
-   //  this.updateQuestions();
-   this.questionService.deleteQuestion(q.questionId).subscribe();
-   this.updateQuestions();
-  }
+     const index = this.questions.indexOf(q);
+     this.questions.splice(index, 1);
+
+   }
 
 
   updateQuestions() {
