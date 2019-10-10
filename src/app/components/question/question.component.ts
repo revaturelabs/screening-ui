@@ -7,6 +7,7 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -43,7 +44,8 @@ export class QuestionComponent implements OnInit {
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService,
+    private router: Router) { }
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -191,6 +193,11 @@ export class QuestionComponent implements OnInit {
     const index = this.questions.indexOf(question);
     this.questions.splice(index, 1);
     }
+
+    deletebucket(bucket: Bucket) {
+      this.bucketService.deleteBucket(bucket);
+      this.router.navigate(['settings/main']);
+  }
 
 
   savedSuccessfully() {
