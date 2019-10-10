@@ -7,7 +7,7 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { QUESTIONS } from '../../mock-data/mock-questions';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,7 +44,8 @@ export class QuestionComponent implements OnInit {
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService,
+    private router: Router) { }
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -59,11 +60,11 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
-    /* this.currentBucket = expectedQuestion.bucket; */
     this.question = new Question();
-    this.questions = QUESTIONS;
-    // this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
-    // this.updateQuestions();
+
+    // this.questions = QUESTIONS;
+    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    this.updateQuestions();
   }
 
   /**
@@ -129,6 +130,15 @@ export class QuestionComponent implements OnInit {
   editQuestion(question) {
     this.question = question;
     this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    let index=this.questions.indexOf(this.question);
+    this.questions[index].questionText=this.question.questionText;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer1;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer2;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer3;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer4;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer5;
+    setTimeout(()=>{this.questionService.updateQuestion(this.question);this.updateQuestions()},1000);
+
   }
 
   /**
@@ -157,7 +167,8 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer5 = this.sampleAnswers[4];
         this.question.bucket=this.currentBucket;
         this.questions.push(this.question);
-        /* this.questionService.createNewQuestion(this.question).subscribe(); */
+        this.questionService.createNewQuestion(this.question).subscribe();
+        this.updateQuestions();
         this.savedSuccessfully();
       }
       this.updateQuestions();
@@ -173,6 +184,15 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
 
+   deleteQuestion(q) {
+     this.questionService.deleteQuestion(q.questionId).subscribe();
+
+     const index = this.questions.indexOf(q);
+     this.questions.splice(index, 1);
+
+   }
+
+
   updateQuestions() {
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
@@ -180,11 +200,6 @@ export class QuestionComponent implements OnInit {
       });
     }
   }
-
-  deleteQuestion(question) {
-    const index = this.questions.indexOf(question);
-    this.questions.splice(index, 1);
-    }
 
 
   savedSuccessfully() {

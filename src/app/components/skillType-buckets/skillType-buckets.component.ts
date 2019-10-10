@@ -20,7 +20,6 @@ import { QUESTIONS } from '../../mock-data/mock-questions';
 export class SkillTypeBucketsComponent implements OnInit {
   /** variable to hold an array of 'Bucket' entities */
   buckets: Bucket[];
-  bucket: Bucket;
   /** variable to hold bucket being edited */
   currBucket: Bucket;
   /** variable to hold new bucket being created  */
@@ -34,11 +33,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     private bucketService: BucketsService,
     private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService: AlertsService
-  ) {
-    // Used for diplaying mock data as buckets
-    this.buckets = BUCKETS;
-  }
+    private alertsService: AlertsService, ) { }
 
   filter: Bucket = new Bucket();
   ngOnInit() {
@@ -46,11 +41,12 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   getBuckets(): void {
-      this.buckets = BUCKETS;
-    // this.bucketService.getAllBuckets().subscribe(buckets => {
-    //   this.buckets = buckets;
-    //   this.buckets.sort(this.compare);
-    // });
+    this.bucketService.getAllBuckets().subscribe(buckets => {
+
+      this.buckets = buckets;
+      this.buckets.sort(this.compare);
+    });
+
   }
 
   /** used to compare buckets Array to sort it based on status */
@@ -68,12 +64,18 @@ export class SkillTypeBucketsComponent implements OnInit {
    */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
+    console.log()
     this.router.navigate(['settings/bucket']);
   }
 
   /** Stores the value of selected bucket to a 'currBucket' */
   editBucket(bucket: Bucket) {
-    this.currBucket = bucket;
+    this.bucketService.updateBucket(bucket).subscribe(
+      data => {
+        this.currBucket = data;
+
+      }
+    );
   }
 
   /**
@@ -97,9 +99,15 @@ export class SkillTypeBucketsComponent implements OnInit {
   /** Creates new bucket */
   createBucket() {
     // The server will generate the id for this new hero
-    this.bucketService.createNewBucket(this.newBucket).subscribe(bucket => {
-      this.buckets.push(bucket);
-    });
+    this.bucketService.createNewBucket(this.newBucket)
+      .subscribe(bucket => {
+        this.buckets.push(bucket);
+      });
+    // this.newBucket.bucketId = BUCKETS.length + 1;
+    // this.newBucket.isActive = true;
+    // this.newBucket.bucketDescription = this.newBucket.bucketDescription;
+    // BUCKETS.push(this.newBucket);
+    // console.log('new buck ' + this.newBucket.bucketDescription + ' ' + this.newBucket.bucketId + ' ' + this.newBucket.isActive);
   }
 
   savedSuccessfully() {
