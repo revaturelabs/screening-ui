@@ -8,13 +8,8 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-<<<<<<< HEAD
-import { BUCKETS } from 'src/app/mock-data/mock-buckets';
-
-=======
 import { QUESTIONS } from '../../mock-data/mock-questions';
 import { BUCKETS } from '../../mock-data/mock-buckets';
->>>>>>> origin/1907-java-Trevin
 
 @Component({
   selector: 'app-skill-type-buckets',
@@ -39,16 +34,10 @@ export class SkillTypeBucketsComponent implements OnInit {
     private questionService: QuestionsService,
     private modalService: NgbModal,
     private alertsService: AlertsService
-<<<<<<< HEAD
-     ) {
-       this.buckets = BUCKETS; // this was added to view the mock files
-       }
-=======
   ) {
     // Used for diplaying mock data as buckets
     this.buckets = BUCKETS;
   }
->>>>>>> origin/1907-java-Trevin
 
   filter: Bucket = new Bucket();
   ngOnInit() {
