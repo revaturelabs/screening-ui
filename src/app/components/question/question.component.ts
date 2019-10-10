@@ -178,12 +178,6 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
 
-   deleteQuestion(q) {
-     const index = this.questions.indexOf(q);
-     this.questions.splice(index, 1);
-     this.questionService.deleteQuestion(q.questionId).subscribe();
-    //  this.updateQuestions();
-   }
 
   updateQuestions() {
     if (this.currentBucket) {
@@ -192,6 +186,12 @@ export class QuestionComponent implements OnInit {
       });
     }
   }
+
+  deleteQuestion(question) {
+    const index = this.questions.indexOf(question);
+    this.questions.splice(index, 1);
+    }
+
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
