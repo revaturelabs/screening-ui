@@ -182,12 +182,11 @@ export class QuestionComponent implements OnInit {
    **/
 
    deleteQuestion(q) {
-    //  const index = this.questions.indexOf(q);
-     console.log(q);
-     console.log('question id: ' + q.questionId);
-    //  this.questions.splice(index, 1);
      this.questionService.deleteQuestion(q.questionId).subscribe();
-     this.updateQuestions();
+
+     const index = this.questions.indexOf(q);
+     this.questions.splice(index, 1);
+
    }
 
   updateQuestions() {
