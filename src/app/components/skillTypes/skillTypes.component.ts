@@ -10,7 +10,11 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
 import { BUCKETS } from 'src/app/mock-data/mock-buckets';
+<<<<<<< HEAD
 
+=======
+import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
+>>>>>>> 23f3e399e81d3a87972b4855638495c7cdd79901
 
 @Component({
   selector: 'app-skill-types',
@@ -48,11 +52,22 @@ export class SkillTypesComponent implements OnInit {
   public skillTypes: SkillType[] = [];
   public inactiveSkillTypes: any[] = [];
   public allSkillTypes: SkillType[] = [];
+<<<<<<< HEAD
 //   public allBuckets: Bucket[] = [];
   public allBuckets = BUCKETS;
+=======
+  public allBuckets: Bucket[] = BUCKETS;
+>>>>>>> 23f3e399e81d3a87972b4855638495c7cdd79901
   public bucketWeightSum = 0;
   public bucketsAndWeights = [];
-  public skillType: SkillType;
+  public skillType = new SkillType();
+
+/*   public skillType = (): SkillType => ({
+    skillTypeId: 0,
+    title: '',
+    isActive: true
+}); */
+
   public singleSkillType: SkillType;
   public singleSkillTypeBuckets: Bucket[] = [];
   public error: boolean;
@@ -127,6 +142,7 @@ export class SkillTypesComponent implements OnInit {
    * Creates a variable to reference the open modal service
    */
   open(content) {
+    console.log('in open');
     this.modalServiceRef = this.modalService.open(content);
     this.modalServiceRef.result.then(
       result => {
@@ -137,15 +153,34 @@ export class SkillTypesComponent implements OnInit {
       }
     );
     event.stopPropagation();
+    console.log(content);
   }
 
+  edit(content) {
+    console.log('in edit');
+    this.modalServiceRef = this.modalService.open(content);
+    this.modalServiceRef.result.then(
+      result => {
+        this.resetFields();
+      },
+      reason => {
+        this.resetFields();
+      }
+    );
+    event.stopPropagation();
+    console.log(content);
+  }
   /**
    * Stores information about the skill type that was selected
    * If there are any buckets associated to the skill type,
    * set the array to the selected buckets to the array
    * @param skillType: selected skill type
    */
+
+
+   /* This will work for altering a skill type, but it will not display the change on the page. */
   editSkillType(skillType) {
+    console.log('in edit skill type');
     this.singleSkillTypeBuckets = [];
     this.singleSkillType = {
       title: skillType.title,
@@ -153,6 +188,7 @@ export class SkillTypesComponent implements OnInit {
       isActive: true
     };
     this.getAssociated();
+    console.log(skillType);
   }
 
   /**
@@ -310,6 +346,18 @@ export class SkillTypesComponent implements OnInit {
     } else {
       this.error = true;
     }
+  this.allSkillTypes.forEach(element => {
+      console.log(element.skillTypeId);
+      if (element.skillTypeId == modal.skillTypeId) {
+        console.log('in if statement');
+        element = modal;
+        this.singleSkillType = modal;
+        console.log(element);
+        console.log(this.singleSkillType);
+      }
+    });
+
+    console.log(modal);
   }
 
   /**
@@ -409,3 +457,4 @@ export class SkillTypesComponent implements OnInit {
     this.getAllWaits();
   }
 }
+

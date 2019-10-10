@@ -16,7 +16,7 @@
                 <input
                   type="checkbox"
                   [(ngModel)]="skillType.isActive"
-                  (change)="skillTypeUpdate(skillType)"
+                  (change)="updateSkillType(skillType)"
                 />
                 <span
                   class="slider round"
@@ -52,7 +52,7 @@
       type="button"
       class="close"
       aria-label="Close"
-      (click)="d('Cross click')"
+      (click)="updateSkillType(content)"
     >
       <span aria-hidden="true">&times;</span>
     </button>
