@@ -63,9 +63,10 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
     this.question = new Question();
-    this.questions = QUESTIONS;
-    // this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
-    // this.updateQuestions();
+
+    // this.questions = QUESTIONS;
+    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    this.updateQuestions();
   }
 
   /**
@@ -143,6 +144,7 @@ export class QuestionComponent implements OnInit {
     this.questions[index].sampleAnswer1=this.question.sampleAnswer3;
     this.questions[index].sampleAnswer1=this.question.sampleAnswer4;
     this.questions[index].sampleAnswer1=this.question.sampleAnswer5;
+    setTimeout(()=>{this.questionService.updateQuestion(this.question);this.updateQuestions()},1000);
 
   }
 
@@ -172,7 +174,8 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer5 = this.sampleAnswers[4];
         this.question.bucket=this.currentBucket;
         this.questions.push(this.question);
-        /* this.questionService.createNewQuestion(this.question).subscribe(); */
+        this.questionService.createNewQuestion(this.question).subscribe();
+        this.updateQuestions();
         this.savedSuccessfully();
       }
       this.updateQuestions();
@@ -188,6 +191,14 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
 
+   deleteQuestion(q) {
+     this.questionService.deleteQuestion(q.questionId).subscribe();
+
+     const index = this.questions.indexOf(q);
+     this.questions.splice(index, 1);
+
+   }
+
 
   updateQuestions() {
     if (this.currentBucket) {
@@ -196,11 +207,6 @@ export class QuestionComponent implements OnInit {
       });
     }
   }
-
-  deleteQuestion(question) {
-    const index = this.questions.indexOf(question);
-    this.questions.splice(index, 1);
-    }
 
 
   savedSuccessfully() {

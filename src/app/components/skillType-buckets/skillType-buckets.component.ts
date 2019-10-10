@@ -45,10 +45,11 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   getBuckets(): void {
     this.bucketService.getAllBuckets().subscribe(buckets => {
-      console.log(buckets);
-    this.buckets = buckets;
+
+      this.buckets = buckets;
       this.buckets.sort(this.compare);
-     });
+    });
+
   }
 
   /** used to compare buckets Array to sort it based on status */
