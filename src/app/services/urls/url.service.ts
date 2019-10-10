@@ -50,6 +50,7 @@ export class UrlService {
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
+    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/delete/${questionId}`,
    };
 
   private questionScoringEndpoint = 'question-score-service/question';
