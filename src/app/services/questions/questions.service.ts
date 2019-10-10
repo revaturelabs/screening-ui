@@ -67,7 +67,7 @@ export class QuestionsService {
     * deletes question
   */
   deleteQuestion(questionId: number) {
-    return this.http.put(this.urlService.question.deleteQuestion(questionId), httpOptions);
+    return this.http.delete(this.urlService.question.deleteQuestion(questionId), httpOptions);
 
   }
   /**
