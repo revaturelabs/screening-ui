@@ -54,18 +54,8 @@ export class BucketsService {
       return this.http.post<Bucket>(this.urlService.bucket.createNewBucket(), bucket, httpOptions);
   }
 
-  deleteBucket(bucket: Bucket) {
-    console.log('before the delete buck ' + bucket.bucketId);
-    console.log(this.urlService.bucket.deleteBucket(bucket.bucketId));
-    return this.http.delete(this.urlService.bucket.deleteBucket(bucket.bucketId));
-    // BUCKETS.forEach(function(item, index, object) {
-    //     console.log('before the currentbucket ' + item.bucketId + ' here ' + bucket.bucketId);
-    //     if (item.bucketId === bucket.bucketId) {
-    //         console.log('After the current bucket');
-    //       object.splice(index, 1);
-    //     }
-    //   });
-    //   console.log(BUCKETS);
+  deleteBucket(bucket: Bucket): Observable<any> {
+    return this.http.delete(this.urlService.bucket.deleteBucket(bucket.bucketId), httpOptions);
   }
 
   setBucket(bucket: Bucket) {

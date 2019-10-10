@@ -28,8 +28,8 @@ export class UrlService {
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
     createNewBucket: () => `${this.bucketEndpoint}`,
-    deleteBucket: (bucketId: number) => `http://localhost:5001/bucket/delete/416`
-   // deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/delete/${bucketId}`
+   // deleteBucket: (bucketId: number) => `http://localhost:5001/bucket/delete/416`
+    deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`
   };
 
   /**

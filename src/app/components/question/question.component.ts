@@ -195,10 +195,11 @@ export class QuestionComponent implements OnInit {
     }
 
     deletebucket(bucket: Bucket) {
-      this.bucketService.deleteBucket(bucket);
-      this.router.navigate(['settings/main']);
+      this.bucketService.deleteBucket(bucket).subscribe(buckets => {
+        console.log(buckets);
+        this.router.navigate(['settings/main']);
+       });
   }
-
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
