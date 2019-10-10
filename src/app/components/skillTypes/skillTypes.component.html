@@ -32,7 +32,12 @@
     <!-- If a skillType got clicked, Title is Edit -->
     <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
     <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="updateSkillType(content)"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
