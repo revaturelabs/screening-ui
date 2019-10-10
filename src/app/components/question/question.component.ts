@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -45,7 +46,8 @@ export class QuestionComponent implements OnInit {
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService,
+    private router: Router) { }
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -97,6 +99,11 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+  deleteBucket(currentBucket) {
+    this.bucketService.deleteBucket(currentBucket);
+    this.router.navigate(['settings/main']);
+  }
+
   /**
    * Switches the question sent in as an argument from active to deactive
    * or from deactive to active based on its current status
@@ -129,6 +136,14 @@ export class QuestionComponent implements OnInit {
   editQuestion(question) {
     this.question = question;
     this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    let index=this.questions.indexOf(this.question);
+    this.questions[index].questionText=this.question.questionText;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer1;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer2;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer3;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer4;
+    this.questions[index].sampleAnswer1=this.question.sampleAnswer5;
+
   }
 
   /**
@@ -172,6 +187,8 @@ export class QuestionComponent implements OnInit {
    * Used to populate the current question and the current tags with a selected question to be
    * edited.
    **/
+
+
   updateQuestions() {
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
@@ -179,6 +196,12 @@ export class QuestionComponent implements OnInit {
       });
     }
   }
+
+  deleteQuestion(question) {
+    const index = this.questions.indexOf(question);
+    this.questions.splice(index, 1);
+    }
+
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
