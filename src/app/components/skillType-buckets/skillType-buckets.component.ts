@@ -44,11 +44,11 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   getBuckets(): void {
-      this.buckets = BUCKETS;
-    // this.bucketService.getAllBuckets().subscribe(buckets => {
-    //   this.buckets = buckets;
-    //   this.buckets.sort(this.compare);
-    // });
+    this.bucketService.getAllBuckets().subscribe(buckets => {
+      console.log(buckets);
+    this.buckets = buckets;
+      this.buckets.sort(this.compare);
+     });
   }
 
   /** used to compare buckets Array to sort it based on status */
@@ -71,7 +71,12 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   /** Stores the value of selected bucket to a 'currBucket' */
   editBucket(bucket: Bucket) {
-    this.currBucket = bucket;
+    this.bucketService.updateBucket(bucket).subscribe(
+      data => {
+        this.currBucket=data;
+
+      }
+    );
   }
 
   /**
