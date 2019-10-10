@@ -57,6 +57,7 @@ export class SkillTypesComponent implements OnInit {
   public error: boolean;
   public modalServiceRef;
   public singleSkillTypeBucketIds: number[] = [];
+  public skillTypeToEdit: SkillType;
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
@@ -75,7 +76,8 @@ export class SkillTypesComponent implements OnInit {
     private alertsService: AlertsService,
     private tab: NgbTabset
   ) {
-    this.allSkillTypes = SKILLTYPES;
+    //this.allSkillTypes = SKILLTYPES;
+    //console.log(this.allSkillTypes);
   }
 
   removeElement(item: any) {
@@ -110,7 +112,6 @@ export class SkillTypesComponent implements OnInit {
         this.inactiveSkillTypes[this.inactiveSkillTypes.length] = thing;
       }
     }
-    this.setSkillTypes();
   }
 
   skillTypeUpdate(skillType: SkillType) {
@@ -183,6 +184,8 @@ export class SkillTypesComponent implements OnInit {
       skillTypeId: skillType.skillTypeId,
       isActive: true
     };
+    //this.skillTypeToEdit = this.singleSkillType;
+    //console.log(this.singleSkillType);
     this.getAssociated();
     console.log(skillType);
   }
@@ -292,36 +295,29 @@ export class SkillTypesComponent implements OnInit {
     for (num = 0; num < this.allSkillTypes.length; num++) {
       if (this.allSkillTypes[num].skillTypeId === this.singleSkillType.skillTypeId) {
         this.allSkillTypes[num].title = modal.skillTypeName;
+        this.singleSkillType = this.allSkillTypes[num];
         console.log(this.singleSkillType);
       }
     }
-    // this.allSkillTypes[this.allSkillTypes.indexOf(this.singleSkillType)].title = modal.skillTypeName;
-    // console.log(this.singleSkillType);
-    // this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
     this.bucketWeightSum = 0;
     if (this.bucketsAndWeights.length !== 0) {
       for (const index of this.bucketsAndWeights) {
         this.bucketWeightSum += this.bucketsAndWeights[index].weights;
       }
     }
-    // if (this.bucketWeightSum === 100 || this.bucketsAndWeights.length === 0) {
-    // this.modalServiceRef.close();
     const bucketsId = [];
     const weights = [];
     for (const index of this.bucketsAndWeights) {
       bucketsId.push(this.singleSkillTypeBucketIds[index]);
       weights.push(this.bucketsAndWeights[index].weights);
     }
-    // this.skillTypeService
-    //     .updateSkillTypeBuckets(this.singleSkillType, bucketsId, weights)
-    //     .subscribe(results => {
-    //         this.grabAllSkillTypes();
-    //     });
+    this.skillTypeService
+        .updateSkillTypeBuckets(this.singleSkillType, bucketsId, weights)
+        .subscribe(results => {
+            this.grabAllSkillTypes();
+        });
     this.allSkillTypes.push(this.singleSkillType);
     this.savedSuccessfully();
-    // } else {
-    //     this.error = true;
-    // }
     this.getAssociated();
     this.grabAllSkillTypes();
   }
@@ -339,12 +335,13 @@ export class SkillTypesComponent implements OnInit {
       title: modal.skillTypeName,
       isActive: false
     };
-    this.allSkillTypes.push(newSkill);
     console.log(this.allSkillTypes);
     this.skillTypeService.createSkillType(newSkill).subscribe(results => {
       this.grabAllSkillTypes();
     });
     this.savedSuccessfully();
+    console.log('after creates');
+    
   }
 
   /**
@@ -373,6 +370,8 @@ export class SkillTypesComponent implements OnInit {
       this.allSkillTypes = results;
       this.setSkillTypes();
       this.allSkillTypes.sort(this.compare);
+      console.log("from grab all skill types")
+      console.log(this.allSkillTypes);
     });
   }
 
@@ -402,6 +401,15 @@ export class SkillTypesComponent implements OnInit {
     this.bucketsAndWeights = [];
     this.error = false;
     this.singleSkillTypeBucketIds = [];
+  }
+
+  // Deletes SkillType from the database 
+  deleteSkillType() {
+   // console.log(this.skillTypeToEdit);
+   console.log(this.singleSkillType);
+  this.skillTypeService.deleteSkillTypebyId(this.singleSkillType.skillTypeId).subscribe(results => {
+    this.grabAllSkillTypes();
+  });
   }
 
   savedSuccessfully() {
