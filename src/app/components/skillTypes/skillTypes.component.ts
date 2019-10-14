@@ -179,6 +179,7 @@ export class SkillTypesComponent implements OnInit {
   editSkillType(skillType) {
     console.log('in edit skill type');
     this.singleSkillTypeBuckets = [];
+    this.skillTypeWeights = [];
     this.singleSkillType = {
       title: skillType.title,
       skillTypeId: skillType.skillTypeId,
@@ -222,6 +223,7 @@ export class SkillTypesComponent implements OnInit {
             this.allWeights[i].bucket.bucketId ===
             bucket.bucketId
           ) {
+            this.skillTypeWeights.push(this.allWeights[i]);
             // console.log('this skilltype is associated with : ' + bucket.bucketDescription);
             return true;
           }
@@ -251,6 +253,7 @@ export class SkillTypesComponent implements OnInit {
       this.skillTypeBucketService.newSkillTypeForBucket(relationship).subscribe(results => {
         this.getAllWaits();
       });
+      this.skillTypeWeights.push(relationship);
     }
     this.singleSkillTypeBuckets.push(bucky);
     this.singleSkillTypeBucketIds.push(bucky.bucketId);
@@ -326,6 +329,15 @@ export class SkillTypesComponent implements OnInit {
   }
 
   /**
+   * Updates weight object to include the inputed weight value
+   */
+  updateWeight() {
+    for (let weight of this.allWeights) {
+      this.skillTypeBucketService.updateWeight(weight).subscribe();
+    }
+  }
+
+  /**
    * Creates a new skill type to be created
    * Grabs all the skill types after the information has been submitted
    * @param modal: Form information from the modal, with parameters matching the SkillType entity
@@ -351,7 +363,15 @@ export class SkillTypesComponent implements OnInit {
    * Checks the sum of bucket weights that are associated to the selected skill types
    * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
    */
-  checkBucketSum() {
+  checkBucketSum(weightValue: number, thisbucket: Bucket) {
+    console.log(weightValue);
+    for (let weight of this.allWeights) {
+      if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
+        thisbucket.bucketId === weight.bucket.bucketId) {
+          weight.weightValue = weightValue;
+          console.log(weight);
+        }
+    }
     this.bucketWeightSum = 0;
     for (const bucket of this.bucketsAndWeights) {
       this.bucketWeightSum += bucket.weights;
