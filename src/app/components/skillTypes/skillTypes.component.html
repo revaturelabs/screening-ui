@@ -36,7 +36,7 @@
       type="button"
       class="close"
       aria-label="Close"
-      (click)="updateSkillType(content)"
+      (click)="c('Close click')"
     >
       <span aria-hidden="true">&times;</span>
     </button>
@@ -62,7 +62,7 @@
                   id="font-fix">{{ bucket.bucketDescription }}</span>
                 <input type="number" #weight name="weight" class="form-control border-right-0 bucketWeight" min="0"
                   max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{ standalone: true }"
-                  (keyup)="checkBucketSum(); checkMinMax(index)" />
+                  (keyup)="checkBucketSum(weight.weightValue, bucket)" />
                 <input type="number" name="sum" class="form-control border-right-0" [hidden]="true"
                   [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight" />
                 <span class="input-group-addon percentSign"
@@ -102,7 +102,9 @@
     <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="
         updateSkillType(addSkillTypeForm.value);
         savedSuccessfully();
-        skillTypeUpdate(singleSkillType)
+        skillTypeUpdate(singleSkillType);
+        updateWeight();
+        c('Close click');
       " [disabled]="error" *ngIf="singleSkillType">
       Save
     </button>
