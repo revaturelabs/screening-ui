@@ -197,8 +197,9 @@ export class SkillTypesComponent implements OnInit {
     for (let i = 0; i < this.allBuckets.length; i++) {
       if (this.checkContains(this.allBuckets[i])) {
         if (
-          !this.singleSkillTypeBucketIds.includes(this.allBuckets[i].bucketId)
+          !this.singleSkillTypeBuckets.includes(this.allBuckets[i])
         ) {
+          console.log('pushed');
           this.singleSkillTypeBuckets.push(this.allBuckets[i]);
           this.singleSkillTypeBucketIds.push(this.allBuckets[i].bucketId);
         }
@@ -218,8 +219,8 @@ export class SkillTypesComponent implements OnInit {
       for (let i = 0; i < this.allWeights.length; i++) {
         if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
           if (
-            this.allWeights[i].bucket.bucketDescription ===
-            bucket.bucketDescription
+            this.allWeights[i].bucket.bucketId ===
+            bucket.bucketId
           ) {
             // console.log('this skilltype is associated with : ' + bucket.bucketDescription);
             return true;
@@ -241,17 +242,18 @@ export class SkillTypesComponent implements OnInit {
     console.log(bucky);
     if (this.singleSkillType) {
       console.log('if called');
-      const relationship: Weight = {
+      let relationship: Weight = {
         bucket: bucky,
         skillType: this.singleSkillType,
         weightValue: 0,
         weightId: 0
       };
-      this.skillTypeBucketService.newSkillTypeForBucket(relationship);
-      this.grabAllBuckets();
-      this.getAllWaits();
-      this.getAssociated();
+      this.skillTypeBucketService.newSkillTypeForBucket(relationship).subscribe(results => {
+        this.getAllWaits();
+      });
     }
+    this.singleSkillTypeBuckets.push(bucky);
+    this.singleSkillTypeBucketIds.push(bucky.bucketId);
   }
 
   /**
@@ -270,9 +272,10 @@ export class SkillTypesComponent implements OnInit {
       // need a weight ID from bucket
       let removed: number;
       for (let j = 0; j < this.allWeights.length; j++) {
-        if (this.allWeights[j].bucket.bucketId === bucket.bucketId) {
+        if (this.allWeights[j].bucket.bucketId === bucket.bucketId &&
+          this.allWeights[j].skillType.skillTypeId === this.singleSkillType.skillTypeId) {
           // delete the weight
-          this.skillTypeBucketService.deleteWeight(this.allWeights[j].weightId);
+          this.skillTypeBucketService.deleteWeight(this.allWeights[j].weightId).subscribe();
           // remove from list
           removed = j;
         }
