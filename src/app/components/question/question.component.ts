@@ -63,6 +63,7 @@ export class QuestionComponent implements OnInit {
     this.question = new Question();
 
     // this.questions = QUESTIONS;
+    // tslint:disable-next-line: max-line-length
     this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
     this.updateQuestions();
   }
