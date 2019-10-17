@@ -60,6 +60,8 @@ import { SoftSkillsViolationService } from './services/soft-skills-violation/sof
 import { ViolationTypeService } from './services/violationType/violationType.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NavComponent } from './components/nav/nav.component';
+import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
+import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -125,6 +127,8 @@ export const Dependencies = {
     ViolationTypeService,
     UrlService,
     CookieService,
+    SoftSkillsService,
+    ScreenerBucketsService
   ],
   bootstrap: [
   ],
