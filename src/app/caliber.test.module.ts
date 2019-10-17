@@ -119,7 +119,6 @@ export const Dependencies = {
     AlertsService,
     ApiService,
     NgbActiveModal,
-    { provide: Router, useValue: {} },
     GambitBatchUtilService,
     GambitBatchUtilService,
     ViolationTypeService,
