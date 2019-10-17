@@ -17,6 +17,7 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+import { NavComponent } from './components/nav/nav.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
@@ -75,6 +76,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
+    NavComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
@@ -99,7 +101,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    // HttpModule,
     NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,

@@ -1,12 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Dependencies } from './caliber.test.module';
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+    TestBed.configureTestingModule(Dependencies).compileComponents();
   }));
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
