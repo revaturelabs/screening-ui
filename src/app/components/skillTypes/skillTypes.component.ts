@@ -61,6 +61,7 @@ export class SkillTypesComponent implements OnInit {
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
+  public skillWeights: Weight[] = [];
 
   public relaventWeights: Weight[] = [];
 
@@ -178,6 +179,7 @@ export class SkillTypesComponent implements OnInit {
   /* This will work for altering a skill type, but it will not display the change on the page. */
   editSkillType(skillType) {
     console.log('in edit skill type');
+    this.skillWeights = [];
     this.singleSkillTypeBuckets = [];
     this.skillTypeWeights = [];
     this.singleSkillType = {
@@ -185,6 +187,13 @@ export class SkillTypesComponent implements OnInit {
       skillTypeId: skillType.skillTypeId,
       isActive: true
     };
+
+    for (let weight of this.allWeights) {
+      if(weight.skillType.skillTypeId === skillType.skillTypeId) {
+        console.log(weight);
+        this.skillWeights.push(weight);
+      }
+    }
     //this.skillTypeToEdit = this.singleSkillType;
     //console.log(this.singleSkillType);
     this.getAssociated();
@@ -254,6 +263,7 @@ export class SkillTypesComponent implements OnInit {
         this.getAllWaits();
       });
       this.skillTypeWeights.push(relationship);
+      this.skillWeights.push(relationship);
     }
     this.singleSkillTypeBuckets.push(bucky);
     this.singleSkillTypeBucketIds.push(bucky.bucketId);
@@ -272,6 +282,17 @@ export class SkillTypesComponent implements OnInit {
         }
       }
       this.singleSkillTypeBuckets = modSkillTypeBuckets.slice();
+
+
+      for(let i = 0; i < this.skillWeights.length; i++) {
+        if(bucket.bucketId === this.skillWeights[i].bucket.bucketId) {
+          this.skillWeights.splice(i, 1);
+          console.log('in the if statement');
+          console.log(this.skillWeights[i]);
+        }
+      }
+
+
       // need a weight ID from bucket
       let removed: number;
       for (let j = 0; j < this.allWeights.length; j++) {
