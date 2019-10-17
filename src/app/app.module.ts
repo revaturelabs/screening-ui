@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -115,6 +115,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     BucketsService,
     GambitBatchUtilService,
     HttpErrorHandlerService,
+    NgbActiveModal,
     QuestionScoreService,
     QuestionsService,
     SimpleTraineeService,
