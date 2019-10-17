@@ -63,6 +63,12 @@ export class QuestionsService {
     return this.http.put(this.urlService.question.putQuestion(), question, httpOptions);
   }
 
+  /*
+    * deletes question
+  */
+  deleteQuestion(questionId: number) {
+    return this.http.delete(this.urlService.question.deleteQuestion(questionId), httpOptions);
+  }
   /**
    * deactivates question
    * add urlService to get endpoint for deactivating a question
@@ -80,6 +86,7 @@ export class QuestionsService {
   activateQuestion(questionId: number) {
     return this.http.put(this.urlService.question.activateQuestion(questionId), httpOptions);
   }
+
 
   /**
    * gets all questions from bucket

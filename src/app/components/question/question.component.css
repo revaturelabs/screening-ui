@@ -202,3 +202,10 @@ fixed-modal .modal-content {
   justify-content: center;
   font-size: 12px;
 }
+
+#delBtn{
+  border-color: #F26925;
+  background-color: transparent;
+  font-size: 12px;
+  float: right;
+}

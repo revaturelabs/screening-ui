@@ -28,6 +28,7 @@
             <a class="list-group-item list-group-item-action" *ngIf="question">
               {{question.questionText}}
               <i id="xIcon">
+                  <button id="delBtn" (click)="deleteQuestion(question)">Delete</button>
                 <label class="switch">
                   <input type="checkbox" [checked]=question.isActive (change)="changeQuestionStatus(question)">
                   <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="question.isActive"></span>
@@ -35,10 +36,12 @@
                 </label>
               </i>
               <i id="penIcon" class="fa fa-pencil pull-right" (click)="editQuestion(question); open(content)" placement="top"
-                ngbTooltip="edit"></i>
+Feature-28-Delete_Question
+                ngbTooltip="edit">Edit</i>
             </a>
           </div>
         </div>
+        <button class="btn btn-danger" (click)='deletebucket(currentBucket)'>Delete bucket</button>
         <button class="btn btn-primary btn-sm" (click)='setQuestionNull(); open(content);'>Create New Question</button>
       </div>
     </div>

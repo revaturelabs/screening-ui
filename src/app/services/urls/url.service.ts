@@ -27,7 +27,9 @@ export class UrlService {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
-    createNewBucket: () => `${this.bucketEndpoint}`
+    createNewBucket: () => `${this.bucketEndpoint}`,
+   // deleteBucket: (bucketId: number) => `http://localhost:5001/bucket/delete/416`
+    deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`
   };
 
   /**
@@ -49,6 +51,7 @@ export class UrlService {
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/toggle/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
+    deleteQuestion: (questionId: number) => `${this.questionEndpoint}/delete/${questionId}`,
    };
 
   private questionScoringEndpoint = 'question-score-service/question';

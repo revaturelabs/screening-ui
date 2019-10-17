@@ -1,0 +1,4 @@
+# Dev Ops files should be reviewed by the cloud team
+buildspec.yml    @revaturelabs/cloud-ops
+Dockerfile	@revaturelabs/cloud-ops
+.travis.yml	@revaturelabs/cloud-ops
