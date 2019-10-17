@@ -1,6 +1,12 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { async, TestBed, inject } from '@angular/core/testing';
 
 import { ViolationTypeService } from './violationType.service';
+import { Dependencies } from 'src/app/caliber.test.module';
+
+beforeEach(async(() => {
+  TestBed.configureTestingModule(Dependencies)
+  .compileComponents();
+}));
 
 describe('ViolationService', () => {
   beforeEach(() => {
