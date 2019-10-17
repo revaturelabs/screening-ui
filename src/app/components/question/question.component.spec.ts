@@ -1,3 +1,4 @@
+
 // Testing modules
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -45,15 +46,17 @@ describe('QuestionComponent', () => {
     isActive: true,
     bucket: testBucket
   };
+  // component.question = testQuestion;
+  // component.question.bucket = testBucket;
+  // component = fixture.componentInstance;
 
-  component.question = testQuestion;
   // const t0: Tag = new Tag();
   // t0.tagId = 1;
   // t0.tagName = 'Java';
   // const t1: Tag = new Tag();
   // t1.tagId = 2;
   // t1.tagName = 'HTML';
-  
+
   /**
    * Import dependencies and set the TestBed to configure the testing module.
    **/
@@ -67,15 +70,6 @@ describe('QuestionComponent', () => {
    * the question component as an instace of the question component for testing.
    **/
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        QuestionComponent,
-        CandidatesScreeningListComponent
-      ],
-      imports: [
-        RouterModule.forRoot([]),
-      ]
-    }),
     fixture = TestBed.createComponent(QuestionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -327,4 +321,3 @@ describe('QuestionComponent', () => {
   //   expect(component.currentTags).toContain(t1);
   // });
 });
-

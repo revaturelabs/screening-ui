@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { RouteService } from './route.service';
 
-xdescribe('RouteService', () => {
+describe('RouteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [RouteService]
