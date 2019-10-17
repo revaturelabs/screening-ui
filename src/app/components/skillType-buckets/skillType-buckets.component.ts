@@ -8,9 +8,8 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 import { QUESTIONS } from '../../mock-data/mock-questions';
-
+import { BUCKETS } from '../../mock-data/mock-buckets';
 
 @Component({
   selector: 'app-skill-type-buckets',

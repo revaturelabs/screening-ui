@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CandidateComponent } from './candidate.component';
+import { FormsModule } from '@angular/forms';
+import { BucketFilterPipe } from 'src/app/pipes/skillType-buckets.filter';
+import { UrlService } from 'src/app/services/urls/url.service';
 
 describe('CandidateComponent', () => {
   let component: CandidateComponent;
@@ -8,7 +11,9 @@ describe('CandidateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CandidateComponent ]
+      imports: [FormsModule],
+      declarations: [ CandidateComponent, BucketFilterPipe ],
+      providers: [UrlService]
     })
     .compileComponents();
   }));
