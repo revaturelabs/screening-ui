@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ViolationFlagComponent } from 'src/app/components/violation-flag/violation-flag.component';
 import { AnswerComponent } from './answer.component';
 import { Dependencies } from 'src/app/caliber.test.module';
+import { Question } from 'src/app/entities/Question';
 
 describe('AnswerComponent', () => {
   let component: AnswerComponent;
