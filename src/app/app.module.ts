@@ -65,6 +65,7 @@ import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { RouteService } from './services/routes/route.service';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ScreenerBucketsService,
     ScreeningService,
     RoleGuard,
+    RouteService,
     SkillTypesService,
     SkillTypeBucketService,
     SoftSkillsService,
