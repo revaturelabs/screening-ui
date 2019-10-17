@@ -59,6 +59,7 @@ export class SkillTypesComponent implements OnInit {
   public singleSkillTypeBucketIds: number[] = [];
   public skillTypeToEdit: SkillType;
   public skillWeights: Weight[] = [];
+  public bucketSum: number[] = [];
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
@@ -365,41 +366,31 @@ export class SkillTypesComponent implements OnInit {
     });
     this.savedSuccessfully();
     console.log('after creates');
-    
   }
 
   /**
    * Checks the sum of bucket weights that are associated to the selected skill types
    * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
    */
-  
-  checkBucketSum(weightValue: number, thisbucket: Bucket) {
-    console.log(weightValue);
-    
+
+  checkBucketSum(weightValue: number, thisbucket: Bucket, index: number) {
+    this.bucketSum[index] = weightValue;
+    let num = 0;
+    for (let value of this.bucketSum) {
+      num += value;
+    }
     for (let weight of this.skillWeights) {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
         thisbucket.bucketId === weight.bucket.bucketId) {
           weight.weightValue = weightValue;
-          this.bucketWeightSum += weightValue;
-          console.log(weight);
         }
     }
-    // this.bucketWeightSum = 0;
-    // for (const bucket of this.bucketsAndWeights) {
-    //   this.bucketWeightSum += bucket.weights;
-    // }
-    console.log(this.bucketWeightSum);
-    console.log(this.skillWeights.length);
-    console.log(this.skillWeights);
     if (this.allWeights.length === 0) {
       this.error = false;
-      console.log('in zero length');
-    } else if (this.bucketWeightSum === 100) {
+    } else if (num === 100) {
       this.error = false;
-      console.log('in hundred');
     } else {
       this.error = true;
-      console.log('in error');
     }
   }
 
@@ -442,6 +433,7 @@ export class SkillTypesComponent implements OnInit {
     this.bucketsAndWeights = [];
     this.error = false;
     this.singleSkillTypeBucketIds = [];
+    this.bucketSum = [];
   }
 
   // Deletes SkillType from the database 
@@ -455,7 +447,6 @@ export class SkillTypesComponent implements OnInit {
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
-    
   }
 
   testing() {
