@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { IntroductionComponent } from './introduction.component';
 
-xdescribe('IntroductionComponent', () => {
+describe('IntroductionComponent', () => {
   let component: IntroductionComponent;
   let fixture: ComponentFixture<IntroductionComponent>;
 
