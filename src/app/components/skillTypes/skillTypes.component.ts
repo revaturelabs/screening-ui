@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbTabset, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { SkillType } from '../../entities/SkillType';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { Bucket } from '../../entities/Bucket';
@@ -58,6 +58,7 @@ export class SkillTypesComponent implements OnInit {
   public modalServiceRef;
   public singleSkillTypeBucketIds: number[] = [];
   public skillTypeToEdit: SkillType;
+  public weightArr: number[] = [];
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
@@ -67,6 +68,10 @@ export class SkillTypesComponent implements OnInit {
 
   public Weight: Weight;
   closeResult: string;
+
+  inputForm = new FormGroup({
+    weightVal: new FormControl('')
+  });
 
   constructor(
     private modalService: NgbModal,
@@ -177,7 +182,8 @@ export class SkillTypesComponent implements OnInit {
 
 
   /* This will work for altering a skill type, but it will not display the change on the page. */
-  editSkillType(skillType) {
+  editSkillType(skillType, weightInput: HTMLElement) {
+    this.skillWeights = [];
     console.log('in edit skill type');
     this.skillWeights = [];
     this.singleSkillTypeBuckets = [];
@@ -200,10 +206,14 @@ export class SkillTypesComponent implements OnInit {
     console.log(skillType);
   }
 
+
   /**
    * Only darkness within
    */
   getAssociated() {
+
+
+
     for (let i = 0; i < this.allBuckets.length; i++) {
       if (this.checkContains(this.allBuckets[i])) {
         if (
@@ -215,7 +225,15 @@ export class SkillTypesComponent implements OnInit {
         }
       }
     }
+
+   
+    // console.log(this.singleSkillTypeBuckets);
+
+
+
   }
+
+
 
   /**
    * THIS IS BAD!
@@ -306,6 +324,8 @@ export class SkillTypesComponent implements OnInit {
       }
       this.allWeights.splice(removed, 1);
     }
+
+    
   }
 
   /**
@@ -473,6 +493,7 @@ export class SkillTypesComponent implements OnInit {
     this.grabAllSkillTypes();
     this.grabAllBuckets();
     this.getAllWaits();
+
   }
 }
 
