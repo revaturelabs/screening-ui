@@ -27,7 +27,7 @@ import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillT
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 
-
+//
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
