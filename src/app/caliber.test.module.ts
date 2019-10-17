@@ -46,6 +46,11 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
+import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
+import { FinalReportComponent } from './components/final-report/final-report.component';
+import { CandidateComponent } from './components/candidate/candidate.component';
+import { BucketFilterPipe } from './pipes/skillType-buckets.filter';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -67,6 +72,7 @@ export const Dependencies = {
     // pipes
     SearchPipe,
     SettingsComponent,
+    BucketFilterPipe,
     // components
     SettingsComponent,
     ScreeningConfigComponent,
@@ -77,7 +83,11 @@ export const Dependencies = {
     SkillTypesComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
-    ScreeningComponent
+    ScreeningComponent,
+    CandidatesScreeningListComponent,
+    QuestionsTableComponent,
+    FinalReportComponent,
+    CandidateComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
