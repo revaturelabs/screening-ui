@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
+import { ViolationFlagComponent } from 'src/app/components/violation-flag/violation-flag.component';
 import { AnswerComponent } from './answer.component';
 import { Dependencies } from 'src/app/caliber.test.module';
 

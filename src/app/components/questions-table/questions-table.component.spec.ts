@@ -61,7 +61,7 @@ describe('QuestionsTableComponent', () => {
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
+        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] // cut out NgbModalBackdrop, NgbModalWindow, 
       }
     })
       .compileComponents();
@@ -120,7 +120,7 @@ describe('QuestionsTableComponent', () => {
       screeningID: 1,
       score: 1,
       commentary: 'string',
-      bucketId:1,
+      bucketId: 1,
       beginTime: new Date});
     expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
   });

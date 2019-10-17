@@ -61,7 +61,6 @@ import { ViolationTypeService } from './services/violationType/violationType.ser
 import { CookieService } from 'ngx-cookie-service';
 import { NavComponent } from './components/nav/nav.component';
 
-
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 export const Dependencies = {
@@ -83,6 +82,7 @@ export const Dependencies = {
     // pipes
     SearchPipe,
     SettingsComponent,
+    BucketFilterPipe,
     // components
     SettingsComponent,
     ScreeningConfigComponent,

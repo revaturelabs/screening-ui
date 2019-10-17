@@ -22,7 +22,7 @@ export class AnswerComponent implements OnInit {
 
   @Input() question;
   questionScore: QuestionScore;
-
+ 
   // used to exchange data between the answer modal and question table component
   questionScores: QuestionScore[];
 
