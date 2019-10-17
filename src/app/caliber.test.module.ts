@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 
 
 
+
 // routing
 import { routes } from './app.routes';
 import { SpringInterceptor } from './interceptors/spring.interceptor';
@@ -63,6 +64,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
