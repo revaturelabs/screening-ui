@@ -397,7 +397,7 @@ export class SkillTypesComponent implements OnInit {
     });
     this.savedSuccessfully();
     console.log('after creates');
-    
+
   }
 
   /**
@@ -405,7 +405,7 @@ export class SkillTypesComponent implements OnInit {
    * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
    */
   checkBucketSum(weightValue: number, thisbucket: Bucket) {
-    console.log(weightValue);
+
     for (let weight of this.allWeights) {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
         thisbucket.bucketId === weight.bucket.bucketId) {

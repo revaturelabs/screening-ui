@@ -61,8 +61,9 @@
               <div class="input-group col-sm-9 rounded" style="margin-bottom: 0.5%;">
                 <span class="input-group-addon col-sm-5 revatureOrange"
                   id="font-fix">{{w.bucket.bucketDescription}}</span> 
-                <input type="number" value={{w.weightValue}} #weight name="weight" class="form-control border-right-0 bucketWeight" min="0"
-                  max="100" (keyup)="checkBucketSum(w.weightValue, w.bucket)" /> 
+                <input type="number" value={{w.weightValue}} #weight name="weight" 
+                [(ngModel)]="w.weightValue" [ngModelOptions]="{ standalone: true }" class="form-control border-right-0 bucketWeight" min="0"
+                  max="100"  (keyup)="checkBucketSum(w.weightValue, w.bucket)" /> 
 
                 <input type="number" name="sum" class="form-control border-right-0" [hidden]="true"
                   [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight" />
