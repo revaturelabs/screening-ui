@@ -58,6 +58,7 @@ export class SkillTypesComponent implements OnInit {
   public modalServiceRef;
   public singleSkillTypeBucketIds: number[] = [];
   public skillTypeToEdit: SkillType;
+  public skillWeights: Weight[] = [];
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
@@ -177,6 +178,7 @@ export class SkillTypesComponent implements OnInit {
 
   /* This will work for altering a skill type, but it will not display the change on the page. */
   editSkillType(skillType) {
+    // this.bucketWeightSum = 0;
     console.log('in edit skill type');
     this.singleSkillTypeBuckets = [];
     this.skillTypeWeights = [];
@@ -185,6 +187,12 @@ export class SkillTypesComponent implements OnInit {
       skillTypeId: skillType.skillTypeId,
       isActive: true
     };
+    for (let weight of this.allWeights) {
+      if(weight.skillType.skillTypeId === skillType.skillTypeId) {
+        console.log(weight);
+        this.skillWeights.push(weight);
+      }
+    }
     //this.skillTypeToEdit = this.singleSkillType;
     //console.log(this.singleSkillType);
     this.getAssociated();
@@ -202,6 +210,7 @@ export class SkillTypesComponent implements OnInit {
         ) {
           console.log('pushed');
           this.singleSkillTypeBuckets.push(this.allBuckets[i]);
+          // this.bucketsAndWeights = this.singleSkillTypeBuckets;
           this.singleSkillTypeBucketIds.push(this.allBuckets[i].bucketId);
         }
       }
@@ -363,25 +372,34 @@ export class SkillTypesComponent implements OnInit {
    * Checks the sum of bucket weights that are associated to the selected skill types
    * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
    */
+  
   checkBucketSum(weightValue: number, thisbucket: Bucket) {
     console.log(weightValue);
-    for (let weight of this.allWeights) {
+    
+    for (let weight of this.skillWeights) {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
         thisbucket.bucketId === weight.bucket.bucketId) {
           weight.weightValue = weightValue;
+          this.bucketWeightSum += weightValue;
           console.log(weight);
         }
     }
-    this.bucketWeightSum = 0;
-    for (const bucket of this.bucketsAndWeights) {
-      this.bucketWeightSum += bucket.weights;
-    }
-    if (this.bucketsAndWeights.length === 0) {
+    // this.bucketWeightSum = 0;
+    // for (const bucket of this.bucketsAndWeights) {
+    //   this.bucketWeightSum += bucket.weights;
+    // }
+    console.log(this.bucketWeightSum);
+    console.log(this.skillWeights.length);
+    console.log(this.skillWeights);
+    if (this.allWeights.length === 0) {
       this.error = false;
+      console.log('in zero length');
     } else if (this.bucketWeightSum === 100) {
       this.error = false;
+      console.log('in hundred');
     } else {
       this.error = true;
+      console.log('in error');
     }
   }
 
@@ -437,6 +455,7 @@ export class SkillTypesComponent implements OnInit {
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');
+    
   }
 
   testing() {

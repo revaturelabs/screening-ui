@@ -62,13 +62,13 @@
                   id="font-fix">{{ bucket.bucketDescription }}</span>
                 <input type="number" #weight name="weight" class="form-control border-right-0 bucketWeight" min="0"
                   max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{ standalone: true }"
-                  (keyup)="checkBucketSum(weight.weightValue, bucket)" />
+                  (change)="checkBucketSum(weight.weightValue, bucket)" />
                 <input type="number" name="sum" class="form-control border-right-0" [hidden]="true"
                   [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight" />
                 <span class="input-group-addon percentSign"
                   style="border-top-right-radius: 11%; border-bottom-right-radius: 11%;">%</span>
                 <button id="xButton" type="button" class="close col-sm-2 revatureOrange rounded" aria-label="Close"
-                  (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()">
+                  (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum(weight.weightValue, bucket)">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
