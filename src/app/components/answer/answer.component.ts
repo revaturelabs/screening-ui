@@ -6,11 +6,13 @@ import { QuestionScore } from '../../entities/QuestionScore';
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
+import { ViolationFlagComponent } from '../../components/violation-flag/violation-flag.component';
 
 // ngbootstrap for modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Question } from 'src/app/entities/Question';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
