@@ -35,6 +35,11 @@ describe('CandidatesScreeningListComponent', () => {
     fixture.detectChanges();
   });
 
+  /* to remove the localstorage after the test so it does not interefere with with other tests involving it */
+  afterAll(() => {
+    localStorage.removeItem('screeningID');
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -80,6 +85,8 @@ describe('CandidatesScreeningListComponent', () => {
     component.selectedScheduledScreening.trainer = 1;
     component.selectedCandidate = {} as SimpleTrainee;
     component.selectedCandidate.skillTypeID = 1;
+    /* simulate an assigned localstorage from database */
+    localStorage.setItem('screeningID', '1');
     component.beginScreening();
     expect(localStorage.getItem('screeningID')).not.toBeNull();
   });
