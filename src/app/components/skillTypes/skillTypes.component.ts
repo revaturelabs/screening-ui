@@ -194,6 +194,7 @@ export class SkillTypesComponent implements OnInit {
       isActive: true
     };
 
+    // POPULATING ARRAY WITH INDIVIDUAL SKILLTYPE WEIGHTS
     for (let weight of this.allWeights) {
       if(weight.skillType.skillTypeId === skillType.skillTypeId) {
         console.log(weight);
@@ -410,9 +411,9 @@ export class SkillTypesComponent implements OnInit {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
         thisbucket.bucketId === weight.bucket.bucketId) {
           weight.weightValue = weightValue;
-          console.log(weight);
         }
     }
+
     this.bucketWeightSum = 0;
     for (const bucket of this.bucketsAndWeights) {
       this.bucketWeightSum += bucket.weights;
