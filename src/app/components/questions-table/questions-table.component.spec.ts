@@ -21,6 +21,7 @@ import { ViolationFlagComponent } from '../violation-flag/violation-flag.compone
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { Dependencies } from 'src/app/caliber.test.module';
 
 // Author: David Gustafson
 
@@ -56,17 +57,11 @@ describe('QuestionsTableComponent', () => {
   let fixture: ComponentFixture<QuestionsTableComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], //cut out NgbModalBackdrop, NgbModalWindow,
-      imports: [FormsModule],
-      providers: [HttpClient, HttpHandler, QuestionsService, SimpleTraineeService,
-        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, //cut out NgbModalStack, 
-        SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService]
-    });
+    TestBed.configureTestingModule(Dependencies);
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] //cut out NgbModalBackdrop, NgbModalWindow, 
+        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] // cut out NgbModalBackdrop, NgbModalWindow, 
       }
     })
       .compileComponents();
@@ -105,7 +100,7 @@ describe('QuestionsTableComponent', () => {
     component.questionBuckets = BUCKETS;
     component.questionBuckets[0].bucketId = 1;
     component.setBucket(1);
-    expect(component.currentCategory.bucketId).toBe(1);
+    expect(component.currentBucket).toBe(1);
   });
 
   it('should set run open', () => {
@@ -125,6 +120,7 @@ describe('QuestionsTableComponent', () => {
       screeningID: 1,
       score: 1,
       commentary: 'string',
+      bucketId: 1,
       beginTime: new Date});
     expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
   });

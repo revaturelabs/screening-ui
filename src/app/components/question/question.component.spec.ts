@@ -4,12 +4,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 // Modules
 import { Dependencies } from '../../caliber.test.module';
 
+
 // Components
 import { QuestionComponent } from './question.component';
+import { CandidatesScreeningListComponent } from '../candidates-screening-list/candidates-screening-list.component';
 
 // Mock Data
 import { QUESTIONS } from '../../mock-data/mock-questions';
 import { Question } from '../../entities/Question';
+import { RouterModule } from '@angular/router';
 
 /**
  * Test for methods on the question component.
@@ -45,6 +48,15 @@ describe('QuestionComponent', () => {
    * the question component as an instace of the question component for testing.
    **/
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        QuestionComponent,
+        CandidatesScreeningListComponent
+      ],
+      imports: [
+        RouterModule.forRoot([]),
+      ]
+    }),
     fixture = TestBed.createComponent(QuestionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

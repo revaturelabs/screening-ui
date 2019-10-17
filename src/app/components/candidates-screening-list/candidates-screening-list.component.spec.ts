@@ -16,19 +16,16 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
+import { UrlService } from 'src/app/services/urls/url.service';
+import { Dependencies } from 'src/app/caliber.test.module';
+import { Directive } from '@angular/core';
 
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [CandidatesScreeningListComponent, SearchPipe, PaginatePipe, PaginationControlsComponent,
-        PaginationControlsDirective],
-      imports: [FormsModule, HttpClientModule],
-      providers: [SimpleTraineeService, ScreeningService, ScheduleScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypesService, PaginationService]
-    })
+    TestBed.configureTestingModule(Dependencies)
       .compileComponents();
   }));
 
@@ -88,3 +85,8 @@ describe('CandidatesScreeningListComponent', () => {
   });
 
 });
+
+@Directive({
+  selector: '[routerLink], [routerLinkActive]'
+})
+class DummyRouterLinkDirective {}
