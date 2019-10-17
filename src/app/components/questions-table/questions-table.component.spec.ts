@@ -105,7 +105,7 @@ describe('QuestionsTableComponent', () => {
     component.questionBuckets = BUCKETS;
     component.questionBuckets[0].bucketId = 1;
     component.setBucket(1);
-    expect(component.currentCategory.bucketId).toBe(1);
+    expect(component.currentBucket).toBe(1);
   });
 
   it('should set run open', () => {
