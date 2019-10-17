@@ -62,6 +62,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NavComponent } from './components/nav/nav.component';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
+import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -128,7 +129,8 @@ export const Dependencies = {
     UrlService,
     CookieService,
     SoftSkillsService,
-    ScreenerBucketsService
+    ScreenerBucketsService,
+    HttpErrorHandlerService
   ],
   bootstrap: [
   ],
