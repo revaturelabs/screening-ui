@@ -13,6 +13,7 @@ import { CandidatesScreeningListComponent } from '../candidates-screening-list/c
 import { QUESTIONS } from '../../mock-data/mock-questions';
 import { Question } from '../../entities/Question';
 import { RouterModule } from '@angular/router';
+import { Bucket } from 'src/app/entities/Bucket';
 
 /**
  * Test for methods on the question component.
@@ -28,13 +29,31 @@ import { RouterModule } from '@angular/router';
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
   let fixture: ComponentFixture<QuestionComponent>;
+  let testBucket: Bucket = {
+    bucketId: 1,
+    bucketDescription: 'desc',
+    isActive: true
+  };
+  let testQuestion: Question = {
+    questionId: 1,
+    questionText: 'text',
+    sampleAnswer1: 'answer',
+    sampleAnswer2: 'answer',
+    sampleAnswer3: 'answer',
+    sampleAnswer4: 'answer',
+    sampleAnswer5: 'answer',
+    isActive: true,
+    bucket: testBucket
+  };
+
+  component.question = testQuestion;
   // const t0: Tag = new Tag();
   // t0.tagId = 1;
   // t0.tagName = 'Java';
   // const t1: Tag = new Tag();
   // t1.tagId = 2;
   // t1.tagName = 'HTML';
-
+  
   /**
    * Import dependencies and set the TestBed to configure the testing module.
    **/
