@@ -13,6 +13,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 
+
 // routing
 import { routes } from './app.routes';
 import { SpringInterceptor } from './interceptors/spring.interceptor';
@@ -54,6 +55,11 @@ import { CandidatesScreeningListComponent } from './components/candidates-screen
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { QuestionScoreService } from './services/question-score/question-score.service';
+import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
+import { ViolationTypeService } from './services/violationType/violationType.service';
+import { CookieService } from 'ngx-cookie-service';
+import { NavComponent } from './components/nav/nav.component';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -70,7 +76,7 @@ export const Dependencies = {
     // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
     BrowserAnimationsModule,
-    RouterTestingModule
+    RouterTestingModule.withRoutes(routes)
   ],
   declarations: [
     // pipes
@@ -93,14 +99,18 @@ export const Dependencies = {
     FinalReportComponent,
     AppComponent,
     CandidateComponent,
-    BucketFilterPipe
+    BucketFilterPipe,
+    NavComponent
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
     QuestionsService,
+    QuestionScoreService,
     BucketsService,
     SimpleTraineeService,
     SkillTypesService,
+    SoftSkillsViolationService,
     ScreeningService,
     SkillTypeBucketService,
     ScheduleScreeningService,
@@ -112,7 +122,9 @@ export const Dependencies = {
     { provide: Router, useValue: {} },
     GambitBatchUtilService,
     GambitBatchUtilService,
+    ViolationTypeService,
     UrlService,
+    CookieService,
   ],
   bootstrap: [
   ],
