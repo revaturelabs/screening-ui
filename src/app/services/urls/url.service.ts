@@ -73,10 +73,10 @@ export class UrlService {
   screeningEndpoint = 'screening';
   screening = {
     scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${this.screeningContext + this.screening}/new`,
-    endScreening: () => `${this.screeningContext + this.screening}/update`,
-    updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening}/`
+    startScreening: () => `${this.screeningContext + this.screeningEndpoint}/new`,
+    endScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
+    updateScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
+    getScreening: id => `${this.screeningContext + this.screeningEndpoint}/`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {

@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 // Importing the routes from app routes
 import { routes } from './app.routes';
 // Component Imports Alphabetically
@@ -129,6 +128,6 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     UrlService,
     ViolationTypeService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, AnswerComponent]
 })
 export class AppModule { }
