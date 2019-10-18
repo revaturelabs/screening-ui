@@ -7,6 +7,7 @@ import { UrlService } from 'src/app/services/urls/url.service';
 import { ScreeningService } from 'src/app/services/screening/screening.service';
 import { SimpleTrainee } from 'src/app/entities/SimpleTrainee';
 import { Observable } from 'rxjs';
+import { Dependencies } from 'src/app/caliber.test.module';
 
 describe('IntroductionComponent', () => {
   let component: IntroductionComponent;
@@ -18,9 +19,7 @@ describe('IntroductionComponent', () => {
   let mockserv: SimpleTraineeService;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ IntroductionComponent ]
-    })
+    TestBed.configureTestingModule(Dependencies)
     .compileComponents();
   }));
 
