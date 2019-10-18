@@ -23,9 +23,7 @@ in each category on technical skills,the overall feedback thereon,
 and if the candidate passed or failed their soft skills evaluation.
 Screener can copy the summary to the clipboard, and return to the candidate list.
 */
-
 export class FinalReportComponent implements OnInit, OnDestroy {
-
   public candidateName: string;
   softSkillString: string;
   bucketStringArray: string[];
@@ -46,44 +44,63 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     private scoresToBucketsUtil: ScoresToBucketsUtil,
     private alertsService: AlertsService,
     private softSkillsViolationService: SoftSkillsViolationService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.checked = 'false';
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
+    this.candidateName =
+      this.simpleTraineeService.getSelectedCandidate().firstname +
+      ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
-    this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
+    this.softSkillString =
+      'Soft Skills: ' + this.screeningService.softSkillsResult;
     this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(
-          weights =>
-          {
-            this.bucketStringArray =
-            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
-          }
-        )
+        this.skillTypeBucketService
+          .getWeightsBySkillType(
+            this.simpleTraineeService.getSelectedCandidate().skillTypeID
+          )
+          .subscribe(weights => {
+            this.bucketStringArray = this.scoresToBucketsUtil.getFinalBreakdown(
+              this.questionScores,
+              weights
+            );
+          });
         // Set the composite score in the screening service
-        this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
+        this.screeningService.compositeScore = +this.bucketStringArray[
+          this.bucketStringArray.length - 1
+        ];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
-        this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];
+        this.overallScoreString = this.bucketStringArray[
+          this.bucketStringArray.length - 1
+        ];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
         this.bucketStringArray.forEach(bucketString => {
           this.allTextString += bucketString + '\n';
         });
         this.allTextString += this.overallScoreString + '\n';
-      });
+      }
+    );
     // this.overallScoreString = "Overall: 71%";
     this.generalNotesString = this.screeningService.generalComments;
     this.allTextString += '"' + this.generalNotesString + '"';
 
     this.screeningService.endScreening(this.generalNotesString);
-    this.subscriptions.push(this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
-      softSkillViolations => (this.softSkillViolations = softSkillViolations)
-    ));
+    this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
+      data => {
+        this.softSkillViolations = data;
+        console.log(this.softSkillViolations);
+      }
+    );
+    this.subscriptions.push(
+      this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
+        softSkillViolations => (this.softSkillViolations = softSkillViolations)
+      )
+    );
   }
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)
@@ -109,7 +126,9 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScores = [];
     this.questionScoreService.updateQuestionScores(this.questionScores);
     this.softSkillViolations = [];
-    this.softSkillsViolationService.updateSoftSkillViolations(this.softSkillViolations);
+    this.softSkillsViolationService.updateSoftSkillViolations(
+      this.softSkillViolations
+    );
     localStorage.removeItem('screeningID');
     localStorage.removeItem('scheduledScreeningID');
     this.subscriptions.forEach(s => s.unsubscribe);
