@@ -410,8 +410,8 @@ export class SkillTypesComponent implements OnInit {
   checkBucketSum(weightValue: number, thisbucket: Bucket, index: number) {
     this.bucketSum[index] = weightValue;
     let num = 0;
-    for (let value of this.bucketSum) {
-      num += value;
+    for (let value of this.skillWeights) {
+      num += value.weightValue;
     }
     for (let weight of this.skillWeights) {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
@@ -419,6 +419,8 @@ export class SkillTypesComponent implements OnInit {
           weight.weightValue = weightValue;
         }
     }
+    console.log('the num: ');
+    console.log(num);
     if (this.allWeights.length === 0) {
       this.error = false;
     } else if (num === 100) {
