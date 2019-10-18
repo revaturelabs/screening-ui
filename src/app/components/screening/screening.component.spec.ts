@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScreeningComponent } from './screening.component';
 import { RouterOutlet, ChildrenOutletContexts } from '@angular/router';
+import { Dependencies } from 'src/app/caliber.test.module';
 
 // Author: David Gustafson
 
@@ -10,10 +11,7 @@ describe('ScreeningComponent', () => {
   let fixture: ComponentFixture<ScreeningComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ScreeningComponent, RouterOutlet ],
-      providers: [ ChildrenOutletContexts ]
-    })
+    TestBed.configureTestingModule(Dependencies)
     .compileComponents();
   }));
 

@@ -58,7 +58,7 @@ export class SkillTypesService {
   setSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
     return this.http.post(
       this.urlService.skillTypes.setSkillTypeBuckets(),
-      {
+      { 
         title: skillType.title,
         skillTypeId: skillType.skillTypeId,
         bucketIds: bucketIds,

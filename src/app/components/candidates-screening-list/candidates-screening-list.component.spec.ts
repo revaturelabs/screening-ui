@@ -16,19 +16,16 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ScheduledScreening } from '../../entities/ScheduleScreening';
 import { SimpleTrainee } from '../../entities/SimpleTrainee';
+import { UrlService } from 'src/app/services/urls/url.service';
+import { Dependencies } from 'src/app/caliber.test.module';
+import { Directive } from '@angular/core';
 
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [CandidatesScreeningListComponent, SearchPipe, PaginatePipe, PaginationControlsComponent,
-        PaginationControlsDirective],
-      imports: [FormsModule, HttpClientModule],
-      providers: [SimpleTraineeService, ScreeningService, ScheduleScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypesService, PaginationService]
-    })
+    TestBed.configureTestingModule(Dependencies)
       .compileComponents();
   }));
 
@@ -36,6 +33,11 @@ describe('CandidatesScreeningListComponent', () => {
     fixture = TestBed.createComponent(CandidatesScreeningListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  /* to remove the localstorage after the test so it does not interefere with with other tests involving it */
+  afterAll(() => {
+    localStorage.removeItem('screeningID');
   });
 
   it('should create', () => {
@@ -83,8 +85,15 @@ describe('CandidatesScreeningListComponent', () => {
     component.selectedScheduledScreening.trainer = 1;
     component.selectedCandidate = {} as SimpleTrainee;
     component.selectedCandidate.skillTypeId = 1;
+    /* simulate an assigned localstorage from database */
+    localStorage.setItem('screeningID', '1');
     component.beginScreening();
     expect(localStorage.getItem('screeningID')).not.toBeNull();
   });
 
 });
+
+@Directive({
+  selector: '[routerLink], [routerLinkActive]'
+})
+class DummyRouterLinkDirective {}

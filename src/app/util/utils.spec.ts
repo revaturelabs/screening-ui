@@ -24,7 +24,7 @@ describe('utils', () => {
     it('stringifyDate converts dates successfully, when they\'re stored in a Date object', () => {
         const dateString = '1968-11-16T00:00:00';
         const newDate = new Date(dateString);
-
-        expect(stringifyDate(newDate)).toContain(dateString);
+        const newString = 'Sat Nov 16 1968';
+        expect(stringifyDate(newDate)).toContain(newString);
       });
 });

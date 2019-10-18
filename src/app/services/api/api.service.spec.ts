@@ -59,8 +59,8 @@ describe('ApiService', () => {
     it('stringifyDate converts dates successfully, when they\'re stored in a Date object', inject([ApiService], (service: ApiService) => {
         const dateString = '1968-11-16T00:00:00';
         const newDate = new Date(dateString);
-
-        expect(service.stringifyDate(newDate)).toContain(dateString);
+        const dateString2 = 'Sat Nov 16 1968';
+        expect(service.stringifyDate(newDate)).toContain(dateString2);
       }));
 
     // test doGet with mock data
