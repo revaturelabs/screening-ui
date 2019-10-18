@@ -61,4 +61,5 @@ xdescribe('ViolationFlagComponent', () => {
     expect(component.flagEvent).not.toContain('update');
   });
 
-});
+});import { from } from 'rxjs';
+

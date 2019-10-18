@@ -66,6 +66,7 @@ import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { RouteService } from './services/routes/route.service';
+import { MockUser } from './mock-data/mocksimpleservice.service'
 
 @NgModule({
   declarations: [
@@ -130,7 +131,7 @@ import { RouteService } from './services/routes/route.service';
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
-    ViolationTypeService
+    ViolationTypeService,
   ],
   bootstrap: [AppComponent]
 })
