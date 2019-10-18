@@ -6,7 +6,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 1,
         firstname: 'Jimmy',
         lastname: 'John',
-        skillTypeID: 52,
+        skillTypeId: 2,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 9)
     },
@@ -14,7 +14,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 2,
         firstname: 'Isabella',
         lastname: 'Dougherty',
-        skillTypeID: 52,
+        skillTypeId: 2,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 11)
     },
@@ -22,7 +22,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 3,
         firstname: 'Clarissa',
         lastname: 'Gonzales',
-        skillTypeID: 53,
+        skillTypeId: 3,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 13)
     },
@@ -30,7 +30,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 5,
         firstname: 'Catherine',
         lastname: 'Mahzareh',
-        skillTypeID: 52,
+        skillTypeId: 2,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 14)
     },
@@ -38,7 +38,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 6,
         firstname: 'Pietro',
         lastname: 'Vietre',
-        skillTypeID: 56,
+        skillTypeId: 6,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 16)
     },
@@ -46,7 +46,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 7,
         firstname: 'John',
         lastname: 'Doe',
-        skillTypeID: 55,
+        skillTypeId: 5,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 7)
     },
@@ -54,7 +54,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 8,
         firstname: 'Lana',
         lastname: 'Yea',
-        skillTypeID: 55,
+        skillTypeId: 5,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 8)
     },
@@ -62,7 +62,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 9,
         firstname: 'Kevin',
         lastname: 'Brainer',
-        skillTypeID: 54,
+        skillTypeId: 4,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 9)
     },
@@ -70,7 +70,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 10,
         firstname: 'Lucy',
         lastname: 'Sgod',
-        skillTypeID: 56,
+        skillTypeId: 6,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 11)
     },
@@ -78,7 +78,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 11,
         firstname: 'Luis',
         lastname: 'Lana',
-        skillTypeID: 54,
+        skillTypeId: 4,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 13)
     },
@@ -86,7 +86,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 12,
         firstname: 'Michael',
         lastname: 'Nevermore',
-        skillTypeID: 56,
+        skillTypeId: 6,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 15)
     },
@@ -94,7 +94,7 @@ export const TRAINEES: SimpleTrainee[] = [
         traineeID: 13,
         firstname: 'Chad',
         lastname: 'Aldritch',
-        skillTypeID: 51,
+        skillTypeId: 1,
         skillTypeName: 'Java',
         schedule: new Date(2018, 0 , 22, 16)
     },

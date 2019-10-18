@@ -57,7 +57,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(
+        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeId).subscribe(
           weights =>
           {
             this.bucketStringArray =

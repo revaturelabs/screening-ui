@@ -23,10 +23,11 @@ import { UrlService } from '../urls/url.service';
 */
 @Injectable()
 export class ScreeningService {
+  screen: ScheduledScreening;
   constructor(
     private httpClient: HttpClient,
     private urlService: UrlService
-  ) { }
+  ) { this.screen = this.screen; }
 
   // Need to change to match the backend
   headers = new HttpHeaders({
@@ -46,20 +47,19 @@ export class ScreeningService {
   // beginTime - the start time of the screening
   // trainerId - ID of the trainer conducting the screening
   // skillTypeId - the ID of the track
+
+
   beginScreening(
     scheduledScreening: ScheduledScreening,
-    beginTime: Date,
-    trainerId: number,
-    skillTypeId: number,
+    // beginTime: Date,
+    // trainerId: number,
+    // skillTypeId: number,
   ): Observable<Number> {
     return this.httpClient
       .post<Number>(
         this.urlService.screening.startScreening(),
         {
-          'scheduledScreening': scheduledScreening.scheduledScreeningId,
-          'beginTime': beginTime,
-          'trainerId': trainerId,
-          'skillTypeId': skillTypeId
+          scheduledScreening
         },
         { headers: this.headers }
       );
@@ -104,22 +104,13 @@ export class ScreeningService {
       return undefined;
     }
   }
-  createScreening() {
-    this.httpClient.post(this.urlService.screening.startScreening(),
-      {
-        'status': 'In Progress',
-        'softSkillVerdict': 0,
-        'screenerId': 0,
-        'aboutComments': '',
-        'generalComments': '',
-        'softSkillCommentary': '',
-        'startDate': new Date(),
-        'endDateTime': '',
-        'screeningId': localStorage.getItem('screeningID'),
-        'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
-        'compositeScore': 0
-      }
-    );
+  createScreening(screening: Screening): Observable<Number> {
+    return this.httpClient.post<Number>(this.urlService.screening.startScreening(),
+        {
+          screening
+        },
+        { headers: this.headers }
+      );
   }
   updateScreening(id: number) {
     this.getScreeningById(id).subscribe(

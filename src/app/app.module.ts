@@ -129,6 +129,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     UrlService,
     ViolationTypeService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AnswerComponent]
 })
 export class AppModule { }

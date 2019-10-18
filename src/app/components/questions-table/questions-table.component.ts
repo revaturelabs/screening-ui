@@ -76,7 +76,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
-    const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeID;
+    const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeId + 47;
+    console.log('sukakakaka ' + skillTypeID);
     this.subscriptions.push(
       this.skillTypeBucketService.
       getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
@@ -128,7 +129,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   }
 
   open(question: Question) {
-    const modalRef = this.modalService.open("AnswerComponent"); //AnswerComponent should be injected into this modal
+    const modalRef = this.modalService.open(AnswerComponent); //AnswerComponent should be injected into this modal
     modalRef.componentInstance.question = question;
   }
 
