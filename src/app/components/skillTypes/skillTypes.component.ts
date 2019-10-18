@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbTabset, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset, NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { SkillType } from '../../entities/SkillType';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
@@ -77,6 +77,7 @@ export class SkillTypesComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
+    private modalConfig: NgbModalConfig,
     private fb: FormBuilder,
     private skillTypeService: SkillTypesService,
     private skillTypeBucketService: SkillTypeBucketService,
@@ -514,6 +515,8 @@ export class SkillTypesComponent implements OnInit {
     this.grabAllSkillTypes();
     this.grabAllBuckets();
     this.getAllWaits();
+    this.modalConfig.backdrop = 'static';
+    this.modalConfig.keyboard = false;
 
   }
 }
