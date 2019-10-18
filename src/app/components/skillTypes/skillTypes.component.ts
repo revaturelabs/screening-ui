@@ -8,9 +8,6 @@ import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
-import { BUCKETS } from 'src/app/mock-data/mock-buckets';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
   selector: 'app-skill-types',
@@ -64,7 +61,7 @@ export class SkillTypesComponent implements OnInit {
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
-  
+
 
   public relaventWeights: Weight[] = [];
 
@@ -85,8 +82,8 @@ export class SkillTypesComponent implements OnInit {
     private alertsService: AlertsService,
     private tab: NgbTabset
   ) {
-    //this.allSkillTypes = SKILLTYPES;
-    //console.log(this.allSkillTypes);
+    // this.allSkillTypes = SKILLTYPES;
+    // console.log(this.allSkillTypes);
   }
 
   removeElement(item: any) {
@@ -138,10 +135,11 @@ export class SkillTypesComponent implements OnInit {
    * Creates a variable to reference the open modal service
    */
   open(content) {
-    
+
     content.backdrop = 'static';
     this.modalServiceRef = this.modalService.open(content);
-    for(let val of this.skillWeights) {
+    // tslint:disable-next-line: prefer-const
+    for (let val of this.skillWeights) {
       if(val.weightValue === 0) {
         this.noZeroError = true;
       }
@@ -170,7 +168,7 @@ export class SkillTypesComponent implements OnInit {
   }
 
   edit(content) {
-    console.log('in edit');
+
     this.modalServiceRef = this.modalService.open(content);
     this.modalServiceRef.result.then(
       result => {
@@ -181,7 +179,7 @@ export class SkillTypesComponent implements OnInit {
       }
     );
     event.stopPropagation();
-    console.log(content);
+
   }
   /**
    * Stores information about the skill type that was selected
@@ -194,7 +192,7 @@ export class SkillTypesComponent implements OnInit {
   /* This will work for altering a skill type, but it will not display the change on the page. */
   editSkillType(skillType) {
     // this.bucketWeightSum = 0;
-    console.log('in edit skill type');
+
     this.skillWeights = [];
     this.singleSkillTypeBuckets = [];
     this.skillTypeWeights = [];
@@ -207,12 +205,12 @@ export class SkillTypesComponent implements OnInit {
     // POPULATING ARRAY WITH INDIVIDUAL SKILLTYPE WEIGHTS
     for (let weight of this.allWeights) {
       if(weight.skillType.skillTypeId === skillType.skillTypeId) {
-        console.log(weight);
+
         this.skillWeights.push(weight);
       }
     }
-    //this.skillTypeToEdit = this.singleSkillType;
-    //console.log(this.singleSkillType);
+    // this.skillTypeToEdit = this.singleSkillType;
+    // console.log(this.singleSkillType);
     this.getAssociated();
     console.log(skillType);
   }
@@ -238,7 +236,7 @@ export class SkillTypesComponent implements OnInit {
       }
     }
 
-   
+
     // console.log(this.singleSkillTypeBuckets);
 
 
@@ -291,8 +289,12 @@ export class SkillTypesComponent implements OnInit {
         weightId: 0
       };
       this.skillTypeBucketService.newSkillTypeForBucket(relationship).subscribe(results => {
-        this.getAllWaits();
+
+        relationship.weightId = results.weightId;
+        this.allWeights.push(relationship);
+
       });
+
       this.skillTypeWeights.push(relationship);
       this.skillWeights.push(relationship);
     }
@@ -315,11 +317,10 @@ export class SkillTypesComponent implements OnInit {
       this.singleSkillTypeBuckets = modSkillTypeBuckets.slice();
 
 
-      for(let i = 0; i < this.skillWeights.length; i++) {
-        if(bucket.bucketId === this.skillWeights[i].bucket.bucketId) {
+      for (let i = 0; i < this.skillWeights.length; i++) {
+        if (bucket.bucketId === this.skillWeights[i].bucket.bucketId) {
           this.skillWeights.splice(i, 1);
-          console.log('in the if statement');
-          console.log(this.skillWeights[i]);
+
         }
       }
 
@@ -422,12 +423,21 @@ export class SkillTypesComponent implements OnInit {
     let num = 0;
     for (let value of this.skillWeights) {
       num += value.weightValue;
-      if(value.weightValue === 0){
-        this.noZeroError = true;
-      }else{
-        this.noZeroError = false;
+      console.log(value.weightValue);
+
+      switch (value.weightValue) {
+        case 0:
+          this.noZeroError = true;
+          break;
+        case null:
+          this.noZeroError = true;
+          break;
+        default:
+          this.noZeroError = false;
+
       }
     }
+
     for (let weight of this.skillWeights) {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
         thisbucket.bucketId === weight.bucket.bucketId) {
@@ -436,7 +446,7 @@ export class SkillTypesComponent implements OnInit {
     }
     console.log('the num: ');
     console.log(num);
-    
+
     if (this.allWeights.length === 0) {
       this.error = false;
     } else if (num === 100) {
@@ -454,8 +464,6 @@ export class SkillTypesComponent implements OnInit {
       this.allSkillTypes = results;
       this.setSkillTypes();
       this.allSkillTypes.sort(this.compare);
-      console.log("from grab all skill types")
-      console.log(this.allSkillTypes);
     });
   }
 

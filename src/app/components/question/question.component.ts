@@ -184,6 +184,9 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
 
+  /*
+   * [1907-trevin] deletes question
+   */
    deleteQuestion(q) {
      this.questionService.deleteQuestion(q.questionId).subscribe();
 

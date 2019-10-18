@@ -33,7 +33,7 @@
     <!-- If a skillType got clicked, Title is Edit -->
     <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
     <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
-    <button [disabled]="noZeroError"
+    <button [disabled]="error || noZeroError" 
       type="button"
       class="close"
       aria-label="Close"
@@ -78,7 +78,7 @@
             </div>
             <br />
             <p *ngIf="noZeroError" class="text-danger">
-              Weights cannot be <strong>0</strong>
+              Weights cannot be <strong>0 or empty</strong>
             </p>
             <p *ngIf="error" class="text-danger">
               The sum of the category weight percentages has to equal
@@ -102,7 +102,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="deleteSkillType();c('Close click')">Delete</button>
-    <button [disabled]="noZeroError" type="button" class="btn btn-outline-dark" (click)="c('Close click')">
+    <button [disabled]="error || noZeroError" type="button" class="btn btn-outline-dark" (click)="c('Close click')">
       Close
     </button>
     <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="
@@ -111,7 +111,7 @@
         skillTypeUpdate(singleSkillType);
         updateWeight();
         c('Close click');
-      " [disabled]="error" [disabled]="noZeroError" *ngIf="singleSkillType">
+      " [disabled]="error || noZeroError" *ngIf="singleSkillType">
       Save
     </button>
     <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange"
