@@ -87,6 +87,13 @@ export class ScheduleScreeningService {
           for (const s of allSkillTypes) {
             console.log('skill type ' + (s.skillTypeId - 50)  + '  ' + 'skill type for candos ' + (e.skillTypeId));
             // if (s.skillTypeId === e.skillTypeId) {
+              if (e.skillTypeId > 6 && e.skillTypeId <= 12) {
+                e.skillTypeId = e.skillTypeId - 6;
+                console.log(e.skillTypeId);
+              } else if (e.skillTypeId > 12) {
+                e.skillTypeId = e.skillTypeId - 12;
+                console.log(e.skillTypeId);
+              }
             if (s.skillTypeId - 50 === e.skillTypeId) {
               skillType = s;
             }
