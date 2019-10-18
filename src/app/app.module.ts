@@ -133,6 +133,7 @@ import { MockUser } from './mock-data/mocksimpleservice.service'
     UrlService,
     ViolationTypeService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AnswerComponent]
 })
 export class AppModule { }

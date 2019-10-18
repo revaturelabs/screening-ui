@@ -68,6 +68,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RoleGuard } from './role-guard';
 import { RouteService } from './services/routes/route.service';
 import { MockUser } from './mock-data/mocksimpleservice.service';
+import { MockBucketSrvice } from './mock-data/mockbucketservice.service';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -116,6 +117,7 @@ export const Dependencies = {
     QuestionsService,
     QuestionScoreService,
     BucketsService,
+    {provide: BucketsService, useClass: MockBucketSrvice},
     {provide: SimpleTraineeService, useClass: MockUser},
     SkillTypesService,
     SoftSkillsViolationService,
@@ -136,7 +138,7 @@ export const Dependencies = {
     ScreenerBucketsService,
     HttpErrorHandlerService,
     RoleGuard,
-    RouteService
+    RouteService,
   ],
   bootstrap: [
   ],

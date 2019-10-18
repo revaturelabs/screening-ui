@@ -9,6 +9,7 @@ describe('RouteService', () => {
   });
 
   it('should be created', inject([RouteService], (service: RouteService) => {
+    //const spy = spyOn(service, 'fetchAll')
     expect(service).toBeTruthy();
   }));
 });

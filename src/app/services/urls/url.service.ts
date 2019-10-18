@@ -73,17 +73,19 @@ export class UrlService {
   screeningEndpoint = 'screening';
   screening = {
     scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${this.screeningContext + this.screening}/new`,
-    endScreening: () => `${this.screeningContext + this.screening}/update`,
-    updateScreening: () => `${this.screeningContext + this.screening}/update`,
-    getScreening: id => `${this.screeningContext + this.screening}/`
+    startScreening: () => `${this.screeningContext + this.screeningEndpoint}/new`,
+    startScreeninging: () => `${this.screeningContext + this.screeningEndpoint}/newest`,
+    endScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
+    updateScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
+    getScreening: id => `${this.screeningContext + this.screeningEndpoint}/`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
     newWeight: () => `${this.weightsEndpoint}/new`,
-    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`
+    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`,
+    updateWeight: () => `${this.weightsEndpoint}/update`
   };
 
   /**

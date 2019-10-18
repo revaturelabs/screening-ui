@@ -33,9 +33,15 @@ export class ScheduleScreeningService {
     this.skillTypesService.getSkillTypes().subscribe(allSkillTypes => {
       this.httpClient.get<any[]>(this.urlService.screening.scheduleScreening()).subscribe(allScheduledScreenings => {
         for (const e of allScheduledScreenings) {
+          console.log(e);
+        }
+        for (const e of allScheduledScreenings) {
+          console.log('all cando ' + e.candidate.name);
+        //  console.log(e);
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
-          const nameArray = e.trainee.name.split(' ');
+          // const nameArray = e.trainee.name.split(' ');
+          const nameArray = e.candidate.name.split(' ');
           let thisLastName = '';
           let thisFirstName = '';
           let i = 0;
@@ -79,17 +85,28 @@ export class ScheduleScreeningService {
 
           let skillType: SkillType;
           for (const s of allSkillTypes) {
-            if (s.skillTypeId === e.skillTypeId) {
+            console.log('skill type ' + (s.skillTypeId - 50)  + '  ' + 'skill type for candos ' + (e.skillTypeId));
+            // if (s.skillTypeId === e.skillTypeId) {
+              if (e.skillTypeId > 6 && e.skillTypeId <= 12) {
+                e.skillTypeId = e.skillTypeId - 6;
+                console.log(e.skillTypeId);
+              } else if (e.skillTypeId > 12) {
+                e.skillTypeId = e.skillTypeId - 12;
+                console.log(e.skillTypeId);
+              }
+            if (s.skillTypeId - 50 === e.skillTypeId) {
               skillType = s;
             }
           }
           scheduledScreenings.push({
             scheduledScreeningId: e.scheduledScreeningId,
             trainee: {
-              traineeID: e.trainee.traineeId,
+              // traineeID: e.trainee.traineeId,
+              traineeID: e.candidate.candidateId,
               firstname: thisFirstName,
               lastname: thisLastName,
-              skillTypeID: e.skillTypeId,
+              // skillTypeID: e.skillTypeId,
+              skillTypeId: e.skillTypeId,
               skillTypeName: skillType.title,
               schedule: e.scheduledDate,
             },
@@ -98,10 +115,14 @@ export class ScheduleScreeningService {
               title: skillType.title,
               isActive: true,
             },
-            status: e.status,
+            // status: e.status,
+            skillTypeId: e.skillTypeId,
+            scheduledStatus: e.status,
             trainer: e.trainer,
             scheduledDate: e.scheduledDate,
           });
+        //  console.log('push e in array ' + trainee);
+        // scheduledScreenings.push(trainee);
         }
       });
     });

@@ -10,7 +10,8 @@ export interface ScheduledScreening {
   scheduledScreeningId: number;
   trainee: SimpleTrainee;
   track: SkillType;
-  status: string;
+  scheduledStatus: string;
   trainer: number;
   scheduledDate: Date;
+  skillTypeId: number;
 }

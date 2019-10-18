@@ -127,6 +127,10 @@ export class QuestionComponent implements OnInit {
    * function to edit to help the  add new question function decide
    * whether to add or update a question and to fill in the fields
    * with the selected questions sample answers and question text
+   * 
+   * 1907-Trevin Batch
+   * Changed the formating so it autoupdates the display when this a question is
+   * updated to prevent any display lag
    **/
   editQuestion(question) {
     this.question = question;
@@ -138,7 +142,7 @@ export class QuestionComponent implements OnInit {
     this.questions[index].sampleAnswer1=this.question.sampleAnswer3;
     this.questions[index].sampleAnswer1=this.question.sampleAnswer4;
     this.questions[index].sampleAnswer1=this.question.sampleAnswer5;
-    setTimeout(()=>{this.questionService.updateQuestion(this.question);this.updateQuestions()},1000);
+    setTimeout(() => {this.questionService.updateQuestion(this.question);this.updateQuestions()},1000);
 
   }
 
