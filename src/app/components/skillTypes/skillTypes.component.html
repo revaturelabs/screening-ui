@@ -27,18 +27,19 @@
   </div>
 </div>
 <!-- Modal for creating and editting a new Track (SkillType) -->
-<ng-template #content let-c="close" let-d="dismiss">
+
+<ng-template #content let-c="close" let-d="dismiss" data-keyboard="false">
   <div class="modal-header">
     <!-- If a skillType got clicked, Title is Edit -->
     <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
     <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
-    <button
+    <button [disabled]="noZeroError"
       type="button"
       class="close"
       aria-label="Close"
       (click)="c('Close click')"
     >
-      <span aria-hidden="true">&times;</span>
+      <span  aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
@@ -76,6 +77,9 @@
               </div>
             </div>
             <br />
+            <p *ngIf="noZeroError" class="text-danger">
+              Weights cannot be <strong>0</strong>
+            </p>
             <p *ngIf="error" class="text-danger">
               The sum of the category weight percentages has to equal
               <strong>100</strong>
@@ -98,7 +102,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="deleteSkillType();c('Close click')">Delete</button>
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">
+    <button [disabled]="noZeroError" type="button" class="btn btn-outline-dark" (click)="c('Close click')">
       Close
     </button>
     <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="
@@ -107,7 +111,7 @@
         skillTypeUpdate(singleSkillType);
         updateWeight();
         c('Close click');
-      " [disabled]="error" *ngIf="singleSkillType">
+      " [disabled]="error" [disabled]="noZeroError" *ngIf="singleSkillType">
       Save
     </button>
     <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange"
@@ -117,3 +121,4 @@
     </button>
   </div>
 </ng-template>
+

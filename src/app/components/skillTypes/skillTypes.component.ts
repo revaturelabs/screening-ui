@@ -55,6 +55,7 @@ export class SkillTypesComponent implements OnInit {
   public singleSkillType: SkillType;
   public singleSkillTypeBuckets: Bucket[] = [];
   public error: boolean;
+  public noZeroError: boolean;
   public modalServiceRef;
   public singleSkillTypeBucketIds: number[] = [];
   public skillTypeToEdit: SkillType;
@@ -136,7 +137,14 @@ export class SkillTypesComponent implements OnInit {
    * Creates a variable to reference the open modal service
    */
   open(content) {
+    
+    content.backdrop = 'static';
     this.modalServiceRef = this.modalService.open(content);
+    for(let val of this.skillWeights) {
+      if(val.weightValue === 0) {
+        this.noZeroError = true;
+      }
+    }
     this.modalServiceRef.result.then(
       result => {
         this.resetFields();
@@ -272,6 +280,7 @@ export class SkillTypesComponent implements OnInit {
    */
   addToSkillTypeBuckets(bucky: Bucket) {
     console.log(bucky);
+    this.noZeroError = true;
     if (this.singleSkillType) {
       console.log('if called');
       let relationship: Weight = {
@@ -412,6 +421,11 @@ export class SkillTypesComponent implements OnInit {
     let num = 0;
     for (let value of this.skillWeights) {
       num += value.weightValue;
+      if(value.weightValue === 0){
+        this.noZeroError = true;
+      }else{
+        this.noZeroError = false;
+      }
     }
     for (let weight of this.skillWeights) {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
@@ -421,6 +435,7 @@ export class SkillTypesComponent implements OnInit {
     }
     console.log('the num: ');
     console.log(num);
+    
     if (this.allWeights.length === 0) {
       this.error = false;
     } else if (num === 100) {
@@ -468,6 +483,7 @@ export class SkillTypesComponent implements OnInit {
     this.singleSkillType = null;
     this.bucketsAndWeights = [];
     this.error = false;
+    this.noZeroError = false;
     this.singleSkillTypeBucketIds = [];
     this.bucketSum = [];
   }
