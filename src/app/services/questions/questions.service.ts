@@ -60,6 +60,10 @@ export class QuestionsService {
    * @param newTagIds
    */
   updateQuestion(question: Question) {
+    /**
+     * 1907-Trevin Batch
+     * changed from post method to put method for the update
+     */
     return this.http.put(this.urlService.question.putQuestion(), question, httpOptions);
   }
 
