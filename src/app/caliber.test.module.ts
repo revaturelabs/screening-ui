@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+
 
 // routing
 import { routes } from './app.routes';
@@ -34,6 +37,7 @@ import { ApiService } from './services/api/api.service';
 
 // pipes
 import { SearchPipe } from './pipes/search.pipe';
+import { BucketFilterPipe } from './pipes/skillType-buckets.filter';
 
 // components
 import { SettingsComponent } from './components/settings/settings.component';
@@ -46,6 +50,11 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
+import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
+import { FinalReportComponent } from './components/final-report/final-report.component';
+import { CandidateComponent } from './components/candidate/candidate.component';
+
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -61,7 +70,8 @@ export const Dependencies = {
     ReactiveFormsModule,
     // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterTestingModule
   ],
   declarations: [
     // pipes
@@ -77,7 +87,13 @@ export const Dependencies = {
     SkillTypesComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
-    ScreeningComponent
+    ScreeningComponent,
+    CandidatesScreeningListComponent,
+    QuestionsTableComponent,
+    FinalReportComponent,
+    AppComponent,
+    CandidateComponent,
+    BucketFilterPipe
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
