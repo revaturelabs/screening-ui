@@ -183,6 +183,10 @@ export class QuestionComponent implements OnInit {
    * Used to populate the current question and the current tags with a selected question to be
    * edited.
    **/
+  
+  /*
+   * [1907-trevin] deletes question
+   */
 
    deleteQuestion(q) {
      this.questionService.deleteQuestion(q.questionId).subscribe();
