@@ -65,6 +65,9 @@ import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RoleGuard } from './role-guard';
+import { RouteService } from './services/routes/route.service';
+import { MockUser } from './mock-data/mocksimpleservice.service';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -113,7 +116,7 @@ export const Dependencies = {
     QuestionsService,
     QuestionScoreService,
     BucketsService,
-    SimpleTraineeService,
+    {provide: SimpleTraineeService, useClass: MockUser},
     SkillTypesService,
     SoftSkillsViolationService,
     ScreeningService,
@@ -131,7 +134,9 @@ export const Dependencies = {
     CookieService,
     SoftSkillsService,
     ScreenerBucketsService,
-    HttpErrorHandlerService
+    HttpErrorHandlerService,
+    RoleGuard,
+    RouteService
   ],
   bootstrap: [
   ],
