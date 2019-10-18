@@ -8,6 +8,7 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AnswerComponent } from '../answer/answer.component';
+import { Screening } from 'src/app/entities/Screening';
 
 @Component({
   selector: 'app-introduction',
@@ -24,9 +25,13 @@ import { AnswerComponent } from '../answer/answer.component';
 */
 export class IntroductionComponent implements OnInit {
 
+  newscreening: Screening;
+
   constructor(
     private simpleTraineeService: SimpleTraineeService,
-    private screeningService: ScreeningService) { }
+    private screeningService: ScreeningService) {
+      this.newscreening = new Screening();
+    }
 
 
   public traineeName: string;
@@ -46,9 +51,34 @@ export class IntroductionComponent implements OnInit {
 
 
   // Submit the comments on the Introduction view when the "Begin Questions" buton is clicked
-  onSubmit() {
+  screen() {
     // Send the comments to the appropriate service method saves them to the DB
-    this.screeningService.createScreening();
+           // 'status': 'In Progress',
+        // 'softSkillVerdict': 0,
+        // 'screenerId': 0,
+        // 'aboutComments': '',
+        // 'generalComments': '',
+        // 'softSkillCommentary': '',
+        // 'startDate': new Date(),
+        // 'endDateTime': '',
+        // 'screeningId': localStorage.getItem('screeningID'),
+        // 'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+        // 'compositeScore': 0
+        this.newscreening.status = 'In Progress',
+        this.newscreening.skillType = this.simpleTraineeService.getSelectedCandidate().skillTypeId,
+        console.log('jajajsaa ' + this.simpleTraineeService.getSelectedCandidate().skillTypeId),
+        this.newscreening.softSkillsVerdict = false,
+        this.newscreening.softSkillCommentary = '',
+        this.newscreening.screenerId = 0,
+        this.newscreening.aboutMeCommentary = 'ma',
+        this.newscreening.generalCommentary = 'no',
+        this.newscreening.startDateTime = new Date(),
+        this.newscreening.endDateTime = null,
+       // this.newscreening.scheduledScreeningId = parseInt(localStorage.getItem('scheduledScreeningID'), 10);
+        this.newscreening.screeningId = parseInt(localStorage.getItem('screeningID'), 10),
+        console.log('yoyo');
+        console.log(this.newscreening);
+    this.screeningService.createScreening(this.newscreening);
   }
 
 }

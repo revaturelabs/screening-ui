@@ -6,7 +6,7 @@ export class SimpleTrainee {
     traineeID: number;
     firstname: string;
     lastname: string;
-    skillTypeID: number;
+    skillTypeId: number;
     skillTypeName: string;
     schedule: Date;
 }

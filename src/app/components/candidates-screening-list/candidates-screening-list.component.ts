@@ -77,6 +77,7 @@ export class CandidatesScreeningListComponent implements OnInit {
 
     // retrieve all scheduled interviews and populate the table of screenings.
     this.scheduleScreeningService.getScheduleScreenings().subscribe(data => {
+      console.log('dddaaa  ' + data);
       this.scheduledScreenings = data;
     });
     // Mock data for testing without endpoints
@@ -86,12 +87,13 @@ export class CandidatesScreeningListComponent implements OnInit {
           traineeID: 0,
           firstname: 'Landon',
           lastname: 'Renzullo',
-          skillTypeID: 56,
+          skillTypeId: 56,
           skillTypeName: 'Java',
           schedule: new Date((new Date()).getTime() + 100000)
         },
       track: {skillTypeId: 56, title: 'Java', isActive: true},
-      status: 'in progress',
+      skillTypeId: 56,
+      scheduledStatus: 'in progress',
       trainer: 0,
       scheduledDate: new Date()
     });
@@ -117,19 +119,26 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
+    console.log('begin scre id ' + this.selectedScheduledScreening.scheduledScreeningId);
+    this.selectedScheduledScreening.trainer = this.selectedScheduledScreening.trainer;
+  //  this.selectedScheduledScreening.track.skillTypeId = this.selectedCandidate.skillTypeId;
+    this.selectedScheduledScreening.scheduledDate = new Date();
+    this.selectedScheduledScreening.scheduledStatus = 'PENDING';
+    this.selectedScheduledScreening.skillTypeId = this.selectedCandidate.skillTypeId;
+
     // create a new screening entry in the database by calling the screening service
     this.screeningService
       .beginScreening(
         // must provide the current scheduled interview object
         this.selectedScheduledScreening,
         // create a new date which signifies the start of the interview
-        new Date(),
+        //new Date(),
         // This was not part of our iteration, but the "1" must be replaced
         // with the trainer's ID so that their is an association
         // between the interviewer and the person who screened them.
-        this.selectedScheduledScreening.trainer,
+        //this.selectedScheduledScreening.trainer,
         // provide the track of the selected candidate for later use.
-        this.selectedCandidate.skillTypeID
+        //this.selectedCandidate.skillTypeID
       )
       .subscribe(
         // take the data from the response from the database
