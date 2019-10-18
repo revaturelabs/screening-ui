@@ -40,6 +40,7 @@ export class ScheduleScreeningService {
         //  console.log(e);
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
+          // const nameArray = e.trainee.name.split(' ');
           const nameArray = e.candidate.name.split(' ');
           let thisLastName = '';
           let thisFirstName = '';
@@ -85,6 +86,7 @@ export class ScheduleScreeningService {
           let skillType: SkillType;
           for (const s of allSkillTypes) {
             console.log('skill type ' + (s.skillTypeId - 50)  + '  ' + 'skill type for candos ' + (e.skillTypeId));
+            // if (s.skillTypeId === e.skillTypeId) {
             if (s.skillTypeId - 50 === e.skillTypeId) {
               skillType = s;
             }
@@ -92,9 +94,11 @@ export class ScheduleScreeningService {
           scheduledScreenings.push({
             scheduledScreeningId: e.scheduledScreeningId,
             trainee: {
+              // traineeID: e.trainee.traineeId,
               traineeID: e.candidate.candidateId,
               firstname: thisFirstName,
               lastname: thisLastName,
+              // skillTypeID: e.skillTypeId,
               skillTypeId: e.skillTypeId,
               skillTypeName: skillType.title,
               schedule: e.scheduledDate,
@@ -104,6 +108,7 @@ export class ScheduleScreeningService {
               title: skillType.title,
               isActive: true,
             },
+            // status: e.status,
             skillTypeId: e.skillTypeId,
             scheduledStatus: e.status,
             trainer: e.trainer,

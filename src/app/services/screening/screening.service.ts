@@ -59,6 +59,10 @@ export class ScreeningService {
       .post<Number>(
         this.urlService.screening.startScreening(),
         {
+          // 'scheduledScreening': scheduledScreening.scheduledScreeningId,
+          // 'beginTime': beginTime,
+          // 'trainerId': trainerId,
+          // 'skillTypeId': skillTypeId
           scheduledScreening
         },
         { headers: this.headers }
@@ -107,6 +111,17 @@ export class ScreeningService {
   createScreening(screening: Screening): Observable<Number> {
     return this.httpClient.post<Number>(this.urlService.screening.startScreening(),
         {
+          // 'status': 'In Progress',
+          // 'softSkillVerdict': 0,
+          // 'screenerId': 0,
+          // 'aboutComments': '',
+          // 'generalComments': '',
+          // 'softSkillCommentary': '',
+          // 'startDate': new Date(),
+          // 'endDateTime': '',
+          // 'screeningId': localStorage.getItem('screeningID'),
+          // 'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+          // 'compositeScore': 0
           screening
         },
         { headers: this.headers }

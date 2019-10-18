@@ -5,7 +5,9 @@
 export class Screening {
   screeningId: number;
   traineeID: number;
+  // screenerID: number;
   screenerId: number;
+  // skillTypeID: number;
   skillType: number;
   compositeScore: number;
   aboutMeCommentary: string;

@@ -125,6 +125,7 @@ describe('QuestionsTableComponent', () => {
       screeningID: 1,
       score: 1,
       commentary: 'string',
+      bucketId: 1,
       beginTime: new Date});
     expect(component.isAnsweredQuestion(QUESTION)).toBeTruthy();
   });

@@ -2,37 +2,37 @@ import { SkillType } from '../entities/SkillType';
 
 export const SKILLTYPES: SkillType[] = [
     {
-        skillTypeId: 2,
+        skillTypeId: 52,
         title: 'Java EE/Microservices',
         isActive: true
     },
     {
-        skillTypeId: 3,
+        skillTypeId: 53,
         title: 'PEGA',
         isActive: true
     },
     {
-        skillTypeId: 4,
+        skillTypeId: 54,
         title: 'Selenium',
         isActive: true
     },
     {
-        skillTypeId: 5,
+        skillTypeId: 55,
         title: 'Business Analysts',
         isActive: true
     },
     {
-        skillTypeId: 6,
+        skillTypeId: 56,
         title: '.NET',
         isActive: true
     },
     {
-        skillTypeId: 7,
+        skillTypeId: 57,
         title: 'C++',
         isActive: true
     },
     {
-        skillTypeId: 8,
+        skillTypeId: 58,
         title: 'Other',
         isActive: true
     }
