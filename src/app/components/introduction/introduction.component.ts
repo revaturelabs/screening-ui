@@ -48,6 +48,7 @@ export class IntroductionComponent implements OnInit {
   // Submit the comments on the Introduction view when the "Begin Questions" buton is clicked
   onSubmit() {
     // Send the comments to the appropriate service method saves them to the DB
+    console.log(this.comment);
     this.screeningService.createScreening();
   }
 

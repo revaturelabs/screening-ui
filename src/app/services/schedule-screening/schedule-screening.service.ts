@@ -83,10 +83,10 @@ export class ScheduleScreeningService {
           console.log(allSkillTypes);
           let skillType: SkillType;
           for (const s of allSkillTypes) {
-            if(e.skillTypeId > 6 && e.skillTypeId <= 12) {
+            if (e.skillTypeId > 6 && e.skillTypeId <= 12) {
               e.skillTypeId = e.skillTypeId - 6;
               console.log(e.skillTypeId);
-            }else if(e.skillTypeId > 12) {
+            } else if (e.skillTypeId > 12) {
               e.skillTypeId = e.skillTypeId - 12;
               console.log(e.skillTypeId);
             }
