@@ -98,13 +98,11 @@ import { MockUser } from './mock-data/mocksimpleservice.service'
     ToolbarFilterPipe,
     TraineeSearch,
     TrainerPipePipe,
-    NgbTabset
   ],
   imports: [
     BrowserModule,
     HttpModule,
     NgbModule.forRoot(),
-    NgbTabsetModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
