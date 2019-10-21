@@ -9,6 +9,7 @@ import { SimpleTraineeService } from '../../services/simpleTrainee/simple-traine
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { Dependencies } from 'src/app/caliber.test.module';
 
 // Author: David Gustafson
 
@@ -19,11 +20,7 @@ describe('PassFailComponent', () => {
   let fixture: ComponentFixture<PassFailComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [PassFailComponent, ViolationFlagComponent],
-      providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, SimpleTraineeService,
-        ViolationTypeService, AlertsService]
-    })
+    TestBed.configureTestingModule(Dependencies)
       .compileComponents();
   }));
 

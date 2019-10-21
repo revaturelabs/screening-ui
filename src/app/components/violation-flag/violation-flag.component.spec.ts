@@ -13,7 +13,7 @@ import { ViolationType } from '../../entities/ViolationType';
 
 // Can't test with subscribes, comment out subscribes in component to run tests
 
-xdescribe('ViolationFlagComponent', () => {
+describe('ViolationFlagComponent', () => {
   let component: ViolationFlagComponent;
   let fixture: ComponentFixture<ViolationFlagComponent>;
 
@@ -61,4 +61,5 @@ xdescribe('ViolationFlagComponent', () => {
     expect(component.flagEvent).not.toContain('update');
   });
 
-});
+});import { from } from 'rxjs';
+

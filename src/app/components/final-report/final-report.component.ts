@@ -58,6 +58,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
+<<<<<<< HEAD
         this.skillTypeBucketService
           .getWeightsBySkillType(
             this.simpleTraineeService.getSelectedCandidate().skillTypeID
@@ -68,6 +69,15 @@ export class FinalReportComponent implements OnInit, OnDestroy {
               weights
             );
           });
+=======
+        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeId).subscribe(
+          weights =>
+          {
+            this.bucketStringArray =
+            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+          }
+        )
+>>>>>>> fe607c7c221a3c38030b5938d9761a2ed63624a8
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[
           this.bucketStringArray.length - 1

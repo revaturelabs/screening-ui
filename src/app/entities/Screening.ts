@@ -2,11 +2,13 @@
 /*
   Entity representing all data related to the screening of a candidate
 */
-export interface Screening {
-  screeningID: number;
+export class Screening {
+  screeningId: number;
   traineeID: number;
-  screenerID: number;
-  skillTypeID: number;
+  // screenerID: number;
+  screenerId: number;
+  // skillTypeID: number;
+  skillType: number;
   compositeScore: number;
   aboutMeCommentary: string;
   generalCommentary: string;
@@ -15,4 +17,5 @@ export interface Screening {
   endDateTime: Date;
   softSkillsVerdict: boolean;
   status: string;
+  scheduledScreeningId: number;
 }
