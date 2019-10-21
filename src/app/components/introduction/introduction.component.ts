@@ -78,6 +78,7 @@ export class IntroductionComponent implements OnInit {
         this.newscreening.screeningId = parseInt(localStorage.getItem('screeningID'), 10),
         console.log('yoyo');
         console.log(this.newscreening);
+        console.log(this.comment);
     this.screeningService.createScreening(this.newscreening);
   }
 
