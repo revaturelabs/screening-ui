@@ -83,15 +83,16 @@ export class CandidatesScreeningListComponent implements OnInit {
     // Mock data for testing without endpoints
     this.scheduledScreenings.push({
       scheduledScreeningId: 0,
-      trainee: { // Mock Data used for test screening
-          traineeID: 0,
-          firstname: 'Landon',
-          lastname: 'Renzullo',
-          skillTypeId: 56,
-          skillTypeName: 'Java',
-          schedule: new Date((new Date()).getTime() + 100000)
-        },
-      track: {skillTypeId: 56, title: 'Java', isActive: true},
+      trainee: {
+        // Mock Data used for test screening
+        traineeID: 0,
+        firstname: 'Landon',
+        lastname: 'Renzullo',
+        skillTypeId: 56,
+        skillTypeName: 'Java',
+        schedule: new Date(new Date().getTime() + 100000)
+      },
+      track: { skillTypeId: 56, title: 'Java', isActive: true },
       skillTypeId: 56,
       scheduledStatus: 'in progress',
       trainer: 0,
@@ -119,9 +120,11 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
-    console.log('begin scre id ' + this.selectedScheduledScreening.scheduledScreeningId);
+    console.log(
+      'begin scre id ' + this.selectedScheduledScreening.scheduledScreeningId
+    );
     this.selectedScheduledScreening.trainer = this.selectedScheduledScreening.trainer;
-  //  this.selectedScheduledScreening.track.skillTypeId = this.selectedCandidate.skillTypeId;
+    //  this.selectedScheduledScreening.track.skillTypeId = this.selectedCandidate.skillTypeId;
     this.selectedScheduledScreening.scheduledDate = new Date();
     this.selectedScheduledScreening.scheduledStatus = 'PENDING';
     this.selectedScheduledScreening.skillTypeId = this.selectedCandidate.skillTypeId;
@@ -130,7 +133,7 @@ export class CandidatesScreeningListComponent implements OnInit {
     this.screeningService
       .beginScreening(
         // must provide the current scheduled interview object
-        this.selectedScheduledScreening,
+        this.selectedScheduledScreening
         // create a new date which signifies the start of the interview
         //new Date(),
         // This was not part of our iteration, but the "1" must be replaced
@@ -143,9 +146,10 @@ export class CandidatesScreeningListComponent implements OnInit {
       .subscribe(
         // take the data from the response from the database
         data => {
-        // and save the screening ID as a cookie to localStorage.
-        localStorage.setItem('screeningID', data.toString());
-        console.log(localStorage.getItem('screeningID'));
-      });
+          // and save the screening ID as a cookie to localStorage.
+          localStorage.setItem('screeningID', data.screeningId);
+          console.log(localStorage.getItem('screeningID'));
+        }
+      );
   }
 }

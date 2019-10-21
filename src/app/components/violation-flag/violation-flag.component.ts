@@ -5,7 +5,7 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-import { VIOLATION_TYPES } from '../../mock-data/mock-violationTypes';
+// import { VIOLATION_TYPES } from '../../mock-data/mock-violationTypes';
 @Component({
   selector: 'app-violation-flag',
   templateUrl: './violation-flag.component.html',
@@ -22,12 +22,10 @@ that occurred and add a message giving specific explanation.
 This component is included in several others,
 to ensure quick access during the entire interview.
 */
-
 export class ViolationFlagComponent implements OnInit {
-
   @Output() flagEvent = new EventEmitter<string>();
 
-  violationTypes: ViolationType[] = VIOLATION_TYPES; //Mock Data taken from mock-violationTypes
+  violationTypes: ViolationType[]; // Mock Data taken from mock-violationTypes
   violationTypesChecked: ViolationType[] = [];
   softSkillViolations: SoftSkillViolation[];
   selectedViolation: ViolationType;
@@ -39,32 +37,37 @@ export class ViolationFlagComponent implements OnInit {
     private violationService: SoftSkillsViolationService,
     private simpleTraineeService: SimpleTraineeService,
     private violationTypeService: ViolationTypeService,
-    private alertsService: AlertsService,
-  ) { }
+    private alertsService: AlertsService
+  ) {}
 
   ngOnInit() {
-    console.log()
     this.getViolationTypes();
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
+    this.candidateName =
+      this.simpleTraineeService.getSelectedCandidate().firstname +
+      ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
   }
 
   getViolationTypes(): void {
-    this.violationTypeService.getViolationTypes().subscribe(
-      violationTypes => {
-        this.violationTypes.push(... violationTypes);
-      }
-    );
+    this.violationTypeService
+      .getAllViolationTypes()
+      .subscribe(violationTypes => {
+        // this.violationTypes = [];
+        this.violationTypes = violationTypes;
+        console.log(this.violationTypes);
+      });
   }
 
-  toggleAddViolation(){
+  toggleAddViolation() {
     this.addViolation = !this.addViolation;
   }
   updateViolationList(changedViolationType: ViolationType, checked: boolean) {
     if (checked) {
       this.violationTypesChecked.push(changedViolationType);
     } else {
-      const index = this.violationTypesChecked.findIndex(x => x === changedViolationType);
+      const index = this.violationTypesChecked.findIndex(
+        x => x === changedViolationType
+      );
       this.violationTypesChecked.splice(index);
     }
   }
@@ -73,7 +76,9 @@ export class ViolationFlagComponent implements OnInit {
     // Send request with the violation + comments
     const screeningID = Number.parseInt(localStorage.getItem('screeningID'));
     this.alertsService.success('Soft Skill Violation Added');
-    this.violationTypeService.getAllViolationTypes().subscribe(data => console.log(data));
+    this.violationTypeService
+      .getAllViolationTypes()
+      .subscribe(data => console.log(data));
     this.flagChange();
 
     this.violationService.softSkillViolations.push({
@@ -83,8 +88,9 @@ export class ViolationFlagComponent implements OnInit {
       Time: new Date(),
       Comment: comment
     });
-    this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
-    });
+    this.violationService
+      .submitViolation(violationType.violationTypeId, comment, screeningID)
+      .subscribe(data => {});
   }
 
   cancelViolation() {
@@ -94,5 +100,4 @@ export class ViolationFlagComponent implements OnInit {
   flagChange() {
     this.flagEvent.emit('update');
   }
-
 }
