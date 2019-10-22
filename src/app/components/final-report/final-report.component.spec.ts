@@ -8,6 +8,7 @@ import { SkillTypesService } from 'src/app/services/skill-types/skill-types.serv
 import { HttpClient } from '@angular/common/http';
 import { QuestionScore } from 'src/app/entities/QuestionScore';
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
+import { SoftSkillViolation } from 'src/app/entities/SoftSkillViolation';
 
 
 // Author: David Gustafson
@@ -22,10 +23,11 @@ describe('FinalReportComponent', () => {
   let url: UrlService;
   let skillType: SkillTypesService;
   let testQuestionScore: QuestionScore;
+  let softSkillsViolation: SoftSkillViolation;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule(Dependencies)
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -71,6 +73,24 @@ describe('FinalReportComponent', () => {
     component.questionScores.push(testQuestionScore);
     component.ngOnDestroy();
     expect(component.questionScores.length).toEqual(0);
+
+  });
+
+  it('should reset softskill violations', () => {
+    softSkillsViolation = {
+      violationID: 1,
+      screeningID: 2,
+      violationType: {
+        violationTypeId: 1,
+        violationType: 'profanity'
+      },
+      Time: new Date(),
+      Comment: 'bad no no'
+    };
+
+    component.softSkillViolations.push(softSkillsViolation);
+    component.ngOnDestroy();
+    expect(component.softSkillViolations.length).toEqual(0);
 
   });
 
