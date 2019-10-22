@@ -67,7 +67,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
             this.bucketStringArray =
             this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
           }
-        )
+        );
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[
           this.bucketStringArray.length - 1

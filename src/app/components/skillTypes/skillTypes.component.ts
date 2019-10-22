@@ -64,7 +64,7 @@ export class SkillTypesComponent implements OnInit {
 
   public skillTypeWeights: Weight[] = [];
   public allWeights: Weight[] = [];
-  
+
 
   public relaventWeights: Weight[] = [];
 
@@ -83,10 +83,10 @@ export class SkillTypesComponent implements OnInit {
     private skillTypeBucketService: SkillTypeBucketService,
     private bucketsService: BucketsService,
     private alertsService: AlertsService,
-    private tab: NgbTabset
+//    private tab: NgbTabset
   ) {
-    //this.allSkillTypes = SKILLTYPES;
-    //console.log(this.allSkillTypes);
+    // this.allSkillTypes = SKILLTYPES;
+    // console.log(this.allSkillTypes);
   }
 
   removeElement(item: any) {
@@ -109,6 +109,7 @@ export class SkillTypesComponent implements OnInit {
       this.setSkillTypes();
     }
   }
+
   setSkillTypes() {
     let thing: any;
     this.skillTypes = [];
@@ -138,11 +139,11 @@ export class SkillTypesComponent implements OnInit {
    * Creates a variable to reference the open modal service
    */
   open(content) {
-    
+
     content.backdrop = 'static';
     this.modalServiceRef = this.modalService.open(content);
-    for(let val of this.skillWeights) {
-      if(val.weightValue === 0) {
+    for (let val of this.skillWeights) {
+      if (val.weightValue === 0) {
         this.noZeroError = true;
       }
     }
@@ -206,13 +207,13 @@ export class SkillTypesComponent implements OnInit {
 
     // POPULATING ARRAY WITH INDIVIDUAL SKILLTYPE WEIGHTS
     for (let weight of this.allWeights) {
-      if(weight.skillType.skillTypeId === skillType.skillTypeId) {
+      if (weight.skillType.skillTypeId === skillType.skillTypeId) {
         console.log(weight);
         this.skillWeights.push(weight);
       }
     }
-    //this.skillTypeToEdit = this.singleSkillType;
-    //console.log(this.singleSkillType);
+    // this.skillTypeToEdit = this.singleSkillType;
+    // console.log(this.singleSkillType);
     this.getAssociated();
     console.log(skillType);
   }
@@ -222,9 +223,6 @@ export class SkillTypesComponent implements OnInit {
    * Only darkness within
    */
   getAssociated() {
-
-
-
     for (let i = 0; i < this.allBuckets.length; i++) {
       if (this.checkContains(this.allBuckets[i])) {
         if (
@@ -238,7 +236,7 @@ export class SkillTypesComponent implements OnInit {
       }
     }
 
-   
+
     // console.log(this.singleSkillTypeBuckets);
 
 
@@ -436,7 +434,7 @@ export class SkillTypesComponent implements OnInit {
     }
     console.log('the num: ');
     console.log(num);
-    
+
     if (this.allWeights.length === 0) {
       this.error = false;
     } else if (num === 100) {
@@ -503,7 +501,7 @@ export class SkillTypesComponent implements OnInit {
   }
 
   testing() {
-    this.tab.activeId = 'tab-2';
+//    this.tab.activeId = 'tab-2';
   }
 
   getAllWaits() {
