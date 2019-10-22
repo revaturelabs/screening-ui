@@ -50,11 +50,15 @@ export class SkillTypeBucketService {
   // }
 
   // Returns an observable array of buckets (categories) with assigned weights
-  getSkillTypeBuckets(skillTypeID: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.urlService.skillTypes.getBucketBySkillType(skillTypeID)}`);
+  // getSkillTypeBuckets(skillTypeID: number): Observable<any> {
+  //   return this.httpClient.get<any>(`${this.urlService.skillTypes.getBucketBySkillType(skillTypeID)}`);
+  getSkillTypeBuckets(skillTypeId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.urlService.skillTypes.getBucketBySkillType(skillTypeId)}`);
   }
-  getWeightsBySkillType(skillTypeID: number) {
-    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeID)}`);
+  // getWeightsBySkillType(skillTypeID: number) {
+  //   return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeID)}`);
+  getWeightsBySkillType(skillTypeId: number) {
+    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeId)}`);
   }
 
   newSkillTypeForBucket(weight: Weight) {
@@ -67,6 +71,10 @@ export class SkillTypeBucketService {
 
   deleteWeight(weightId: number) {
     return this.httpClient.delete<any>(`${this.urlService.weights.deleteWeight(weightId)}`);
+  }
+
+  updateWeight(weight: Weight) {
+    return this.httpClient.put<Weight>(`${this.urlService.weights.updateWeight()}`, weight, httpOptions);
   }
 
 /*
