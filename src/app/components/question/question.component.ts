@@ -136,12 +136,8 @@ export class QuestionComponent implements OnInit {
     this.question = question;
     this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
     let index=this.questions.indexOf(this.question);
-    this.questions[index].questionText=this.question.questionText;
-    this.questions[index].sampleAnswer1=this.question.sampleAnswer1;
-    this.questions[index].sampleAnswer1=this.question.sampleAnswer2;
-    this.questions[index].sampleAnswer1=this.question.sampleAnswer3;
-    this.questions[index].sampleAnswer1=this.question.sampleAnswer4;
-    this.questions[index].sampleAnswer1=this.question.sampleAnswer5;
+    this.questions[index]=question;
+    this.questions.slice();
     setTimeout(()=>{this.questionService.updateQuestion(this.question);this.updateQuestions()},1000);
 
   }
@@ -173,6 +169,7 @@ export class QuestionComponent implements OnInit {
         this.question.bucket=this.currentBucket;
         this.questions.push(this.question);
         this.questionService.createNewQuestion(this.question).subscribe();
+        this.questions.slice();
         this.updateQuestions();
         this.savedSuccessfully();
       }
