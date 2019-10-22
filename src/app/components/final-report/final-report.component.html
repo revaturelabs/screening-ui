@@ -1,15 +1,31 @@
-<div id="final-report-container" class="final-report-container">	
+<div id="final-report-container" class="final-report-container">
 	<h1>Final Summary</h1>
 	<div id="finalrep">
 		<p id="candidate-name" class="text-center">{{candidateName}}</p>
 		<br>
 		<h2 class="text-center">Interview has been submitted</h2>
 		<br>
-		<div class="container-fluid rounded" id ="finalcon">
-			<p id="softskills">{{softSkillString}}</p>			
+		<div class="container-fluid rounded" id="finalcon">
+			<table class="table table-hover" id="table-container">
+				<thead>
+					<tr>
+						<th scope="col">Violation Type</th>
+						<th scope="col">Violation Time</th>
+						<th scope="col">Comment</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="violation" *ngFor="let item of softSkillViolations">
+						<td>{{ item.violationType.violationTypeText }}</td>
+						<td>{{ item.Time | date: 'shortTime' }}</td>
+						<td>{{ item.Comment }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<p id="softskills">{{softSkillString}}</p>
 			<div>
 				<p *ngFor="let bucket of bucketStringArray">{{bucket}}</p>
-			</div>			
+			</div>
 			<p id="overallScoreString">{{overallScoreString}}</p>
 			<p id="generalNotesString">{{intoductionComments}}</p>
 			<p id="generalNotesString">{{generalComments}}</p>
@@ -17,13 +33,14 @@
 		</div>
 	</div>
 	<br>
-	
+
 	<div class="centerit">
-		<input class="copywow btn" type="button" (click) = "copyToClipboard()" value = "Copy To Clipboard"> 
+		<input class="copywow btn" type="button" (click)="copyToClipboard()" value="Copy To Clipboard">
 	</div>
 	<br>
 	<div class="centerit">
-		<button class="copywow btn" type="submit" routerLink="/Caliber/screening/pendingScreeningsList" routerLinkActive="activeLink">Candidate List</button>
-	<br><br>
+		<button class="copywow btn" type="submit" routerLink="/Caliber/screening/pendingScreeningsList"
+			routerLinkActive="activeLink">Candidate List</button>
+		<br><br>
 	</div>
 </div>
