@@ -63,7 +63,7 @@ export class SkillTypeBucketsComponent implements OnInit {
    */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
-    console.log()
+    console.log();
     this.router.navigate(['settings/bucket']);
   }
 

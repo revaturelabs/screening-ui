@@ -58,12 +58,11 @@ export class FinalReportComponent implements OnInit, OnDestroy {
       questionScores => {
         this.questionScores = questionScores;
         this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeId).subscribe(
-          weights =>
-          {
+          weights => {
             this.bucketStringArray =
             this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
           }
-        )
+        );
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
