@@ -70,14 +70,14 @@ export class UrlService {
    *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = 'screening';
+  screeningEndpoint = '/screening';
   screening = {
     scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
     startScreening: () => `${this.screeningContext + this.screeningEndpoint}/new`,
     startScreeninging: () => `${this.screeningContext + this.screeningEndpoint}/newest`,
     endScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
     updateScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
-    getScreening: id => `${this.screeningContext + this.screeningEndpoint}/`
+    getScreening: (id: number) => `${this.screeningContext + this.screeningEndpoint}/${id}`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {

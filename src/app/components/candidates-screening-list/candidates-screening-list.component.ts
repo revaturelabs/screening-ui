@@ -87,7 +87,7 @@ export class CandidatesScreeningListComponent implements OnInit {
           traineeID: 0,
           firstname: 'Landon',
           lastname: 'Renzullo',
-          skillTypeId: 56,
+          skillTypeId: 6,
           skillTypeName: 'Java',
           schedule: new Date((new Date()).getTime() + 100000)
         },
@@ -143,9 +143,12 @@ export class CandidatesScreeningListComponent implements OnInit {
       .subscribe(
         // take the data from the response from the database
         data => {
+       // const scrId = data.screeningId;
         // and save the screening ID as a cookie to localStorage.
-        localStorage.setItem('screeningID', data.toString());
-        console.log(localStorage.getItem('screeningID'));
+        localStorage.setItem('screeningID', data.screeningId);
+        localStorage.setItem('scheduledScreeningId', data.scheduledScreening.scheduledScreeningId);
+        localStorage.setItem('scheduledScreening', JSON.stringify(data.scheduledScreening));
+        localStorage.setItem('screening', JSON.stringify(data));
       });
   }
 }

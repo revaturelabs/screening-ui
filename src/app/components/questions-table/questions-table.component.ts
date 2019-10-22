@@ -18,6 +18,7 @@ import { AnswerComponent } from '../answer/answer.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { Screening } from 'src/app/entities/Screening';
 
 @Component({
   selector: 'app-questions-table',
@@ -47,6 +48,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Used to display the categories
   questionBuckets: Bucket[];
 
+  screening: Screening;
+
   // holds the current category. Used to control
   // which questions are displayed in the questions table.
   currentBucket: number;
@@ -72,7 +75,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private screeningService: ScreeningService,
     private simpleTraineeService: SimpleTraineeService,
     private skillTypeBucketService: SkillTypeBucketService,
-  ) {}
+  ) {this.screening = new Screening(); }
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
@@ -117,19 +120,19 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   // sets the current category, allowing for dynamic change
   // of the questions being displayed.
-  setBucket(bucketID:number) {
+  setBucket(bucketID: number) {
     // iterate through each bucket
     // if the current bucket's id matches the bucket id
     // of the category selected by the user
     this.currentBucket = bucketID;
-    this.questionService.getBucketQuestions(bucketID).subscribe(questions=>{
+    this.questionService.getBucketQuestions(bucketID).subscribe(questions => {
         this.questionsInBucket = questions;
       }
     );
   }
 
   open(question: Question) {
-    const modalRef = this.modalService.open(AnswerComponent); //AnswerComponent should be injected into this modal
+    const modalRef = this.modalService.open(AnswerComponent); // AnswerComponent should be injected into this modal
     modalRef.componentInstance.question = question;
   }
 
@@ -161,6 +164,12 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     // tslint:disable-next-line:radix
-    this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+    console.log('screening from storage');
+    // const numId = parseInt( localStorage.getItem('screeningID'), 10);
+    this.screening = JSON.parse(localStorage.getItem('screening'));
+    this.screening.generalCommentary = this.generalComment;
+    localStorage.setItem('screening', JSON.stringify(this.screening));
+    console.log(JSON.parse(localStorage.getItem('screening')));
+   // this.screeningService.updateScreening(this.screening.screeningId);
   }
 }
