@@ -5,6 +5,7 @@ import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { Observable } from 'rxjs';
 import { ScreeningService } from '../../services/screening/screening.service';
+import { Screening } from 'src/app/entities/Screening';
 
 @Component({
   selector: 'app-pass-fail',
@@ -36,6 +37,7 @@ export class PassFailComponent implements OnInit {
   public failChecked: boolean;
   public hasChecked: boolean;
   private screeningID: number;
+  private screening: Screening;
 
   public softSkillFeedback: string;
 
@@ -44,7 +46,7 @@ export class PassFailComponent implements OnInit {
     private simpleTraineeService: SimpleTraineeService,
     private violationTypeService: ViolationTypeService,
     public softSkillViolationService: SoftSkillsViolationService
-  ) {
+  ) { this.screening = new Screening();
   }
 
   ngOnInit() {
@@ -113,7 +115,15 @@ export class PassFailComponent implements OnInit {
     } else if (this.failChecked) {
       this.fail();
     }
-    this.screeningService.finalSoftSkillComment = this.softSkillFeedback;
+  //  this.screeningService.finalSoftSkillComment = this.softSkillFeedback;
+    this.screening = JSON.parse(localStorage.getItem('screening'));
+    this.screening.softSkillCommentary = this.softSkillFeedback;
+    this.screening.endDateTime = new Date();
+    this.screening.status = 'Complete';
+    localStorage.setItem('screening', JSON.stringify(this.screening));
+    console.log('if its in there yo');
+    console.log(JSON.parse(localStorage.getItem('screening')));
+    this.screeningService.updateScreening(this.screening);
   }
 
   pass() {

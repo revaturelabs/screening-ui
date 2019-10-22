@@ -25,14 +25,13 @@ export class AnswerComponent implements OnInit {
  
   // used to exchange data between the answer modal and question table component
   questionScores: QuestionScore[];
-
   constructor(public activeModal: NgbActiveModal, private questionScoreService: QuestionScoreService) { }
 
   ngOnInit() {
     this.questionScore = {
       qSID: null,
       questionId: this.question.questionId,
-      screeningID: +localStorage.getItem('screeningID'),
+      screeningID: parseInt(localStorage.getItem('screeningID'), 10),
       score: 0,
       commentary: '',
       bucketId: this.question.bucket.bucketId,

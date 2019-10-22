@@ -1,10 +1,11 @@
+import { ScheduledScreening } from "./ScheduleScreening";
 
 /*
   Entity representing all data related to the screening of a candidate
 */
 export class Screening {
   screeningId: number;
-  traineeID: number;
+ // traineeID: number;
   // screenerID: number;
   screenerId: number;
   // skillTypeID: number;
@@ -18,4 +19,5 @@ export class Screening {
   softSkillsVerdict: boolean;
   status: string;
   scheduledScreeningId: number;
+  scheduledScreening: ScheduledScreening;
 }
