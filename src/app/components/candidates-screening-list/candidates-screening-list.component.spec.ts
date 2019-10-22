@@ -57,7 +57,7 @@ describe('CandidatesScreeningListComponent', () => {
 
   it('should update storage', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
-    component.selectedScheduledScreening.scheduledScreeningId = 1;
+    localStorage.setItem('scheduledScreeningID',JSON.stringify(component.selectedScheduledScreening.scheduledScreeningId = 1));
     component.confirmSelectedCandidate();
     const confirm = localStorage.getItem('scheduledScreeningID');
     expect(confirm).toEqual('1');
