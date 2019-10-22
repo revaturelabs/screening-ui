@@ -1,8 +1,8 @@
-import { SimpleTrainee } from "../entities/SimpleTrainee";
-import { HttpClient } from "@angular/common/http";
-import { UrlService } from "../services/urls/url.service";
-import { SkillTypesService } from "../services/skill-types/skill-types.service";
-import { Injectable } from "@angular/core";
+import { SimpleTrainee } from '../entities/SimpleTrainee';
+import { HttpClient } from '@angular/common/http';
+import { UrlService } from '../services/urls/url.service';
+import { SkillTypesService } from '../services/skill-types/skill-types.service';
+import { Injectable } from '@angular/core';
 
 const USER_OBJECT: SimpleTrainee = {
     traineeID: 1,
