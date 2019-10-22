@@ -26,9 +26,9 @@ describe('IntroductionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(IntroductionComponent);
     component = fixture.componentInstance;
-    serv= new SimpleTraineeService(httpClient, urlService, skillTypesService);
+    //serv = new SimpleTraineeService(httpClient, urlService, skillTypesService);
     fixture.detectChanges();
-    mockserv = TestBed.get(serv);
+    //mockserv = TestBed.get(serv);
     
   });
 

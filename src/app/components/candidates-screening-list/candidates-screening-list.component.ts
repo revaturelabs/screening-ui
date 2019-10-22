@@ -83,16 +83,15 @@ export class CandidatesScreeningListComponent implements OnInit {
     // Mock data for testing without endpoints
     this.scheduledScreenings.push({
       scheduledScreeningId: 0,
-      trainee: {
-        // Mock Data used for test screening
-        traineeID: 0,
-        firstname: 'Landon',
-        lastname: 'Renzullo',
-        skillTypeId: 56,
-        skillTypeName: 'Java',
-        schedule: new Date(new Date().getTime() + 100000)
-      },
-      track: { skillTypeId: 56, title: 'Java', isActive: true },
+      trainee: { // Mock Data used for test screening
+          traineeID: 0,
+          firstname: 'Landon',
+          lastname: 'Renzullo',
+          skillTypeId: 6,
+          skillTypeName: 'Java',
+          schedule: new Date((new Date()).getTime() + 100000)
+        },
+      track: {skillTypeId: 56, title: 'Java', isActive: true},
       skillTypeId: 56,
       scheduledStatus: 'in progress',
       trainer: 0,
@@ -146,10 +145,12 @@ export class CandidatesScreeningListComponent implements OnInit {
       .subscribe(
         // take the data from the response from the database
         data => {
-          // and save the screening ID as a cookie to localStorage.
-          localStorage.setItem('screeningID', data.screeningId);
-          console.log(localStorage.getItem('screeningID'));
-        }
-      );
+       // const scrId = data.screeningId;
+        // and save the screening ID as a cookie to localStorage.
+        localStorage.setItem('screeningID', data.screeningId);
+        localStorage.setItem('scheduledScreeningId', data.scheduledScreening.scheduledScreeningId);
+        localStorage.setItem('scheduledScreening', JSON.stringify(data.scheduledScreening));
+        localStorage.setItem('screening', JSON.stringify(data));
+      });
   }
 }

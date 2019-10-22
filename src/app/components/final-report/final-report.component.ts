@@ -30,6 +30,9 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   overallScoreString: string;
   generalNotesString: string;
   allTextString: string;
+  intoductionComments: string;
+  generalComments: string;
+  overallComments: string;
 
   questionScores: QuestionScore[];
   softSkillViolations: SoftSkillViolation[];
@@ -58,16 +61,13 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.skillTypeBucketService
-          .getWeightsBySkillType(
-            this.simpleTraineeService.getSelectedCandidate().skillTypeId + 50
-          )
-          .subscribe(weights => {
-            this.bucketStringArray = this.scoresToBucketsUtil.getFinalBreakdown(
-              this.questionScores,
-              weights
-            );
-          });
+        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeId + 50).subscribe(
+          weights =>
+          {
+            this.bucketStringArray =
+            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+          }
+        )
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[
           this.bucketStringArray.length - 1
@@ -86,7 +86,11 @@ export class FinalReportComponent implements OnInit, OnDestroy {
       }
     );
     // this.overallScoreString = "Overall: 71%";
-    this.generalNotesString = this.screeningService.generalComments;
+   // this.generalNotesString = this.screeningService.generalCommentary;
+    this.intoductionComments = 'Introduction feedback: ' + JSON.parse(localStorage.getItem('screening')).aboutMeCommentary;
+    this.generalComments = 'General feedback: ' + JSON.parse(localStorage.getItem('screening')).generalCommentary;
+    this.overallComments = 'Overall feedback: ' + JSON.parse(localStorage.getItem('screening')).softSkillCommentary;
+   // this.generalNotesString = intoductionComments + '\n' + generalComments + '\n' + overallComments;
     this.allTextString += '"' + this.generalNotesString + '"';
 
     this.screeningService.endScreening(this.generalNotesString);

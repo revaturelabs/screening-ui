@@ -23,18 +23,24 @@ import { UrlService } from '../urls/url.service';
 @Injectable()
 export class ScreeningService {
   screen: ScheduledScreening;
-  constructor(private httpClient: HttpClient, private urlService: UrlService) {
+  constructor(
+    private httpClient: HttpClient,
+    private urlService: UrlService
+  ) {
     this.screen = this.screen;
+    this.sendscreen = new Screening();
   }
 
   // Need to change to match the backend
   headers = new HttpHeaders({
-    'Content-type': 'application/json'
+    'Content-type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   });
 
   public softSkillsResult: string;
-  public generalComments: string;
+  public generalCommentary: string;
   public screeningID$: Observable<Screening>;
+  public sendscreen: Screening;
   compositeScore: number;
   finalSoftSkillComment: string;
 
@@ -51,17 +57,17 @@ export class ScreeningService {
     // trainerId: number,
     // skillTypeId: number,
   ): Observable<any> {
-    return this.httpClient.post<Number>(
-      this.urlService.screening.startScreening(),
-      {
-        // 'scheduledScreening': scheduledScreening.scheduledScreeningId,
-        // 'beginTime': beginTime,
-        // 'trainerId': trainerId,
-        // 'skillTypeId': skillTypeId
-        scheduledScreening
-      },
-      { headers: this.headers }
-    );
+    return this.httpClient.post<any>(
+        this.urlService.screening.startScreening(),
+        {
+          // 'scheduledScreening': scheduledScreening.scheduledScreeningId,
+          // 'beginTime': beginTime,
+          // 'trainerId': trainerId,
+          // 'skillTypeId': skillTypeId
+          scheduledScreening
+        },
+        { headers: this.headers }
+      );
   }
 
   // Getter method for the screeningID$ observable
@@ -74,21 +80,27 @@ export class ScreeningService {
   endScreening(softSkillComment: string): void {
     let verdict;
     if (this.softSkillsResult === 'Pass') {
-      verdict = 1;
+      verdict = true;
     } else if (this.softSkillsResult === 'Fail') {
-      verdict = 0;
+      verdict = false;
     }
-    this.httpClient
-      .post(this.urlService.screening.endScreening(), {
-        status: 'Completed',
-        softSkillVerdict: verdict,
-        softSkillCommentary: this.finalSoftSkillComment,
-        endDateTime: new Date(),
-        screeningId: localStorage.getItem('screeningID'),
-        scheduledScreeningId: localStorage.getItem('scheduledScreeningID'),
-        compositeScore: this.compositeScore
-      })
-      .subscribe();
+    this.sendscreen = JSON.parse(localStorage.getItem('screening'));
+    this.httpClient.post(this.urlService.screening.endScreening(),
+      {
+        'status': 'Completed',
+        'softSkillsVerdict': verdict,
+       // 'aboutMeCommentary': verdict,
+        'generalCommentary': JSON.parse(localStorage.getItem('screening')).generalCommentary,
+        'aboutMeCommentary': JSON.parse(localStorage.getItem('screening')).aboutMeCommentary,
+        'softSkillCommentary': JSON.parse(localStorage.getItem('screening')).softSkillCommentary,
+        'startDateTime': JSON.parse(localStorage.getItem('screening')).startDateTime,
+        'endDateTime': new Date(),
+        'screeningId': localStorage.getItem('screeningID'),
+        'scheduledScreening':  JSON.parse(localStorage.getItem('scheduledScreening')),
+        'compositeScore': this.compositeScore
+        //  sendscreen: JSON.parse(localStorage.getItem('screening'))
+      }
+    ).subscribe();
   }
 
   getScreeningById(id) {
@@ -105,34 +117,54 @@ export class ScreeningService {
       return undefined;
     }
   }
-  createScreening(screening: Screening): Observable<Number> {
-    return this.httpClient.post<Number>(
-      this.urlService.screening.startScreening(),
-      {
-        // 'status': 'In Progress',
-        // 'softSkillVerdict': 0,
-        // 'screenerId': 0,
-        // 'aboutComments': '',
-        // 'generalComments': '',
-        // 'softSkillCommentary': '',
-        // 'startDate': new Date(),
-        // 'endDateTime': '',
-        // 'screeningId': localStorage.getItem('screeningID'),
-        // 'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
-        // 'compositeScore': 0
-        screening
-      },
-      { headers: this.headers }
-    );
+  createScreening(screening: Screening): void {
+   // screening.generalCommentary = this.generalCommentary;
+   console.log('in create sxreenunf ' + JSON.parse(localStorage.getItem('screening')).aboutMeCommentary);
+    this.httpClient.post<any>(this.urlService.screening.startScreening(),
+        {
+          'status': 'In Progress',
+          // 'softSkillVerdict': 0,
+          // 'screenerId': 0,
+           'aboutMeCommentary': JSON.parse(localStorage.getItem('screening')).aboutMeCommentary,
+          // 'generalCommentary': '',
+          // 'softSkillCommentary': '',
+           'startDateTime': new Date(),
+          // 'endDateTime': '',
+           'screeningId': localStorage.getItem('screeningID'),
+           'scheduledScreening': JSON.parse(localStorage.getItem('scheduledScreening')),
+          // 'compositeScore': 0
+       //   screening
+        }
+      ).subscribe();
   }
-  updateScreening(id: number) {
-    this.getScreeningById(id).subscribe(screening =>
-      this.httpClient.post(
-        this.urlService.screening.updateScreening(),
-        screening
-      )
-    );
+
+  // updateScreening(id: number): Observable<any> {
+  // const screen = this.getScreeningById(id);
+  //   return this.httpClient.put<any>(this.urlService.screening.updateScreening(),
+  //   {
+  //     screen
+  //   },
+  //   { headers: this.headers }
+  //   );
+  // }
+
+  // updateScreening(id: number) {
+  //   this.getScreeningById(id).subscribe(
+  //     curscreening => {
+  //       console.log('am i ever here');
+  //       console.log(curscreening);
+  //       return this.httpClient.put(this.urlService.screening.updateScreening(), curscreening).subscribe();
+  //     }
+  //   );
+  // }
+
+  updateScreening(currentScreen: Screening) {
+    console.log('in update send screen');
+    console.log(currentScreen);
+    return this.httpClient.post(this.urlService.screening.updateScreening(), {currentScreen},
+    { headers: this.headers });
   }
+
   // Submit comments related to the candidate's self-introduction
   // From the IntroductionComponent
   // comment - the screener's comment

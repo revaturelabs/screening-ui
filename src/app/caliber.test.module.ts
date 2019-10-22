@@ -170,7 +170,7 @@ export const Dependencies = {
     ScreenerBucketsService,
     HttpErrorHandlerService,
     RoleGuard,
-    RouteService
+    RouteService,
   ],
   bootstrap: [
   ],

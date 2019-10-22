@@ -10,16 +10,16 @@ const httpOptions = {
         })
     };
 
-const Buckets: Bucket = { 
+const Buckets: Bucket = {
     bucketId: 1,
     bucketDescription: 'Test',
     isActive: true
-    
-}
+
+};
 @Injectable()
 export class MockBucketSrvice {
 
-    
+
   /** Making an Observable */
   bucketSubject = new Subject();
 
