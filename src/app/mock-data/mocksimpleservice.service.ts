@@ -8,7 +8,7 @@ const USER_OBJECT: SimpleTrainee = {
     traineeID: 1,
     firstname: 'Test',
     lastname: 'Test',
-    skillTypeID: 1,
+    skillTypeId: 1,
     skillTypeName: 'Test',
     schedule: null
 };
@@ -29,7 +29,7 @@ export class MockUser {
         this.selectedCandidate = USER_OBJECT;
     }
 
-    // Return the current selected candidate
+    // Return the current selected candidatef
     getSelectedCandidate(): SimpleTrainee {
         return this.selectedCandidate;
     }
