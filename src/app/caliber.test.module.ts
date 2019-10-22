@@ -9,6 +9,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+
+
+
 
 // routing
 import { routes } from './app.routes';
@@ -34,6 +39,7 @@ import { ApiService } from './services/api/api.service';
 
 // pipes
 import { SearchPipe } from './pipes/search.pipe';
+import { BucketFilterPipe } from './pipes/skillType-buckets.filter';
 
 // components
 import { SettingsComponent } from './components/settings/settings.component';
@@ -46,6 +52,23 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
+import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
+import { FinalReportComponent } from './components/final-report/final-report.component';
+import { CandidateComponent } from './components/candidate/candidate.component';
+import { QuestionScoreService } from './services/question-score/question-score.service';
+import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
+import { ViolationTypeService } from './services/violationType/violationType.service';
+import { CookieService } from 'ngx-cookie-service';
+import { NavComponent } from './components/nav/nav.component';
+import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
+import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
+import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RoleGuard } from './role-guard';
+import { RouteService } from './services/routes/route.service';
+import { MockUser } from './mock-data/mocksimpleservice.service';
+import { MockBucketSrvice } from './mock-data/mockbucketservice.service';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -61,12 +84,14 @@ export const Dependencies = {
     ReactiveFormsModule,
     // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterTestingModule.withRoutes(routes)
   ],
   declarations: [
     // pipes
     SearchPipe,
     SettingsComponent,
+    BucketFilterPipe,
     // components
     SettingsComponent,
     ScreeningConfigComponent,
@@ -77,14 +102,25 @@ export const Dependencies = {
     SkillTypesComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
-    ScreeningComponent
+    ScreeningComponent,
+    CandidatesScreeningListComponent,
+    QuestionsTableComponent,
+    FinalReportComponent,
+    AppComponent,
+    CandidateComponent,
+    BucketFilterPipe,
+    NavComponent
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
     QuestionsService,
+    QuestionScoreService,
     BucketsService,
-    SimpleTraineeService,
+    {provide: BucketsService, useClass: MockBucketSrvice},
+    {provide: SimpleTraineeService, useClass: MockUser},
     SkillTypesService,
+    SoftSkillsViolationService,
     ScreeningService,
     SkillTypeBucketService,
     ScheduleScreeningService,
@@ -93,10 +129,16 @@ export const Dependencies = {
     AlertsService,
     ApiService,
     NgbActiveModal,
-    { provide: Router, useValue: {} },
     GambitBatchUtilService,
     GambitBatchUtilService,
+    ViolationTypeService,
     UrlService,
+    CookieService,
+    SoftSkillsService,
+    ScreenerBucketsService,
+    HttpErrorHandlerService,
+    RoleGuard,
+    RouteService
   ],
   bootstrap: [
   ],
