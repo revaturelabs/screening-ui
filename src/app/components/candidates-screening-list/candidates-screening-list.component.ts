@@ -87,7 +87,7 @@ export class CandidatesScreeningListComponent implements OnInit {
           traineeID: 0,
           firstname: 'Landon',
           lastname: 'Renzullo',
-          skillTypeId: 56,
+          skillTypeId: 6,
           skillTypeName: 'Java',
           schedule: new Date((new Date()).getTime() + 100000)
         },
@@ -119,9 +119,11 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
-    console.log('begin scre id ' + this.selectedScheduledScreening.scheduledScreeningId);
+    console.log(
+      'begin scre id ' + this.selectedScheduledScreening.scheduledScreeningId
+    );
     this.selectedScheduledScreening.trainer = this.selectedScheduledScreening.trainer;
-  //  this.selectedScheduledScreening.track.skillTypeId = this.selectedCandidate.skillTypeId;
+    //  this.selectedScheduledScreening.track.skillTypeId = this.selectedCandidate.skillTypeId;
     this.selectedScheduledScreening.scheduledDate = new Date();
     this.selectedScheduledScreening.scheduledStatus = 'PENDING';
     this.selectedScheduledScreening.skillTypeId = this.selectedCandidate.skillTypeId;
@@ -130,7 +132,7 @@ export class CandidatesScreeningListComponent implements OnInit {
     this.screeningService
       .beginScreening(
         // must provide the current scheduled interview object
-        this.selectedScheduledScreening,
+        this.selectedScheduledScreening
         // create a new date which signifies the start of the interview
         //new Date(),
         // This was not part of our iteration, but the "1" must be replaced
@@ -143,9 +145,12 @@ export class CandidatesScreeningListComponent implements OnInit {
       .subscribe(
         // take the data from the response from the database
         data => {
+       // const scrId = data.screeningId;
         // and save the screening ID as a cookie to localStorage.
-        localStorage.setItem('screeningID', data.toString());
-        console.log(localStorage.getItem('screeningID'));
+        localStorage.setItem('screeningID', data.screeningId);
+        localStorage.setItem('scheduledScreeningId', data.scheduledScreening.scheduledScreeningId);
+        localStorage.setItem('scheduledScreening', JSON.stringify(data.scheduledScreening));
+        localStorage.setItem('screening', JSON.stringify(data));
       });
   }
 }

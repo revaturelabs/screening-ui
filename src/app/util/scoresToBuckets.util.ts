@@ -9,6 +9,9 @@ export class ScoresToBucketsUtil {
         let bucketScores = {}; // maps bucket id's to total bucket score for screenee
         let bucketWeights = {}; // maps bucket id's to weight values for bucket
         let score = 0;
+        let sumscore = 0;
+        let currentId = 0;
+        let nextId = 0;
         weights.forEach(w =>
           {
             bucketWeights[w.bucket.bucketId] = w.weightValue;
@@ -16,13 +19,19 @@ export class ScoresToBucketsUtil {
         );
         questionScores.forEach(qs =>
           {
-              bucketScores[qs.bucketId] += qs.score;
+            nextId = currentId;
+            currentId = qs.bucketId;
+            if (nextId !== qs.bucketId) {
+              sumscore = 0;
+            }
+            sumscore += qs.score;
+            bucketScores[qs.bucketId] = sumscore;
           }
         );
-        for(var key in bucketScores){
-          score += bucketScores[key]*bucketWeights[key];
+        // tslint:disable-next-line: forin
+        for (let key in bucketScores) {
+          score += bucketScores[key] * bucketWeights[key] / 100;
         }
-        
-        return ["Overall: " + score];
+        return ['Overall: ' + score];
     }
 }

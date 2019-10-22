@@ -69,15 +69,17 @@ export class IntroductionComponent implements OnInit {
         console.log('jajajsaa ' + this.simpleTraineeService.getSelectedCandidate().skillTypeId),
         this.newscreening.softSkillsVerdict = false,
         this.newscreening.softSkillCommentary = '',
-        this.newscreening.screenerId = 0,
-        this.newscreening.aboutMeCommentary = 'ma',
-        this.newscreening.generalCommentary = 'no',
+       // this.newscreening.screenerId = 0,
+        this.newscreening.aboutMeCommentary = this.comment,
+        this.newscreening.generalCommentary = null,
         this.newscreening.startDateTime = new Date(),
         this.newscreening.endDateTime = null,
-       // this.newscreening.scheduledScreeningId = parseInt(localStorage.getItem('scheduledScreeningID'), 10);
+       // this.newscreening.scheduledScreeningId = parseInt(localStorage.getItem('scheduledScreeningId'), 10);
+        this.newscreening.scheduledScreening = JSON.parse(localStorage.getItem('scheduledScreening'));
         this.newscreening.screeningId = parseInt(localStorage.getItem('screeningID'), 10),
         console.log('yoyo');
         console.log(this.newscreening);
+        localStorage.setItem('screening', JSON.stringify(this.newscreening));
     this.screeningService.createScreening(this.newscreening);
   }
 
