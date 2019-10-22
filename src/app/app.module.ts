@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -64,6 +64,8 @@ import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { RouteService } from './services/routes/route.service';
+import { MockUser } from './mock-data/mocksimpleservice.service'
 
 @NgModule({
   declarations: [
@@ -114,6 +116,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     BucketsService,
     GambitBatchUtilService,
     HttpErrorHandlerService,
+    NgbActiveModal,
     QuestionScoreService,
     QuestionsService,
     SimpleTraineeService,
@@ -121,13 +124,15 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ScreenerBucketsService,
     ScreeningService,
     RoleGuard,
+    RouteService,
     SkillTypesService,
     SkillTypeBucketService,
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
-    ViolationTypeService
+    ViolationTypeService,
   ],
-  bootstrap: [AppComponent, AnswerComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AnswerComponent]
 })
 export class AppModule { }

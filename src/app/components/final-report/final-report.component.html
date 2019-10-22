@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <tr class="violation" *ngFor="let item of softSkillViolations">
-            <td>{{ item.violationType.violationType }}</td>
+            <td>{{ item.violationType.violationTypeText }}</td>
             <td>{{ item.Time | date: 'shortTime' }}</td>
             <td>{{ item.Comment }}</td>
           </tr>

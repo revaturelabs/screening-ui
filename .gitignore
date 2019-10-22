@@ -372,7 +372,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
+<<<<<<< HEAD
+=======
 #aws
+>>>>>>> 1907-java-Trevin
 
 /src/aws-export.js
 
+ 

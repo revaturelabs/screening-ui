@@ -23,62 +23,72 @@ and is able to provide optional feedback for candidate's soft skills overall.
 The screener must specify if the candidate passed or failed the
 soft skills portion of the interview before they can view the final summary.
 */
-
 export class PassFailComponent implements OnInit {
-
   public candidateName: string;
   previousViolations: any[];
   private passed: boolean;
-  violations: any[] = [];  // Needs to be Observable<any[]>
+  violations: any[] = []; // Needs to be Observable<any[]>
   endScreening = false;
   public disabled = true;
   public passChecked: boolean;
   public failChecked: boolean;
   public hasChecked: boolean;
   private screeningID: number;
+  private currentSoftSkillsViolationsVar;
 
   public softSkillFeedback: string;
 
-  constructor(private violationService: SoftSkillsViolationService,
+  constructor(
+    private violationService: SoftSkillsViolationService,
     private screeningService: ScreeningService,
     private simpleTraineeService: SimpleTraineeService,
     private violationTypeService: ViolationTypeService,
     public softSkillViolationService: SoftSkillsViolationService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.disabled = true;
     this.passChecked = false;
     this.failChecked = false;
     const violationArray: any[] = [];
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
+    this.candidateName =
+      this.simpleTraineeService.getSelectedCandidate().firstname +
+      ' ' +
       this.simpleTraineeService.getSelectedCandidate().lastname;
-    this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID')).subscribe(data => {
-      this.previousViolations = data;
-      this.softSkillViolationService.softSkillViolations = this.previousViolations;
-    });
-    this.violationTypeService.getAllViolationTypes().subscribe(violationTypes => {
-      this.getViolations().subscribe(data => {
-        // e = our violations
-        for (const e of data) {
-          // v = all violation types
-          for (const v of violationTypes) {
-            if (e.violationID === v.violationID) {
-              const thisTime = e.Time;
-              const thisComment = e.Comment;
-              violationArray.push({
-                violationType: { violationType: v.violationTypeText },
-                Time: thisTime,
-                Comment: thisComment
-              });
+    this.softSkillViolationService
+      .getPreviousViolations(+localStorage.getItem('screeningID'))
+      .subscribe(data => {
+        this.previousViolations = data;
+        this.softSkillViolationService.softSkillViolations = this.previousViolations;
+      });
+    this.violationTypeService
+      .getAllViolationTypes()
+      .subscribe(violationTypes => {
+        this.getViolations().subscribe(data => {
+          // e = our violations
+          for (const e of data) {
+            // v = all violation types
+            for (const v of violationTypes) {
+              if (e.violationID === v.violationID) {
+                const thisTime = e.Time;
+                const thisComment = e.Comment;
+                violationArray.push({
+                  violationType: { violationType: v.violationTypeText },
+                  Time: thisTime,
+                  Comment: thisComment
+                });
+              }
             }
           }
-        }
-        this.violations = violationArray;
+          this.violations = violationArray;
+          console.log(this.violations);
+          this.softSkillViolationService.currentSoftSkillViolations.subscribe(
+            values => {
+              this.currentSoftSkillsViolationsVar = values;
+            }
+          );
+        });
       });
-    }
-    );
   }
 
   // Returns a boolean denoting whether either the "Pass" or "Fail" button was clicked.
@@ -86,7 +96,6 @@ export class PassFailComponent implements OnInit {
   wasClicked(): boolean {
     return this.disabled;
   }
-
 
   // Enables the submit button if the "Pass" button is clicked
   updateCheckedPass(checked: boolean) {
@@ -130,17 +139,19 @@ export class PassFailComponent implements OnInit {
 
   // Returns an Observable with an array of violations associated with the provided screeningID.
   getViolations(): Observable<SoftSkillViolation[]> {
-    return this.violationService.getPreviousViolations(+localStorage.getItem('screeningID'));
+    return this.violationService.getPreviousViolations(
+      +localStorage.getItem('screeningID')
+    );
   }
 
   // Method to delete a violation when clicking the "Remove" button
   deleteViolation(violationId: number, i: number) {
-    this.violationService.deleteViolation(violationId).subscribe(
-      data => {
-        this.previousViolations = data;
-        this.softSkillViolationService.updateSoftSkillViolations(this.previousViolations);
-      }
-    );
+    this.violationService.deleteViolation(violationId).subscribe(data => {
+      this.previousViolations = data;
+      this.softSkillViolationService.updateSoftSkillViolations(
+        this.previousViolations
+      );
+    });
 
     if (this.softSkillViolationService.softSkillViolations.length > 1) {
       this.softSkillViolationService.softSkillViolations.splice(i, 1);
@@ -150,19 +161,22 @@ export class PassFailComponent implements OnInit {
   }
 
   getMessage($event) {
-    this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID'))
-      .subscribe(data => this.previousViolations = data);
+    this.softSkillViolationService
+      .getPreviousViolations(+localStorage.getItem('screeningID'))
+      .subscribe(data => (this.previousViolations = data));
   }
 
   // Method that detects whether there are any violations exist for the current screening
   hasViolations(): boolean {
-    if (this.softSkillViolationService.softSkillViolations === undefined || this.softSkillViolationService.softSkillViolations.length < 1) {
+    if (
+      this.currentSoftSkillsViolationsVar === undefined ||
+      this.currentSoftSkillsViolationsVar.length < 1
+    ) {
       return false;
     } else {
       return true;
     }
   }
-
 
   public getPassed(): string {
     if (this.passed) {
@@ -180,8 +194,4 @@ export class PassFailComponent implements OnInit {
       return 'none';
     }
   }
-
-
-
-
 }

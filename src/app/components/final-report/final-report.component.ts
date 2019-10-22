@@ -60,7 +60,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
         this.questionScores = questionScores;
         this.skillTypeBucketService
           .getWeightsBySkillType(
-            this.simpleTraineeService.getSelectedCandidate().skillTypeID
+            this.simpleTraineeService.getSelectedCandidate().skillTypeId + 50
           )
           .subscribe(weights => {
             this.bucketStringArray = this.scoresToBucketsUtil.getFinalBreakdown(
@@ -101,6 +101,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
         softSkillViolations => (this.softSkillViolations = softSkillViolations)
       )
     );
+    console.log(this.softSkillViolations);
   }
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)

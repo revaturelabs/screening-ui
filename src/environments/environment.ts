@@ -30,8 +30,8 @@ export const environment = {
 
   adminContext: 'http://localhost:5001',
   // adminContext: 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8181',
-  // screeningContext: 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8183',
   screeningContext: 'http://localhost:5002/',
+  // 'http://ec2-54-89-224-207.compute-1.amazonaws.com:8183',
   bam: bam,
   url: 'http://54.166.255.85:8085',
   msurl: 'http://34.227.178.103:',

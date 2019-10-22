@@ -10,6 +10,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+
+
+
 
 // routing
 import { routes } from './app.routes';
@@ -18,17 +22,11 @@ import { SpringInterceptor } from './interceptors/spring.interceptor';
 // services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
-import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
-import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
-import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
-import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
-import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
-import { ViolationTypeService } from './services/violationType/violationType.service';
 /** for in memory data service
   * executed, 'npm i angular-in-memory-web-api --save', remove from packange.json if not in use.
   */
@@ -41,7 +39,6 @@ import { ApiService } from './services/api/api.service';
 
 // pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
-import { BucketFilterPipe } from './pipes/skillType-buckets.filter';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { GraphDataPipe } from './pipes/graph-data.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
@@ -50,13 +47,11 @@ import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
 import { TraineeSearch } from './pipes/trainee-search.pipe';
 import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { BucketFilterPipe } from './pipes/skillType-buckets.filter';
 
 // components
 import { AppComponent } from './app.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
-import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
-import { FinalReportComponent } from './components/final-report/final-report.component';
-import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ScreeningComponent } from './components/screening/screening.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
@@ -67,6 +62,21 @@ import { ScreeningConfigComponent } from './components/screening-config/screenin
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
+import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
+import { FinalReportComponent } from './components/final-report/final-report.component';
+import { QuestionScoreService } from './services/question-score/question-score.service';
+import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
+import { ViolationTypeService } from './services/violationType/violationType.service';
+import { CookieService } from 'ngx-cookie-service';
+import { NavComponent } from './components/nav/nav.component';
+import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
+import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
+import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouteService } from './services/routes/route.service';
+import { MockUser } from './mock-data/mocksimpleservice.service';
+import { MockBucketSrvice } from './mock-data/mockbucketservice.service';
 
 import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
@@ -87,8 +97,7 @@ export const Dependencies = {
     // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
     BrowserAnimationsModule,
-    NavModule,
-    Injectable
+    RouterTestingModule.withRoutes(routes)
   ],
   declarations: [
     // pipes
@@ -103,6 +112,7 @@ export const Dependencies = {
     OrderByPipe,
     FilterByPipe,
     SettingsComponent,
+    BucketFilterPipe,
     // components
     SettingsComponent,
     ScreeningConfigComponent,
@@ -117,16 +127,25 @@ export const Dependencies = {
     SkillTypesComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
-    CandidateComponent,
+    ScreeningComponent,
+    CandidatesScreeningListComponent,
+    QuestionsTableComponent,
+    FinalReportComponent,
     AppComponent,
-    ScreeningComponent
+    CandidateComponent,
+    BucketFilterPipe,
+    NavComponent
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
     QuestionsService,
+    QuestionScoreService,
     BucketsService,
-    SimpleTraineeService,
+    {provide: BucketsService, useClass: MockBucketSrvice},
+    {provide: SimpleTraineeService, useClass: MockUser},
     SkillTypesService,
+    SoftSkillsViolationService,
     ScreeningService,
     QuestionScoreService,
     ScreenerBucketsService,
@@ -142,10 +161,16 @@ export const Dependencies = {
     AlertsService,
     ApiService,
     NgbActiveModal,
-    { provide: Router, useValue: {} },
     GambitBatchUtilService,
     GambitBatchUtilService,
+    ViolationTypeService,
     UrlService,
+    CookieService,
+    SoftSkillsService,
+    ScreenerBucketsService,
+    HttpErrorHandlerService,
+    RoleGuard,
+    RouteService
   ],
   bootstrap: [
   ],
