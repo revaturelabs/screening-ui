@@ -9,6 +9,9 @@ import { HttpClient } from '@angular/common/http';
 import { QuestionScore } from 'src/app/entities/QuestionScore';
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
 import { SoftSkillViolation } from 'src/app/entities/SoftSkillViolation';
+import { Screening } from 'src/app/entities/Screening';
+import { TRAINEES } from 'src/app/mock-data/mock-simpleTrainees';
+import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
 
 
 // Author: David Gustafson
@@ -24,6 +27,7 @@ describe('FinalReportComponent', () => {
   let skillType: SkillTypesService;
   let testQuestionScore: QuestionScore;
   let softSkillsViolation: SoftSkillViolation;
+  let screeningToken: Screening;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule(Dependencies)
@@ -34,6 +38,33 @@ describe('FinalReportComponent', () => {
     fixture = TestBed.createComponent(FinalReportComponent);
     component = fixture.componentInstance;
     service = new MockUser(client, url, skillType);
+
+    screeningToken = {
+      screeningId: 1,
+      screenerId: 2,
+      skillType: 3,
+      compositeScore: 4,
+      aboutMeCommentary: 'comment',
+      generalCommentary: 'general comment',
+      softSkillCommentary: 'yes yes',
+      startDateTime: new Date(),
+      endDateTime: new Date(),
+      softSkillsVerdict: false,
+      status: 'test',
+      scheduledScreeningId: 12,
+      scheduledScreening: {
+        scheduledScreeningId: 12,
+        trainee: TRAINEES[0],
+        track: SKILLTYPES[0],
+        scheduledStatus: 'test',
+        trainer: 999,
+        scheduledDate: new Date(),
+        skillTypeId: 333
+      }
+    };
+
+    localStorage.setItem('screening', JSON.stringify(screeningToken));
+
     fixture.detectChanges();
   });
 
@@ -85,24 +116,6 @@ describe('FinalReportComponent', () => {
     expect(component.softSkillViolations.length).toEqual(0);
 
   });
-
-  /* it('should reset softskill violations', () => {
-    softSkillsViolation = {
-      violationID: 1,
-      screeningID: 2,
-      violationType: {
-        violationTypeId: 1,
-        violationType: 'profanity'
-      },
-      Time: new Date(),
-      Comment: 'bad no no'
-    };
-
-    component.softSkillViolations.push(softSkillsViolation);
-    component.ngOnDestroy();
-    expect(component.softSkillViolations.length).toEqual(0);
-
-  }); */
 
   it('should remove screeningID from localStorage', () => {
     localStorage.setItem('screeningID', '1');
