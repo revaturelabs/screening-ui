@@ -37,8 +37,6 @@ describe('FinalReportComponent', () => {
     fixture.detectChanges();
   });
 
-
-
   it('should create final-report component', () => {
     expect(component).toBeTruthy();
   });
@@ -58,8 +56,7 @@ describe('FinalReportComponent', () => {
     expect(component.checked).toBe('true');
   });
 
-
-  it('should reset question scores', () => {
+  it('should reset question scores and violations', () => {
     testQuestionScore = {
       qSID: 100,
       questionId: 1,
@@ -70,13 +67,26 @@ describe('FinalReportComponent', () => {
       beginTime: new Date()
     };
 
+    softSkillsViolation = {
+      violationID: 1,
+      screeningID: 2,
+      violationType: {
+        violationTypeId: 1,
+        violationType: 'profanity'
+      },
+      Time: new Date(),
+      Comment: 'bad no no'
+    };
+
     component.questionScores.push(testQuestionScore);
+    component.softSkillViolations.push(softSkillsViolation);
     component.ngOnDestroy();
     expect(component.questionScores.length).toEqual(0);
+    expect(component.softSkillViolations.length).toEqual(0);
 
   });
 
-  it('should reset softskill violations', () => {
+  /* it('should reset softskill violations', () => {
     softSkillsViolation = {
       violationID: 1,
       screeningID: 2,
@@ -92,17 +102,13 @@ describe('FinalReportComponent', () => {
     component.ngOnDestroy();
     expect(component.softSkillViolations.length).toEqual(0);
 
-  });
+  }); */
 
   it('should remove screeningID from localStorage', () => {
     localStorage.setItem('screeningID', '1');
-    component.ngOnDestroy();
-    expect(localStorage.getItem('screeningID')).toBeNull();
-  });
-
-  it('should remove scheduledScreeningID from localStorage', () => {
     localStorage.setItem('scheduledScreeningID', '123');
     component.ngOnDestroy();
+    expect(localStorage.getItem('screeningID')).toBeNull();
     expect(localStorage.getItem('scheduledScreeningID')).toBeNull();
   });
 
