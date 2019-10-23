@@ -171,7 +171,6 @@ export class SkillTypesComponent implements OnInit {
   }
 
   edit(content) {
-    console.log('in edit');
     this.modalServiceRef = this.modalService.open(content);
     this.modalServiceRef.result.then(
       result => {
@@ -182,7 +181,6 @@ export class SkillTypesComponent implements OnInit {
       }
     );
     event.stopPropagation();
-    console.log(content);
   }
   /**
    * Stores information about the skill type that was selected
@@ -195,7 +193,6 @@ export class SkillTypesComponent implements OnInit {
   /* This will work for altering a skill type, but it will not display the change on the page. */
   editSkillType(skillType) {
     // this.bucketWeightSum = 0;
-    console.log('in edit skill type');
     this.skillWeights = [];
     this.singleSkillTypeBuckets = [];
     this.skillTypeWeights = [];
@@ -208,14 +205,12 @@ export class SkillTypesComponent implements OnInit {
     // POPULATING ARRAY WITH INDIVIDUAL SKILLTYPE WEIGHTS
     for (let weight of this.allWeights) {
       if (weight.skillType.skillTypeId === skillType.skillTypeId) {
-        console.log(weight);
         this.skillWeights.push(weight);
       }
     }
     // this.skillTypeToEdit = this.singleSkillType;
     // console.log(this.singleSkillType);
     this.getAssociated();
-    console.log(skillType);
   }
 
 
@@ -228,7 +223,6 @@ export class SkillTypesComponent implements OnInit {
         if (
           !this.singleSkillTypeBuckets.includes(this.allBuckets[i])
         ) {
-          console.log('pushed');
           this.singleSkillTypeBuckets.push(this.allBuckets[i]);
           // this.bucketsAndWeights = this.singleSkillTypeBuckets;
           this.singleSkillTypeBucketIds.push(this.allBuckets[i].bucketId);
@@ -278,10 +272,8 @@ export class SkillTypesComponent implements OnInit {
    * @param bucket: bucket object needed to be added to skill types.
    */
   addToSkillTypeBuckets(bucky: Bucket) {
-    console.log(bucky);
     this.noZeroError = true;
     if (this.singleSkillType) {
-      console.log('if called');
       let relationship: Weight = {
         bucket: bucky,
         skillType: this.singleSkillType,
@@ -316,8 +308,6 @@ export class SkillTypesComponent implements OnInit {
       for(let i = 0; i < this.skillWeights.length; i++) {
         if(bucket.bucketId === this.skillWeights[i].bucket.bucketId) {
           this.skillWeights.splice(i, 1);
-          console.log('in the if statement');
-          console.log(this.skillWeights[i]);
         }
       }
 
@@ -354,7 +344,6 @@ export class SkillTypesComponent implements OnInit {
       if (this.allSkillTypes[num].skillTypeId === this.singleSkillType.skillTypeId) {
         this.allSkillTypes[num].title = modal.skillTypeName;
         this.singleSkillType = this.allSkillTypes[num];
-        console.log(this.singleSkillType);
       }
     }
     this.bucketWeightSum = 0;
@@ -402,12 +391,10 @@ export class SkillTypesComponent implements OnInit {
       title: modal.skillTypeName,
       isActive: false
     };
-    console.log(this.allSkillTypes);
     this.skillTypeService.createSkillType(newSkill).subscribe(results => {
       this.grabAllSkillTypes();
     });
     this.savedSuccessfully();
-    console.log('after creates');
   }
 
   /**
@@ -432,8 +419,6 @@ export class SkillTypesComponent implements OnInit {
           weight.weightValue = weightValue;
         }
     }
-    console.log('the num: ');
-    console.log(num);
 
     if (this.allWeights.length === 0) {
       this.error = false;
@@ -452,8 +437,6 @@ export class SkillTypesComponent implements OnInit {
       this.allSkillTypes = results;
       this.setSkillTypes();
       this.allSkillTypes.sort(this.compare);
-      console.log("from grab all skill types")
-      console.log(this.allSkillTypes);
     });
   }
 
@@ -490,7 +473,6 @@ export class SkillTypesComponent implements OnInit {
   // Deletes SkillType from the database 
   deleteSkillType() {
    // console.log(this.skillTypeToEdit);
-   console.log(this.singleSkillType);
   this.skillTypeService.deleteSkillTypebyId(this.singleSkillType.skillTypeId).subscribe(results => {
     this.grabAllSkillTypes();
   });

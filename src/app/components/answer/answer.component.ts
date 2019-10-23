@@ -54,7 +54,6 @@ export class AnswerComponent implements OnInit {
           }
         }
       }
-      console.log(this.questionScore);
       // add the new question score to the array of question scores
       this.questionScores.push(this.questionScore);
       // update our services question score array with the array with this components question score array

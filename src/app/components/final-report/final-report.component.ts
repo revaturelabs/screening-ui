@@ -97,7 +97,6 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
       data => {
         this.softSkillViolations = data;
-        console.log(this.softSkillViolations);
       }
     );
     this.subscriptions.push(
@@ -105,7 +104,6 @@ export class FinalReportComponent implements OnInit, OnDestroy {
         softSkillViolations => (this.softSkillViolations = softSkillViolations)
       )
     );
-    console.log(this.softSkillViolations);
   }
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)

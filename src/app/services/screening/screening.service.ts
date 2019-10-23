@@ -119,7 +119,6 @@ export class ScreeningService {
   }
   createScreening(screening: Screening): void {
    // screening.generalCommentary = this.generalCommentary;
-   console.log('in create sxreenunf ' + JSON.parse(localStorage.getItem('screening')).aboutMeCommentary);
     this.httpClient.post<any>(this.urlService.screening.startScreening(),
         {
           'status': 'In Progress',
@@ -159,8 +158,6 @@ export class ScreeningService {
   // }
 
   updateScreening(currentScreen: Screening) {
-    console.log('in update send screen');
-    console.log(currentScreen);
     return this.httpClient.post(this.urlService.screening.updateScreening(), {currentScreen},
     { headers: this.headers });
   }

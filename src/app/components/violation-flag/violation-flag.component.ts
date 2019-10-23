@@ -54,7 +54,6 @@ export class ViolationFlagComponent implements OnInit {
       .subscribe(violationTypes => {
         // this.violationTypes = [];
         this.violationTypes = violationTypes;
-        console.log(this.violationTypes);
       });
   }
 

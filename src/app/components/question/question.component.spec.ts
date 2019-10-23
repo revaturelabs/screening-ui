@@ -143,7 +143,7 @@ describe('QuestionComponent', () => {
      /* inject([TagsService], (ts: TagsService) => {
        ts.getAllTags().subscribe((s) => {
           console.log('output to tags service.');
-          console.log(s);
+          (s);
        }); */
      });
    });

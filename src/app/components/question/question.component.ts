@@ -149,7 +149,6 @@ export class QuestionComponent implements OnInit {
    * question.
    **/
   addNewQuestion() {
-    console.log(this.question);
     if (this.sampleAnswers.length === 5 && this.question.questionText) {
       if (this.question.questionId) {
         this.question.sampleAnswer1 = this.sampleAnswers[0];

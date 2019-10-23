@@ -80,13 +80,11 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
     const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeId + 50;
-    console.log('sukakakaka ' + skillTypeID);
     this.subscriptions.push(
       this.skillTypeBucketService.
       getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights) {
-        console.log(e);
         myBuckets.push(
           {
             bucketId: e.bucket.bucketId,
@@ -165,12 +163,10 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     // tslint:disable-next-line:radix
-    console.log('screening from storage');
     // const numId = parseInt( localStorage.getItem('screeningID'), 10);
     this.screening = JSON.parse(localStorage.getItem('screening'));
     this.screening.generalCommentary = this.generalComment;
     localStorage.setItem('screening', JSON.stringify(this.screening));
-    console.log(JSON.parse(localStorage.getItem('screening')));
    // this.screeningService.updateScreening(this.screening.screeningId);
   }
 }

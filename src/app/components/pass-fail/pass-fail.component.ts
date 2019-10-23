@@ -84,7 +84,6 @@ export class PassFailComponent implements OnInit {
             }
           }
           this.violations = violationArray;
-          console.log(this.violations);
           this.softSkillViolationService.currentSoftSkillViolations.subscribe(
             values => {
               this.currentSoftSkillsViolationsVar = values;
@@ -131,8 +130,6 @@ export class PassFailComponent implements OnInit {
     this.screening.endDateTime = new Date();
     this.screening.status = 'Complete';
     localStorage.setItem('screening', JSON.stringify(this.screening));
-    console.log('if its in there yo');
-    console.log(JSON.parse(localStorage.getItem('screening')));
     this.screeningService.updateScreening(this.screening);
   }
 
@@ -164,10 +161,15 @@ export class PassFailComponent implements OnInit {
       );
     });
 
-    if (this.softSkillViolationService.softSkillViolations.length > 1) {
-      this.softSkillViolationService.softSkillViolations.splice(i, 1);
+    // if (this.softSkillViolationService.softSkillViolations.length > 1) {
+    //   this.softSkillViolationService.softSkillViolations.splice(i, 1);
+    // } else {
+    //   this.softSkillViolationService.softSkillViolations = [];
+    // }
+    if (this.currentSoftSkillsViolationsVar.length > 1) {
+      this.currentSoftSkillsViolationsVar.splice(i, 1);
     } else {
-      this.softSkillViolationService.softSkillViolations = [];
+      this.currentSoftSkillsViolationsVar = [];
     }
   }
 

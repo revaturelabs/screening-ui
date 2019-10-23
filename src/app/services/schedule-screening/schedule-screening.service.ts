@@ -32,14 +32,7 @@ export class ScheduleScreeningService {
     const scheduledScreenings: ScheduledScreening[] = [];
     this.skillTypesService.getSkillTypes().subscribe(allSkillTypes => {
       this.httpClient.get<any[]>(this.urlService.screening.scheduleScreening()).subscribe(allScheduledScreenings => {
-      for(const e of allScheduledScreenings){
-        // console.log(e);
-      }
         for (const e of allScheduledScreenings) {
-          console.log(e);
-        }
-        for (const e of allScheduledScreenings) {
-          console.log('all cando ' + e.candidate.name);
         //  console.log(e);
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
@@ -85,23 +78,18 @@ export class ScheduleScreeningService {
             thisLastName = nameArray[1];
           }
           */
-          console.log(allSkillTypes);
           let skillType: SkillType;
           for (const s of allSkillTypes) {
-            console.log('skill type ' + (s.skillTypeId - 50)  + '  ' + 'skill type for candos ' + (e.skillTypeId));
             // if (s.skillTypeId === e.skillTypeId) {
               if (e.skillTypeId > 6 && e.skillTypeId <= 12) {
                 e.skillTypeId = e.skillTypeId - 6;
-                console.log(e.skillTypeId);
               } else if (e.skillTypeId > 12) {
                 e.skillTypeId = e.skillTypeId - 12;
-                console.log(e.skillTypeId);
               }
             if (s.skillTypeId - 50 === e.skillTypeId) {
               skillType = s;
             }
           }
-          console.log(e);
           scheduledScreenings.push({
             scheduledScreeningId: e.scheduledScreeningId,
             trainee: {

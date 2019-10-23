@@ -102,7 +102,6 @@ export class QuestionsService {
   }
 
   getQuestions(skillTypeId: number): Observable<Question[]> {
-    console.log("calling get Questions");
     // const tagArray: number[] = [];
     // for (const tag of this.tagService.getCheckedTags()){
     //   tagArray.push(tag.tagId);

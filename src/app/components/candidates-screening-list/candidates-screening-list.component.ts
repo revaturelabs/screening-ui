@@ -77,7 +77,6 @@ export class CandidatesScreeningListComponent implements OnInit {
 
     // retrieve all scheduled interviews and populate the table of screenings.
     this.scheduleScreeningService.getScheduleScreenings().subscribe(data => {
-      console.log('dddaaa  ' + data);
       this.scheduledScreenings = data;
     });
     // Mock data for testing without endpoints
@@ -119,9 +118,6 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
-    console.log(
-      'begin scre id ' + this.selectedScheduledScreening.scheduledScreeningId
-    );
     this.selectedScheduledScreening.trainer = this.selectedScheduledScreening.trainer;
     //  this.selectedScheduledScreening.track.skillTypeId = this.selectedCandidate.skillTypeId;
     this.selectedScheduledScreening.scheduledDate = new Date();

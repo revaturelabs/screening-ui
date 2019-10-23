@@ -65,7 +65,6 @@ export class SkillTypeBucketsComponent implements OnInit {
    */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
-    console.log();
     this.router.navigate(['settings/bucket']);
   }
 
@@ -89,7 +88,6 @@ export class SkillTypeBucketsComponent implements OnInit {
       bucketParam = this.currBucket;
     }
     if (bucketParam) {
-      console.log(bucketParam.isActive);
       this.bucketService.updateBucket(bucketParam).subscribe(bucket => {
         this.getBuckets();
       });

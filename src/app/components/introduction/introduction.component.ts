@@ -66,7 +66,6 @@ export class IntroductionComponent implements OnInit {
         // 'compositeScore': 0
         this.newscreening.status = 'In Progress',
         this.newscreening.skillType = this.simpleTraineeService.getSelectedCandidate().skillTypeId,
-        console.log('jajajsaa ' + this.simpleTraineeService.getSelectedCandidate().skillTypeId),
         this.newscreening.softSkillsVerdict = false,
         this.newscreening.softSkillCommentary = '',
        // this.newscreening.screenerId = 0,
@@ -77,8 +76,6 @@ export class IntroductionComponent implements OnInit {
        // this.newscreening.scheduledScreeningId = parseInt(localStorage.getItem('scheduledScreeningId'), 10);
         this.newscreening.scheduledScreening = JSON.parse(localStorage.getItem('scheduledScreening'));
         this.newscreening.screeningId = parseInt(localStorage.getItem('screeningID'), 10),
-        console.log('yoyo');
-        console.log(this.newscreening);
         localStorage.setItem('screening', JSON.stringify(this.newscreening));
     this.screeningService.createScreening(this.newscreening);
   }

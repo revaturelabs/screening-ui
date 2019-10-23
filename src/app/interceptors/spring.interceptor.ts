@@ -37,8 +37,6 @@ export class SpringInterceptor implements HttpInterceptor {
         was returned
         */
         if (error.status !== 200) {
-            console.log('!!DETECTED XHR REQUEST ERRROR!!');
-            console.log(error);
         }
         // stub -> a generic user feedback hook can be placed here
         return new Observable(null);
