@@ -8,9 +8,6 @@ import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
-import { BUCKETS } from 'src/app/mock-data/mock-buckets';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
   selector: 'app-skill-types',
@@ -83,7 +80,7 @@ export class SkillTypesComponent implements OnInit {
     private skillTypeBucketService: SkillTypeBucketService,
     private bucketsService: BucketsService,
     private alertsService: AlertsService,
-//    private tab: NgbTabset
+    private tab: NgbTabset
   ) {
     // this.allSkillTypes = SKILLTYPES;
     // console.log(this.allSkillTypes);
@@ -109,7 +106,6 @@ export class SkillTypesComponent implements OnInit {
       this.setSkillTypes();
     }
   }
-
   setSkillTypes() {
     let thing: any;
     this.skillTypes = [];
@@ -142,8 +138,9 @@ export class SkillTypesComponent implements OnInit {
 
     content.backdrop = 'static';
     this.modalServiceRef = this.modalService.open(content);
+    // tslint:disable-next-line: prefer-const
     for (let val of this.skillWeights) {
-      if (val.weightValue === 0) {
+      if(val.weightValue === 0) {
         this.noZeroError = true;
       }
     }
@@ -204,7 +201,8 @@ export class SkillTypesComponent implements OnInit {
 
     // POPULATING ARRAY WITH INDIVIDUAL SKILLTYPE WEIGHTS
     for (let weight of this.allWeights) {
-      if (weight.skillType.skillTypeId === skillType.skillTypeId) {
+      if(weight.skillType.skillTypeId === skillType.skillTypeId) {
+
         this.skillWeights.push(weight);
       }
     }
@@ -218,6 +216,9 @@ export class SkillTypesComponent implements OnInit {
    * Only darkness within
    */
   getAssociated() {
+
+
+
     for (let i = 0; i < this.allBuckets.length; i++) {
       if (this.checkContains(this.allBuckets[i])) {
         if (
@@ -281,8 +282,12 @@ export class SkillTypesComponent implements OnInit {
         weightId: 0
       };
       this.skillTypeBucketService.newSkillTypeForBucket(relationship).subscribe(results => {
-        this.getAllWaits();
+
+        relationship.weightId = results.weightId;
+        this.allWeights.push(relationship);
+
       });
+
       this.skillTypeWeights.push(relationship);
       this.skillWeights.push(relationship);
     }
@@ -305,8 +310,8 @@ export class SkillTypesComponent implements OnInit {
       this.singleSkillTypeBuckets = modSkillTypeBuckets.slice();
 
 
-      for(let i = 0; i < this.skillWeights.length; i++) {
-        if(bucket.bucketId === this.skillWeights[i].bucket.bucketId) {
+      for (let i = 0; i < this.skillWeights.length; i++) {
+        if (bucket.bucketId === this.skillWeights[i].bucket.bucketId) {
           this.skillWeights.splice(i, 1);
         }
       }
@@ -407,12 +412,21 @@ export class SkillTypesComponent implements OnInit {
     let num = 0;
     for (let value of this.skillWeights) {
       num += value.weightValue;
-      if(value.weightValue === 0){
-        this.noZeroError = true;
-      }else{
-        this.noZeroError = false;
+      console.log(value.weightValue);
+
+      switch (value.weightValue) {
+        case 0:
+          this.noZeroError = true;
+          break;
+        case null:
+          this.noZeroError = true;
+          break;
+        default:
+          this.noZeroError = false;
+
       }
     }
+
     for (let weight of this.skillWeights) {
       if (this.singleSkillType.skillTypeId === weight.skillType.skillTypeId &&
         thisbucket.bucketId === weight.bucket.bucketId) {
@@ -483,7 +497,7 @@ export class SkillTypesComponent implements OnInit {
   }
 
   testing() {
-//    this.tab.activeId = 'tab-2';
+    this.tab.activeId = 'tab-2';
   }
 
   getAllWaits() {
@@ -500,4 +514,3 @@ export class SkillTypesComponent implements OnInit {
 
   }
 }
-

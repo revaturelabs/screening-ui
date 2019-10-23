@@ -201,6 +201,7 @@ export class QuestionComponent implements OnInit {
 }
 
   updateQuestions() {
+    setTimeout(()=>{},1000);
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
         this.questions = (data as Question[]);

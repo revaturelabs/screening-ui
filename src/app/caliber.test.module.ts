@@ -1,7 +1,7 @@
 // modules
 import { Injectable } from '@angular/core';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -159,6 +159,7 @@ export const Dependencies = {
     NgbModal,
     RoleGuard,
     AlertsService,
+    NgbModule,
     ApiService,
     NgbActiveModal,
     GambitBatchUtilService,
@@ -170,7 +171,8 @@ export const Dependencies = {
     ScreenerBucketsService,
     HttpErrorHandlerService,
     RoleGuard,
-    RouteService
+    RouteService,
+    NgbTabset
   ],
   bootstrap: [
   ],
