@@ -86,24 +86,6 @@ describe('FinalReportComponent', () => {
 
   });
 
-  /* it('should reset softskill violations', () => {
-    softSkillsViolation = {
-      violationID: 1,
-      screeningID: 2,
-      violationType: {
-        violationTypeId: 1,
-        violationType: 'profanity'
-      },
-      Time: new Date(),
-      Comment: 'bad no no'
-    };
-
-    component.softSkillViolations.push(softSkillsViolation);
-    component.ngOnDestroy();
-    expect(component.softSkillViolations.length).toEqual(0);
-
-  }); */
-
   it('should remove screeningID from localStorage', () => {
     localStorage.setItem('screeningID', '1');
     localStorage.setItem('scheduledScreeningID', '123');
