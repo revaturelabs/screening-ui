@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal, NgbTabset, NgbTabsetModule, NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 // Importing the routes from app routes
 import { routes } from './app.routes';
@@ -109,7 +108,8 @@ import { MockUser } from './mock-data/mocksimpleservice.service'
     NgxPaginationModule,
     NavModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [
     AlertsService,
@@ -132,6 +132,7 @@ import { MockUser } from './mock-data/mocksimpleservice.service'
     SoftSkillsViolationService,
     UrlService,
     ViolationTypeService,
+    NgbTabsetConfig
   ],
   bootstrap: [AppComponent],
   entryComponents: [AnswerComponent]

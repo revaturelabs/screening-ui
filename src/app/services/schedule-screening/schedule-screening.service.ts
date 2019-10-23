@@ -32,6 +32,9 @@ export class ScheduleScreeningService {
     const scheduledScreenings: ScheduledScreening[] = [];
     this.skillTypesService.getSkillTypes().subscribe(allSkillTypes => {
       this.httpClient.get<any[]>(this.urlService.screening.scheduleScreening()).subscribe(allScheduledScreenings => {
+      for(const e of allScheduledScreenings){
+        // console.log(e);
+      }
         for (const e of allScheduledScreenings) {
           console.log(e);
         }
@@ -82,7 +85,7 @@ export class ScheduleScreeningService {
             thisLastName = nameArray[1];
           }
           */
-
+          console.log(allSkillTypes);
           let skillType: SkillType;
           for (const s of allSkillTypes) {
             console.log('skill type ' + (s.skillTypeId - 50)  + '  ' + 'skill type for candos ' + (e.skillTypeId));
@@ -98,6 +101,7 @@ export class ScheduleScreeningService {
               skillType = s;
             }
           }
+          console.log(e);
           scheduledScreenings.push({
             scheduledScreeningId: e.scheduledScreeningId,
             trainee: {

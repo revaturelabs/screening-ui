@@ -1,6 +1,6 @@
 
 // Testing modules
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 // Modules
 import { Dependencies } from '../../caliber.test.module';
@@ -136,16 +136,17 @@ describe('QuestionComponent', () => {
   //  *
   //  * Function Tested: editQuestion()
   //  **/
-  // it('should edit a question', () => {
-  //   component.editQuestion(QUESTIONS[0]);
-  //   expect(component.question).toEqual(QUESTIONS[0]);
-  //   inject([TagsService], (ts: TagsService) => {
-  //     ts.getAllTags().subscribe((s) => {
-  //       // console.log('output to tags service.');
-  //       // console.log(s);
-  //     });
-  //   });
-  // });
+   it('should edit a question', () => {
+     component.questions=QUESTIONS;
+     component.editQuestion(QUESTIONS[0]);
+     expect(component.question).toEqual(QUESTIONS[0]);
+     /* inject([TagsService], (ts: TagsService) => {
+       ts.getAllTags().subscribe((s) => {
+          console.log('output to tags service.');
+          console.log(s);
+       }); */
+     });
+   });
 
   /**
    * Test for a newTag method to assigned a newTag to the newTagString and resets the new string.
@@ -320,4 +321,4 @@ describe('QuestionComponent', () => {
   //   expect(component.currentTags).toContain(t0);
   //   expect(component.currentTags).toContain(t1);
   // });
-});
+
