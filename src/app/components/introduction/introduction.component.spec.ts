@@ -9,7 +9,7 @@ import { SimpleTrainee } from 'src/app/entities/SimpleTrainee';
 import { Observable } from 'rxjs';
 import { Dependencies } from 'src/app/caliber.test.module';
 //must be run by itself
-xdescribe('IntroductionComponent', () => {
+/* xdescribe('IntroductionComponent', () => {
   let component: IntroductionComponent;
   let fixture: ComponentFixture<IntroductionComponent>;
   let serv: SimpleTraineeService;
@@ -35,4 +35,4 @@ xdescribe('IntroductionComponent', () => {
   fit('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+}); */
