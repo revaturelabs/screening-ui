@@ -17,7 +17,7 @@ describe('ScreeningComponent', () => {
   let fixture: ComponentFixture<ScreeningConfigComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule, HttpClientModule],
+      imports: [FormsModule, NgbModule, RouterTestingModule, HttpClientModule],
       declarations: [ ScreeningConfigComponent, SkillTypeBucketsComponent, SkillTypesComponent, CandidateComponent ],
       providers: [BucketsService, UrlService, AlertsService]
     })

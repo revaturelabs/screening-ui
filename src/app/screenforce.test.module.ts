@@ -51,7 +51,8 @@ export const Dependencies = {
     ReactiveFormsModule,
     // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   declarations: [
     // pipes
