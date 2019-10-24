@@ -1,7 +1,6 @@
 // modules
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
@@ -25,9 +24,6 @@ import { BucketsService } from './services/buckets/buckets.service';
 import { UrlService } from './services/urls/url.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 
-// N.T.
-import { ApiService } from './services/api/api.service';
-
 // pipes
 import { SearchPipe } from './pipes/search.pipe';
 
@@ -48,16 +44,15 @@ import { AuthenticationService } from './services/authentication/authentication.
 export const Dependencies = {
   imports: [
     CommonModule,
-    HttpModule,
     HttpClientModule,
-    NgbModule.forRoot(),
     RouterModule.forChild(routes),
     FormsModule,
     // ChartsModule,
     ReactiveFormsModule,
     // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   declarations: [
     // pipes
@@ -72,7 +67,6 @@ export const Dependencies = {
     SkillTypesComponent,
     SkillTypeBucketsComponent,
     QuestionComponent,
-  
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
@@ -86,7 +80,6 @@ export const Dependencies = {
     HttpClient,
     NgbModal,
     AlertsService,
-    ApiService,
     NgbActiveModal,
     { provide: Router, useValue: {} },
     UrlService,

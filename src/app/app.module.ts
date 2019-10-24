@@ -4,19 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule} from 'highcharts-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
-import {SpringInterceptor} from './interceptors/spring.interceptor'
+import {SpringInterceptor} from './interceptors/spring.interceptor';
 
 import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { AlertsComponent } from './components/alerts/alerts.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
 import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
@@ -33,7 +31,7 @@ import { ReportSidebarComponent } from './components/reports/report-sidebar/repo
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
-import { ViolationsByTypeComponent } from  './components/reports/violations-by-type/violations-by-type.component';
+import { ViolationsByTypeComponent } from './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -53,7 +51,6 @@ import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
-import { ApiService } from './services/api/api.service';
 import {AuthenticationService} from './services/authentication/authentication.service';
 import { AmplifyService } from 'aws-amplify-angular';
 
@@ -72,7 +69,6 @@ import { RoleGuard } from './role-guard';
 
 @NgModule({
   declarations: [
-    AlertsComponent,
     AppComponent,
     AnswerComponent,
     CandidatesScreeningListComponent,
@@ -101,15 +97,13 @@ import { RoleGuard } from './role-guard';
     ReportSidebarComponent,
     ViolationsByTypeComponent
   ],
-  imports: [    
+  imports: [
     BrowserAnimationsModule,
-    BrowserModule,    
-    FormsModule,        
+    BrowserModule,
+    FormsModule,
     HighchartsChartModule,
     HttpClientModule,
-    HttpModule,
-    //NavModule,
-    NgbModule.forRoot(),
+    NgbModule,
     NgxPaginationModule,
     Ng5SliderModule,
     ReactiveFormsModule,
@@ -118,7 +112,6 @@ import { RoleGuard } from './role-guard';
   ],
   providers: [
     AlertsService,
-    ApiService,
     BucketsService,
     CookieService,
     QuestionScoreService,

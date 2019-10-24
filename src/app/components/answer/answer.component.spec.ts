@@ -27,8 +27,8 @@ describe('AnswerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AnswerComponent, ViolationFlagComponent ],
       imports: [FormsModule, RouterTestingModule],
-      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService, ScreeningStateService,
-      SkillTypesService, ViolationTypeService, AlertsService, Question]
+      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService,
+      ScreeningStateService, SkillTypesService, ViolationTypeService, AlertsService, Question]
     })
     .compileComponents();
   }));
@@ -38,7 +38,6 @@ describe('AnswerComponent', () => {
     fixture.componentInstance.question = new Question();
     fixture.componentInstance.question.bucket = new Bucket();
     component = fixture.componentInstance;
-    //fixture.detectChanges();
   });
 
   it('should create', () => {

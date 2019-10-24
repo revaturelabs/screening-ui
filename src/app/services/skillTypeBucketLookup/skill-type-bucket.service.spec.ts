@@ -10,7 +10,7 @@ describe('SkillTypeBucketService', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule , HttpClientModule ],
 
-      providers: [SkillTypeBucketService,UrlService]
+      providers: [SkillTypeBucketService, UrlService]
     });
   });
 

@@ -1,20 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
-import { FormControl } from '@angular/forms';
-import { NgForm } from '@angular/forms'
 import { Options, ChangeContext, PointerType } from 'ng5-slider';
-
-import { ReportService } from 'src/app/services/reports/report.service';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-
-import { WeekDay } from '@angular/common';
-import { ReportData } from 'src/app/entities/ReportData';
-
-
-import { Screening } from 'src/app/entities/Screening';
-
-import { map } from 'rxjs/operators';
-
+import { ReportService } from '../../../services/reports/report.service';
+import { ReportData } from '../../../entities/ReportData';
+import { Screening } from '../../../entities/Screening';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -24,9 +13,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./report-sidebar.component.css']
 })
 export class ReportSidebarComponent implements OnInit {
- 
-
-
 
   screenerEmails$: Observable<Screening>;
   screenerEmail = new Array<Screening>();
@@ -41,9 +27,6 @@ export class ReportSidebarComponent implements OnInit {
   // }
   // Used to emit slider events to master-component
   @Output() sliderChange = new EventEmitter();
- 
-
-  
   constructor(
     private reportService: ReportService,
     private modalService: NgbModal
@@ -65,8 +48,6 @@ export class ReportSidebarComponent implements OnInit {
     this.searchTerms.next('');
     this.searchChange.emit(screener);
   }*/
-
-  
   getChangeContextString(changeContext: ChangeContext): string {
     return `{pointerType: ${changeContext.pointerType === PointerType.Min ? 'Min' : 'Max'}, ` +
            `value: ${changeContext.value}, ` +

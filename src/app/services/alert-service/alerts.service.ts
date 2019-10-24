@@ -9,11 +9,10 @@ export class AlertsService {
 
   constructor(private router: Router) {
     router.events.subscribe(event => {
-      if(event instanceof NavigationStart){
-        if(this.keepAfterNavigationChange){
-          this.keepAfterNavigationChange=false;
-        }
-        else{
+      if (event instanceof NavigationStart) {
+        if (this.keepAfterNavigationChange) {
+          this.keepAfterNavigationChange = false;
+        } else {
           this.subject.next();
         }
       }
@@ -27,7 +26,7 @@ export class AlertsService {
   success(message: string) {
     this.subject.next({ type: 'success', text: message });
   }
-  onSuccess(message: string, keepAfterNavigationChange=false){
+  onSuccess(message: string, keepAfterNavigationChange= false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({type: 'success', text: message});
   }
@@ -39,7 +38,7 @@ export class AlertsService {
   error(message: string) {
     this.subject.next({ type: 'error', text: message });
   }
-  onError(message: string, keepAfterNavigationChange=false){
+  onError(message: string, keepAfterNavigationChange= false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({type: 'success', text: message});
   }

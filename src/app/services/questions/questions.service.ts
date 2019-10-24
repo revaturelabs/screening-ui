@@ -71,7 +71,7 @@ export class QuestionsService {
    * @param questionId
   */
   deactivateQuestion(question: Question) {
-    return this.http.put(this.urlService.question.deactivateQuestion(question.questionId),question, httpOptions);
+    return this.http.put(this.urlService.question.deactivateQuestion(question.questionId), question, httpOptions);
   }
 
   /**
@@ -80,7 +80,7 @@ export class QuestionsService {
    * @param questionId
   */
   activateQuestion(question: Question) {
-    return this.http.put(this.urlService.question.activateQuestion(question.questionId),question, httpOptions);
+    return this.http.put(this.urlService.question.activateQuestion(question.questionId), question, httpOptions);
   }
 
   /**
@@ -88,7 +88,7 @@ export class QuestionsService {
    * add urlService to get endpoint for getting Bucket Questions
    * @param buckerId
   */
-  getBucketQuestions(bucketId: number): Observable<Question[]>{
+  getBucketQuestions(bucketId: number): Observable<Question[]> {
     return this.http.get<Question[]>(this.urlService.question.getQuestionsByBucketId(bucketId));
   }
 

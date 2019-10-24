@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { UrlService } from '../urls/url.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { stringifyDate } from 'src/app//util/utils';
-import { ReportData } from 'src/app/entities/ReportData';
-import { Screening } from 'src/app/entities/Screening';
-import { toDate } from '@angular/common/src/i18n/format_date';
+import { stringifyDate } from '../../util/utils';
+import { ReportData } from '../../entities/ReportData';
+import { Screening } from '../../entities/Screening';
 
 @Injectable({
   providedIn: 'root'

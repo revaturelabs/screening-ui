@@ -20,7 +20,7 @@ import { UrlService } from '../urls/url.service';
 
 const httpOptions = {
     headers: new HttpHeaders({
-            'Content-Type':  'application/json',
+            'Content-Type':  'application/json'
         })
     };
 
@@ -46,11 +46,11 @@ export class BucketsService {
   }
 
   updateBucket (bucket: Bucket) {
-    return this.http.put<Bucket>(this.urlService.bucket.updateBucket()+"/"+bucket.bucketId, bucket, httpOptions);
+    return this.http.put<Bucket>(this.urlService.bucket.updateBucket() + '/' + bucket.bucketId, bucket, httpOptions);
   }
   // Delete bucket
-  deleteBucket(bucket:Bucket){
-      return this.http.delete<Bucket>(this.urlService.bucket.deleteBucket()+"/"+bucket.bucketId, httpOptions );
+  deleteBucket(bucket: Bucket) {
+      return this.http.delete<Bucket>(this.urlService.bucket.deleteBucket() + '/' + bucket.bucketId, httpOptions );
   }
 
   createNewBucket(bucket: Bucket): Observable<Bucket> {
