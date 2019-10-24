@@ -3,7 +3,6 @@ import { map } from 'rxjs/operators';
 import { AmplifyService } from 'aws-amplify-angular';
 import { async } from 'q';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Injectable()
 export class AuthenticationService implements CanActivate {

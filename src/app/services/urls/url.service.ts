@@ -27,7 +27,7 @@ export class UrlService {
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
     createNewBucket: () => `${this.bucketEndpoint}`,
-    deleteBucket: ()=> `${this.bucketEndpoint}`
+    deleteBucket: () => `${this.bucketEndpoint}`
   };
 
   /**
@@ -106,9 +106,9 @@ export class UrlService {
 
   private reportEndpoint = this.reportContext;
   reports = {
-    getAllScreeners: () => `${this.reportEndpoint}/screenings`, /*Chisel was here*/ 
+    getAllScreeners: () => `${this.reportEndpoint}/screenings`, /*Chisel was here*/
     getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
-    getScreenerByName:(partialName: string): string => `${this.reportEndpoint}/screenings`,
+    getScreenerByName: (partialName: string): string => `${this.reportEndpoint}/screenings`,
     getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
     `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
     getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>

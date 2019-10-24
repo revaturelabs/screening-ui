@@ -51,7 +51,6 @@ import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
-import { ApiService } from './services/api/api.service';
 import {AuthenticationService} from './services/authentication/authentication.service';
 import { AmplifyService } from 'aws-amplify-angular';
 
@@ -113,7 +112,6 @@ import { RoleGuard } from './role-guard';
   ],
   providers: [
     AlertsService,
-    ApiService,
     BucketsService,
     CookieService,
     QuestionScoreService,

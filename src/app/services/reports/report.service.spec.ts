@@ -4,9 +4,7 @@ import { ReportService } from './report.service';
 
 import { UrlService } from '../urls/url.service';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
-import { debug } from 'util';
-import {of} from 'rxjs';
-import { HttpModule } from '@angular/http';
+
 
 
 

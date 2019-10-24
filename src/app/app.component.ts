@@ -1,6 +1,4 @@
 import { Component, NgModule } from '@angular/core';
-import { ngModuleJitUrl } from '@angular/compiler';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 
 @Component({
@@ -12,6 +10,4 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 export class AppComponent {
   title = 'screening-ui-gen';
   constructor() {}
-  
 }
-
