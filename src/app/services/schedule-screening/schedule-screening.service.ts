@@ -78,8 +78,17 @@ export class ScheduleScreeningService {
             thisLastName = nameArray[1];
           }
           */
+
           let skillType: SkillType;
           for (const s of allSkillTypes) {
+            
+          /*
+          If working with the H2 database the following if statements and subtraction of 50 form s.skilltypeId is
+          necessary due to the inconsistencies with queries from H2. The schedule screening skilltypeId, 
+          when queried from H2, increments from 1-20 instead of being 1-6 as it should be so the if statements
+          were necessary.
+          */
+
             // if (s.skillTypeId === e.skillTypeId) {
               if (e.skillTypeId > 6 && e.skillTypeId <= 12) {
                 e.skillTypeId = e.skillTypeId - 6;
