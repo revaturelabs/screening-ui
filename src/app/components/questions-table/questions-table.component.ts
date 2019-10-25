@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { QuestionScore } from '../../entities/QuestionScore';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
 
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
@@ -17,20 +19,20 @@ import { AnswerComponent } from '../answer/answer.component';
 // ngbootstrap modal
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { Weight } from '../../entities/Weight';
 import { Screening } from 'src/app/entities/Screening';
+
 
 @Component({
   selector: 'app-questions-table',
   templateUrl: './questions-table.component.html',
   styleUrls: ['./questions-table.component.css']
 })
-
 /*
 After the candidate has given their introduction,
 the screener will proceed to the question-and-answer part of the interview.
-A list of questions will be fetched from the server / database,
-based on the skills that the screener input on the candidate introduction page.
+A list of questions will be fetched from the server / database.
 Screener will be able to see a set of category tabs,
 each of which has a set of questions in a table.
 
@@ -38,24 +40,27 @@ Screener has the ability to navigate between tabs ad nauseam,
 asking whichever questions they desire. When a screener asks a question,
 it will invoke an instance of the question component.
 
-Possible change for the future there are no programmatic constraints
-on how many questions a screener can ask, nor are there any constraints
-on what the proportion of questions must be (x% Java, y% HTML, z% SQL, etc).
-Future iterations may change this.
 */
-
 export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Used to display the categories
   questionBuckets: Bucket[];
-
   screening: Screening;
 
   // holds the current category. Used to control
   // which questions are displayed in the questions table.
   currentBucket: number;
+  skillID: number;
+
+  // Used to display the current track:
+  currentScreenings: ScheduledScreening;
+
+  // Used to display current buckets in track:
+  skillTypeBucketLookUp: SkillTypeBucketLookUp;
 
   // value entered enables finish button
   generalComment: string;
+
+  weight: Weight;
 
   // Array of questions answered during the interview
   questionScores: QuestionScore[] = [];
@@ -73,16 +78,16 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private questionScoreService: QuestionScoreService,
     private modalService: NgbModal,
     private screeningService: ScreeningService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private skillTypeBucketService: SkillTypeBucketService,
   ) {this.screening = new Screening(); }
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
-    const skillTypeID = this.simpleTraineeService.getSelectedCandidate().skillTypeId + 50;
+    this.skillID = this.screeningStateService.getSkillID();
     this.subscriptions.push(
       this.skillTypeBucketService.
-      getWeightsBySkillType(skillTypeID).subscribe(bucketsWithWeights => {
+      getWeightsBySkillType(this.skillID).subscribe(bucketsWithWeights => {
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights) {
         myBuckets.push(
@@ -97,9 +102,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
       this.questionBuckets = bucketsWithWeights;
     }));
 
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
-                          this.simpleTraineeService.getSelectedCandidate().lastname;
-
+    this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
+    this.currentScreenings = this.screeningStateService.getCurrentScreening();
     // update the answeredQuestions variable in our service to track the
     // questions that have been given a score by the screener.
     this.subscriptions.push(this.questionScoreService.currentQuestionScores.subscribe(

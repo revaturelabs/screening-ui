@@ -16,16 +16,8 @@ const httpOptions = {
 
 @Injectable()
 export class SkillTypesService {
-  constructor(private http: HttpClient, private urlService: UrlService) {}
+  constructor(private http: HttpClient, private urlService: UrlService) { }
   public skillTypeBuckets: Observable<SkillType[]>;
-
-  createSkillType(skillType: SkillType) {
-    return this.http.post(
-      this.urlService.skillTypes.createSkillType(),
-      skillType,
-      httpOptions
-    );
-  }
 
   activateSkillType(skillType: SkillType) {
     return this.http.put(
@@ -41,6 +33,9 @@ export class SkillTypesService {
       skillType,
       httpOptions
     );
+  }
+  createSkillType(skillType: SkillType) {
+    return this.http.post<SkillType>(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
   }
 
   updateSkillType(skillType: SkillType) {
@@ -58,19 +53,6 @@ export class SkillTypesService {
   setSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
     return this.http.post(
       this.urlService.skillTypes.setSkillTypeBuckets(),
-      { 
-        title: skillType.title,
-        skillTypeId: skillType.skillTypeId,
-        bucketIds: bucketIds,
-        weights: weights
-      },
-      httpOptions
-    );
-  }
-
-  updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-    return this.http.put(
-      this.urlService.skillTypes.updateSkillTypeBuckets(),
       {
         title: skillType.title,
         skillTypeId: skillType.skillTypeId,
@@ -93,8 +75,12 @@ export class SkillTypesService {
       this.urlService.skillTypes.getBucketBySkillType(skillTypeId)
     );
   }
+    updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
+        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(skillType.skillTypeId), { title: skillType.title,
+            skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+    }
 
-  deleteSkillTypebyId(skillTypeId: number){
+  deleteSkillTypebyId(skillTypeId: number) {
     return this.http.delete(this.urlService.skillTypes.delete(skillTypeId));
   }
 

@@ -1,17 +1,21 @@
-import { async, TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UrlService } from '../../services/urls/url.service';
 
 import { ViolationTypeService } from './violationType.service';
-import { Dependencies } from 'src/app/caliber.test.module';
+import { Dependencies } from '../../screenforce.test.module';
 
-beforeEach(async(() => {
+beforeEach(() => {
   TestBed.configureTestingModule(Dependencies)
-  .compileComponents();
-}));
+    .compileComponents();
+});
 
 describe('ViolationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ViolationTypeService]
+      imports: [RouterTestingModule, HttpClientModule],
+      providers: [ViolationTypeService, UrlService]
     });
   });
 
@@ -19,3 +23,7 @@ describe('ViolationService', () => {
     expect(service).toBeTruthy();
   }));
 });
+
+
+
+

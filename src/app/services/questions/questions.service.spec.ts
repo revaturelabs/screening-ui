@@ -1,17 +1,9 @@
-
-// Entities
 import { Question } from '../../entities/Question';
-
-// Services
 import { QuestionsService } from './questions.service';
-
-// Modules
 import { HttpErrorResponse } from '@angular/common/http';
-import { QUESTIONS, expectedQuestion } from '../../mock-data/mock-questions';
-
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
-import { SimpleTraineeService } from '../simpleTrainee/simple-trainee.service';
+import { Bucket } from 'src/app/entities/Bucket';
 
 export function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));
@@ -33,6 +25,26 @@ export function asyncError<T>(errorObject: any) {
  * This describe block is actually using mock data. It uses the same approach as this example:
  * https://angular.io/guide/testing#testing-http-services
  */
+
+const bucket: Bucket = {
+    bucketId: 1,
+    bucketDescription: 'Hi',
+    isActive: true
+};
+
+const sampleQuestion: Question = {
+    questionId: 1,
+    questionText: 'string',
+    sampleAnswer: 'string',
+    isActive: true,
+    bucket: bucket
+};
+
+    const QUESTIONS: Question[] = [sampleQuestion];
+
+
+
+
 describe('QuestionsService ', () => {
   const testBucket = -1;
   let httpClientSpyOnGet: { get: jasmine.Spy };
@@ -49,7 +61,7 @@ describe('QuestionsService ', () => {
     httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
     questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService );
 
-    const expectedQuestions: Question[] = [expectedQuestion];
+    const expectedQuestions: Question[] = [sampleQuestion];
 
     httpClientSpyOnGet.get.and.returnValue(asyncData(expectedQuestions));
 
@@ -110,7 +122,7 @@ describe('QuestionsService ', () => {
 
     httpClientSpyOnPut.put.and.returnValue(asyncData(QUESTIONS[0]));
 
-    questionsService.activateQuestion(1).subscribe(
+    questionsService.activateQuestion(QUESTIONS[0]).subscribe(
       questions => expect(questions).toEqual(QUESTIONS[0]),
       fail
     );
@@ -129,7 +141,7 @@ describe('QuestionsService ', () => {
 
     httpClientSpyOnPut.put.and.returnValue(asyncData(QUESTIONS[0]));
 
-    questionsService.deactivateQuestion(1).subscribe(
+    questionsService.deactivateQuestion(QUESTIONS[0]).subscribe(
       questions => expect(questions).toEqual(QUESTIONS[0]),
       fail
     );
@@ -203,7 +215,7 @@ describe('QuestionsService ', () => {
     httpClientSpyOnPut.put.and.returnValue(asyncError(errorResponse));
     questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
 
-    questionsService.activateQuestion(1).subscribe(
+    questionsService.activateQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
       error  => expect(error.message).toContain('404')
     );
@@ -218,7 +230,7 @@ describe('QuestionsService ', () => {
     httpClientSpyOnPut.put.and.returnValue(asyncError(errorResponse));
     questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
 
-    questionsService.deactivateQuestion(1).subscribe(
+    questionsService.deactivateQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
       error  => expect(error.message).toContain('404')
     );

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
@@ -9,6 +9,8 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { Subscription } from 'rxjs';
+import { SkillType } from '../../entities/SkillType';
+import { Candidate } from '../../entities/Candidate';
 
 @Component({
   selector: 'app-final-report',
@@ -19,12 +21,14 @@ import { Subscription } from 'rxjs';
 
 /*
 A simple text summary of how the candidate performed
-in each category on technical skills,the overall feedback thereon,
+in each category on technical skills, the overall feedback therein,
 and if the candidate passed or failed their soft skills evaluation.
 Screener can copy the summary to the clipboard, and return to the candidate list.
 */
 export class FinalReportComponent implements OnInit, OnDestroy {
-  public candidateName: string;
+
+  candidate: Candidate;
+  skillType: SkillType;
   softSkillString: string;
   bucketStringArray: string[];
   overallScoreString: string;
@@ -41,31 +45,27 @@ export class FinalReportComponent implements OnInit, OnDestroy {
 
   constructor(
     private screeningService: ScreeningService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private skillTypeBucketService: SkillTypeBucketService,
     private questionScoreService: QuestionScoreService,
     private scoresToBucketsUtil: ScoresToBucketsUtil,
     private alertsService: AlertsService,
     private softSkillsViolationService: SoftSkillsViolationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.checked = 'false';
-    this.candidateName =
-      this.simpleTraineeService.getSelectedCandidate().firstname +
-      ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
-    this.softSkillString =
-      'Soft Skills: ' + this.screeningService.softSkillsResult;
+    this.candidate = this.screeningStateService.getCurrentScreening().candidate;
+    this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
     this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.skillTypeBucketService.getWeightsBySkillType(this.simpleTraineeService.getSelectedCandidate().skillTypeId + 50).subscribe(
-          weights =>
-          {
+        // need to get the skilltype of the screening from something other than the Candidate. 
+        this.skillTypeBucketService.getWeightsBySkillType(0).subscribe(
+          weights => {
             this.bucketStringArray =
-            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+              this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
           }
         );
         // Set the composite score in the screening service
@@ -86,11 +86,11 @@ export class FinalReportComponent implements OnInit, OnDestroy {
       }
     );
     // this.overallScoreString = "Overall: 71%";
-   // this.generalNotesString = this.screeningService.generalCommentary;
+    // this.generalNotesString = this.screeningService.generalCommentary;
     this.intoductionComments = 'Introduction feedback: ' + JSON.parse(localStorage.getItem('screening')).aboutMeCommentary;
     this.generalComments = 'General feedback: ' + JSON.parse(localStorage.getItem('screening')).generalCommentary;
     this.overallComments = 'Overall feedback: ' + JSON.parse(localStorage.getItem('screening')).softSkillCommentary;
-   // this.generalNotesString = intoductionComments + '\n' + generalComments + '\n' + overallComments;
+    // this.generalNotesString = intoductionComments + '\n' + generalComments + '\n' + overallComments;
     this.allTextString += '"' + this.generalNotesString + '"';
 
     this.screeningService.endScreening(this.generalNotesString);

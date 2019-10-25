@@ -50,7 +50,7 @@ export class QuestionComponent implements OnInit {
   createQuestion: FormGroup;
   newQuestion: Question;
   question: Question;
-  sampleAnswers: string[];
+  sampleAnswer: string;
   questions: Question[];
   currentBucket: Bucket;
   public answersCollapsed = true;
@@ -61,10 +61,6 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
     this.question = new Question();
-
-    // this.questions = QUESTIONS;
-    // tslint:disable-next-line: max-line-length
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
     this.updateQuestions();
   }
 
@@ -95,7 +91,7 @@ export class QuestionComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -106,11 +102,15 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question.questionId).subscribe();
-   } else {
+      this.questionService.deactivateQuestion(question).subscribe(question => {
+        this.updateQuestions();
+      });
+    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question.questionId).subscribe();
-   }
+      this.questionService.activateQuestion(question).subscribe(question => {
+        this.updateQuestions();
+      });
+    }
   }
 
   /**
@@ -119,7 +119,7 @@ export class QuestionComponent implements OnInit {
    **/
   setQuestionNull() {
     this.question = new Question();
-    this.sampleAnswers = [];
+    this.sampleAnswer = '';
   }
 
   /**
@@ -134,11 +134,11 @@ export class QuestionComponent implements OnInit {
    **/
   editQuestion(question) {
     this.question = question;
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
-    let index=this.questions.indexOf(this.question);
-    this.questions[index]=question;
+    this.sampleAnswer = question.sampleAnswer;
+    let index = this.questions.indexOf(this.question);
+    this.questions[index] = question;
     this.questions.slice();
-    setTimeout(()=>{this.questionService.updateQuestion(this.question);this.updateQuestions()},1000);
+    setTimeout(() => { this.questionService.updateQuestion(this.question); this.updateQuestions(); }, 1000);
 
   }
 
@@ -149,23 +149,17 @@ export class QuestionComponent implements OnInit {
    * question.
    **/
   addNewQuestion() {
-    if (this.sampleAnswers.length === 5 && this.question.questionText) {
+    if (this.question.questionText) {
       if (this.question.questionId) {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.question.bucket=this.currentBucket;
+        this.question.sampleAnswer = this.sampleAnswer;
+        this.question.bucket = this.currentBucket;
+
         this.questionService.updateQuestion(this.question).subscribe();
+
         this.updatedSuccessfully();
       } else {
-        this.question.sampleAnswer1 = this.sampleAnswers[0];
-        this.question.sampleAnswer2 = this.sampleAnswers[1];
-        this.question.sampleAnswer3 = this.sampleAnswers[2];
-        this.question.sampleAnswer4 = this.sampleAnswers[3];
-        this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.question.bucket=this.currentBucket;
+        this.question.sampleAnswer = this.sampleAnswer;
+        this.question.bucket = this.currentBucket;
         this.questions.push(this.question);
         this.questionService.createNewQuestion(this.question).subscribe();
         this.questions.slice();
@@ -174,7 +168,7 @@ export class QuestionComponent implements OnInit {
       }
       this.updateQuestions();
       this.setQuestionNull();
-      this.sampleAnswers = [];
+      this.sampleAnswer = '';
     } else {
       this.savedUnsuccessfull();
     }
@@ -185,30 +179,48 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
 
-   deleteQuestion(q) {
-     this.questionService.deleteQuestion(q.questionId).subscribe();
+  deleteQuestion(q) {
+    this.questionService.deleteQuestion(q.questionId).subscribe();
 
-     const index = this.questions.indexOf(q);
-     this.questions.splice(index, 1);
+    const index = this.questions.indexOf(q);
+    this.questions.splice(index, 1);
 
-   }
-   deletebucket(bucket: Bucket) {
+  }
+  deletebucket(bucket: Bucket) {
     this.bucketService.deleteBucket(bucket).subscribe(
-      buckets =>{
-        this.router.navigate(['settings/main'])
+      buckets => {
+        this.router.navigate(['settings/main']);
       }
     );
-}
+  }
 
   updateQuestions() {
-    setTimeout(()=>{},1000);
+    setTimeout(() => { }, 1000);
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
-        this.questions = (data as Question[]);
+        this.questions = data;
+        this.questions.sort(this.compare);
+        this.questions.sort(this.compare2);
       });
     }
   }
 
+  /** used to compare questions Array to sort it based on status */
+  compare(a: Question, b: Question) {
+    if (a.isActive) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
+  compare2(a: Question, b: Question) {
+    if (a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
 
   savedSuccessfully() {
     this.alertsService.success('Saved successfully');

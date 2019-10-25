@@ -2,10 +2,9 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ViolationType } from '../../entities/ViolationType';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-// import { VIOLATION_TYPES } from '../../mock-data/mock-violationTypes';
 @Component({
   selector: 'app-violation-flag',
   templateUrl: './violation-flag.component.html',
@@ -25,9 +24,9 @@ to ensure quick access during the entire interview.
 export class ViolationFlagComponent implements OnInit {
   @Output() flagEvent = new EventEmitter<string>();
 
-  violationTypes: ViolationType[]; // Mock Data taken from mock-violationTypes
+  violationTypes: ViolationType[] = [];
   violationTypesChecked: ViolationType[] = [];
-  softSkillViolations: SoftSkillViolation[];
+  softSkillViolations: SoftSkillViolation[] = [];
   selectedViolation: ViolationType;
   public candidateName: string;
   public addViolation = false;
@@ -35,24 +34,20 @@ export class ViolationFlagComponent implements OnInit {
 
   constructor(
     private violationService: SoftSkillsViolationService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private violationTypeService: ViolationTypeService,
     private alertsService: AlertsService
   ) {}
 
   ngOnInit() {
     this.getViolationTypes();
-    this.candidateName =
-      this.simpleTraineeService.getSelectedCandidate().firstname +
-      ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
   }
 
   getViolationTypes(): void {
     this.violationTypeService
       .getAllViolationTypes()
       .subscribe(violationTypes => {
-        // this.violationTypes = [];
         this.violationTypes = violationTypes;
       });
   }
@@ -85,11 +80,9 @@ export class ViolationFlagComponent implements OnInit {
       screeningID: +localStorage.getItem('screeningID'),
       violationType: violationType,
       Time: new Date(),
-      Comment: comment
     });
     this.violationService
-      .submitViolation(violationType.violationTypeId, comment, screeningID)
-      .subscribe(data => {});
+      .submitViolation(violationType.violationTypeId, comment, screeningID);
   }
 
   cancelViolation() {

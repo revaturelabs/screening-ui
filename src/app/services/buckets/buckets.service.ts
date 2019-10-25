@@ -5,7 +5,6 @@ import { Observable, Subject } from 'rxjs';
 
 import { Bucket } from '../../entities/Bucket';
 import { UrlService } from '../urls/url.service';
-import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 
 /**
    * Imported urlservice to replace hardcoded endpoints
@@ -21,7 +20,7 @@ import { BUCKETS } from 'src/app/mock-data/mock-buckets';
 
 const httpOptions = {
     headers: new HttpHeaders({
-            'Content-Type':  'application/json',
+            'Content-Type':  'application/json'
         })
     };
 
@@ -47,15 +46,15 @@ export class BucketsService {
   }
 
   updateBucket (bucket: Bucket) {
-    return this.http.put<Bucket>(this.urlService.bucket.updateBucket(), bucket, httpOptions);
+    return this.http.put<Bucket>(this.urlService.bucket.updateBucket() + '/' + bucket.bucketId, bucket, httpOptions);
+  }
+  // Delete bucket
+  deleteBucket(bucket: Bucket) {
+      return this.http.delete<Bucket>(this.urlService.bucket.deleteBucket() + '/' + bucket.bucketId, httpOptions );
   }
 
   createNewBucket(bucket: Bucket): Observable<Bucket> {
       return this.http.post<Bucket>(this.urlService.bucket.createNewBucket(), bucket, httpOptions);
-  }
-
-  deleteBucket(bucket: Bucket): Observable<any> {
-    return this.http.delete(this.urlService.bucket.deleteBucket(bucket.bucketId));
   }
 
   setBucket(bucket: Bucket) {

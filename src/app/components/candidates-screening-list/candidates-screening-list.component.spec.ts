@@ -1,28 +1,46 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CandidatesScreeningListComponent } from './candidates-screening-list.component';
-import { FormsModule } from '@angular/forms';
-import {
-  PaginatePipe, PaginationControlsComponent,
-  PaginationControlsDirective, PaginationService
-} from 'ngx-pagination';
-import { SearchPipe } from '../../util/search.pipe';
-import { HttpClientModule } from '@angular/common/http';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
-import { ScreeningService } from '../../services/screening/screening.service';
-import { ScheduleScreeningService } from '../../services/schedule-screening/schedule-screening.service';
-import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
-import { ScheduledScreening } from '../../entities/ScheduleScreening';
-import { SimpleTrainee } from '../../entities/SimpleTrainee';
-import { UrlService } from 'src/app/services/urls/url.service';
-import { Dependencies } from 'src/app/caliber.test.module';
-import { Directive } from '@angular/core';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
+import { Dependencies } from '../../screenforce.test.module';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { Candidate } from '../../entities/Candidate';
+import { By } from '@angular/platform-browser';
+import { SkillType } from '../../entities/SkillType';
 
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;
+  let scheduledScreeningService: ScheduledScreeningService;
+  let screeningStateService: ScreeningStateService;
+
+  const candidateFake: Candidate = {
+    candidateId: 5,
+    resourceId: 5,
+    name: 'Beethoven',
+    phoneNumber: '9156452593',
+    recruiterName: 'Bab',
+    college: 'University',
+    degree: 'Symphony 3',
+    major: 'E flat'
+  };
+
+  const skillTypeFake = {
+    skillTypeId: 5,
+    title: 'SQL',
+    active: true
+  };
+
+  const someScreening: ScheduledScreening = {
+  scheduledScreeningId: 5,
+  candidate: candidateFake,
+  track: skillTypeFake,
+  scheduledStatus: 'Screening in Progress',
+  scheduledDate: new Date()
+  };
+
+  const screeningList: ScheduledScreening[] = [someScreening];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule(Dependencies)
@@ -33,6 +51,8 @@ describe('CandidatesScreeningListComponent', () => {
     fixture = TestBed.createComponent(CandidatesScreeningListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    scheduledScreeningService = TestBed.get(ScheduledScreeningService);
+    screeningStateService = TestBed.get(ScreeningStateService);
   });
 
   /* to remove the localstorage after the test so it does not interefere with with other tests involving it */
@@ -55,46 +75,23 @@ describe('CandidatesScreeningListComponent', () => {
     expect(result).toEqual('block');
   });
 
-  it('should update storage', () => {
-    component.selectedScheduledScreening = {} as ScheduledScreening;
-    localStorage.setItem('scheduledScreeningID',JSON.stringify(component.selectedScheduledScreening.scheduledScreeningId = 1));
-    component.confirmSelectedCandidate();
-    const confirm = localStorage.getItem('scheduledScreeningID');
-    expect(confirm).toEqual('1');
-  });
-
-  /* it('should reload window', () => {
-    const spy = spyOn(window.location, 'reload');
-    component.ngOnInit();
-    expect(spy).toHaveBeenCalled();
-  });
- */
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedScheduledScreening.trainer = 1;
-    component.selectedCandidate = {} as SimpleTrainee;
-    component.selectedCandidate.skillTypeId = 1;
+    component.selectedScheduledScreening.track = {} as SkillType;
+    component.selectedScheduledScreening.track.skillTypeId = 1;
     component.beginScreening();
     expect(component.scheduledScreenings).toBeDefined();
   });
 
-  it('should populate localStorage', () => {
-    component.selectedScheduledScreening = {} as ScheduledScreening;
-    component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedScheduledScreening.trainer = 1;
-    component.selectedCandidate = {} as SimpleTrainee;
-    component.selectedCandidate.skillTypeId = 1;
-    /* simulate an assigned localstorage from database */
-    localStorage.setItem('screeningID', '1');
-    component.beginScreening();
-    expect(localStorage.getItem('screeningID')).not.toBeNull();
+  it('should populate a list and allow for element selection', () => {
+    spyOn(scheduledScreeningService, 'getScheduledScreenings')
+      .and.returnValue( screeningList);
+      component.ngOnInit();
+      fixture.detectChanges();
+      const element = fixture.debugElement.queryAll(By.css('tr'));
+     element[1].nativeElement.click();
+     expect(component.selectedScheduledScreening.scheduledScreeningId).toEqual(5);
   });
-
-
 });
 
-@Directive({
-  selector: '[routerLink], [routerLinkActive]'
-})
-class DummyRouterLinkDirective {}

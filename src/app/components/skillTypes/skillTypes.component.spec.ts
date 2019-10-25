@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SkillTypesComponent } from './skillTypes.component';
@@ -28,3 +29,8 @@ describe('SkillTypeBucketsComponent', () => {
     expect(component.grabAllSkillTypes).toBeTruthy();
   });
 });
+=======
+describe('skillTypesComponent', ()=>{
+    
+})
+>>>>>>> 9f992aaec9f4878c19f3226d81484f04dc80ecb1

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Weight } from '../../entities/Weight';
+import { String } from 'aws-sdk/clients/cloudhsmv2';
 
 @Injectable()
 export class UrlService {
-  public readonly adminContext: string = environment.adminContext;
-  public readonly screeningContext: string = environment.screeningContext;
+  public readonly adminContext: string =  environment.adminContext;
+  public readonly screeningContext: string =  environment.screeningContext;
+  public readonly reportContext: string = environment.reportContext;
 
   constructor() {}
 
@@ -13,11 +15,8 @@ export class UrlService {
    * Endpoints for bucket service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    *
    */
@@ -27,24 +26,20 @@ export class UrlService {
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
     createNewBucket: () => `${this.bucketEndpoint}`,
-    // deleteBucket: (bucketId: number) => `http://localhost:5001/bucket/delete/416`
-    deleteBucket: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`
+    deleteBucket: () => `${this.bucketEndpoint}`
   };
 
   /**
    * Endpoints for questions service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
   private questionEndpoint = this.adminContext + '/question';
   question = {
-    postQuestion: () => `${this.questionEndpoint}/new`,
+    postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
     getQuestionsByBucketId: (bucketId: number) =>
       `${this.questionEndpoint}/getByBucket/${bucketId}`,
@@ -67,21 +62,14 @@ export class UrlService {
    * Endpoints for screen services
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-   *
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  screeningEndpoint = '/screening';
   screening = {
-    scheduleScreening: () => `${this.screeningContext + this.screeningEndpoint}/scheduled`,
-    startScreening: () => `${this.screeningContext + this.screeningEndpoint}/new`,
-    startScreeninging: () => `${this.screeningContext + this.screeningEndpoint}/newest`,
-    endScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
-    updateScreening: () => `${this.screeningContext + this.screeningEndpoint}/update`,
-    getScreening: (id: number) => `${this.screeningContext + this.screeningEndpoint}/${id}`
+    scheduledScreeningUrl: () => `${this.screeningContext}/screening/scheduled`,
+    screeningUrl: () => `${this.screeningContext}/screening/`,
+    screeningUrlById: id => `${this.screeningContext}/screening/${id}`
    };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
@@ -113,20 +101,27 @@ export class UrlService {
     putSkillType: (skillTypeId: number) =>
       `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: () =>
-      `${this.skillTypesServiceEndpoint}/updateSkillTypeBucket`,
-    setSkillTypeBuckets: () =>
-      `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
-    getSkillTypeById: (skillTypeId: number) =>
-      `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`
+    updateSkillTypeBuckets: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
+    setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
+    getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
+
   };
 
   softSkillsViolation = {
     getViolationTypeURL: () => `${this.screeningContext}/violation`,
-    getViolationURL: (screeningID: number) =>
-      `${this.screeningContext}/screening/${screeningID}/violations`,
-    addViolationURL: () => `${this.screeningContext}violation/new/`,
-    deleteViolationURL: (violationID: number) =>
-      `${this.screeningContext}/screening/violation/delete/${violationID}`
+    getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/${screeningID}/violations`,
+    addViolationURL: () => `${this.screeningContext}/violation/new/`,
+    deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
+    };
+
+  private reportEndpoint = this.reportContext;
+  reports = {
+    getAllScreeners: () => `${this.reportEndpoint}/screenings`, /*Chisel was here*/
+    getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
+    getScreenerByName: (partialName: string): string => `${this.reportEndpoint}/screenings`,
+    getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
+    `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
+    getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>
+    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
   };
 }

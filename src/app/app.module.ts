@@ -1,50 +1,57 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { NgbModule, NgbActiveModal, NgbTabset, NgbTabsetModule, NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// Importing the routes from app routes
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HighchartsChartModule} from 'highcharts-angular';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule, NgbActiveModal, NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { Ng5SliderModule } from 'ng5-slider';
+import { NgModule } from '@angular/core';
+import {SpringInterceptor} from './interceptors/spring.interceptor';
+
 import { routes } from './app.routes';
-// Component Imports Alphabetically
+
+import { AppComponent } from './app.component';
 import { AnswerComponent } from './components/answer/answer.component';
-import { AlertsComponent } from './components/alerts/alerts.component';
+import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
+import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
+import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+import { MasterReportComponent } from './components/reports/master-report/master-report.component';
+import { NavComponent } from './components/nav/nav.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
-import { ScreeningComponent } from './components/screening/screening.component';
+import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
+import { ViolationsByTypeComponent } from './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
-import { GambitBatchUtilService } from './services/gambit-batch-util/gambit-batch-util.service';
-import { HttpErrorHandlerService } from './services/http-error/http-error-handler.service';
+import { CookieService } from 'ngx-cookie-service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
-import { ScheduleScreeningService } from './services/schedule-screening/schedule-screening.service';
-import { ScreenerBucketsService } from './services/screener-buckets/screener-buckets.service';
+import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { SimpleTraineeService } from './services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
-import { ApiService } from './services/api/api.service';
+import {AuthenticationService} from './services/authentication/authentication.service';
+import { AmplifyService, AmplifyAngularModule } from 'aws-amplify-angular';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
@@ -55,38 +62,28 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
-import { ToolbarFilterPipe } from './pipes/toolbar-filter.pipe';
-import { TraineeSearch } from './pipes/trainee-search.pipe';
-import { TrainerPipePipe } from './pipes/trainer-pipe.pipe';
 
-
-import { NavModule } from './nav.module';
 import { RoleGuard } from './role-guard';
-import { HttpClientModule } from '@angular/common/http';
-import { CandidateComponent } from './components/candidate/candidate.component';
 import { RouteService } from './services/routes/route.service';
-import { MockUser } from './mock-data/mocksimpleservice.service'
 
 @NgModule({
   declarations: [
-    // components
-    AlertsComponent,
     AppComponent,
     AnswerComponent,
     CandidatesScreeningListComponent,
     FinalReportComponent,
     IntroductionComponent,
+    NavComponent,
     PassFailComponent,
     QuestionComponent,
     QuestionsTableComponent,
-    ScreeningComponent,
     ScreeningConfigComponent,
-    SettingsComponent,
     SkillTypeBucketsComponent,
     SkillTypesComponent,
     ViolationFlagComponent,
     CandidateComponent,
-    // pipes
+    AverageSkillComponent,
+    LoginComponent,
     ArrToStringPipe,
     BucketFilterPipe,
     FilterByPipe,
@@ -94,35 +91,37 @@ import { MockUser } from './mock-data/mocksimpleservice.service'
     OrderByPipe,
     SearchPipe,
     TierPipe,
-    ToolbarFilterPipe,
-    TraineeSearch,
-    TrainerPipePipe,
+    AverageBucketTypeComponent,
+    MasterReportComponent,
+    ReportSidebarComponent,
+    ViolationsByTypeComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
-    HttpModule,
-    NgbModule.forRoot(),
     FormsModule,
+    HighchartsChartModule,
+    HttpClientModule,
+    NgbModule,
+    NgxPaginationModule,
+    Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
-    NavModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    AmplifyAngularModule
   ],
   providers: [
     AlertsService,
-    ApiService,
     BucketsService,
-    GambitBatchUtilService,
-    HttpErrorHandlerService,
     NgbActiveModal,
+    CookieService,
     QuestionScoreService,
     QuestionsService,
-    SimpleTraineeService,
-    ScheduleScreeningService,
-    ScreenerBucketsService,
+    ScreeningStateService,
+    ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
     RouteService,
@@ -132,9 +131,11 @@ import { MockUser } from './mock-data/mocksimpleservice.service'
     SoftSkillsViolationService,
     UrlService,
     ViolationTypeService,
-    NgbTabsetConfig
+    NgbTabsetConfig,
+    AuthenticationService,
+    AmplifyService,
+     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [AnswerComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 // Classes
-import { SimpleTrainee } from '../../entities/SimpleTrainee';
-import { ScheduledScreening } from '../../entities/ScheduleScreening';
+import { Candidate } from '../../entities/Candidate';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
 
 // Services
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { ScheduleScreeningService } from '../../services/schedule-screening/schedule-screening.service';
+import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { TRAINEES } from '../../mock-data/mock-simpleTrainees';
+
 // Installed Modules
 // npm install ngx-pagination --save
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { SearchPipe } from '../../pipes/search.pipe';
 
+
 @Component({
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
   styleUrls: ['./candidates-screening-list.component.css'],
-  providers: [SearchPipe]
+  providers: [SearchPipe, NgxPaginationModule]
 })
 
 /**
@@ -42,11 +43,10 @@ export class CandidatesScreeningListComponent implements OnInit {
   // when a screener (user) clicks on a screening,
   // save the candidate and scheduled screening
   // to their respective services.
-  selectedCandidate: SimpleTrainee;
   selectedScheduledScreening: ScheduledScreening;
   // Flag for displaying the "Begin Interview" prompt
   showBeginScreeningPrompt = false;
-  // random fields that are necessary for Jenkins to build.
+  // fields that are necessary for Jenkins to build.
   // Do not delete
   searchText; // text in search bar
   p; // current page
@@ -55,10 +55,9 @@ export class CandidatesScreeningListComponent implements OnInit {
        CONSTRUCTOR and INIT
   ########################### */
   constructor(
-    private http: HttpClientModule,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private screeningService: ScreeningService,
-    private scheduleScreeningService: ScheduleScreeningService,
+    private scheduledScreeningService: ScheduledScreeningService,
     private softSkillsViolationService: SoftSkillsViolationService,
     private questionScoreService: QuestionScoreService,
     private searchPipe: SearchPipe
@@ -74,35 +73,11 @@ export class CandidatesScreeningListComponent implements OnInit {
     ) {
       window.location.reload(true);
     }
+    this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
 
-    // retrieve all scheduled interviews and populate the table of screenings.
-    this.scheduleScreeningService.getScheduleScreenings().subscribe(data => {
-      this.scheduledScreenings = data;
-    });
-    // Mock data for testing without endpoints
-    this.scheduledScreenings.push({
-      scheduledScreeningId: 0,
-      trainee: { // Mock Data used for test screening
-          traineeID: 0,
-          firstname: 'Landon',
-          lastname: 'Renzullo',
-          skillTypeId: 6,
-          skillTypeName: 'Java',
-          schedule: new Date((new Date()).getTime() + 100000)
-        },
-      track: {skillTypeId: 56, title: 'Java', isActive: true},
-      skillTypeId: 56,
-      scheduledStatus: 'in progress',
-      trainer: 0,
-      scheduledDate: new Date()
-    });
   }
-  // End mock data!!!!!!!
-  /* ###########################
-        FUNCTIONS
-  ########################### */
 
-  // Unhides the "Begin Interview" prompt
+  // Reveals the "Begin Interview" prompt
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {
       return 'block';
@@ -113,40 +88,25 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
-    this.simpleTraineeService.setSelectedCandidate(this.selectedCandidate);
+    this.screeningStateService.setCurrentScreening(this.selectedScheduledScreening);
   }
 
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
-    this.selectedScheduledScreening.trainer = this.selectedScheduledScreening.trainer;
-    //  this.selectedScheduledScreening.track.skillTypeId = this.selectedCandidate.skillTypeId;
-    this.selectedScheduledScreening.scheduledDate = new Date();
-    this.selectedScheduledScreening.scheduledStatus = 'PENDING';
-    this.selectedScheduledScreening.skillTypeId = this.selectedCandidate.skillTypeId;
-
+    let screeningId: String;
+    let skillTypeId: String;
     // create a new screening entry in the database by calling the screening service
     this.screeningService
-      .beginScreening(
-        // must provide the current scheduled interview object
-        this.selectedScheduledScreening
-        // create a new date which signifies the start of the interview
-        //new Date(),
-        // This was not part of our iteration, but the "1" must be replaced
-        // with the trainer's ID so that their is an association
-        // between the interviewer and the person who screened them.
-        //this.selectedScheduledScreening.trainer,
-        // provide the track of the selected candidate for later use.
-        //this.selectedCandidate.skillTypeID
-      )
+      .beginScreening(this.selectedScheduledScreening, new Date(), 1)
       .subscribe(
         // take the data from the response from the database
         data => {
        // const scrId = data.screeningId;
         // and save the screening ID as a cookie to localStorage.
-        localStorage.setItem('screeningID', data.screeningId);
-        localStorage.setItem('scheduledScreeningId', data.scheduledScreening.scheduledScreeningId);
-        localStorage.setItem('scheduledScreening', JSON.stringify(data.scheduledScreening));
-        localStorage.setItem('screening', JSON.stringify(data));
+        // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
+        // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
+        screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
+        skillTypeId = this.selectedScheduledScreening.track.skillTypeId.toString();
       });
   }
 }

@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { QuestionScoreService } from './question-score.service';
-import { Dependencies } from 'src/app/caliber.test.module';
+import { Dependencies } from '../../screenforce.test.module';
 
 describe('QuestionScoreService', () => {
   beforeEach(() => {

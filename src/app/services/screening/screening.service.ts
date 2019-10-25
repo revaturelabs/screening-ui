@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Screening } from '../../entities/Screening';
-import { ScheduledScreening } from '../../entities/ScheduleScreening';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { UrlService } from '../urls/url.service';
 
 /**
@@ -44,28 +44,18 @@ export class ScreeningService {
   compositeScore: number;
   finalSoftSkillComment: string;
 
-  // When the screening begins, the following information will be sent,
-  // and a screening ID will be returned as an observable.
-  // scheduledScreening - the screening object selected from the screening list
-  // beginTime - the start time of the screening
-  // trainerId - ID of the trainer conducting the screening
-  // skillTypeId - the ID of the track
-
   beginScreening(
-    scheduledScreening: ScheduledScreening
-    // beginTime: Date,
-    // trainerId: number,
-    // skillTypeId: number,
-  ): Observable<any> {
-    return this.httpClient.post<any>(
-        this.urlService.screening.startScreening(),
-        {
-          // 'scheduledScreening': scheduledScreening.scheduledScreeningId,
-          // 'beginTime': beginTime,
-          // 'trainerId': trainerId,
-          // 'skillTypeId': skillTypeId
-          scheduledScreening
-        },
+    scheduledScreening: ScheduledScreening,
+    startDateTime: Date,
+    screenerId: number,
+  ): Observable<Number> {
+    let screening: Screening = new Screening();
+    screening.scheduledScreening = scheduledScreening;
+    screening.startDateTime = startDateTime;
+    screening.screenerId = screenerId;
+    return this.httpClient
+      .post<Number>(
+        this.urlService.screening.screeningUrl(), screening,
         { headers: this.headers }
       );
   }
@@ -84,8 +74,7 @@ export class ScreeningService {
     } else if (this.softSkillsResult === 'Fail') {
       verdict = false;
     }
-    this.sendscreen = JSON.parse(localStorage.getItem('screening'));
-    this.httpClient.post(this.urlService.screening.endScreening(),
+    this.httpClient.post(this.urlService.screening.screeningUrlById(this.screeningID$),
       {
         'status': 'Completed',
         'softSkillsVerdict': verdict,
@@ -104,9 +93,7 @@ export class ScreeningService {
   }
 
   getScreeningById(id) {
-    return this.httpClient.get<Screening>(
-      this.urlService.screening.getScreening(id)
-    );
+    return this.httpClient.get<Screening>(this.urlService.screening.screeningUrlById(id));
   }
 
   // Helper method that converts an input string to a boolean
@@ -117,55 +104,26 @@ export class ScreeningService {
       return undefined;
     }
   }
-  createScreening(screening: Screening): void {
-   // screening.generalCommentary = this.generalCommentary;
-    this.httpClient.post<any>(this.urlService.screening.startScreening(),
-        {
-          'status': 'In Progress',
-          // 'softSkillVerdict': 0,
-          // 'screenerId': 0,
-           'aboutMeCommentary': JSON.parse(localStorage.getItem('screening')).aboutMeCommentary,
-          // 'generalCommentary': '',
-          // 'softSkillCommentary': '',
-           'startDateTime': new Date(),
-          // 'endDateTime': '',
-           'screeningId': localStorage.getItem('screeningID'),
-           'scheduledScreening': JSON.parse(localStorage.getItem('scheduledScreening')),
-          // 'compositeScore': 0
-       //   screening
-        }
-      ).subscribe();
+  createScreening() {
+    this.httpClient.post(this.urlService.screening.screeningUrl(),
+      {
+        'status': 'In Progress',
+        'softSkillVerdict': 0,
+        'screenerId': 0,
+        'aboutComments': '',
+        'generalComments': '',
+        'softSkillCommentary': '',
+        'startDate': new Date(),
+        'endDateTime': '',
+        'screeningId': localStorage.getItem('screeningID'),
+        'scheduledScreeningId': localStorage.getItem('scheduledScreeningID'),
+        'compositeScore': 0
+      }
+    );
   }
-
-  // updateScreening(id: number): Observable<any> {
-  // const screen = this.getScreeningById(id);
-  //   return this.httpClient.put<any>(this.urlService.screening.updateScreening(),
-  //   {
-  //     screen
-  //   },
-  //   { headers: this.headers }
-  //   );
-  // }
-
-  // updateScreening(id: number) {
-  //   this.getScreeningById(id).subscribe(
-  //     curscreening => {
-  //       console.log('am i ever here');
-  //       console.log(curscreening);
-  //       return this.httpClient.put(this.urlService.screening.updateScreening(), curscreening).subscribe();
-  //     }
-  //   );
-  // }
-
-  updateScreening(currentScreen: Screening) {
-    return this.httpClient.post(this.urlService.screening.updateScreening(), {currentScreen},
-    { headers: this.headers });
+  updateScreening(id: number) {
+    this.getScreeningById(id).subscribe(
+      screening => this.httpClient.post(this.urlService.screening.screeningUrlById(id), screening)
+    );
   }
-
-  // Submit comments related to the candidate's self-introduction
-  // From the IntroductionComponent
-  // comment - the screener's comment
-
-  // Submits general comments related to the candidate's overall performance
-  // through the Q&A portion.
 }

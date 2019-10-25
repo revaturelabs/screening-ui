@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavComponent } from './nav.component';
-import { Dependencies } from 'src/app/caliber.test.module';
+import { Dependencies } from '../../screenforce.test.module';
 
 xdescribe('NavComponent', () => {
   let component: NavComponent;

@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
 import { UrlService } from '../urls/url.service';
-
-import { Bucket } from '../../entities/Bucket';
-import { SkillType } from '../../entities/SkillType';
 import { Weight } from '../../entities/Weight';
 
 /*

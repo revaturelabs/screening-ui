@@ -201,12 +201,5 @@ fixed-modal .modal-content {
   width: 91%;
   height: 87%;
   justify-content: center;
-  font-size: 12px;
-}
-
-#delBtn{
-  border-color: #F26925;
-  background-color: transparent;
-  font-size: 12px;
-  float: right;
+  font-size: 1rem;
 }

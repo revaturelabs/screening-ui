@@ -32,7 +32,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   constructor(
     private router: Router,
     private bucketService: BucketsService,
-    private questionService: QuestionsService,
+
     private modalService: NgbModal,
     private alertsService: AlertsService, ) { }
 
@@ -45,7 +45,9 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.bucketService.getAllBuckets().subscribe(buckets => {
 
       this.buckets = buckets;
-      this.buckets.sort(this.compare);
+      this.buckets.sort(this.compare); // compares the categories based on them being toggled active or not
+      this.buckets.sort(this.compareAlphabetically); // compares the categories and sorts alphabetically
+      this.buckets.sort(this.compareInactiveBuckets);
     });
 
   }
@@ -58,6 +60,23 @@ export class SkillTypeBucketsComponent implements OnInit {
       return 1;
     }
   }
+
+  /** used to compare buckets Array to sorts it alphabetically */
+  compareAlphabetically(a: Bucket, b: Bucket) {
+    if (a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
+  compareInactiveBuckets(a: Bucket, b: Bucket) {
+    if (!a.isActive && !b.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
+        return -1;
+    } else {
+        return 1;
+    }
+}
 
   /** Save the selected 'bucket' in 'bucket.service' to be used in
    * 'bucket.component'.
@@ -101,6 +120,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     this.bucketService.createNewBucket(this.newBucket)
       .subscribe(bucket => {
         this.buckets.push(bucket);
+        this.getBuckets();
       });
     // this.newBucket.bucketId = BUCKETS.length + 1;
     // this.newBucket.isActive = true;

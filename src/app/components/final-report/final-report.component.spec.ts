@@ -1,17 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FinalReportComponent } from './final-report.component';
-import { Dependencies } from 'src/app/caliber.test.module';
-import { MockUser } from 'src/app/mock-data/mocksimpleservice.service';
+
+import { Dependencies } from '../../screenforce.test.module';
+import { AlertsService } from 'src/app/services/alert-service/alerts.service';
+import { HttpClient } from 'selenium-webdriver/http';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { SkillTypesService } from 'src/app/services/skill-types/skill-types.service';
-import { HttpClient } from '@angular/common/http';
 import { QuestionScore } from 'src/app/entities/QuestionScore';
-import { AlertsService } from 'src/app/services/alert-service/alerts.service';
 import { SoftSkillViolation } from 'src/app/entities/SoftSkillViolation';
 import { Screening } from 'src/app/entities/Screening';
-import { TRAINEES } from 'src/app/mock-data/mock-simpleTrainees';
-import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
 
 
 // Author: David Gustafson
@@ -20,7 +18,7 @@ import { SKILLTYPES } from 'src/app/mock-data/mock-skillTypes';
 describe('FinalReportComponent', () => {
   let component: FinalReportComponent;
   let fixture: ComponentFixture<FinalReportComponent>;
-  let service: MockUser;
+  //let service: MockUser;
   let alertService: AlertsService;
   let client: HttpClient;
   let url: UrlService;
@@ -37,12 +35,11 @@ describe('FinalReportComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FinalReportComponent);
     component = fixture.componentInstance;
-    service = new MockUser(client, url, skillType);
+    //service = new MockUser(client, url, skillType);
 
     screeningToken = {
       screeningId: 1,
       screenerId: 2,
-      skillType: 3,
       compositeScore: 4,
       aboutMeCommentary: 'comment',
       generalCommentary: 'general comment',
@@ -51,15 +48,16 @@ describe('FinalReportComponent', () => {
       endDateTime: new Date(),
       softSkillsVerdict: false,
       status: 'test',
-      scheduledScreeningId: 12,
       scheduledScreening: {
         scheduledScreeningId: 12,
-        trainee: TRAINEES[0],
-        track: SKILLTYPES[0],
         scheduledStatus: 'test',
-        trainer: 999,
         scheduledDate: new Date(),
-        skillTypeId: 333
+        candidate: null,
+        track: {
+          skillTypeId: 0,
+          title: 'title',
+          active: true
+        }
       }
     };
 
@@ -75,11 +73,6 @@ describe('FinalReportComponent', () => {
   it('should return false for checked', () => {
     const result = component.checked;
     expect(result).toBe('false');
-  });
-
-  it('should return name of canidate', () => {
-    expect(service.getSelectedCandidate().firstname).toBe('Test');
-    expect(service.getSelectedCandidate().lastname).toBe('Test');
   });
 
   it('should change status of checked on copyToClipBoard()', () => {

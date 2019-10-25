@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
-import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { Observable } from 'rxjs';
@@ -43,10 +43,11 @@ export class PassFailComponent implements OnInit {
   constructor(
     private violationService: SoftSkillsViolationService,
     private screeningService: ScreeningService,
-    private simpleTraineeService: SimpleTraineeService,
+    private screeningStateService: ScreeningStateService,
     private violationTypeService: ViolationTypeService,
     public softSkillViolationService: SoftSkillsViolationService
-  ) { this.screening = new Screening();
+  ) {
+  this.screening = new Screening();
   }
 
   ngOnInit() {
@@ -54,33 +55,25 @@ export class PassFailComponent implements OnInit {
     this.passChecked = false;
     this.failChecked = false;
     const violationArray: any[] = [];
-    this.candidateName =
-      this.simpleTraineeService.getSelectedCandidate().firstname +
-      ' ' +
-      this.simpleTraineeService.getSelectedCandidate().lastname;
-    this.softSkillViolationService
-      .getPreviousViolations(+localStorage.getItem('screeningID'))
-      .subscribe(data => {
-        this.previousViolations = data;
-        this.softSkillViolationService.softSkillViolations = this.previousViolations;
-      });
-    this.violationTypeService
-      .getAllViolationTypes()
-      .subscribe(violationTypes => {
-        this.getViolations().subscribe(data => {
-          // e = our violations
-          for (const e of data) {
-            // v = all violation types
-            for (const v of violationTypes) {
-              if (e.violationID === v.violationID) {
-                const thisTime = e.Time;
-                const thisComment = e.Comment;
-                violationArray.push({
-                  violationType: { violationType: v.violationTypeText },
-                  Time: thisTime,
-                  Comment: thisComment
-                });
-              }
+    this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
+    this.softSkillViolationService.getPreviousViolations(parseInt(localStorage.getItem('screeningID'))).subscribe(data => {
+      this.previousViolations = data;
+      this.softSkillViolationService.softSkillViolations = this.previousViolations;
+    });
+    this.violationTypeService.getAllViolationTypes().subscribe(violationTypes => {
+      this.getViolations().subscribe(data => {
+        // e = our violations
+        for (const e of data) {
+          // v = all violation types
+          for (const v of violationTypes) {
+            if (e.violationID === v.violationID) {
+              const thisTime = e.Time;
+              const thisComment = e.Comment;
+              violationArray.push({
+                violationType: { violationType: v.violationTypeText },
+                Time: thisTime,
+                Comment: thisComment
+              });
             }
           }
           this.violations = violationArray;
@@ -89,8 +82,9 @@ export class PassFailComponent implements OnInit {
               this.currentSoftSkillsViolationsVar = values;
             }
           );
-        });
+        }
       });
+    });
   }
 
   // Returns a boolean denoting whether either the "Pass" or "Fail" button was clicked.
@@ -124,13 +118,13 @@ export class PassFailComponent implements OnInit {
     } else if (this.failChecked) {
       this.fail();
     }
-  //  this.screeningService.finalSoftSkillComment = this.softSkillFeedback;
+    //  this.screeningService.finalSoftSkillComment = this.softSkillFeedback;
     this.screening = JSON.parse(localStorage.getItem('screening'));
     this.screening.softSkillCommentary = this.softSkillFeedback;
     this.screening.endDateTime = new Date();
     this.screening.status = 'Complete';
     localStorage.setItem('screening', JSON.stringify(this.screening));
-    this.screeningService.updateScreening(this.screening);
+    this.screeningService.updateScreening(this.screening.screeningId);
   }
 
   pass() {

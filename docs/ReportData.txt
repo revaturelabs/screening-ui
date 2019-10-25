@@ -1,0 +1,47 @@
+// Screener class contains name and email of the current screener conducting the screening.
+export class Screener {
+    // name of screener
+    name: string;
+    // email of screener
+    email: string;
+}
+
+// BarChartData class contains the name and average value of a bar being represented on the Chart.
+// Charts are divided into:
+// Average Score by Bucket Type, Average Score by Skill Type, Violations by Types
+// Each bar contains specific skill with average of that skill over time period selected.
+export class BarChartData {
+    // Bar name.
+    name: string;
+    // average number calculated over specific time range.
+    y: number;
+}
+
+// ReportData class contains all data that will be presented in the final report.
+export interface ReportData {
+    // Array of strings stroring hardest questions selected by the screener based on all data per time frame.
+    hardestQuestions: string[];
+    // Array of objects that stores data regarding general skills (soft skills, basic math, advanced math, etc.)
+    avgSkillTypeScore: BarChartData[];
+    // Array of objects that stores data regarding technical skills (Java, SQL, Angular, Spring, JDBC, etc.)
+    avgBucketTypeScore: BarChartData[];
+    // Array of objects that stores data regarding violations that occured during screening (Profanity, Dress Attire, Attitude, etc. )
+    violationsByType: BarChartData[];
+    // Integer variable that stores the number of applicants that passed the screening procces over specific time range.
+    numApplicantsPassed: number;
+    // Integer variable that stores the number of applicants that passed the screening procces over specific time range.
+    numApplicantsFailed: number;
+    // Screener object containing screener name and email.
+    screener: Screener;
+
+    
+    // public ReportData(hardestQuestions, aveSkillTypeScore, 
+    //     avgBucketTypeScore, numApplicantsPassed, numApplicantsFailed, screenerName, screenerEmail) {
+    //         this.hardestQuestions = hardestQuestions;
+    //         this.avgSkillTypeScore = aveSkillTypeScore;
+    //         this.avgBucketTypeScore = avgBucketTypeScore;
+    //         this.numApplicantsPassed = numApplicantsPassed;
+    //         this.numApplicantsFailed = numApplicantsFailed;
+    //         this.screener = { 'name': screenerName, 'email': screenerEmail };
+    // }
+}

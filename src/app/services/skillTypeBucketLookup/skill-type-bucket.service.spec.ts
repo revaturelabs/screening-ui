@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { SkillTypeBucketService } from './skill-type-bucket.service';
-import { Dependencies } from 'src/app/caliber.test.module';
+import { Dependencies } from '../../screenforce.test.module';
 
 describe('SkillTypeBucketService', () => {
   beforeEach(() => {
@@ -12,3 +12,4 @@ describe('SkillTypeBucketService', () => {
     expect(service).toBeTruthy();
   }));
 });
+

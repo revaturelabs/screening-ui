@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScreeningConfigComponent } from './screening-config.component';
-import { Dependencies } from 'src/app/caliber.test.module';
+import { Dependencies } from '../../screenforce.test.module';
 
 describe('ScreeningComponent', () => {
   let component: ScreeningConfigComponent;
   let fixture: ComponentFixture<ScreeningConfigComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule(Dependencies)
     .compileComponents();

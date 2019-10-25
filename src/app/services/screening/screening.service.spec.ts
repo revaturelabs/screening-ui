@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { ScreeningService } from './screening.service';
-import { Dependencies } from 'src/app/caliber.test.module';
+import { Dependencies } from '../../screenforce.test.module';
 
 describe('ScreeningService', () => {
   beforeEach(() => {
