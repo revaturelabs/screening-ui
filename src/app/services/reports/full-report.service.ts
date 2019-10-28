@@ -15,7 +15,13 @@ export class FullReportService {
     private http: HttpClient
   ) { }
 
-  getAllReports(dateStart: string, dateEnd: string, screenerId: number): Observable<ReportData> {
-    return this.http.get<ReportData>(this.urlService.reports.getAllReports(dateStart, dateEnd, screenerId));
+ /* getAllReports(dateStart: string, dateEnd: string, screenerId: number): Observable<ReportData> {
+    return this.http.get<ReportData>(this.urlService.reports.getAllReports());
+  } */
+  getAllReports(): Observable<any> {
+    return this.http.get(this.urlService.reports.getAllReports());
+  }
+  getAllReportsByDate(dateStart: string, dateEnd: string): Observable<any> {
+    return this.http.get(this.urlService.reports.getAllReportsByDate(dateStart, dateEnd));
   }
 }
