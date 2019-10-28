@@ -11,7 +11,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 
 
 @Component({
-  selector: 'app-skill-type-buckets',
+  selector: 'app-track-buckets',
   templateUrl: './track-buckets.component.html',
   styleUrls: ['./track-buckets.component.css']
 })
