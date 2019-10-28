@@ -48,7 +48,7 @@ export class CategoriesService {
     return this.http.put<Category>(this.urlService.category.updateCategory() + '/' + category.categoryId, category, httpOptions);
   }
 
-  // Delete bucket
+  // Delete category
   deleteCategory(category: Category) {
       return this.http.delete<Category>(this.urlService.category.deleteCategory() + '/' + category.categoryId, httpOptions );
   }

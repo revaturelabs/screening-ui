@@ -26,7 +26,7 @@ describe('CategoriesService', () => {
     let httpClientSpyOnPut: { put: jasmine.Spy };
     let httpClientSpyOnPost: { post: jasmine.Spy };
     let categoriesService: CategoriesService;
-    // testing getAllBuckets makes http request
+    // testing getAllCategories makes http request
     it('getAllCategories should return expected categories', () => {
         httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
         categoriesService = new CategoriesService(<any>httpClientSpyOnGet, new UrlService);
@@ -40,7 +40,7 @@ describe('CategoriesService', () => {
         );
         expect(httpClientSpyOnGet.get.calls.count()).toBe(1, 'one call');
     });
-    // testing CreateNewbucket makes an Http Request
+    // testing CreateNewCategory makes an Http Request
     it('createNewCategory should return new Category', () => {
         httpClientSpyOnPost = jasmine.createSpyObj('http', ['post']);
         categoriesService = new CategoriesService(<any>httpClientSpyOnPost, new UrlService);
