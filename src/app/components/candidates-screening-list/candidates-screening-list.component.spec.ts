@@ -12,12 +12,14 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { SkillTypesService } from '../../services/tracks/skill-types.service';
+// refactor skilltype -> track
+import { TracksService } from '../../services/tracks/tracks.service';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { Candidate } from '../../entities/Candidate';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { UrlService } from '../../services/urls/url.service';
-import { SkillType } from '../../entities/SkillType';
+// refactor skilltype -> track
+import { Track } from '../../entities/Track';
 import { By } from '@angular/platform-browser';
 
 
@@ -38,8 +40,9 @@ describe('CandidatesScreeningListComponent', () => {
     major: 'E flat'
   };
 
-  const skillTypeFake = {
-    skillTypeId: 5,
+  // refactor skilltype -> track
+  const trackFake = {
+    trackId: 5,
     title: 'SQL',
     active: true
   };
@@ -47,20 +50,22 @@ describe('CandidatesScreeningListComponent', () => {
   const someScreening: ScheduledScreening = {
   scheduledScreeningId: 5,
   candidate: candidateFake,
-  track: skillTypeFake,
+    // refactor skilltype -> track
+  track: trackFake,
   scheduledStatus: 'Screening in Progress',
   scheduledDate: new Date()
   };
 
   const screeningList: ScheduledScreening[] = [someScreening];
 
+  // refactor skilltype -> track
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CandidatesScreeningListComponent, PaginatePipe, PaginationControlsComponent,
         PaginationControlsDirective, SearchPipe],
       imports: [FormsModule, HttpClientModule, ReactiveFormsModule],
       providers: [ScreeningStateService, ScreeningService, ScheduledScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypesService, PaginationService, UrlService]
+        QuestionScoreService, TracksService, PaginationService, UrlService]
     })
       .compileComponents();
   }));
@@ -88,11 +93,12 @@ describe('CandidatesScreeningListComponent', () => {
     expect(result).toEqual('block');
   });
 
+  // refactor skilltype -> track
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
-    component.selectedScheduledScreening.track = {} as SkillType;
-    component.selectedScheduledScreening.track.skillTypeId = 1;
+    component.selectedScheduledScreening.track = {} as Track;
+    component.selectedScheduledScreening.track.trackId = 1;
     component.beginScreening();
     expect(component.scheduledScreenings).toBeDefined();
   });

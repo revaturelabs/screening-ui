@@ -94,7 +94,8 @@ export class CandidatesScreeningListComponent implements OnInit {
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
     let screeningId: String;
-    let skillTypeId: String;
+    // refactor skilltype -> track
+    let trackId: String;
     // create a new screening entry in the database by calling the screening service
     this.screeningService
       .beginScreening(
@@ -114,7 +115,8 @@ export class CandidatesScreeningListComponent implements OnInit {
         // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
         // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
         screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
-        skillTypeId = this.selectedScheduledScreening.track.skillTypeId.toString();
+          // refactor skilltype -> track
+        trackId = this.selectedScheduledScreening.track.trackId.toString();
       });
   }
 }
