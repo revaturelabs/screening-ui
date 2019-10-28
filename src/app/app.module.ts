@@ -77,7 +77,11 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
+
 import { AReportComponent } from './a-report/a-report.component';
+
+import { FullReportService } from './services/reports/full-report.service';
+
 
 
 @NgModule({
@@ -109,12 +113,12 @@ import { AReportComponent } from './a-report/a-report.component';
     MasterReportComponent,
     ReportSidebarComponent,
     ViolationsByTypeComponent,
-    //ILYA//
+  
     AReportComponent
-    //ILYA//
+ 
   ],
   imports: [
-    //ILYA//
+   
     MaterialModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -122,7 +126,7 @@ import { AReportComponent } from './a-report/a-report.component';
     MatRippleModule,
     MatDialogModule,
 
-    //!ILYA//
+   
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -136,7 +140,7 @@ import { AReportComponent } from './a-report/a-report.component';
     AmplifyAngularModule,
   ],
   
-  //ILYA//
+  
   exports: [
     MatButtonModule,
     MatFormFieldModule,
@@ -149,12 +153,13 @@ import { AReportComponent } from './a-report/a-report.component';
   entryComponents: [
     AReportComponent
   ],
-  //!ILYA//
+  
 
   providers: [
     AlertsService,
     BucketsService,
     CookieService,
+    FullReportService,
     QuestionScoreService,
     QuestionsService,
     ScreeningStateService,

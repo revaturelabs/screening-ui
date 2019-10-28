@@ -112,6 +112,8 @@ export class UrlService {
     getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
     `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
     getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>
-    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
+    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`,
+    getAllReports: (dateStart: string, dateEnd: string, screenerId: number): string =>
+    `${this.reportEndpoint}/getWeeksReport?startDate=${dateStart}&endDate=${dateEnd}&screenerId=${screenerId}`
   };
 }
