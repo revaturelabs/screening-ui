@@ -1,10 +1,10 @@
 import { Candidate } from './Candidate';
-import { SkillType } from './SkillType';
+import { Track } from './Track';
 
 export class ScheduledScreening {
   scheduledScreeningId: number;
   candidate: Candidate;
-  track: SkillType;
+  track: Track;
   scheduledStatus: string;
   scheduledDate: Date;
 }
