@@ -4,7 +4,7 @@ import { BucketsService } from '../../services/categories/categories.service';
 import { SkillTypeBucketsComponent } from './skillType-buckets.component';
 import { FormsModule } from '@angular/forms';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { Bucket } from '../../entities/Bucket';
+import { Bucket } from '../../entities/Category';
 import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';

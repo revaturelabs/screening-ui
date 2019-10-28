@@ -1,4 +1,4 @@
-import { Bucket } from './Bucket';
+import { Bucket } from './Category';
 import { SkillType } from './SkillType';
 
 export class Weight {

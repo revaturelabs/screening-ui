@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 /** component, service imports */
-import { Bucket } from '../../entities/Bucket';
+import { Bucket } from '../../entities/Category';
 import { BucketsService } from '../../services/categories/categories.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */

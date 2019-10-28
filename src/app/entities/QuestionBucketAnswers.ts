@@ -1,7 +1,7 @@
 import { QuestionScore } from './QuestionScore';
-import { Bucket } from './Bucket';
+import { Category } from './Category';
 
-export class QuestionBucketAnswers {
-    bucket: Bucket;
+export class QuestionCategoryAnswers {
+    category: Category;
     questionScores: QuestionScore[];
 }
