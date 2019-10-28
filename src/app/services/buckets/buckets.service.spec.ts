@@ -1,16 +1,9 @@
 import { BucketsService } from './buckets.service';
-<<<<<<< HEAD
-import { Dependencies } from 'src/app/caliber.test.module';
-
-describe('BucketsService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule(Dependencies);
-  });
-=======
+import { Dependencies } from '../../screenforce.test.module';
 import { Bucket } from '../../entities/Bucket';
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
-import { inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 export function asyncData<T>(data: T) {
     return defer(() => Promise.resolve(data));
@@ -27,6 +20,9 @@ const mockbucket: Bucket = {
 const buckets: Bucket[] = [mockbucket];
 
 describe('BucketsService', () => {
+    beforeEach(() => {
+        TestBed.configureTestingModule(Dependencies);
+      });
     const testBucket = -1;
     let httpClientSpyOnGet: { get: jasmine.Spy };
     let httpClientSpyOnPut: { put: jasmine.Spy };
@@ -58,7 +54,6 @@ describe('BucketsService', () => {
         );
         expect(httpClientSpyOnPost.post.calls.count()).toBe(1, 'one call');
     });
->>>>>>> 9f992aaec9f4878c19f3226d81484f04dc80ecb1
 
     it('updateBucket should return bucket with updated values', () => {
         httpClientSpyOnPut = jasmine.createSpyObj('http', ['put']);

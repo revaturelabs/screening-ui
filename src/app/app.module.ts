@@ -64,7 +64,6 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
-import { RouteService } from './services/routes/route.service';
 
 @NgModule({
   declarations: [
@@ -124,7 +123,6 @@ import { RouteService } from './services/routes/route.service';
     ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
-    RouteService,
     SkillTypesService,
     SkillTypeBucketService,
     SoftSkillsService,

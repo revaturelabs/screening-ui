@@ -53,7 +53,6 @@ import { ViolationTypeService } from './services/violationType/violationType.ser
 import { CookieService } from 'ngx-cookie-service';
 import { NavComponent } from './components/nav/nav.component';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
-import { RouteService } from './services/routes/route.service';
 import { RoleGuard } from './role-guard';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
@@ -131,7 +130,6 @@ export const Dependencies = {
     ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
-    RouteService,
     SkillTypesService,
     SkillTypeBucketService,
     SoftSkillsService,
@@ -143,10 +141,5 @@ export const Dependencies = {
     AmplifyService,
      { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
-  bootstrap: [
-  ],
-  exports: [
-    ViolationFlagComponent,
-    PaginatePipe,
-  ]
+  bootstrap: []
 };

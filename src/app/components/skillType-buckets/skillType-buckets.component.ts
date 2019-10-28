@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-/** component, service imports */
 import { Bucket } from '../../entities/Bucket';
 import { BucketsService } from '../../services/buckets/buckets.service';
-import { QuestionsService } from '../../services/questions/questions.service';
-/** style lib. imports */
-import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { QUESTIONS } from '../../mock-data/mock-questions';
-import { BUCKETS } from '../../mock-data/mock-buckets';
-
 
 @Component({
   selector: 'app-skill-type-buckets',

@@ -5,28 +5,6 @@
 
             <h6 class="card-header">All Categories</h6>
 
-<<<<<<< HEAD
-      <div class="card-body" id="allSkillTypesDiv">
-      <!--  <div class="form-group row">
-          <div class="col-sm-12">
-            <!--A search bar to help sift through the unadded tags for when the amount of tags is increased
-            <input type="text" name="bucket" [(ngModel)]="filter.bucketCategory" placeholder="Search Categories" min="0"
-              max="100" class="form-control">
-          </div>
-        </div> -->
-        
-
-        <!-- List of all buckets -->
-        <div class="list-group">
-          <!-- clickable to route to Bucket -->
-          <!--* routeToBucket() -->
-          <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);">
-            <b>{{bucket.bucketCategory}}</b>
-            <br>
-            <small>{{bucket.bucketDescription}}</small>
-
-            <!--* editBucket(bucket), passes the bucket selected to component side.
-=======
             <div class="card-body" id="allSkillTypesDiv">
                 <!-- List of all buckets -->
                 <div class="list-group">
@@ -34,7 +12,6 @@
                     <!--* routeToBucket() -->
                     <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);click();">
                         <!--* editBucket(bucket), passes the bucket selected to component side.
->>>>>>> 9f992aaec9f4878c19f3226d81484f04dc80ecb1
                 * open(edit), calls modal to open. -->
                         <div class="col-sm" (click)="$event.cancelBubble=true;click(); ">
                             <i id="xIcon">

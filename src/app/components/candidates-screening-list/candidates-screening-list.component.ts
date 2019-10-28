@@ -1,8 +1,4 @@
 import { Component, OnInit, } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
-// Classes
-import { Candidate } from '../../entities/Candidate';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 
 // Services
