@@ -41,7 +41,7 @@ export class QuestionsService {
   private returnCategories: Category[] = [];
 
   /**
-   * Modifed parameters to only take in question and tagIds and not also bucket id because that is already
+   * Modifed parameters to only take in question and tagIds and not also category id because that is already
    * stored in question
    * updated to be in sync with new Gambit question service modifications
    * used urlService to get endpoint for posting new questions
@@ -83,8 +83,8 @@ export class QuestionsService {
   }
 
   /**
-   * gets all questions from bucket
-   * add urlService to get endpoint for getting Bucket Questions
+   * gets all questions from category
+   * add urlService to get endpoint for getting Category Questions
    * @param categoryId
   */
 
@@ -102,7 +102,7 @@ export class QuestionsService {
   }
 
   /**
-   * Originally from a file called "questionsToBuckets.util.ts"
+   * Originally from a file called "questionsToCategories.util.ts"
    * That was a gross way to do it, so I incorporated the only method in it
    * here.
    * @param allQuestions
@@ -110,30 +110,30 @@ export class QuestionsService {
    */
   saveQuestions(allQuestions: Question[], allCategories: SkillTypeCategoryLookUp): Category[] {
     allQuestions.forEach(question => {
-      // If the buckets array is empty, add this question's bucket to it
+      // If the categories array is empty, add this question's category to it
       if (this.returnCategories.length === 0) {
         const matchingCategory = allCategories.categories.find(function (element) {
           return element.categoryId === question.category.categoryId;
         });
-        // After adding the new bucket, add the current question to the new bucket
+        // After adding the new category, add the current question to the new category
         if (matchingCategory) {
           this.returnCategories.push(matchingCategory);
         }
-        // If the bucket array is not empty, check to see if this question's bucket is already listed
+        // If the category array is not empty, check to see if this question's category is already listed
       } else {
         const existingCategory = this.returnCategories.find(function (element) {
           return element.categoryId === question.category.categoryId;
         });
-        // If this question's bucket is not listed, add it
+        // If this question's category is not listed, add it
         if (!existingCategory) {
           const matchingCategory = allCategories.categories.find(function (element) {
             return element.categoryId === question.category.categoryId;
           });
-          // After adding the new bucket, add the current question to the new bucket
+          // After adding the new category, add the current question to the new category
           if (matchingCategory) {
             this.returnCategories.push(matchingCategory);
           }
-          // If the bucket exists, add question to it
+          // If the category exists, add question to it
         }
       }
 
