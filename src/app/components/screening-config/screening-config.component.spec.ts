@@ -7,7 +7,7 @@ import { SkillTypesComponent } from '../skillTypes/skillTypes.component';
 import { CandidateComponent } from '../candidate/candidate.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BucketsService } from '../../services/buckets/buckets.service';
+import { BucketsService } from '../../services/categories/categories.service';
 import { UrlService } from '../../services/urls/url.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertsService } from '../../services/alert-service/alerts.service';

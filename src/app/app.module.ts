@@ -38,7 +38,7 @@ import { LoginComponent } from './components/login/login.component';
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
-import { BucketsService } from './services/buckets/buckets.service';
+import { BucketsService } from './services/categories/categories.service';
 import { CookieService } from 'ngx-cookie-service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';

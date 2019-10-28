@@ -5,7 +5,7 @@ import { Bucket } from '../../entities/Bucket';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { BucketsService } from '../../services/buckets/buckets.service';
+import { BucketsService } from '../../services/categories/categories.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
 

@@ -5,7 +5,7 @@ import { SkillType } from '../../entities/SkillType';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
 import { Bucket } from '../../entities/Bucket';
 import { Weight } from '../../entities/Weight';
-import { BucketsService } from '../../services/buckets/buckets.service';
+import { BucketsService } from '../../services/categories/categories.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 
@@ -101,7 +101,7 @@ export class SkillTypesComponent implements OnInit {
             });
         }
     }
- 
+
     /**
     * Opens the modal for creating and editing skill SkillType
     * Resets fields clears the data within set fields
@@ -149,12 +149,12 @@ export class SkillTypesComponent implements OnInit {
             }
         }
     }
-  
+
     checkContains(bucket: Bucket) {
         if (this.singleSkillType) {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
-                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        
+                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {
                       return true;
                     }
                 }

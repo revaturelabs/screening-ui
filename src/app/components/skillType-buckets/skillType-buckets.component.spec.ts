@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BucketsService } from '../../services/buckets/buckets.service';
+import { BucketsService } from '../../services/categories/categories.service';
 import { SkillTypeBucketsComponent } from './skillType-buckets.component';
 import { FormsModule } from '@angular/forms';
 import { AlertsService } from '../../services/alert-service/alerts.service';
@@ -38,9 +38,9 @@ beforeEach(()=>{
 it(`Checking if all buckets were returned`,()=>{
    spyOn(fakeBucketService,`getAllBuckets`)
    .and.returnValues(of(fakeBukets));
-  
+
 });
-  
+
   it('Checking if bucket is created', () => {
     spyOn(fakeBucketService, 'createNewBucket')
     .and.returnValues(of(fakeBukets[0]));

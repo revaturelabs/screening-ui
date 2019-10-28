@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 /** component, service imports */
 import { Bucket } from '../../entities/Bucket';
-import { BucketsService } from '../../services/buckets/buckets.service';
+import { BucketsService } from '../../services/categories/categories.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */
 import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';

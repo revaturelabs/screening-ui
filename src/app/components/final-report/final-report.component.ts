@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+// refactor bucket -> category
+import { SkillTypeCategoryService } from '../../services/skillTypeCategoryLookup/skill-type-category.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
-import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
+// refactor bucket -> category
+import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
@@ -16,7 +18,8 @@ import { Candidate } from '../../entities/Candidate';
   selector: 'app-final-report',
   templateUrl: './final-report.component.html',
   styleUrls: ['./final-report.component.css'],
-  providers: [ScoresToBucketsUtil]
+  // refactor bucket -> category
+  providers: [ScoresToCategoriesUtil]
 })
 
 /*
@@ -31,7 +34,8 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   candidate: Candidate;
   skillType: SkillType;
   softSkillString: string;
-  bucketStringArray: string[];
+  // refactor bucket -> category
+  categoryStringArray: string[];
   overallScoreString: string;
   generalNotesString: string;
   allTextString: string;
@@ -44,9 +48,10 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   constructor(
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    private skillTypeBucketService: SkillTypeBucketService,
+    // refactor bucket -> category
+    private skillTypeCategoryService: SkillTypeCategoryService,
     private questionScoreService: QuestionScoreService,
-    private scoresToBucketsUtil: ScoresToBucketsUtil,
+    private scoresToCategoriesUtil: ScoresToCategoriesUtil,
     private alertsService: AlertsService,
     private softSkillsViolationService: SoftSkillsViolationService
   ) { }
@@ -59,23 +64,25 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        // need to get the skilltype of the screening from something other than the Candidate. 
-        this.skillTypeBucketService.getWeightsBySkillType(0).subscribe(
-          weights =>
-          {
-            this.bucketStringArray =
-            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+        // need to get the skilltype of the screening from something other than the Candidate.
+        // refactor bucket -> category
+        this.skillTypeCategoryService.getWeightsBySkillType(0).subscribe(
+          weights => {
+            this.categoryStringArray =
+            this.scoresToCategoriesUtil.getFinalBreakdown(this.questionScores, weights);
           }
-        )
+        );
         // Set the composite score in the screening service
-        this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
-        this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
+        // refactor bucket -> category
+        this.screeningService.compositeScore = +this.categoryStringArray[this.categoryStringArray.length - 1];
+        this.categoryStringArray.splice(this.categoryStringArray.length - 1, 1);
 
-        this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];
-        this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
+        this.overallScoreString = this.categoryStringArray[this.categoryStringArray.length - 1];
+        this.categoryStringArray.splice(this.categoryStringArray.length - 1, 1);
 
-        this.bucketStringArray.forEach(bucketString => {
-          this.allTextString += bucketString + '\n';
+        // refactor bucket -> category
+        this.categoryStringArray.forEach(categoryString => {
+          this.allTextString += categoryString + '\n';
         });
         this.allTextString += this.overallScoreString + '\n';
       });
