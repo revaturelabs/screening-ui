@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BucketsService } from '../../services/buckets/buckets.service';
-import { SkillTypeBucketsComponent } from './skillType-buckets.component';
+import { TrackBucketsComponent } from './track-buckets.component';
 import { FormsModule } from '@angular/forms';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { Bucket } from '../../entities/Bucket';
@@ -9,9 +9,9 @@ import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
 
-describe('SkillTypeBucketsComponent', () => {
-let fixture:ComponentFixture<SkillTypeBucketsComponent>;
-let component:SkillTypeBucketsComponent;
+describe('TrackBucketsComponent', () => {
+let fixture:ComponentFixture<TrackBucketsComponent>;
+let component:TrackBucketsComponent;
 let fakeBucketService:BucketsService;
 let mockbucket:Bucket={
   bucketId: 1,
@@ -28,10 +28,10 @@ let fakeBukets:Bucket[]=[mockbucket];
 beforeEach(()=>{
   TestBed.configureTestingModule({
     imports:[RouterTestingModule,FormsModule,HttpClientModule],
-    declarations:[SkillTypeBucketsComponent],
+    declarations:[TrackBucketsComponent],
     providers:[BucketsService,AlertsService,UrlService]
   })
-  fixture=TestBed.createComponent(SkillTypeBucketsComponent);
+  fixture=TestBed.createComponent(TrackBucketsComponent);
   component=fixture.componentInstance;
   fakeBucketService=TestBed.get(BucketsService);
 });

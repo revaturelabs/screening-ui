@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
-import { SkillTypesService } from '../skill-types/skill-types.service';
+import { SkillTypesService } from '../tracks/skill-types.service';
 import { SkillType } from '../../entities/SkillType';
 import { UrlService } from '../urls/url.service';
 

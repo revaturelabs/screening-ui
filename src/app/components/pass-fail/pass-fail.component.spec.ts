@@ -6,7 +6,7 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { SkillTypesService } from '../../services/tracks/skill-types.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
