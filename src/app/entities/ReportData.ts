@@ -8,7 +8,7 @@ export class BarChartData {
 }
 export interface ReportData {
     hardestQuestions: string[];
-    avgSkillTypeScore: BarChartData[];
+    avgTrackScore: BarChartData[];
     avgBucketTypeScore: BarChartData[];
     violationsByType: BarChartData[];
     numApplicantsPassed: number;
@@ -16,10 +16,10 @@ export interface ReportData {
     screener: Screener;
 
     
-    // public ReportData(hardestQuestions, aveSkillTypeScore, 
+    // public ReportData(hardestQuestions, aveTrackScore, 
     //     avgBucketTypeScore, numApplicantsPassed, numApplicantsFailed, screenerName, screenerEmail) {
     //         this.hardestQuestions = hardestQuestions;
-    //         this.avgSkillTypeScore = aveSkillTypeScore;
+    //         this.avgTrackScore = aveTrackScore;
     //         this.avgBucketTypeScore = avgBucketTypeScore;
     //         this.numApplicantsPassed = numApplicantsPassed;
     //         this.numApplicantsFailed = numApplicantsFailed;
