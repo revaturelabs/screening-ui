@@ -1,11 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-// refactor bucket -> category
 import { SkillTypeCategoryService } from '../../services/skillTypeCategoryLookup/skill-type-category.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
-// refactor bucket -> category
 import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
@@ -18,7 +16,6 @@ import { Candidate } from '../../entities/Candidate';
   selector: 'app-final-report',
   templateUrl: './final-report.component.html',
   styleUrls: ['./final-report.component.css'],
-  // refactor bucket -> category
   providers: [ScoresToCategoriesUtil]
 })
 
@@ -34,7 +31,6 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   candidate: Candidate;
   skillType: SkillType;
   softSkillString: string;
-  // refactor bucket -> category
   categoryStringArray: string[];
   overallScoreString: string;
   generalNotesString: string;
@@ -48,7 +44,6 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   constructor(
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    // refactor bucket -> category
     private skillTypeCategoryService: SkillTypeCategoryService,
     private questionScoreService: QuestionScoreService,
     private scoresToCategoriesUtil: ScoresToCategoriesUtil,
@@ -65,7 +60,6 @@ export class FinalReportComponent implements OnInit, OnDestroy {
       questionScores => {
         this.questionScores = questionScores;
         // need to get the skilltype of the screening from something other than the Candidate.
-        // refactor bucket -> category
         this.skillTypeCategoryService.getWeightsBySkillType(0).subscribe(
           weights => {
             this.categoryStringArray =
@@ -73,14 +67,12 @@ export class FinalReportComponent implements OnInit, OnDestroy {
           }
         );
         // Set the composite score in the screening service
-        // refactor bucket -> category
         this.screeningService.compositeScore = +this.categoryStringArray[this.categoryStringArray.length - 1];
         this.categoryStringArray.splice(this.categoryStringArray.length - 1, 1);
 
         this.overallScoreString = this.categoryStringArray[this.categoryStringArray.length - 1];
         this.categoryStringArray.splice(this.categoryStringArray.length - 1, 1);
 
-        // refactor bucket -> category
         this.categoryStringArray.forEach(categoryString => {
           this.allTextString += categoryString + '\n';
         });

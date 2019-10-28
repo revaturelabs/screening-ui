@@ -5,7 +5,6 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { SkillTypesService } from '../../services/skill-types/skill-types.service';
-// refactor bucket -> category
 import { SkillTypeCategoryService } from '../../services/skillTypeCategoryLookup/skill-type-category.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';
@@ -19,7 +18,6 @@ describe('FinalReportComponent', () => {
   let component: FinalReportComponent;
   let fixture: ComponentFixture<FinalReportComponent>;
 
-  // refactor bucket -> category
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FinalReportComponent ],

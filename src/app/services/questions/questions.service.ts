@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
 import { UrlService } from '../urls/url.service';
-// refactor bucket -> category
 import { SkillTypeCategoryLookUp } from '../../entities/SkillTypeCategoryLookup';
-// refactor bucket -> category
 import { Category } from '../../entities/Category';
 import { Observable } from 'rxjs';
 
@@ -40,8 +38,6 @@ export class QuestionsService {
   ) { }
 
   questions: Question[];
-
-  // refactor bucket -> category
   private returnCategories: Category[] = [];
 
   /**
@@ -89,10 +85,9 @@ export class QuestionsService {
   /**
    * gets all questions from bucket
    * add urlService to get endpoint for getting Bucket Questions
-   * @param buckerId
+   * @param categoryId
   */
 
-  // refactor bucket -> category
   getCategoryQuestions(categoryId: number): Observable<Question[]> {
     return this.http.get<Question[]>(this.urlService.question.getQuestionsByCategoryId(categoryId));
   }
@@ -111,36 +106,30 @@ export class QuestionsService {
    * That was a gross way to do it, so I incorporated the only method in it
    * here.
    * @param allQuestions
-   * @param allBuckets
+   * @param allCategories
    */
-  // refactor bucket -> category
   saveQuestions(allQuestions: Question[], allCategories: SkillTypeCategoryLookUp): Category[] {
     allQuestions.forEach(question => {
       // If the buckets array is empty, add this question's bucket to it
-      // refactor bucket -> category
       if (this.returnCategories.length === 0) {
         const matchingCategory = allCategories.categories.find(function (element) {
           return element.categoryId === question.category.categoryId;
         });
         // After adding the new bucket, add the current question to the new bucket
-        // refactor bucket -> category
         if (matchingCategory) {
           this.returnCategories.push(matchingCategory);
         }
         // If the bucket array is not empty, check to see if this question's bucket is already listed
-        // refactor bucket -> category
       } else {
         const existingCategory = this.returnCategories.find(function (element) {
           return element.categoryId === question.category.categoryId;
         });
         // If this question's bucket is not listed, add it
-        // refactor bucket -> category
         if (!existingCategory) {
           const matchingCategory = allCategories.categories.find(function (element) {
             return element.categoryId === question.category.categoryId;
           });
           // After adding the new bucket, add the current question to the new bucket
-          // refactor bucket -> category
           if (matchingCategory) {
             this.returnCategories.push(matchingCategory);
           }

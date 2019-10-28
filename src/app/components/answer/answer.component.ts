@@ -33,7 +33,6 @@ export class AnswerComponent implements OnInit {
       screeningID: +localStorage.getItem('screeningID'),
       score: 0,
       commentary: '',
-      // refactor bucket -> category
       categoryId: this.question.category.categoryId,
       beginTime: new Date()
     };
