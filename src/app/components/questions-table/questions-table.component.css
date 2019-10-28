@@ -43,7 +43,7 @@ p{
 /* #############################
     CATEGORY BUTTON TABS STYLES
 ############################# */
-#bucket-buttons{
+#category-buttons{
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-between;

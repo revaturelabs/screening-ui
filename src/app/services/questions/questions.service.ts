@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
 import { UrlService } from '../urls/url.service';
-import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
-import { Bucket } from '../../entities/Bucket';
+// refactor bucket -> category
+import { SkillTypeCategoryLookUp } from '../../entities/SkillTypeCategoryLookup';
+// refactor bucket -> category
+import { Category } from '../../entities/Category';
 import { Observable } from 'rxjs';
 
 /**
@@ -39,7 +41,8 @@ export class QuestionsService {
 
   questions: Question[];
 
-  private returnBuckets: Bucket[] = [];
+  // refactor bucket -> category
+  private returnCategories: Category[] = [];
 
   /**
    * Modifed parameters to only take in question and tagIds and not also bucket id because that is already
@@ -88,8 +91,10 @@ export class QuestionsService {
    * add urlService to get endpoint for getting Bucket Questions
    * @param buckerId
   */
-  getBucketQuestions(bucketId: number): Observable<Question[]> {
-    return this.http.get<Question[]>(this.urlService.question.getQuestionsByBucketId(bucketId));
+
+  // refactor bucket -> category
+  getCategoryQuestions(categoryId: number): Observable<Question[]> {
+    return this.http.get<Question[]>(this.urlService.question.getQuestionsByCategoryId(categoryId));
   }
 
   getQuestions(skillTypeId: number): Observable<Question[]> {
@@ -108,37 +113,43 @@ export class QuestionsService {
    * @param allQuestions
    * @param allBuckets
    */
-  saveQuestions(allQuestions: Question[], allBuckets: SkillTypeBucketLookUp): Bucket[] {
+  // refactor bucket -> category
+  saveQuestions(allQuestions: Question[], allCategories: SkillTypeCategoryLookUp): Category[] {
     allQuestions.forEach(question => {
       // If the buckets array is empty, add this question's bucket to it
-      if (this.returnBuckets.length === 0) {
-        const matchingBucket = allBuckets.buckets.find(function (element) {
-          return element.bucketId === question.bucket.bucketId;
+      // refactor bucket -> category
+      if (this.returnCategories.length === 0) {
+        const matchingCategory = allCategories.categories.find(function (element) {
+          return element.categoryId === question.category.categoryId;
         });
         // After adding the new bucket, add the current question to the new bucket
-        if (matchingBucket) {
-          this.returnBuckets.push(matchingBucket);
+        // refactor bucket -> category
+        if (matchingCategory) {
+          this.returnCategories.push(matchingCategory);
         }
         // If the bucket array is not empty, check to see if this question's bucket is already listed
+        // refactor bucket -> category
       } else {
-        const existingBucket = this.returnBuckets.find(function (element) {
-          return element.bucketId === question.bucket.bucketId;
+        const existingCategory = this.returnCategories.find(function (element) {
+          return element.categoryId === question.category.categoryId;
         });
         // If this question's bucket is not listed, add it
-        if (!existingBucket) {
-          const matchingBucket = allBuckets.buckets.find(function (element) {
-            return element.bucketId === question.bucket.bucketId;
+        // refactor bucket -> category
+        if (!existingCategory) {
+          const matchingCategory = allCategories.categories.find(function (element) {
+            return element.categoryId === question.category.categoryId;
           });
           // After adding the new bucket, add the current question to the new bucket
-          if (matchingBucket) {
-            this.returnBuckets.push(matchingBucket);
+          // refactor bucket -> category
+          if (matchingCategory) {
+            this.returnCategories.push(matchingCategory);
           }
           // If the bucket exists, add question to it
         }
       }
 
     });
-    return this.returnBuckets;
+    return this.returnCategories;
   }
 
 

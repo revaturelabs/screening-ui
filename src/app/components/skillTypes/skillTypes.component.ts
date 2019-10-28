@@ -101,7 +101,7 @@ export class SkillTypesComponent implements OnInit {
             });
         }
     }
- 
+
     /**
     * Opens the modal for creating and editing skill SkillType
     * Resets fields clears the data within set fields
@@ -155,6 +155,8 @@ export class SkillTypesComponent implements OnInit {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
                     if (this.allWeights[i].category.categoryDescription === category.categoryDescription) {                        
+
+    
                       return true;
                     }
                 }

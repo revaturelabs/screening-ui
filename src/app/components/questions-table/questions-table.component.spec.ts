@@ -10,8 +10,8 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { Bucket } from '../../entities/Bucket';
+import { SkillTypeCategoryService } from '../../services/skillTypeCategoryLookup/skill-type-category.service';
+import { Category } from '../../entities/Category';
 import { Question } from '../../entities/Question';
 import { AnswerComponent } from '../answer/answer.component';
 import { ViolationFlagComponent } from '../violation-flag/violation-flag.component';
@@ -33,7 +33,7 @@ const QUESTION: Question = {
   questionText: 'string',
   sampleAnswer: 'string',
   isActive: true,
-  bucket: new Bucket()
+  category: new Category()
 };
 const mockQuestionScore: QuestionScore = {
   qSID: 1,
@@ -41,19 +41,19 @@ const mockQuestionScore: QuestionScore = {
   screeningID: 1,
   score: 1,
   commentary: 'string',
-  bucketId: 1,
+  categoryId: 1,
   beginTime: new Date
 };
 
-const BUCKETS: Bucket[] = [
+const CATEGORIES: Category[] = [
   {
-    bucketId: 1,
-    bucketDescription: 'OCA level Java questions',
+    categoryId: 1,
+    categoryDescription: 'OCA level Java questions',
     isActive: true
   },
   {
-    bucketId: 2,
-    bucketDescription: 'SQL database questions',
+    categoryId: 2,
+    categoryDescription: 'SQL database questions',
     isActive: true
   }];
 
@@ -63,11 +63,11 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], // cut out NgbModalBackdrop, NgbModalWindow,
+      declarations: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent], // cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule, RouterTestingModule],
       providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
         SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
-        SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
+        SkillTypeCategoryService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
@@ -87,12 +87,12 @@ describe('QuestionsTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set questionBuckets to [] false', () => {
+  it('should set questionCategories to [] false', () => {
     component.ngOnDestroy();
-    if (component.questionBuckets !== undefined) {
-      for (const bucket of component.questionBuckets) {
-        const bs = jasmine.createSpyObj('QuestionService', ['getBucketQuestions']);
-        expect(bs.getBucketQuestions(bucket.bucketId)).toEqual([]);
+    if (component.questionCategories !== undefined) {
+      for (const category of component.questionCategories) {
+        const bs = jasmine.createSpyObj('QuestionService', ['getCategoryQuestions']);
+        expect(bs.getCategoryQuestions(category.categoryId)).toEqual([]);
       }
     }
   });
