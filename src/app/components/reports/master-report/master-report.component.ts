@@ -3,6 +3,11 @@ import { ReportService } from 'src/app/services/reports/report.service';
 import { ReportData } from 'src/app/entities/ReportData';
 import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
 
+//ILYA//
+import{MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import { AReportComponent } from 'src/app/a-report/a-report.component';
+//ILYA//
+
 @Component({
   selector: 'app-master-report',
   templateUrl: './master-report.component.html',
@@ -35,7 +40,11 @@ export class MasterReportComponent implements OnInit {
 
   constructor(
     private reportService: ReportService,
-    private reportCache: ReportCacheService) { }
+    private reportCache: ReportCacheService,
+//ILYA//
+ private dialog: MatDialog
+//ILYA//
+) { }
 
   ngOnInit() {
     this.reportCache.getAllScreenerDataByWeeks(this.startDate, this.endDate)
@@ -85,4 +94,22 @@ export class MasterReportComponent implements OnInit {
   populateDates() {
     this.dates = [];
   }
+
+  //ILYA//
+  report(){
+    //this.dialog.open(AReportComponent);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width="60%";
+    dialogConfig.data = {
+        id: 1,
+        title: 'Angular For Beginners'
+    };
+
+    this.dialog.open(AReportComponent, dialogConfig);
+  }
+  //ILYA//
 }
+
