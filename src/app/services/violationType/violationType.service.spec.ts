@@ -4,11 +4,17 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UrlService } from '../../services/urls/url.service';
 
 import { ViolationTypeService } from './violationType.service';
+import { Dependencies } from '../../screenforce.test.module';
+
+beforeEach(() => {
+  TestBed.configureTestingModule(Dependencies)
+    .compileComponents();
+});
 
 describe('ViolationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
+      imports: [RouterTestingModule, HttpClientModule],
       providers: [ViolationTypeService, UrlService]
     });
   });

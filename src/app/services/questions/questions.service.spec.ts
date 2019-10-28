@@ -108,7 +108,7 @@ describe('QuestionsService ', () => {
       fail
     );
 
-    expect(httpClientSpyOnPost.post.calls.count()).toBe(1, 'one call');
+    expect(httpClientSpyOnPut.put.calls.count()).toBe(1, 'one call');
   });
 
   /**

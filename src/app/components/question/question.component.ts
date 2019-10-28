@@ -7,6 +7,7 @@ import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -43,7 +44,8 @@ export class QuestionComponent implements OnInit {
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService,
+    private router: Router) { }
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -89,7 +91,7 @@ export class QuestionComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -100,15 +102,15 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question).subscribe( question => {
+      this.questionService.deactivateQuestion(question).subscribe(question => {
         this.updateQuestions();
       });
-   } else {
+    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question).subscribe( question => {
+      this.questionService.activateQuestion(question).subscribe(question => {
         this.updateQuestions();
       });
-   }
+    }
   }
 
   /**
@@ -125,10 +127,19 @@ export class QuestionComponent implements OnInit {
    * function to edit to help the  add new question function decide
    * whether to add or update a question and to fill in the fields
    * with the selected questions sample answers and question text
+   * 
+   * 1907-Trevin Batch
+   * Changed the formating so it autoupdates the display when this a question is
+   * updated to prevent any display lag
    **/
   editQuestion(question) {
     this.question = question;
     this.sampleAnswer = question.sampleAnswer;
+    let index = this.questions.indexOf(this.question);
+    this.questions[index] = question;
+    this.questions.slice();
+    setTimeout(() => { this.questionService.updateQuestion(this.question); this.updateQuestions(); }, 1000);
+
   }
 
   /**
@@ -149,7 +160,10 @@ export class QuestionComponent implements OnInit {
       } else {
         this.question.sampleAnswer = this.sampleAnswer;
         this.question.bucket = this.currentBucket;
+        this.questions.push(this.question);
         this.questionService.createNewQuestion(this.question).subscribe();
+        this.questions.slice();
+        this.updateQuestions();
         this.savedSuccessfully();
       }
       this.updateQuestions();
@@ -164,7 +178,24 @@ export class QuestionComponent implements OnInit {
    * Used to populate the current question and the current tags with a selected question to be
    * edited.
    **/
+
+  deleteQuestion(q) {
+    this.questionService.deleteQuestion(q.questionId).subscribe();
+
+    const index = this.questions.indexOf(q);
+    this.questions.splice(index, 1);
+
+  }
+  deletebucket(bucket: Bucket) {
+    this.bucketService.deleteBucket(bucket).subscribe(
+      buckets => {
+        this.router.navigate(['settings/main']);
+      }
+    );
+  }
+
   updateQuestions() {
+    setTimeout(() => { }, 1000);
     if (this.currentBucket) {
       this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
         this.questions = data;
@@ -183,7 +214,7 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  compare2(a: Question, b: Question){
+  compare2(a: Question, b: Question) {
     if (a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()) {
       return -1;
     } else {

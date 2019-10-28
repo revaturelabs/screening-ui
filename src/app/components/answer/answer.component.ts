@@ -4,13 +4,11 @@ import { Component, OnInit, Input} from '@angular/core';
 import { QuestionScore } from '../../entities/QuestionScore';
 
 // Services
-import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 
 // ngbootstrap for modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -20,17 +18,16 @@ export class AnswerComponent implements OnInit {
 
   @Input() question;
   questionScore: QuestionScore;
-
+ 
   // used to exchange data between the answer modal and question table component
   questionScores: QuestionScore[];
-
   constructor(public activeModal: NgbActiveModal, private questionScoreService: QuestionScoreService) { }
 
   ngOnInit() {
     this.questionScore = {
       qSID: null,
       questionId: this.question.questionId,
-      screeningID: +localStorage.getItem('screeningID'),
+      screeningID: parseInt(localStorage.getItem('screeningID'), 10),
       score: 0,
       commentary: '',
       bucketId: this.question.bucket.bucketId,
@@ -53,7 +50,6 @@ export class AnswerComponent implements OnInit {
           }
         }
       }
-      console.log(this.questionScore);
       // add the new question score to the array of question scores
       this.questionScores.push(this.questionScore);
       // update our services question score array with the array with this components question score array

@@ -21,6 +21,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { Weight } from '../../entities/Weight';
+import { Screening } from 'src/app/entities/Screening';
 
 
 @Component({
@@ -43,6 +44,7 @@ it will invoke an instance of the question component.
 export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Used to display the categories
   questionBuckets: Bucket[];
+  screening: Screening;
 
   // holds the current category. Used to control
   // which questions are displayed in the questions table.
@@ -78,7 +80,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
     private skillTypeBucketService: SkillTypeBucketService,
-  ) {}
+  ) {this.screening = new Screening(); }
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
@@ -133,9 +135,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   }
 
   open(question: Question) {
-    // this is commented out because the modal is failing to open and breaking the page. 
-    // const modalRef = this.modalService.open("AnswerComponent"); //AnswerComponent should be injected into this modal
-    // modalRef.componentInstance.question = question;
+    const modalRef = this.modalService.open(AnswerComponent); // AnswerComponent should be injected into this modal
+    modalRef.componentInstance.question = question;
   }
 
   // used to display the green question mark on answered questions
@@ -166,6 +167,10 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     // tslint:disable-next-line:radix
-    this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+    // const numId = parseInt( localStorage.getItem('screeningID'), 10);
+    this.screening = JSON.parse(localStorage.getItem('screening'));
+    this.screening.generalCommentary = this.generalComment;
+    localStorage.setItem('screening', JSON.stringify(this.screening));
+   // this.screeningService.updateScreening(this.screening.screeningId);
   }
 }

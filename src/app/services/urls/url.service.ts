@@ -9,8 +9,7 @@ export class UrlService {
   public readonly screeningContext: string =  environment.screeningContext;
   public readonly reportContext: string = environment.reportContext;
 
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * Endpoints for bucket service
@@ -38,19 +37,25 @@ export class UrlService {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  private questionEndpoint = (this.adminContext + '/question');
+  private questionEndpoint = this.adminContext + '/question';
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
-    getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
-    deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
-    activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
+    getQuestionsByBucketId: (bucketId: number) =>
+      `${this.questionEndpoint}/getByBucket/${bucketId}`,
+    deactivateQuestion: (questionId: number) =>
+      `${this.questionEndpoint}/toggle/${questionId}`,
+    activateQuestion: (questionId: number) =>
+      `${this.questionEndpoint}/toggle/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
-   };
+    deleteQuestion: (questionId: number) =>
+      `${this.questionEndpoint}/delete/${questionId}`
+  };
 
   private questionScoringEndpoint = 'question-score-service/question';
   questionScoring = {
-    scoringQuestion: () => `${this.screeningContext + this.questionScoringEndpoint}/score`,
+    scoringQuestion: () =>
+      `${this.screeningContext + this.questionScoringEndpoint}/score`
   };
 
   /**
@@ -69,9 +74,12 @@ export class UrlService {
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
-    getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
+    getWeightsBySkillType: (skillTypeId: number) =>
+      `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
     newWeight: () => `${this.weightsEndpoint}/new`,
-    deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`
+    deleteWeight: (weightId: number) =>
+      `${this.weightsEndpoint}/delete/${weightId}`,
+    updateWeight: () => `${this.weightsEndpoint}/update`
   };
 
   /**
@@ -82,14 +90,16 @@ export class UrlService {
     findAll: () => `${this.skillTypesServiceEndpoint}`,
     findAllActive: () => `${this.skillTypesServiceEndpoint}/active`,
     findById: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
-   // findByName: (name: string) => `${this.context}/${name}`,
+    // findByName: (name: string) => `${this.context}/${name}`,
     save: () => `${this.skillTypesServiceEndpoint}`,
     update: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
     delete: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`, // note lowercase t in type, this is to match the request mapping
 
-    getBucketBySkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBucketsWithWeights/${skillTypeId}`,
+    getBucketBySkillType: (skillTypeId: number) =>
+      `${this.skillTypesServiceEndpoint}/getSkillTypeBucketsWithWeights/${skillTypeId}`,
     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
-    putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
+    putSkillType: (skillTypeId: number) =>
+      `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
     updateSkillTypeBuckets: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,

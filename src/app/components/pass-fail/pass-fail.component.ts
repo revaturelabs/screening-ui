@@ -5,6 +5,7 @@ import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { Observable } from 'rxjs';
 import { ScreeningService } from '../../services/screening/screening.service';
+import { Screening } from 'src/app/entities/Screening';
 
 @Component({
   selector: 'app-pass-fail',
@@ -23,28 +24,30 @@ and is able to provide optional feedback for candidate's soft skills overall.
 The screener must specify if the candidate passed or failed the
 soft skills portion of the interview before they can view the final summary.
 */
-
 export class PassFailComponent implements OnInit {
-
   public candidateName: string;
   previousViolations: any[];
   private passed: boolean;
-  violations: any[] = [];  // Needs to be Observable<any[]>
+  violations: any[] = []; // Needs to be Observable<any[]>
   endScreening = false;
   public disabled = true;
   public passChecked: boolean;
   public failChecked: boolean;
   public hasChecked: boolean;
   private screeningID: number;
+  private currentSoftSkillsViolationsVar;
+  private screening: Screening;
 
   public softSkillFeedback: string;
 
-  constructor(private violationService: SoftSkillsViolationService,
+  constructor(
+    private violationService: SoftSkillsViolationService,
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
     private violationTypeService: ViolationTypeService,
     public softSkillViolationService: SoftSkillsViolationService
   ) {
+  this.screening = new Screening();
   }
 
   ngOnInit() {
@@ -73,11 +76,15 @@ export class PassFailComponent implements OnInit {
               });
             }
           }
+          this.violations = violationArray;
+          this.softSkillViolationService.currentSoftSkillViolations.subscribe(
+            values => {
+              this.currentSoftSkillsViolationsVar = values;
+            }
+          );
         }
-        this.violations = violationArray;
       });
-    }
-    );
+    });
   }
 
   // Returns a boolean denoting whether either the "Pass" or "Fail" button was clicked.
@@ -85,7 +92,6 @@ export class PassFailComponent implements OnInit {
   wasClicked(): boolean {
     return this.disabled;
   }
-
 
   // Enables the submit button if the "Pass" button is clicked
   updateCheckedPass(checked: boolean) {
@@ -112,7 +118,13 @@ export class PassFailComponent implements OnInit {
     } else if (this.failChecked) {
       this.fail();
     }
-    this.screeningService.finalSoftSkillComment = this.softSkillFeedback;
+    //  this.screeningService.finalSoftSkillComment = this.softSkillFeedback;
+    this.screening = JSON.parse(localStorage.getItem('screening'));
+    this.screening.softSkillCommentary = this.softSkillFeedback;
+    this.screening.endDateTime = new Date();
+    this.screening.status = 'Complete';
+    localStorage.setItem('screening', JSON.stringify(this.screening));
+    this.screeningService.updateScreening(this.screening.screeningId);
   }
 
   pass() {
@@ -129,39 +141,49 @@ export class PassFailComponent implements OnInit {
 
   // Returns an Observable with an array of violations associated with the provided screeningID.
   getViolations(): Observable<SoftSkillViolation[]> {
-    return this.violationService.getPreviousViolations(+localStorage.getItem('screeningID'));
+    return this.violationService.getPreviousViolations(
+      +localStorage.getItem('screeningID')
+    );
   }
 
   // Method to delete a violation when clicking the "Remove" button
   deleteViolation(violationId: number, i: number) {
-    this.violationService.deleteViolation(violationId).subscribe(
-      data => {
-        this.previousViolations = data;
-        this.softSkillViolationService.updateSoftSkillViolations(this.previousViolations);
-      }
-    );
+    this.violationService.deleteViolation(violationId).subscribe(data => {
+      this.previousViolations = data;
+      this.softSkillViolationService.updateSoftSkillViolations(
+        this.previousViolations
+      );
+    });
 
-    if (this.softSkillViolationService.softSkillViolations.length > 1) {
-      this.softSkillViolationService.softSkillViolations.splice(i, 1);
+    // if (this.softSkillViolationService.softSkillViolations.length > 1) {
+    //   this.softSkillViolationService.softSkillViolations.splice(i, 1);
+    // } else {
+    //   this.softSkillViolationService.softSkillViolations = [];
+    // }
+    if (this.currentSoftSkillsViolationsVar.length > 1) {
+      this.currentSoftSkillsViolationsVar.splice(i, 1);
     } else {
-      this.softSkillViolationService.softSkillViolations = [];
+      this.currentSoftSkillsViolationsVar = [];
     }
   }
 
   getMessage($event) {
-    this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID'))
-      .subscribe(data => this.previousViolations = data);
+    this.softSkillViolationService
+      .getPreviousViolations(+localStorage.getItem('screeningID'))
+      .subscribe(data => (this.previousViolations = data));
   }
 
   // Method that detects whether there are any violations exist for the current screening
   hasViolations(): boolean {
-    if (this.softSkillViolationService.softSkillViolations === undefined || this.softSkillViolationService.softSkillViolations.length < 1) {
+    if (
+      this.currentSoftSkillsViolationsVar === undefined ||
+      this.currentSoftSkillsViolationsVar.length < 1
+    ) {
       return false;
     } else {
       return true;
     }
   }
-
 
   public getPassed(): string {
     if (this.passed) {
@@ -179,8 +201,4 @@ export class PassFailComponent implements OnInit {
       return 'none';
     }
   }
-
-
-
-
 }

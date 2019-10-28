@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { Screening } from '../../entities/Screening';
 
 @Component({
   selector: 'app-introduction',
@@ -17,6 +18,8 @@ import { ScheduledScreening } from '../../entities/ScheduledScreening';
   feedback on the candidates introduction (optional).
 */
 export class IntroductionComponent implements OnInit {
+
+  newscreening: Screening;
 
   constructor(
     private screeningStateService: ScreeningStateService,
@@ -33,10 +36,22 @@ export class IntroductionComponent implements OnInit {
     this.currentScreening = this.screeningStateService.getCurrentScreening();
   }
 
-  // Submit the comments on the Introduction view when the "Begin Questions" button is clicked
-  onSubmit() {
-    // Send the comments to the appropriate service method saves them to the DB
-    this.screeningService.createScreening();
+
+  // Submit the comments on the Introduction view when the "Begin Questions" buton is clicked
+  screen() {
+        this.newscreening.status = 'In Progress',
+        this.newscreening.softSkillsVerdict = false,
+        this.newscreening.softSkillCommentary = '',
+       // this.newscreening.screenerId = 0,
+        this.newscreening.aboutMeCommentary = this.comment,
+        this.newscreening.generalCommentary = null,
+        this.newscreening.startDateTime = new Date(),
+        this.newscreening.endDateTime = null,
+       // this.newscreening.scheduledScreeningId = parseInt(localStorage.getItem('scheduledScreeningId'), 10);
+        this.newscreening.scheduledScreening = JSON.parse(localStorage.getItem('scheduledScreening'));
+        this.newscreening.screeningId = parseInt(localStorage.getItem('screeningID'), 10),
+        localStorage.setItem('screening', JSON.stringify(this.newscreening));
+      //this.screeningService.createScreening(this.newscreening);
   }
 
 }

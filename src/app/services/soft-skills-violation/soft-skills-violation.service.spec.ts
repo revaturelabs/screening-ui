@@ -1,17 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { UrlService } from '../../services/urls/url.service';
-import { HttpClientModule } from '@angular/common/http';
 
 import { SoftSkillsViolationService } from './soft-skills-violation.service';
+import { Dependencies } from '../../screenforce.test.module';
 
 describe('SoftSkillsViolationService', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
-
-      providers: [SoftSkillsViolationService,UrlService]
-    });
+    TestBed.configureTestingModule(Dependencies);
   });
 
   it('should be created', inject([SoftSkillsViolationService], (service: SoftSkillsViolationService) => {

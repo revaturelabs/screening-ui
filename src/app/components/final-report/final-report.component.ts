@@ -25,7 +25,6 @@ in each category on technical skills, the overall feedback therein,
 and if the candidate passed or failed their soft skills evaluation.
 Screener can copy the summary to the clipboard, and return to the candidate list.
 */
-
 export class FinalReportComponent implements OnInit, OnDestroy {
 
   candidate: Candidate;
@@ -35,6 +34,9 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   overallScoreString: string;
   generalNotesString: string;
   allTextString: string;
+  intoductionComments: string;
+  generalComments: string;
+  overallComments: string;
 
   questionScores: QuestionScore[];
   softSkillViolations: SoftSkillViolation[];
@@ -61,32 +63,47 @@ export class FinalReportComponent implements OnInit, OnDestroy {
         this.questionScores = questionScores;
         // need to get the skilltype of the screening from something other than the Candidate. 
         this.skillTypeBucketService.getWeightsBySkillType(0).subscribe(
-          weights =>
-          {
+          weights => {
             this.bucketStringArray =
-            this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
+              this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
           }
-        )
+        );
         // Set the composite score in the screening service
-        this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
+        this.screeningService.compositeScore = +this.bucketStringArray[
+          this.bucketStringArray.length - 1
+        ];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
-        this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];
+        this.overallScoreString = this.bucketStringArray[
+          this.bucketStringArray.length - 1
+        ];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
         this.bucketStringArray.forEach(bucketString => {
           this.allTextString += bucketString + '\n';
         });
         this.allTextString += this.overallScoreString + '\n';
-      });
+      }
+    );
     // this.overallScoreString = "Overall: 71%";
-    this.generalNotesString = this.screeningService.generalComments;
+    // this.generalNotesString = this.screeningService.generalCommentary;
+    this.intoductionComments = 'Introduction feedback: ' + JSON.parse(localStorage.getItem('screening')).aboutMeCommentary;
+    this.generalComments = 'General feedback: ' + JSON.parse(localStorage.getItem('screening')).generalCommentary;
+    this.overallComments = 'Overall feedback: ' + JSON.parse(localStorage.getItem('screening')).softSkillCommentary;
+    // this.generalNotesString = intoductionComments + '\n' + generalComments + '\n' + overallComments;
     this.allTextString += '"' + this.generalNotesString + '"';
 
     this.screeningService.endScreening(this.generalNotesString);
-    this.subscriptions.push(this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
-      softSkillViolations => (this.softSkillViolations = softSkillViolations)
-    ));
+    this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
+      data => {
+        this.softSkillViolations = data;
+      }
+    );
+    this.subscriptions.push(
+      this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
+        softSkillViolations => (this.softSkillViolations = softSkillViolations)
+      )
+    );
   }
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)
@@ -112,7 +129,9 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScores = [];
     this.questionScoreService.updateQuestionScores(this.questionScores);
     this.softSkillViolations = [];
-    this.softSkillsViolationService.updateSoftSkillViolations(this.softSkillViolations);
+    this.softSkillsViolationService.updateSoftSkillViolations(
+      this.softSkillViolations
+    );
     localStorage.removeItem('screeningID');
     localStorage.removeItem('scheduledScreeningID');
     this.subscriptions.forEach(s => s.unsubscribe);

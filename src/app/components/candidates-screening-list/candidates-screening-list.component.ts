@@ -1,8 +1,4 @@
 import { Component, OnInit, } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
-// Classes
-import { Candidate } from '../../entities/Candidate';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 
 // Services
@@ -97,19 +93,11 @@ export class CandidatesScreeningListComponent implements OnInit {
     let skillTypeId: String;
     // create a new screening entry in the database by calling the screening service
     this.screeningService
-      .beginScreening(
-        // must provide the current scheduled interview object
-        this.selectedScheduledScreening,
-        // create a new date which signifies the start of the interview
-        new Date(),
-        // This was not part of our iteration, but the "1" must be replaced
-        // with the screenerr's ID so that there is an association
-        // between the interviewer and the person who screened them.
-        1
-      )
+      .beginScreening(this.selectedScheduledScreening, new Date(), 1)
       .subscribe(
         // take the data from the response from the database
         data => {
+       // const scrId = data.screeningId;
         // and save the screening ID as a cookie to localStorage.
         // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
         // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());

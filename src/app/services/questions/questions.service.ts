@@ -62,9 +62,19 @@ export class QuestionsService {
    * @param newTagIds
    */
   updateQuestion(question: Question) {
+    /**
+     * 1907-Trevin Batch
+     * changed from post method to put method for the update
+     */
     return this.http.put(this.urlService.question.putQuestion(), question, httpOptions);
   }
 
+  /*
+    * deletes question
+  */
+  deleteQuestion(questionId: number) {
+    return this.http.delete(this.urlService.question.deleteQuestion(questionId), httpOptions);
+  }
   /**
    * deactivates question
    * add urlService to get endpoint for deactivating a question
@@ -82,6 +92,7 @@ export class QuestionsService {
   activateQuestion(question: Question) {
     return this.http.put(this.urlService.question.activateQuestion(question.questionId), question, httpOptions);
   }
+
 
   /**
    * gets all questions from bucket

@@ -1,25 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CandidatesScreeningListComponent } from './candidates-screening-list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  PaginatePipe, PaginationControlsComponent,
-  PaginationControlsDirective, PaginationService
-} from 'ngx-pagination';
-import { HttpClientModule } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
-import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { Dependencies } from '../../screenforce.test.module';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { Candidate } from '../../entities/Candidate';
-import { SearchPipe } from '../../pipes/search.pipe';
-import { UrlService } from '../../services/urls/url.service';
-import { SkillType } from '../../entities/SkillType';
 import { By } from '@angular/platform-browser';
-
+import { SkillType } from '../../entities/SkillType';
 
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
@@ -55,13 +43,7 @@ describe('CandidatesScreeningListComponent', () => {
   const screeningList: ScheduledScreening[] = [someScreening];
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [CandidatesScreeningListComponent, PaginatePipe, PaginationControlsComponent,
-        PaginationControlsDirective, SearchPipe],
-      imports: [FormsModule, HttpClientModule, ReactiveFormsModule],
-      providers: [ScreeningStateService, ScreeningService, ScheduledScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypesService, PaginationService, UrlService]
-    })
+    TestBed.configureTestingModule(Dependencies)
       .compileComponents();
   }));
 
@@ -71,6 +53,11 @@ describe('CandidatesScreeningListComponent', () => {
     fixture.detectChanges();
     scheduledScreeningService = TestBed.get(ScheduledScreeningService);
     screeningStateService = TestBed.get(ScreeningStateService);
+  });
+
+  /* to remove the localstorage after the test so it does not interefere with with other tests involving it */
+  afterAll(() => {
+    localStorage.removeItem('screeningID');
   });
 
   it('should create', () => {
@@ -106,5 +93,5 @@ describe('CandidatesScreeningListComponent', () => {
      element[1].nativeElement.click();
      expect(component.selectedScheduledScreening.scheduledScreeningId).toEqual(5);
   });
-
 });
+

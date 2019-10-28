@@ -1,3 +1,4 @@
+
 export const environment = {
 production: false,
 adminContext: 'http://localhost:8081/admin',

@@ -4,12 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule} from 'highcharts-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal, NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
-import { AmplifyAngularModule } from 'aws-amplify-angular';
 import {SpringInterceptor} from './interceptors/spring.interceptor';
 
 import { routes } from './app.routes';
@@ -52,7 +51,7 @@ import { SoftSkillsViolationService } from './services/soft-skills-violation/sof
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
 import {AuthenticationService} from './services/authentication/authentication.service';
-import { AmplifyService } from 'aws-amplify-angular';
+import { AmplifyService, AmplifyAngularModule } from 'aws-amplify-angular';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
@@ -65,7 +64,6 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
-
 
 @NgModule({
   declarations: [
@@ -108,11 +106,16 @@ import { RoleGuard } from './role-guard';
     Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
+    NgxPaginationModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NgbModule,
     AmplifyAngularModule
   ],
   providers: [
     AlertsService,
     BucketsService,
+    NgbActiveModal,
     CookieService,
     QuestionScoreService,
     QuestionsService,
@@ -126,6 +129,7 @@ import { RoleGuard } from './role-guard';
     SoftSkillsViolationService,
     UrlService,
     ViolationTypeService,
+    NgbTabsetConfig,
     AuthenticationService,
     AmplifyService,
      { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }

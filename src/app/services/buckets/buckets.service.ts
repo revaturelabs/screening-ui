@@ -34,7 +34,7 @@ export class BucketsService {
 
   constructor(
     private http: HttpClient,
-    private urlService: UrlService
+    private urlService: UrlService,
     ) {}
 
   getAllBuckets(): Observable<Bucket[]> {

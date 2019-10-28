@@ -1,8 +1,9 @@
 import { BucketsService } from './buckets.service';
+import { Dependencies } from '../../screenforce.test.module';
 import { Bucket } from '../../entities/Bucket';
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
-import { inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 export function asyncData<T>(data: T) {
     return defer(() => Promise.resolve(data));
@@ -19,6 +20,9 @@ const mockbucket: Bucket = {
 const buckets: Bucket[] = [mockbucket];
 
 describe('BucketsService', () => {
+    beforeEach(() => {
+        TestBed.configureTestingModule(Dependencies);
+      });
     const testBucket = -1;
     let httpClientSpyOnGet: { get: jasmine.Spy };
     let httpClientSpyOnPut: { put: jasmine.Spy };
