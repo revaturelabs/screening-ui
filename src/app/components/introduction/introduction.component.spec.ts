@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
 import { IntroductionComponent } from './introduction.component';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-// refactor skilltype -> track
 import { TracksService } from '../../services/tracks/tracks.service';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
@@ -18,7 +17,6 @@ describe('IntroductionComponent', () => {
   let component: IntroductionComponent;
   let fixture: ComponentFixture<IntroductionComponent>;
 
-  // refactor skilltype -> track
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],

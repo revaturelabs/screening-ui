@@ -12,13 +12,11 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-// refactor skilltype -> track
 import { TracksService } from '../../services/tracks/tracks.service';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { Candidate } from '../../entities/Candidate';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { UrlService } from '../../services/urls/url.service';
-// refactor skilltype -> track
 import { Track } from '../../entities/Track';
 import { By } from '@angular/platform-browser';
 
@@ -40,7 +38,6 @@ describe('CandidatesScreeningListComponent', () => {
     major: 'E flat'
   };
 
-  // refactor skilltype -> track
   const trackFake = {
     trackId: 5,
     title: 'SQL',
@@ -50,15 +47,12 @@ describe('CandidatesScreeningListComponent', () => {
   const someScreening: ScheduledScreening = {
   scheduledScreeningId: 5,
   candidate: candidateFake,
-    // refactor skilltype -> track
   track: trackFake,
   scheduledStatus: 'Screening in Progress',
   scheduledDate: new Date()
   };
 
   const screeningList: ScheduledScreening[] = [someScreening];
-
-  // refactor skilltype -> track
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CandidatesScreeningListComponent, PaginatePipe, PaginationControlsComponent,
@@ -93,7 +87,6 @@ describe('CandidatesScreeningListComponent', () => {
     expect(result).toEqual('block');
   });
 
-  // refactor skilltype -> track
   it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
 import { UrlService } from '../urls/url.service';
-// refactor skilltype -> track
 import { TrackBucketLookUp } from '../../entities/TrackBucketLookup';
 import { Bucket } from '../../entities/Bucket';
 import { Observable } from 'rxjs';
@@ -93,13 +92,11 @@ export class QuestionsService {
     return this.http.get<Question[]>(this.urlService.question.getQuestionsByBucketId(bucketId));
   }
 
-  // refactor skilltype -> track
   getQuestions(trackId: number): Observable<Question[]> {
     const currTrackID = trackId;
 
     return this.http.post<Question[]>( // change to get with parameters
       this.urlService.question.filteredQuestions(),
-      // refactor skilltype -> track
       currTrackID
     );
   }
@@ -111,7 +108,7 @@ export class QuestionsService {
    * @param allQuestions
    * @param allBuckets
    */
-  // refactor skilltype -> track
+
   saveQuestions(allQuestions: Question[], allBuckets: TrackBucketLookUp): Bucket[] {
     allQuestions.forEach(question => {
       // If the buckets array is empty, add this question's bucket to it

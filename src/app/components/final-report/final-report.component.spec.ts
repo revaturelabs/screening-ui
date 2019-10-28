@@ -4,7 +4,6 @@ import { FinalReportComponent } from './final-report.component';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-// refactor skilltype -> track
 import { TracksService } from '../../services/tracks/tracks.service';
 import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
@@ -19,7 +18,6 @@ describe('FinalReportComponent', () => {
   let component: FinalReportComponent;
   let fixture: ComponentFixture<FinalReportComponent>;
 
-  // refactor skilltype -> track
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FinalReportComponent ],

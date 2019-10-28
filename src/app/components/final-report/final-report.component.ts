@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-// refactor skilltype -> track
 import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
@@ -10,7 +9,6 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { Subscription } from 'rxjs';
-// refactor skilltype -> track
 import { Track } from '../../entities/Track';
 import { Candidate } from '../../entities/Candidate';
 
@@ -31,7 +29,6 @@ Screener can copy the summary to the clipboard, and return to the candidate list
 export class FinalReportComponent implements OnInit, OnDestroy {
 
   candidate: Candidate;
-  // refactor skilltype -> track
   track: Track;
   softSkillString: string;
   bucketStringArray: string[];
@@ -47,7 +44,6 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   constructor(
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    // refactor skilltype -> track
     private trackBucketService: TrackBucketService,
     private questionScoreService: QuestionScoreService,
     private scoresToBucketsUtil: ScoresToBucketsUtil,
@@ -63,8 +59,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        // need to get the skilltype of the screening from something other than the Candidate.
-        // refactor skilltype -> track
+        // need to get the track of the screening from something other than the Candidate.
         this.trackBucketService.getWeightsByTrack(0).subscribe(
           weights => {
             this.bucketStringArray =
