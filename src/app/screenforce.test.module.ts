@@ -20,7 +20,7 @@ import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { QuestionsService } from './services/questions/questions.service';
-import { BucketsService } from './services/buckets/buckets.service';
+import { BucketsService } from './services/categories/categories.service';
 import { UrlService } from './services/urls/url.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 

@@ -39,7 +39,8 @@ export class QuestionScoreService {
       Comment: question.commentary,
       QuestionID: question.questionId,
       BeginTime: question.beginTime,
-      bucketId: question.bucketId,
+      // refactor bucket -> category
+      categoryId: question.categoryId,
       ScreeningID: question.screeningID}).subscribe(data => {
       });
 
