@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Question } from '../../entities/Question';
-import { Bucket } from '../../entities/Bucket';
+import { Category } from '../../entities/Category';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionsService } from '../../services/questions/questions.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { BucketsService } from '../../services/buckets/buckets.service';
+import { CategoriesService } from '../../services/categories/categories.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
 
@@ -42,7 +42,7 @@ export class QuestionComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private fb: FormBuilder,
     private questionService: QuestionsService,
-    private bucketService: BucketsService,
+    private categoryService: CategoriesService,
     private alertsService: AlertsService) { }
 
   createQuestion: FormGroup;
@@ -50,14 +50,14 @@ export class QuestionComponent implements OnInit {
   question: Question;
   sampleAnswer: string;
   questions: Question[];
-  currentBucket: Bucket;
+  currentCategory: Category;
   public answersCollapsed = true;
   public tagsCollapsed = true;
 
 
 
   ngOnInit() {
-    this.currentBucket = this.bucketService.getCurrentBucket();
+    this.currentCategory = this.categoryService.getCurrentCategory();
     this.question = new Question();
     this.updateQuestions();
   }
@@ -89,7 +89,7 @@ export class QuestionComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -100,15 +100,15 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question).subscribe( question => {
+      this.questionService.deactivateQuestion(question).subscribe(question => {
         this.updateQuestions();
       });
-   } else {
+    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question).subscribe( question => {
+      this.questionService.activateQuestion(question).subscribe(question => {
         this.updateQuestions();
       });
-   }
+    }
   }
 
   /**
@@ -141,14 +141,14 @@ export class QuestionComponent implements OnInit {
     if (this.question.questionText) {
       if (this.question.questionId) {
         this.question.sampleAnswer = this.sampleAnswer;
-        this.question.bucket = this.currentBucket;
+        this.question.category = this.currentCategory;
 
         this.questionService.updateQuestion(this.question).subscribe();
 
         this.updatedSuccessfully();
       } else {
         this.question.sampleAnswer = this.sampleAnswer;
-        this.question.bucket = this.currentBucket;
+        this.question.category = this.currentCategory;
         this.questionService.createNewQuestion(this.question).subscribe();
         this.savedSuccessfully();
       }
@@ -165,8 +165,8 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
   updateQuestions() {
-    if (this.currentBucket) {
-      this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
+    if (this.currentCategory) {
+      this.questionService.getCategoryQuestions(this.currentCategory.categoryId).subscribe(data => {
         this.questions = data;
         this.questions.sort(this.compare);
         this.questions.sort(this.compare2);
@@ -183,7 +183,7 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  compare2(a: Question, b: Question){
+  compare2(a: Question, b: Question) {
     if (a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()) {
       return -1;
     } else {
