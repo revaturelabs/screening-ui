@@ -67,7 +67,7 @@ export class ReportSidebarComponent implements OnInit {
             item.screeningId,
             item.scheduledScreening.candidate.name,
             item.scheduledScreening.scheduledStatus,
-            item.scheduledScreening.skillTypeId,
+            item.scheduledScreening.trackId,
             item.scheduledScreening.scheduledDate
       );
     });*/

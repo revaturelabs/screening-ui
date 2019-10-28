@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+// refactor skilltype -> track
+import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
@@ -9,7 +10,8 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { Subscription } from 'rxjs';
-import { SkillType } from '../../entities/SkillType';
+// refactor skilltype -> track
+import { Track } from '../../entities/Track';
 import { Candidate } from '../../entities/Candidate';
 
 @Component({
@@ -29,7 +31,8 @@ Screener can copy the summary to the clipboard, and return to the candidate list
 export class FinalReportComponent implements OnInit, OnDestroy {
 
   candidate: Candidate;
-  skillType: SkillType;
+  // refactor skilltype -> track
+  track: Track;
   softSkillString: string;
   bucketStringArray: string[];
   overallScoreString: string;
@@ -44,7 +47,8 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   constructor(
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    private skillTypeBucketService: SkillTypeBucketService,
+    // refactor skilltype -> track
+    private trackBucketService: TrackBucketService,
     private questionScoreService: QuestionScoreService,
     private scoresToBucketsUtil: ScoresToBucketsUtil,
     private alertsService: AlertsService,
@@ -59,14 +63,14 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        // need to get the skilltype of the screening from something other than the Candidate. 
-        this.skillTypeBucketService.getWeightsBySkillType(0).subscribe(
-          weights =>
-          {
+        // need to get the skilltype of the screening from something other than the Candidate.
+        // refactor skilltype -> track
+        this.trackBucketService.getWeightsByTrack(0).subscribe(
+          weights => {
             this.bucketStringArray =
             this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, weights);
           }
-        )
+        );
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);

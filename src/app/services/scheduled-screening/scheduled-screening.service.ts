@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
-import { tracksService } from '../tracks/tracks.service';
+import { TracksService } from '../tracks/tracks.service';
 import { Track } from '../../entities/Track';
 import { UrlService } from '../urls/url.service';
 
@@ -9,7 +9,7 @@ import { UrlService } from '../urls/url.service';
 export class ScheduledScreeningService {
   constructor(
     private httpClient: HttpClient,
-    private tracksService: tracksService,
+    private tracksService: TracksService,
     private urlService: UrlService
   ) { }
 

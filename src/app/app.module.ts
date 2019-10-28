@@ -45,7 +45,7 @@ import { QuestionsService } from './services/questions/questions.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
-import { SkillTypesService } from './services/skill-types/skill-types.service';
+import { SkillTypesService } from './services/tracks/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';

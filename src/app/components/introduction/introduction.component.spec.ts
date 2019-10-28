@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
 import { IntroductionComponent } from './introduction.component';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+// refactor skilltype -> track
+import { TracksService } from '../../services/tracks/tracks.service';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
@@ -17,12 +18,13 @@ describe('IntroductionComponent', () => {
   let component: IntroductionComponent;
   let fixture: ComponentFixture<IntroductionComponent>;
 
+  // refactor skilltype -> track
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
       declarations: [ IntroductionComponent, ViolationFlagComponent],
-      providers: [ ScreeningStateService, UrlService, SkillTypesService, ScreeningService, 
-      SoftSkillsViolationService,ViolationTypeService,AlertsService],
+      providers: [ ScreeningStateService, UrlService, TracksService, ScreeningService,
+      SoftSkillsViolationService, ViolationTypeService, AlertsService],
     })
     .compileComponents();
   }));
@@ -30,7 +32,7 @@ describe('IntroductionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(IntroductionComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it('should create', () => {

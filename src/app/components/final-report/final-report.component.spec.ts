@@ -4,8 +4,9 @@ import { FinalReportComponent } from './final-report.component';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+// refactor skilltype -> track
+import { TracksService } from '../../services/tracks/tracks.service';
+import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';
@@ -18,11 +19,12 @@ describe('FinalReportComponent', () => {
   let component: FinalReportComponent;
   let fixture: ComponentFixture<FinalReportComponent>;
 
+  // refactor skilltype -> track
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FinalReportComponent ],
-      providers: [ ScreeningService, HttpClient, HttpHandler, ScreeningStateService, SkillTypesService,
-        SkillTypeBucketService, QuestionScoreService, ScoresToBucketsUtil, AlertsService, SoftSkillsViolationService ]
+      providers: [ ScreeningService, HttpClient, HttpHandler, ScreeningStateService, TracksService,
+        TrackBucketService, QuestionScoreService, ScoresToBucketsUtil, AlertsService, SoftSkillsViolationService ]
     })
     .compileComponents();
   }));

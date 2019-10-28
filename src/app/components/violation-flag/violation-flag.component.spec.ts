@@ -4,7 +4,7 @@ import { ViolationFlagComponent } from './violation-flag.component';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { TracksService } from '../../services/tracks/tracks.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
@@ -24,7 +24,7 @@ describe('ViolationFlagComponent', () => {
       imports: [RouterTestingModule],
       declarations: [ ViolationFlagComponent ],
       providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningStateService,
-      SkillTypesService, ViolationTypeService, AlertsService, UrlService ]
+      TracksService, ViolationTypeService, AlertsService, UrlService ]
     })
     .compileComponents();
   }));
