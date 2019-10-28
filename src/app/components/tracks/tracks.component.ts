@@ -1,43 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
-import { SkillType } from '../../entities/SkillType';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { Track } from '../../entities/Track';
+import { TracksService } from '../../services/tracks/tracks.service';
 import { Bucket } from '../../entities/Bucket';
 import { Weight } from '../../entities/Weight';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
 
 @Component({
-    selector: 'app-skill-types',
-    templateUrl: './skillTypes.component.html',
-    styleUrls: ['./skillTypes.component.css'],
+    selector: 'app-tracks',
+    templateUrl: './tracks.component.html',
+    styleUrls: ['./tracks.component.css'],
 })
 
 /**
-* Skill Type Component displays a template containing all the skill types from the database
-* It also has access to modals that can create or edit a skill types
+* Track Component displays a template containing all the tracks from the database
+* It also has access to modals that can create or edit a tracks
 *
 *
 * @author chanconan
 */
-export class SkillTypesComponent implements OnInit {
+export class TracksComponent implements OnInit {
 
-    public skillTypes: SkillType[] = [];
-    public inactiveSkillTypes: any[] = [];
-    public allSkillTypes: SkillType[] = [];
+    public tracks: Track[] = [];
+    public inactiveTracks: any[] = [];
+    public allTracks: Track[] = [];
     public allBuckets: Bucket[] = [];
     public bucketWeightSum = 0;
     public bucketsAndWeights = [];
-    public skillType: SkillType;
-    public singleSkillType: SkillType;
-    public singleSkillTypeBuckets: Bucket[] = [];
+    public track: Track;
+    public singleTrack: Track;
+    public singleTrackBuckets: Bucket[] = [];
     public error: boolean;
     public modalServiceRef;
-    public singleSkillTypeBucketIds: number[] = [];
+    public singleTrackBucketIds: number[] = [];
 
-    public skillTypeWeights: Weight[] = [];
+    public trackWeights: Weight[] = [];
     public allWeights: Weight[] = [];
 
     public relaventWeights: Weight[] = [];
@@ -45,13 +45,13 @@ export class SkillTypesComponent implements OnInit {
     public Weight: Weight;
 
       /** variable to hold bucket being edited */
-    currSkillType: SkillType;
+    currTrack: Track;
 
     constructor(
         private modalService: NgbModal,
         private fb: FormBuilder,
-        private skillTypeService: SkillTypesService,
-        private skillTypeBucketService: SkillTypeBucketService,
+        private trackService: TracksService,
+        private trackBucketService: TrackBucketService,
         private bucketsService: BucketsService,
         private alertsService: AlertsService,
         private tab: NgbTabset,
@@ -59,51 +59,51 @@ export class SkillTypesComponent implements OnInit {
 
     removeElement(item: any) {
         let thing: any;
-        for (let i = 0; i < this.allSkillTypes.length; i++) {
-            thing = this.allSkillTypes[i];
-            if (thing.skillTypeName === item.skillTypeName) {
+        for (let i = 0; i < this.allTracks.length; i++) {
+            thing = this.allTracks[i];
+            if (thing.trackName === item.trackName) {
                 if (thing.active) {
                     thing.active = !thing.active;
-                    this.skillTypeService.deactivateSkillType(thing.skillTypeId).subscribe();
+                    this.trackService.deactivateTrack(thing.trackId).subscribe();
                 } else {
                     thing.active = !thing.active;
-                    this.skillTypeService.activateSkillType(thing.skillTypeId).subscribe();
+                    this.trackService.activateTrack(thing.trackId).subscribe();
                 }
             }
-            this.setSkillTypes();
+            this.setTracks();
         }
     }
 
-    setSkillTypes() {
+    setTracks() {
         let thing: any;
-        this.skillTypes = [];
-        this.inactiveSkillTypes = [];
-        for (let i = 0; i < this.allSkillTypes.length; i++) {
-            thing = this.allSkillTypes[i];
+        this.tracks = [];
+        this.inactiveTracks = [];
+        for (let i = 0; i < this.allTracks.length; i++) {
+            thing = this.allTracks[i];
             if (thing.isActive === true) {
-                this.skillTypes[this.skillTypes.length] = thing;
+                this.tracks[this.tracks.length] = thing;
             } else if (thing.isActive === false) {
-                this.inactiveSkillTypes[this.inactiveSkillTypes.length] = thing;
+                this.inactiveTracks[this.inactiveTracks.length] = thing;
             }
         }
     }
 
-    skillTypeUpdate(skillType: SkillType) {
-        if (skillType.active) {
-            skillType.active = false;
-            this.skillTypeService.deactivateSkillType(skillType).subscribe( skillType => {
-                this.grabAllSkillTypes();
+    trackUpdate(track: Track) {
+        if (track.active) {
+            track.active = false;
+            this.trackService.deactivateTrack(track).subscribe( track => {
+                this.grabAllTracks();
             });
         } else {
-            skillType.active = true;
-            this.skillTypeService.activateSkillType(skillType).subscribe( skillType => {
-                this.grabAllSkillTypes();
+            track.active = true;
+            this.trackService.activateTrack(track).subscribe( track => {
+                this.grabAllTracks();
             });
         }
     }
  
     /**
-    * Opens the modal for creating and editing skill SkillType
+    * Opens the modal for creating and editing track
     * Resets fields clears the data within set fields
     * ____________________
     * THIS DOES NOT ACTUALLY CLEAR DATA SET IN FIELDS
@@ -121,20 +121,20 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Stores information about the skill type that was selected
-    * If there are any buckets associated to the skill type,
+    * Stores information about the track that was selected
+    * If there are any buckets associated to the track,
     * set the array to the selected buckets to the array
-    * @param skillType: selected skill type
+    * @param track: selected track
     */
-    editSkillType(skillType : SkillType) {
-        this.grabAllSkillTypes();
-        this.singleSkillTypeBuckets = [];
-        this.singleSkillType = {
-            title: skillType.title,
-            skillTypeId: skillType.skillTypeId,
+    editTrack(track : Track) {
+        this.grabAllTracks();
+        this.singleTrackBuckets = [];
+        this.singleTrack = {
+            title: track.title,
+            trackId: track.trackId,
             active: true,
         };
-        this.grabAllSkillTypes();
+        this.grabAllTracks();
         this.grabAllBuckets();
         this.getAssociated();
     }
@@ -142,18 +142,18 @@ export class SkillTypesComponent implements OnInit {
     getAssociated() {
         for (let i = 0; i < this.allBuckets.length; i++) {
             if (this.checkContains(this.allBuckets[i])) {
-                if (!this.singleSkillTypeBucketIds.includes(this.allBuckets[i].bucketId)) {
-                    this.singleSkillTypeBuckets.push(this.allBuckets[i]);
-                    this.singleSkillTypeBucketIds.push(this.allBuckets[i].bucketId);
+                if (!this.singleTrackBucketIds.includes(this.allBuckets[i].bucketId)) {
+                    this.singleTrackBuckets.push(this.allBuckets[i]);
+                    this.singleTrackBucketIds.push(this.allBuckets[i].bucketId);
                 }
             }
         }
     }
   
     checkContains(bucket: Bucket) {
-        if (this.singleSkillType) {
+        if (this.singleTrack) {
             for (let i = 0; i < this.allWeights.length; i++) {
-                if (this.allWeights[i].skillType.title === this.singleSkillType.title) {
+                if (this.allWeights[i].track.title === this.singleTrack.title) {
                     if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        
                       return true;
                     }
@@ -164,20 +164,20 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Adds a new bucket object to the selected skill type.
+    * Adds a new bucket object to the selected track.
     * Set weight of new bucket to be 0
-    * Add the bucketId to the array of Ids of selected skill type
-    * @param bucket: bucket object needed to be added to skill types.
+    * Add the bucketId to the array of Ids of selected track
+    * @param bucket: bucket object needed to be added to tracks.
     */
-    addToSkillTypeBuckets(bucky: Bucket) {
-        if (this.singleSkillType) {
+    addToTrackBuckets(bucky: Bucket) {
+        if (this.singleTrack) {
             const relationship: Weight = {
                 bucket: bucky,
-                skillType: this.singleSkillType,
+                track: this.singleTrack,
                 weightValue: 0,
                 weightId: 0
             };
-            this.skillTypeBucketService.newSkillTypeForBucket(relationship);
+            this.trackBucketService.newTrackForBucket(relationship);
             this.grabAllBuckets();
             this.getAllWaits();
             this.getAssociated();
@@ -185,24 +185,24 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Removes all references to the bucket that is associated to the skill type
-    * @param bucket: bucket object to be removed from all associates to the skill type
+    * Removes all references to the bucket that is associated to the track
+    * @param bucket: bucket object to be removed from all associates to the track
     */
-    removeFromSkillTypeBuckets(bucket) {
-        if (this.singleSkillType) {
-            const modSkillTypeBuckets = [];
-            for (let i = 0; i < this.singleSkillTypeBuckets.length; i++) {
-                if (this.singleSkillTypeBuckets[i].bucketId !== bucket.bucketId) {
-                    modSkillTypeBuckets.push(this.singleSkillTypeBuckets[i]);
+    removeFromTrackBuckets(bucket) {
+        if (this.singleTrack) {
+            const modTrackBuckets = [];
+            for (let i = 0; i < this.singleTrackBuckets.length; i++) {
+                if (this.singleTrackBuckets[i].bucketId !== bucket.bucketId) {
+                    modTrackBuckets.push(this.singleTrackBuckets[i]);
                 }
             }
-            this.singleSkillTypeBuckets = modSkillTypeBuckets.slice();
+            this.singleTrackBuckets = modTrackBuckets.slice();
             // need a weight ID from bucket
             let removed: number;
             for (let j = 0; j < this.allWeights.length; j++) {
                 if (this.allWeights[j].bucket.bucketId === bucket.bucketId) {
                     // delete the weight
-                    this.skillTypeBucketService.deleteWeight(this.allWeights[j].weightId);
+                    this.trackBucketService.deleteWeight(this.allWeights[j].weightId);
                     // remove from list
                     removed = j;
                 }
@@ -224,15 +224,15 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Updates the selected skill type with the added buckets and bucketWeightSum
-    * If there are buckets added to the skill type, the weight percentage of the buckets
+    * Updates the selected track with the added buckets and bucketWeightSum
+    * If there are buckets added to the track, the weight percentage of the buckets
     * has to sum to 100. When the form is valid, the reference to the open modal will close
-    * and an HTTP Request is sent to the endpoint to update the skill type and relations
+    * and an HTTP Request is sent to the endpoint to update the track and relations
     * If the buckets
     */
-    updateSkillType(modal: SkillType) {
-        this.skillType = modal;
-        this.skillType.skillTypeId = this.singleSkillType.skillTypeId;
+    updateTrack(modal: Track) {
+        this.track = modal;
+        this.track.trackId = this.singleTrack.trackId;
         this.bucketWeightSum = 0;
         if (this.bucketsAndWeights.length !== 0) {
             for (const index of this.bucketsAndWeights) {
@@ -244,11 +244,11 @@ export class SkillTypesComponent implements OnInit {
             const bucketsId = [];
             const weights = [];
             for (const index of this.bucketsAndWeights) {
-                bucketsId.push(this.singleSkillTypeBucketIds[index]);
+                bucketsId.push(this.singleTrackBucketIds[index]);
                 weights.push(this.bucketsAndWeights[index].weights);
             }
-            this.skillTypeService.updateSkillTypeBuckets(this.skillType, bucketsId, weights).subscribe(results => {
-                this.grabAllSkillTypes();
+            this.trackService.updateTrackBuckets(this.track, bucketsId, weights).subscribe(results => {
+                this.grabAllTracks();
             });
             this.savedSuccessfully();
         } else {
@@ -257,8 +257,8 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Checks the sum of bucket weights that are associated to the selected skill types
-    * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
+    * Checks the sum of bucket weights that are associated to the selected tracks
+    * If there are buckets associated to the track and the sum is not 100, an error will appear and save button is disabled
     */
     checkBucketSum() {
         this.bucketWeightSum = 0;
@@ -275,16 +275,16 @@ export class SkillTypesComponent implements OnInit {
     }
 
     /**
-    * Grabs all skill types and stores the information into a variable
+    * Grabs all tracks and stores the information into a variable
     */
-    grabAllSkillTypes() {
-        this.skillTypeService.getSkillTypes().subscribe((results) => {
-            this.allSkillTypes = results;
-            this.setSkillTypes();
-            this.allSkillTypes.sort(this.compareIfTrackIsActive);
-            this.setSkillTypes();
-            this.allSkillTypes.sort(this.compareActiveTracks);
-            this.allSkillTypes.sort(this.compareInactiveTracks);
+    grabAllTracks() {
+        this.trackService.getTracks().subscribe((results) => {
+            this.allTracks = results;
+            this.setTracks();
+            this.allTracks.sort(this.compareIfTrackIsActive);
+            this.setTracks();
+            this.allTracks.sort(this.compareActiveTracks);
+            this.allTracks.sort(this.compareInactiveTracks);
         });
     }
 
@@ -296,8 +296,8 @@ export class SkillTypesComponent implements OnInit {
         }
     }
 
-    /** used to compare SkillType Array to sort it based on status */
-    compareIfTrackIsActive(a: SkillType, b: SkillType) {
+    /** used to compare Track Array to sort it based on status */
+    compareIfTrackIsActive(a: Track, b: Track) {
         if (a.active) {
             return -1;
         } else {
@@ -305,7 +305,7 @@ export class SkillTypesComponent implements OnInit {
         }
     }
 
-    compareActiveTracks(a: SkillType, b: SkillType) {
+    compareActiveTracks(a: Track, b: Track) {
         if (a.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
           return -1;
         } else {
@@ -313,7 +313,7 @@ export class SkillTypesComponent implements OnInit {
         }
       }
 
-    compareInactiveTracks(a: SkillType, b: SkillType) {
+    compareInactiveTracks(a: Track, b: Track) {
         if (!a.active && !b.active && a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
             return -1;
         } else {
@@ -335,9 +335,9 @@ export class SkillTypesComponent implements OnInit {
     * Resets all fields that were used for the modal
     */
     resetFields() {
-        this.singleSkillType = null;
+        this.singleTrack = null;
         this.error = false;
-        this.singleSkillTypeBucketIds = [];
+        this.singleTrackBucketIds = [];
 
     }
 
@@ -350,12 +350,12 @@ export class SkillTypesComponent implements OnInit {
     }
 
     getAllWaits() {
-        this.skillTypeBucketService.getAllWeights().subscribe(results => {
+        this.trackBucketService.getAllWeights().subscribe(results => {
             this.allWeights = results;
         });
     }
     ngOnInit() {
-        this.grabAllSkillTypes();
+        this.grabAllTracks();
         this.grabAllBuckets();
         this.getAllWaits();
     }

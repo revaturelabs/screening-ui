@@ -29,7 +29,7 @@ const httpOptions = {
 * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
 */
 @Injectable()
-export class SkillTypeBucketService {
+export class TrackBucketService {
   constructor(
     private httpClient: HttpClient,
     private urlService: UrlService
@@ -38,22 +38,22 @@ export class SkillTypeBucketService {
   bucketsByWeight: Weight[];
 
 
-  // getSkillTypeBuckets(skillTypeID: number): Observable<any>{
-  //   this.httpClient.get<any>(this.ROOT_URL + `skillType/getSkillTypeBucketsWithWeights/${skillTypeID}`).subscribe(data => {
+  // getTrackBuckets(trackID: number): Observable<any>{
+  //   this.httpClient.get<any>(this.ROOT_URL + `track/getTrackBucketsWithWeights/${trackID}`).subscribe(data => {
   //     console.log(data);
   //   })
-  //   return of(SKILL_TYPE_BUCKET_LOOKUP);
+  //   return of(TRACK_BUCKET_LOOKUP);
   // }
 
   // Returns an observable array of buckets (categories) with assigned weights
-  getSkillTypeBuckets(skillTypeID: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.urlService.skillTypes.getBucketBySkillType(skillTypeID)}`);
+  getTrackBuckets(trackID: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.urlService.tracks.getBucketByTrack(trackID)}`);
   }
-  getWeightsBySkillType(skillTypeID: number) {
-    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeID)}`);
+  getWeightsByTrack(trackID: number) {
+    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsByTrack(trackID)}`);
   }
 
-  newSkillTypeForBucket(weight: Weight) {
+  newTrackForBucket(weight: Weight) {
     return this.httpClient.post<Weight>(`${this.urlService.weights.newWeight()}`, weight, httpOptions);
   }
 
@@ -66,8 +66,8 @@ export class SkillTypeBucketService {
   }
 
 /*
-  getSkillTypeBuckets(skillTypeID: number): Observable<SkillTypeBucketLookUp>{
-    return of(SKILL_TYPE_BUCKET_LOOKUP);
+  getTrackBuckets(trackID: number): Observable<TrackBucketLookUp>{
+    return of(TRACK_BUCKET_LOOKUP);
   }
 */
 

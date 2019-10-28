@@ -12,7 +12,7 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { SkillTypesService } from '../../services/tracks/skill-types.service';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
 import { Candidate } from '../../entities/Candidate';
 import { SearchPipe } from '../../pipes/search.pipe';

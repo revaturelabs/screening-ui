@@ -4,7 +4,7 @@ import { FinalReportComponent } from './final-report.component';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { SkillTypesService } from '../../services/tracks/skill-types.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
