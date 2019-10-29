@@ -18,9 +18,9 @@ import { AlertsService } from './services/alert-service/alerts.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
+import { SkillTypeCategoryService } from './services/skillTypeCategoryLookup/skill-type-category.service';
 import { QuestionsService } from './services/questions/questions.service';
-import { BucketsService } from './services/categories/categories.service';
+import { CategoriesService } from './services/categories/categories.service';
 import { UrlService } from './services/urls/url.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 
@@ -34,7 +34,7 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
-import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
+import { SkillTypeCategoriesComponent } from './components/skillType-categories/skillType-categories.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 
@@ -65,17 +65,17 @@ export const Dependencies = {
     PassFailComponent,
     ViolationFlagComponent,
     SkillTypesComponent,
-    SkillTypeBucketsComponent,
+    SkillTypeCategoriesComponent,
     QuestionComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
     QuestionsService,
-    BucketsService,
+    CategoriesService,
     ScreeningStateService,
     SkillTypesService,
     ScreeningService,
-    SkillTypeBucketService,
+    SkillTypeCategoryService,
     ScheduledScreeningService,
     HttpClient,
     NgbModal,
