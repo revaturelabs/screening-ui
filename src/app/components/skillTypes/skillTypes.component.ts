@@ -171,10 +171,10 @@ export class SkillTypesComponent implements OnInit {
     * Add the categoryId to the array of Ids of selected skill type
     * @param category: category object needed to be added to skill types.
     */
-    addToSkillTypeCategories(bucky: Category) {
+    addToSkillTypeCategories(category: Category) {
         if (this.singleSkillType) {
             const relationship: Weight = {
-                category: bucky,
+                category: category,
                 skillType: this.singleSkillType,
                 weightValue: 0,
                 weightId: 0
