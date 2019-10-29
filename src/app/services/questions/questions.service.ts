@@ -54,7 +54,7 @@ export class QuestionsService {
 
   /**
    * Removed dead code
-   * Removed buckedId parameter
+   * Removed categoryId parameter
    * updated to be in sync with new Gambit question service modifications
    * used urlService to get endpoint for updating new quetions with put method
    * @param question
