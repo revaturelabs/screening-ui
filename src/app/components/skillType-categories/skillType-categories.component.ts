@@ -80,7 +80,7 @@ export class SkillTypeCategoriesComponent implements OnInit {
     * Then route to 'category.component'.
     */
   routeToCategory(item: Category) {
-    this.categoryService.Category(item);
+    this.categoryService.setCategory(item);
     this.router.navigate(['settings/category']);
   }
 
