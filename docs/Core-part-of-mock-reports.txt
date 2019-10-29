@@ -11,7 +11,7 @@ hardestQuestions:   [
         avgSkillTypeScore: [{name: 'Soft Skills', y: 64.9}, {name: 'Tech Skills', y: 79.3},{name: 'Time Hacking Skills', y: 67.1},
             {name: 'Basic Math Skils', y: 84.5},{name: 'Advance Math Skills', y: 87.2}, {name: 'Beta Skills', y: 88.2}],
 // mock data for technology skills, contain name and floating point number of each type, ~1-100 range.
-        avgBucketTypeScore: [{name: 'Java Applied', y: 88.7}, {name: 'Hibernate', y: 60.2},{name: 'SQL', y: 88.0},
+        avgCategoryScore: [{name: 'Java Applied', y: 88.7}, {name: 'Hibernate', y: 60.2},{name: 'SQL', y: 88.0},
             {name: 'Angular', y: 89.3},{name: 'Spring AoP', y: 55.0}, {name: 'Java Concepts', y: 73.6},{name: 'SOAP', y: 78.0},
             {name: 'JDBC', y: 78.0}, {name: 'REST', y: 80.0}],
 // mock data for violations, contain name and integer of each type of violation, ~1-50 range.
