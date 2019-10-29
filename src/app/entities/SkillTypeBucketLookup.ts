@@ -1,11 +1,11 @@
-import { Bucket } from './Bucket';
+import { Category } from './Category';
 import { SkillType } from './SkillType';
 
 /*
-    Entity representing the categories (buckets) matched to a given technical track (skillType)
+    Entity representing the Category matched to a given technical track (skillType)
 */
-export interface SkillTypeBucketLookUp {
+export interface SkillTypeCategoryLookUp {
     skillType: SkillType;
-    buckets: Bucket[];
+    categories: Category[];
     weights: number[];
 }
