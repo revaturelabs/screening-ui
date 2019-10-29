@@ -39,7 +39,7 @@ export interface ReportData {
     //     avgCategoryScore, numApplicantsPassed, numApplicantsFailed, screenerName, screenerEmail) {
     //         this.hardestQuestions = hardestQuestions;
     //         this.avgSkillTypeScore = aveSkillTypeScore;
-    //         this.avgCategoryScore = avgBucketTypeScore;
+    //         this.avgCategoryScore = avgCategoryScore;
     //         this.numApplicantsPassed = numApplicantsPassed;
     //         this.numApplicantsFailed = numApplicantsFailed;
     //         this.screener = { 'name': screenerName, 'email': screenerEmail };
