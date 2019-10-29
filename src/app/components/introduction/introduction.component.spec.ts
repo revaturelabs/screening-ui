@@ -21,8 +21,8 @@ describe('IntroductionComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
       declarations: [ IntroductionComponent, ViolationFlagComponent],
-      providers: [ ScreeningStateService, UrlService, SkillTypesService, ScreeningService, 
-      SoftSkillsViolationService,ViolationTypeService,AlertsService],
+      providers: [ ScreeningStateService, UrlService, SkillTypesService, ScreeningService,
+      SoftSkillsViolationService, ViolationTypeService, AlertsService],
     })
     .compileComponents();
   }));
@@ -30,7 +30,7 @@ describe('IntroductionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(IntroductionComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it('should create', () => {

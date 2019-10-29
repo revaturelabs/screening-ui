@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SkillType } from '../../entities/SkillType';
-import { Bucket } from '../../entities/Bucket';
+import { Category } from '../../entities/Category';
 import { UrlService } from '../urls/url.service';
 
 
@@ -22,7 +22,7 @@ export class SkillTypesService {
         private http: HttpClient,
         private urlService: UrlService
     ) { }
-    public skillTypeBuckets: Observable<SkillType[]>;
+    public skillTypeCategories: Observable<SkillType[]>;
 
     createSkillType(skillType: SkillType) {
         return this.http.post<SkillType>(this.urlService.skillTypes.createSkillType(), skillType, httpOptions);
@@ -44,14 +44,14 @@ export class SkillTypesService {
         return this.http.get<any[]>(this.urlService.skillTypes.getSkillTypes());
     }
 
-    setSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.post(this.urlService.skillTypes.setSkillTypeBuckets(), { title: skillType.title, skillTypeId:
-            skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+    setSkillTypeCategories(skillType: SkillType, categoryIds, weights) {
+        return this.http.post(this.urlService.skillTypes.setSkillTypeCategories(), { title: skillType.title, skillTypeId:
+            skillType.skillTypeId, categoryIds: categoryIds, weights: weights }, httpOptions);
     }
 
-    updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.put(this.urlService.skillTypes.updateSkillTypeBuckets(skillType.skillTypeId), { title: skillType.title,
-            skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+    updateSkillTypeCategories(skillType: SkillType, categoryIds, weights) {
+        return this.http.put(this.urlService.skillTypes.updateSkillTypeCategories(skillType.skillTypeId), { title: skillType.title,
+            skillTypeId: skillType.skillTypeId, categoryIds: categoryIds, weights: weights }, httpOptions);
     }
 
     getSkillTypeById(skillTypeId: number) {
@@ -59,7 +59,7 @@ export class SkillTypesService {
     }
 
     /** Temporary solution for this func, need to double check with back-end **/
-    getBucketsBySkillType(skillTypeId: number) {
-        return this.http.get<Bucket[]>(this.urlService.skillTypes.getBucketBySkillType(skillTypeId));
+    getCategoriesBySkillType(skillTypeId: number) {
+        return this.http.get<Category[]>(this.urlService.skillTypes.getCategoryBySkillType(skillTypeId));
     }
 }

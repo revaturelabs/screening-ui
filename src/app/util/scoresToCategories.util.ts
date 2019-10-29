@@ -1,22 +1,22 @@
 import { QuestionScore } from '../entities/QuestionScore';
 import { QuestionsService } from '../services/questions/questions.service';
 import { Weight } from '../entities/Weight';
-export class ScoresToBucketsUtil {
+export class ScoresToCategoriesUtil {
 
   private questionsService: QuestionsService;
 
   getFinalBreakdown(questionScores: QuestionScore[], weights: Weight[]): string[] {
-    const bucketScores: number[] = [];
-    const bucketWeights: number[] = [];
+    const categoryScores: number[] = [];
+    const categoryWeights: number[] = [];
     let score = 0;
     weights.forEach(w => {
-      bucketWeights[w.bucket.bucketId] = w.weightValue;
+      categoryWeights[w.category.categoryId] = w.weightValue;
     });
     questionScores.forEach(qs => {
-      bucketScores[qs.bucketId] += qs.score;
+      categoryScores[qs.categoryId] += qs.score;
     });
-    for (const key of bucketScores) {
-      score += bucketScores[key] * bucketWeights[key];
+    for (const key of categoryScores) {
+      score += categoryScores[key] * categoryWeights[key];
     }
     return ['Overall: ' + score];
   }

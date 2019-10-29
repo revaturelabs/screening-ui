@@ -3,7 +3,7 @@ import { QuestionsService } from './questions.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
-import { Bucket } from 'src/app/entities/Bucket';
+import { Category } from 'src/app/entities/Category';
 
 export function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));
@@ -26,9 +26,9 @@ export function asyncError<T>(errorObject: any) {
  * https://angular.io/guide/testing#testing-http-services
  */
 
-const bucket: Bucket = {
-    bucketId: 1,
-    bucketDescription: 'Hi',
+const category: Category = {
+    categoryId: 1,
+    categoryDescription: 'Hi',
     isActive: true
 };
 
@@ -37,7 +37,7 @@ const sampleQuestion: Question = {
     questionText: 'string',
     sampleAnswer: 'string',
     isActive: true,
-    bucket: bucket
+    category: category
 };
 
     const QUESTIONS: Question[] = [sampleQuestion];
@@ -46,18 +46,18 @@ const sampleQuestion: Question = {
 
 
 describe('QuestionsService ', () => {
-  const testBucket = -1;
+  const testCategory = -1;
   let httpClientSpyOnGet: { get: jasmine.Spy };
   let httpClientSpyOnPost: { post: jasmine.Spy };
   let httpClientSpyOnPut: {put: jasmine.Spy };
   let questionsService: QuestionsService;
 
   /**
-   * See if getBucketQuestions makes an http request
+   * See if getCategoryQuestions makes an http request
    *
-   * Function tested: getBucketQuestions()
+   * Function tested: getCategoryQuestions()
    */
-  it('getBucketQuestions should return expected questions from bucket #' + testBucket + ' (HttpClient called once)', () => {
+  it('getCategoryQuestions should return expected questions from category #' + testCategory + ' (HttpClient called once)', () => {
     httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
     questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService );
 
@@ -65,7 +65,7 @@ describe('QuestionsService ', () => {
 
     httpClientSpyOnGet.get.and.returnValue(asyncData(expectedQuestions));
 
-    questionsService.getBucketQuestions(testBucket).subscribe(
+    questionsService.getCategoryQuestions(testCategory).subscribe(
       questions => expect(questions).toEqual(expectedQuestions, 'expected questions'),
       fail
     );
@@ -160,17 +160,17 @@ describe('QuestionsService ', () => {
   });
 
   /**
-   * Test if getBucketQuestions returns an error 404 as a return value.
+   * Test if getCategoryQuestions returns an error 404 as a return value.
    *
-   * Function tested: getBucketQuestions()
+   * Function tested: getCategoryQuestions()
    */
-  it('getBucketQuestions should return an error when the server returns a 404', () => {
+  it('getCategoryQuestions should return an error when the server returns a 404', () => {
     httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
     questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService);
 
     httpClientSpyOnGet.get.and.returnValue(asyncError(errorResponse));
 
-    questionsService.getBucketQuestions(testBucket).subscribe(
+    questionsService.getCategoryQuestions(testCategory).subscribe(
       questions => fail('expected an error, not questions'),
       error  => expect(error.message).toContain('404')
     );
