@@ -42,10 +42,10 @@ export class SkillTypeCategoryService {
   //   this.httpClient.get<any>(this.ROOT_URL + `skillType/getSkillTypeCategoriesWithWeights/${skillTypeID}`).subscribe(data => {
   //     console.log(data);
   //   })
-  //   return of(SKILL_TYPE_BUCKET_LOOKUP);
+  //   return of(SKILL_TYPE_CATEGORY_LOOKUP);
   // }
 
-  // Returns an observable array of categories (categories) with assigned weights
+  // Returns an observable array of categories with assigned weights
   getSkillTypeCategories(skillTypeID: number): Observable<any> {
     return this.httpClient.get<any>(`${this.urlService.skillTypes.getCategoryBySkillType(skillTypeID)}`);
   }
@@ -67,7 +67,7 @@ export class SkillTypeCategoryService {
 
 /*
   getSkillTypeCategories(skillTypeID: number): Observable<SkillTypeCategoryLookUp>{
-    return of(SKILL_TYPE_BUCKET_LOOKUP);
+    return of(SKILL_TYPE_CATEGORY_LOOKUP);
   }
 */
 
