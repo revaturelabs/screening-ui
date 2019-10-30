@@ -11,7 +11,19 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
 import {SpringInterceptor} from './interceptors/spring.interceptor';
+//ILYA MODULE//
+//import {MaterialModule} from '@angular/material';
+import { MaterialModule } from './material/material.module';
+import {MatDialogModule} from '@angular/material/dialog';
 
+import {
+  
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule
+} from '@angular/material';
+//ILYA MODULE//
 import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
@@ -65,7 +77,11 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
+
+import { AReportComponent } from './a-report/a-report.component';
+
 import { FullReportService } from './services/reports/full-report.service';
+
 
 
 @NgModule({
@@ -96,9 +112,21 @@ import { FullReportService } from './services/reports/full-report.service';
     AverageBucketTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
-    ViolationsByTypeComponent
+    ViolationsByTypeComponent,
+  
+    AReportComponent
+ 
   ],
   imports: [
+   
+    MaterialModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatDialogModule,
+
+   
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -109,8 +137,24 @@ import { FullReportService } from './services/reports/full-report.service';
     Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    AmplifyAngularModule
+    AmplifyAngularModule,
   ],
+  
+  
+  exports: [
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    AReportComponent
+
+    
+  ],
+  entryComponents: [
+    AReportComponent
+  ],
+  
+
   providers: [
     AlertsService,
     BucketsService,

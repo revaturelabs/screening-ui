@@ -4,6 +4,11 @@ import { ReportData } from 'src/app/entities/ReportData';
 import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
 import { FullReportService } from 'src/app/services/reports/full-report.service';
 
+//ILYA//
+import{MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import { AReportComponent } from 'src/app/a-report/a-report.component';
+//ILYA//
+
 @Component({
   selector: 'app-master-report',
   templateUrl: './master-report.component.html',
@@ -12,7 +17,15 @@ import { FullReportService } from 'src/app/services/reports/full-report.service'
 export class MasterReportComponent implements OnInit {
 
 
-  constructor(public fullReportService: FullReportService) { }
+
+  constructor(
+    private reportService: ReportService,
+    private reportCache: ReportCacheService,
+//ILYA//
+ private dialog: MatDialog
+//ILYA//
+) { }
+
 
   ngOnInit() {
     this.fullReportService.getAllSimpleReports().subscribe((data)=>{
@@ -20,4 +33,44 @@ export class MasterReportComponent implements OnInit {
     });
   }
 
+
+  onSearchChange(newTerm: string) {
+    if (this.currentSearchTerm !== newTerm) {
+      this.currentSearchTerm = newTerm;
+      this.updateReportData();
+    }
+  }
+  updateReportData() {
+    if (this.currentSearchTerm === '') {
+      this.reportCache.getAllScreenerDataByWeeks(this.startDate, this.endDate)
+        .subscribe(data => this.handleNewReportData(data));
+    } else {
+      this.reportCache.getScreenerDataByWeeks(this.startDate, this.endDate, this.currentSearchTerm)
+      .subscribe(data => this.handleNewReportData(data));
+    }
+  }
+
+  // TODO: fill the dates Array with real non-hardcoded dates, in string format YYYY-MM-DD
+  populateDates() {
+    this.dates = [];
+  }
+
+  //ILYA//
+  report(){
+    //this.dialog.open(AReportComponent);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width="60%";
+    dialogConfig.data = {
+        id: 1,
+        title: 'Angular For Beginners'
+    };
+
+    this.dialog.open(AReportComponent, dialogConfig);
+  }
+  //ILYA//
+
 }
+
