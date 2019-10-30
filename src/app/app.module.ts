@@ -65,6 +65,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
+import { FullReportService } from './services/reports/full-report.service';
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import { RoleGuard } from './role-guard';
     AlertsService,
     BucketsService,
     CookieService,
+    FullReportService,
     QuestionScoreService,
     QuestionsService,
     ScreeningStateService,

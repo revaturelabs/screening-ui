@@ -1,4 +1,6 @@
-import { Track } from './Track';
+
+import {Track} from './Track';
+
 
 export class SimpleReportModel {
     screeningId: number;
@@ -6,10 +8,12 @@ export class SimpleReportModel {
     compositeScore: number;
     track: Track;
 
+
     constructor(screeningId: number, screenDate: Date, compositeScore: number, track: Track) {
         this.screeningId = screeningId;
         this.screenDate = screenDate;
         this.compositeScore = compositeScore;
         this.track = track;
     }
+
 }
