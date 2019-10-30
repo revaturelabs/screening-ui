@@ -10,9 +10,16 @@ import { SimpleReportModel } from '../../entities/SimpleReportModel';
 @Injectable({
   providedIn: 'root'
 })
-export class FullReportService {
+export class SimpleReportService {
   constructor(
     private urlService: UrlService,
     private http: HttpClient
   ) { }
+
+  getAllSimpleReports(): Observable<SimpleReportModel> {
+    return this.http.get<SimpleReportModel>(this.urlService.reports.getAllSimpleReports());
+  }
+  getAllSimpleReportsByDate(dateStart: string, dateEnd: string): Observable<SimpleReportModel> {
+    return this.http.get<SimpleReportModel>(this.urlService.reports.getAllSimpleReportsByDate(dateStart, dateEnd));
+  }
 }

@@ -52,11 +52,13 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertsService } from './services/alert-service/alerts.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { CookieService } from 'ngx-cookie-service';
+import { FullReportService } from './services/reports/full-report.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
+import { SimpleReportService } from './services/reports/simple-report.service';
 import { SkillTypesService } from './services/skill-types/skill-types.service';
 import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
@@ -81,6 +83,7 @@ import { RoleGuard } from './role-guard';
 import { AReportComponent } from './a-report/a-report.component';
 
 import { FullReportService } from './services/reports/full-report.service';
+
 
 
 
@@ -166,6 +169,7 @@ import { FullReportService } from './services/reports/full-report.service';
     ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
+    SimpleReportService,
     SkillTypesService,
     SkillTypeBucketService,
     SoftSkillsService,

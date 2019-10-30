@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/services/reports/report.service';
 import { ReportData } from 'src/app/entities/ReportData';
 import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
-import { FullReportService } from 'src/app/services/reports/full-report.service';
+import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
 
 //ILYA//
 import{MatDialog, MatDialogConfig} from "@angular/material/dialog";
@@ -18,13 +18,16 @@ export class MasterReportComponent implements OnInit {
 
 
 
+
   constructor(
+  public fullReportService: SimpleReportService,
     private reportService: ReportService,
     private reportCache: ReportCacheService,
-//ILYA//
+
  private dialog: MatDialog
-//ILYA//
+
 ) { }
+
 
 
   ngOnInit() {
