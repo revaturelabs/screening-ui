@@ -16,7 +16,7 @@ import { AlertsService } from 'src/app/services/alert-service/alerts.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Question } from 'src/app/entities/Question';
-import { Bucket } from 'src/app/entities/Bucket';
+import { Category } from 'src/app/entities/Category';
 
 
 describe('AnswerComponent', () => {
@@ -36,7 +36,7 @@ describe('AnswerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AnswerComponent);
     fixture.componentInstance.question = new Question();
-    fixture.componentInstance.question.bucket = new Bucket();
+    fixture.componentInstance.question.category = new Category();
     component = fixture.componentInstance;
   });
 

@@ -33,7 +33,7 @@ export class AnswerComponent implements OnInit {
       screeningID: +localStorage.getItem('screeningID'),
       score: 0,
       commentary: '',
-      bucketId: this.question.bucket.bucketId,
+      categoryId: this.question.category.categoryId,
       beginTime: new Date()
     };
     // update answeredQuestions array to match our question service's answeredQuestions array.

@@ -63,7 +63,7 @@ export const routes: Routes = [
         component: ScreeningConfigComponent
       },
       {
-        path: 'bucket',
+        path: 'category',
         component: QuestionComponent
       }
     ]

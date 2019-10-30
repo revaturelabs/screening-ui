@@ -1,4 +1,4 @@
-<div id="final-report-container" class="final-report-container">	
+<div id="final-report-container" class="final-report-container">
 	<h1>Final Summary</h1>
 	<div id="finalrep">
 		<p id="candidate-name" class="text-center">{{candidateName}}</p>
@@ -6,18 +6,18 @@
 		<h2 class="text-center">Interview has been submitted</h2>
 		<br>
 		<div class="container-fluid rounded" id ="finalcon">
-			<p id="softskills">{{softSkillString}}</p>			
+			<p id="softskills">{{softSkillString}}</p>
 			<div>
-				<p *ngFor="let bucket of bucketStringArray">{{bucket}}</p>
-			</div>			
+				<p *ngFor="let category of categoryStringArray">{{category}}</p>
+			</div>
 			<p id="overallScoreString">{{overallScoreString}}</p>
 			<p id="generalNotesString">"{{generalNotesString}}"</p>
 		</div>
 	</div>
 	<br>
-	
+
 	<div class="centerit">
-		<input class="copywow btn" type="button" (click) = "copyToClipboard()" value = "Copy To Clipboard"> 
+		<input class="copywow btn" type="button" (click) = "copyToClipboard()" value = "Copy To Clipboard">
 	</div>
 	<br>
 	<div class="centerit">

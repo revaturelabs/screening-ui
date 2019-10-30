@@ -8,7 +8,7 @@ export class Screener {
 
 // BarChartData class contains the name and average value of a bar being represented on the Chart.
 // Charts are divided into:
-// Average Score by Bucket Type, Average Score by Skill Type, Violations by Types
+// Average Score by Category, Average Score by Skill Type, Violations by Types
 // Each bar contains specific skill with average of that skill over time period selected.
 export class BarChartData {
     // Bar name.
@@ -24,7 +24,7 @@ export interface ReportData {
     // Array of objects that stores data regarding general skills (soft skills, basic math, advanced math, etc.)
     avgSkillTypeScore: BarChartData[];
     // Array of objects that stores data regarding technical skills (Java, SQL, Angular, Spring, JDBC, etc.)
-    avgBucketTypeScore: BarChartData[];
+    avgCategoryScore: BarChartData[];
     // Array of objects that stores data regarding violations that occured during screening (Profanity, Dress Attire, Attitude, etc. )
     violationsByType: BarChartData[];
     // Integer variable that stores the number of applicants that passed the screening procces over specific time range.
@@ -36,10 +36,10 @@ export interface ReportData {
 
     
     // public ReportData(hardestQuestions, aveSkillTypeScore, 
-    //     avgBucketTypeScore, numApplicantsPassed, numApplicantsFailed, screenerName, screenerEmail) {
+    //     avgCategoryScore, numApplicantsPassed, numApplicantsFailed, screenerName, screenerEmail) {
     //         this.hardestQuestions = hardestQuestions;
     //         this.avgSkillTypeScore = aveSkillTypeScore;
-    //         this.avgBucketTypeScore = avgBucketTypeScore;
+    //         this.avgCategoryScore = avgCategoryScore;
     //         this.numApplicantsPassed = numApplicantsPassed;
     //         this.numApplicantsFailed = numApplicantsFailed;
     //         this.screener = { 'name': screenerName, 'email': screenerEmail };

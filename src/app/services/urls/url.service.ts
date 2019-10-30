@@ -13,7 +13,7 @@ export class UrlService {
   }
 
   /**
-   * Endpoints for bucket service
+   * Endpoints for category service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
@@ -21,13 +21,13 @@ export class UrlService {
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    *
    */
-  private bucketEndpoint = this.adminContext + '/bucket';
-  bucket = {
-    getAllBuckets: () => `${this.bucketEndpoint}`,
-    getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
-    updateBucket: () => `${this.bucketEndpoint}`,
-    createNewBucket: () => `${this.bucketEndpoint}`,
-    deleteBucket: () => `${this.bucketEndpoint}`
+  private categoryEndpoint = this.adminContext + '/category';
+  category = {
+    getAllCategories: () => `${this.categoryEndpoint}`,
+    getCategoryById: (categoryId: number) => `${this.categoryEndpoint}/${categoryId}`,
+    updateCategory: () => `${this.categoryEndpoint}`,
+    createNewCategory: () => `${this.categoryEndpoint}`,
+    deleteCategory: () => `${this.categoryEndpoint}`
   };
 
   /**
@@ -42,7 +42,7 @@ export class UrlService {
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
-    getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
+    getQuestionsByCategoryId: (categoryId: number) => `${this.questionEndpoint}/getByCategory/${categoryId}`,
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
@@ -87,13 +87,13 @@ export class UrlService {
     update: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
     delete: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`, // note lowercase t in type, this is to match the request mapping
 
-    getBucketBySkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBucketsWithWeights/${skillTypeId}`,
+    getCategoryBySkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeCategoriesWithWeights/${skillTypeId}`,
     createSkillType: () => `${this.skillTypesServiceEndpoint}`,
     putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
     getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
-    setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
-    getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
+    updateSkillTypeCategories: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
+    setSkillTypeCategories: () => `${this.skillTypesServiceEndpoint}/setSkillTypeCategory`,
+    getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeCategories/${skillTypeId}`,
 
   };
 
