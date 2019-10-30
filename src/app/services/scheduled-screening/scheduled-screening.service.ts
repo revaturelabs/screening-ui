@@ -17,7 +17,7 @@ export class ScheduledScreeningService {
   private scheduledScreenings: ScheduledScreening[] = [];
 
   getScheduledScreenings(): ScheduledScreening[] {
-    this.tracksService.gettracks().subscribe(trackData => {
+    this.tracksService.getTracks().subscribe(trackData => {
       this.tracks = trackData;
       this.httpClient.get<any[]>(this.urlService.screening.scheduledScreeningUrl()).subscribe(scheduledScreeningData => {
         for (const scheduledScreening of scheduledScreeningData) {

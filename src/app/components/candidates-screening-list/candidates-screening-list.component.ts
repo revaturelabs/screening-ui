@@ -112,7 +112,7 @@ export class CandidatesScreeningListComponent implements OnInit {
         data => {
         // and save the screening ID as a cookie to localStorage.
         // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
-        // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
+        // localStorage.setItem('trackID', this.selectedScheduledScreening.track.trackId.toString());
         screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
         trackId = this.selectedScheduledScreening.track.trackId.toString();
       });

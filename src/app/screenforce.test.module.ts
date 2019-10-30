@@ -16,9 +16,9 @@ import { SpringInterceptor } from './interceptors/spring.interceptor';
 // services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
-import { SkillTypesService } from './services/tracks/skill-types.service';
+import { TracksService } from './services/tracks/tracks.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { SkillTypeBucketService } from './services/skillTypeBucketLookup/skill-type-bucket.service';
+import { TrackBucketService } from './services/trackBucketLookup/track-bucket.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { BucketsService } from './services/buckets/buckets.service';
 import { UrlService } from './services/urls/url.service';
@@ -33,8 +33,8 @@ import { AnswerComponent } from './components/answer/answer.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
-import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillType-buckets.component';
+import { TracksComponent } from './components/tracks/tracks.component';
+import { TrackBucketsComponent } from './components/track-buckets/track-buckets.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 
@@ -64,8 +64,8 @@ export const Dependencies = {
     AnswerComponent,
     PassFailComponent,
     ViolationFlagComponent,
-    SkillTypesComponent,
-    SkillTypeBucketsComponent,
+    TracksComponent,
+    TrackBucketsComponent,
     QuestionComponent,
   ],
   providers: [
@@ -73,9 +73,9 @@ export const Dependencies = {
     QuestionsService,
     BucketsService,
     ScreeningStateService,
-    SkillTypesService,
+    TracksService,
     ScreeningService,
-    SkillTypeBucketService,
+    TrackBucketService,
     ScheduledScreeningService,
     HttpClient,
     NgbModal,

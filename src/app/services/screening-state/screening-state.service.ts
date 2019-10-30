@@ -17,7 +17,7 @@ export class ScreeningStateService {
     return this.currentScreening;
   }
 
-  getSkillID(): number {
+  getTrackID(): number {
     return this.currentScreening.track.trackId;
   }
 

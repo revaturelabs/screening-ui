@@ -10,8 +10,8 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
-import { Category } from '../../entities/Category';
+import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
+import { Bucket } from '../../entities/Bucket';
 import { Question } from '../../entities/Question';
 import { AnswerComponent } from '../answer/answer.component';
 import { ViolationFlagComponent } from '../violation-flag/violation-flag.component';
@@ -33,7 +33,7 @@ const QUESTION: Question = {
   questionText: 'string',
   sampleAnswer: 'string',
   isActive: true,
-  category: new Category()
+  bucket: new Bucket()
 };
 const mockQuestionScore: QuestionScore = {
   qSID: 1,
@@ -41,19 +41,19 @@ const mockQuestionScore: QuestionScore = {
   screeningID: 1,
   score: 1,
   commentary: 'string',
-  categoryId: 1,
+  bucketId: 1,
   beginTime: new Date
 };
 
-const CATEGORIES: Category[] = [
+const BUCKETS: Bucket[] = [
   {
-    categoryId: 1,
-    categoryDescription: 'OCA level Java questions',
+    bucketId: 1,
+    bucketDescription: 'OCA level Java questions',
     isActive: true
   },
   {
-    categoryId: 2,
-    categoryDescription: 'SQL database questions',
+    bucketId: 2,
+    bucketDescription: 'SQL database questions',
     isActive: true
   }];
 
@@ -67,7 +67,7 @@ describe('QuestionsTableComponent', () => {
       imports: [FormsModule, RouterTestingModule],
       providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
         TracksService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
-        TrackCategoryService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
+        TrackBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
@@ -87,12 +87,12 @@ describe('QuestionsTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set questionCategories to [] false', () => {
+  it('should set questionBuckets to [] false', () => {
     component.ngOnDestroy();
-    if (component.questionCategories !== undefined) {
-      for (const category of component.questionCategories) {
-        const bs = jasmine.createSpyObj('QuestionService', ['getCategoryQuestions']);
-        expect(bs.getCategoryQuestions(category.categoryId)).toEqual([]);
+    if (component.questionBuckets !== undefined) {
+      for (const bucket of component.questionBuckets) {
+        const bs = jasmine.createSpyObj('QuestionService', ['getBucketQuestions']);
+        expect(bs.getBucketQuestions(bucket.bucketId)).toEqual([]);
       }
     }
   });

@@ -3,15 +3,15 @@ import { Subscription } from 'rxjs';
 
 // Entities
 import { Question } from '../../entities/Question';
-import { Category } from '../../entities/Category';
+import { Bucket } from '../../entities/Bucket';
 import { QuestionScore } from '../../entities/QuestionScore';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
-import { TrackCategoryLookUp } from '../../entities/TrackCategoryLookup';
+import { TrackBucketLookUp } from '../../entities/TrackBucketLookup';
 
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
+import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
 
 // Modal for answering the question
 import { AnswerComponent } from '../answer/answer.component';
@@ -32,7 +32,7 @@ import { Weight } from '../../entities/Weight';
 After the candidate has given their introduction,
 the screener will proceed to the question-and-answer part of the interview.
 A list of questions will be fetched from the server / database.
-Screener will be able to see a set of category tabs,
+Screener will be able to see a set of bucket tabs,
 each of which has a set of questions in a table.
 
 Screener has the ability to navigate between tabs ad nauseam,
@@ -41,19 +41,19 @@ it will invoke an instance of the question component.
 
 */
 export class QuestionsTableComponent implements OnInit, OnDestroy {
-  // Used to display the categories
-  questionCategories: Category[];
+  // Used to display the buckets
+  questionBuckets: Bucket[];
 
-  // holds the current category. Used to control
+  // holds the current bucket. Used to control
   // which questions are displayed in the questions table.
-  currentCategory: number;
-  skillID: number;
+  currentBucket: number;
+  trackID: number;
 
   // Used to display the current track:
   currentScreenings: ScheduledScreening;
 
-  // Used to display current categories in track:
-  trackCategoryLookUp: TrackCategoryLookUp;
+  // Used to display current buckets in track:
+  trackBucketLookUp: TrackBucketLookUp;
 
   // value entered enables finish button
   generalComment: string;
@@ -66,7 +66,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // The candidate's name
   candidateName: string;
 
-  questionsInCategory: Question[];
+  questionsInBucket: Question[];
   // used on ngOnDestroy. Will unsubscribe from all observables
   // to prevent memory leaks
   subscriptions: Subscription[] = [];
@@ -77,27 +77,27 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    private trackCategoryService: TrackCategoryService,
+    private trackBucketService: TrackBucketService,
   ) { }
 
   ngOnInit() {
-    // use trackCategoryLookup that provides array of categories and array of weights
-    this.skillID = this.screeningStateService.getSkillID();
+    // use trackBucketLookup that provides array of buckets and array of weights
+    this.trackID = this.screeningStateService.getTrackID();
     this.subscriptions.push(
-      this.trackCategoryService.
-        getWeightsByTrack(this.skillID).subscribe(categoriesWithWeights => {
-          const myCategories: Category[] = [];
-          for (const e of categoriesWithWeights) {
-            myCategories.push(
+      this.trackBucketService.
+        getWeightsByTrack(this.trackID).subscribe(bucketsWithWeights => {
+          const myBuckets: Bucket[] = [];
+          for (const e of bucketsWithWeights) {
+            myBuckets.push(
               {
-                categoryId: e.category.categoryId,
-                categoryDescription: e.category.categoryDescription,
-                isActive: e.category.isActive
+                bucketId: e.bucket.bucketId,
+                bucketDescription: e.bucket.bucketDescription,
+                isActive: e.bucket.isActive
               }
             );
           }
-          this.trackCategoryService.categoriesByWeight = categoriesWithWeights;
-          this.questionCategories = categoriesWithWeights;
+          this.trackBucketService.bucketsByWeight = bucketsWithWeights;
+          this.questionBuckets = bucketsWithWeights;
         }));
 
     this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
@@ -113,21 +113,21 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Unsubscribe to prevent memory leaks when component is destroyed
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe);
-    // if (this.questionCategories !== undefined) {
-    //   for (const category of this.questionCategories) {
+    // if (this.questionBuckets !== undefined) {
+    //   for (const bucket of this.questionBuckets) {
     //   }
     // }
   }
 
-  // sets the current category, allowing for dynamic change
+  // sets the current bucket, allowing for dynamic change
   // of the questions being displayed.
-  setCategory(categoryID: number) {
-    // iterate through each category
-    // if the current category's id matches the category id
-    // of the category selected by the user
-    this.currentCategory = categoryID;
-    this.questionService.getCategoryQuestions(categoryID).subscribe(questions => {
-      this.questionsInCategory = questions;
+  setBucket(bucketID: number) {
+    // iterate through each bucket
+    // if the current bucket's id matches the bucket id
+    // of the bucket selected by the user
+    this.currentBucket = bucketID;
+    this.questionService.getBucketQuestions(bucketID).subscribe(questions => {
+      this.questionsInBucket = questions;
     }
     );
   }

@@ -10,7 +10,7 @@ import { Bucket } from '../entities/Bucket';
 
 /*
 BucketFilterPipe filters Buckets based on Bucket.bucketCategory (name)
-Used in skillTypes-bucket
+Used in tracks-bucket
 */
  export class BucketFilterPipe implements PipeTransform {
      transform(items: Bucket[], filter: Bucket): Bucket[] {
