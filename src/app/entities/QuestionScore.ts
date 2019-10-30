@@ -1,9 +1,11 @@
+import { Screening } from './Screening';
+
 export class QuestionScore {
-  qSID: number;
+  questionScoreID: number;
   questionId: number;
-  screeningID: number;
+  categoryId: number;
+  screening: Screening;
   score: number;
-  commentary: string;
-  bucketId: number;
+  comment: string;
   beginTime: Date;
 }

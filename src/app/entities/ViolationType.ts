@@ -1,7 +1,8 @@
 /*
     Entity representing the type of a SoftSkillViolation
 */
-export interface ViolationType {
+export class ViolationType {
     violationTypeId: number;
-    violationType: string;
+    violationTypeText: string;
+    description: string;
 }
