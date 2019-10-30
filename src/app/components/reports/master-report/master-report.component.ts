@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/services/reports/report.service';
 import { ReportData } from 'src/app/entities/ReportData';
 import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
-import { FullReportService } from 'src/app/services/reports/full-report.service';
+import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
 
 @Component({
   selector: 'app-master-report',
@@ -12,7 +12,7 @@ import { FullReportService } from 'src/app/services/reports/full-report.service'
 export class MasterReportComponent implements OnInit {
 
 
-  constructor(public fullReportService: FullReportService) { }
+  constructor(public fullReportService: SimpleReportService) { }
 
   ngOnInit() {
     this.fullReportService.getAllSimpleReports().subscribe((data)=>{
