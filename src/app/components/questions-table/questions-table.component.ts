@@ -11,7 +11,7 @@ import { TrackCategoryLookUp } from '../../entities/TrackCategoryLookup';
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 
 // Modal for answering the question
 import { AnswerComponent } from '../answer/answer.component';

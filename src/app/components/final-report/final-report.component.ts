@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
 import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';

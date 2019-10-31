@@ -46,7 +46,7 @@ import { ScheduledScreeningService } from './services/scheduled-screening/schedu
 import { ScreeningService } from './services/screening/screening.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { TracksService } from './services/tracks/tracks.service';
-import { TrackCategoryService } from './services/trackCategoryLookup/track-category.service';
+import { TrackCategoryService } from './services/track-category/track-category.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';

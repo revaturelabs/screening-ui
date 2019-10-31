@@ -7,7 +7,7 @@ import { Category } from '../../entities/Category';
 import { Weight } from '../../entities/Weight';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 
 @Component({
     selector: 'app-tracks',

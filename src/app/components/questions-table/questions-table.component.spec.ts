@@ -10,7 +10,7 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 import { Category } from '../../entities/Category';
 import { Question } from '../../entities/Question';
 import { AnswerComponent } from '../answer/answer.component';
@@ -20,7 +20,7 @@ import { ViolationTypeService } from '../../services/violationType/violationType
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { QuestionScore } from 'src/app/entities/QuestionScore';
+import { QuestionScore } from '../../entities/QuestionScore';
 
 
 // Author: David Gustafson

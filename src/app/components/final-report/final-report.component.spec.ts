@@ -5,7 +5,7 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { TracksService } from '../../services/tracks/tracks.service';
-import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';

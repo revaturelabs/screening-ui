@@ -18,7 +18,7 @@ import { AlertsService } from './services/alert-service/alerts.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { TracksService } from './services/tracks/tracks.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { TrackCategoryService } from './services/trackCategoryLookup/track-category.service';
+import { TrackCategoryService } from './services/track-category/track-category.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { CategoriesService } from './services/categories/categories.service';
 import { UrlService } from './services/urls/url.service';
