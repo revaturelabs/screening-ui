@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MasterReportComponent } from './master-report.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReportSidebarComponent } from '../report-sidebar/report-sidebar.component';
-import { AverageBucketTypeComponent } from '../average-bucket-type/average-bucket-type.component';
+import { AverageCategoryTypeComponent } from '../average-category-type/average-category-type.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ;
-import { AverageSkillComponent } from '../average-skill/average-skill.component';
+import { AverageTrackComponent } from '../average-track/average-track.component';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { UrlService } from 'src/app/services/urls/url.service';
@@ -18,7 +18,7 @@ describe('MasterReportComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, NgbModule, FormsModule, HighchartsChartModule, HttpClientModule],
-      declarations: [ MasterReportComponent, ReportSidebarComponent, AverageBucketTypeComponent, AverageSkillComponent],
+      declarations: [ MasterReportComponent, ReportSidebarComponent, AverageCategoryTypeComponent, AverageTrackComponent],
       providers: [UrlService]
     })
     .compileComponents();

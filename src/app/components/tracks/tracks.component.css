@@ -45,7 +45,7 @@ h6 {
   float: right;
 }
 
-#skillTypesDiv{
+#tracksDiv{
   overflow : auto;
   height: 420px;
 }
@@ -88,7 +88,7 @@ i {
   cursor: hand;
 }
 
-#buckets{
+#categories{
   position: absolute;
   left:33%;
   width: 80%;
@@ -115,7 +115,7 @@ i {
   position: relative;
 }
 
-.bucketWeight{
+.categoryWeight{
   text-align: right;
   position: static;
 }
@@ -225,7 +225,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-#bucket_bins{
+#category_bins{
   margin-bottom: 2px;
   opacity: 1;
 }

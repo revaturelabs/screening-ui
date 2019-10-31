@@ -3,11 +3,11 @@ import * as HighCharts from 'highcharts';
 import { ReportService } from '../../../services/reports/report.service';
 
 @Component({
-  selector: 'app-average-bucket-type',
-  templateUrl: './average-bucket-type.component.html',
-  styleUrls: ['./average-bucket-type.component.css']
+  selector: 'app-average-category-type',
+  templateUrl: './average-category-type.component.html',
+  styleUrls: ['./average-category-type.component.css']
 })
-export class AverageBucketTypeComponent implements OnInit {
+export class AverageCategoryTypeComponent implements OnInit {
 
   Highcharts = HighCharts;
   options: Object;

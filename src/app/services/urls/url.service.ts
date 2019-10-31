@@ -14,7 +14,7 @@ export class UrlService {
   }
 
   /**
-   * Endpoints for bucket service
+   * Endpoints for category service
    *
    * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
    * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
@@ -22,15 +22,14 @@ export class UrlService {
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    *
    */
-  
+  private categoryEndpoint = this.adminContext + '/category';
+  category = {
+    getAllCategories: () => `${this.categoryEndpoint}`,
+    getCategoryById: (categoryId: number) => `${this.categoryEndpoint}/${categoryId}`,
+    updateCategory: () => `${this.categoryEndpoint}`,
+    createNewCategory: () => `${this.categoryEndpoint}`,
+    deleteCategory: () => `${this.categoryEndpoint}`
 
-  private bucketEndpoint = this.adminContext + '/bucket';
-  bucket = {
-    getAllBuckets: () => `${this.bucketEndpoint}`,
-    getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
-    updateBucket: () => `${this.bucketEndpoint}`,
-    createNewBucket: () => `${this.bucketEndpoint}`,
-    deleteBucket: () => `${this.bucketEndpoint}`
   };
 
   /**
@@ -45,7 +44,7 @@ export class UrlService {
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
-    getQuestionsByBucketId: (bucketId: number) => `${this.questionEndpoint}/getByBucket/${bucketId}`,
+    getQuestionsByCategoryId: (categoryId: number) => `${this.questionEndpoint}/getByCategory/${categoryId}`,
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
@@ -72,31 +71,31 @@ export class UrlService {
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
-    getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
+    getWeightsByTrack: (trackId: number) => `${this.weightsEndpoint}/getByTrack/${trackId}`,
     newWeight: () => `${this.weightsEndpoint}/new`,
     deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`
   };
 
   /**
-   * Endpoints for skillType
+   * Endpoints for track
    */
-  skillTypesServiceEndpoint = this.adminContext + '/skilltype';
-  skillTypes = {
-    findAll: () => `${this.skillTypesServiceEndpoint}`,
-    findAllActive: () => `${this.skillTypesServiceEndpoint}/active`,
-    findById: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
+  tracksServiceEndpoint = this.adminContext + '/track';
+  tracks = {
+    findAll: () => `${this.tracksServiceEndpoint}`,
+    findAllActive: () => `${this.tracksServiceEndpoint}/active`,
+    findById: (id: number) => `${this.tracksServiceEndpoint}/${id}`,
    // findByName: (name: string) => `${this.context}/${name}`,
-    save: () => `${this.skillTypesServiceEndpoint}`,
-    update: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
-    delete: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`, // note lowercase t in type, this is to match the request mapping
+    save: () => `${this.tracksServiceEndpoint}`,
+    update: (id: number) => `${this.tracksServiceEndpoint}/${id}`,
+    delete: (id: number) => `${this.tracksServiceEndpoint}/${id}`, // note lowercase t in type, this is to match the request mapping
 
-    getBucketBySkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBucketsWithWeights/${skillTypeId}`,
-    createSkillType: () => `${this.skillTypesServiceEndpoint}`,
-    putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
-    getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeBuckets: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
-    setSkillTypeBuckets: () => `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
-    getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
+    getCategoryByTrack: (trackId: number) => `${this.tracksServiceEndpoint}/getTrackCategoriesWithWeights/${trackId}`,
+    createTrack: () => `${this.tracksServiceEndpoint}`,
+    putTrack: (trackId: number) => `${this.tracksServiceEndpoint}/${trackId}`,
+    getTracks: () => `${this.tracksServiceEndpoint}`,
+    updateTrackCategories: (trackId: number) => `${this.tracksServiceEndpoint}/${trackId}`,
+    setTrackCategories: () => `${this.tracksServiceEndpoint}/setTrackCategory`,
+    getTrackById: (trackId: number) => `${this.tracksServiceEndpoint}/getTrackCategories/${trackId}`,
 
   };
 

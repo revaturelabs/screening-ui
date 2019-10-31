@@ -41,9 +41,9 @@ p{
     padding-bottom: 15px;
 }
 /* #############################
-    CATEGORY BUTTON TABS STYLES
+    BUCKET BUTTON TABS STYLES
 ############################# */
-#bucket-buttons{
+#category-buttons{
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-between;

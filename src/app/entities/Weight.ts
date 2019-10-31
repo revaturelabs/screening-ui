@@ -1,9 +1,9 @@
-import { Bucket } from './Bucket';
-import { SkillType } from './SkillType';
+import { Category } from './Category';
+import { Track } from './Track';
 
 export class Weight {
     weightId: number;
     weightValue: number;
-    skillType: SkillType;
-    bucket: Bucket;
+    track: Track;
+    category: Category;
 }

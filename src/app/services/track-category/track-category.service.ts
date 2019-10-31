@@ -14,8 +14,8 @@ const httpOptions = {
   };
 
 /**
-* Used to move the data for buckets and their related weights.
-* Overall score for the evaluation is a weighted average of the scores for each bucket.
+* Used to move the data for categories and their related weights.
+* Overall score for the evaluation is a weighted average of the scores for each category.
 *
 * Modified from made endpoints more consistent with
 * the rest of the application.
@@ -29,31 +29,31 @@ const httpOptions = {
 * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
 */
 @Injectable()
-export class SkillTypeBucketService {
+export class TrackCategoryService {
   constructor(
     private httpClient: HttpClient,
     private urlService: UrlService
   ) { }
 
-  bucketsByWeight: Weight[];
+  categoriesByWeight: Weight[];
 
 
-  // getSkillTypeBuckets(skillTypeID: number): Observable<any>{
-  //   this.httpClient.get<any>(this.ROOT_URL + `skillType/getSkillTypeBucketsWithWeights/${skillTypeID}`).subscribe(data => {
+  // getTrackCategories(trackID: number): Observable<any>{
+  //   this.httpClient.get<any>(this.ROOT_URL + `track/getTrackCategoriesWithWeights/${trackID}`).subscribe(data => {
   //     console.log(data);
   //   })
-  //   return of(SKILL_TYPE_BUCKET_LOOKUP);
+  //   return of(SKILL_TYPE_CATEGORY_LOOKUP);
   // }
 
-  // Returns an observable array of buckets (categories) with assigned weights
-  getSkillTypeBuckets(skillTypeID: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.urlService.skillTypes.getBucketBySkillType(skillTypeID)}`);
+  // Returns an observable array of categories with assigned weights
+  getTrackCategories(trackID: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.urlService.tracks.getCategoryByTrack(trackID)}`);
   }
-  getWeightsBySkillType(skillTypeID: number) {
-    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeID)}`);
+  getWeightsByTrack(trackID: number) {
+    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsByTrack(trackID)}`);
   }
 
-  newSkillTypeForBucket(weight: Weight) {
+  newTrackForCategory(weight: Weight) {
     return this.httpClient.post<Weight>(`${this.urlService.weights.newWeight()}`, weight, httpOptions);
   }
 
@@ -66,8 +66,8 @@ export class SkillTypeBucketService {
   }
 
 /*
-  getSkillTypeBuckets(skillTypeID: number): Observable<SkillTypeBucketLookUp>{
-    return of(SKILL_TYPE_BUCKET_LOOKUP);
+  getTrackCategories(trackID: number): Observable<TrackCategoryLookUp>{
+    return of(TRACK_CATEGORY_LOOKUP);
   }
 */
 

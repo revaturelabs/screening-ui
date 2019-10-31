@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as HighCharts from 'highcharts';
 
 @Component({
-  selector: 'app-average-skill',
-  templateUrl: './average-skill.component.html',
-  styleUrls: ['./average-skill.component.css']
+  selector: 'app-average-track',
+  templateUrl: './average-track.component.html',
+  styleUrls: ['./average-track.component.css']
 })
-export class AverageSkillComponent implements OnInit {
+export class AverageTrackComponent implements OnInit {
 
   Highcharts = HighCharts;
   options: Object;
@@ -28,7 +28,7 @@ export class AverageSkillComponent implements OnInit {
     if(this._barData.length > 0) {
       this.options = { 
         title: { 
-          text: "Average Score By Skill Type",
+          text: "Average Score By Track",
           y: 10,
           floating: false
         },
@@ -44,13 +44,13 @@ export class AverageSkillComponent implements OnInit {
           enabled: false 
       },
         chart: { zoomType: 'x', type: 'column'},
-        series: [{name: 'Skill Type', colorByPoint: true, data: this._barData }]
+        series: [{name: 'Track', colorByPoint: true, data: this._barData }]
       };
     }
     else {
       this.options = {
         title: { 
-          text: "Average Score By Skill Type Graph is N/A",
+          text: "Average Score By Track Graph is N/A",
           y: 200,
           floating: true
          },
@@ -66,7 +66,7 @@ export class AverageSkillComponent implements OnInit {
           enabled: false 
       },
         chart: { zoomType: 'x', type: 'column'},
-        series: [{name: 'Skill Type', colorByPoint: true, data: this._barData }]
+        series: [{name: 'Track', colorByPoint: true, data: this._barData }]
       };
     }
   }
