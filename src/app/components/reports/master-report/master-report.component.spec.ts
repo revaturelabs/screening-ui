@@ -18,7 +18,7 @@ describe('MasterReportComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, NgbModule, FormsModule, HighchartsChartModule, HttpClientModule],
-      declarations: [ MasterReportComponent, ReportSidebarComponent, AverageCategoryTypeComponent, AverageSkillComponent],
+      declarations: [ MasterReportComponent, ReportSidebarComponent, AverageCategoryTypeComponent, AverageTrackComponent],
       providers: [UrlService]
     })
     .compileComponents();

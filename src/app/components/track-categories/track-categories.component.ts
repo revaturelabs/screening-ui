@@ -5,18 +5,18 @@ import { Category } from '../../entities/Category';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */
-import { CategoryFilterPipe } from '../../pipes/skillType-categories.filter';
+import { CategoryFilterPipe } from '../../pipes/track-categories.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
 
 @Component({
-  selector: 'app-skill-type-categories',
-  templateUrl: './skillType-categories.component.html',
-  styleUrls: ['./skillType-categories.component.css']
+  selector: 'app-track-categories',
+  templateUrl: './track-categories.component.html',
+  styleUrls: ['./track-categories.component.css']
 })
 
-export class SkillTypeCategoriesComponent implements OnInit {
+export class TrackCategoriesComponent implements OnInit {
 
   /** variable to hold an array of 'Category' entities */
   categories: Category[];

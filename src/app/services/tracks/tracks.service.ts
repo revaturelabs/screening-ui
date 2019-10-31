@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Track } from '../../entities/Track';
-import { Bucket } from '../../entities/Bucket';
+import { Category } from '../../entities/Category';
 import { UrlService } from '../urls/url.service';
 
 
@@ -22,7 +22,7 @@ export class TracksService {
         private http: HttpClient,
         private urlService: UrlService
     ) { }
-    public trackBuckets: Observable<Track[]>;
+    public trackCategories: Observable<Track[]>;
 
     createTrack(track: Track) {
         return this.http.post<Track>(this.urlService.tracks.createTrack(), track, httpOptions);
@@ -44,13 +44,13 @@ export class TracksService {
         return this.http.get<any[]>(this.urlService.tracks.getTracks());
     }
 
-    setTrackBuckets(track: Track, bucketIds, weights) {
-        return this.http.post(this.urlService.tracks.setTrackBuckets(), { title: track.title, trackId:
+    setTrackCategories(track: Track, bucketIds, weights) {
+        return this.http.post(this.urlService.tracks.setTrackCategories(), { title: track.title, trackId:
             track.trackId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
-    updateTrackBuckets(track: Track, bucketIds, weights) {
-        return this.http.put(this.urlService.tracks.updateTrackBuckets(track.trackId), { title: track.title,
+    updateTrackCategories(track: Track, bucketIds, weights) {
+        return this.http.put(this.urlService.tracks.updateTrackCategories(track.trackId), { title: track.title,
             trackId: track.trackId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
@@ -59,7 +59,7 @@ export class TracksService {
     }
 
     /** Temporary solution for this func, need to double check with back-end **/
-    getBucketsByTrack(trackId: number) {
-        return this.http.get<Bucket[]>(this.urlService.tracks.getBucketByTrack(trackId));
+    getCategoriesByTrack(trackId: number) {
+        return this.http.get<Category[]>(this.urlService.tracks.getCategoryByTrack(trackId));
     }
 }
