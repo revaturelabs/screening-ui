@@ -1,9 +1,9 @@
 import { Category } from './Category';
-import { SkillType } from './SkillType';
+import { Track } from './Track';
 
 export class Weight {
     weightId: number;
     weightValue: number;
-    skillType: SkillType;
+    track: Track;
     category: Category;
 }

@@ -6,11 +6,11 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { TracksService } from '../../services/tracks/tracks.service';
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
-import { RouterTestingModule } from '@angular/router/testing'; 
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 
@@ -27,7 +27,7 @@ describe('PassFailComponent', () => {
       imports: [RouterTestingModule],
       declarations: [PassFailComponent, ViolationFlagComponent],
       providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, ScreeningStateService,
-        ViolationTypeService, AlertsService, UrlService, SkillTypesService]
+        ViolationTypeService, AlertsService, UrlService, TracksService]
     })
       .compileComponents();
   }));

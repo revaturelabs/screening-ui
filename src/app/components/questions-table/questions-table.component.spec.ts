@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { QuestionsService } from '../../services/questions/questions.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { TracksService } from '../../services/tracks/tracks.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ScreeningService } from '../../services/screening/screening.service';
-import { SkillTypeCategoryService } from '../../services/skillTypeCategoryLookup/skill-type-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 import { Category } from '../../entities/Category';
 import { Question } from '../../entities/Question';
 import { AnswerComponent } from '../answer/answer.component';
@@ -20,7 +20,7 @@ import { ViolationTypeService } from '../../services/violationType/violationType
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { QuestionScore } from 'src/app/entities/QuestionScore';
+import { QuestionScore } from '../../entities/QuestionScore';
 
 
 // Author: David Gustafson
@@ -66,8 +66,8 @@ describe('QuestionsTableComponent', () => {
       declarations: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent], // cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule, RouterTestingModule],
       providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
-        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
-        SkillTypeCategoryService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
+        TracksService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
+        TrackCategoryService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {

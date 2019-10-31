@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScreeningConfigComponent } from './screening-config.component';
-import { SkillTypeCategoriesComponent } from '../skillType-categories/skillType-categories.component';
+import { TrackCategoriesComponent } from '../track-categories/track-categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SkillTypesComponent } from '../skillTypes/skillTypes.component';
+import { TracksComponent } from '../tracks/tracks.component';
 import { CandidateComponent } from '../candidate/candidate.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -18,7 +18,7 @@ describe('ScreeningComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, NgbModule, RouterTestingModule, HttpClientModule],
-      declarations: [ ScreeningConfigComponent, SkillTypeCategoriesComponent, SkillTypesComponent, CandidateComponent ],
+      declarations: [ ScreeningConfigComponent, TrackCategoriesComponent, TracksComponent, CandidateComponent ],
       providers: [CategoriesService, UrlService, AlertsService]
     })
     .compileComponents();

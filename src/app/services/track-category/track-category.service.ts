@@ -29,7 +29,7 @@ const httpOptions = {
 * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
 */
 @Injectable()
-export class SkillTypeCategoryService {
+export class TrackCategoryService {
   constructor(
     private httpClient: HttpClient,
     private urlService: UrlService
@@ -38,22 +38,22 @@ export class SkillTypeCategoryService {
   categoriesByWeight: Weight[];
 
 
-  // getSkillTypeCategories(skillTypeID: number): Observable<any>{
-  //   this.httpClient.get<any>(this.ROOT_URL + `skillType/getSkillTypeCategoriesWithWeights/${skillTypeID}`).subscribe(data => {
+  // getTrackCategories(trackID: number): Observable<any>{
+  //   this.httpClient.get<any>(this.ROOT_URL + `track/getTrackCategoriesWithWeights/${trackID}`).subscribe(data => {
   //     console.log(data);
   //   })
   //   return of(SKILL_TYPE_CATEGORY_LOOKUP);
   // }
 
   // Returns an observable array of categories with assigned weights
-  getSkillTypeCategories(skillTypeID: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.urlService.skillTypes.getCategoryBySkillType(skillTypeID)}`);
+  getTrackCategories(trackID: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.urlService.tracks.getCategoryByTrack(trackID)}`);
   }
-  getWeightsBySkillType(skillTypeID: number) {
-    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsBySkillType(skillTypeID)}`);
+  getWeightsByTrack(trackID: number) {
+    return this.httpClient.get<any>(`${this.urlService.weights.getWeightsByTrack(trackID)}`);
   }
 
-  newSkillTypeForCategory(weight: Weight) {
+  newTrackForCategory(weight: Weight) {
     return this.httpClient.post<Weight>(`${this.urlService.weights.newWeight()}`, weight, httpOptions);
   }
 
@@ -66,8 +66,8 @@ export class SkillTypeCategoryService {
   }
 
 /*
-  getSkillTypeCategories(skillTypeID: number): Observable<SkillTypeCategoryLookUp>{
-    return of(SKILL_TYPE_CATEGORY_LOOKUP);
+  getTrackCategories(trackID: number): Observable<TrackCategoryLookUp>{
+    return of(TRACK_CATEGORY_LOOKUP);
   }
 */
 

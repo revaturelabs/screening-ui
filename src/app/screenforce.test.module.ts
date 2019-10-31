@@ -16,9 +16,9 @@ import { SpringInterceptor } from './interceptors/spring.interceptor';
 // services
 import { AlertsService } from './services/alert-service/alerts.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
-import { SkillTypesService } from './services/skill-types/skill-types.service';
+import { TracksService } from './services/tracks/tracks.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { SkillTypeCategoryService } from './services/skillTypeCategoryLookup/skill-type-category.service';
+import { TrackCategoryService } from './services/track-category/track-category.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { CategoriesService } from './services/categories/categories.service';
 import { UrlService } from './services/urls/url.service';
@@ -33,8 +33,8 @@ import { AnswerComponent } from './components/answer/answer.component';
 import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
-import { SkillTypeCategoriesComponent } from './components/skillType-categories/skillType-categories.component';
+import { TracksComponent } from './components/tracks/tracks.component';
+import { TrackCategoriesComponent } from './components/track-categories/track-categories.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 
@@ -64,8 +64,8 @@ export const Dependencies = {
     AnswerComponent,
     PassFailComponent,
     ViolationFlagComponent,
-    SkillTypesComponent,
-    SkillTypeCategoriesComponent,
+    TracksComponent,
+    TrackCategoriesComponent,
     QuestionComponent,
   ],
   providers: [
@@ -73,9 +73,9 @@ export const Dependencies = {
     QuestionsService,
     CategoriesService,
     ScreeningStateService,
-    SkillTypesService,
+    TracksService,
     ScreeningService,
-    SkillTypeCategoryService,
+    TrackCategoryService,
     ScheduledScreeningService,
     HttpClient,
     NgbModal,

@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Weight } from '../../entities/Weight';
 import { String } from 'aws-sdk/clients/cloudhsmv2';
 
+
 @Injectable()
 export class UrlService {
   public readonly adminContext: string =  environment.adminContext;
@@ -28,6 +29,7 @@ export class UrlService {
     updateCategory: () => `${this.categoryEndpoint}`,
     createNewCategory: () => `${this.categoryEndpoint}`,
     deleteCategory: () => `${this.categoryEndpoint}`
+
   };
 
   /**
@@ -69,31 +71,31 @@ export class UrlService {
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
-    getWeightsBySkillType: (skillTypeId: number) => `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
+    getWeightsByTrack: (trackId: number) => `${this.weightsEndpoint}/getByTrack/${trackId}`,
     newWeight: () => `${this.weightsEndpoint}/new`,
     deleteWeight: (weightId: number) => `${this.weightsEndpoint}/delete/${weightId}`
   };
 
   /**
-   * Endpoints for skillType
+   * Endpoints for track
    */
-  skillTypesServiceEndpoint = this.adminContext + '/skilltype';
-  skillTypes = {
-    findAll: () => `${this.skillTypesServiceEndpoint}`,
-    findAllActive: () => `${this.skillTypesServiceEndpoint}/active`,
-    findById: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
+  tracksServiceEndpoint = this.adminContext + '/track';
+  tracks = {
+    findAll: () => `${this.tracksServiceEndpoint}`,
+    findAllActive: () => `${this.tracksServiceEndpoint}/active`,
+    findById: (id: number) => `${this.tracksServiceEndpoint}/${id}`,
    // findByName: (name: string) => `${this.context}/${name}`,
-    save: () => `${this.skillTypesServiceEndpoint}`,
-    update: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`,
-    delete: (id: number) => `${this.skillTypesServiceEndpoint}/${id}`, // note lowercase t in type, this is to match the request mapping
+    save: () => `${this.tracksServiceEndpoint}`,
+    update: (id: number) => `${this.tracksServiceEndpoint}/${id}`,
+    delete: (id: number) => `${this.tracksServiceEndpoint}/${id}`, // note lowercase t in type, this is to match the request mapping
 
-    getCategoryBySkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeCategoriesWithWeights/${skillTypeId}`,
-    createSkillType: () => `${this.skillTypesServiceEndpoint}`,
-    putSkillType: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
-    getSkillTypes: () => `${this.skillTypesServiceEndpoint}`,
-    updateSkillTypeCategories: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/${skillTypeId}`,
-    setSkillTypeCategories: () => `${this.skillTypesServiceEndpoint}/setSkillTypeCategory`,
-    getSkillTypeById: (skillTypeId: number) => `${this.skillTypesServiceEndpoint}/getSkillTypeCategories/${skillTypeId}`,
+    getCategoryByTrack: (trackId: number) => `${this.tracksServiceEndpoint}/getTrackCategoriesWithWeights/${trackId}`,
+    createTrack: () => `${this.tracksServiceEndpoint}`,
+    putTrack: (trackId: number) => `${this.tracksServiceEndpoint}/${trackId}`,
+    getTracks: () => `${this.tracksServiceEndpoint}`,
+    updateTrackCategories: (trackId: number) => `${this.tracksServiceEndpoint}/${trackId}`,
+    setTrackCategories: () => `${this.tracksServiceEndpoint}/setTrackCategory`,
+    getTrackById: (trackId: number) => `${this.tracksServiceEndpoint}/getTrackCategories/${trackId}`,
 
   };
 
@@ -112,6 +114,9 @@ export class UrlService {
     getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
     `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
     getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>
-    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
+    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`,
+    getAllSimpleReportsByDate: (dateStart: string, dateEnd: string): string =>
+    `${this.reportEndpoint}/srm/${dateStart}/${dateEnd}`,
+    getAllSimpleReports: () => `${this.reportEndpoint}/srm`
   };
 }

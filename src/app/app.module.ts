@@ -17,7 +17,7 @@ import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { AverageCategoryTypeComponent } from './components/reports/average-category-type/average-category-type.component';
-import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
+import { AverageTrackComponent} from './components/reports/average-track/average-track.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
@@ -29,8 +29,8 @@ import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { SkillTypeCategoriesComponent } from './components/skillType-categories/skillType-categories.component';
-import { SkillTypesComponent } from './components/skillTypes/skillTypes.component';
+import { TrackCategoriesComponent } from './components/track-categories/track-categories.component';
+import { TracksComponent } from './components/tracks/tracks.component';
 import { ViolationsByTypeComponent } from './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { LoginComponent } from './components/login/login.component';
@@ -40,13 +40,19 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertsService } from './services/alert-service/alerts.service';
 import { CategoriesService } from './services/categories/categories.service';
 import { CookieService } from 'ngx-cookie-service';
+import { FullReportService } from './services/reports/full-report.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
-import { SkillTypesService } from './services/skill-types/skill-types.service';
-import { SkillTypeCategoryService } from './services/skillTypeCategoryLookup/skill-type-category.service';
+
+import { TracksService } from './services/tracks/tracks.service';
+import { TrackCategoryService } from './services/track-category/track-category.service';
+
+import { SimpleReportService } from './services/reports/simple-report.service';
+
+
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
@@ -56,7 +62,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
-import { CategoryFilterPipe } from './pipes/skillType-categories.filter';
+import { CategoryFilterPipe } from './pipes/track-categories.filter';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { GraphDataPipe } from './pipes/graph-data.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
@@ -65,7 +71,6 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
-
 
 @NgModule({
   declarations: [
@@ -79,11 +84,11 @@ import { RoleGuard } from './role-guard';
     QuestionComponent,
     QuestionsTableComponent,
     ScreeningConfigComponent,
-    SkillTypeCategoriesComponent,
-    SkillTypesComponent,
+    TrackCategoriesComponent,
+    TracksComponent,
     ViolationFlagComponent,
     CandidateComponent,
-    AverageSkillComponent,
+    AverageTrackComponent,
     LoginComponent,
     ArrToStringPipe,
     CategoryFilterPipe,
@@ -114,14 +119,19 @@ import { RoleGuard } from './role-guard';
     AlertsService,
     CategoriesService,
     CookieService,
+    FullReportService,
     QuestionScoreService,
     QuestionsService,
     ScreeningStateService,
     ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
-    SkillTypesService,
-    SkillTypeCategoryService,
+
+    TracksService,
+    TrackCategoryService,
+
+    SimpleReportService,
+    
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypeCategoryService } from '../../services/skillTypeCategoryLookup/skill-type-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/QuestionScore';
 import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';
@@ -9,7 +9,7 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 import { Subscription } from 'rxjs';
-import { SkillType } from '../../entities/SkillType';
+import { Track } from '../../entities/Track';
 import { Candidate } from '../../entities/Candidate';
 
 @Component({
@@ -29,7 +29,7 @@ Screener can copy the summary to the clipboard, and return to the candidate list
 export class FinalReportComponent implements OnInit, OnDestroy {
 
   candidate: Candidate;
-  skillType: SkillType;
+  track: Track;
   softSkillString: string;
   categoryStringArray: string[];
   overallScoreString: string;
@@ -44,7 +44,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   constructor(
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    private skillTypeCategoryService: SkillTypeCategoryService,
+    private trackCategoryService: TrackCategoryService,
     private questionScoreService: QuestionScoreService,
     private scoresToCategoriesUtil: ScoresToCategoriesUtil,
     private alertsService: AlertsService,
@@ -60,7 +60,7 @@ export class FinalReportComponent implements OnInit, OnDestroy {
       questionScores => {
         this.questionScores = questionScores;
         // need to get the skilltype of the screening from something other than the Candidate.
-        this.skillTypeCategoryService.getWeightsBySkillType(0).subscribe(
+        this.trackCategoryService.getWeightsByTrack(0).subscribe(
           weights => {
             this.categoryStringArray =
             this.scoresToCategoriesUtil.getFinalBreakdown(this.questionScores, weights);
