@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Weight } from '../../entities/Weight';
 import { String } from 'aws-sdk/clients/cloudhsmv2';
 
+
 @Injectable()
 export class UrlService {
   public readonly adminContext: string =  environment.adminContext;
@@ -28,6 +29,7 @@ export class UrlService {
     updateCategory: () => `${this.categoryEndpoint}`,
     createNewCategory: () => `${this.categoryEndpoint}`,
     deleteCategory: () => `${this.categoryEndpoint}`
+
   };
 
   /**
@@ -112,6 +114,9 @@ export class UrlService {
     getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
     `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
     getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>
-    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`
+    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`,
+    getAllSimpleReportsByDate: (dateStart: string, dateEnd: string): string =>
+    `${this.reportEndpoint}/srm/${dateStart}/${dateEnd}`,
+    getAllSimpleReports: () => `${this.reportEndpoint}/srm`
   };
 }

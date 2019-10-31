@@ -40,13 +40,19 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertsService } from './services/alert-service/alerts.service';
 import { CategoriesService } from './services/categories/categories.service';
 import { CookieService } from 'ngx-cookie-service';
+import { FullReportService } from './services/reports/full-report.service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 import { ScreeningService } from './services/screening/screening.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
+
 import { TracksService } from './services/tracks/tracks.service';
 import { TrackCategoryService } from './services/track-category/track-category.service';
+
+import { SimpleReportService } from './services/reports/simple-report.service';
+
+
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
@@ -65,7 +71,6 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
-
 
 @NgModule({
   declarations: [
@@ -114,14 +119,19 @@ import { RoleGuard } from './role-guard';
     AlertsService,
     CategoriesService,
     CookieService,
+    FullReportService,
     QuestionScoreService,
     QuestionsService,
     ScreeningStateService,
     ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
+
     TracksService,
     TrackCategoryService,
+
+    SimpleReportService,
+    
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
