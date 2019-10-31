@@ -6,12 +6,12 @@ import { Question } from '../../entities/Question';
 import { Category } from '../../entities/Category';
 import { QuestionScore } from '../../entities/QuestionScore';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
-import { SkillTypeCategoryLookUp } from '../../entities/SkillTypeCategoryLookup';
+import { TrackCategoryLookUp } from '../../entities/TrackCategoryLookup';
 
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { SkillTypeCategoryService } from '../../services/skillTypeCategoryLookup/skill-type-category.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 
 // Modal for answering the question
 import { AnswerComponent } from '../answer/answer.component';
@@ -32,7 +32,7 @@ import { Weight } from '../../entities/Weight';
 After the candidate has given their introduction,
 the screener will proceed to the question-and-answer part of the interview.
 A list of questions will be fetched from the server / database.
-Screener will be able to see a set of category tabs,
+Screener will be able to see a set of bucket tabs,
 each of which has a set of questions in a table.
 
 Screener has the ability to navigate between tabs ad nauseam,
@@ -44,16 +44,16 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Used to display the categories
   questionCategories: Category[];
 
-  // holds the current category. Used to control
+  // holds the current bucket. Used to control
   // which questions are displayed in the questions table.
   currentCategory: number;
-  skillID: number;
+  trackID: number;
 
   // Used to display the current track:
   currentScreenings: ScheduledScreening;
 
   // Used to display current categories in track:
-  skillTypeCategoryLookUp: SkillTypeCategoryLookUp;
+  trackCategoryLookUp: TrackCategoryLookUp;
 
   // value entered enables finish button
   generalComment: string;
@@ -77,15 +77,15 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    private skillTypeCategoryService: SkillTypeCategoryService,
+    private trackCategoryService: TrackCategoryService,
   ) { }
 
   ngOnInit() {
-    // use skillTypeCategoryLookup that provides array of categories and array of weights
-    this.skillID = this.screeningStateService.getSkillID();
+    // use trackCategoryLookup that provides array of categories and array of weights
+    this.trackID = this.screeningStateService.getTrackID();
     this.subscriptions.push(
-      this.skillTypeCategoryService.
-        getWeightsBySkillType(this.skillID).subscribe(categoriesWithWeights => {
+      this.trackCategoryService.
+        getWeightsByTrack(this.trackID).subscribe(categoriesWithWeights => {
           const myCategories: Category[] = [];
           for (const e of categoriesWithWeights) {
             myCategories.push(
@@ -96,7 +96,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
               }
             );
           }
-          this.skillTypeCategoryService.categoriesByWeight = categoriesWithWeights;
+          this.trackCategoryService.categoriesByWeight = categoriesWithWeights;
           this.questionCategories = categoriesWithWeights;
         }));
 
@@ -119,7 +119,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     // }
   }
 
-  // sets the current category, allowing for dynamic change
+  // sets the current bucket, allowing for dynamic change
   // of the questions being displayed.
   setCategory(categoryID: number) {
     // iterate through each category

@@ -57,7 +57,7 @@ p {
   font-size: 1.5rem;
 }
 .name,
-.skillType {
+.track {
   display: grid;
   grid-template-columns: 50px 100px;
   grid-gap: 20px;

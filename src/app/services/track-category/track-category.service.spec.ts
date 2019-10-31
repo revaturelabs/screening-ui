@@ -1,20 +1,20 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UrlService } from '../../services/urls/url.service';
+import { UrlService } from '../urls/url.service';
 
-import { SkillTypeCategoryService } from './skill-type-category.service';
+import { TrackCategoryService } from './track-category.service';
 
-describe('SkillTypeCategoryService', () => {
+describe('TrackCategoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule , HttpClientModule ],
 
-      providers: [SkillTypeCategoryService, UrlService]
+      providers: [TrackCategoryService, UrlService]
     });
   });
 
-  it('should be created', inject([SkillTypeCategoryService], (service: SkillTypeCategoryService) => {
+  it('should be created', inject([TrackCategoryService], (service: TrackCategoryService) => {
     expect(service).toBeTruthy();
   }));
 });

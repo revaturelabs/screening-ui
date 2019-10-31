@@ -94,7 +94,7 @@ export class CandidatesScreeningListComponent implements OnInit {
   // clicking "Begin Interview" will create a new screening entry in the database
   beginScreening(): void {
     let screeningId: String;
-    let skillTypeId: String;
+    let trackId: String;
     // create a new screening entry in the database by calling the screening service
     this.screeningService
       .beginScreening(
@@ -103,7 +103,7 @@ export class CandidatesScreeningListComponent implements OnInit {
         // create a new date which signifies the start of the interview
         new Date(),
         // This was not part of our iteration, but the "1" must be replaced
-        // with the screenerr's ID so that there is an association
+        // with the screener's ID so that there is an association
         // between the interviewer and the person who screened them.
         1
       )
@@ -112,9 +112,9 @@ export class CandidatesScreeningListComponent implements OnInit {
         data => {
         // and save the screening ID as a cookie to localStorage.
         // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
-        // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
+        // localStorage.setItem('trackID', this.selectedScheduledScreening.track.trackId.toString());
         screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
-        skillTypeId = this.selectedScheduledScreening.track.skillTypeId.toString();
+        trackId = this.selectedScheduledScreening.track.trackId.toString();
       });
   }
 }

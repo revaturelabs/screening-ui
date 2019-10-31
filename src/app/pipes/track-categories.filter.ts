@@ -10,7 +10,7 @@ import { Category } from '../entities/Category';
 
 /*
 CategoryFilterPipe filters Categories based on Category.categoryCategory (name)
-Used in skillTypes-category
+Used in tracks-category
 */
  export class CategoryFilterPipe implements PipeTransform {
      transform(items: Category[], filter: Category): Category[] {

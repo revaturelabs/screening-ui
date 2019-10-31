@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
 import { UrlService } from '../urls/url.service';
-import { SkillTypeCategoryLookUp } from '../../entities/SkillTypeCategoryLookup';
+import { TrackCategoryLookUp } from '../../entities/TrackCategoryLookup';
 import { Category } from '../../entities/Category';
 import { Observable } from 'rxjs';
 
@@ -92,12 +92,12 @@ export class QuestionsService {
     return this.http.get<Question[]>(this.urlService.question.getQuestionsByCategoryId(categoryId));
   }
 
-  getQuestions(skillTypeId: number): Observable<Question[]> {
-    const currSkillTypeID = skillTypeId;
+  getQuestions(trackId: number): Observable<Question[]> {
+    const currTrackID = trackId;
 
     return this.http.post<Question[]>( // change to get with parameters
       this.urlService.question.filteredQuestions(),
-      currSkillTypeID
+      currTrackID
     );
   }
 
@@ -108,7 +108,7 @@ export class QuestionsService {
    * @param allQuestions
    * @param allCategories
    */
-  saveQuestions(allQuestions: Question[], allCategories: SkillTypeCategoryLookUp): Category[] {
+  saveQuestions(allQuestions: Question[], allCategories: TrackCategoryLookUp): Category[] {
     allQuestions.forEach(question => {
       // If the categories array is empty, add this question's category to it
       if (this.returnCategories.length === 0) {
