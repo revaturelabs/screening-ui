@@ -1,5 +1,7 @@
 export class Category {
     categoryId: number;
     categoryDescription: string;
-    isActive = true;
+ //   isActive = true; //old 
+    isActive: boolean; //new
+    
 }
