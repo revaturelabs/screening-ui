@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UrlService } from '../urls/url.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { stringifyDate } from '../../util/utils';
 import { ReportData } from '../../entities/ReportData';
@@ -16,8 +16,14 @@ export class SimpleReportService {
     private http: HttpClient
   ) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin':'*'
+    })
+  };
+
   getAllSimpleReports(): Observable<SimpleReportModel> {
-    return this.http.get<SimpleReportModel>(this.urlService.reports.getAllSimpleReports());
+    return this.http.get<SimpleReportModel>(this.urlService.reports.getAllSimpleReports(), this.httpOptions);
   }
   getAllSimpleReportsByDate(dateStart: string, dateEnd: string): Observable<SimpleReportModel> {
     return this.http.get<SimpleReportModel>(this.urlService.reports.getAllSimpleReportsByDate(dateStart, dateEnd));

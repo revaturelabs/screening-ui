@@ -12,10 +12,10 @@ import { SimpleReportService } from 'src/app/services/reports/simple-report.serv
 export class MasterReportComponent implements OnInit {
 
 
-  constructor(public fullReportService: SimpleReportService) { }
+  constructor(public simpleReportService: SimpleReportService) { }
 
   ngOnInit() {
-    this.fullReportService.getAllSimpleReports().subscribe((data)=>{
+    this.simpleReportService.getAllSimpleReports().subscribe((data)=>{
       console.log(data);
     });
   }

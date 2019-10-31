@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Weight } from '../../entities/Weight';
 import { String } from 'aws-sdk/clients/cloudhsmv2';
 
+
 @Injectable()
 export class UrlService {
   public readonly adminContext: string =  environment.adminContext;
@@ -21,6 +22,8 @@ export class UrlService {
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    *
    */
+  
+
   private bucketEndpoint = this.adminContext + '/bucket';
   bucket = {
     getAllBuckets: () => `${this.bucketEndpoint}`,
