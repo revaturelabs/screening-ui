@@ -18,9 +18,9 @@ import { AlertsService } from './services/alert-service/alerts.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { TracksService } from './services/tracks/tracks.service';
 import { ScreeningService } from './services/screening/screening.service';
-import { TrackBucketService } from './services/trackBucketLookup/track-bucket.service';
+import { TrackCategoryService } from './services/trackCategoryLookup/track-category.service';
 import { QuestionsService } from './services/questions/questions.service';
-import { BucketsService } from './services/buckets/buckets.service';
+import { CategoriesService } from './services/categories/categories.service';
 import { UrlService } from './services/urls/url.service';
 import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 
@@ -34,7 +34,7 @@ import { PassFailComponent } from './components/pass-fail/pass-fail.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
 import { TracksComponent } from './components/tracks/tracks.component';
-import { TrackBucketsComponent } from './components/track-buckets/track-buckets.component';
+import { TrackCategoriesComponent } from './components/track-categories/track-categories.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 
@@ -65,17 +65,17 @@ export const Dependencies = {
     PassFailComponent,
     ViolationFlagComponent,
     TracksComponent,
-    TrackBucketsComponent,
+    TrackCategoriesComponent,
     QuestionComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
     QuestionsService,
-    BucketsService,
+    CategoriesService,
     ScreeningStateService,
     TracksService,
     ScreeningService,
-    TrackBucketService,
+    TrackCategoryService,
     ScheduledScreeningService,
     HttpClient,
     NgbModal,

@@ -3,11 +3,11 @@ import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { Track } from '../../entities/Track';
 import { TracksService } from '../../services/tracks/tracks.service';
-import { Bucket } from '../../entities/Bucket';
+import { Category } from '../../entities/Category';
 import { Weight } from '../../entities/Weight';
-import { BucketsService } from '../../services/buckets/buckets.service';
+import { CategoriesService } from '../../services/categories/categories.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-import { TrackBucketService } from '../../services/trackBucketLookup/track-bucket.service';
+import { TrackCategoryService } from '../../services/trackCategoryLookup/track-category.service';
 
 @Component({
     selector: 'app-tracks',
@@ -27,15 +27,15 @@ export class TracksComponent implements OnInit {
     public tracks: Track[] = [];
     public inactiveTracks: any[] = [];
     public allTracks: Track[] = [];
-    public allBuckets: Bucket[] = [];
-    public bucketWeightSum = 0;
-    public bucketsAndWeights = [];
+    public allCategories: Category[] = [];
+    public categoryWeightSum = 0;
+    public categoriesAndWeights = [];
     public track: Track;
     public singleTrack: Track;
-    public singleTrackBuckets: Bucket[] = [];
+    public singleTrackCategories: Category[] = [];
     public error: boolean;
     public modalServiceRef;
-    public singleTrackBucketIds: number[] = [];
+    public singleTrackCategoryIds: number[] = [];
 
     public trackWeights: Weight[] = [];
     public allWeights: Weight[] = [];
@@ -44,15 +44,15 @@ export class TracksComponent implements OnInit {
 
     public Weight: Weight;
 
-      /** variable to hold bucket being edited */
+      /** variable to hold category being edited */
     currTrack: Track;
 
     constructor(
         private modalService: NgbModal,
         private fb: FormBuilder,
         private trackService: TracksService,
-        private trackBucketService: TrackBucketService,
-        private bucketsService: BucketsService,
+        private trackCategoryService: TrackCategoryService,
+        private categoriesService: CategoriesService,
         private alertsService: AlertsService,
         private tab: NgbTabset,
     ) { }
@@ -101,7 +101,7 @@ export class TracksComponent implements OnInit {
             });
         }
     }
- 
+
     /**
     * Opens the modal for creating and editing track
     * Resets fields clears the data within set fields
@@ -122,39 +122,41 @@ export class TracksComponent implements OnInit {
 
     /**
     * Stores information about the track that was selected
-    * If there are any buckets associated to the track,
-    * set the array to the selected buckets to the array
+    * If there are any categories associated to the track,
+    * set the array to the selected categories to the array
     * @param track: selected track
     */
     editTrack(track : Track) {
         this.grabAllTracks();
-        this.singleTrackBuckets = [];
+        this.singleTrackCategories = [];
         this.singleTrack = {
             title: track.title,
             trackId: track.trackId,
             active: true,
         };
         this.grabAllTracks();
-        this.grabAllBuckets();
+        this.grabAllCategories();
         this.getAssociated();
     }
 
     getAssociated() {
-        for (let i = 0; i < this.allBuckets.length; i++) {
-            if (this.checkContains(this.allBuckets[i])) {
-                if (!this.singleTrackBucketIds.includes(this.allBuckets[i].bucketId)) {
-                    this.singleTrackBuckets.push(this.allBuckets[i]);
-                    this.singleTrackBucketIds.push(this.allBuckets[i].bucketId);
+        for (let i = 0; i < this.allCategories.length; i++) {
+            if (this.checkContains(this.allCategories[i])) {
+                if (!this.singleTrackCategoryIds.includes(this.allCategories[i].categoryId)) {
+                    this.singleTrackCategories.push(this.allCategories[i]);
+                    this.singleTrackCategoryIds.push(this.allCategories[i].categoryId);
                 }
             }
         }
     }
   
-    checkContains(bucket: Bucket) {
+    checkContains(category: Category) {
         if (this.singleTrack) {
             for (let i = 0; i < this.allWeights.length; i++) {
                 if (this.allWeights[i].track.title === this.singleTrack.title) {
-                    if (this.allWeights[i].bucket.bucketDescription === bucket.bucketDescription) {                        
+                    if (this.allWeights[i].category.categoryDescription === category.categoryDescription) {                        
+
+    
                       return true;
                     }
                 }
@@ -164,45 +166,45 @@ export class TracksComponent implements OnInit {
     }
 
     /**
-    * Adds a new bucket object to the selected track.
-    * Set weight of new bucket to be 0
-    * Add the bucketId to the array of Ids of selected track
-    * @param bucket: bucket object needed to be added to tracks.
+    * Adds a new category object to the selected track.
+    * Set weight of new category to be 0
+    * Add the categoryId to the array of Ids of selected track
+    * @param category: category object needed to be added to tracks.
     */
-    addToTrackBuckets(bucky: Bucket) {
+    addToTrackCategories(category: Category) {
         if (this.singleTrack) {
             const relationship: Weight = {
-                bucket: bucky,
+                category: category,
                 track: this.singleTrack,
                 weightValue: 0,
                 weightId: 0
             };
-            this.trackBucketService.newTrackForBucket(relationship);
-            this.grabAllBuckets();
+            this.trackCategoryService.newTrackForCategory(relationship);
+            this.grabAllCategories();
             this.getAllWaits();
             this.getAssociated();
         }
     }
 
     /**
-    * Removes all references to the bucket that is associated to the track
-    * @param bucket: bucket object to be removed from all associates to the track
+    * Removes all references to the category that is associated to the track
+    * @param category: category object to be removed from all associates to the track
     */
-    removeFromTrackBuckets(bucket) {
+    removeFromTrackCategories(category) {
         if (this.singleTrack) {
-            const modTrackBuckets = [];
-            for (let i = 0; i < this.singleTrackBuckets.length; i++) {
-                if (this.singleTrackBuckets[i].bucketId !== bucket.bucketId) {
-                    modTrackBuckets.push(this.singleTrackBuckets[i]);
+            const modTrackCategories = [];
+            for (let i = 0; i < this.singleTrackCategories.length; i++) {
+                if (this.singleTrackCategories[i].categoryId !== category.categoryId) {
+                    modTrackCategories.push(this.singleTrackCategories[i]);
                 }
             }
-            this.singleTrackBuckets = modTrackBuckets.slice();
-            // need a weight ID from bucket
+            this.singleTrackCategories = modTrackCategories.slice();
+            // need a weight ID from category
             let removed: number;
             for (let j = 0; j < this.allWeights.length; j++) {
-                if (this.allWeights[j].bucket.bucketId === bucket.bucketId) {
+                if (this.allWeights[j].category.categoryId === category.categoryId) {
                     // delete the weight
-                    this.trackBucketService.deleteWeight(this.allWeights[j].weightId);
+                    this.trackCategoryService.deleteWeight(this.allWeights[j].weightId);
                     // remove from list
                     removed = j;
                 }
@@ -213,41 +215,41 @@ export class TracksComponent implements OnInit {
 
     /**
     * Makes sure that the weight percentage input is within 0 and 100
-    * @param index: Weight percentage of a single bucket.
+    * @param index: Weight percentage of a single category.
     */
     checkMinMax(index: number) {
-        if (this.bucketsAndWeights[index].weights > 100) {
-            this.bucketsAndWeights[index].weights = 100;
-        } else if (this.bucketsAndWeights[index].weights < 0) {
-            this.bucketsAndWeights[index].weights = 0;
+        if (this.categoriesAndWeights[index].weights > 100) {
+            this.categoriesAndWeights[index].weights = 100;
+        } else if (this.categoriesAndWeights[index].weights < 0) {
+            this.categoriesAndWeights[index].weights = 0;
         }
     }
 
     /**
-    * Updates the selected track with the added buckets and bucketWeightSum
-    * If there are buckets added to the track, the weight percentage of the buckets
+    * Updates the selected track with the added categories and categoryWeightSum
+    * If there are categories added to the track, the weight percentage of the categories
     * has to sum to 100. When the form is valid, the reference to the open modal will close
     * and an HTTP Request is sent to the endpoint to update the track and relations
-    * If the buckets
+    * If the categories
     */
     updateTrack(modal: Track) {
         this.track = modal;
         this.track.trackId = this.singleTrack.trackId;
-        this.bucketWeightSum = 0;
-        if (this.bucketsAndWeights.length !== 0) {
-            for (const index of this.bucketsAndWeights) {
-                this.bucketWeightSum += this.bucketsAndWeights[index].weights;
+        this.categoryWeightSum = 0;
+        if (this.categoriesAndWeights.length !== 0) {
+            for (const index of this.categoriesAndWeights) {
+                this.categoryWeightSum += this.categoriesAndWeights[index].weights;
             }
         }
-        if (this.bucketWeightSum === 100 || this.bucketsAndWeights.length === 0) {
+        if (this.categoryWeightSum === 100 || this.categoriesAndWeights.length === 0) {
             this.modalServiceRef.close();
-            const bucketsId = [];
+            const categoriesId = [];
             const weights = [];
-            for (const index of this.bucketsAndWeights) {
-                bucketsId.push(this.singleTrackBucketIds[index]);
-                weights.push(this.bucketsAndWeights[index].weights);
+            for (const index of this.categoriesAndWeights) {
+                categoriesId.push(this.singleTrackCategoryIds[index]);
+                weights.push(this.categoriesAndWeights[index].weights);
             }
-            this.trackService.updateTrackBuckets(this.track, bucketsId, weights).subscribe(results => {
+            this.trackService.updateTrackCategories(this.track, categoriesId, weights).subscribe(results => {
                 this.grabAllTracks();
             });
             this.savedSuccessfully();
@@ -257,17 +259,17 @@ export class TracksComponent implements OnInit {
     }
 
     /**
-    * Checks the sum of bucket weights that are associated to the selected tracks
-    * If there are buckets associated to the track and the sum is not 100, an error will appear and save button is disabled
+    * Checks the sum of category weights that are associated to the selected tracks
+    * If there are categories associated to the track and the sum is not 100, an error will appear and save button is disabled
     */
-    checkBucketSum() {
-        this.bucketWeightSum = 0;
-        for (const bucket of this.bucketsAndWeights) {
-            this.bucketWeightSum += bucket.weights;
+    checkCategorySum() {
+        this.categoryWeightSum = 0;
+        for (const category of this.categoriesAndWeights) {
+            this.categoryWeightSum += category.weights;
         }
-        if (this.bucketsAndWeights.length === 0) {
+        if (this.categoriesAndWeights.length === 0) {
             this.error = false;
-        } else if (this.bucketWeightSum === 100) {
+        } else if (this.categoryWeightSum === 100) {
             this.error = false;
         } else {
             this.error = true;
@@ -288,8 +290,8 @@ export class TracksComponent implements OnInit {
         });
     }
 
-    compareAlphabetically(a: Bucket, b: Bucket) {
-        if(a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()){
+    compareAlphabetically(a: Category, b: Category) {
+        if(a.isActive && a.categoryDescription.toLocaleLowerCase() < b.categoryDescription.toLocaleLowerCase()){
             return -1;
         }else{
             return 1;
@@ -322,12 +324,12 @@ export class TracksComponent implements OnInit {
     }
 
     /**
-    * Grabs all buckets and stores the information into a variable
+    * Grabs all categories and stores the information into a variable
     */
-    grabAllBuckets() {
-        this.bucketsService.getAllBuckets().subscribe(results => {
-            this.allBuckets = results;
-            this.allBuckets.sort(this.compareAlphabetically);
+    grabAllCategories() {
+        this.categoriesService.getAllCategories().subscribe(results => {
+            this.allCategories = results;
+            this.allCategories.sort(this.compareAlphabetically);
         });
     }
 
@@ -337,7 +339,7 @@ export class TracksComponent implements OnInit {
     resetFields() {
         this.singleTrack = null;
         this.error = false;
-        this.singleTrackBucketIds = [];
+        this.singleTrackCategoryIds = [];
 
     }
 
@@ -350,13 +352,13 @@ export class TracksComponent implements OnInit {
     }
 
     getAllWaits() {
-        this.trackBucketService.getAllWeights().subscribe(results => {
+        this.trackCategoryService.getAllWeights().subscribe(results => {
             this.allWeights = results;
         });
     }
     ngOnInit() {
         this.grabAllTracks();
-        this.grabAllBuckets();
+        this.grabAllCategories();
         this.getAllWaits();
     }
 

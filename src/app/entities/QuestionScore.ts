@@ -4,6 +4,6 @@ export class QuestionScore {
   screeningID: number;
   score: number;
   commentary: string;
-  bucketId: number;
+  categoryId: number;
   beginTime: Date;
 }

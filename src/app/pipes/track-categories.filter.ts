@@ -1,35 +1,35 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Bucket } from '../entities/Bucket';
+import { Category } from '../entities/Category';
 
  @Pipe({
-     name: 'bucketFilter',
+     name: 'categoryFilter',
      pure: false
  })
 
 
 /*
-BucketFilterPipe filters Buckets based on Bucket.bucketCategory (name)
-Used in tracks-bucket
+CategoryFilterPipe filters Categories based on Category.categoryCategory (name)
+Used in tracks-category
 */
- export class BucketFilterPipe implements PipeTransform {
-     transform(items: Bucket[], filter: Bucket): Bucket[] {
+ export class CategoryFilterPipe implements PipeTransform {
+     transform(items: Category[], filter: Category): Category[] {
          if (!items || !filter) {
              return items;
          }
-         return items.filter((item: Bucket) => this.applyFilter(item, filter));
+         return items.filter((item: Category) => this.applyFilter(item, filter));
      }
 
 // /*
-// applies filter based on bucketName field.
+// applies filter based on categoryName field.
 //  */
-     applyFilter(bucket: Bucket, filter: Bucket): boolean {
+     applyFilter(category: Category, filter: Category): boolean {
          for (const field in filter) {
              if (filter[field]) {
                  if (typeof filter[field] === 'string') {
                      return false; // return false by default -- Landon
                  } else if (typeof filter[field] === 'number') {
-                     if (bucket[field] !== filter[field]) {
+                     if (category[field] !== filter[field]) {
                          return false;
                      }
                  }

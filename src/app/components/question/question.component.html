@@ -1,7 +1,7 @@
 <!--
-  This Template is connected to the question component and displayed within the bucket template in caliber.
-  It gets the currently selected bucket Id from the bucket service, displays all of the buckets questions and
-  allows you to add questions to that bucket.
+  This Template is connected to the question component and displayed within the category template in caliber.
+  It gets the currently selected category Id from the category service, displays all of the categories questions and
+  allows you to add questions to that category.
   The template starts with the table that is displayed and ends with the quesiton editor modal, which is displayed
   for adding and editing questions.
 -->
@@ -15,11 +15,13 @@
             <div class="col-sm-3">
               <a routerLink="/settings/main">
                 <h6><i class="fas fa-caret-left" aria-hidden="true"></i>
-                  Back to Buckets</h6>
-                </a>
+                  Back to Categories</h6>
+              </a>
             </div>
             <div class="col-sm-6">
-              <div id="daTitle" style="display:inline-block"><h6>Questions for {{currentBucket.bucketDescription}}</h6></div>
+              <div id="daTitle" style="display:inline-block">
+                <h6>Questions for {{currentCategory.categoryDescription}}</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -34,8 +36,8 @@
                   <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!question.isActive"></span>
                 </label>
               </i>
-              <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editQuestion(question); open(content)" placement="right"
-                ngbTooltip="edit"></i>
+              <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editQuestion(question); open(content)"
+                placement="right" ngbTooltip="edit"></i>
             </a>
           </div>
         </div>
@@ -60,17 +62,18 @@
       <div class="form-group row">
         <label for="questionText" class="col-sm-3 col-form-label" min="0" max="100" align="right">Question:</label>
         <div class="col-sm-9">
-          <input name="question" [(ngModel)]="question.questionText" type="text" id="questionText" placeholder="Question Text"
-            class="form-control bucketWeight" min="0" max="100">
+          <input name="question" [(ngModel)]="question.questionText" type="text" id="questionText"
+            placeholder="Question Text" class="form-control categoryWeight" min="0" max="100">
         </div>
       </div>
       <!--Answer Tab Start-->
       <br>
       <h2>Sample Answer:</h2>
       <div class="form-group row">
-        <label for="one point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Sample Answer:</label>
+        <label for="one point answer" class="col-sm-3 col-form-label" min="0" max="100" align="right">Sample
+          Answer:</label>
         <div class="col-sm-9">
-          <input name="answer" [(ngModel)]="sampleAnswer" type="text" id= "Answer" placeholder="sample answer"
+          <input name="answer" [(ngModel)]="sampleAnswer" type="text" id="Answer" placeholder="sample answer"
             class="form-control" min="0" max="100">
         </div>
       </div>
@@ -78,7 +81,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
         <!--The save button will save/update a question so long as all of the fields have been filled and display a message that the question has been saved-->
-        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)=" addNewQuestion();c('Close click')">Save</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary"
+          (click)=" addNewQuestion();c('Close click')">Save</button>
         <br>
         <br>
         <br>

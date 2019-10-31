@@ -1,28 +1,37 @@
+<<<<<<< HEAD:src/app/components/track-buckets/track-buckets.component.html
 <!-- trackBuckets list  -->
+=======
+<!-- skillTypeCategories list  -->
+>>>>>>> feature-travis-build:src/app/components/skillType-categories/skillType-categories.component.html
 <div id="ABcontent" class="container">
     <div class="row justify-content-center">
         <div class="card w-100">
 
             <h6 class="card-header">All Categories</h6>
 
+<<<<<<< HEAD:src/app/components/track-buckets/track-buckets.component.html
             <div class="card-body" id="allTrackDiv">
                 <!-- List of all buckets -->
+=======
+            <div class="card-body" id="allSkillTypesDiv">
+                <!-- List of all categories -->
+>>>>>>> feature-travis-build:src/app/components/skillType-categories/skillType-categories.component.html
                 <div class="list-group">
-                    <!-- clickable to route to Bucket -->
-                    <!--* routeToBucket() -->
-                    <a class="list-group-item list-group-item-action" *ngFor="let bucket of buckets" (click)="routeToBucket(bucket);click();">
-                        <!--* editBucket(bucket), passes the bucket selected to component side.
+                    <!-- clickable to route to Category -->
+                    <!--* routeToCategory() -->
+                    <a class="list-group-item list-group-item-action" *ngFor="let category of categories" (click)="routeToCategory(category);click();">
+                        <!--* editCategory(category), passes the category selected to component side.
                 * open(edit), calls modal to open. -->
                         <div class="col-sm" (click)="$event.cancelBubble=true;click(); ">
                             <i id="xIcon">
                 <label class="switch">
-                  <input type="checkbox" [(ngModel)]="bucket.isActive" (change)="updateBucket(bucket);click();">
+                  <input type="checkbox" [(ngModel)]="category.isActive" (change)="updateCategory(category);click();">
                   <span class="slider round" placement="top" ngbTooltip="active"></span>
                 </label>
               </i>
                         </div>
-                        <a>{{bucket.bucketDescription}}  </a>
-                        <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editBucket(bucket);click(); open(edit)" placement="right" ngbTooltip="edit">
+                        <a>{{category.categoryDescription}}  </a>
+                        <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editCategory(category);click(); open(edit)" placement="right" ngbTooltip="edit">
                 </i>
                     </a>
 
@@ -36,7 +45,7 @@
     </div>
 </div>
 
-<!--Edit Bucket modal -->
+<!--Edit Category modal -->
 <!--* Editable name, description -->
 <ng-template #edit let-c="close" let-d="dismiss">
     <div class="modal-header">
@@ -51,23 +60,23 @@
             <div class="form-group">
                 <label>Name:</label>
                 <br>
-                <input class="form-control" type="text" [(ngModel)]="currBucket.bucketCategory" [ngModelOptions]="{standalone: true}" />
+                <input class="form-control" type="text" [(ngModel)]="currCategory.categoryCategory" [ngModelOptions]="{standalone: true}" />
                 <br>
                 <label>Description:</label>
                 <br>
-                <textarea class="form-control" type="text" [(ngModel)]="currBucket.bucketDescription" [ngModelOptions]="{standalone: true}"></textarea>
+                <textarea class="form-control" type="text" [(ngModel)]="currCategory.categoryDescription" [ngModelOptions]="{standalone: true}"></textarea>
             </div>
         </form>
     </div>
 
     <div class="modal-footer">
-        <!--* updateBucket(), updates the selected bucket to update database -->
+        <!--* updateCategory(), updates the selected category to update database -->
         <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="c('Close click')">Cancel</button>
-        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="updateBucket();click(); c('Close click')">Update</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="updateCategory();click(); c('Close click')">Update</button>
     </div>
 </ng-template>
 
-<!--Create Bucket modal -->
+<!--Create Category modal -->
 <!--* Create name, description -->
 <ng-template #create let-c="close" let-d="dismiss">
     <div class="modal-header">
@@ -82,7 +91,7 @@
             <div class="form-group">
                 <label>Name:</label>
                 <br>
-                <input class="form-control" type="text" [(ngModel)]="newBucket.bucketDescription" [ngModelOptions]="{standalone: true}" />
+                <input class="form-control" type="text" [(ngModel)]="newCategory.categoryDescription" [ngModelOptions]="{standalone: true}" />
                 <br>
             </div>
         </form>
@@ -90,7 +99,7 @@
 
     <div class="modal-footer">
         <!-- <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button> -->
-        <!--* create(), creates new bucket in the database -->
-        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="createBucket(); c('Close click')">Create</button>
+        <!--* create(), creates new category in the database -->
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="createCategory(); c('Close click')">Create</button>
     </div>
 </ng-template>

@@ -8,22 +8,22 @@
       <h2> Current Track: <h5> {{currentScreenings.track.title}}</h5>
       </h2>
     </div>
-    <h2>Buckets:</h2>
-    <p>Select a bucket to begin asking questions</p>
+    <h2>Categories:</h2>
+    <p>Select a category to begin asking questions</p>
     <div>
-      <h5> {{trackBucketLookUp.buckets}}</h5>
+      <h5> {{trackCategoryLookUp.categories}}</h5>
     </div>
-    <div id="bucket-buttons">
+    <div id="category-buttons">
       <ul class="nav nav-tabs">
-        <li class="pointer" *ngFor="let weight of questionBuckets">
-          <a class="nav-link" [class.active]="weight.bucket.bucketId == currentBucket"
-            [class.inActive]="weight.bucket.bucketId != currentBucket"
-            (click)="setBucket(weight.bucket.bucketId)">{{weight.bucket.bucketDescription}}</a>
+        <li class="pointer" *ngFor="let weight of questionCategories">
+          <a class="nav-link" [class.active]="weight.category.categoryId == currentCategory"
+            [class.inActive]="weight.category.categoryId != currentCategory"
+            (click)="setCategory(weight.category.categoryId)">{{weight.category.categoryDescription}}</a>
         </li>
       </ul>
     </div>
     <h3 id="question-table-title">Question Bank</h3>
-    <div *ngIf="currentBucket != undefined" id="table-container">
+    <div *ngIf="currentCategory != undefined" id="table-container">
       <table class="table table-hover" id="questions-table">
         <thead>
           <tr>
@@ -32,7 +32,7 @@
           </tr>
         </thead>
         <tbody class="question-transition">
-          <ng-container *ngFor="let question of questionsInBucket; let i = index">
+          <ng-container *ngFor="let question of questionsInCategory; let i = index">
             <tr class="pointer" (click)="open(question)">
               <td class="question">{{question.questionText}}</td>
               <td>

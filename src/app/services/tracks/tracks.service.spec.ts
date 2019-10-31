@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { Bucket } from '../../entities/Bucket';
+import { Category } from '../../entities/Category';
 import { UrlService } from '../urls/url.service';
 import { TracksService } from './tracks.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -9,7 +9,7 @@ describe('TracksService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      providers: [TracksService, UrlService, Bucket]
+      providers: [TracksService, UrlService, Category]
     });
   });
 

@@ -16,7 +16,7 @@ import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { AnswerComponent } from './components/answer/answer.component';
-import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
+import { AverageCategoryTypeComponent } from './components/reports/average-category-type/average-category-type.component';
 import { AverageTrackComponent} from './components/reports/average-track/average-track.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
@@ -29,7 +29,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 import { ReportSidebarComponent } from './components/reports/report-sidebar/report-sidebar.component';
 import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
-import { TrackBucketsComponent } from './components/track-buckets/track-buckets.component';
+import { TrackCategoriesComponent } from './components/track-categories/track-categories.component';
 import { TracksComponent } from './components/tracks/tracks.component';
 import { ViolationsByTypeComponent } from './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
@@ -38,7 +38,7 @@ import { LoginComponent } from './components/login/login.component';
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
-import { BucketsService } from './services/buckets/buckets.service';
+import { CategoriesService } from './services/categories/categories.service';
 import { CookieService } from 'ngx-cookie-service';
 import { QuestionScoreService } from './services/question-score/question-score.service';
 import { QuestionsService } from './services/questions/questions.service';
@@ -46,7 +46,7 @@ import { ScheduledScreeningService } from './services/scheduled-screening/schedu
 import { ScreeningService } from './services/screening/screening.service';
 import { ScreeningStateService } from './services/screening-state/screening-state.service';
 import { TracksService } from './services/tracks/tracks.service';
-import { TrackBucketService } from './services/trackBucketLookup/track-bucket.service';
+import { TrackCategoryService } from './services/trackCategoryLookup/track-category.service';
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
@@ -56,7 +56,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 
 // Pipes
 import { ArrToStringPipe } from './pipes/arr-to-string.pipe';
-import { BucketFilterPipe } from './pipes/track-buckets.filter';
+import { CategoryFilterPipe } from './pipes/track-categories.filter';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { GraphDataPipe } from './pipes/graph-data.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
@@ -79,20 +79,20 @@ import { RoleGuard } from './role-guard';
     QuestionComponent,
     QuestionsTableComponent,
     ScreeningConfigComponent,
-    TrackBucketsComponent,
+    TrackCategoriesComponent,
     TracksComponent,
     ViolationFlagComponent,
     CandidateComponent,
     AverageTrackComponent,
     LoginComponent,
     ArrToStringPipe,
-    BucketFilterPipe,
+    CategoryFilterPipe,
     FilterByPipe,
     GraphDataPipe,
     OrderByPipe,
     SearchPipe,
     TierPipe,
-    AverageBucketTypeComponent,
+    AverageCategoryTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
     ViolationsByTypeComponent
@@ -112,7 +112,7 @@ import { RoleGuard } from './role-guard';
   ],
   providers: [
     AlertsService,
-    BucketsService,
+    CategoriesService,
     CookieService,
     QuestionScoreService,
     QuestionsService,
@@ -121,7 +121,7 @@ import { RoleGuard } from './role-guard';
     ScreeningService,
     RoleGuard,
     TracksService,
-    TrackBucketService,
+    TrackCategoryService,
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
