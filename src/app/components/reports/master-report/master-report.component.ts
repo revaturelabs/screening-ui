@@ -6,6 +6,7 @@ import { SimpleReportService } from 'src/app/services/reports/simple-report.serv
 import { Chart } from 'chart.js';
 import * as moment from 'moment';
 import { SimpleReportModel } from 'src/app/entities/SimpleReportModel';
+import { FullReportService } from 'src/app/services/reports/full-report.service';
 
 @Component({
   selector: 'app-master-report',
@@ -25,7 +26,7 @@ export class MasterReportComponent implements OnInit {
   simpleReportModel: SimpleReportModel
 
 
-  constructor(public simpleReportService: SimpleReportService) { }
+  constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService) { }
 
   ngOnInit() {
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
@@ -38,6 +39,14 @@ export class MasterReportComponent implements OnInit {
       this.buildScatterPlot(this.simpleReportModel);
       console.log(this.scatterPlotResults);
       
+    });
+
+    this.simpleReportService.getAllSimpleReportsByDate('2018-03-03','2018-03-05').subscribe((data) => {
+      console.log(data);
+    });
+
+    this.fullReportService.getFullReportsByScreeningId('4321').subscribe((data) => {
+      console.log(data);
     });
 
 
