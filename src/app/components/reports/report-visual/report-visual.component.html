@@ -1,34 +1,43 @@
-<body><!----><h2 mat-dialog-title>{{description}}</h2>
+<body>
+    <!---->
+    <h2 mat-dialog-title>Full Report</h2>
 
-    <img _ngcontent-vnf-c1="" alt="revature" class="rev-logo" height="30" routerlink="/dashboard" src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage" width="110" tabindex="0" ng-reflect-router-link="/dashboard"
-    >
-    </body>
-    <mat-dialog-content [formGroup]="form">
-        <p>Screener: {{description.screeningId}}</p>
-        <p>Candidate: {{report.candidate}}</p>
-        <p>About Me Commentary: {{report.aboutMeCommentary}}</p>
-        <p>General Commentary: {{report.generalCommentary}}</p>
-        <p>Soft Skill Commentary: {{report.softSkillCommentary}}</p>
-        <p>Soft Skill Verdict: {{report.softSkillVerdict}}</p>
-        <p>Category Tested: {{report.CategoryTested}}</p>
-        <p>Violation: {{report.violation}}</p>
+    <img _ngcontent-vnf-c1="" alt="revature" class="rev-logo" height="30" routerlink="/dashboard"
+        src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"
+        width="110" tabindex="0" ng-reflect-router-link="/dashboard">
+</body>
+<mat-dialog-content >
+    <p>Screener ID: {{description.screener_id}}</p>
+    <p>Candidate: {{description.can.name}}</p>
+    <p>About Me Commentary: {{description.aboutMeCommentary}}</p>
+    <p>General Commentary: {{description.generalCommentary}}</p>
+    <p>Soft Skill Commentary: {{description.softSkillCommentary}}</p>
+    <p>Soft Skill Verdict: <span *ngIf="description.softSkillVerdict==false">Failed</span>
+        <span *ngIf="description.softSkillVerdict==true">Passed</span>
+    </p>
+    <div> Category Tested:
+        <li *ngFor="let Category of description.categoryModel">
+            Category: {{Category.categoryDescription}} Average Question Score: {{Category.averageQuestionScore}}
+        </li>
+    </div>
 
-        <br>
-        <p>Screening Id: {{report.screeningId}}</p>
-        <p>Screen Date: {{report.screenDate}}</p>
-        <p>CompositeScore: {{report.compositeScore}}</p>
-        <p>Track: {{report.Track}}</p>
-        
-        <mat-form-field>
-            <input matInput
-                    placeholder="Notes"
-                   formControlName="description">
-        </mat-form-field>
-    </mat-dialog-content>
-    
-    <mat-dialog-actions>
-        <button  style="background-color:#F26925" class="mat-raised-button"(click)="onClose()">Close</button>
-        <button  class="mat-raised-button mat-primary"(click)="save()">Save</button>
-    </mat-dialog-actions><!----->
-    <!--style="background-color:#F26925"
+
+
+    <div *ngIf="description.violation==true"> Violation: {{description.violation}}</div>
+
+    <br>
+    <p>Screening Id: {{description.srm.screeningId}}</p>
+    <p>Screen Date: {{description.srm.screenDate}}</p>
+    <p>Composite Score: {{description.srm.compositeScore}}</p>
+    <p>Track: {{description.srm.track.title}}</p>
+
+   
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button style="background-color:#F26925" class="mat-raised-button" (click)="onClose()">Close</button>
+    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>
+<!----->
+<!--style="background-color:#F26925"
     style="background-color:#393FEF" -->

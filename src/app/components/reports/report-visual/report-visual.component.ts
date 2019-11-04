@@ -25,7 +25,7 @@ export class ReportVisualComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.description.screeningId);
+    console.log(this.description);
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
     this.loadCard();
     })
