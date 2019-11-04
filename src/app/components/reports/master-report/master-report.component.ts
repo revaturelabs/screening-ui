@@ -6,6 +6,8 @@ import { SimpleReportService } from 'src/app/services/reports/simple-report.serv
 import { Chart } from 'chart.js';
 import * as moment from 'moment';
 import { SimpleReportModel } from 'src/app/entities/SimpleReportModel';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { ReportVisualComponent } from '../report-visual/report-visual.component';
 import { FullReportService } from 'src/app/services/reports/full-report.service';
 
 @Component({
@@ -24,7 +26,7 @@ export class MasterReportComponent implements OnInit {
   simpleReportModel: SimpleReportModel
 
 
-  constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService) { }
+  constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService,private dialog: MatDialog) { }
 
   ngOnInit() {
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
@@ -34,6 +36,7 @@ export class MasterReportComponent implements OnInit {
       //console.log(this.simpleReportModel);
       this.buildScatterPlot(data);
       console.log(this.scatterPlotResults);
+
 
 
       //console.log(moment('2018-03-03T05:00:00.000+0000').format('YYYY-MM-DD'));
@@ -65,7 +68,7 @@ export class MasterReportComponent implements OnInit {
         scales: {
           xAxes: [{
             type: 'time',
-            time:{
+            time: {
               unit: 'day'
             },
             position: 'bottom'
@@ -78,11 +81,28 @@ export class MasterReportComponent implements OnInit {
   buildScatterPlot(dataModel: SimpleReportModel) {
     let len: number = Object.keys(dataModel).length;
     for (let i = 0; i < len; i++) {
-      
-      length = this.scatterPlotResults.push({'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore});
-      
-    }
-    
-  }
 
+      length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
+
+    }
+
+  }
+  report() {
+    //this.dialog.open(AReportComponent);
+    this.simpleReportService.getAllSimpleReports().subscribe((data) => {
+      let temp= JSON.parse(JSON.stringify(data));
+      console.log(temp[0]);
+      const dialogConfig = new MatDialogConfig();
+
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = "60%";
+
+      dialogConfig.data=temp[0];
+      console.log(dialogConfig.data);
+
+      this.dialog.open(ReportVisualComponent, dialogConfig);
+    }
+    )
+  }
 }

@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule} from 'highcharts-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -71,6 +73,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
+import { ReportVisualComponent } from './components/reports/report-visual/report-visual.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +103,8 @@ import { RoleGuard } from './role-guard';
     AverageCategoryTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
-    ViolationsByTypeComponent
+    ViolationsByTypeComponent,
+    ReportVisualComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -111,6 +115,9 @@ import { RoleGuard } from './role-guard';
     NgbModule,
     NgxPaginationModule,
     Ng5SliderModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     AmplifyAngularModule
@@ -140,6 +147,7 @@ import { RoleGuard } from './role-guard';
     AmplifyService,
      { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
+  entryComponents: [ReportVisualComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
