@@ -10,13 +10,13 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { UrlService } from 'src/app/services/urls/url.service';
 import { SoftSkillsViolationService } from 'src/app/services/soft-skills-violation/soft-skills-violation.service';
 import { ScreeningStateService } from 'src/app/services/screening-state/screening-state.service';
-import { SkillTypesService } from 'src/app/services/skill-types/skill-types.service';
+import { TracksService } from 'src/app/services/tracks/tracks.service';
 import { ViolationTypeService } from 'src/app/services/violationType/violationType.service';
 import { AlertsService } from 'src/app/services/alert-service/alerts.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Question } from 'src/app/entities/Question';
-import { Bucket } from 'src/app/entities/Bucket';
+import { Category } from 'src/app/entities/Category';
 
 
 describe('AnswerComponent', () => {
@@ -28,7 +28,7 @@ describe('AnswerComponent', () => {
       declarations: [ AnswerComponent, ViolationFlagComponent ],
       imports: [FormsModule, RouterTestingModule],
       providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService,
-      ScreeningStateService, SkillTypesService, ViolationTypeService, AlertsService, Question]
+      ScreeningStateService, TracksService, ViolationTypeService, AlertsService, Question]
     })
     .compileComponents();
   }));
@@ -36,7 +36,7 @@ describe('AnswerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AnswerComponent);
     fixture.componentInstance.question = new Question();
-    fixture.componentInstance.question.bucket = new Bucket();
+    fixture.componentInstance.question.category = new Category();
     component = fixture.componentInstance;
   });
 

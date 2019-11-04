@@ -4,10 +4,10 @@ import { FinalReportComponent } from './final-report.component';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypesService } from '../../services/skill-types/skill-types.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+import { TracksService } from '../../services/tracks/tracks.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
+import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 
@@ -21,8 +21,8 @@ describe('FinalReportComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FinalReportComponent ],
-      providers: [ ScreeningService, HttpClient, HttpHandler, ScreeningStateService, SkillTypesService,
-        SkillTypeBucketService, QuestionScoreService, ScoresToBucketsUtil, AlertsService, SoftSkillsViolationService ]
+      providers: [ ScreeningService, HttpClient, HttpHandler, ScreeningStateService, TracksService,
+        TrackCategoryService, QuestionScoreService, ScoresToCategoriesUtil, AlertsService, SoftSkillsViolationService ]
     })
     .compileComponents();
   }));

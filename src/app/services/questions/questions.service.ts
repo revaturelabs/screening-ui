@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../../entities/Question';
 import { UrlService } from '../urls/url.service';
-import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
-import { Bucket } from '../../entities/Bucket';
+import { TrackCategoryLookUp } from '../../entities/TrackCategoryLookup';
+import { Category } from '../../entities/Category';
 import { Observable } from 'rxjs';
 
 /**
@@ -38,11 +38,10 @@ export class QuestionsService {
   ) { }
 
   questions: Question[];
-
-  private returnBuckets: Bucket[] = [];
+  private returnCategories: Category[] = [];
 
   /**
-   * Modifed parameters to only take in question and tagIds and not also bucket id because that is already
+   * Modifed parameters to only take in question and tagIds and not also category id because that is already
    * stored in question
    * updated to be in sync with new Gambit question service modifications
    * used urlService to get endpoint for posting new questions
@@ -55,7 +54,7 @@ export class QuestionsService {
 
   /**
    * Removed dead code
-   * Removed buckedId parameter
+   * Removed categoryId parameter
    * updated to be in sync with new Gambit question service modifications
    * used urlService to get endpoint for updating new quetions with put method
    * @param question
@@ -84,61 +83,62 @@ export class QuestionsService {
   }
 
   /**
-   * gets all questions from bucket
-   * add urlService to get endpoint for getting Bucket Questions
-   * @param buckerId
+   * gets all questions from category
+   * add urlService to get endpoint for getting Category Questions
+   * @param categoryId
   */
-  getBucketQuestions(bucketId: number): Observable<Question[]> {
-    return this.http.get<Question[]>(this.urlService.question.getQuestionsByBucketId(bucketId));
+
+  getCategoryQuestions(categoryId: number): Observable<Question[]> {
+    return this.http.get<Question[]>(this.urlService.question.getQuestionsByCategoryId(categoryId));
   }
 
-  getQuestions(skillTypeId: number): Observable<Question[]> {
-    const currSkillTypeID = skillTypeId;
+  getQuestions(trackId: number): Observable<Question[]> {
+    const currTrackID = trackId;
 
     return this.http.post<Question[]>( // change to get with parameters
       this.urlService.question.filteredQuestions(),
-      currSkillTypeID
+      currTrackID
     );
   }
 
   /**
-   * Originally from a file called "questionsToBuckets.util.ts"
+   * Originally from a file called "questionsToCategories.util.ts"
    * That was a gross way to do it, so I incorporated the only method in it
    * here.
    * @param allQuestions
-   * @param allBuckets
+   * @param allCategories
    */
-  saveQuestions(allQuestions: Question[], allBuckets: SkillTypeBucketLookUp): Bucket[] {
+  saveQuestions(allQuestions: Question[], allCategories: TrackCategoryLookUp): Category[] {
     allQuestions.forEach(question => {
-      // If the buckets array is empty, add this question's bucket to it
-      if (this.returnBuckets.length === 0) {
-        const matchingBucket = allBuckets.buckets.find(function (element) {
-          return element.bucketId === question.bucket.bucketId;
+      // If the categories array is empty, add this question's category to it
+      if (this.returnCategories.length === 0) {
+        const matchingCategory = allCategories.categories.find(function (element) {
+          return element.categoryId === question.category.categoryId;
         });
-        // After adding the new bucket, add the current question to the new bucket
-        if (matchingBucket) {
-          this.returnBuckets.push(matchingBucket);
+        // After adding the new category, add the current question to the new category
+        if (matchingCategory) {
+          this.returnCategories.push(matchingCategory);
         }
-        // If the bucket array is not empty, check to see if this question's bucket is already listed
+        // If the category array is not empty, check to see if this question's category is already listed
       } else {
-        const existingBucket = this.returnBuckets.find(function (element) {
-          return element.bucketId === question.bucket.bucketId;
+        const existingCategory = this.returnCategories.find(function (element) {
+          return element.categoryId === question.category.categoryId;
         });
-        // If this question's bucket is not listed, add it
-        if (!existingBucket) {
-          const matchingBucket = allBuckets.buckets.find(function (element) {
-            return element.bucketId === question.bucket.bucketId;
+        // If this question's category is not listed, add it
+        if (!existingCategory) {
+          const matchingCategory = allCategories.categories.find(function (element) {
+            return element.categoryId === question.category.categoryId;
           });
-          // After adding the new bucket, add the current question to the new bucket
-          if (matchingBucket) {
-            this.returnBuckets.push(matchingBucket);
+          // After adding the new category, add the current question to the new category
+          if (matchingCategory) {
+            this.returnCategories.push(matchingCategory);
           }
-          // If the bucket exists, add question to it
+          // If the category exists, add question to it
         }
       }
 
     });
-    return this.returnBuckets;
+    return this.returnCategories;
   }
 
 
