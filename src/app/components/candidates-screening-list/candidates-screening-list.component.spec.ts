@@ -35,7 +35,11 @@ describe('CandidatesScreeningListComponent', () => {
     recruiterName: 'Bab',
     college: 'University',
     degree: 'Symphony 3',
-    major: 'E flat'
+    major: 'E flat',
+    email: 'example@com.com',
+    skypeId: 'example',
+    profileUrl: 'https://www.example.com',
+    techScreenerName: 'example'
   };
 
   const trackFake = {
@@ -48,8 +52,9 @@ describe('CandidatesScreeningListComponent', () => {
   scheduledScreeningId: 5,
   candidate: candidateFake,
   track: trackFake,
-  scheduledStatus: 'Screening in Progress',
-  scheduledDate: new Date()
+  scheduledStatus: 0,
+  scheduledDate: new Date(),
+  TrackId: 121
   };
 
   const screeningList: ScheduledScreening[] = [someScreening];
