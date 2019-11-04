@@ -6,6 +6,7 @@ import { HighchartsChartModule} from 'highcharts-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -72,6 +73,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
+
 import { RoleGuard } from './role-guard';
 import { ReportVisualComponent } from './components/reports/report-visual/report-visual.component';
 
@@ -120,7 +122,9 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     MatInputModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    AmplifyAngularModule
+    AmplifyAngularModule,
+    MatDatepickerModule,
+    MaterialModule
   ],
   providers: [
     AlertsService,
@@ -138,7 +142,7 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     TrackCategoryService,
 
     SimpleReportService,
-    
+
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,

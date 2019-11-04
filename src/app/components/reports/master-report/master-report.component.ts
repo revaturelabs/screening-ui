@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+//import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReportService } from 'src/app/services/reports/report.service';
 import { ReportData } from 'src/app/entities/ReportData';
 import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
 import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
 import { Chart } from 'chart.js';
+//import { MaterialModule} from 'src/app/material.module';
+
 import * as moment from 'moment';
 import { SimpleReportModel } from 'src/app/entities/SimpleReportModel';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
@@ -55,6 +58,23 @@ export class MasterReportComponent implements OnInit {
     });
 
 
+
+  }
+  bydate(date1,date2){
+    this.scatterPlotResults = [];
+    this.simpleReportService.getAllSimpleReportsByDate(date1,date2).subscribe((data) => {
+      console.log(data);
+      this.buildScatterPlot(data);
+    });
+
+   };
+  buildScatterPlot(dataModel: SimpleReportModel) {
+    let len: number = Object.keys(dataModel).length;
+    for (let i = 0; i < len; i++) {
+
+      length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
+
+    }
     //scatter
     this.scatterChart = new Chart('Scatter', {
       type: 'scatter',
@@ -76,16 +96,6 @@ export class MasterReportComponent implements OnInit {
         }
       }
     });
-  }
-
-  buildScatterPlot(dataModel: SimpleReportModel) {
-    let len: number = Object.keys(dataModel).length;
-    for (let i = 0; i < len; i++) {
-
-      length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
-
-    }
-
   }
   report() {
     //this.dialog.open(AReportComponent);
