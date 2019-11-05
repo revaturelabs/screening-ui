@@ -22,34 +22,36 @@ export class MasterReportComponent implements OnInit {
   PieChart = [];
   dataSize: number;
   scatterChart = [];
-  chartColors: any[] = [];
-  //compositeScores: number[] = [];
   scatterPlotResults: any[] = [];
   date1:Date;
   date2:Date;
+  catalog = new Map();
+  colors: string[]= [];
   simpleReportModel: SimpleReportModel
 
 
   constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService,private dialog: MatDialog) { }
 
   ngOnInit() {
+
     this.getAll();
 
     this.simpleReportService.getAllSimpleReportsByDate('2018-03-03','2018-03-05').subscribe((data) => {
       console.log(data);
+
     });
-
-    this.fullReportService.getFullReportsByScreeningId('4321').subscribe((data) => {
-      console.log(data);
-    });
-
-
-
+    
   }
   getAll(){
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
       console.log(data);
       this.dataSize = Object.keys(data).length;
+      for(let i = 0; i < this.dataSize; i ++) {
+        if(!this.catalog.has(data[i].track.title)) {
+          this.catalog.set(data[i].track.title, this.getRandomColor(1));
+        }
+        this.colors.push(this.catalog.get(data[i].track.title));
+      }
       console.log("dataSize: " + this.dataSize);
       this.getRandomColor(this.dataSize);
       //this.simpleReportModel = JSON.parse(data);
@@ -61,33 +63,44 @@ export class MasterReportComponent implements OnInit {
 
  //Color Generation functionality
  getRandomColor(size) {
-  let threshold = 20000;
-  //let result = new Array(size);
-  let letters = '0123456789ABCDEF'.split('');
+  const threshold = 20000;
+  const result = new Array(size);
+  const letters = '0123456789ABCDEF'.split('');
   let red = 'FF';
   let green = 'FF';
   let blue = 'FF';
-
-  for (var i = 0; i < size;) {
-    let color = '#';
-    let r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-    let g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-    let b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-    let notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
+  for (let i = 0; i < 1; ) {
+    const r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    const g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    const b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    const notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
       + (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) > threshold;
-    let notSameasPre = (parseInt('0x' + red) - parseInt('0x' + r)) * (parseInt('0x' + red) - parseInt('0x' + r))
-      + (parseInt('0x' + green) - parseInt('0x' + g)) * (parseInt('0x' + green) - parseInt('0x' + g))
-      + (parseInt('0x' + blue) - parseInt('0x' + b)) * (parseInt('0x' + blue) - parseInt('0x' + b)) > threshold;
-    if (notWhite && notSameasPre) {
-      this.chartColors[i] = '#' + r + g + b;
+    if (notWhite) {
+      result[i] = '#' + r + g + b;
       i++;
       red = r;
       green = g;
       blue = b;
     }
-
+    for (let i = 1; i < size; ) {
+      const r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+      const g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+      const b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+      const notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
+        + (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) > threshold;
+      const notSameasPre = (parseInt('0x' + red) - parseInt('0x' + r)) * (parseInt('0x' + red) - parseInt('0x' + r))
+        + (parseInt('0x' + green) - parseInt('0x' + g)) * (parseInt('0x' + green) - parseInt('0x' + g))
+        + (parseInt('0x' + blue) - parseInt('0x' + b)) * (parseInt('0x' + blue) - parseInt('0x' + b)) > threshold;
+      if (notWhite && notSameasPre) {
+        result[i] = '#' + r + g + b;
+        i++;
+        red = r;
+        green = g;
+        blue = b;
+      }
+    }
   }
-
+  return result;
 }
 datelog(){
   let newdate = moment(this.date1).format('YYYY-MM-DD');
@@ -119,8 +132,8 @@ bydate(date1,date2){
     datasets: [{
       label: 'Scatter Dataset',
       data: this.scatterPlotResults,
-      pointBackgroundColor: this.chartColors,
-      pointBorderColor:this.chartColors,
+      pointBackgroundColor: this.colors,
+      pointBorderColor:this.colors,
       radius: 10
 
     }]
