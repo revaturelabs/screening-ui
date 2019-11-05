@@ -20,11 +20,13 @@ export class MasterReportComponent implements OnInit {
   LineChart = [];
   BarChart = [];
   PieChart = [];
-  scatterChart = [];
   dataSize: number;
+  scatterChart = [];
+  chartColors: any[] = [];
   //compositeScores: number[] = [];
   scatterPlotResults: any[] = [];
-  chartColors: any[] = [];
+  date1:Date;
+  date2:Date;
   simpleReportModel: SimpleReportModel
 
 
@@ -32,13 +34,13 @@ export class MasterReportComponent implements OnInit {
 
   ngOnInit() {
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
-      
-      this.simpleReportModel = data;
+      console.log(data);
       this.dataSize = Object.keys(data).length;
       console.log("dataSize: " + this.dataSize);
       this.getRandomColor(this.dataSize);
-      console.log(this.chartColors);
-      this.buildScatterPlot(this.simpleReportModel);
+      //this.simpleReportModel = JSON.parse(data);
+      //console.log(this.simpleReportModel);
+      this.buildScatterPlot(data);
       console.log(this.scatterPlotResults);
 
 
@@ -66,40 +68,53 @@ export class MasterReportComponent implements OnInit {
     });
     
 
-    //scatter
-    this.scatterChart = new Chart('Scatter', {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Scatter Dataset',
-          data: this.scatterPlotResults,
-          pointBackgroundColor: this.chartColors,
-          pointBorderColor:this.chartColors,
-          radius: 10
-        }]
-      },
-      options: {
-        events: ['click'],
-        /*onClick: function(evt, activeElements) {
-          var elementIndex = activeElements[0]._index;
-          console.log(elementIndex);
-          //this.data.datasets[0].pointBackgroundColor[elementIndex] = 'white';
-          //this.update();
-        },*/
+  }
+ //Color Generation functionality
+ getRandomColor(size) {
+  let threshold = 20000;
+  //let result = new Array(size);
+  let letters = '0123456789ABCDEF'.split('');
+  let red = 'FF';
+  let green = 'FF';
+  let blue = 'FF';
 
-        scales: {
-          xAxes: [{
-            type: 'time',
-            time: {
-              unit: 'day'
-            },
-            position: 'bottom'
-          }]
-        }
-      }
-    });
+  for (var i = 0; i < size;) {
+    let color = '#';
+    let r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    let g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    let b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    let notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
+      + (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) > threshold;
+    let notSameasPre = (parseInt('0x' + red) - parseInt('0x' + r)) * (parseInt('0x' + red) - parseInt('0x' + r))
+      + (parseInt('0x' + green) - parseInt('0x' + g)) * (parseInt('0x' + green) - parseInt('0x' + g))
+      + (parseInt('0x' + blue) - parseInt('0x' + b)) * (parseInt('0x' + blue) - parseInt('0x' + b)) > threshold;
+    if (notWhite && notSameasPre) {
+      this.chartColors[i] = '#' + r + g + b;
+      i++;
+      red = r;
+      green = g;
+      blue = b;
+    }
+
   }
 
+}
+datelog(){
+  let newdate = moment(this.date1).format('YYYY-MM-DD');
+  let newdate2 = moment(this.date2).format('YYYY-MM-DD');
+  console.log(newdate);
+console.log(newdate2);
+this.bydate(newdate,newdate2);
+
+}
+bydate(date1,date2){
+  this.scatterPlotResults = [];
+  this.simpleReportService.getAllSimpleReportsByDate(date1,date2).subscribe((data) => {
+    console.log(data);
+    this.buildScatterPlot(data);
+  });
+
+ };
   buildScatterPlot(dataModel: SimpleReportModel) {
     
     for (let i = 0; i < this.dataSize; i++) {
@@ -107,40 +122,41 @@ export class MasterReportComponent implements OnInit {
       length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
 
     }
+ //scatter
+ this.scatterChart = new Chart('Scatter', {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Scatter Dataset',
+      data: this.scatterPlotResults,
+      pointBackgroundColor: this.chartColors,
+      pointBorderColor:this.chartColors,
+      radius: 10
 
-  }
+    }]
+  },
+  options: {
+    events: ['click'],
+    /*onClick: function(evt, activeElements) {
+      var elementIndex = activeElements[0]._index;
+      console.log(elementIndex);
+      //this.data.datasets[0].pointBackgroundColor[elementIndex] = 'white';
+      //this.update();
+    },*/
 
-  //Color Generation functionality
-  getRandomColor(size) {
-    let threshold = 20000;
-    //let result = new Array(size);
-    let letters = '0123456789ABCDEF'.split('');
-    let red = 'FF';
-    let green = 'FF';
-    let blue = 'FF';
-    
-    for (var i = 0; i < size;) {
-      let color = '#';
-      let r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-      let g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-      let b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-      let notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
-        + (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) > threshold;
-      let notSameasPre = (parseInt('0x' + red) - parseInt('0x' + r)) * (parseInt('0x' + red) - parseInt('0x' + r))
-        + (parseInt('0x' + green) - parseInt('0x' + g)) * (parseInt('0x' + green) - parseInt('0x' + g))
-        + (parseInt('0x' + blue) - parseInt('0x' + b)) * (parseInt('0x' + blue) - parseInt('0x' + b)) > threshold;
-      if (notWhite && notSameasPre) {
-        this.chartColors[i] = '#' + r + g + b;
-        i++;
-        red = r;
-        green = g;
-        blue = b;
-      }
-      
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          unit: 'day'
+        },
+        position: 'bottom'
+      }]
     }
-
   }
-  
+});
+  }
+
   report() {
     //this.dialog.open(AReportComponent);
     this.fullReportService.getFullReportsByScreeningId("4321").subscribe((data) => {
