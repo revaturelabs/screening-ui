@@ -25,8 +25,8 @@ export class MasterReportComponent implements OnInit {
   scatterPlotResults: any[] = [];
 
   clickedFullReport: any;
-  date1:Date;
-  date2:Date;
+  date1:Date = null;
+  date2:Date = null;
   catalog = new Map();
   colors: string[]= [];
 
