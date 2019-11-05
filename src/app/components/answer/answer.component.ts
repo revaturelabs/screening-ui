@@ -4,13 +4,12 @@ import { Component, OnInit, Input} from '@angular/core';
 import { QuestionScore } from '../../entities/QuestionScore';
 
 // Services
-import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 
 // ngbootstrap for modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
