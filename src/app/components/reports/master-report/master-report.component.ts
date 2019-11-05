@@ -40,7 +40,7 @@ export class MasterReportComponent implements OnInit {
       console.log(data);
 
     });
-    
+
   }
   getAll(){
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
@@ -114,6 +114,16 @@ bydate(date1,date2){
   this.scatterPlotResults = [];
   this.simpleReportService.getAllSimpleReportsByDate(date1,date2).subscribe((data) => {
     console.log(data);
+    this.colors = [];
+    this.dataSize = Object.keys(data).length;
+      for(let i = 0; i < this.dataSize; i ++) {
+        if(!this.catalog.has(data[i].track.title)) {
+          this.catalog.set(data[i].track.title, this.getRandomColor(1));
+        }
+        this.colors.push(this.catalog.get(data[i].track.title));
+      }
+      console.log("dataSize: " + this.dataSize);
+      this.getRandomColor(this.dataSize);
     this.buildScatterPlot(data);
   });
 
@@ -140,7 +150,8 @@ bydate(date1,date2){
   },
   options: {
     events: ['click'],
-    responsive: true,
+    responsive: false,
+
     /*onClick: function(evt, activeElements) {
       var elementIndex = activeElements[0]._index;
       console.log(elementIndex);
