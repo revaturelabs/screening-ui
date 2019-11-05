@@ -150,7 +150,7 @@ bydate(date1,date2){
   type: 'scatter',
   data: {
     datasets: [{
-      label: 'Scatter Dataset',
+      label:'',
       data: this.scatterPlotResults,
       pointBackgroundColor: this.colors,
       pointBorderColor:this.colors,
@@ -159,28 +159,19 @@ bydate(date1,date2){
     }]
   },
   options: {
+    legend: {
+      display: false
+    },
     events: ['click'],
     responsive: false,
-                                   onClick:  (evt, activeElements) =>{
-          var elementIndex = activeElements[0]._index;
-          this.report(elementIndex);}),
-
-    /*onClick: function(evt, activeElements) {
+    onClick:  (evt, activeElements) =>{
       var elementIndex = activeElements[0]._index;
-      console.log(elementIndex);
-      //this.data.datasets[0].pointBackgroundColor[elementIndex] = 'white';
-      //this.update();
-    },*/
+      this.report(elementIndex);
+    },
+
+
 
     scales: {
-      xAxes: [{
-        type: 'time',
-        time: {
-          unit: 'day'
-
-        },
-
-        scales: {
           xAxes: [{
             type: 'time',
             time: {
