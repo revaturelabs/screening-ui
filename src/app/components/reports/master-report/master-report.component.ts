@@ -33,24 +33,7 @@ export class MasterReportComponent implements OnInit {
   constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService,private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.simpleReportService.getAllSimpleReports().subscribe((data) => {
-      console.log(data);
-      this.dataSize = Object.keys(data).length;
-      console.log("dataSize: " + this.dataSize);
-      this.getRandomColor(this.dataSize);
-      //this.simpleReportModel = JSON.parse(data);
-      //console.log(this.simpleReportModel);
-      this.buildScatterPlot(data);
-      console.log(this.scatterPlotResults);
-
-
-
-      //console.log(moment('2018-03-03T05:00:00.000+0000').format('YYYY-MM-DD'));
-
-
-
-
-    });
+    this.getAll();
 
     this.simpleReportService.getAllSimpleReportsByDate('2018-03-03','2018-03-05').subscribe((data) => {
       console.log(data);
@@ -63,6 +46,19 @@ export class MasterReportComponent implements OnInit {
 
 
   }
+  getAll(){
+    this.simpleReportService.getAllSimpleReports().subscribe((data) => {
+      console.log(data);
+      this.dataSize = Object.keys(data).length;
+      console.log("dataSize: " + this.dataSize);
+      this.getRandomColor(this.dataSize);
+      //this.simpleReportModel = JSON.parse(data);
+      //console.log(this.simpleReportModel);
+      this.buildScatterPlot(data);
+      console.log(this.scatterPlotResults);
+
+    });}
+
  //Color Generation functionality
  getRandomColor(size) {
   let threshold = 20000;
@@ -131,6 +127,7 @@ bydate(date1,date2){
   },
   options: {
     events: ['click'],
+    responsive: true,
     /*onClick: function(evt, activeElements) {
       var elementIndex = activeElements[0]._index;
       console.log(elementIndex);
