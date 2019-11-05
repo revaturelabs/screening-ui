@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 //import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReportService } from 'src/app/services/reports/report.service';
 import { ReportData } from 'src/app/entities/ReportData';
@@ -24,6 +24,9 @@ export class MasterReportComponent implements OnInit {
   BarChart = [];
   PieChart = [];
   scatterChart = [];
+   date1:Date;
+  date2:Date;
+  //@Output() selectedDateChange: EventEmitter<Date> = new EventEmitter<Date>();
   //compositeScores: number[] = [];
   scatterPlotResults: any[] = [];
   simpleReportModel: SimpleReportModel
@@ -51,6 +54,7 @@ export class MasterReportComponent implements OnInit {
 
     this.simpleReportService.getAllSimpleReportsByDate('2018-03-03','2018-03-05').subscribe((data) => {
       console.log(data);
+      console.log("it was this one");
     });
 
     this.fullReportService.getFullReportsByScreeningId('4321').subscribe((data) => {
@@ -60,6 +64,14 @@ export class MasterReportComponent implements OnInit {
 
 
   }
+  datelog(){
+    let newdate = moment(this.date1).format('YYYY-MM-DD');
+    let newdate2 = moment(this.date2).format('YYYY-MM-DD');
+    console.log(newdate);
+  console.log(newdate2);
+this.bydate(newdate,newdate2);
+
+}
   bydate(date1,date2){
     this.scatterPlotResults = [];
     this.simpleReportService.getAllSimpleReportsByDate(date1,date2).subscribe((data) => {

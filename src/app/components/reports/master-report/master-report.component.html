@@ -1,78 +1,79 @@
-<div>
+<div style="margin-left: 2% ;">
     <mat-form-field color="accent">
         <mat-label>Inherited calendar color</mat-label>
-        <input matInput [matDatepicker]="picker1">
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="date1">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field color="accent">
         <mat-label>Custom calendar color</mat-label>
-        <input matInput [matDatepicker]="picker2">
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="date2">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2 color="primary"></mat-datepicker>
     </mat-form-field>
 </div>
-    <div class="popout-div">
-        <button mat-raised-button (click)="report()">
+<button mat-raised-button color="accent" class="Button" (click)="datelog()">print date</button>
+<div class="popout-div">
+    <button mat-raised-button (click)="report()">
       view
     </button>
-    </div>
+</div>
 
 
-    <main class="container mt-8 justify-content-center" *ngIf="reportData">
-        <div class="row">
-            <div class="col-sm-12 col-lg-10">
-                <div class="card">
-                    <div class="card-body" style="border-width: 10rem;">
-                        <div>
-                            <h1>Reports</h1>
-                        </div>
-                        <div>
-                            <app-report-sidebar [reportData]="reportData" (sliderChange)="onSliderChange($event)" (searchChange)="onSearchChange($event)"></app-report-sidebar>
-                        </div>
-                        <div class="container">
-                            <ngb-tabset>
-                                <ngb-tab title="Average Scores" id="tab-1">
-                                    <br />
-                                    <ng-template ngbTabContent>
-                                        <div class="row" id="report-graphs">
-                                            <br />
-                                            <app-average-category-type [barData]="reportData.avgCategoryTypeScore" class="card col-sm-12 mt-5">
-                                            </app-average-category-type>
-                                        </div>
-                                    </ng-template>
-                                </ngb-tab>
+<main class="container mt-8 justify-content-center" *ngIf="reportData">
+    <div class="row">
+        <div class="col-sm-12 col-lg-10">
+            <div class="card">
+                <div class="card-body" style="border-width: 10rem;">
+                    <div>
+                        <h1>Reports</h1>
+                    </div>
+                    <div>
+                        <app-report-sidebar [reportData]="reportData" (sliderChange)="onSliderChange($event)" (searchChange)="onSearchChange($event)"></app-report-sidebar>
+                    </div>
+                    <div class="container">
+                        <ngb-tabset>
+                            <ngb-tab title="Average Scores" id="tab-1">
+                                <br />
+                                <ng-template ngbTabContent>
+                                    <div class="row" id="report-graphs">
+                                        <br />
+                                        <app-average-category-type [barData]="reportData.avgCategoryTypeScore" class="card col-sm-12 mt-5">
+                                        </app-average-category-type>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
 
-                                <ngb-tab title="Number of Screenings" id="tab-2">
-                                    <ng-template ngbTabContent>
-                                        <div class="row" id="report-graphs">
-                                            <br />
-                                            <app-average-track [barData]="reportData.avgTrackScore" class="card col-sm-12 mx-auto my-5">
-                                            </app-average-track>
-                                        </div>
-                                    </ng-template>
-                                </ngb-tab>
-                            </ngb-tabset>
-                        </div>
+                            <ngb-tab title="Number of Screenings" id="tab-2">
+                                <ng-template ngbTabContent>
+                                    <div class="row" id="report-graphs">
+                                        <br />
+                                        <app-average-track [barData]="reportData.avgTrackScore" class="card col-sm-12 mx-auto my-5">
+                                        </app-average-track>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+                        </ngb-tabset>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-
-    <div style="text-align:center">
-        <h1>
-            Welcome to {{ title }}!
-        </h1>
-        <canvas id="Scatter"></canvas>
     </div>
+</main>
 
-    <!-- Modal -->
-    <!-- <div id="myModal" class= "modal fade" role="dialog">
+<div style="text-align:center">
+    <h1>
+        Welcome to {{ title }}!
+    </h1>
+    <canvas id="Scatter"></canvas>
+</div>
+
+<!-- Modal -->
+<!-- <div id="myModal" class= "modal fade" role="dialog">
         <div class="modal-dialog">
           Modal content-->
-    <!-- <div class="modal-content">
+<!-- <div class="modal-content">
             <div>
               <button type="button" class="close" data-dismiss="modal">
                 &times;
