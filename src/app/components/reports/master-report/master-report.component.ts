@@ -50,7 +50,13 @@ export class MasterReportComponent implements OnInit {
 
       
     });
+    //document.getElementById("Scatter").onclick = function(evt){
+      //var myRadar = new Chart(document.getElementById("Scatter"));
 
+      //var activePoints = myRadar.getElementsAtEvent(evt);
+      //console.log("HI");//activePoints);
+      // use _datasetIndex and _index from each element of the activePoints array
+    //};
     this.simpleReportService.getAllSimpleReportsByDate('2018-03-03','2018-03-05').subscribe((data) => {
       console.log(data);
     });
@@ -58,7 +64,7 @@ export class MasterReportComponent implements OnInit {
     this.fullReportService.getFullReportsByScreeningId('4321').subscribe((data) => {
       console.log(data);
     });
-
+    
 
     //scatter
     this.scatterChart = new Chart('Scatter', {
@@ -73,7 +79,14 @@ export class MasterReportComponent implements OnInit {
         }]
       },
       options: {
-        
+        events: ['click'],
+        /*onClick: function(evt, activeElements) {
+          var elementIndex = activeElements[0]._index;
+          console.log(elementIndex);
+          //this.data.datasets[0].pointBackgroundColor[elementIndex] = 'white';
+          //this.update();
+        },*/
+
         scales: {
           xAxes: [{
             type: 'time',
@@ -127,6 +140,7 @@ export class MasterReportComponent implements OnInit {
     }
 
   }
+  
   report() {
     //this.dialog.open(AReportComponent);
     this.fullReportService.getFullReportsByScreeningId("4321").subscribe((data) => {
