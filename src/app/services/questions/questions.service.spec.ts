@@ -27,20 +27,20 @@ export function asyncError<T>(errorObject: any) {
  */
 
 const category: Category = {
-    categoryId: 1,
-    categoryDescription: 'Hi',
-    isActive: true
+  categoryId: 1,
+  categoryDescription: 'Hi',
+  isActive: true
 };
 
 const sampleQuestion: Question = {
-    questionId: 1,
-    questionText: 'string',
-    sampleAnswer: 'string',
-    isActive: true,
-    category: category
+  questionId: 1,
+  questionText: 'string',
+  sampleAnswer: 'string',
+  isActive: true,
+  category: category
 };
 
-    const QUESTIONS: Question[] = [sampleQuestion];
+const QUESTIONS: Question[] = [sampleQuestion];
 
 
 
@@ -49,7 +49,7 @@ describe('QuestionsService ', () => {
   const testCategory = -1;
   let httpClientSpyOnGet: { get: jasmine.Spy };
   let httpClientSpyOnPost: { post: jasmine.Spy };
-  let httpClientSpyOnPut: {put: jasmine.Spy };
+  let httpClientSpyOnPut: { put: jasmine.Spy };
   let questionsService: QuestionsService;
 
   /**
@@ -59,7 +59,7 @@ describe('QuestionsService ', () => {
    */
   it('getCategoryQuestions should return expected questions from category #' + testCategory + ' (HttpClient called once)', () => {
     httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
-    questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService );
+    questionsService = new QuestionsService(<any>httpClientSpyOnGet, new UrlService);
 
     const expectedQuestions: Question[] = [sampleQuestion];
 
@@ -80,7 +80,7 @@ describe('QuestionsService ', () => {
    **/
   it('createNewQuestion should call HttpClient.post, and return the new question', () => {
     httpClientSpyOnPost = jasmine.createSpyObj('http', ['post']);
-    questionsService = new QuestionsService(<any> httpClientSpyOnPost, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPost, new UrlService);
 
     httpClientSpyOnPost.post.and.returnValue(asyncData(QUESTIONS[0]));
 
@@ -99,7 +99,7 @@ describe('QuestionsService ', () => {
    **/
   it('updateQuestion should call HttpClient.put, and return the altered question', () => {
     httpClientSpyOnPut = jasmine.createSpyObj('http', ['put']);
-    questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPut, new UrlService);
 
     httpClientSpyOnPut.put.and.returnValue(asyncData(QUESTIONS[0]));
 
@@ -118,7 +118,7 @@ describe('QuestionsService ', () => {
    **/
   it('activateQuestion should call HttpClient.put, and return the activated question', () => {
     httpClientSpyOnPut = jasmine.createSpyObj('http', ['put']);
-    questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPut, new UrlService);
 
     httpClientSpyOnPut.put.and.returnValue(asyncData(QUESTIONS[0]));
 
@@ -137,7 +137,7 @@ describe('QuestionsService ', () => {
    */
   it('deactivateQuestion should call HttpClient.put, and return the activated question', () => {
     httpClientSpyOnPut = jasmine.createSpyObj('http', ['put']);
-    questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPut, new UrlService);
 
     httpClientSpyOnPut.put.and.returnValue(asyncData(QUESTIONS[0]));
 
@@ -166,13 +166,13 @@ describe('QuestionsService ', () => {
    */
   it('getCategoryQuestions should return an error when the server returns a 404', () => {
     httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
-    questionsService = new QuestionsService(<any> httpClientSpyOnGet, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnGet, new UrlService);
 
     httpClientSpyOnGet.get.and.returnValue(asyncError(errorResponse));
 
     questionsService.getCategoryQuestions(testCategory).subscribe(
       questions => fail('expected an error, not questions'),
-      error  => expect(error.message).toContain('404')
+      error => expect(error.message).toContain('404')
     );
   });
 
@@ -183,11 +183,11 @@ describe('QuestionsService ', () => {
    */
   it('createNewQuestion should return an error when the server returns a 404', () => {
     httpClientSpyOnPost.post.and.returnValue(asyncError(errorResponse));
-    questionsService = new QuestionsService(<any> httpClientSpyOnPost, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPost, new UrlService);
 
     questionsService.createNewQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
-      error  => expect(error.message).toContain('404')
+      error => expect(error.message).toContain('404')
     );
   });
 
@@ -198,11 +198,11 @@ describe('QuestionsService ', () => {
    */
   it('updateQuestion should return an error when the server returns a 404', () => {
     httpClientSpyOnPut.put.and.returnValue(asyncError(errorResponse));
-    questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPut, new UrlService);
 
     questionsService.updateQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
-      error  => expect(error.message).toContain('404')
+      error => expect(error.message).toContain('404')
     );
   });
 
@@ -213,11 +213,11 @@ describe('QuestionsService ', () => {
    */
   it('activateQuestion should return an error when the server returns a 404', () => {
     httpClientSpyOnPut.put.and.returnValue(asyncError(errorResponse));
-    questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPut, new UrlService);
 
     questionsService.activateQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
-      error  => expect(error.message).toContain('404')
+      error => expect(error.message).toContain('404')
     );
   });
 
@@ -228,11 +228,11 @@ describe('QuestionsService ', () => {
    */
   it('deactivateQuestion should return an error when the server returns a 404', () => {
     httpClientSpyOnPut.put.and.returnValue(asyncError(errorResponse));
-    questionsService = new QuestionsService(<any> httpClientSpyOnPut, new UrlService);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPut, new UrlService);
 
     questionsService.deactivateQuestion(QUESTIONS[0]).subscribe(
       questions => fail('expected an error, not questions'),
-      error  => expect(error.message).toContain('404')
+      error => expect(error.message).toContain('404')
     );
   });
 });

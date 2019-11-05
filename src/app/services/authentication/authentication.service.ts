@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { AmplifyService } from 'aws-amplify-angular';
-import { async } from 'q';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()
@@ -22,7 +20,7 @@ export class AuthenticationService implements CanActivate {
       return false;
     } else {
       this.router.navigateByUrl('/login');
-    return false;
+      return false;
     }
   }
 

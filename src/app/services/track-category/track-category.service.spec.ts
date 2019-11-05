@@ -8,7 +8,7 @@ import { TrackCategoryService } from './track-category.service';
 describe('TrackCategoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
+      imports: [RouterTestingModule, HttpClientModule],
 
       providers: [TrackCategoryService, UrlService]
     });

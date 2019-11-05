@@ -8,7 +8,7 @@ import { ViolationTypeService } from './violationType.service';
 describe('ViolationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
+      imports: [RouterTestingModule, HttpClientModule],
       providers: [ViolationTypeService, UrlService]
     });
   });
@@ -17,7 +17,3 @@ describe('ViolationService', () => {
     expect(service).toBeTruthy();
   }));
 });
-
-
-
-

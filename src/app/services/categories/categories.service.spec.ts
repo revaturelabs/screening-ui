@@ -2,7 +2,6 @@ import { CategoriesService } from './categories.service';
 import { Category } from '../../entities/Category';
 import { defer } from 'rxjs';
 import { UrlService } from '../urls/url.service';
-import { inject } from '@angular/core/testing';
 
 export function asyncData<T>(data: T) {
     return defer(() => Promise.resolve(data));

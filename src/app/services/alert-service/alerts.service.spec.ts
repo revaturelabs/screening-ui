@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { AlertsService } from './alerts.service';
-import { RouterTestingModule } from '@angular/router/testing'; 
+import { RouterTestingModule } from '@angular/router/testing';
 
 /**
  * Author: Jordan Young

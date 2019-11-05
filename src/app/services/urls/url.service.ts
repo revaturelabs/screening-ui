@@ -6,8 +6,8 @@ import { String } from 'aws-sdk/clients/cloudhsmv2';
 
 @Injectable()
 export class UrlService {
-  public readonly adminContext: string =  environment.adminContext;
-  public readonly screeningContext: string =  environment.screeningContext;
+  public readonly adminContext: string = environment.adminContext;
+  public readonly screeningContext: string = environment.screeningContext;
   public readonly reportContext: string = environment.reportContext;
 
   constructor() {
@@ -48,7 +48,7 @@ export class UrlService {
     deactivateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     activateQuestion: (questionId: number) => `${this.questionEndpoint}/${questionId}`,
     filteredQuestions: () => `${this.questionEndpoint}/filter`,
-   };
+  };
 
   private questionScoringEndpoint = 'question-score-service/question';
   questionScoring = {
@@ -67,7 +67,7 @@ export class UrlService {
     scheduledScreeningUrl: () => `${this.screeningContext}/screening/scheduled`,
     screeningUrl: () => `${this.screeningContext}/screening/`,
     screeningUrlById: id => `${this.screeningContext}/screening/${id}`
-   };
+  };
   weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
@@ -84,7 +84,7 @@ export class UrlService {
     findAll: () => `${this.tracksServiceEndpoint}`,
     findAllActive: () => `${this.tracksServiceEndpoint}/active`,
     findById: (id: number) => `${this.tracksServiceEndpoint}/${id}`,
-   // findByName: (name: string) => `${this.context}/${name}`,
+    // findByName: (name: string) => `${this.context}/${name}`,
     save: () => `${this.tracksServiceEndpoint}`,
     update: (id: number) => `${this.tracksServiceEndpoint}/${id}`,
     delete: (id: number) => `${this.tracksServiceEndpoint}/${id}`, // note lowercase t in type, this is to match the request mapping
@@ -104,7 +104,7 @@ export class UrlService {
     getViolationURL: (screeningID: number) => `${this.screeningContext}/screening/${screeningID}/violations`,
     addViolationURL: () => `${this.screeningContext}/violation/new/`,
     deleteViolationURL: (violationID: number) => `${this.screeningContext}/screening/violation/delete/${violationID}`
-    };
+  };
 
   private reportEndpoint = this.reportContext;
   reports = {
@@ -112,13 +112,13 @@ export class UrlService {
     getScreenersByPartialEmail: (partialEmail: string): string => `${this.reportEndpoint}/getEmails?email=${partialEmail}`,
     getScreenerByName: (partialName: string): string => `${this.reportEndpoint}/screenings`,
     getScreenerDataByWeeks: (startDate: string, endDate: string, email: string): string =>
-    `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
+      `${this.reportEndpoint}/getReportWithEmail?startDate=${startDate}&endDate=${endDate}&email=${email}`,
     getAllScreenerDataByWeeks: (startDate: string, endDate: String): string =>
-    `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`,
+      `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`,
     getAllSimpleReportsByDate: (dateStart: string, dateEnd: string): string =>
-    `${this.reportEndpoint}/srm/${dateStart}/${dateEnd}`,
+      `${this.reportEndpoint}/srm/${dateStart}/${dateEnd}`,
     getAllSimpleReports: () => `${this.reportEndpoint}/srm`,
     getAllFullReportByScreeningId: (screeningId: string): string =>
-    `${this.reportEndpoint}/frm/${screeningId}`
+      `${this.reportEndpoint}/frm/${screeningId}`
   };
 }

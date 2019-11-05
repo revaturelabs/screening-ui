@@ -10,7 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Ng5SliderModule } from 'ng5-slider';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
 import {SpringInterceptor} from './interceptors/spring.interceptor';
 
@@ -20,7 +20,6 @@ import { AppComponent } from './app.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { AverageCategoryTypeComponent } from './components/reports/average-category-type/average-category-type.component';
 import { AverageTrackComponent} from './components/reports/average-track/average-track.component';
-import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
@@ -90,7 +89,6 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     TrackCategoriesComponent,
     TracksComponent,
     ViolationFlagComponent,
-    CandidateComponent,
     AverageTrackComponent,
     LoginComponent,
     ArrToStringPipe,
@@ -107,6 +105,7 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     ReportVisualComponent
   ],
   imports: [
+    ViolationFlagComponent,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -147,6 +146,7 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     AmplifyService,
      { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   entryComponents: [ReportVisualComponent],
   bootstrap: [AppComponent]
 })

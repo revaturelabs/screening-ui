@@ -4,14 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UrlService } from '../urls/url.service';
 import { Weight } from '../../entities/Weight';
 
-/*
 
-*/
 const httpOptions = {
   headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-      })
-  };
+    'Content-Type': 'application/json',
+  })
+};
 
 /**
 * Used to move the data for categories and their related weights.
@@ -37,14 +35,6 @@ export class TrackCategoryService {
 
   categoriesByWeight: Weight[];
 
-
-  // getTrackCategories(trackID: number): Observable<any>{
-  //   this.httpClient.get<any>(this.ROOT_URL + `track/getTrackCategoriesWithWeights/${trackID}`).subscribe(data => {
-  //     console.log(data);
-  //   })
-  //   return of(SKILL_TYPE_CATEGORY_LOOKUP);
-  // }
-
   // Returns an observable array of categories with assigned weights
   getTrackCategories(trackID: number): Observable<any> {
     return this.httpClient.get<any>(`${this.urlService.tracks.getCategoryByTrack(trackID)}`);
@@ -64,11 +54,5 @@ export class TrackCategoryService {
   deleteWeight(weightId: number) {
     return this.httpClient.delete<any>(`${this.urlService.weights.deleteWeight(weightId)}`);
   }
-
-/*
-  getTrackCategories(trackID: number): Observable<TrackCategoryLookUp>{
-    return of(TRACK_CATEGORY_LOOKUP);
-  }
-*/
 
 }

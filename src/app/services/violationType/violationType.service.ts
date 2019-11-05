@@ -22,10 +22,6 @@ import { UrlService } from '../urls/url.service';
 @Injectable()
 export class ViolationTypeService {
 
-  // getViolationTypes(): Observable<ViolationType[]> {
-  //   return of(VIOLATION_TYPES);
-  // }
-
   constructor(
     private http: HttpClient,
     private urlService: UrlService

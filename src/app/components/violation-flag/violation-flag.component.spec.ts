@@ -58,17 +58,4 @@ describe('ViolationFlagComponent', () => {
     expect(component.flagEvent).not.toContain('update');
   });
 
-
-
-
-
-//This needs to have a mock/spy service added to it
-
-  // it('should submit violation', () => {
-  //   localStorage.setItem('screeningID', '1');
-  //   component.submitViolation({} as ViolationType, 'hi');
-
-  //   expect(component.flagEvent).not.toContain('update');
-  // });
-
 });

@@ -13,7 +13,7 @@ export class QuestionScoreService {
   constructor(
     private httpClient: HttpClient,
     private urlService: UrlService
-    ) { }
+  ) { }
 
   // Used for sharing data between question table and answer modal
   questionScores: QuestionScore[] = [];
@@ -40,17 +40,8 @@ export class QuestionScoreService {
       QuestionID: question.questionId,
       BeginTime: question.beginTime,
       categoryId: question.categoryId,
-      ScreeningID: question.screeningID}).subscribe(data => {
-      });
-
-    /*
-      return this.httpClient.post<QuestionScore>(url, {
-      Score: question.score,
-      Comment: question.commentary,
-      QuestionID: question.questionId,
-      BeginTime: question.beginTime,
       ScreeningID: question.screeningID
-      });
-    */
+    }).subscribe(data => {
+    });
   }
 }
