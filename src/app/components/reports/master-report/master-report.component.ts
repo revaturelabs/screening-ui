@@ -23,14 +23,17 @@ export class MasterReportComponent implements OnInit {
   dataSize: number;
   scatterChart = [];
   scatterPlotResults: any[] = [];
+
+  clickedFullReport: any;
   date1:Date;
   date2:Date;
   catalog = new Map();
   colors: string[]= [];
+
   simpleReportModel: SimpleReportModel
 
 
-  constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService,private dialog: MatDialog) { }
+  constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService, private dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -57,9 +60,11 @@ export class MasterReportComponent implements OnInit {
       //this.simpleReportModel = JSON.parse(data);
       //console.log(this.simpleReportModel);
       this.buildScatterPlot(data);
+      this.clickedFullReport = data;
       console.log(this.scatterPlotResults);
 
     });}
+
 
  //Color Generation functionality
  getRandomColor(size) {
@@ -81,6 +86,7 @@ export class MasterReportComponent implements OnInit {
       red = r;
       green = g;
       blue = b;
+
     }
     for (let i = 1; i < size; ) {
       const r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
@@ -100,6 +106,7 @@ export class MasterReportComponent implements OnInit {
       }
     }
   }
+
   return result;
 }
 datelog(){
@@ -128,13 +135,16 @@ bydate(date1,date2){
   });
 
  };
+
   buildScatterPlot(dataModel: SimpleReportModel) {
     let len: number = Object.keys(dataModel).length;
+
     for (let i = 0; i < len; i++) {
 
       length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
 
     }
+
  //scatter
  this.scatterChart = new Chart('Scatter', {
   type: 'scatter',
@@ -151,6 +161,9 @@ bydate(date1,date2){
   options: {
     events: ['click'],
     responsive: false,
+                                   onClick:  (evt, activeElements) =>{
+          var elementIndex = activeElements[0]._index;
+          this.report(elementIndex);}),
 
     /*onClick: function(evt, activeElements) {
       var elementIndex = activeElements[0]._index;
@@ -164,26 +177,37 @@ bydate(date1,date2){
         type: 'time',
         time: {
           unit: 'day'
-        },
-        position: 'bottom'
-      }]
-    }
-  }
-});
-  }
 
-  report() {
+        },
+
+        scales: {
+          xAxes: [{
+            type: 'time',
+            time: {
+              unit: 'day'
+            },
+            position: 'bottom'
+          }]
+        }
+      }
+    });
+  }
+  printHello(){
+    console.log("HELLO!");
+  }
+  report(point: any) {
     //this.dialog.open(AReportComponent);
-    this.simpleReportService.getAllSimpleReports().subscribe((data) => {
-      let temp= JSON.parse(JSON.stringify(data));
-      console.log(temp[0]);
+    this.fullReportService.getFullReportsByScreeningId(this.clickedFullReport[point].screeningId).subscribe((data) => {
+      console.log(this.clickedFullReport[0].screeningId);
+      let temp = JSON.parse(JSON.stringify(data));
+      console.log(temp);
       const dialogConfig = new MatDialogConfig();
 
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = "60%";
 
-      dialogConfig.data=temp[0];
+      dialogConfig.data = temp;
       console.log(dialogConfig.data);
 
       this.dialog.open(ReportVisualComponent, dialogConfig);

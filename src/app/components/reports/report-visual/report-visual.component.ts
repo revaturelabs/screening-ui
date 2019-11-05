@@ -10,7 +10,6 @@ import { SimpleReportService } from 'src/app/services/reports/simple-report.serv
 })
 export class ReportVisualComponent implements OnInit {
   report: any;
-
   description:any;
 
 
@@ -25,7 +24,7 @@ export class ReportVisualComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.description.screeningId);
+    console.log(this.description);
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
     this.loadCard();
     })
