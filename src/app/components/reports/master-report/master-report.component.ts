@@ -144,31 +144,6 @@ bydate(date1,date2){
       length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
 
     }
-<<<<<<< HEAD
-    //scatter
-
-    this.scatterChart = new Chart('Scatter', {
-
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Scatter Dataset',
-          data: this.scatterPlotResults,
-          pointBackgroundColor: this.chartColors,
-          pointBorderColor: this.chartColors,
-          radius: 10
-
-        }]
-      },
-
-      options: {
-        onClick: (evt, activeElements) => {
-          var elementIndex = activeElements[0]._index;
-          this.report(elementIndex);
-        },
-        legend:{
-          display: false
-=======
 
  //scatter
  this.scatterChart = new Chart('Scatter', {
@@ -203,7 +178,6 @@ bydate(date1,date2){
         time: {
           unit: 'day'
 
->>>>>>> d45ceedb68e96dc8eda5c60e79b84a9cf53034ff
         },
 
         scales: {
