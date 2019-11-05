@@ -120,9 +120,9 @@ export class MasterReportComponent implements OnInit {
 
     }
     //scatter
-    
+
     this.scatterChart = new Chart('Scatter', {
-      
+
       type: 'scatter',
       data: {
         datasets: [{
@@ -134,13 +134,14 @@ export class MasterReportComponent implements OnInit {
 
         }]
       },
-      
+
       options: {
-        onClick:  (evt, activeElements) =>{
+        onClick: (evt, activeElements) => {
           var elementIndex = activeElements[0]._index;
           this.report(elementIndex);
-          //this.data.datasets[0].pointBackgroundColor[elementIndex] = 'white';
-          //this.update();
+        },
+        legend:{
+          display: false
         },
 
         scales: {
@@ -155,11 +156,8 @@ export class MasterReportComponent implements OnInit {
       }
     });
   }
-  printHello(){
-    console.log("HELLO!");
-  }
+ 
   report(point: any) {
-    //this.dialog.open(AReportComponent);
     this.fullReportService.getFullReportsByScreeningId(this.clickedFullReport[point].screeningId).subscribe((data) => {
       console.log(this.clickedFullReport[0].screeningId);
       let temp = JSON.parse(JSON.stringify(data));
