@@ -1,24 +1,23 @@
-<div style="margin-left: 2% ;">
+<div class="card" style="padding:1em;margin: 3% ; background-color:white;">
+    <h2 class="myh2">Filter by Date</h2>
     <mat-form-field color="accent">
-        <mat-label>Inherited calendar color</mat-label>
+        <mat-label>Start Date</mat-label>
         <input matInput [matDatepicker]="picker1" [(ngModel)]="date1">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field color="accent">
-        <mat-label>Custom calendar color</mat-label>
+        <mat-label>End Date</mat-label>
         <input matInput [matDatepicker]="picker2" [(ngModel)]="date2">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2 color="primary"></mat-datepicker>
     </mat-form-field>
+    <button mat-raised-button color="accent" type="button" class="btn btn-light" style="margin-bottom:1rem ;" (click)="datelog()">View</button><button mat-raised-button color="accent" class="btn btn-light" (click)="getAll()">View All</button>
+
 </div>
-<button mat-raised-button color="accent" class="Button" (click)="datelog()">print date</button>
-<div class="popout-div">
-    <button mat-raised-button (click)="report()">
-      view
-    </button>
-</div>
+
+
 
 
 <main class="container mt-8 justify-content-center" *ngIf="reportData">
@@ -62,11 +61,11 @@
     </div>
 </main>
 
-<div style="text-align:center">
+<div style="text-align:center; width:100%;">
     <h1>
         Welcome to {{ title }}!
     </h1>
-    <canvas id="Scatter"></canvas>
+    <canvas id="Scatter" style=""></canvas>
 </div>
 
 <!-- Modal -->
