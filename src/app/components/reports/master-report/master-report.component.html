@@ -1,20 +1,3 @@
-<div style="margin-left: 2% ;">
-    <mat-form-field color="accent">
-        <mat-label>Inherited calendar color</mat-label>
-        <input matInput [matDatepicker]="picker1" [(ngModel)]="date1">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field color="accent">
-        <mat-label>Custom calendar color</mat-label>
-        <input matInput [matDatepicker]="picker2" [(ngModel)]="date2">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2 color="primary"></mat-datepicker>
-    </mat-form-field>
-</div>
-<button mat-raised-button color="accent" class="Button" (click)="datelog()">print date</button>
-
 
 
 <main class="container mt-8 justify-content-center" *ngIf="reportData">
@@ -58,11 +41,30 @@
     </div>
 </main>
 
-<div style="text-align:center">
+<div class="card" style="text-align:center; width:50%; ">
     <h1>
         Welcome to {{ title }}!
     </h1>
-    <canvas id="Scatter"></canvas>
+    <span class="card" style="padding:1%;width: 10% !important; background-color:white;">
+        <h2 class="myh2">Filter by Date</h2>
+        <mat-form-field color="accent">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="picker1" [(ngModel)]="date1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="date2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="button" class="btn btn-light" style="margin-bottom:1rem ;" (click)="datelog()">View</button><button mat-raised-button color="accent" class="btn btn-light" (click)="getAll()">View All</button>
+
+    </span>
+    <div><canvas id="Scatter" style="display: inline-block;margin:5%; width: 80%;"></canvas></div>
+
 </div>
 
 

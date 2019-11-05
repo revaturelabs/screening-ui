@@ -22,21 +22,39 @@ export class MasterReportComponent implements OnInit {
   PieChart = [];
   dataSize: number;
   scatterChart = [];
-  chartColors: any[] = [];
-  //compositeScores: number[] = [];
   scatterPlotResults: any[] = [];
-  date1: Date;
-  date2: Date;
+
   clickedFullReport: any;
+  date1:Date;
+  date2:Date;
+  catalog = new Map();
+  colors: string[]= [];
+
   simpleReportModel: SimpleReportModel
 
 
   constructor(public simpleReportService: SimpleReportService, public fullReportService: FullReportService, private dialog: MatDialog) { }
 
   ngOnInit() {
+
+    this.getAll();
+
+    this.simpleReportService.getAllSimpleReportsByDate('2018-03-03','2018-03-05').subscribe((data) => {
+      console.log(data);
+
+    });
+
+  }
+  getAll(){
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
       console.log(data);
       this.dataSize = Object.keys(data).length;
+      for(let i = 0; i < this.dataSize; i ++) {
+        if(!this.catalog.has(data[i].track.title)) {
+          this.catalog.set(data[i].track.title, this.getRandomColor(1));
+        }
+        this.colors.push(this.catalog.get(data[i].track.title));
+      }
       console.log("dataSize: " + this.dataSize);
       this.getRandomColor(this.dataSize);
       //this.simpleReportModel = JSON.parse(data);
@@ -45,72 +63,79 @@ export class MasterReportComponent implements OnInit {
       this.clickedFullReport = data;
       console.log(this.scatterPlotResults);
 
+    });}
 
 
-      //console.log(moment('2018-03-03T05:00:00.000+0000').format('YYYY-MM-DD'));
+ //Color Generation functionality
+ getRandomColor(size) {
+  const threshold = 20000;
+  const result = new Array(size);
+  const letters = '0123456789ABCDEF'.split('');
+  let red = 'FF';
+  let green = 'FF';
+  let blue = 'FF';
+  for (let i = 0; i < 1; ) {
+    const r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    const g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    const b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    const notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
+      + (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) > threshold;
+    if (notWhite) {
+      result[i] = '#' + r + g + b;
+      i++;
+      red = r;
+      green = g;
+      blue = b;
 
-
-
-
-    });
-
-    this.simpleReportService.getAllSimpleReportsByDate('2018-03-03', '2018-03-05').subscribe((data) => {
-      console.log(data);
-    });
-
-    this.fullReportService.getFullReportsByScreeningId('4321').subscribe((data) => {
-      console.log(data);
-    });
-
-
-
-  }
-  //Color Generation functionality
-  getRandomColor(size) {
-    let threshold = 20000;
-    //let result = new Array(size);
-    let letters = '0123456789ABCDEF'.split('');
-    let red = 'FF';
-    let green = 'FF';
-    let blue = 'FF';
-
-    for (var i = 0; i < size;) {
-      let color = '#';
-      let r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-      let g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-      let b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
-      let notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
+    }
+    for (let i = 1; i < size; ) {
+      const r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+      const g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+      const b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+      const notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
         + (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) > threshold;
-      let notSameasPre = (parseInt('0x' + red) - parseInt('0x' + r)) * (parseInt('0x' + red) - parseInt('0x' + r))
+      const notSameasPre = (parseInt('0x' + red) - parseInt('0x' + r)) * (parseInt('0x' + red) - parseInt('0x' + r))
         + (parseInt('0x' + green) - parseInt('0x' + g)) * (parseInt('0x' + green) - parseInt('0x' + g))
         + (parseInt('0x' + blue) - parseInt('0x' + b)) * (parseInt('0x' + blue) - parseInt('0x' + b)) > threshold;
       if (notWhite && notSameasPre) {
-        this.chartColors[i] = '#' + r + g + b;
+        result[i] = '#' + r + g + b;
         i++;
         red = r;
         green = g;
         blue = b;
       }
-
     }
-
   }
-  datelog() {
-    let newdate = moment(this.date1).format('YYYY-MM-DD');
-    let newdate2 = moment(this.date2).format('YYYY-MM-DD');
-    console.log(newdate);
-    console.log(newdate2);
-    this.bydate(newdate, newdate2);
 
-  }
-  bydate(date1, date2) {
-    this.scatterPlotResults = [];
-    this.simpleReportService.getAllSimpleReportsByDate(date1, date2).subscribe((data) => {
-      console.log(data);
-      this.buildScatterPlot(data);
-    });
+  return result;
+}
+datelog(){
+  let newdate = moment(this.date1).format('YYYY-MM-DD');
+  let newdate2 = moment(this.date2).format('YYYY-MM-DD');
+  console.log(newdate);
+console.log(newdate2);
+this.bydate(newdate,newdate2);
 
-  };
+}
+bydate(date1,date2){
+  this.scatterPlotResults = [];
+  this.simpleReportService.getAllSimpleReportsByDate(date1,date2).subscribe((data) => {
+    console.log(data);
+    this.colors = [];
+    this.dataSize = Object.keys(data).length;
+      for(let i = 0; i < this.dataSize; i ++) {
+        if(!this.catalog.has(data[i].track.title)) {
+          this.catalog.set(data[i].track.title, this.getRandomColor(1));
+        }
+        this.colors.push(this.catalog.get(data[i].track.title));
+      }
+      console.log("dataSize: " + this.dataSize);
+      this.getRandomColor(this.dataSize);
+    this.buildScatterPlot(data);
+  });
+
+ };
+
   buildScatterPlot(dataModel: SimpleReportModel) {
     let len: number = Object.keys(dataModel).length;
 
@@ -119,6 +144,7 @@ export class MasterReportComponent implements OnInit {
       length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
 
     }
+<<<<<<< HEAD
     //scatter
 
     this.scatterChart = new Chart('Scatter', {
@@ -142,6 +168,42 @@ export class MasterReportComponent implements OnInit {
         },
         legend:{
           display: false
+=======
+
+ //scatter
+ this.scatterChart = new Chart('Scatter', {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Scatter Dataset',
+      data: this.scatterPlotResults,
+      pointBackgroundColor: this.colors,
+      pointBorderColor:this.colors,
+      radius: 10
+
+    }]
+  },
+  options: {
+    events: ['click'],
+    responsive: false,
+                                   onClick:  (evt, activeElements) =>{
+          var elementIndex = activeElements[0]._index;
+          this.report(elementIndex);}),
+
+    /*onClick: function(evt, activeElements) {
+      var elementIndex = activeElements[0]._index;
+      console.log(elementIndex);
+      //this.data.datasets[0].pointBackgroundColor[elementIndex] = 'white';
+      //this.update();
+    },*/
+
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          unit: 'day'
+
+>>>>>>> d45ceedb68e96dc8eda5c60e79b84a9cf53034ff
         },
 
         scales: {
