@@ -1,14 +1,18 @@
 <body>
     <!---->
-    <h2 mat-dialog-title>Full Report</h2>
+    <h2>Full Report
 
-    <img _ngcontent-vnf-c1="" alt="revature" class="rev-logo" height="30" routerlink="/dashboard"
-        src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"
-        width="110" tabindex="0" ng-reflect-router-link="/dashboard">
-</body>
-<mat-dialog-content >
+        <img _ngcontent-vnf-c1="" alt="revature" class="rev-logo" height="30" routerlink="/dashboard"
+            src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"
+            width="110" tabindex="0" ng-reflect-router-link="/dashboard" align="right">
+    </h2>
+
+<mat-dialog-content>
     <p>Screener ID: {{description.screener_id}}</p>
     <p>Candidate: {{description.can.name}}</p>
+    <p>Screen Date: {{description.srm.screenDate}}</p>
+    <p>Track: {{description.srm.track.title}}</p>
+    <p>Composite Score: {{description.srm.compositeScore}}</p>
     <p>About Me Commentary: {{description.aboutMeCommentary}}</p>
     <p>General Commentary: {{description.generalCommentary}}</p>
     <p>Soft Skill Commentary: {{description.softSkillCommentary}}</p>
@@ -17,7 +21,7 @@
     </p>
     <div> Category Tested:
         <li *ngFor="let Category of description.categoryModel">
-            Category: {{Category.categoryDescription}} Average Question Score: {{Category.averageQuestionScore}}
+            {{Category.categoryDescription}} Average Question Score: {{Category.averageQuestionScore}}
         </li>
     </div>
 
@@ -26,18 +30,18 @@
     <div *ngIf="description.violation==true"> Violation: {{description.violation}}</div>
 
     <br>
-    <p>Screening Id: {{description.srm.screeningId}}</p>
     <p>Screen Date: {{description.srm.screenDate}}</p>
     <p>Composite Score: {{description.srm.compositeScore}}</p>
     <p>Track: {{description.srm.track.title}}</p>
 
-   
+
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button style="background-color:#F26925" class="mat-raised-button" (click)="onClose()">Close</button>
-    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
 </mat-dialog-actions>
+</body>
+
 <!----->
 <!--style="background-color:#F26925"
     style="background-color:#393FEF" -->

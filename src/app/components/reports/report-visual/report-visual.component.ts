@@ -10,7 +10,6 @@ import { SimpleReportService } from 'src/app/services/reports/simple-report.serv
 })
 export class ReportVisualComponent implements OnInit {
   report: any;
-
   description:any;
 
 
