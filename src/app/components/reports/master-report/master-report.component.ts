@@ -1,12 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-//import {MatDatepickerModule} from '@angular/material/datepicker';
+import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/services/reports/report.service';
 import { ReportData } from 'src/app/entities/ReportData';
 import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
 import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
 import { Chart } from 'chart.js';
-//import { MaterialModule} from 'src/app/material.module';
-
 import * as moment from 'moment';
 import { SimpleReportModel } from 'src/app/entities/SimpleReportModel';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
@@ -23,12 +20,13 @@ export class MasterReportComponent implements OnInit {
   LineChart = [];
   BarChart = [];
   PieChart = [];
+  dataSize: number;
   scatterChart = [];
-   date1:Date;
-  date2:Date;
-  //@Output() selectedDateChange: EventEmitter<Date> = new EventEmitter<Date>();
+  chartColors: any[] = [];
   //compositeScores: number[] = [];
   scatterPlotResults: any[] = [];
+  date1:Date;
+  date2:Date;
   simpleReportModel: SimpleReportModel
 
 
@@ -37,7 +35,9 @@ export class MasterReportComponent implements OnInit {
   ngOnInit() {
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
       console.log(data);
-
+      this.dataSize = Object.keys(data).length;
+      console.log("dataSize: " + this.dataSize);
+      this.getRandomColor(this.dataSize);
       //this.simpleReportModel = JSON.parse(data);
       //console.log(this.simpleReportModel);
       this.buildScatterPlot(data);
@@ -54,7 +54,6 @@ export class MasterReportComponent implements OnInit {
 
     this.simpleReportService.getAllSimpleReportsByDate('2018-03-03','2018-03-05').subscribe((data) => {
       console.log(data);
-      console.log("it was this one");
     });
 
     this.fullReportService.getFullReportsByScreeningId('4321').subscribe((data) => {
@@ -64,22 +63,52 @@ export class MasterReportComponent implements OnInit {
 
 
   }
-  datelog(){
-    let newdate = moment(this.date1).format('YYYY-MM-DD');
-    let newdate2 = moment(this.date2).format('YYYY-MM-DD');
-    console.log(newdate);
-  console.log(newdate2);
+ //Color Generation functionality
+ getRandomColor(size) {
+  let threshold = 20000;
+  //let result = new Array(size);
+  let letters = '0123456789ABCDEF'.split('');
+  let red = 'FF';
+  let green = 'FF';
+  let blue = 'FF';
+
+  for (var i = 0; i < size;) {
+    let color = '#';
+    let r = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    let g = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    let b = letters[Math.floor(Math.random() * 16)] + letters[Math.floor(Math.random() * 16)];
+    let notWhite = (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) + (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g))
+      + (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) > threshold;
+    let notSameasPre = (parseInt('0x' + red) - parseInt('0x' + r)) * (parseInt('0x' + red) - parseInt('0x' + r))
+      + (parseInt('0x' + green) - parseInt('0x' + g)) * (parseInt('0x' + green) - parseInt('0x' + g))
+      + (parseInt('0x' + blue) - parseInt('0x' + b)) * (parseInt('0x' + blue) - parseInt('0x' + b)) > threshold;
+    if (notWhite && notSameasPre) {
+      this.chartColors[i] = '#' + r + g + b;
+      i++;
+      red = r;
+      green = g;
+      blue = b;
+    }
+
+  }
+
+}
+datelog(){
+  let newdate = moment(this.date1).format('YYYY-MM-DD');
+  let newdate2 = moment(this.date2).format('YYYY-MM-DD');
+  console.log(newdate);
+console.log(newdate2);
 this.bydate(newdate,newdate2);
 
 }
-  bydate(date1,date2){
-    this.scatterPlotResults = [];
-    this.simpleReportService.getAllSimpleReportsByDate(date1,date2).subscribe((data) => {
-      console.log(data);
-      this.buildScatterPlot(data);
-    });
+bydate(date1,date2){
+  this.scatterPlotResults = [];
+  this.simpleReportService.getAllSimpleReportsByDate(date1,date2).subscribe((data) => {
+    console.log(data);
+    this.buildScatterPlot(data);
+  });
 
-   };
+ };
   buildScatterPlot(dataModel: SimpleReportModel) {
     let len: number = Object.keys(dataModel).length;
     for (let i = 0; i < len; i++) {
@@ -87,28 +116,41 @@ this.bydate(newdate,newdate2);
       length = this.scatterPlotResults.push({ 'x': moment(dataModel[i].screenDate).format('YYYY-MM-DD'), 'y': dataModel[i].compositeScore });
 
     }
-    //scatter
-    this.scatterChart = new Chart('Scatter', {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Scatter Dataset',
-          data: this.scatterPlotResults
-        }]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            type: 'time',
-            time: {
-              unit: 'day'
-            },
-            position: 'bottom'
-          }]
-        }
-      }
-    });
+ //scatter
+ this.scatterChart = new Chart('Scatter', {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Scatter Dataset',
+      data: this.scatterPlotResults,
+      pointBackgroundColor: this.chartColors,
+      pointBorderColor:this.chartColors,
+      radius: 10
+
+    }]
+  },
+  options: {
+    events: ['click'],
+    /*onClick: function(evt, activeElements) {
+      var elementIndex = activeElements[0]._index;
+      console.log(elementIndex);
+      //this.data.datasets[0].pointBackgroundColor[elementIndex] = 'white';
+      //this.update();
+    },*/
+
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          unit: 'day'
+        },
+        position: 'bottom'
+      }]
+    }
   }
+});
+  }
+
   report() {
     //this.dialog.open(AReportComponent);
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
