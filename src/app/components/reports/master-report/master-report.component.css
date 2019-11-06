@@ -2,8 +2,19 @@
 
 .myh2 {
     padding-top: 1em;
-    color: gray;
-    font-size: 1.5em;
+    color: lightgray;
+    font-size: 1.2rem;
+}
+
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active,
+.btn-light.active,
+.open>.dropdown-toggle.btn-light {
+    color: #fff;
+    background-color: #f26925;
+    border-color: #f25925;
+    /*set the color you want here*/
 }
 
 h1 {

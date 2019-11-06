@@ -39,58 +39,30 @@
     </div>
 </main>
 
-<div class="card" style="text-align:center; width:50%; padding:1%; margin-left:25%; margin-top:1%;">
+<div class="card" style="text-align:center; width:65%; padding:1%; margin-left:18%; margin-top:1%;">
     <h1 style="size: 5em;">
-        Welcome to {{ title }}!
+        Screening Reports
+        <h2 class="myh2" *ngIf="date1!=null && date2!=null && searched==true"> Beginning:&nbsp; <span style="color:white;">{{this.date1|date: 'longDate'}}</span> &nbsp;&nbsp;&nbsp;Ending:&nbsp; <span style="color:white;">{{this.date2|date: 'longDate'}}</span></h2>
     </h1>
-    <span class="card" style="margin-left:30%;margin-top:5%;padding:1%;width: 40% !important; background-color:white;">
-        <h2 class="myh2">Filter by Date</h2>
-        <mat-form-field color="accent">
+    <span class="nav" style="margin-left:10%;padding:1%;width: 100% !important;">
+
+        <mat-form-field color="accent" style="padding:1% ;">
             <mat-label>Start Date</mat-label>
             <input matInput [matDatepicker]="picker1" [(ngModel)]="date1">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field color="accent">
+        <mat-form-field color="accent" style="padding:1% ;">
             <mat-label>End Date</mat-label>
             <input matInput [matDatepicker]="picker2" [(ngModel)]="date2">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2 ></mat-datepicker>
         </mat-form-field>
-        <button mat-raised-button color="accent" type="button" class="btn btn-light" style="margin-bottom:1rem ;" (click)="datelog()">View</button><button mat-raised-button color="accent" class="btn btn-light" (click)="getAll()">View All</button>
+        <button mat-raised-button color="accent" type="button" class="btn btn-light" style=" text-align: center; height: 3%; margin-top: 2%;" (click)="datelog(); didSearch()">Search Date Range</button><button mat-raised-button color="accent" style=" text-align: center; height: 3%; margin: 1%; margin-top: 2%;" class="btn btn-light" (click)="getAll(); clearSearch()">View All Reports</button>
 
     </span>
     <div>
-        <h2 class="myh2" *ngIf="date1!=null && date2!=null"><span style=" font-weight: bold;">Reports</span> from {{this.date1|date: 'dd/MM/yyyy'}} to {{this.date2|date: 'dd/MM/yyyy'}}</h2><canvas id="Scatter" style="display: inline-block;margin:5%; width: 80%;"></canvas></div>
+        <canvas id="Scatter" style="display: inline-block; width: 90%;"></canvas></div>
 
 </div>
-
-
-
-<!-- Modal -->
-<!-- <div id="myModal" class= "modal fade" role="dialog">
-        <div class="modal-dialog">
-          Modal content-->
-<!-- <div class="modal-content">
-            <div>
-              <button type="button" class="close" data-dismiss="modal">
-                &times;
-              </button>
-              <h4 class="modal-title">Select Options:</h4>
-            </div>
-            <div class="modal-body">
-              <p>
-                Modal Text Goes Here <br />
-                <input type="checkbox"/>
-                <input type="checkbox"/>
-              </p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>  -->

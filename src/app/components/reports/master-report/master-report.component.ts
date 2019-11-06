@@ -20,6 +20,7 @@ export class MasterReportComponent implements OnInit {
   LineChart = [];
   BarChart = [];
   PieChart = [];
+  searched = false;
   dataSize: number;
   scatterChart = [];
   scatterPlotResults: any[] = [];
@@ -45,6 +46,8 @@ export class MasterReportComponent implements OnInit {
     });
 
   }
+  didSearch(){this.searched = true;}
+  clearSearch(){this.searched = false;}
   getAll(){
     this.simpleReportService.getAllSimpleReports().subscribe((data) => {
       console.log(data);
