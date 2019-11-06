@@ -17,19 +17,20 @@ export class ReportVisualComponent implements OnInit {
     public dialogRef: MatDialogRef<ReportVisualComponent>,
     public simpleReportService: SimpleReportService,
 
-    /* 
+    /*
     *injects data into descripition
     *for one way databinding
     */
     @Inject(MAT_DIALOG_DATA) data) {
-    //formats data into more human readable 
+    //formats data into more human readable
     data.srm.screenDate = moment(data.srm.screenDate).format('MM-DD-YYYY');
+    //console.log(data.srm.screenDate);
     this.description = data;
   }
 
   //loads the data into report
   ngOnInit() {
-    
+
   }
 
   // closes the popout by botton click
