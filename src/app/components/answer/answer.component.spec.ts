@@ -5,9 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientModule} from '@angular/common/http';
 import {UrlService} from '../../services/urls/url.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-// import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-// @ts-ignore
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap/modal/modal';
+import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 describe('AnswerComponent', () => {
   let component: AnswerComponent;
@@ -15,7 +13,7 @@ describe('AnswerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule],
+      imports: [RouterTestingModule, HttpClientModule, NgbModule],
       declarations: [ AnswerComponent, NgbActiveModal],
       providers: [ QuestionScoreService, UrlService],
     })
