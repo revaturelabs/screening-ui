@@ -196,7 +196,7 @@ if(this.scatterChart != null ) {
         legend: {
           display: false
         },
-        responsive: false,
+        responsive: true,
         /*
          *event listener
          *reports the data source array position

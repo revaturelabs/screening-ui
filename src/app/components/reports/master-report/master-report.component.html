@@ -44,7 +44,7 @@
         Screening Reports
         <h2 class="myh2" *ngIf="date1!=null && date2!=null && searched==true"> Beginning:&nbsp; <span style="color:white;">{{this.date1|date: 'longDate'}}</span> &nbsp;&nbsp;&nbsp;Ending:&nbsp; <span style="color:white;">{{this.date2|date: 'longDate'}}</span></h2>
     </h1>
-    <span class="nav" style="margin-left:10%;padding:1%;width: 100% !important;">
+    <div class="nav" style="margin:10%;padding:1%;width: 90% !important;">
 
         <mat-form-field color="accent" style="padding:1% ;">
             <mat-label>Start Date</mat-label>
@@ -57,11 +57,12 @@
             <mat-label>End Date</mat-label>
             <input matInput [matDatepicker]="picker2" [(ngModel)]="date2">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2 ></mat-datepicker>
+            <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
-        <button mat-raised-button color="accent" type="button" class="btn btn-light" style=" text-align: center; height: 3%; margin-top: 2%;" (click)="datelog(); didSearch()">Search Date Range</button><button mat-raised-button color="accent" style=" text-align: center; height: 3%; margin: 1%; margin-top: 2%;" class="btn btn-light" (click)="getAll(); clearSearch()">View All Reports</button>
+        <button mat-raised-button color="accent" type="button" class="btn btn-light" style=" text-align: center; height: 3%; margin-top: 2%;" (click)="datelog(); didSearch()">Search Date Range</button><button mat-raised-button color="accent" style=" text-align: center; height: 3%; margin: 1%; margin-top: 2%;"
+            class="btn btn-light" (click)="getAll(); clearSearch()">View All Reports</button>
 
-    </span>
+    </div>
     <div>
         <canvas id="Scatter"></canvas></div>
 
