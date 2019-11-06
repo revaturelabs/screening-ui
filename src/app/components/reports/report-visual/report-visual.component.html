@@ -9,28 +9,29 @@
 
 <mat-dialog-content>
     <br>
-    <p>Candidate: {{description.candidate.name}}</p>
-    <p>Screen Date: {{description.srm.screenDate}}</p>
-    <p>Track: {{description.srm.track.title}}</p>
-    <p>Composite Score: {{description.srm.compositeScore}}%</p>
-    <p>Screener ID: {{description.screener_id}}</p>
-
-    <p>About Me Commentary: {{description.aboutMeCommentary}}</p>
-    <p>General Commentary: {{description.generalCommentary}}</p>
-    <p>Soft Skill Commentary: {{description.softSkillCommentary}}</p>
-    <p>Soft Skill Verdict: <span *ngIf="description.softSkillVerdict==false">Failed</span>
+    <p><strong>Candidate:</strong> {{description.candidate.name}}</p>
+    <p><strong>Screen Date:</strong> {{description.srm.screenDate}}</p>
+    <p><strong>Track:</strong> {{description.srm.track.title}}</p>
+    <p><strong>Composite Score:</strong> {{description.srm.compositeScore}}%</p>
+    <p><strong>Screener ID:</strong> {{description.screener_id}}</p>
+    
+    <p><strong>About Me Commentary:</strong> {{description.aboutMeCommentary}}</p>
+    <p><strong>General Commentary:</strong> {{description.generalCommentary}}</p>
+    <p><strong>Soft Skill Commentary:</strong> {{description.softSkillCommentary}}</p>
+    <p><strong>Soft Skill Verdict:</strong> <span *ngIf="description.softSkillVerdict==false"> Failed</span>
         <span *ngIf="description.softSkillVerdict==true">Passed</span>
     </p>
-    <div> Categories Tested:
+    <div> <strong>Categories Tested:</strong>
         <li *ngFor="let Category of description.categoriesTested">
             {{Category.categoryDescription}}  {{Category.averageQuestionScore}}/5
         </li>
     </div>
     <br>
     <div *ngIf="description.violationsObserved"> 
-        <div *ngFor="let violation of description.violationsObserved">
-            <strong>Violation:</strong> {{violation.violationDescription}}
-        </div>
+        <strong>Violation:</strong>
+        <li *ngFor="let violation of description.violationsObserved">
+            {{violation.violationDescription}}
+        </li>
     </div>
     <br>
 
