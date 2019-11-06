@@ -187,7 +187,8 @@ if(this.scatterChart != null ) {
             data: this.scatterPlotResults,
             pointBackgroundColor: this.colors,
             pointBorderColor: this.colors,
-            radius: 10
+            radius: 10,
+            pointRadius:10
           }
         ]
       },
