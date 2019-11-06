@@ -9,7 +9,7 @@
 
 <mat-dialog-content>
     <br>
-    <p>Candidate: {{description.can.name}}</p>
+    <p>Candidate: {{description.candidate.name}}</p>
     <p>Screen Date: {{description.srm.screenDate}}</p>
     <p>Track: {{description.srm.track.title}}</p>
     <p>Composite Score: {{description.srm.compositeScore}}%</p>
@@ -22,14 +22,17 @@
         <span *ngIf="description.softSkillVerdict==true">Passed</span>
     </p>
     <div> Categories Tested:
-        <li *ngFor="let Category of description.categoryModel">
+        <li *ngFor="let Category of description.categoriesTested">
             {{Category.categoryDescription}}  {{Category.averageQuestionScore}}/5
         </li>
     </div>
-
-
-
-    <div *ngIf="description.violation==true"> Violation: {{description.violation}}</div>
+    <br>
+    <div *ngIf="description.violationsObserved"> 
+        <div *ngFor="let violation of description.violationsObserved">
+            <strong>Violation:</strong> {{violation.violationDescription}}
+        </div>
+    </div>
+    <br>
 
     
 </mat-dialog-content>
