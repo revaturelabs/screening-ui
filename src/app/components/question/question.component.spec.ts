@@ -9,6 +9,8 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { AmplifyService } from 'aws-amplify-angular';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { QuestionsService } from '../../services/questions/questions.service';
+import {CategoriesService} from '../../services/categories/categories.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
@@ -17,8 +19,8 @@ describe('QuestionComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-      declarations: [ QuestionComponent ],
-      providers: [QuestionsService, AuthenticationService, AmplifyService, AlertsService, UrlService]
+      declarations: [ QuestionComponent, NgbModal ],
+      providers: [QuestionsService, CategoriesService, AuthenticationService, AmplifyService, AlertsService, UrlService]
     });
 
     fixture = TestBed.createComponent(QuestionComponent);

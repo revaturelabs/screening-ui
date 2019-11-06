@@ -108,7 +108,7 @@ describe('QuestionsService ', () => {
       fail
     );
 
-    expect(httpClientSpyOnPost.post.calls.count()).toBe(1, 'one call');
+    expect(httpClientSpyOnPut.put.calls.count()).toBe(1, 'one call');
   });
 
   /**
@@ -182,6 +182,8 @@ describe('QuestionsService ', () => {
    * Function tested: createNewQuestion()
    */
   it('createNewQuestion should return an error when the server returns a 404', () => {
+    httpClientSpyOnPost = jasmine.createSpyObj('http', ['post']);
+    questionsService = new QuestionsService(<any>httpClientSpyOnPost, new UrlService);
     httpClientSpyOnPost.post.and.returnValue(asyncError(errorResponse));
     questionsService = new QuestionsService(<any>httpClientSpyOnPost, new UrlService);
 

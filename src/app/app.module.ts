@@ -137,7 +137,6 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     TrackCategoryService,
 
     SimpleReportService,
-    
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,

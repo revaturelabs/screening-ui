@@ -18,6 +18,10 @@ import { Observable } from 'rxjs';
   * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
   *
   * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
+  *
+  * @author Khanh Dang | 1909-QC| Emily Higgins
+  *
+  * @author Sudipta Saha | 1909-QC| Emily Higgins
   */
 
 const httpOptions = {
