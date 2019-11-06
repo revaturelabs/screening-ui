@@ -8,20 +8,22 @@
     </h2>
 
 <mat-dialog-content>
-    <p>Screener ID: {{description.screener_id}}</p>
+    <br>
     <p>Candidate: {{description.can.name}}</p>
     <p>Screen Date: {{description.srm.screenDate}}</p>
     <p>Track: {{description.srm.track.title}}</p>
-    <p>Composite Score: {{description.srm.compositeScore}}</p>
+    <p>Composite Score: {{description.srm.compositeScore}}%</p>
+    <p>Screener ID: {{description.screener_id}}</p>
+
     <p>About Me Commentary: {{description.aboutMeCommentary}}</p>
     <p>General Commentary: {{description.generalCommentary}}</p>
     <p>Soft Skill Commentary: {{description.softSkillCommentary}}</p>
     <p>Soft Skill Verdict: <span *ngIf="description.softSkillVerdict==false">Failed</span>
         <span *ngIf="description.softSkillVerdict==true">Passed</span>
     </p>
-    <div> Category Tested:
+    <div> Categories Tested:
         <li *ngFor="let Category of description.categoryModel">
-            {{Category.categoryDescription}} Average Question Score: {{Category.averageQuestionScore}}
+            {{Category.categoryDescription}}  {{Category.averageQuestionScore}}/5
         </li>
     </div>
 
@@ -29,12 +31,7 @@
 
     <div *ngIf="description.violation==true"> Violation: {{description.violation}}</div>
 
-    <br>
-    <p>Screen Date: {{description.srm.screenDate}}</p>
-    <p>Composite Score: {{description.srm.compositeScore}}</p>
-    <p>Track: {{description.srm.track.title}}</p>
-
-
+    
 </mat-dialog-content>
 
 <mat-dialog-actions>

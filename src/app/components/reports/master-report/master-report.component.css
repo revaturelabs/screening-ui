@@ -6,6 +6,11 @@
     font-size: 1.2rem;
 }
 
+#Scatter {
+    display: inline-block;
+    width: 90%;
+}
+
 .btn-light:hover,
 .btn-light:focus,
 .btn-light:active,
