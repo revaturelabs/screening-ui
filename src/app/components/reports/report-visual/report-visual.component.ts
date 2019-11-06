@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import{ MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
-import  * as moment from 'moment';
+import * as moment from 'moment';
 
 
 @Component({
@@ -10,29 +10,30 @@ import  * as moment from 'moment';
   styleUrls: ['./report-visual.component.css']
 })
 export class ReportVisualComponent implements OnInit {
-  report: any;
-  description:any;
+  description: any;
 
 
   constructor(
-    public dialogRef:MatDialogRef<ReportVisualComponent>,
+    public dialogRef: MatDialogRef<ReportVisualComponent>,
     public simpleReportService: SimpleReportService,
-    
+
+    /* 
+    *injects data into descripition
+    *for one way databinding
+    */
     @Inject(MAT_DIALOG_DATA) data) {
-      console.log(data);
-      data.srm.screenDate = moment(data.srm.screenDate).format('MM-DD-YYYY');
+    //formats data into more human readable 
+    data.srm.screenDate = moment(data.srm.screenDate).format('MM-DD-YYYY');
     this.description = data;
   }
 
-
+  //loads the data into report
   ngOnInit() {
-    this.simpleReportService.getAllSimpleReports().subscribe((data) => {
-    })
+    
   }
- 
-  onClose(){
-    //this.service.form.reset();
-    //this.service.initializeFormGroup();
+
+  // closes the popout by botton click
+  onClose() {
     this.dialogRef.close();
   }
 
