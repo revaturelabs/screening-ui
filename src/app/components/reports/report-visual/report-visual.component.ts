@@ -30,7 +30,7 @@ export class ReportVisualComponent implements OnInit {
 
   //loads the data into report
   ngOnInit() {
-
+    console.log(this.description);
   }
 
   // closes the popout by botton click
