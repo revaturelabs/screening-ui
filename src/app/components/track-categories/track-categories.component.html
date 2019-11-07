@@ -1,0 +1,96 @@
+<!-- trackCategories list  -->
+<div id="ABcontent" class="container">
+    <div class="row justify-content-center">
+        <div class="card w-100">
+
+            <h6 class="card-header">All Categories</h6>
+
+            <div class="card-body" id="allTracksDiv" style="overflow: hidden;">
+                <!-- List of all categories -->
+                <div class="list-group">
+                    <!-- clickable to route to Category -->
+                    <!--* routeToCategory() -->
+                    <a class="list-group-item list-group-item-action" *ngFor="let category of categories" (click)="routeToCategory(category);click();">
+                        <!--* editCategory(category), passes the category selected to component side.
+                * open(edit), calls modal to open. -->
+                        <div class="col-sm" (click)="$event.cancelBubble=true;click(); ">
+                            <i id="xIcon">
+                <label class="switch">
+                  <input type="checkbox" [(ngModel)]="category.isActive" (change)="updateCategory(category);click();">
+                  <span class="slider round" placement="top" ngbTooltip="active"></span>
+                </label>
+              </i>
+                        </div>
+                        <a>{{category.categoryDescription}}  </a>
+                        <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editCategory(category);click(); open(edit)" placement="right" ngbTooltip="edit">
+                </i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!--* 'open(create)' -->
+            <button type="button" class="btn btn-light btn-sm" (click)="open(create);click();">Create New Category</button>
+        </div>
+    </div>
+</div>
+
+<!--Edit Category modal -->
+<!--* Editable name, description -->
+<ng-template #edit let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title">Edit Category</h6>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>Name:</label>
+                <br>
+                <input class="form-control" type="text" [(ngModel)]="currCategory.categoryCategory" [ngModelOptions]="{standalone: true}" />
+                <br>
+                <label>Description:</label>
+                <br>
+                <textarea class="form-control" type="text" [(ngModel)]="currCategory.categoryDescription" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!--* updateCategory(), updates the selected category to update database -->
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="c('Close click')">Cancel</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="updateCategory();click(); c('Close click')">Update</button>
+    </div>
+</ng-template>
+
+<!--Create Category modal -->
+<!--* Create name, description -->
+<ng-template #create let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title">Create</h6>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>Name:</label>
+                <br>
+                <input class="form-control" type="text" [(ngModel)]="newCategory.categoryDescription" [ngModelOptions]="{standalone: true}" />
+                <br>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button> -->
+        <!--* create(), creates new category in the database -->
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="createCategory(); c('Close click')">Create</button>
+    </div>
+</ng-template>

@@ -3,15 +3,15 @@ import { Subscription } from 'rxjs';
 
 // Entities
 import { Question } from '../../entities/Question';
-import { Bucket } from '../../entities/Bucket';
+import { Category } from '../../entities/Category';
 import { QuestionScore } from '../../entities/QuestionScore';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
-import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
+import { TrackCategoryLookUp } from '../../entities/TrackCategoryLookup';
 
 // Services
 import { QuestionsService } from '../../services/questions/questions.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 
 // Modal for answering the question
 import { AnswerComponent } from '../answer/answer.component';
@@ -32,7 +32,7 @@ import { Weight } from '../../entities/Weight';
 After the candidate has given their introduction,
 the screener will proceed to the question-and-answer part of the interview.
 A list of questions will be fetched from the server / database.
-Screener will be able to see a set of category tabs,
+Screener will be able to see a set of bucket tabs,
 each of which has a set of questions in a table.
 
 Screener has the ability to navigate between tabs ad nauseam,
@@ -42,18 +42,18 @@ it will invoke an instance of the question component.
 */
 export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Used to display the categories
-  questionBuckets: Bucket[];
+  questionCategories: Category[];
 
-  // holds the current category. Used to control
+  // holds the current bucket. Used to control
   // which questions are displayed in the questions table.
-  currentBucket: number;
-  skillID: number;
+  currentCategory: number;
+  trackID: number;
 
   // Used to display the current track:
   currentScreenings: ScheduledScreening;
 
-  // Used to display current buckets in track:
-  skillTypeBucketLookUp: SkillTypeBucketLookUp;
+  // Used to display current categories in track:
+  trackCategoryLookUp: TrackCategoryLookUp;
 
   // value entered enables finish button
   generalComment: string;
@@ -66,7 +66,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // The candidate's name
   candidateName: string;
 
-  questionsInBucket: Question[];
+  questionsInCategory: Question[];
   // used on ngOnDestroy. Will unsubscribe from all observables
   // to prevent memory leaks
   subscriptions: Subscription[] = [];
@@ -77,28 +77,28 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    private skillTypeBucketService: SkillTypeBucketService,
-  ) {}
+    private trackCategoryService: TrackCategoryService,
+  ) { }
 
   ngOnInit() {
-    // use skillTypeBucketLookup that provides array of buckets and array of weights
-    this.skillID = this.screeningStateService.getSkillID();
+    // use trackCategoryLookup that provides array of categories and array of weights
+    this.trackID = this.screeningStateService.getTrackID();
     this.subscriptions.push(
-      this.skillTypeBucketService.
-      getWeightsBySkillType(this.skillID).subscribe(bucketsWithWeights => {
-      const myBuckets: Bucket[] = [];
-      for ( const e of bucketsWithWeights) {
-        myBuckets.push(
-          {
-            bucketId: e.bucket.bucketId,
-            bucketDescription: e.bucket.bucketDescription,
-            isActive: e.bucket.isActive
+      this.trackCategoryService.
+        getWeightsByTrack(this.trackID).subscribe(categoriesWithWeights => {
+          const myCategories: Category[] = [];
+          for (const e of categoriesWithWeights) {
+            myCategories.push(
+              {
+                categoryId: e.category.categoryId,
+                categoryDescription: e.category.categoryDescription,
+                isActive: e.category.isActive
+              }
+            );
           }
-        );
-      }
-      this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
-      this.questionBuckets = bucketsWithWeights;
-    }));
+          this.trackCategoryService.categoriesByWeight = categoriesWithWeights;
+          this.questionCategories = categoriesWithWeights;
+        }));
 
     this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
     this.currentScreenings = this.screeningStateService.getCurrentScreening();
@@ -113,22 +113,22 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Unsubscribe to prevent memory leaks when component is destroyed
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe);
-    // if (this.questionBuckets !== undefined) {
-    //   for (const bucket of this.questionBuckets) {
+    // if (this.questionCategories !== undefined) {
+    //   for (const category of this.questionCategories) {
     //   }
     // }
   }
 
-  // sets the current category, allowing for dynamic change
+  // sets the current bucket, allowing for dynamic change
   // of the questions being displayed.
-  setBucket(bucketID: number) {
-    // iterate through each bucket
-    // if the current bucket's id matches the bucket id
+  setCategory(categoryID: number) {
+    // iterate through each category
+    // if the current category's id matches the category id
     // of the category selected by the user
-    this.currentBucket = bucketID;
-    this.questionService.getBucketQuestions(bucketID).subscribe(questions => {
-        this.questionsInBucket = questions;
-      }
+    this.currentCategory = categoryID;
+    this.questionService.getCategoryQuestions(categoryID).subscribe(questions => {
+      this.questionsInCategory = questions;
+    }
     );
   }
 
@@ -166,6 +166,6 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     // tslint:disable-next-line:radix
-    this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+    this.screeningService.updateScreening(parseInt(localStorage.getItem('screeningID')));
   }
 }

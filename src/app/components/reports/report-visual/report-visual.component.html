@@ -1,0 +1,48 @@
+<body>
+    <!---->
+    <h2>Full Report
+
+        <img _ngcontent-vnf-c1="" alt="revature" class="rev-logo" height="30" routerlink="/dashboard"
+            src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"
+            width="110" tabindex="0" ng-reflect-router-link="/dashboard" align="right">
+    </h2>
+
+<mat-dialog-content>
+    <br>
+    <p><strong>Candidate:</strong> {{description.candidate.name}}</p>
+    <p><strong>Screen Date:</strong> {{description.srm.screenDate}}</p>
+    <p><strong>Track:</strong> {{description.srm.track.title}}</p>
+    <p><strong>Composite Score:</strong> {{description.srm.compositeScore}}%</p>
+    <p><strong>Screener ID:</strong> {{description.screener_id}}</p>
+    
+    <p><strong>About Me Commentary:</strong> {{description.aboutMeCommentary}}</p>
+    <p><strong>General Commentary:</strong> {{description.generalCommentary}}</p>
+    <p><strong>Soft Skill Commentary:</strong> {{description.softSkillCommentary}}</p>
+    <p><strong>Soft Skill Verdict:</strong> <span *ngIf="description.softSkillVerdict==false"> Failed</span>
+        <span *ngIf="description.softSkillVerdict==true">Passed</span>
+    </p>
+    <div> <strong>Categories Tested:</strong>
+        <li *ngFor="let Category of description.categoriesTested">
+            {{Category.categoryDescription}}  {{Category.averageQuestionScore}}/5
+        </li>
+    </div>
+    <br>
+    <div *ngIf="description.violationsObserved"> 
+        <strong>Violation:</strong>
+        <li *ngFor="let violation of description.violationsObserved">
+            {{violation.violationDescription}}
+        </li>
+    </div>
+    <br>
+
+    
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button style="background-color:#F26925" class="mat-raised-button" (click)="onClose()">Close</button>
+</mat-dialog-actions>
+</body>
+
+<!----->
+<!--style="background-color:#F26925"
+    style="background-color:#393FEF" -->

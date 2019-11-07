@@ -45,7 +45,7 @@ export class ScreeningService {
   // scheduledScreening - the screening object selected from the screening list
   // beginTime - the start time of the screening
   // trainerId - ID of the trainer conducting the screening
-  // skillTypeId - the ID of the track
+  // trackId - the ID of the track
   beginScreening(
     scheduledScreening: ScheduledScreening,
     startDateTime: Date,

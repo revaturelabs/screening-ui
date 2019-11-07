@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ScheduledScreening } from '../../entities/ScheduledScreening';
-import { SkillTypesService } from '../skill-types/skill-types.service';
-import { SkillType } from '../../entities/SkillType';
+import { TracksService } from '../tracks/tracks.service';
+import { Track } from '../../entities/Track';
 import { UrlService } from '../urls/url.service';
 
 @Injectable()
 export class ScheduledScreeningService {
   constructor(
     private httpClient: HttpClient,
-    private skillTypesService: SkillTypesService,
+    private tracksService: TracksService,
     private urlService: UrlService
   ) { }
 
-  private skillTypes: SkillType[] = [];
+  private tracks: Track[] = [];
   private scheduledScreenings: ScheduledScreening[] = [];
 
   getScheduledScreenings(): ScheduledScreening[] {
-    this.skillTypesService.getSkillTypes().subscribe(skillTypeData => {
-      this.skillTypes = skillTypeData;
+    this.tracksService.getTracks().subscribe(trackData => {
+      this.tracks = trackData;
       this.httpClient.get<any[]>(this.urlService.screening.scheduledScreeningUrl()).subscribe(scheduledScreeningData => {
         for (const scheduledScreening of scheduledScreeningData) {
           let s: ScheduledScreening = new ScheduledScreening();
@@ -26,9 +26,9 @@ export class ScheduledScreeningService {
           s.scheduledStatus = scheduledScreening.scheduledStatus;
           s.scheduledDate = scheduledScreening.scheduledDate;
           s.candidate = scheduledScreening.candidate;
-          for (const skillType of this.skillTypes) {
-            if (skillType.skillTypeId === scheduledScreening.skillTypeId) {
-              s.track = skillType;
+          for (const track of this.tracks) {
+            if (track.trackId === scheduledScreening.trackId) {
+              s.track = track;
               break;
             }
           }
