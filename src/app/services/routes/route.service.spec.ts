@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { RouteService } from './route.service';
+import { RouteService } from "./route.service";
 
-describe('RouteService', () => {
+describe("RouteService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RouteService],
+      providers: [RouteService]
     });
   });
 
-  it('should be created', inject([RouteService], (service: RouteService) => {
+  it("should be created", inject([RouteService], (service: RouteService) => {
     expect(service).toBeTruthy();
   }));
 });

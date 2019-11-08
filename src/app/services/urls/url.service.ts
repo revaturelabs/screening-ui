@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { Weight } from '../../entities/Weight';
-import { String } from 'aws-sdk/clients/cloudhsmv2';
+import { Injectable } from "@angular/core";
+import { environment } from "../../../environments/environment";
+import { Weight } from "../../entities/Weight";
+import { String } from "aws-sdk/clients/cloudhsmv2";
 
 @Injectable()
 export class UrlService {
@@ -21,13 +21,13 @@ export class UrlService {
    *
    */
 
-  private bucketEndpoint = this.adminContext + '/bucket';
+  private bucketEndpoint = this.adminContext + "/bucket";
   bucket = {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
     updateBucket: () => `${this.bucketEndpoint}`,
     createNewBucket: () => `${this.bucketEndpoint}`,
-    deleteBucket: () => `${this.bucketEndpoint}`,
+    deleteBucket: () => `${this.bucketEndpoint}`
   };
 
   /**
@@ -38,7 +38,7 @@ export class UrlService {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  private questionEndpoint = this.adminContext + '/question';
+  private questionEndpoint = this.adminContext + "/question";
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
@@ -48,13 +48,13 @@ export class UrlService {
       `${this.questionEndpoint}/${questionId}`,
     activateQuestion: (questionId: number) =>
       `${this.questionEndpoint}/${questionId}`,
-    filteredQuestions: () => `${this.questionEndpoint}/filter`,
+    filteredQuestions: () => `${this.questionEndpoint}/filter`
   };
 
-  private questionScoringEndpoint = 'question-score-service/question';
+  private questionScoringEndpoint = "question-score-service/question";
   questionScoring = {
     scoringQuestion: () =>
-      `${this.screeningContext + this.questionScoringEndpoint}/score`,
+      `${this.screeningContext + this.questionScoringEndpoint}/score`
   };
 
   /**
@@ -68,22 +68,22 @@ export class UrlService {
   screening = {
     scheduledScreeningUrl: () => `${this.screeningContext}/screening/scheduled`,
     screeningUrl: () => `${this.screeningContext}/screening/`,
-    screeningUrlById: id => `${this.screeningContext}/screening/${id}`,
+    screeningUrlById: id => `${this.screeningContext}/screening/${id}`
   };
-  weightsEndpoint = this.adminContext + '/weight';
+  weightsEndpoint = this.adminContext + "/weight";
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) =>
       `${this.weightsEndpoint}/getBySkillType/${skillTypeId}`,
     newWeight: () => `${this.weightsEndpoint}/new`,
     deleteWeight: (weightId: number) =>
-      `${this.weightsEndpoint}/delete/${weightId}`,
+      `${this.weightsEndpoint}/delete/${weightId}`
   };
 
   /**
    * Endpoints for skillType
    */
-  skillTypesServiceEndpoint = this.adminContext + '/skilltype';
+  skillTypesServiceEndpoint = this.adminContext + "/skilltype";
   skillTypes = {
     findAll: () => `${this.skillTypesServiceEndpoint}`,
     findAllActive: () => `${this.skillTypesServiceEndpoint}/active`,
@@ -104,7 +104,7 @@ export class UrlService {
     setSkillTypeBuckets: () =>
       `${this.skillTypesServiceEndpoint}/setSkillTypeBucket`,
     getSkillTypeById: (skillTypeId: number) =>
-      `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`,
+      `${this.skillTypesServiceEndpoint}/getSkillTypeBuckets/${skillTypeId}`
   };
 
   softSkillsViolation = {
@@ -113,7 +113,7 @@ export class UrlService {
       `${this.screeningContext}/screening/${screeningID}/violations`,
     addViolationURL: () => `${this.screeningContext}/violation/new/`,
     deleteViolationURL: (violationID: number) =>
-      `${this.screeningContext}/screening/violation/delete/${violationID}`,
+      `${this.screeningContext}/screening/violation/delete/${violationID}`
   };
 
   private reportEndpoint = this.reportContext;
@@ -134,6 +134,6 @@ export class UrlService {
       `${this.reportEndpoint}/getWeeksReport?startDate=${startDate}&endDate=${endDate}`,
     getAllSimpleReportsByDate: (dateStart: string, dateEnd: string): string =>
       `${this.reportEndpoint}/srm/${dateStart}/${dateEnd}`,
-    getAllSimpleReports: () => `${this.reportEndpoint}/srm`,
+    getAllSimpleReports: () => `${this.reportEndpoint}/srm`
   };
 }

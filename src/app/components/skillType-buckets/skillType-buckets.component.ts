@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 /** component, service imports */
-import { Bucket } from '../../entities/Bucket';
-import { BucketsService } from '../../services/buckets/buckets.service';
-import { QuestionsService } from '../../services/questions/questions.service';
+import { Bucket } from "../../entities/Bucket";
+import { BucketsService } from "../../services/buckets/buckets.service";
+import { QuestionsService } from "../../services/questions/questions.service";
 /** style lib. imports */
-import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AlertsService } from '../../services/alert-service/alerts.service';
+import { BucketFilterPipe } from "../../pipes/skillType-buckets.filter";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { AlertsService } from "../../services/alert-service/alerts.service";
 
 @Component({
-  selector: 'app-skill-type-buckets',
-  templateUrl: './skillType-buckets.component.html',
-  styleUrls: ['./skillType-buckets.component.css'],
+  selector: "app-skill-type-buckets",
+  templateUrl: "./skillType-buckets.component.html",
+  styleUrls: ["./skillType-buckets.component.css"]
 })
 export class SkillTypeBucketsComponent implements OnInit {
   /** variable to hold an array of 'Bucket' entities */
@@ -88,7 +88,7 @@ export class SkillTypeBucketsComponent implements OnInit {
    */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
-    this.router.navigate(['settings/bucket']);
+    this.router.navigate(["settings/bucket"]);
   }
 
   /** Stores the value of selected bucket to a 'currBucket' */
@@ -123,7 +123,7 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   savedSuccessfully() {
-    this.alertsService.success('Saved successfully');
+    this.alertsService.success("Saved successfully");
   }
 
   open(content) {
@@ -133,7 +133,7 @@ export class SkillTypeBucketsComponent implements OnInit {
         this.closeResult = `Closed with: ${result}`;
       },
       reason => {
-        this.newBucket.bucketDescription = '';
+        this.newBucket.bucketDescription = "";
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       }
     );
@@ -142,9 +142,9 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+      return "by pressing ESC";
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+      return "by clicking on a backdrop";
     } else {
       return `with: ${reason}`;
     }

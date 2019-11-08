@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject } from "rxjs";
 
-import { Bucket } from '../../entities/Bucket';
-import { UrlService } from '../urls/url.service';
+import { Bucket } from "../../entities/Bucket";
+import { UrlService } from "../urls/url.service";
 
 /**
  * Imported urlservice to replace hardcoded endpoints
@@ -20,8 +20,8 @@ import { UrlService } from '../urls/url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+    "Content-Type": "application/json"
+  })
 };
 
 @Injectable()
@@ -45,7 +45,7 @@ export class BucketsService {
 
   updateBucket(bucket: Bucket) {
     return this.http.put<Bucket>(
-      this.urlService.bucket.updateBucket() + '/' + bucket.bucketId,
+      this.urlService.bucket.updateBucket() + "/" + bucket.bucketId,
       bucket,
       httpOptions
     );
@@ -53,7 +53,7 @@ export class BucketsService {
   // Delete bucket
   deleteBucket(bucket: Bucket) {
     return this.http.delete<Bucket>(
-      this.urlService.bucket.deleteBucket() + '/' + bucket.bucketId,
+      this.urlService.bucket.deleteBucket() + "/" + bucket.bucketId,
       httpOptions
     );
   }

@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import * as HighCharts from 'highcharts';
+import { Component, OnInit, Input } from "@angular/core";
+import * as HighCharts from "highcharts";
 
 @Component({
-  selector: 'app-average-skill',
-  templateUrl: './average-skill.component.html',
-  styleUrls: ['./average-skill.component.css'],
+  selector: "app-average-skill",
+  templateUrl: "./average-skill.component.html",
+  styleUrls: ["./average-skill.component.css"]
 })
 export class AverageSkillComponent implements OnInit {
   Highcharts = HighCharts;
@@ -25,48 +25,48 @@ export class AverageSkillComponent implements OnInit {
     if (this._barData.length > 0) {
       this.options = {
         title: {
-          text: 'Average Score By Skill Type',
+          text: "Average Score By Skill Type",
           y: 10,
-          floating: false,
+          floating: false
         },
         xAxis: {
-          type: 'category',
+          type: "category"
         },
         yAxis: {
           title: {
-            text: 'Average Score Values',
-          },
+            text: "Average Score Values"
+          }
         },
         legend: {
-          enabled: false,
+          enabled: false
         },
-        chart: { zoomType: 'x', type: 'column' },
+        chart: { zoomType: "x", type: "column" },
         series: [
-          { name: 'Skill Type', colorByPoint: true, data: this._barData },
-        ],
+          { name: "Skill Type", colorByPoint: true, data: this._barData }
+        ]
       };
     } else {
       this.options = {
         title: {
-          text: 'Average Score By Skill Type Graph is N/A',
+          text: "Average Score By Skill Type Graph is N/A",
           y: 200,
-          floating: true,
+          floating: true
         },
         xAxis: {
-          type: 'category',
+          type: "category"
         },
         yAxis: {
           title: {
-            text: '',
-          },
+            text: ""
+          }
         },
         legend: {
-          enabled: false,
+          enabled: false
         },
-        chart: { zoomType: 'x', type: 'column' },
+        chart: { zoomType: "x", type: "column" },
         series: [
-          { name: 'Skill Type', colorByPoint: true, data: this._barData },
-        ],
+          { name: "Skill Type", colorByPoint: true, data: this._barData }
+        ]
       };
     }
   }

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Observable, BehaviorSubject } from "rxjs";
 
-import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-import { ViolationType } from '../../entities/ViolationType';
-import { UrlService } from '../urls/url.service';
+import { SoftSkillViolation } from "../../entities/SoftSkillViolation";
+import { ViolationType } from "../../entities/ViolationType";
+import { UrlService } from "../urls/url.service";
 
 /**
  * Separate from but related to the Soft Skills service,
@@ -26,7 +26,7 @@ export class SoftSkillsViolationService {
   constructor(private http: HttpClient, private urlService: UrlService) {}
 
   headers = new HttpHeaders({
-    'Content-type': 'application/json',
+    "Content-type": "application/json"
   });
 
   softSkillViolations: any[] = [];
@@ -71,15 +71,15 @@ export class SoftSkillsViolationService {
 
     // create an Http parameter body with violationID array, append comment and date to body
     const params = new HttpParams().set(
-      'ids',
+      "ids",
       violationIdArray.toLocaleString()
     );
-    params.append('comment', comment);
-    params.append('date', new Date().toDateString());
+    params.append("comment", comment);
+    params.append("date", new Date().toDateString());
 
     // send post request
     this.http.post(this.urlService.softSkillsViolation.addViolationURL(), {
-      params,
+      params
     });
   }
 
@@ -95,7 +95,7 @@ export class SoftSkillsViolationService {
         violationTypeId: [typeID],
         softSkillComment: comment,
         violationTime: new Date(),
-        screeningId: screeningID,
+        screeningId: screeningID
       },
       { headers: this.headers }
     );

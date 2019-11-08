@@ -1,6 +1,6 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
-@Pipe({ name: 'orderBy' })
+@Pipe({ name: "orderBy" })
 export class OrderByPipe implements PipeTransform {
   transform(input: Array<any>, property: string): Array<any> {
     if (
@@ -21,7 +21,7 @@ export class OrderByPipe implements PipeTransform {
   }
 
   resolveProperty(obj: any, path: string) {
-    return path.split('.').reduce(function(prev, curr) {
+    return path.split(".").reduce(function(prev, curr) {
       return prev ? prev[curr] : undefined;
     }, obj || self);
   }
@@ -31,7 +31,7 @@ export class OrderByPipe implements PipeTransform {
       return 0;
     }
 
-    if (typeof obj1 === typeof '') {
+    if (typeof obj1 === typeof "") {
       if (obj1 < obj2) {
         return -1;
       }

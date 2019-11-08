@@ -1,20 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 // Entities
-import { QuestionScore } from '../../entities/QuestionScore';
+import { QuestionScore } from "../../entities/QuestionScore";
 
 // Services
-import { QuestionsService } from '../../services/questions/questions.service';
-import { QuestionScoreService } from '../../services/question-score/question-score.service';
+import { QuestionsService } from "../../services/questions/questions.service";
+import { QuestionScoreService } from "../../services/question-score/question-score.service";
 
 // ngbootstrap for modal
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 @Component({
-  selector: 'app-answer',
-  templateUrl: './answer.component.html',
-  styleUrls: ['./answer.component.css'],
+  selector: "app-answer",
+  templateUrl: "./answer.component.html",
+  styleUrls: ["./answer.component.css"]
 })
 export class AnswerComponent implements OnInit {
   @Input() question;
@@ -32,11 +32,11 @@ export class AnswerComponent implements OnInit {
     this.questionScore = {
       qSID: null,
       questionId: this.question.questionId,
-      screeningID: +localStorage.getItem('screeningID'),
+      screeningID: +localStorage.getItem("screeningID"),
       score: 0,
-      commentary: '',
+      commentary: "",
       bucketId: this.question.bucket.bucketId,
-      beginTime: new Date(),
+      beginTime: new Date()
     };
     // update answeredQuestions array to match our question service's answeredQuestions array.
     this.questionScoreService.currentQuestionScores.subscribe(

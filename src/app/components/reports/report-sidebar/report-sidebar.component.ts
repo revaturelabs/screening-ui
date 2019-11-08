@@ -1,25 +1,25 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
-import { Options, ChangeContext, PointerType } from 'ng5-slider';
-import { ReportService } from '../../../services/reports/report.service';
-import { ReportData } from '../../../entities/ReportData';
-import { Screening } from '../../../entities/Screening';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
+import { Observable, Subject, of } from "rxjs";
+import { Options, ChangeContext, PointerType } from "ng5-slider";
+import { ReportService } from "../../../services/reports/report.service";
+import { ReportData } from "../../../entities/ReportData";
+import { Screening } from "../../../entities/Screening";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-report-sidebar',
-  templateUrl: './report-sidebar.component.html',
-  styleUrls: ['./report-sidebar.component.css'],
+  selector: "app-report-sidebar",
+  templateUrl: "./report-sidebar.component.html",
+  styleUrls: ["./report-sidebar.component.css"]
 })
 export class ReportSidebarComponent implements OnInit {
   screenerEmails$: Observable<Screening>;
   screenerEmail = new Array<Screening>();
   screenerName = [];
   private searchTerms = new Subject<string>();
-  emailSearchTerm: string = '';
+  emailSearchTerm: string = "";
   //sliderControl: FormControl;
   _reportData: ReportData;
-  @Input('reportData') reportData: ReportData;
+  @Input("reportData") reportData: ReportData;
   // set reportData(reportData: ReportData){
   //   this._reportData = reportData;
   // }
@@ -37,7 +37,7 @@ export class ReportSidebarComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content, { windowClass: 'fixed-modal' });
+    this.modalService.open(content, { windowClass: "fixed-modal" });
   }
 
   /*onClickScreenerEmail(screener) {
@@ -49,7 +49,7 @@ export class ReportSidebarComponent implements OnInit {
   getChangeContextString(changeContext: ChangeContext): string {
     return (
       `{pointerType: ${
-        changeContext.pointerType === PointerType.Min ? 'Min' : 'Max'
+        changeContext.pointerType === PointerType.Min ? "Min" : "Max"
       }, ` +
       `value: ${changeContext.value}, ` +
       `highValue: ${changeContext.highValue}}`

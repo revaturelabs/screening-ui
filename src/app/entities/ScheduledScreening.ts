@@ -1,5 +1,5 @@
-import { Candidate } from './Candidate';
-import { SkillType } from './SkillType';
+import { Candidate } from "./Candidate";
+import { SkillType } from "./SkillType";
 
 export class ScheduledScreening {
   scheduledScreeningId: number;

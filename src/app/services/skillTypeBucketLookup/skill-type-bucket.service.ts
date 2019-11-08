@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UrlService } from '../urls/url.service';
-import { Weight } from '../../entities/Weight';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { UrlService } from "../urls/url.service";
+import { Weight } from "../../entities/Weight";
 
 /*
 
 */
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+    "Content-Type": "application/json"
+  })
 };
 
 /**

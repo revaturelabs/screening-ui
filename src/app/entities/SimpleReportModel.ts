@@ -1,4 +1,4 @@
-import { Track } from './Track';
+import { Track } from "./Track";
 
 export class SimpleReportModel {
   screeningId: number;

@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { AlertsService } from '../../services/alert-service/alerts.service';
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { FormBuilder, FormGroup, Validator, Validators } from "@angular/forms";
+import { AuthenticationService } from "../../services/authentication/authentication.service";
+import { AlertsService } from "../../services/alert-service/alerts.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -28,17 +28,17 @@ export class LoginComponent implements OnInit {
 
   getUser(username: string, password: string): void {
     this.authenticationService.login(username, password);
-    this.router.navigate(['/home']);
+    this.router.navigate(["/home"]);
   }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ["", Validators.required],
+      password: ["", Validators.required]
     });
     this.authenticationService.logout();
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
   get f() {
     return this.loginForm.controls;

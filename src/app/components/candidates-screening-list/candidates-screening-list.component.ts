@@ -1,27 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 
 // Classes
-import { Candidate } from '../../entities/Candidate';
-import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { Candidate } from "../../entities/Candidate";
+import { ScheduledScreening } from "../../entities/ScheduledScreening";
 
 // Services
-import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { ScreeningService } from '../../services/screening/screening.service';
-import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
-import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { QuestionScoreService } from '../../services/question-score/question-score.service';
+import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
+import { ScreeningService } from "../../services/screening/screening.service";
+import { ScheduledScreeningService } from "../../services/scheduled-screening/scheduled-screening.service";
+import { SoftSkillsViolationService } from "../../services/soft-skills-violation/soft-skills-violation.service";
+import { QuestionScoreService } from "../../services/question-score/question-score.service";
 
 // Installed Modules
 // npm install ngx-pagination --save
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
-import { SearchPipe } from '../../pipes/search.pipe';
+import { NgxPaginationModule } from "ngx-pagination"; // <-- import the module
+import { SearchPipe } from "../../pipes/search.pipe";
 
 @Component({
-  selector: 'app-candidates-screening-list',
-  templateUrl: './candidates-screening-list.component.html',
-  styleUrls: ['./candidates-screening-list.component.css'],
-  providers: [SearchPipe, NgxPaginationModule],
+  selector: "app-candidates-screening-list",
+  templateUrl: "./candidates-screening-list.component.html",
+  styleUrls: ["./candidates-screening-list.component.css"],
+  providers: [SearchPipe, NgxPaginationModule]
 })
 
 /**
@@ -78,9 +78,9 @@ export class CandidatesScreeningListComponent implements OnInit {
   // Reveals the "Begin Interview" prompt
   toggleBeginScreeningPrompt() {
     if (this.showBeginScreeningPrompt) {
-      return 'block';
+      return "block";
     } else {
-      return 'none';
+      return "none";
     }
   }
 

@@ -1,4 +1,4 @@
-import { Bucket } from './Bucket';
+import { Bucket } from "./Bucket";
 
 export class Question {
   questionId: number;

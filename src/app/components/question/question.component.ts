@@ -1,41 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Question } from '../../entities/Question';
-import { Bucket } from '../../entities/Bucket';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { QuestionsService } from '../../services/questions/questions.service';
+import { Component, OnInit } from "@angular/core";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Question } from "../../entities/Question";
+import { Bucket } from "../../entities/Bucket";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { QuestionsService } from "../../services/questions/questions.service";
 import {
   trigger,
   state,
   style,
   transition,
   animate,
-  keyframes,
-} from '@angular/animations';
-import { BucketsService } from '../../services/buckets/buckets.service';
-import { AlertsService } from '../../services/alert-service/alerts.service';
+  keyframes
+} from "@angular/animations";
+import { BucketsService } from "../../services/buckets/buckets.service";
+import { AlertsService } from "../../services/alert-service/alerts.service";
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css'],
+  selector: "app-question",
+  templateUrl: "./question.component.html",
+  styleUrls: ["./question.component.css"],
   animations: [
-    trigger('move', [
+    trigger("move", [
       state(
-        'center',
+        "center",
         style({
-          transform: 'translateX(0) scaleX(1)',
+          transform: "translateX(0) scaleX(1)"
         })
       ),
       state(
-        'left',
+        "left",
         style({
-          transform: 'translateX(-28%) scaleX(1)',
+          transform: "translateX(-28%) scaleX(1)"
         })
       ),
-      transition('center =>left', animate('300ms ease-in')),
-    ]),
-  ],
+      transition("center =>left", animate("300ms ease-in"))
+    ])
+  ]
 })
 
 /**
@@ -79,7 +79,7 @@ export class QuestionComponent implements OnInit {
    * Takes in the Id of the modal and launches it
    **/
   open(content) {
-    this.modalService.open(content, { windowClass: 'fixed-modal' });
+    this.modalService.open(content, { windowClass: "fixed-modal" });
   }
 
   /**
@@ -87,7 +87,7 @@ export class QuestionComponent implements OnInit {
    **/
   initFormControl() {
     this.createQuestion = this.fb.group({
-      name: ['', Validators.required],
+      name: ["", Validators.required]
     });
   }
 
@@ -97,9 +97,9 @@ export class QuestionComponent implements OnInit {
    **/
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+      return "by pressing ESC";
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+      return "by clicking on a backdrop";
     } else {
       return `with: ${reason}`;
     }
@@ -129,7 +129,7 @@ export class QuestionComponent implements OnInit {
    **/
   setQuestionNull() {
     this.question = new Question();
-    this.sampleAnswer = '';
+    this.sampleAnswer = "";
   }
 
   /**
@@ -166,7 +166,7 @@ export class QuestionComponent implements OnInit {
       }
       this.updateQuestions();
       this.setQuestionNull();
-      this.sampleAnswer = '';
+      this.sampleAnswer = "";
     } else {
       this.savedUnsuccessfull();
     }
@@ -209,12 +209,12 @@ export class QuestionComponent implements OnInit {
   }
 
   savedSuccessfully() {
-    this.alertsService.success('Saved successfully');
+    this.alertsService.success("Saved successfully");
   }
   updatedSuccessfully() {
-    this.alertsService.success('Updated successfully');
+    this.alertsService.success("Updated successfully");
   }
   savedUnsuccessfull() {
-    this.alertsService.error('All Fields Must be Filled');
+    this.alertsService.error("All Fields Must be Filled");
   }
 }

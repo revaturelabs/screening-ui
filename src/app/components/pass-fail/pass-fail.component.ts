@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ViolationTypeService } from '../../services/violationType/violationType.service';
-import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { Observable } from 'rxjs';
-import { ScreeningService } from '../../services/screening/screening.service';
+import { Component, OnInit } from "@angular/core";
+import { ViolationTypeService } from "../../services/violationType/violationType.service";
+import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
+import { SoftSkillViolation } from "../../entities/SoftSkillViolation";
+import { SoftSkillsViolationService } from "../../services/soft-skills-violation/soft-skills-violation.service";
+import { Observable } from "rxjs";
+import { ScreeningService } from "../../services/screening/screening.service";
 
 @Component({
-  selector: 'app-pass-fail',
-  templateUrl: './pass-fail.component.html',
-  styleUrls: ['./pass-fail.component.css'],
+  selector: "app-pass-fail",
+  templateUrl: "./pass-fail.component.html",
+  styleUrls: ["./pass-fail.component.css"]
 })
 
 /*
@@ -52,7 +52,7 @@ export class PassFailComponent implements OnInit {
     const violationArray: any[] = [];
     this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
     this.softSkillViolationService
-      .getPreviousViolations(parseInt(localStorage.getItem('screeningID')))
+      .getPreviousViolations(parseInt(localStorage.getItem("screeningID")))
       .subscribe(data => {
         this.previousViolations = data;
         this.softSkillViolationService.softSkillViolations = this.previousViolations;
@@ -71,7 +71,7 @@ export class PassFailComponent implements OnInit {
                 violationArray.push({
                   violationType: { violationType: v.violationTypeText },
                   Time: thisTime,
-                  Comment: thisComment,
+                  Comment: thisComment
                 });
               }
             }
@@ -118,19 +118,19 @@ export class PassFailComponent implements OnInit {
   pass() {
     this.passed = true;
     this.endScreening = true;
-    this.screeningService.softSkillsResult = 'Pass';
+    this.screeningService.softSkillsResult = "Pass";
   }
 
   fail() {
     this.passed = false;
     this.endScreening = true;
-    this.screeningService.softSkillsResult = 'Fail';
+    this.screeningService.softSkillsResult = "Fail";
   }
 
   // Returns an Observable with an array of violations associated with the provided screeningID.
   getViolations(): Observable<SoftSkillViolation[]> {
     return this.violationService.getPreviousViolations(
-      +localStorage.getItem('screeningID')
+      +localStorage.getItem("screeningID")
     );
   }
 
@@ -152,7 +152,7 @@ export class PassFailComponent implements OnInit {
 
   getMessage($event) {
     this.softSkillViolationService
-      .getPreviousViolations(+localStorage.getItem('screeningID'))
+      .getPreviousViolations(+localStorage.getItem("screeningID"))
       .subscribe(data => (this.previousViolations = data));
   }
 
@@ -170,18 +170,18 @@ export class PassFailComponent implements OnInit {
 
   public getPassed(): string {
     if (this.passed) {
-      return 'passed';
+      return "passed";
     } else {
-      return 'failed';
+      return "failed";
     }
   }
 
   // Returns the string that's assigned to the [style.display] attribute.
   endScreeningPrompt() {
     if (this.endScreening) {
-      return 'block';
+      return "block";
     } else {
-      return 'none';
+      return "none";
     }
   }
 }

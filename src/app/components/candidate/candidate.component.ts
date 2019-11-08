@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 /**
  * @author Tucker Belton | 1903 USF | Emily Higgins
  * The component needs work however it fall outside the scope of out iteration.
@@ -9,9 +9,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
  */
 
 @Component({
-  selector: 'app-candidate',
-  templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.css'],
+  selector: "app-candidate",
+  templateUrl: "./candidate.component.html",
+  styleUrls: ["./candidate.component.css"]
 })
 export class CandidateComponent implements OnInit {
   constructor(private modalService: NgbModal) {}
@@ -19,6 +19,6 @@ export class CandidateComponent implements OnInit {
   ngOnInit() {}
 
   open(content) {
-    this.modalService.open(content, { windowClass: 'fixed-modal' });
+    this.modalService.open(content, { windowClass: "fixed-modal" });
   }
 }

@@ -1,6 +1,6 @@
-import { QuestionScore } from '../entities/QuestionScore';
-import { QuestionsService } from '../services/questions/questions.service';
-import { Weight } from '../entities/Weight';
+import { QuestionScore } from "../entities/QuestionScore";
+import { QuestionsService } from "../services/questions/questions.service";
+import { Weight } from "../entities/Weight";
 export class ScoresToBucketsUtil {
   private questionsService: QuestionsService;
 
@@ -20,6 +20,6 @@ export class ScoresToBucketsUtil {
     for (const key of bucketScores) {
       score += bucketScores[key] * bucketWeights[key];
     }
-    return ['Overall: ' + score];
+    return ["Overall: " + score];
   }
 }

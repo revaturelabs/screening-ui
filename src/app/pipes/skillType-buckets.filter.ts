@@ -1,10 +1,10 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
-import { Bucket } from '../entities/Bucket';
+import { Bucket } from "../entities/Bucket";
 
 @Pipe({
-  name: 'bucketFilter',
-  pure: false,
+  name: "bucketFilter",
+  pure: false
 })
 
 /*
@@ -25,9 +25,9 @@ export class BucketFilterPipe implements PipeTransform {
   applyFilter(bucket: Bucket, filter: Bucket): boolean {
     for (const field in filter) {
       if (filter[field]) {
-        if (typeof filter[field] === 'string') {
+        if (typeof filter[field] === "string") {
           return false; // return false by default -- Landon
-        } else if (typeof filter[field] === 'number') {
+        } else if (typeof filter[field] === "number") {
           if (bucket[field] !== filter[field]) {
             return false;
           }

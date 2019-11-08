@@ -553,15 +553,15 @@ a.save-button .fa-floppy-o {
 /************************
 ***Trainer Assess ***
 ************************/
-#trainer-assess-table input[type='number']::-webkit-inner-spin-button,
-#trainer-assess-table input[type='number']::-webkit-outer-spin-button {
+#trainer-assess-table input[type="number"]::-webkit-inner-spin-button,
+#trainer-assess-table input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0;
 }
 
-#trainer-assess-table input[type='number'] {
+#trainer-assess-table input[type="number"] {
   min-width: 65px;
   text-align: center;
 }

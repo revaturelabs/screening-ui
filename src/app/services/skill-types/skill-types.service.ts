@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
-import { SkillType } from '../../entities/SkillType';
-import { Bucket } from '../../entities/Bucket';
-import { UrlService } from '../urls/url.service';
+import { SkillType } from "../../entities/SkillType";
+import { Bucket } from "../../entities/Bucket";
+import { UrlService } from "../urls/url.service";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  }),
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*"
+  })
 };
 
 @Injectable()
@@ -62,7 +62,7 @@ export class SkillTypesService {
         title: skillType.title,
         skillTypeId: skillType.skillTypeId,
         bucketIds: bucketIds,
-        weights: weights,
+        weights: weights
       },
       httpOptions
     );
@@ -75,7 +75,7 @@ export class SkillTypesService {
         title: skillType.title,
         skillTypeId: skillType.skillTypeId,
         bucketIds: bucketIds,
-        weights: weights,
+        weights: weights
       },
       httpOptions
     );

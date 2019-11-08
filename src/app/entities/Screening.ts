@@ -1,4 +1,4 @@
-import { ScheduledScreening } from './ScheduledScreening';
+import { ScheduledScreening } from "./ScheduledScreening";
 
 /*
   Entity representing all data related to the screening of a candidate

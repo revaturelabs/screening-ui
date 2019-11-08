@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { FullReportService } from './full-report.service';
+import { FullReportService } from "./full-report.service";
 
-describe('FullReportService', () => {
+describe("FullReportService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: FullReportService = TestBed.get(FullReportService);
     expect(service).toBeTruthy();
   });

@@ -1,10 +1,10 @@
-import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from "ngx-cookie-service";
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  CanActivate,
-} from '@angular/router';
-import { Injectable } from '@angular/core';
+  CanActivate
+} from "@angular/router";
+import { Injectable } from "@angular/core";
 
 /**
  * The RoleGuard implementation of canActivate guards routes from users without the proper role cookie.
@@ -40,7 +40,7 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    return route.data['roles'].includes(this.cookies.get('role'));
+    return route.data["roles"].includes(this.cookies.get("role"));
   }
 }
 
@@ -51,7 +51,7 @@ export class RoleGuard implements CanActivate {
  * For future reference make role names all upper case to retain the previously established convention.
  */
 export const roles = {
-  adminRole: 'ROLE_ADMIN',
-  reportingRole: 'ROLE_REPORTING',
-  screenerRole: 'ROLE_SCREENER',
+  adminRole: "ROLE_ADMIN",
+  reportingRole: "ROLE_REPORTING",
+  screenerRole: "ROLE_SCREENER"
 };

@@ -1,22 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ScreeningService } from '../../services/screening/screening.service';
-import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { QuestionScoreService } from '../../services/question-score/question-score.service';
-import { QuestionScore } from '../../entities/QuestionScore';
-import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
-import { AlertsService } from '../../services/alert-service/alerts.service';
-import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
-import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
-import { Subscription } from 'rxjs';
-import { SkillType } from '../../entities/SkillType';
-import { Candidate } from '../../entities/Candidate';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ScreeningService } from "../../services/screening/screening.service";
+import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
+import { SkillTypeBucketService } from "../../services/skillTypeBucketLookup/skill-type-bucket.service";
+import { QuestionScoreService } from "../../services/question-score/question-score.service";
+import { QuestionScore } from "../../entities/QuestionScore";
+import { ScoresToBucketsUtil } from "../../util/scoresToBuckets.util";
+import { AlertsService } from "../../services/alert-service/alerts.service";
+import { SoftSkillsViolationService } from "../../services/soft-skills-violation/soft-skills-violation.service";
+import { SoftSkillViolation } from "../../entities/SoftSkillViolation";
+import { Subscription } from "rxjs";
+import { SkillType } from "../../entities/SkillType";
+import { Candidate } from "../../entities/Candidate";
 
 @Component({
-  selector: 'app-final-report',
-  templateUrl: './final-report.component.html',
-  styleUrls: ['./final-report.component.css'],
-  providers: [ScoresToBucketsUtil],
+  selector: "app-final-report",
+  templateUrl: "./final-report.component.html",
+  styleUrls: ["./final-report.component.css"],
+  providers: [ScoresToBucketsUtil]
 })
 
 /*
@@ -50,11 +50,11 @@ export class FinalReportComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.checked = 'false';
+    this.checked = "false";
     this.candidate = this.screeningStateService.getCurrentScreening().candidate;
     this.softSkillString =
-      'Soft Skills: ' + this.screeningService.softSkillsResult;
-    this.allTextString = this.softSkillString + '\n';
+      "Soft Skills: " + this.screeningService.softSkillsResult;
+    this.allTextString = this.softSkillString + "\n";
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
@@ -79,9 +79,9 @@ export class FinalReportComponent implements OnInit, OnDestroy {
         this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
         this.bucketStringArray.forEach(bucketString => {
-          this.allTextString += bucketString + '\n';
+          this.allTextString += bucketString + "\n";
         });
-        this.allTextString += this.overallScoreString + '\n';
+        this.allTextString += this.overallScoreString + "\n";
       }
     );
     // this.overallScoreString = "Overall: 71%";
@@ -98,19 +98,19 @@ export class FinalReportComponent implements OnInit, OnDestroy {
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)
   copyToClipboard() {
-    this.checked = 'true';
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
+    this.checked = "true";
+    const selBox = document.createElement("textarea");
+    selBox.style.position = "fixed";
+    selBox.style.left = "0";
+    selBox.style.top = "0";
+    selBox.style.opacity = "0";
     selBox.value = this.allTextString;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(selBox);
-    this.alertsService.success('Copied to Clipboard');
+    this.alertsService.success("Copied to Clipboard");
   }
 
   ngOnDestroy() {
@@ -122,8 +122,8 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.softSkillsViolationService.updateSoftSkillViolations(
       this.softSkillViolations
     );
-    localStorage.removeItem('screeningID');
-    localStorage.removeItem('scheduledScreeningID');
+    localStorage.removeItem("screeningID");
+    localStorage.removeItem("scheduledScreeningID");
     this.subscriptions.forEach(s => s.unsubscribe);
   }
 }

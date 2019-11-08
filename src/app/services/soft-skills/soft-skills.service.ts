@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import { ViolationType } from '../../entities/ViolationType';
+import { ViolationType } from "../../entities/ViolationType";
 
 /**
 Used to obtain the defined types of soft skill violations.
