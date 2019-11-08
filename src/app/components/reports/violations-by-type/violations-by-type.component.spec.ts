@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViolationsByTypeComponent } from "./violations-by-type.component";
-import { HighchartsChartModule } from "highcharts-angular";
+import { ViolationsByTypeComponent } from './violations-by-type.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
-describe("ViolationsByTypeComponent", () => {
+describe('ViolationsByTypeComponent', () => {
   let component: ViolationsByTypeComponent;
   let fixture: ComponentFixture<ViolationsByTypeComponent>;
 
@@ -21,7 +21,7 @@ describe("ViolationsByTypeComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

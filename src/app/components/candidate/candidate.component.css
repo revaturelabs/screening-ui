@@ -114,7 +114,7 @@ i {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 13px;
   width: 13px;
   left: 0px;

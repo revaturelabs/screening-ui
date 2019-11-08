@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import * as HighCharts from "highcharts";
-import { AverageSkillComponent } from "./average-skill.component";
-import { RouterTestingModule } from "@angular/router/testing";
-import { HighchartsChartModule } from "highcharts-angular";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import * as HighCharts from 'highcharts';
+import { AverageSkillComponent } from './average-skill.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HighchartsChartModule } from 'highcharts-angular';
 
-describe("AverageSkillComponent", () => {
+describe('AverageSkillComponent', () => {
   let component: AverageSkillComponent;
   let fixture: ComponentFixture<AverageSkillComponent>;
 
@@ -17,7 +17,7 @@ describe("AverageSkillComponent", () => {
     component = fixture.componentInstance;
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

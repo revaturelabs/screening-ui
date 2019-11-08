@@ -1,15 +1,15 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { ViolationType } from "../../entities/ViolationType";
-import { ViolationTypeService } from "../../services/violationType/violationType.service";
-import { SoftSkillsViolationService } from "../../services/soft-skills-violation/soft-skills-violation.service";
-import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
-import { AlertsService } from "../../services/alert-service/alerts.service";
-import { SoftSkillViolation } from "../../entities/SoftSkillViolation";
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ViolationType } from '../../entities/ViolationType';
+import { ViolationTypeService } from '../../services/violationType/violationType.service';
+import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
+import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 
 @Component({
-  selector: "app-violation-flag",
-  templateUrl: "./violation-flag.component.html",
-  styleUrls: ["./violation-flag.component.css"]
+  selector: 'app-violation-flag',
+  templateUrl: './violation-flag.component.html',
+  styleUrls: ['./violation-flag.component.css']
 })
 
 /*
@@ -67,8 +67,8 @@ export class ViolationFlagComponent implements OnInit {
 
   submitViolation(violationType: ViolationType, comment: string): void {
     // Send request with the violation + comments
-    const screeningID = Number.parseInt(localStorage.getItem("screeningID"));
-    this.alertsService.success("Soft Skill Violation Added");
+    const screeningID = Number.parseInt(localStorage.getItem('screeningID'));
+    this.alertsService.success('Soft Skill Violation Added');
     this.violationTypeService
       .getAllViolationTypes()
       .subscribe(data => console.log(data));
@@ -76,7 +76,7 @@ export class ViolationFlagComponent implements OnInit {
 
     this.violationService.softSkillViolations.push({
       violationID: undefined,
-      screeningID: +localStorage.getItem("screeningID"),
+      screeningID: +localStorage.getItem('screeningID'),
       violationType: violationType,
       Time: new Date()
       //Comment: comment
@@ -91,6 +91,6 @@ export class ViolationFlagComponent implements OnInit {
   }
 
   flagChange() {
-    this.flagEvent.emit("update");
+    this.flagEvent.emit('update');
   }
 }

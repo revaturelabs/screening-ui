@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Question } from "../../entities/Question";
-import { UrlService } from "../urls/url.service";
-import { SkillTypeBucketLookUp } from "../../entities/SkillTypeBucketLookup";
-import { Bucket } from "../../entities/Bucket";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Question } from '../../entities/Question';
+import { UrlService } from '../urls/url.service';
+import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
+import { Bucket } from '../../entities/Bucket';
+import { Observable } from 'rxjs';
 
 /**
  * Used url Service to input endpoints to our services
@@ -22,8 +22,8 @@ import { Observable } from "rxjs";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*"
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   })
 };
 

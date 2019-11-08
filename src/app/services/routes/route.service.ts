@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Routes } from "@angular/router";
-import { routes } from "../../app.routes";
+import { Injectable } from '@angular/core';
+import { Routes } from '@angular/router';
+import { routes } from '../../app.routes';
 
 // rxjs
-import { BehaviorSubject } from "rxjs";
-import { Observable } from "rxjs";
+import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 // components
-import { AppComponent } from "../../app.component";
+import { AppComponent } from '../../app.component';
 
 /**
  * This class converts the contents of the Routes array
@@ -35,7 +35,7 @@ export class RouteService {
    * Delegates bootstrapping to the initialize function
    */
   constructor() {
-    this.rootNode = "/";
+    this.rootNode = '/';
     this.initialize();
   }
 
@@ -98,10 +98,10 @@ export class RouteService {
    * AppComponent and pushed them on the "all" subject
    */
   private fetchAll(): void {
-    const root = routes.find(route => route.path === "");
+    const root = routes.find(route => route.path === '');
     const nodes = root.children;
     nodes.forEach(node => {
-      node.path = [this.rootNode, node.path].join("/");
+      node.path = [this.rootNode, node.path].join('/');
     });
     this.all.next(nodes);
   }
@@ -112,7 +112,7 @@ export class RouteService {
    */
   private fetchWithData(defRoutes: Routes): void {
     this.allWithData.next(
-      defRoutes.filter(route => route.hasOwnProperty("data"))
+      defRoutes.filter(route => route.hasOwnProperty('data'))
     );
   }
 
@@ -122,7 +122,7 @@ export class RouteService {
    */
   private fetchWithTitles(defRoutes: Routes): void {
     this.allWithTitles.next(
-      defRoutes.filter(route => route.data.hasOwnProperty("title"))
+      defRoutes.filter(route => route.data.hasOwnProperty('title'))
     );
   }
 
@@ -132,7 +132,7 @@ export class RouteService {
    */
   private fetchNavRoutes(defRoutes: Routes): void {
     this.allNavRoutes.next(
-      defRoutes.filter(route => route.data.hasOwnProperty("position"))
+      defRoutes.filter(route => route.data.hasOwnProperty('position'))
     );
   }
 
@@ -142,7 +142,7 @@ export class RouteService {
    */
   private fetchTopNavRoutes(defRoutes: Routes): void {
     this.allTopNav.next(
-      defRoutes.filter(route => route.data.position === "top")
+      defRoutes.filter(route => route.data.position === 'top')
     );
   }
 

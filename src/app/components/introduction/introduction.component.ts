@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
-import { ScreeningService } from "../../services/screening/screening.service";
-import { ScheduledScreening } from "../../entities/ScheduledScreening";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { ScreeningService } from '../../services/screening/screening.service';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
 
 @Component({
-  selector: "app-introduction",
-  templateUrl: "./introduction.component.html",
-  styleUrls: ["./introduction.component.css"]
+  selector: 'app-introduction',
+  templateUrl: './introduction.component.html',
+  styleUrls: ['./introduction.component.css']
 })
 
 /*
@@ -26,7 +26,7 @@ export class IntroductionComponent implements OnInit {
   public comment: string;
 
   form = new FormGroup({
-    comment: new FormControl("", [])
+    comment: new FormControl('', [])
   });
 
   ngOnInit() {

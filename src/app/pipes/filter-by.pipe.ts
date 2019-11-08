@@ -1,6 +1,6 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: "filterBy" })
+@Pipe({ name: 'filterBy' })
 export class FilterByPipe implements PipeTransform {
   transform(input: Array<any>, property: string, value: any): Array<any> {
     if (
@@ -21,7 +21,7 @@ export class FilterByPipe implements PipeTransform {
   }
 
   resolveProperty(obj: any, path: string) {
-    return path.split(".").reduce(function(prev, curr) {
+    return path.split('.').reduce(function(prev, curr) {
       return prev ? prev[curr] : undefined;
     }, obj || self);
   }

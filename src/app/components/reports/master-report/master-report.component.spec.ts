@@ -1,17 +1,17 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MasterReportComponent } from "./master-report.component";
-import { RouterTestingModule } from "@angular/router/testing";
-import { ReportSidebarComponent } from "../report-sidebar/report-sidebar.component";
-import { AverageBucketTypeComponent } from "../average-bucket-type/average-bucket-type.component";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { AverageSkillComponent } from "../average-skill/average-skill.component";
-import { FormsModule } from "@angular/forms";
-import { HighchartsChartModule } from "highcharts-angular";
-import { UrlService } from "src/app/services/urls/url.service";
-import { HttpClientModule } from "@angular/common/http";
+import { MasterReportComponent } from './master-report.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReportSidebarComponent } from '../report-sidebar/report-sidebar.component';
+import { AverageBucketTypeComponent } from '../average-bucket-type/average-bucket-type.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AverageSkillComponent } from '../average-skill/average-skill.component';
+import { FormsModule } from '@angular/forms';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { UrlService } from 'src/app/services/urls/url.service';
+import { HttpClientModule } from '@angular/common/http';
 
-describe("MasterReportComponent", () => {
+describe('MasterReportComponent', () => {
   let component: MasterReportComponent;
   let fixture: ComponentFixture<MasterReportComponent>;
 
@@ -40,7 +40,7 @@ describe("MasterReportComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,31 +1,31 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 // Entities
-import { Question } from "../../entities/Question";
-import { Bucket } from "../../entities/Bucket";
-import { QuestionScore } from "../../entities/QuestionScore";
-import { ScheduledScreening } from "../../entities/ScheduledScreening";
-import { SkillTypeBucketLookUp } from "../../entities/SkillTypeBucketLookup";
+import { Question } from '../../entities/Question';
+import { Bucket } from '../../entities/Bucket';
+import { QuestionScore } from '../../entities/QuestionScore';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { SkillTypeBucketLookUp } from '../../entities/SkillTypeBucketLookup';
 
 // Services
-import { QuestionsService } from "../../services/questions/questions.service";
-import { QuestionScoreService } from "../../services/question-score/question-score.service";
-import { SkillTypeBucketService } from "../../services/skillTypeBucketLookup/skill-type-bucket.service";
+import { QuestionsService } from '../../services/questions/questions.service';
+import { QuestionScoreService } from '../../services/question-score/question-score.service';
+import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 
 // Modal for answering the question
-import { AnswerComponent } from "../answer/answer.component";
+import { AnswerComponent } from '../answer/answer.component';
 
 // ngbootstrap modal
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ScreeningService } from "../../services/screening/screening.service";
-import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
-import { Weight } from "../../entities/Weight";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ScreeningService } from '../../services/screening/screening.service';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { Weight } from '../../entities/Weight';
 
 @Component({
-  selector: "app-questions-table",
-  templateUrl: "./questions-table.component.html",
-  styleUrls: ["./questions-table.component.css"]
+  selector: 'app-questions-table',
+  templateUrl: './questions-table.component.html',
+  styleUrls: ['./questions-table.component.css']
 })
 /*
 After the candidate has given their introduction,
@@ -166,7 +166,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   saveFeedback() {
     // tslint:disable-next-line:radix
     this.screeningService.updateScreening(
-      parseInt(localStorage.getItem("screeningID"))
+      parseInt(localStorage.getItem('screeningID'))
     );
   }
 }

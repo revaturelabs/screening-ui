@@ -1,5 +1,5 @@
-import { Bucket } from "./Bucket";
-import { SkillType } from "./SkillType";
+import { Bucket } from './Bucket';
+import { SkillType } from './SkillType';
 
 /*
     Entity representing the categories (buckets) matched to a given technical track (skillType)

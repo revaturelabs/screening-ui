@@ -1,5 +1,5 @@
-import { Bucket } from "./Bucket";
-import { SkillType } from "./SkillType";
+import { Bucket } from './Bucket';
+import { SkillType } from './SkillType';
 
 export class Weight {
   weightId: number;

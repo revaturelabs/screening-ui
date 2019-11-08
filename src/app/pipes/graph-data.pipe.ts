@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 /**
  * @author John Hudson
  */
-@Pipe({ name: "graphData" })
+@Pipe({ name: 'graphData' })
 export class GraphDataPipe implements PipeTransform {
   /**
    * takes raw json input; outputs list of datasets.

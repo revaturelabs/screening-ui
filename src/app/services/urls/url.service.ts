@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { environment } from "../../../environments/environment";
-import { Weight } from "../../entities/Weight";
-import { String } from "aws-sdk/clients/cloudhsmv2";
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { Weight } from '../../entities/Weight';
+import { String } from 'aws-sdk/clients/cloudhsmv2';
 
 @Injectable()
 export class UrlService {
@@ -21,7 +21,7 @@ export class UrlService {
    *
    */
 
-  private bucketEndpoint = this.adminContext + "/bucket";
+  private bucketEndpoint = this.adminContext + '/bucket';
   bucket = {
     getAllBuckets: () => `${this.bucketEndpoint}`,
     getBucketById: (bucketId: number) => `${this.bucketEndpoint}/${bucketId}`,
@@ -38,7 +38,7 @@ export class UrlService {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  private questionEndpoint = this.adminContext + "/question";
+  private questionEndpoint = this.adminContext + '/question';
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
@@ -51,7 +51,7 @@ export class UrlService {
     filteredQuestions: () => `${this.questionEndpoint}/filter`
   };
 
-  private questionScoringEndpoint = "question-score-service/question";
+  private questionScoringEndpoint = 'question-score-service/question';
   questionScoring = {
     scoringQuestion: () =>
       `${this.screeningContext + this.questionScoringEndpoint}/score`
@@ -70,7 +70,7 @@ export class UrlService {
     screeningUrl: () => `${this.screeningContext}/screening/`,
     screeningUrlById: id => `${this.screeningContext}/screening/${id}`
   };
-  weightsEndpoint = this.adminContext + "/weight";
+  weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsBySkillType: (skillTypeId: number) =>
@@ -83,7 +83,7 @@ export class UrlService {
   /**
    * Endpoints for skillType
    */
-  skillTypesServiceEndpoint = this.adminContext + "/skilltype";
+  skillTypesServiceEndpoint = this.adminContext + '/skilltype';
   skillTypes = {
     findAll: () => `${this.skillTypesServiceEndpoint}`,
     findAllActive: () => `${this.skillTypesServiceEndpoint}/active`,

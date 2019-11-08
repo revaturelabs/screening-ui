@@ -1,28 +1,28 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CandidatesScreeningListComponent } from "./candidates-screening-list.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CandidatesScreeningListComponent } from './candidates-screening-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   PaginatePipe,
   PaginationControlsComponent,
   PaginationControlsDirective,
   PaginationService
-} from "ngx-pagination";
-import { HttpClientModule } from "@angular/common/http";
-import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
-import { ScreeningService } from "../../services/screening/screening.service";
-import { ScheduledScreeningService } from "../../services/scheduled-screening/scheduled-screening.service";
-import { SoftSkillsViolationService } from "../../services/soft-skills-violation/soft-skills-violation.service";
-import { QuestionScoreService } from "../../services/question-score/question-score.service";
-import { SkillTypesService } from "../../services/skill-types/skill-types.service";
-import { ScheduledScreening } from "../../entities/ScheduledScreening";
-import { Candidate } from "../../entities/Candidate";
-import { SearchPipe } from "../../pipes/search.pipe";
-import { UrlService } from "../../services/urls/url.service";
-import { SkillType } from "../../entities/SkillType";
-import { By } from "@angular/platform-browser";
+} from 'ngx-pagination';
+import { HttpClientModule } from '@angular/common/http';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { ScreeningService } from '../../services/screening/screening.service';
+import { ScheduledScreeningService } from '../../services/scheduled-screening/scheduled-screening.service';
+import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
+import { QuestionScoreService } from '../../services/question-score/question-score.service';
+import { SkillTypesService } from '../../services/skill-types/skill-types.service';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { Candidate } from '../../entities/Candidate';
+import { SearchPipe } from '../../pipes/search.pipe';
+import { UrlService } from '../../services/urls/url.service';
+import { SkillType } from '../../entities/SkillType';
+import { By } from '@angular/platform-browser';
 
-describe("CandidatesScreeningListComponent", () => {
+describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;
   let scheduledScreeningService: ScheduledScreeningService;
@@ -31,17 +31,17 @@ describe("CandidatesScreeningListComponent", () => {
   const candidateFake: Candidate = {
     candidateId: 5,
     resourceId: 5,
-    name: "Beethoven",
-    phoneNumber: "9156452593",
-    recruiterName: "Bab",
-    college: "University",
-    degree: "Symphony 3",
-    major: "E flat"
+    name: 'Beethoven',
+    phoneNumber: '9156452593',
+    recruiterName: 'Bab',
+    college: 'University',
+    degree: 'Symphony 3',
+    major: 'E flat'
   };
 
   const skillTypeFake = {
     skillTypeId: 5,
-    title: "SQL",
+    title: 'SQL',
     active: true
   };
 
@@ -49,7 +49,7 @@ describe("CandidatesScreeningListComponent", () => {
     scheduledScreeningId: 5,
     candidate: candidateFake,
     track: skillTypeFake,
-    scheduledStatus: "Screening in Progress",
+    scheduledStatus: 'Screening in Progress',
     scheduledDate: new Date()
   };
 
@@ -86,22 +86,22 @@ describe("CandidatesScreeningListComponent", () => {
     screeningStateService = TestBed.get(ScreeningStateService);
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should return none", () => {
+  it('should return none', () => {
     const result = component.toggleBeginScreeningPrompt();
-    expect(result).toEqual("none");
+    expect(result).toEqual('none');
   });
 
-  it("should return block", () => {
+  it('should return block', () => {
     component.showBeginScreeningPrompt = true;
     const result = component.toggleBeginScreeningPrompt();
-    expect(result).toEqual("block");
+    expect(result).toEqual('block');
   });
 
-  it("should begin screening", () => {
+  it('should begin screening', () => {
     component.selectedScheduledScreening = {} as ScheduledScreening;
     component.selectedScheduledScreening.scheduledScreeningId = 1;
     component.selectedScheduledScreening.track = {} as SkillType;
@@ -110,13 +110,13 @@ describe("CandidatesScreeningListComponent", () => {
     expect(component.scheduledScreenings).toBeDefined();
   });
 
-  it("should populate a list and allow for element selection", () => {
-    spyOn(scheduledScreeningService, "getScheduledScreenings").and.returnValue(
+  it('should populate a list and allow for element selection', () => {
+    spyOn(scheduledScreeningService, 'getScheduledScreenings').and.returnValue(
       screeningList
     );
     component.ngOnInit();
     fixture.detectChanges();
-    const element = fixture.debugElement.queryAll(By.css("tr"));
+    const element = fixture.debugElement.queryAll(By.css('tr'));
     element[1].nativeElement.click();
     expect(component.selectedScheduledScreening.scheduledScreeningId).toEqual(
       5

@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
-import { ReportData } from "src/app/entities/ReportData";
-import { ReportService } from "src/app/services/reports/report.service";
+import { ReportData } from 'src/app/entities/ReportData';
+import { ReportService } from 'src/app/services/reports/report.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ReportCacheService {
   cacheMap: object = new Object();

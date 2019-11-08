@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Screening } from "../../entities/Screening";
-import { ScheduledScreening } from "../../entities/ScheduledScreening";
-import { UrlService } from "../urls/url.service";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Screening } from '../../entities/Screening';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { UrlService } from '../urls/url.service';
 
 /**
  * A service that contains all functions used for overall screening management
@@ -26,7 +26,7 @@ export class ScreeningService {
 
   // Need to change to match the backend
   headers = new HttpHeaders({
-    "Content-type": "application/json"
+    'Content-type': 'application/json'
   });
 
   public softSkillsResult: string;
@@ -66,19 +66,19 @@ export class ScreeningService {
   // softSkillComment - the screener's final comments on the candidate's soft skills.
   endScreening(softSkillComment: string): void {
     let verdict;
-    if (this.softSkillsResult === "Pass") {
+    if (this.softSkillsResult === 'Pass') {
       verdict = 1;
-    } else if (this.softSkillsResult === "Fail") {
+    } else if (this.softSkillsResult === 'Fail') {
       verdict = 0;
     }
     this.httpClient
       .post(this.urlService.screening.screeningUrlById(this.screeningID$), {
-        status: "Completed",
+        status: 'Completed',
         softSkillVerdict: verdict,
         softSkillCommentary: this.finalSoftSkillComment,
         endDateTime: new Date(),
-        screeningId: localStorage.getItem("screeningID"),
-        scheduledScreeningId: localStorage.getItem("scheduledScreeningID"),
+        screeningId: localStorage.getItem('screeningID'),
+        scheduledScreeningId: localStorage.getItem('scheduledScreeningID'),
         compositeScore: this.compositeScore
       })
       .subscribe();
@@ -100,16 +100,16 @@ export class ScreeningService {
   }
   createScreening() {
     this.httpClient.post(this.urlService.screening.screeningUrl(), {
-      status: "In Progress",
+      status: 'In Progress',
       softSkillVerdict: 0,
       screenerId: 0,
-      aboutComments: "",
-      generalComments: "",
-      softSkillCommentary: "",
+      aboutComments: '',
+      generalComments: '',
+      softSkillCommentary: '',
       startDate: new Date(),
-      endDateTime: "",
-      screeningId: localStorage.getItem("screeningID"),
-      scheduledScreeningId: localStorage.getItem("scheduledScreeningID"),
+      endDateTime: '',
+      screeningId: localStorage.getItem('screeningID'),
+      scheduledScreeningId: localStorage.getItem('scheduledScreeningID'),
       compositeScore: 0
     });
   }
