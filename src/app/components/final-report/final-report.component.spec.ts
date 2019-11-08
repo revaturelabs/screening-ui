@@ -10,6 +10,9 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { ScoresToCategoriesUtil } from '../../util/scoresToCategories.util';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
+import { UrlService } from '../../services/urls/url.service';
+import { Router, NavigationStart } from '@angular/router';
+
 
 // Author: David Gustafson
 // Can't test because of error: "Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https"
@@ -21,7 +24,7 @@ describe('FinalReportComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FinalReportComponent ],
-      providers: [ ScreeningService, HttpClient, HttpHandler, ScreeningStateService, TracksService,
+      providers: [UrlService, ScreeningService, HttpClient, HttpHandler, ScreeningStateService, TracksService,
         TrackCategoryService, QuestionScoreService, ScoresToCategoriesUtil, AlertsService, SoftSkillsViolationService ]
     })
     .compileComponents();

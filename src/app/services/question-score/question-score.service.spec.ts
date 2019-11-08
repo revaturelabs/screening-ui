@@ -69,13 +69,14 @@ beforeEach(() => {
    *
    * Function tested: postQuestionScore()
    **/
-  it('postQuestionScore should call HttpClient.post, and return the altered question', () => {
+  it('postQuestionScore should call HttpClient.post, and post.calls.count() will be 1', () => {
    let questionscoreSpy: {post: jasmine.Spy};
     questionscoreSpy = jasmine.createSpyObj('HttpClient', ['post']);
     questionscoreService = new QuestionScoreService(<any>questionscoreSpy, new UrlService);
 
-    questionscoreSpy.post.and.returnValue(asyncData(QUESTIONSCORE[0]));
-    // @ts-ignore
+    //sending the data 'Test' but the function doesn't return anything 
+    //as the function just does an post call we are mocking the call
+    questionscoreSpy.post.and.returnValue(asyncData('Test'));
     questionscoreService.postQuestionScore(QUESTIONSCORE[0]);
 
     expect(questionscoreSpy.post.calls.count()).toBe(1, 'one call');
