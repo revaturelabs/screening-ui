@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
     background-color:rgb(250, 250, 246);
