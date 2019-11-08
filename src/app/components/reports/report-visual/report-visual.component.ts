@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import{ MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -9,35 +10,31 @@ import { SimpleReportService } from 'src/app/services/reports/simple-report.serv
   styleUrls: ['./report-visual.component.css']
 })
 export class ReportVisualComponent implements OnInit {
-  report: any;
-
-  description:any;
+  description: any;
 
 
   constructor(
-    public dialogRef:MatDialogRef<ReportVisualComponent>,
+    public dialogRef: MatDialogRef<ReportVisualComponent>,
     public simpleReportService: SimpleReportService,
-    
-    @Inject(MAT_DIALOG_DATA) data) {
 
+    /*
+    *injects data into descripition
+    *for one way databinding
+    */
+    @Inject(MAT_DIALOG_DATA) data) {
+    //formats data into more human readable
+    data.srm.screenDate = moment(data.srm.screenDate).format('MM-DD-YYYY');
+    //console.log(data.srm.screenDate);
     this.description = data;
   }
 
-
+  //loads the data into report
   ngOnInit() {
-    console.log(this.description.screeningId);
-    this.simpleReportService.getAllSimpleReports().subscribe((data) => {
-    this.loadCard();
-    })
+    console.log(this.description);
   }
-  loadCard(){
 
-    this.report="myCard";
-    console.log(this.report);
-  }
-  onClose(){
-    //this.service.form.reset();
-    //this.service.initializeFormGroup();
+  // closes the popout by botton click
+  onClose() {
     this.dialogRef.close();
   }
 
