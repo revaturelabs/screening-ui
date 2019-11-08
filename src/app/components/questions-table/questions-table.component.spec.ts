@@ -22,7 +22,6 @@ import { UrlService } from '../../services/urls/url.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { QuestionScore } from 'src/app/entities/QuestionScore';
 
-
 // Author: David Gustafson
 
 // Running test with ngOnInit fails so comment out the body of ngOnInit to run these test
@@ -33,7 +32,7 @@ const QUESTION: Question = {
   questionText: 'string',
   sampleAnswer: 'string',
   isActive: true,
-  bucket: new Bucket()
+  bucket: new Bucket(),
 };
 const mockQuestionScore: QuestionScore = {
   qSID: 1,
@@ -42,20 +41,21 @@ const mockQuestionScore: QuestionScore = {
   score: 1,
   commentary: 'string',
   bucketId: 1,
-  beginTime: new Date
+  beginTime: new Date(),
 };
 
 const BUCKETS: Bucket[] = [
   {
     bucketId: 1,
     bucketDescription: 'OCA level Java questions',
-    isActive: true
+    isActive: true,
   },
   {
     bucketId: 2,
     bucketDescription: 'SQL database questions',
-    isActive: true
-  }];
+    isActive: true,
+  },
+];
 
 describe('QuestionsTableComponent', () => {
   let component: QuestionsTableComponent;
@@ -63,19 +63,38 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent,  AnswerComponent, ViolationFlagComponent], // cut out NgbModalBackdrop, NgbModalWindow,
+      declarations: [
+        QuestionsTableComponent,
+        AnswerComponent,
+        ViolationFlagComponent,
+      ], // cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule, RouterTestingModule],
-      providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
-        SkillTypesService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
-        SkillTypeBucketService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
+      providers: [
+        HttpClient,
+        HttpHandler,
+        QuestionsService,
+        ScreeningStateService,
+        SkillTypesService,
+        QuestionScoreService,
+        NgbModal,
+        ScreeningService, // cut out NgbModalStack,
+        SkillTypeBucketService,
+        SoftSkillsViolationService,
+        ViolationTypeService,
+        AlertsService,
+        UrlService,
+      ],
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] // cut out NgbModalBackdrop, NgbModalWindow,
-      }
-    })
-      .compileComponents();
+        entryComponents: [
+          QuestionsTableComponent,
+          AnswerComponent,
+          ViolationFlagComponent,
+        ], // cut out NgbModalBackdrop, NgbModalWindow,
+      },
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -91,7 +110,9 @@ describe('QuestionsTableComponent', () => {
     component.ngOnDestroy();
     if (component.questionBuckets !== undefined) {
       for (const bucket of component.questionBuckets) {
-        const bs = jasmine.createSpyObj('QuestionService', ['getBucketQuestions']);
+        const bs = jasmine.createSpyObj('QuestionService', [
+          'getBucketQuestions',
+        ]);
         expect(bs.getBucketQuestions(bucket.bucketId)).toEqual([]);
       }
     }
@@ -120,5 +141,4 @@ describe('QuestionsTableComponent', () => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
   });
-
 });

@@ -13,10 +13,9 @@ describe('ReportSidebarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, NgbModule, HttpClientModule],
-      declarations: [ ReportSidebarComponent],
-      providers: [UrlService]
-    })
-    .compileComponents();
+      declarations: [ReportSidebarComponent],
+      providers: [UrlService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

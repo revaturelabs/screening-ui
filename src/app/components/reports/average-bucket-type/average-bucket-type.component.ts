@@ -5,10 +5,9 @@ import { ReportService } from '../../../services/reports/report.service';
 @Component({
   selector: 'app-average-bucket-type',
   templateUrl: './average-bucket-type.component.html',
-  styleUrls: ['./average-bucket-type.component.css']
+  styleUrls: ['./average-bucket-type.component.css'],
 })
 export class AverageBucketTypeComponent implements OnInit {
-
   Highcharts = HighCharts;
   options: Object;
   _barData: object[] = [];
@@ -18,9 +17,7 @@ export class AverageBucketTypeComponent implements OnInit {
     this.setOptions(barData);
   }
 
-
-  constructor(private reportService: ReportService) {
-  }
+  constructor(private reportService: ReportService) {}
 
   ngOnInit() {
     this.setOptions(this._barData);
@@ -32,42 +29,42 @@ export class AverageBucketTypeComponent implements OnInit {
         title: {
           text: 'Average Score By Screener',
           y: 10,
-          floating: false
+          floating: false,
         },
         xAxis: {
-          type: 'category'
+          type: 'category',
         },
         yAxis: {
           title: {
-            text: 'Average Score Values'
-          }
+            text: 'Average Score Values',
+          },
         },
         legend: {
-          enabled: false
+          enabled: false,
         },
         chart: { zoomType: 'x', type: 'line' },
-        series: [{ name: 'Category', colorByPoint: true, data: this._barData }]
+        series: [{ name: 'Category', colorByPoint: true, data: this._barData }],
       };
     } else {
       this.options = {
         title: {
           text: 'Average Score By Category is N/A',
           y: 200,
-          floating: true
+          floating: true,
         },
         xAxis: {
-          type: 'category'
+          type: 'category',
         },
         yAxis: {
           title: {
-            text: ''
-          }
+            text: '',
+          },
         },
         legend: {
-          enabled: false
+          enabled: false,
         },
         chart: { zoomType: 'x', type: 'line' },
-        series: [{ name: 'Category', colorByPoint: true, data: this._barData }]
+        series: [{ name: 'Category', colorByPoint: true, data: this._barData }],
       };
     }
   }

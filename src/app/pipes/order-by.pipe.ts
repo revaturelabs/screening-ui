@@ -1,11 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'orderBy'})
+@Pipe({ name: 'orderBy' })
 export class OrderByPipe implements PipeTransform {
-
   transform(input: Array<any>, property: string): Array<any> {
-
-    if (!input || !property || this.resolveProperty(input[0], property) === undefined) { return input; }
+    if (
+      !input ||
+      !property ||
+      this.resolveProperty(input[0], property) === undefined
+    ) {
+      return input;
+    }
 
     input.sort((a: any, b: any) => {
       const propA = this.resolveProperty(a, property);
@@ -18,7 +22,7 @@ export class OrderByPipe implements PipeTransform {
 
   resolveProperty(obj: any, path: string) {
     return path.split('.').reduce(function(prev, curr) {
-        return prev ? prev[curr] : undefined;
+      return prev ? prev[curr] : undefined;
     }, obj || self);
   }
 
@@ -28,8 +32,12 @@ export class OrderByPipe implements PipeTransform {
     }
 
     if (typeof obj1 === typeof '') {
-      if (obj1 < obj2) { return -1; }
-      if (obj1 > obj2) { return 1; }
+      if (obj1 < obj2) {
+        return -1;
+      }
+      if (obj1 > obj2) {
+        return 1;
+      }
       return 0;
     }
 

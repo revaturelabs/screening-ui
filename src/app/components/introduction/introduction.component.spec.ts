@@ -11,8 +11,6 @@ import { SoftSkillsViolationService } from '../../services/soft-skills-violation
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
-
-
 describe('IntroductionComponent', () => {
   let component: IntroductionComponent;
   let fixture: ComponentFixture<IntroductionComponent>;
@@ -20,11 +18,17 @@ describe('IntroductionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
-      declarations: [ IntroductionComponent, ViolationFlagComponent],
-      providers: [ ScreeningStateService, UrlService, SkillTypesService, ScreeningService, 
-      SoftSkillsViolationService,ViolationTypeService,AlertsService],
-    })
-    .compileComponents();
+      declarations: [IntroductionComponent, ViolationFlagComponent],
+      providers: [
+        ScreeningStateService,
+        UrlService,
+        SkillTypesService,
+        ScreeningService,
+        SoftSkillsViolationService,
+        ViolationTypeService,
+        AlertsService,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

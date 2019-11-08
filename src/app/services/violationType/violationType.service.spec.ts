@@ -8,16 +8,15 @@ import { ViolationTypeService } from './violationType.service';
 describe('ViolationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
-      providers: [ViolationTypeService, UrlService]
+      imports: [RouterTestingModule, HttpClientModule],
+      providers: [ViolationTypeService, UrlService],
     });
   });
 
-  it('should be created', inject([ViolationTypeService], (service: ViolationTypeService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [ViolationTypeService],
+    (service: ViolationTypeService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });
-
-
-
-

@@ -11,7 +11,7 @@ export class ScheduledScreeningService {
     private httpClient: HttpClient,
     private skillTypesService: SkillTypesService,
     private urlService: UrlService
-  ) { }
+  ) {}
 
   private skillTypes: SkillType[] = [];
   private scheduledScreenings: ScheduledScreening[] = [];
@@ -19,22 +19,24 @@ export class ScheduledScreeningService {
   getScheduledScreenings(): ScheduledScreening[] {
     this.skillTypesService.getSkillTypes().subscribe(skillTypeData => {
       this.skillTypes = skillTypeData;
-      this.httpClient.get<any[]>(this.urlService.screening.scheduledScreeningUrl()).subscribe(scheduledScreeningData => {
-        for (const scheduledScreening of scheduledScreeningData) {
-          let s: ScheduledScreening = new ScheduledScreening();
-          s.scheduledScreeningId = scheduledScreening.scheduledScreeningId;
-          s.scheduledStatus = scheduledScreening.scheduledStatus;
-          s.scheduledDate = scheduledScreening.scheduledDate;
-          s.candidate = scheduledScreening.candidate;
-          for (const skillType of this.skillTypes) {
-            if (skillType.skillTypeId === scheduledScreening.skillTypeId) {
-              s.track = skillType;
-              break;
+      this.httpClient
+        .get<any[]>(this.urlService.screening.scheduledScreeningUrl())
+        .subscribe(scheduledScreeningData => {
+          for (const scheduledScreening of scheduledScreeningData) {
+            let s: ScheduledScreening = new ScheduledScreening();
+            s.scheduledScreeningId = scheduledScreening.scheduledScreeningId;
+            s.scheduledStatus = scheduledScreening.scheduledStatus;
+            s.scheduledDate = scheduledScreening.scheduledDate;
+            s.candidate = scheduledScreening.candidate;
+            for (const skillType of this.skillTypes) {
+              if (skillType.skillTypeId === scheduledScreening.skillTypeId) {
+                s.track = skillType;
+                break;
+              }
             }
+            this.scheduledScreenings.push(s);
           }
-          this.scheduledScreenings.push(s);
-        }
-      });
+        });
     });
     return this.scheduledScreenings;
   }

@@ -8,14 +8,16 @@ import { SkillTypeBucketService } from './skill-type-bucket.service';
 describe('SkillTypeBucketService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
+      imports: [RouterTestingModule, HttpClientModule],
 
-      providers: [SkillTypeBucketService, UrlService]
+      providers: [SkillTypeBucketService, UrlService],
     });
   });
 
-  it('should be created', inject([SkillTypeBucketService], (service: SkillTypeBucketService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [SkillTypeBucketService],
+    (service: SkillTypeBucketService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });
-

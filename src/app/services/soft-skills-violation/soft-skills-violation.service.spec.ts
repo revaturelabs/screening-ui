@@ -8,13 +8,16 @@ import { SoftSkillsViolationService } from './soft-skills-violation.service';
 describe('SoftSkillsViolationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
+      imports: [RouterTestingModule, HttpClientModule],
 
-      providers: [SoftSkillsViolationService,UrlService]
+      providers: [SoftSkillsViolationService, UrlService],
     });
   });
 
-  it('should be created', inject([SoftSkillsViolationService], (service: SoftSkillsViolationService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [SoftSkillsViolationService],
+    (service: SoftSkillsViolationService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

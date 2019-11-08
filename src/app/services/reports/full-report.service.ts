@@ -8,11 +8,8 @@ import { Screening } from '../../entities/Screening';
 import { SimpleReportModel } from '../../entities/SimpleReportModel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FullReportService {
-  constructor(
-    private urlService: UrlService,
-    private http: HttpClient
-  ) { }
+  constructor(private urlService: UrlService, private http: HttpClient) {}
 }

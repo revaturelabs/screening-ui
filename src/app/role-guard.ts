@@ -1,5 +1,9 @@
 import { CookieService } from 'ngx-cookie-service';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  CanActivate,
+} from '@angular/router';
 import { Injectable } from '@angular/core';
 
 /**
@@ -21,9 +25,7 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class RoleGuard implements CanActivate {
-
-  constructor(private cookies: CookieService) {
-  }
+  constructor(private cookies: CookieService) {}
 
   /**
    * canActivate is the method that implments the guard logic.  It checks if the role
@@ -34,7 +36,10 @@ export class RoleGuard implements CanActivate {
    * @returns {boolean}
    * @memberof RoleGuard
    */
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     return route.data['roles'].includes(this.cookies.get('role'));
   }
 }
@@ -48,5 +53,5 @@ export class RoleGuard implements CanActivate {
 export const roles = {
   adminRole: 'ROLE_ADMIN',
   reportingRole: 'ROLE_REPORTING',
-  screenerRole: 'ROLE_SCREENER'
+  screenerRole: 'ROLE_SCREENER',
 };

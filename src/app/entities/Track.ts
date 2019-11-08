@@ -1,5 +1,5 @@
 export class Track {
-    trackId: number;
-    title: string;
-    isActive: boolean;
+  trackId: number;
+  title: string;
+  isActive: boolean;
 }

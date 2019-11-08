@@ -8,21 +8,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
  * Even if it did this TypeScript file does not have the functions to handle it.
  */
 
-
 @Component({
   selector: 'app-candidate',
   templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.css']
+  styleUrls: ['./candidate.component.css'],
 })
 export class CandidateComponent implements OnInit {
+  constructor(private modalService: NgbModal) {}
 
-  constructor(private modalService: NgbModal) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   open(content) {
     this.modalService.open(content, { windowClass: 'fixed-modal' });
   }
-
 }

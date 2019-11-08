@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnswerComponent } from './answer.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
-import {  FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ViolationFlagComponent } from '../violation-flag/violation-flag.component';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionScoreService } from 'src/app/services/question-score/question-score.service';
@@ -18,19 +18,28 @@ import { Router } from '@angular/router';
 import { Question } from 'src/app/entities/Question';
 import { Bucket } from 'src/app/entities/Bucket';
 
-
 describe('AnswerComponent', () => {
   let component: AnswerComponent;
   let fixture: ComponentFixture<AnswerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnswerComponent, ViolationFlagComponent ],
+      declarations: [AnswerComponent, ViolationFlagComponent],
       imports: [FormsModule, RouterTestingModule],
-      providers: [NgbActiveModal, QuestionScoreService, HttpClient, HttpHandler, UrlService, SoftSkillsViolationService,
-      ScreeningStateService, SkillTypesService, ViolationTypeService, AlertsService, Question]
-    })
-    .compileComponents();
+      providers: [
+        NgbActiveModal,
+        QuestionScoreService,
+        HttpClient,
+        HttpHandler,
+        UrlService,
+        SoftSkillsViolationService,
+        ScreeningStateService,
+        SkillTypesService,
+        ViolationTypeService,
+        AlertsService,
+        Question,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -2,10 +2,12 @@ import { QuestionScore } from '../entities/QuestionScore';
 import { QuestionsService } from '../services/questions/questions.service';
 import { Weight } from '../entities/Weight';
 export class ScoresToBucketsUtil {
-
   private questionsService: QuestionsService;
 
-  getFinalBreakdown(questionScores: QuestionScore[], weights: Weight[]): string[] {
+  getFinalBreakdown(
+    questionScores: QuestionScore[],
+    weights: Weight[]
+  ): string[] {
     const bucketScores: number[] = [];
     const bucketWeights: number[] = [];
     let score = 0;

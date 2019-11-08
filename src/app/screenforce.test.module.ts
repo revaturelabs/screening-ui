@@ -38,7 +38,6 @@ import { SkillTypeBucketsComponent } from './components/skillType-buckets/skillT
 import { QuestionComponent } from './components/question/question.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 
-
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 export const Dependencies = {
@@ -52,7 +51,7 @@ export const Dependencies = {
     // SimpleNotificationsModule.forRoot(),
     NgxPaginationModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
   ],
   declarations: [
     // pipes
@@ -69,7 +68,7 @@ export const Dependencies = {
     QuestionComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
+    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }, // interceptor for all HTTP requests
     QuestionsService,
     BucketsService,
     ScreeningStateService,
@@ -83,14 +82,9 @@ export const Dependencies = {
     NgbActiveModal,
     { provide: Router, useValue: {} },
     UrlService,
-    AuthenticationService
+    AuthenticationService,
   ],
-  bootstrap: [
-  ],
-  exports: [
-    ViolationFlagComponent,
-    PaginatePipe,
-  ],
-  entryComponents: [
-  ],
+  bootstrap: [],
+  exports: [ViolationFlagComponent, PaginatePipe],
+  entryComponents: [],
 };

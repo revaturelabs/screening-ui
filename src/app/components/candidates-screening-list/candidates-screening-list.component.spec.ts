@@ -3,8 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CandidatesScreeningListComponent } from './candidates-screening-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  PaginatePipe, PaginationControlsComponent,
-  PaginationControlsDirective, PaginationService
+  PaginatePipe,
+  PaginationControlsComponent,
+  PaginationControlsDirective,
+  PaginationService,
 } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
@@ -20,7 +22,6 @@ import { UrlService } from '../../services/urls/url.service';
 import { SkillType } from '../../entities/SkillType';
 import { By } from '@angular/platform-browser';
 
-
 describe('CandidatesScreeningListComponent', () => {
   let component: CandidatesScreeningListComponent;
   let fixture: ComponentFixture<CandidatesScreeningListComponent>;
@@ -35,34 +36,46 @@ describe('CandidatesScreeningListComponent', () => {
     recruiterName: 'Bab',
     college: 'University',
     degree: 'Symphony 3',
-    major: 'E flat'
+    major: 'E flat',
   };
 
   const skillTypeFake = {
     skillTypeId: 5,
     title: 'SQL',
-    active: true
+    active: true,
   };
 
   const someScreening: ScheduledScreening = {
-  scheduledScreeningId: 5,
-  candidate: candidateFake,
-  track: skillTypeFake,
-  scheduledStatus: 'Screening in Progress',
-  scheduledDate: new Date()
+    scheduledScreeningId: 5,
+    candidate: candidateFake,
+    track: skillTypeFake,
+    scheduledStatus: 'Screening in Progress',
+    scheduledDate: new Date(),
   };
 
   const screeningList: ScheduledScreening[] = [someScreening];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CandidatesScreeningListComponent, PaginatePipe, PaginationControlsComponent,
-        PaginationControlsDirective, SearchPipe],
+      declarations: [
+        CandidatesScreeningListComponent,
+        PaginatePipe,
+        PaginationControlsComponent,
+        PaginationControlsDirective,
+        SearchPipe,
+      ],
       imports: [FormsModule, HttpClientModule, ReactiveFormsModule],
-      providers: [ScreeningStateService, ScreeningService, ScheduledScreeningService, SoftSkillsViolationService,
-        QuestionScoreService, SkillTypesService, PaginationService, UrlService]
-    })
-      .compileComponents();
+      providers: [
+        ScreeningStateService,
+        ScreeningService,
+        ScheduledScreeningService,
+        SoftSkillsViolationService,
+        QuestionScoreService,
+        SkillTypesService,
+        PaginationService,
+        UrlService,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -98,13 +111,15 @@ describe('CandidatesScreeningListComponent', () => {
   });
 
   it('should populate a list and allow for element selection', () => {
-    spyOn(scheduledScreeningService, 'getScheduledScreenings')
-      .and.returnValue( screeningList);
-      component.ngOnInit();
-      fixture.detectChanges();
-      const element = fixture.debugElement.queryAll(By.css('tr'));
-     element[1].nativeElement.click();
-     expect(component.selectedScheduledScreening.scheduledScreeningId).toEqual(5);
+    spyOn(scheduledScreeningService, 'getScheduledScreenings').and.returnValue(
+      screeningList
+    );
+    component.ngOnInit();
+    fixture.detectChanges();
+    const element = fixture.debugElement.queryAll(By.css('tr'));
+    element[1].nativeElement.click();
+    expect(component.selectedScheduledScreening.scheduledScreeningId).toEqual(
+      5
+    );
   });
-
 });

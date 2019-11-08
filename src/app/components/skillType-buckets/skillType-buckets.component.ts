@@ -9,15 +9,12 @@ import { BucketFilterPipe } from '../../pipes/skillType-buckets.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
-
 @Component({
   selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
-  styleUrls: ['./skillType-buckets.component.css']
+  styleUrls: ['./skillType-buckets.component.css'],
 })
-
 export class SkillTypeBucketsComponent implements OnInit {
-
   /** variable to hold an array of 'Bucket' entities */
   buckets: Bucket[];
   /** variable to hold bucket being edited */
@@ -33,7 +30,8 @@ export class SkillTypeBucketsComponent implements OnInit {
     private bucketService: BucketsService,
 
     private modalService: NgbModal,
-    private alertsService: AlertsService, ) { }
+    private alertsService: AlertsService
+  ) {}
 
   filter: Bucket = new Bucket();
   ngOnInit() {
@@ -60,7 +58,11 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   /** used to compare buckets Array to sorts it alphabetically */
   compareAlphabetically(a: Bucket, b: Bucket) {
-    if (a.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
+    if (
+      a.isActive &&
+      a.bucketDescription.toLocaleLowerCase() <
+        b.bucketDescription.toLocaleLowerCase()
+    ) {
       return -1;
     } else {
       return 1;
@@ -68,17 +70,22 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   compareInactiveBuckets(a: Bucket, b: Bucket) {
-    if (!a.isActive && !b.isActive && a.bucketDescription.toLocaleLowerCase() < b.bucketDescription.toLocaleLowerCase()) {
-        return -1;
+    if (
+      !a.isActive &&
+      !b.isActive &&
+      a.bucketDescription.toLocaleLowerCase() <
+        b.bucketDescription.toLocaleLowerCase()
+    ) {
+      return -1;
     } else {
-        return 1;
+      return 1;
     }
-}
+  }
 
   /** Save the selected 'bucket' in 'bucket.service' to be used in
-    * 'bucket.component'.
-    * Then route to 'bucket.component'.
-    */
+   * 'bucket.component'.
+   * Then route to 'bucket.component'.
+   */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
     this.router.navigate(['settings/bucket']);
@@ -95,7 +102,9 @@ export class SkillTypeBucketsComponent implements OnInit {
    * @param bucketParam
    */
   updateBucket(bucketParam: Bucket) {
-    if (!bucketParam) { bucketParam = this.currBucket; }
+    if (!bucketParam) {
+      bucketParam = this.currBucket;
+    }
     if (bucketParam) {
       this.bucketService.updateBucket(bucketParam).subscribe(bucket => {
         this.getBuckets();
@@ -107,11 +116,10 @@ export class SkillTypeBucketsComponent implements OnInit {
   /** Creates new bucket */
   createBucket() {
     // The server will generate the id for this new hero
-    this.bucketService.createNewBucket(this.newBucket)
-      .subscribe(bucket => {
-        this.buckets.push(bucket);
-        this.getBuckets();
-      });
+    this.bucketService.createNewBucket(this.newBucket).subscribe(bucket => {
+      this.buckets.push(bucket);
+      this.getBuckets();
+    });
   }
 
   savedSuccessfully() {
@@ -119,13 +127,16 @@ export class SkillTypeBucketsComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.newBucket = new Bucket();
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.newBucket.bucketDescription = '';
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content).result.then(
+      result => {
+        this.newBucket = new Bucket();
+        this.closeResult = `Closed with: ${result}`;
+      },
+      reason => {
+        this.newBucket.bucketDescription = '';
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
     event.stopPropagation();
   }
 

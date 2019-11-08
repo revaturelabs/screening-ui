@@ -24,11 +24,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'reports',
-        component: MasterReportComponent
+        component: MasterReportComponent,
       },
       {
         path: 'home',
-        component: CandidatesScreeningListComponent
+        component: CandidatesScreeningListComponent,
       },
       {
         path: 'screening',
@@ -47,11 +47,11 @@ export const routes: Routes = [
           },
           {
             path: 'passFail',
-            component: PassFailComponent
-          }
-        ]
+            component: PassFailComponent,
+          },
+        ],
       },
-    ]
+    ],
   },
   {
     path: 'settings',
@@ -60,20 +60,17 @@ export const routes: Routes = [
     children: [
       {
         path: 'main',
-        component: ScreeningConfigComponent
+        component: ScreeningConfigComponent,
       },
       {
         path: 'bucket',
-        component: QuestionComponent
-      }
-    ]
+        component: QuestionComponent,
+      },
+    ],
   },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: '/home'
-
+    redirectTo: '/home',
   },
 ];
-
-

@@ -7,35 +7,29 @@ import { Bucket } from '../../entities/Bucket';
 import { Observable } from 'rxjs';
 
 /**
-  * Used url Service to input endpoints to our services
-  * unified create and update question so that it sends the
-  * same objects
-  *
-  * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
-  *
-  * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
-  *
-  * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
-  *
-  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
-  */
+ * Used url Service to input endpoints to our services
+ * unified create and update question so that it sends the
+ * same objects
+ *
+ * @author Alex Pich | 1803-USF-MAR26 | Wezley Singleton
+ *
+ * @author Danny S Chhun | 1803-USF-MAR26 | Wezley Singleton
+ *
+ * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
+ *
+ * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
+ */
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-  })
+    'Access-Control-Allow-Origin': '*',
+  }),
 };
-
-
 
 @Injectable()
 export class QuestionsService {
-
-  constructor(
-    private http: HttpClient,
-    private urlService: UrlService,
-  ) { }
+  constructor(private http: HttpClient, private urlService: UrlService) {}
 
   questions: Question[];
 
@@ -50,7 +44,11 @@ export class QuestionsService {
    * @param tagIds - array of tag ids
    */
   createNewQuestion(question: Question) {
-    return this.http.post(this.urlService.question.postQuestion(), question, httpOptions);
+    return this.http.post(
+      this.urlService.question.postQuestion(),
+      question,
+      httpOptions
+    );
   }
 
   /**
@@ -62,34 +60,48 @@ export class QuestionsService {
    * @param newTagIds
    */
   updateQuestion(question: Question) {
-    return this.http.put(this.urlService.question.putQuestion(), question, httpOptions);
+    return this.http.put(
+      this.urlService.question.putQuestion(),
+      question,
+      httpOptions
+    );
   }
 
   /**
    * deactivates question
    * add urlService to get endpoint for deactivating a question
    * @param questionId
-  */
+   */
   deactivateQuestion(question: Question) {
-    return this.http.put(this.urlService.question.deactivateQuestion(question.questionId), question, httpOptions);
+    return this.http.put(
+      this.urlService.question.deactivateQuestion(question.questionId),
+      question,
+      httpOptions
+    );
   }
 
   /**
    * activates question
    * add urlService to get endpoint for activating a question
    * @param questionId
-  */
+   */
   activateQuestion(question: Question) {
-    return this.http.put(this.urlService.question.activateQuestion(question.questionId), question, httpOptions);
+    return this.http.put(
+      this.urlService.question.activateQuestion(question.questionId),
+      question,
+      httpOptions
+    );
   }
 
   /**
    * gets all questions from bucket
    * add urlService to get endpoint for getting Bucket Questions
    * @param buckerId
-  */
+   */
   getBucketQuestions(bucketId: number): Observable<Question[]> {
-    return this.http.get<Question[]>(this.urlService.question.getQuestionsByBucketId(bucketId));
+    return this.http.get<Question[]>(
+      this.urlService.question.getQuestionsByBucketId(bucketId)
+    );
   }
 
   getQuestions(skillTypeId: number): Observable<Question[]> {
@@ -108,11 +120,14 @@ export class QuestionsService {
    * @param allQuestions
    * @param allBuckets
    */
-  saveQuestions(allQuestions: Question[], allBuckets: SkillTypeBucketLookUp): Bucket[] {
+  saveQuestions(
+    allQuestions: Question[],
+    allBuckets: SkillTypeBucketLookUp
+  ): Bucket[] {
     allQuestions.forEach(question => {
       // If the buckets array is empty, add this question's bucket to it
       if (this.returnBuckets.length === 0) {
-        const matchingBucket = allBuckets.buckets.find(function (element) {
+        const matchingBucket = allBuckets.buckets.find(function(element) {
           return element.bucketId === question.bucket.bucketId;
         });
         // After adding the new bucket, add the current question to the new bucket
@@ -121,12 +136,12 @@ export class QuestionsService {
         }
         // If the bucket array is not empty, check to see if this question's bucket is already listed
       } else {
-        const existingBucket = this.returnBuckets.find(function (element) {
+        const existingBucket = this.returnBuckets.find(function(element) {
           return element.bucketId === question.bucket.bucketId;
         });
         // If this question's bucket is not listed, add it
         if (!existingBucket) {
-          const matchingBucket = allBuckets.buckets.find(function (element) {
+          const matchingBucket = allBuckets.buckets.find(function(element) {
             return element.bucketId === question.bucket.bucketId;
           });
           // After adding the new bucket, add the current question to the new bucket
@@ -136,10 +151,7 @@ export class QuestionsService {
           // If the bucket exists, add question to it
         }
       }
-
     });
     return this.returnBuckets;
   }
-
-
 }

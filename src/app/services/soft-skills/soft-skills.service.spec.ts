@@ -7,13 +7,16 @@ import { SoftSkillsService } from './soft-skills.service';
 describe('SoftSkillsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
+      imports: [RouterTestingModule, HttpClientModule],
 
-      providers: [SoftSkillsService]
+      providers: [SoftSkillsService],
     });
   });
 
-  it('should be created', inject([SoftSkillsService], (service: SoftSkillsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [SoftSkillsService],
+    (service: SoftSkillsService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

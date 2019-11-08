@@ -34,11 +34,9 @@ h1 {
 }
 
 h2 {
- 
   font-size: 1.5rem;
 }
 p {
-  
   font-size: 1.33rem;
   margin-bottom: 5px;
 }
@@ -53,7 +51,6 @@ p {
   font-size: 1.33rem;
 }
 .info div p {
-  
   font-size: 1.5rem;
 }
 .name,
@@ -87,14 +84,13 @@ p {
 /* #############################
         ABOUT ME
 ############################# */
-.form-group{
+.form-group {
   margin-bottom: 0px;
 }
 
 .comment-container {
-  
   font-size: 1.5rem;
-  margin-right:10px;
+  margin-right: 10px;
   margin-left: 10px;
 }
 /* #############################
@@ -120,8 +116,8 @@ p {
         TOGGLE BUTTONS 
 ############################# */
 
- /* The switch - the box around the slider */
- .switch {
+/* The switch - the box around the slider */
+.switch {
   position: relative;
   display: inline-block;
   width: 60px;
@@ -129,7 +125,9 @@ p {
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
 /* The slider */
 .slider {
@@ -142,20 +140,20 @@ p {
   background-color: #999999;
   width: 60px;
   height: 34px;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -179,7 +177,7 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-} 
+}
 
 /*
     Media queries for Toggle-switch grid (skills-checkbox is the container)
@@ -190,8 +188,8 @@ input:checked + .slider:before {
     The first one in the list is the catch-all, meaning the grid should have
     at most 6 columns. If your screen has greater resolution than 3450, have fun with that. 
 */
-@media screen and (max-width: 3450px){
-  div.skills-checkbox{
+@media screen and (max-width: 3450px) {
+  div.skills-checkbox {
     display: inline-grid;
     grid-template-columns: auto auto auto auto auto auto;
   }
@@ -200,29 +198,29 @@ input:checked + .slider:before {
   If the screen resolution is over 1300, use the above query. 
   If the screen resolution is below 1300, use the below query. 
 */
-@media screen and (max-width: 1300px){
-  div.skills-checkbox{
+@media screen and (max-width: 1300px) {
+  div.skills-checkbox {
     display: inline-grid;
     grid-template-columns: auto auto auto auto auto;
   }
 }
 
-@media screen and (max-width: 1000px){
-  div.skills-checkbox{
+@media screen and (max-width: 1000px) {
+  div.skills-checkbox {
     display: inline-grid;
     grid-template-columns: auto auto auto auto;
   }
 }
 
-@media screen and (max-width:800px){
-  div.skills-checkbox{
+@media screen and (max-width: 800px) {
+  div.skills-checkbox {
     display: inline-grid;
     grid-template-columns: auto auto auto;
   }
 }
 
-@media screen and (max-width:650px){
-  div.skills-checkbox{
+@media screen and (max-width: 650px) {
+  div.skills-checkbox {
     display: inline-grid;
     grid-template-columns: auto auto;
   }

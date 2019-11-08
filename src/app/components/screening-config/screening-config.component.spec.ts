@@ -18,10 +18,14 @@ describe('ScreeningComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, NgbModule, RouterTestingModule, HttpClientModule],
-      declarations: [ ScreeningConfigComponent, SkillTypeBucketsComponent, SkillTypesComponent, CandidateComponent ],
-      providers: [BucketsService, UrlService, AlertsService]
-    })
-    .compileComponents();
+      declarations: [
+        ScreeningConfigComponent,
+        SkillTypeBucketsComponent,
+        SkillTypesComponent,
+        CandidateComponent,
+      ],
+      providers: [BucketsService, UrlService, AlertsService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

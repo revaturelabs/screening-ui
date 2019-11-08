@@ -10,14 +10,12 @@ describe('AverageSkillComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[ RouterTestingModule, HighchartsChartModule],
-      declarations: [ AverageSkillComponent ],
-
-    })
+      imports: [RouterTestingModule, HighchartsChartModule],
+      declarations: [AverageSkillComponent],
+    });
     fixture = TestBed.createComponent(AverageSkillComponent);
     component = fixture.componentInstance;
   });
-
 
   it('should create', () => {
     expect(component).toBeTruthy();

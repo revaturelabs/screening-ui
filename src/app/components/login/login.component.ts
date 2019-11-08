@@ -4,11 +4,10 @@ import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -21,7 +20,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertsService) { }
+    private alertService: AlertsService
+  ) {}
 
   authUser: any;
   debug = false;
@@ -34,13 +34,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
     this.authenticationService.logout();
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -52,9 +54,10 @@ export class LoginComponent implements OnInit {
       // This needs to be fixed, if the user accidentaly puts in invalid login credentials the
       // .loading freezes the login button, thus [disabled] was commented out in the html
       this.loading = true;
-      this.authenticationService.login(this.f.username.value, this.f.password.value);
+      this.authenticationService.login(
+        this.f.username.value,
+        this.f.password.value
+      );
     }
-
   }
-
 }

@@ -16,7 +16,7 @@ describe('AverageBucketTypeComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HighchartsChartModule, HttpClientModule],
       declarations: [AverageBucketTypeComponent],
-      providers: [ReportService, UrlService]
+      providers: [ReportService, UrlService],
     });
     fixture = TestBed.createComponent(AverageBucketTypeComponent);
     component = fixture.componentInstance;

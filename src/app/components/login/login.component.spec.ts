@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
@@ -15,13 +15,21 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let mockAuthenticationService: AuthenticationService;
 
-
-
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-      declarations: [ LoginComponent ],
-      providers: [AuthenticationService, AmplifyService, AlertsService, UrlService]
+      imports: [
+        RouterTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+      ],
+      declarations: [LoginComponent],
+      providers: [
+        AuthenticationService,
+        AmplifyService,
+        AlertsService,
+        UrlService,
+      ],
     });
 
     fixture = TestBed.createComponent(LoginComponent);

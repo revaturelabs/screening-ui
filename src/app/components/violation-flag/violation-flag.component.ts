@@ -9,7 +9,7 @@ import { SoftSkillViolation } from '../../entities/SoftSkillViolation';
 @Component({
   selector: 'app-violation-flag',
   templateUrl: './violation-flag.component.html',
-  styleUrls: ['./violation-flag.component.css']
+  styleUrls: ['./violation-flag.component.css'],
 })
 
 /*
@@ -22,9 +22,7 @@ that occurred and add a message giving specific explanation.
 This component is included in several others,
 to ensure quick access during the entire interview.
 */
-
 export class ViolationFlagComponent implements OnInit {
-
   @Output() flagEvent = new EventEmitter<string>();
 
   violationTypes: ViolationType[] = [];
@@ -39,8 +37,8 @@ export class ViolationFlagComponent implements OnInit {
     private violationService: SoftSkillsViolationService,
     private screeningStateService: ScreeningStateService,
     private violationTypeService: ViolationTypeService,
-    private alertsService: AlertsService,
-  ) { }
+    private alertsService: AlertsService
+  ) {}
 
   ngOnInit() {
     this.getViolationTypes();
@@ -48,21 +46,21 @@ export class ViolationFlagComponent implements OnInit {
   }
 
   getViolationTypes(): void {
-    this.violationTypeService.getViolationTypes().subscribe(
-      violationTypes => {
-        this.violationTypes.push(... violationTypes);
-      }
-    );
+    this.violationTypeService.getViolationTypes().subscribe(violationTypes => {
+      this.violationTypes.push(...violationTypes);
+    });
   }
 
-  toggleAddViolation(){
+  toggleAddViolation() {
     this.addViolation = !this.addViolation;
   }
   updateViolationList(changedViolationType: ViolationType, checked: boolean) {
     if (checked) {
       this.violationTypesChecked.push(changedViolationType);
     } else {
-      const index = this.violationTypesChecked.findIndex(x => x === changedViolationType);
+      const index = this.violationTypesChecked.findIndex(
+        x => x === changedViolationType
+      );
       this.violationTypesChecked.splice(index);
     }
   }
@@ -71,7 +69,9 @@ export class ViolationFlagComponent implements OnInit {
     // Send request with the violation + comments
     const screeningID = Number.parseInt(localStorage.getItem('screeningID'));
     this.alertsService.success('Soft Skill Violation Added');
-    this.violationTypeService.getAllViolationTypes().subscribe(data => console.log(data));
+    this.violationTypeService
+      .getAllViolationTypes()
+      .subscribe(data => console.log(data));
     this.flagChange();
 
     this.violationService.softSkillViolations.push({
@@ -81,8 +81,9 @@ export class ViolationFlagComponent implements OnInit {
       Time: new Date(),
       //Comment: comment
     });
-    this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
-    });
+    this.violationService
+      .submitViolation(violationType.violationTypeId, comment, screeningID)
+      .subscribe(data => {});
   }
 
   cancelViolation() {
@@ -92,5 +93,4 @@ export class ViolationFlagComponent implements OnInit {
   flagChange() {
     this.flagEvent.emit('update');
   }
-
 }

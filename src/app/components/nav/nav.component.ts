@@ -1,17 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-import { Router, Event, NavigationEnd, NavigationCancel} from '@angular/router';
+import {
+  Router,
+  Event,
+  NavigationEnd,
+  NavigationCancel,
+} from '@angular/router';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-
-
   @Input()
   collapsed = false;
 
@@ -29,16 +32,19 @@ export class NavComponent implements OnInit {
   showSettings: boolean;
   attemptLogout: boolean = false;
 
-  constructor( private router: Router, private authenticationService: AuthenticationService) {
-    router.events.subscribe( (event: Event) => {
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.checkRoles();
       }
       if (event instanceof NavigationCancel) {
         console.log(event);
       }
-    })
-   }
+    });
+  }
 
   ngOnInit() {
     this.checkRoles();
@@ -51,9 +57,9 @@ export class NavComponent implements OnInit {
 
   toggleLogout() {
     if (this.attemptLogout) {
-      return "block";
+      return 'block';
     } else {
-      return "none";
+      return 'none';
     }
   }
 
@@ -64,17 +70,20 @@ export class NavComponent implements OnInit {
 
   checkRoles() {
     let user = JSON.parse(localStorage.getItem('user'));
-    if(user) {
-      this.userRole = user["signInUserSession"]["idToken"]["payload"]["cognito:groups"][0];
-      
+    if (user) {
+      this.userRole =
+        user['signInUserSession']['idToken']['payload']['cognito:groups'][0];
     } else {
       this.userRole = '';
     }
-    this.showHome = (this.userRole !== '');
-    this.showLogin = (this.userRole === '');
-    this.showLogout = (this.userRole !== '');
-    this.showReports = (this.userRole === 'ROLE_ADMIN' || this.userRole === 'ROLE_REPORTING' || this.userRole === 'ROLE_SCREENER');
-    this.showAdmin = (this.userRole === 'ROLE_ADMIN');
-    this.showSettings = (this.userRole === 'ROLE_ADMIN');
+    this.showHome = this.userRole !== '';
+    this.showLogin = this.userRole === '';
+    this.showLogout = this.userRole !== '';
+    this.showReports =
+      this.userRole === 'ROLE_ADMIN' ||
+      this.userRole === 'ROLE_REPORTING' ||
+      this.userRole === 'ROLE_SCREENER';
+    this.showAdmin = this.userRole === 'ROLE_ADMIN';
+    this.showSettings = this.userRole === 'ROLE_ADMIN';
   }
 }

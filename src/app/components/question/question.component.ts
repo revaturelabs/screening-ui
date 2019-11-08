@@ -4,10 +4,16 @@ import { Question } from '../../entities/Question';
 import { Bucket } from '../../entities/Bucket';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionsService } from '../../services/questions/questions.service';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes,
+} from '@angular/animations';
 import { BucketsService } from '../../services/buckets/buckets.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
 
 @Component({
   selector: 'app-question',
@@ -15,15 +21,21 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
   styleUrls: ['./question.component.css'],
   animations: [
     trigger('move', [
-      state('center', style({
-        transform: 'translateX(0) scaleX(1)'
-      })),
-      state('left', style({
-        transform: 'translateX(-28%) scaleX(1)'
-      })),
+      state(
+        'center',
+        style({
+          transform: 'translateX(0) scaleX(1)',
+        })
+      ),
+      state(
+        'left',
+        style({
+          transform: 'translateX(-28%) scaleX(1)',
+        })
+      ),
       transition('center =>left', animate('300ms ease-in')),
     ]),
-  ]
+  ],
 })
 
 /**
@@ -39,11 +51,13 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
  */
 export class QuestionComponent implements OnInit {
-
-  constructor(private modalService: NgbModal, private fb: FormBuilder,
+  constructor(
+    private modalService: NgbModal,
+    private fb: FormBuilder,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService
+  ) {}
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -53,8 +67,6 @@ export class QuestionComponent implements OnInit {
   currentBucket: Bucket;
   public answersCollapsed = true;
   public tagsCollapsed = true;
-
-
 
   ngOnInit() {
     this.currentBucket = this.bucketService.getCurrentBucket();
@@ -75,7 +87,7 @@ export class QuestionComponent implements OnInit {
    **/
   initFormControl() {
     this.createQuestion = this.fb.group({
-      'name': ['', Validators.required],
+      name: ['', Validators.required],
     });
   }
 
@@ -89,7 +101,7 @@ export class QuestionComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -100,15 +112,15 @@ export class QuestionComponent implements OnInit {
   changeQuestionStatus(question) {
     if (question.isActive) {
       question.isActive = false;
-      this.questionService.deactivateQuestion(question).subscribe( question => {
+      this.questionService.deactivateQuestion(question).subscribe(question => {
         this.updateQuestions();
       });
-   } else {
+    } else {
       question.isActive = true;
-      this.questionService.activateQuestion(question).subscribe( question => {
+      this.questionService.activateQuestion(question).subscribe(question => {
         this.updateQuestions();
       });
-   }
+    }
   }
 
   /**
@@ -166,11 +178,13 @@ export class QuestionComponent implements OnInit {
    **/
   updateQuestions() {
     if (this.currentBucket) {
-      this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
-        this.questions = data;
-        this.questions.sort(this.compare);
-        this.questions.sort(this.compare2);
-      });
+      this.questionService
+        .getBucketQuestions(this.currentBucket.bucketId)
+        .subscribe(data => {
+          this.questions = data;
+          this.questions.sort(this.compare);
+          this.questions.sort(this.compare2);
+        });
     }
   }
 
@@ -183,8 +197,11 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  compare2(a: Question, b: Question){
-    if (a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()) {
+  compare2(a: Question, b: Question) {
+    if (
+      a.isActive &&
+      a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()
+    ) {
       return -1;
     } else {
       return 1;

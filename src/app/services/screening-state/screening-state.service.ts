@@ -6,7 +6,6 @@ import { ScheduledScreening } from 'src/app/entities/ScheduledScreening';
  */
 @Injectable()
 export class ScreeningStateService {
-
   private currentScreening: ScheduledScreening;
 
   setCurrentScreening(scheduledScreening: ScheduledScreening): void {
@@ -20,5 +19,4 @@ export class ScreeningStateService {
   getSkillID(): number {
     return this.currentScreening.track.skillTypeId;
   }
-
 }

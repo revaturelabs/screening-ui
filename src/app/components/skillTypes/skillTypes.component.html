@@ -1,87 +1,203 @@
-
-
 <!-- SkillTypes List-->
 <div id="STcontent" class="container">
-    <div class="row justify-content-center">
-        <div class="card w-100">
-            <h6 class="card-header">All Tracks</h6>
-            <div class="card-body" id="skillTypesDiv">
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action" *ngFor="let skillType of allSkillTypes">
-                        {{skillType.title}}
-                        <i id="xIcon">
-                            <label class="switch">
-                                <input type="checkbox" [checked]=skillType.active (change)="skillTypeUpdate(skillType)" >
-                                <span class="slider round" placement="top" ngbTooltip="deactivate" *ngIf="skillType.active"></span>
-                                <span class="slider round" placement="top" ngbTooltip="activate" *ngIf="!skillType.active"></span>
-                            </label>
-                        </i>
-                        <i id="penIcon" class="fas fa-pencil-alt pull-right" (click)="editSkillType(skillType); open(content)" placement="top" ngbTooltip="edit">
-                        </i>
-                    </a>
-                </div>
-            </div>
-            <button class="btn btn-primary btn-sm" (click)='open(content)'>Create New Track</button>
+  <div class="row justify-content-center">
+    <div class="card w-100">
+      <h6 class="card-header">All Tracks</h6>
+      <div class="card-body" id="skillTypesDiv">
+        <div class="list-group">
+          <a
+            class="list-group-item list-group-item-action"
+            *ngFor="let skillType of allSkillTypes"
+          >
+            {{ skillType.title }}
+            <i id="xIcon">
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  [checked]="skillType.active"
+                  (change)="skillTypeUpdate(skillType)"
+                />
+                <span
+                  class="slider round"
+                  placement="top"
+                  ngbTooltip="deactivate"
+                  *ngIf="skillType.active"
+                ></span>
+                <span
+                  class="slider round"
+                  placement="top"
+                  ngbTooltip="activate"
+                  *ngIf="!skillType.active"
+                ></span>
+              </label>
+            </i>
+            <i
+              id="penIcon"
+              class="fas fa-pencil-alt pull-right"
+              (click)="editSkillType(skillType); open(content)"
+              placement="top"
+              ngbTooltip="edit"
+            >
+            </i>
+          </a>
+        </div>
       </div>
+      <button class="btn btn-primary btn-sm" (click)="open(content)">
+        Create New Track
+      </button>
     </div>
+  </div>
 </div>
 
 <!-- Modal for creating and editting a new Track (SkillType) -->
 <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <!-- If a skillType got clicked, Title is Edit -->
-          <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
-          <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+  <div class="modal-header">
+    <!-- If a skillType got clicked, Title is Edit -->
+    <h4 class="modal-title" *ngIf="!singleSkillType">Create Track</h4>
+    <h4 class="modal-title" *ngIf="singleSkillType">Edit Track</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
   <div class="modal-body">
-      <form  #addSkillTypeForm="ngForm">
-          <div class="form-group row">
-              <label for="name" class="col-sm-2 col-form-label"> Name:&nbsp;</label>
-              <div class="col-sm-10">
-                  <input type="text" id="skillTypeName" name=skillTypeName class="form-control" *ngIf="singleSkillType" required #skillTypeName="ngModel" [(ngModel)]="singleSkillType.title">
-                  <input type="text" id="skillTypeName" name="skillTypeName" placeholder="Skill type name" class="form-control" *ngIf="!singleSkillType" required ngModel>
-              </div>
-          </div>
-          <div *ngIf="singleSkillType">
-              <div class="form-group row">
-                  <label for="buckets" class="col-sm-2 col-form-label">Categories:</label>
-                  <div class="col-sm-10">
-                      <div *ngFor="let bucket of singleSkillTypeBuckets; let index = index">
-                          <div class="input-group col-sm-9 rounded" style="margin-bottom: 1%;">
-                              <span class="col-sm-5 revatureOrange rounded" id="font-fix">{{bucket.bucketDescription}}</span>
-                              <div class = "placeholder" data-placeholder="%">
-                              <input type="number" #weight name="weight" class="form-control border-left-0 bucketWeight" min="0" max="100" [(ngModel)]="weight.weightValue" [ngModelOptions]="{standalone: true}" (keyup)="checkBucketSum(); checkMinMax(index)">
-                              <input type="number" name="sum" class="form-control bucketWeight" [hidden]="true" [(ngModel)]="bucketWeightSum" *ngIf="bucketWeight">
-                              </div>
-                              <button id = "xButton" type="button" class="close col-sm-2 rounded" aria-label="Close" (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()" >
-                              <span aria-hidden="true">&times;</span></button>
-                          </div>
-                      </div>
-                      <br>
-                      <p *ngIf="error" class="text-danger">The sum of the category weight percentages has to equal <strong>100</strong></p>
-                  </div>
-              </div>
-              <div class="form-group row">    
-                  <label for="inactiveBuckets" class="col-sm-6 col-form-label">All Categories:</label>
-                  <div class="col-sm-10 row catbox">
-                    <span *ngFor="let bucket of allBuckets">
-                        <button type="button" class="input-group-addon pillButtons" (click)="addToSkillTypeBuckets(bucket)" *ngIf="!checkContains(bucket)">{{bucket.bucketDescription}}</button>
-                    </span>
-                </div>                    
-            </div>
+    <form #addSkillTypeForm="ngForm">
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label"> Name:&nbsp;</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            id="skillTypeName"
+            name="skillTypeName"
+            class="form-control"
+            *ngIf="singleSkillType"
+            required
+            #skillTypeName="ngModel"
+            [(ngModel)]="singleSkillType.title"
+          />
+          <input
+            type="text"
+            id="skillTypeName"
+            name="skillTypeName"
+            placeholder="Skill type name"
+            class="form-control"
+            *ngIf="!singleSkillType"
+            required
+            ngModel
+          />
         </div>
+      </div>
+      <div *ngIf="singleSkillType">
+        <div class="form-group row">
+          <label for="buckets" class="col-sm-2 col-form-label"
+            >Categories:</label
+          >
+          <div class="col-sm-10">
+            <div
+              *ngFor="let bucket of singleSkillTypeBuckets; let index = index"
+            >
+              <div
+                class="input-group col-sm-9 rounded"
+                style="margin-bottom: 1%;"
+              >
+                <span class="col-sm-5 revatureOrange rounded" id="font-fix">{{
+                  bucket.bucketDescription
+                }}</span>
+                <div class="placeholder" data-placeholder="%">
+                  <input
+                    type="number"
+                    #weight
+                    name="weight"
+                    class="form-control border-left-0 bucketWeight"
+                    min="0"
+                    max="100"
+                    [(ngModel)]="weight.weightValue"
+                    [ngModelOptions]="{ standalone: true }"
+                    (keyup)="checkBucketSum(); checkMinMax(index)"
+                  />
+                  <input
+                    type="number"
+                    name="sum"
+                    class="form-control bucketWeight"
+                    [hidden]="true"
+                    [(ngModel)]="bucketWeightSum"
+                    *ngIf="bucketWeight"
+                  />
+                </div>
+                <button
+                  id="xButton"
+                  type="button"
+                  class="close col-sm-2 rounded"
+                  aria-label="Close"
+                  (click)="removeFromSkillTypeBuckets(bucket); checkBucketSum()"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <br />
+            <p *ngIf="error" class="text-danger">
+              The sum of the category weight percentages has to equal
+              <strong>100</strong>
+            </p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inactiveBuckets" class="col-sm-6 col-form-label"
+            >All Categories:</label
+          >
+          <div class="col-sm-10 row catbox">
+            <span *ngFor="let bucket of allBuckets">
+              <button
+                type="button"
+                class="input-group-addon pillButtons"
+                (click)="addToSkillTypeBuckets(bucket)"
+                *ngIf="!checkContains(bucket)"
+              >
+                {{ bucket.bucketDescription }}
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
     </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType)" [disabled]="error" *ngIf="singleSkillType">Save</button>
-        <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)" *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="c('Close click')"
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      data-dismiss="modal"
+      class="btn btn-outline-dark revatureOrange"
+      (click)="
+        updateSkillType(addSkillTypeForm.value);
+        savedSuccessfully();
+        skillTypeUpdate(singleSkillType)
+      "
+      [disabled]="error"
+      *ngIf="singleSkillType"
+    >
+      Save
+    </button>
+    <button
+      type="button"
+      data-dismiss="modal"
+      class="btn btn-outline-dark revatureOrange"
+      (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)"
+      *ngIf="!singleSkillType"
+      [disabled]="!addSkillTypeForm.valid"
+    >
+      Create
+    </button>
+  </div>
 </ng-template>
-
-
-

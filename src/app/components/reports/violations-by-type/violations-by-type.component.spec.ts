@@ -10,9 +10,8 @@ describe('ViolationsByTypeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HighchartsChartModule],
-      declarations: [ ViolationsByTypeComponent ]
-    })
-    .compileComponents();
+      declarations: [ViolationsByTypeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

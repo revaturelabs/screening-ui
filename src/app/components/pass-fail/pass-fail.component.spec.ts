@@ -10,9 +10,7 @@ import { SkillTypesService } from '../../services/skill-types/skill-types.servic
 import { ViolationTypeService } from '../../services/violationType/violationType.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
-import { RouterTestingModule } from '@angular/router/testing'; 
-
-
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Author: David Gustafson
 
@@ -26,10 +24,18 @@ describe('PassFailComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [PassFailComponent, ViolationFlagComponent],
-      providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, ScreeningStateService,
-        ViolationTypeService, AlertsService, UrlService, SkillTypesService]
-    })
-      .compileComponents();
+      providers: [
+        SoftSkillsViolationService,
+        HttpClient,
+        HttpHandler,
+        ScreeningService,
+        ScreeningStateService,
+        ViolationTypeService,
+        AlertsService,
+        UrlService,
+        SkillTypesService,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

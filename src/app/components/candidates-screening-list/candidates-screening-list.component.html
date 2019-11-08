@@ -1,47 +1,90 @@
 <body>
-    <div class="row">
-        <div class=" col-lg-10">
-          <div class="card">
-            <div class="card-body" style="border-width: 10rem;">
-        <h1>Pending Screenings</h1>
-        <br>
-      <!-- Search Bar -->
-      <input [(ngModel)]="searchText" placeholder="Search" class="search-bar">
-    </div>
-    <!-- Table of Pending Screenings -->
-    <table class="table table-hover" id="screenings-table">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Track</th>
-          <th scope="col">Date</th>
-        </tr>
-      </thead>
-      <tbody>
-         <!-- The paginate pipe must be at the end of all the filters -->
-        <ng-container *ngFor="let i = index; let scheduledScreening of scheduledScreenings | searchPipe: searchText | paginate: { itemsPerPage: 10, currentPage: p } ">
-          <tr (click)="showBeginScreeningPrompt = !showBeginScreeningPrompt; selectedScheduledScreening = scheduledScreening;">
-            <td>{{scheduledScreening.candidate.name}}</td>
-            <td>{{scheduledScreening.track.title}}</td>
-            <td>{{scheduledScreening.scheduledDate | date:'short'}}</td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
-    <!-- The Modal -->
-    <div id="myModal" class="modal animated fadeIn" [style.display]="toggleBeginScreeningPrompt()">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <h2 *ngIf="selectedScheduledScreening">You Chose "{{selectedScheduledScreening.candidate.name}}"</h2>
-        <div class="buttons">
-          <button class="btn" type="submit" (click)="confirmSelectedCandidate(); beginScreening()" routerLink="/screening/intro" routerLinkActive="activeLink">Begin Interview</button>
-          <button class="btn" (click)="showBeginScreeningPrompt = !showBeginScreeningPrompt">Back To List</button>
+  <div class="row">
+    <div class=" col-lg-10">
+      <div class="card">
+        <div class="card-body" style="border-width: 10rem;">
+          <h1>Pending Screenings</h1>
+          <br />
+          <!-- Search Bar -->
+          <input
+            [(ngModel)]="searchText"
+            placeholder="Search"
+            class="search-bar"
+          />
         </div>
+        <!-- Table of Pending Screenings -->
+        <table class="table table-hover" id="screenings-table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Track</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- The paginate pipe must be at the end of all the filters -->
+            <ng-container
+              *ngFor="
+                let i = index;
+                let scheduledScreening;
+                of: scheduledScreenings
+                  | searchPipe: searchText
+                  | paginate: { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <tr
+                (click)="
+                  showBeginScreeningPrompt = !showBeginScreeningPrompt;
+                  selectedScheduledScreening = scheduledScreening
+                "
+              >
+                <td>{{ scheduledScreening.candidate.name }}</td>
+                <td>{{ scheduledScreening.track.title }}</td>
+                <td>{{ scheduledScreening.scheduledDate | date: 'short' }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <!-- The Modal -->
+        <div
+          id="myModal"
+          class="modal animated fadeIn"
+          [style.display]="toggleBeginScreeningPrompt()"
+        >
+          <!-- Modal content -->
+          <div class="modal-content">
+            <h2 *ngIf="selectedScheduledScreening">
+              You Chose "{{ selectedScheduledScreening.candidate.name }}"
+            </h2>
+            <div class="buttons">
+              <button
+                class="btn"
+                type="submit"
+                (click)="confirmSelectedCandidate(); beginScreening()"
+                routerLink="/screening/intro"
+                routerLinkActive="activeLink"
+              >
+                Begin Interview
+              </button>
+              <button
+                class="btn"
+                (click)="showBeginScreeningPrompt = !showBeginScreeningPrompt"
+              >
+                Back To List
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Pagination section -->
+        <pagination-controls
+          class="pagination"
+          (pageChange)="p = $event"
+          maxSize="5"
+          previousLabel=""
+          nextLabel=""
+        ></pagination-controls
+        ><br />
       </div>
     </div>
-    <!-- Pagination section -->
-    <pagination-controls class="pagination" (pageChange)="p = $event" maxSize="5" previousLabel="" nextLabel=""></pagination-controls><br>
   </div>
-  </div>
-</div>
 </body>

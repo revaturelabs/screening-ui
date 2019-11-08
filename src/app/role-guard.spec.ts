@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 describe('RoleGuardService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RoleGuard, CookieService]
+      providers: [RoleGuard, CookieService],
     });
   });
 

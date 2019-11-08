@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 // Classes
@@ -17,12 +17,11 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { SearchPipe } from '../../pipes/search.pipe';
 
-
 @Component({
   selector: 'app-candidates-screening-list',
   templateUrl: './candidates-screening-list.component.html',
   styleUrls: ['./candidates-screening-list.component.css'],
-  providers: [SearchPipe, NgxPaginationModule]
+  providers: [SearchPipe, NgxPaginationModule],
 })
 
 /**
@@ -74,7 +73,6 @@ export class CandidatesScreeningListComponent implements OnInit {
       window.location.reload(true);
     }
     this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
-
   }
 
   // Reveals the "Begin Interview" prompt
@@ -88,7 +86,9 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
-    this.screeningStateService.setCurrentScreening(this.selectedScheduledScreening);
+    this.screeningStateService.setCurrentScreening(
+      this.selectedScheduledScreening
+    );
   }
 
   // clicking "Begin Interview" will create a new screening entry in the database
@@ -110,11 +110,12 @@ export class CandidatesScreeningListComponent implements OnInit {
       .subscribe(
         // take the data from the response from the database
         data => {
-        // and save the screening ID as a cookie to localStorage.
-        // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
-        // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
-        screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
-        skillTypeId = this.selectedScheduledScreening.track.skillTypeId.toString();
-      });
+          // and save the screening ID as a cookie to localStorage.
+          // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
+          // localStorage.setItem('skillTypeID', this.selectedScheduledScreening.track.skillTypeId.toString());
+          screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
+          skillTypeId = this.selectedScheduledScreening.track.skillTypeId.toString();
+        }
+      );
   }
 }

@@ -2,17 +2,20 @@
 <div id="CContent" class="container">
   <div class="row justify-content-center">
     <div class="card w-100">
-
       <h6 class="card-header">Candidates</h6>
 
       <div class="card-body" id="allSkillTypesDiv">
-   
         <!--should display candidates here-->
-
       </div>
 
       <!--* 'open(create)' -->
-      <button type="button" class="btn btn-primary btn-sm" (click)="open(content)">Add New Candidate</button>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        (click)="open(content)"
+      >
+        Add New Candidate
+      </button>
     </div>
   </div>
 </div>
@@ -22,32 +25,73 @@
   <div class="modal-header">
     <!-- If a skillType got clicked, Title is Edit -->
     <h4 class="modal-title">Create a Candidate</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form >
+    <form>
       <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name:&nbsp;</label>
         <div class="col-sm-10">
-          <input type="text" id="candidateName" name="candidateName" placeholder="Candidate Name" class="form-control" required ngModel>
+          <input
+            type="text"
+            id="candidateName"
+            name="candidateName"
+            placeholder="Candidate Name"
+            class="form-control"
+            required
+            ngModel
+          />
         </div>
-        <label for="name" class="col-sm-2 col-form-label">Description:&nbsp;</label>
+        <label for="name" class="col-sm-2 col-form-label"
+          >Description:&nbsp;</label
+        >
         <div class="col-sm-10">
-          <input type="text" id="candidateDesc" name="candidateDesc" placeholder="Candidate Description" class="form-control" required ngModel>
+          <input
+            type="text"
+            id="candidateDesc"
+            name="candidateDesc"
+            placeholder="Candidate Description"
+            class="form-control"
+            required
+            ngModel
+          />
         </div>
       </div>
 
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-    <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="updateSkillType(addSkillTypeForm.value); savedSuccessfully(); skillTypeUpdate(singleSkillType)"
-      [disabled]="error" *ngIf="singleSkillType">Save</button>
-    <!-- <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)"
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="c('Close click')"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          data-dismiss="modal"
+          class="btn btn-outline-dark revatureOrange"
+          (click)="
+            updateSkillType(addSkillTypeForm.value);
+            savedSuccessfully();
+            skillTypeUpdate(singleSkillType)
+          "
+          [disabled]="error"
+          *ngIf="singleSkillType"
+        >
+          Save
+        </button>
+        <!-- <button type="button" data-dismiss="modal" class="btn btn-outline-dark revatureOrange" (click)="c('Close click'); createNewSkillType(addSkillTypeForm.value)"
       *ngIf="!singleSkillType" [disabled]="!addSkillTypeForm.valid">Create</button> -->
+      </div>
+    </form>
   </div>
-</form>
-</div>
 </ng-template>
 
 <!--Ending of add new candidate modal -->

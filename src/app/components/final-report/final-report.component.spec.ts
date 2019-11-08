@@ -20,11 +20,20 @@ describe('FinalReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FinalReportComponent ],
-      providers: [ ScreeningService, HttpClient, HttpHandler, ScreeningStateService, SkillTypesService,
-        SkillTypeBucketService, QuestionScoreService, ScoresToBucketsUtil, AlertsService, SoftSkillsViolationService ]
-    })
-    .compileComponents();
+      declarations: [FinalReportComponent],
+      providers: [
+        ScreeningService,
+        HttpClient,
+        HttpHandler,
+        ScreeningStateService,
+        SkillTypesService,
+        SkillTypeBucketService,
+        QuestionScoreService,
+        ScoresToBucketsUtil,
+        AlertsService,
+        SoftSkillsViolationService,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +41,4 @@ describe('FinalReportComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
 });

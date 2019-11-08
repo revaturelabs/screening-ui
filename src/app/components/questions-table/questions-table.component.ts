@@ -22,11 +22,10 @@ import { ScreeningService } from '../../services/screening/screening.service';
 import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
 import { Weight } from '../../entities/Weight';
 
-
 @Component({
   selector: 'app-questions-table',
   templateUrl: './questions-table.component.html',
-  styleUrls: ['./questions-table.component.css']
+  styleUrls: ['./questions-table.component.css'],
 })
 /*
 After the candidate has given their introduction,
@@ -77,38 +76,39 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private screeningService: ScreeningService,
     private screeningStateService: ScreeningStateService,
-    private skillTypeBucketService: SkillTypeBucketService,
+    private skillTypeBucketService: SkillTypeBucketService
   ) {}
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
     this.skillID = this.screeningStateService.getSkillID();
     this.subscriptions.push(
-      this.skillTypeBucketService.
-      getWeightsBySkillType(this.skillID).subscribe(bucketsWithWeights => {
-      const myBuckets: Bucket[] = [];
-      for ( const e of bucketsWithWeights) {
-        myBuckets.push(
-          {
-            bucketId: e.bucket.bucketId,
-            bucketDescription: e.bucket.bucketDescription,
-            isActive: e.bucket.isActive
+      this.skillTypeBucketService
+        .getWeightsBySkillType(this.skillID)
+        .subscribe(bucketsWithWeights => {
+          const myBuckets: Bucket[] = [];
+          for (const e of bucketsWithWeights) {
+            myBuckets.push({
+              bucketId: e.bucket.bucketId,
+              bucketDescription: e.bucket.bucketDescription,
+              isActive: e.bucket.isActive,
+            });
           }
-        );
-      }
-      this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
-      this.questionBuckets = bucketsWithWeights;
-    }));
+          this.skillTypeBucketService.bucketsByWeight = bucketsWithWeights;
+          this.questionBuckets = bucketsWithWeights;
+        })
+    );
 
     this.candidateName = this.screeningStateService.getCurrentScreening().candidate.name;
     this.currentScreenings = this.screeningStateService.getCurrentScreening();
     // update the answeredQuestions variable in our service to track the
     // questions that have been given a score by the screener.
-    this.subscriptions.push(this.questionScoreService.currentQuestionScores.subscribe(
-      questionScores => (this.questionScores = questionScores)
-    ));
+    this.subscriptions.push(
+      this.questionScoreService.currentQuestionScores.subscribe(
+        questionScores => (this.questionScores = questionScores)
+      )
+    );
   }
-
 
   // Unsubscribe to prevent memory leaks when component is destroyed
   ngOnDestroy() {
@@ -127,13 +127,12 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     // of the category selected by the user
     this.currentBucket = bucketID;
     this.questionService.getBucketQuestions(bucketID).subscribe(questions => {
-        this.questionsInBucket = questions;
-      }
-    );
+      this.questionsInBucket = questions;
+    });
   }
 
   open(question: Question) {
-    // this is commented out because the modal is failing to open and breaking the page. 
+    // this is commented out because the modal is failing to open and breaking the page.
     // const modalRef = this.modalService.open("AnswerComponent"); //AnswerComponent should be injected into this modal
     // modalRef.componentInstance.question = question;
   }
@@ -166,6 +165,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     // tslint:disable-next-line:radix
-    this.screeningService.updateScreening(parseInt( localStorage.getItem('screeningID') ));
+    this.screeningService.updateScreening(
+      parseInt(localStorage.getItem('screeningID'))
+    );
   }
 }

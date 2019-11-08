@@ -8,10 +8,10 @@ import { UrlService } from '../urls/url.service';
 describe('ReportCacheService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule, HttpClientModule],
-    providers: [UrlService]
+      imports: [RouterTestingModule, HttpClientModule],
+      providers: [UrlService],
+    });
   });
-});
 
   it('should be created', () => {
     const service: ReportCacheService = TestBed.get(ReportCacheService);

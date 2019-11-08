@@ -3,12 +3,12 @@
   margin-top: 25px;
 }
 
-.card{
+.card {
   margin: auto;
   width: 81%;
 }
 
-h1{
+h1 {
   background: #f26925;
   color: white;
   min-width: 100%;
@@ -22,10 +22,8 @@ h1{
   border-color: #f26925;
   text-align: center;
   font-size: 1.66rem;
-  white-space:nowrap;
-  
+  white-space: nowrap;
 }
-
 
 #STcontent {
   margin-top: 2em;
@@ -33,7 +31,7 @@ h1{
 }
 
 .card-header {
-  background-color: #F26925;
+  background-color: #f26925;
 }
 
 h6 {
@@ -45,15 +43,15 @@ h6 {
   float: right;
 }
 
-#skillTypesDiv{
-  overflow : auto;
+#skillTypesDiv {
+  overflow: auto;
   height: 420px;
 }
 
 /*Custom scrollbar*/
 
 /* card */
-.card{
+.card {
   margin: auto;
   width: 81%;
 }
@@ -65,22 +63,22 @@ h6 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #6c757d; 
+  background: #6c757d;
   border-radius: 5px;
 }
 
 #penIcon {
-  color: #F26925;
+  color: #f26925;
 }
 
-#penIcon:hover{
-  color:black;
+#penIcon:hover {
+  color: black;
 }
 
 i {
@@ -88,67 +86,67 @@ i {
   cursor: hand;
 }
 
-#buckets{
+#buckets {
   position: absolute;
-  left:33%;
+  left: 33%;
   width: 80%;
 }
 
 /** not being used **/
-.marker{
-  position:absolute;
-  left:95%;
+.marker {
+  position: absolute;
+  left: 95%;
 }
 
 /** not being used **/
-.marker2{
+.marker2 {
   position: absolute;
-  left:100%;
+  left: 100%;
 }
 
-#list-item{
+#list-item {
   border: solid black 0.5px;
 }
 
-.percentSign{
+.percentSign {
   background-color: inherit;
   position: relative;
 }
 
-.bucketWeight{
+.bucketWeight {
   text-align: right;
   position: static;
 }
 
-.revatureOrange{
-  background-color: #F26925;
+.revatureOrange {
+  background-color: #f26925;
   color: white;
 }
 
-#xIcon:hover .removeToolTip{
+#xIcon:hover .removeToolTip {
   visibility: visible;
 }
 
-.removeToolTip{
+.removeToolTip {
   visibility: hidden;
   position: absolute;
   float: right;
   left: 90%;
-  top:70%;
+  top: 70%;
 }
 
-#penIcon:hover .editToolTip{
+#penIcon:hover .editToolTip {
   visibility: visible;
 }
 
-.editToolTip{
+.editToolTip {
   color: black;
   visibility: hidden;
   position: absolute;
   float: right;
   width: 10%;
   left: 87%;
-  top:70%;
+  top: 70%;
 }
 
 /*
@@ -175,7 +173,9 @@ i {
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
 /* The slider */
 .slider {
@@ -186,28 +186,28 @@ i {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 13px;
   width: 13px;
   left: 0px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #F26925;
+  background-color: #f26925;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #F26925;
+  box-shadow: 0 0 1px #f26925;
 }
 
 input:checked + .slider:before {
@@ -216,7 +216,7 @@ input:checked + .slider:before {
   transform: translateX(16px);
 }
 
-  /* Rounded sliders */
+/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
@@ -225,12 +225,12 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-#bucket_bins{
+#bucket_bins {
   margin-bottom: 2px;
   opacity: 1;
 }
 
-#xButton{
+#xButton {
   left: 100%;
   opacity: 0.6;
   position: static;
@@ -239,11 +239,11 @@ input:checked + .slider:before {
   padding-bottom: 3%;
 }
 
-#xButton:hover{
+#xButton:hover {
   opacity: 0.5;
 }
 
-.pillButtons{
+.pillButtons {
   margin: 5px;
   overflow: hidden;
   overflow-wrap: break-word;
@@ -254,32 +254,29 @@ input:checked + .slider:before {
   font-size: 0.7rem;
 }
 
-#font-fix{
+#font-fix {
   text-align: center;
   height: 38px;
   line-height: 38px;
   font-size: 0.8rem;
-
 }
 
-.catbox{
+.catbox {
   border-style: solid;
   position: static;
-  margin:auto;
+  margin: auto;
   border-radius: 12px;
   overflow: auto;
 }
-.placeholder
-{
-    position: relative;
+.placeholder {
+  position: relative;
 }
 
-.placeholder::after
-{
-    position: absolute;
-    left: 71px;
-    top: 7px;
-    content: attr(data-placeholder);
-    pointer-events: none;
-    opacity: 0.6;
+.placeholder::after {
+  position: absolute;
+  left: 71px;
+  top: 7px;
+  content: attr(data-placeholder);
+  pointer-events: none;
+  opacity: 0.6;
 }

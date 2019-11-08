@@ -1,8 +1,7 @@
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HighchartsChartModule} from 'highcharts-angular';
+import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,14 +9,14 @@ import { RouterModule } from '@angular/router';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
-import {SpringInterceptor} from './interceptors/spring.interceptor';
+import { SpringInterceptor } from './interceptors/spring.interceptor';
 
 import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { AverageBucketTypeComponent } from './components/reports/average-bucket-type/average-bucket-type.component';
-import { AverageSkillComponent} from './components/reports/average-skill/average-skill.component';
+import { AverageSkillComponent } from './components/reports/average-skill/average-skill.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
@@ -34,7 +33,6 @@ import { SkillTypesComponent } from './components/skillTypes/skillTypes.componen
 import { ViolationsByTypeComponent } from './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { LoginComponent } from './components/login/login.component';
-
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -53,7 +51,7 @@ import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
-import {AuthenticationService} from './services/authentication/authentication.service';
+import { AuthenticationService } from './services/authentication/authentication.service';
 import { AmplifyService } from 'aws-amplify-angular';
 
 // Pipes
@@ -96,7 +94,7 @@ import { RoleGuard } from './role-guard';
     AverageBucketTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
-    ViolationsByTypeComponent
+    ViolationsByTypeComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -109,7 +107,7 @@ import { RoleGuard } from './role-guard';
     Ng5SliderModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    AmplifyAngularModule
+    AmplifyAngularModule,
   ],
   providers: [
     AlertsService,
@@ -131,8 +129,8 @@ import { RoleGuard } from './role-guard';
     ViolationTypeService,
     AuthenticationService,
     AmplifyService,
-     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

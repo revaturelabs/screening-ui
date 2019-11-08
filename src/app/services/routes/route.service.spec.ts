@@ -5,7 +5,7 @@ import { RouteService } from './route.service';
 describe('RouteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RouteService]
+      providers: [RouteService],
     });
   });
 
