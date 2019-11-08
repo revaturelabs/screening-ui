@@ -21,7 +21,7 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
       declarations: [ LoginComponent ],
-      providers: [AuthenticationService, AmplifyService, AlertsService, UrlService]
+      providers: [AuthenticationService,Amplify, AmplifyService, AlertsService, UrlService]
     });
 
     fixture = TestBed.createComponent(LoginComponent);
