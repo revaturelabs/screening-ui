@@ -1,22 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ReportSidebarComponent } from './report-sidebar.component';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UrlService } from '../../../services/urls/url.service';
-import { HttpClientModule } from '@angular/common/http';
+import { ReportSidebarComponent } from "./report-sidebar.component";
+import { FormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { UrlService } from "../../../services/urls/url.service";
+import { HttpClientModule } from "@angular/common/http";
 
-describe('ReportSidebarComponent', () => {
+describe("ReportSidebarComponent", () => {
   let component: ReportSidebarComponent;
   let fixture: ComponentFixture<ReportSidebarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, NgbModule, HttpClientModule],
-      declarations: [ ReportSidebarComponent],
+      declarations: [ReportSidebarComponent],
       providers: [UrlService]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,7 +24,7 @@ describe('ReportSidebarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

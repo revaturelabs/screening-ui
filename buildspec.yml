@@ -1,5 +1,5 @@
 version: 0.2
- 
+
 phases:
   install:
     runtime-versions:
@@ -18,5 +18,5 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - '**/*'
+    - "**/*"
   base-directory: dist/screening-ui-gen/

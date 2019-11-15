@@ -1,11 +1,13 @@
-import { QuestionScore } from '../entities/QuestionScore';
-import { QuestionsService } from '../services/questions/questions.service';
-import { Weight } from '../entities/Weight';
+import { QuestionScore } from "../entities/QuestionScore";
+import { QuestionsService } from "../services/questions/questions.service";
+import { Weight } from "../entities/Weight";
 export class ScoresToCategoriesUtil {
-
   private questionsService: QuestionsService;
 
-  getFinalBreakdown(questionScores: QuestionScore[], weights: Weight[]): string[] {
+  getFinalBreakdown(
+    questionScores: QuestionScore[],
+    weights: Weight[]
+  ): string[] {
     const categoryScores: number[] = [];
     const categoryWeights: number[] = [];
     let score = 0;
@@ -18,6 +20,6 @@ export class ScoresToCategoriesUtil {
     for (const key of categoryScores) {
       score += categoryScores[key] * categoryWeights[key];
     }
-    return ['Overall: ' + score];
+    return ["Overall: " + score];
   }
 }

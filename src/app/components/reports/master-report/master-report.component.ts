@@ -64,7 +64,6 @@ export class MasterReportComponent implements OnInit {
 
       this.buildScatterPlot(data);
       this.clickedFullReport = data;
-
     });
   }
 
@@ -145,7 +144,6 @@ export class MasterReportComponent implements OnInit {
     this.simpleReportService
       .getAllSimpleReportsByDate(date1, date2)
       .subscribe(data => {
-
         this.colors = [];
         this.dataSize = Object.keys(data).length;
         for (let i = 0; i < this.dataSize; i++) {
@@ -172,10 +170,9 @@ export class MasterReportComponent implements OnInit {
       });
     }
 
-
-if(this.scatterChart != null ) {
-  this.scatterChart.reset();
-}
+    if (this.scatterChart != null) {
+      this.scatterChart.reset();
+    }
 
     //scatter
     this.scatterChart = new Chart("Scatter", {
@@ -188,7 +185,7 @@ if(this.scatterChart != null ) {
             pointBackgroundColor: this.colors,
             pointBorderColor: this.colors,
             radius: 10,
-            pointRadius:10
+            pointRadius: 10
           }
         ]
       },
@@ -243,6 +240,6 @@ if(this.scatterChart != null ) {
 
         this.dialog.open(ReportVisualComponent, dialogConfig);
       });
-      this.scatterChart.update();
+    this.scatterChart.update();
   }
 }

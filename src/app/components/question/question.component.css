@@ -8,13 +8,13 @@ h3 {
 }
 
 .card-header {
-  background-color: #F26925;
-  display:inline;
+  background-color: #f26925;
+  display: inline;
   color: white;
 }
 
-a{
-  color:white;
+a {
+  color: white;
   text-decoration: none;
 }
 #daTitle {
@@ -23,50 +23,50 @@ a{
 }
 
 #xIcon {
-    float: right;
+  float: right;
 }
 
 #penIcon {
-  color: #F26925;
+  color: #f26925;
 }
 
-.revatureOrange{
-  background-color: #F26925;
+.revatureOrange {
+  background-color: #f26925;
   color: white;
   margin: 1px;
 }
 
-.revatureGray{
- background-color: #6c757d;
- color:white;
- margin: 1px;
+.revatureGray {
+  background-color: #6c757d;
+  color: white;
+  margin: 1px;
 }
 
 #xIcon {
-  color: #F26925;
+  color: #f26925;
   margin-left: 10px;
 }
 
-#xIcon:hover{
-    color:black;
+#xIcon:hover {
+  color: black;
 }
 
 #penIcon {
-  color: #F26925;
+  color: #f26925;
 }
-#allTagsDiv{
-  overflow : auto;
+#allTagsDiv {
+  overflow: auto;
   height: 100px;
   width: 430px;
 }
-#questionTable{
+#questionTable {
   margin: auto;
-  overflow : auto;
+  overflow: auto;
   height: 500px;
   width: 1300px;
 }
-#allQuestionsDiv{
-  overflow : auto;
+#allQuestionsDiv {
+  overflow: auto;
   height: 380px;
 }
 /*Custom scrollbar*/
@@ -78,17 +78,17 @@ a{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #6c757d; 
+  background: #6c757d;
   border-radius: 5px;
 }
-#penIcon:hover{
-    color:black;
+#penIcon:hover {
+  color: black;
 }
 i {
   cursor: pointer;
@@ -103,10 +103,12 @@ i {
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
- /* The slider */
- .slider {
+/* The slider */
+.slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -114,8 +116,8 @@ i {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -126,24 +128,22 @@ i {
   left: 0px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
- 
+
 input:checked + .slider {
-  background-color: #F26925;
+  background-color: #f26925;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #F26925;
+  box-shadow: 0 0 1px #f26925;
 }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
   transform: translateX(16px);
-
-  
 }
 
 /* Rounded sliders */
@@ -155,45 +155,45 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-#xIcon:hover .removeToolTip{
+#xIcon:hover .removeToolTip {
   visibility: visible;
 }
-.removeToolTip{
+.removeToolTip {
   visibility: hidden;
   position: absolute;
   float: right;
   left: 90%;
-  top:70%;
-  
+  top: 70%;
 }
 
-#penIcon:hover .editToolTip{
-visibility: visible;
+#penIcon:hover .editToolTip {
+  visibility: visible;
 }
-.editToolTip{
-color: black;
-visibility: hidden;
-position: absolute;
-float: right;
-width: 10%;
-left: 87%;
-top:70%;
-
+.editToolTip {
+  color: black;
+  visibility: hidden;
+  position: absolute;
+  float: right;
+  width: 10%;
+  left: 87%;
+  top: 70%;
 }
-.accordion-toggle { display: block; }
-p{
-  color: #F26925;
+.accordion-toggle {
+  display: block;
+}
+p {
+  color: #f26925;
 }
 fixed-modal .modal-content {
-  size: sm
+  size: sm;
 }
 
-.tabContent{
+.tabContent {
   width: 420px;
   height: 400px;
 }
 
-.pillButtons{
+.pillButtons {
   margin: 5px;
   overflow: hidden;
   border-radius: 9%;

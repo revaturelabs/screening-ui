@@ -1,8 +1,8 @@
 {
-	"auth": {
-		"cognito88cb3b4c": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+  "auth": {
+    "cognito88cb3b4c": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation"
+    }
+  }
 }

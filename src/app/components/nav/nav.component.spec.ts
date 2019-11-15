@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NavComponent } from './nav.component';
-import { RouterTestingModule } from '@angular/router/testing'; 
-import {AuthenticationService} from '../../services/authentication/authentication.service';
-import { AmplifyService } from 'aws-amplify-angular';
+import { NavComponent } from "./nav.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AuthenticationService } from "../../services/authentication/authentication.service";
+import { AmplifyService } from "aws-amplify-angular";
 
-describe('NavComponent', () => {
+describe("NavComponent", () => {
   let component: NavComponent;
   let fixture: ComponentFixture<NavComponent>;
 
@@ -13,9 +13,8 @@ describe('NavComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       providers: [AuthenticationService, AmplifyService],
-      declarations: [ NavComponent ]
-    })
-    .compileComponents();
+      declarations: [NavComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -24,7 +23,7 @@ describe('NavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

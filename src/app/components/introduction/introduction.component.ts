@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
-import { ScreeningService } from '../../services/screening/screening.service';
-import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
+import { ScreeningService } from "../../services/screening/screening.service";
+import { ScheduledScreening } from "../../entities/ScheduledScreening";
 
 @Component({
-  selector: 'app-introduction',
-  templateUrl: './introduction.component.html',
-  styleUrls: ['./introduction.component.css']
+  selector: "app-introduction",
+  templateUrl: "./introduction.component.html",
+  styleUrls: ["./introduction.component.css"]
 })
 
 /*
@@ -17,16 +17,16 @@ import { ScheduledScreening } from '../../entities/ScheduledScreening';
   feedback on the candidates introduction (optional).
 */
 export class IntroductionComponent implements OnInit {
-
   constructor(
     private screeningStateService: ScreeningStateService,
-    private screeningService: ScreeningService) { }
+    private screeningService: ScreeningService
+  ) {}
 
   public currentScreening: ScheduledScreening;
   public comment: string;
 
   form = new FormGroup({
-    comment: new FormControl('', [])
+    comment: new FormControl("", [])
   });
 
   ngOnInit() {
@@ -38,5 +38,4 @@ export class IntroductionComponent implements OnInit {
     // Send the comments to the appropriate service method saves them to the DB
     this.screeningService.createScreening();
   }
-
 }

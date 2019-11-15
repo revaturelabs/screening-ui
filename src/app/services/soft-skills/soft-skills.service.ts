@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import { ViolationType } from '../../entities/ViolationType';
+import { ViolationType } from "../../entities/ViolationType";
 
 /**
 Used to obtain the defined types of soft skill violations.
@@ -12,8 +12,7 @@ This is the service to obtain the types from the server in the form of an observ
 */
 @Injectable()
 export class SoftSkillsService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public sampleViolationTypes: ViolationType[];
 
@@ -21,6 +20,4 @@ export class SoftSkillsService {
 
   // Saves only the ViolationType IDs in an array
   public checkedViolationIDList: number[];
-
-
 }

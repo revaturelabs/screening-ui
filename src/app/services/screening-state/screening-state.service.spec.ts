@@ -1,8 +1,8 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ScreeningStateService } from './screening-state.service';
+import { TestBed, inject } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ScreeningStateService } from "./screening-state.service";
 
-describe('ScreeningStateService', () => {
+describe("ScreeningStateService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -10,7 +10,10 @@ describe('ScreeningStateService', () => {
     });
   });
 
-  it('should be created', inject([ScreeningStateService], (service: ScreeningStateService) => {
-    expect(service).toBeTruthy();
-  }));
+  it("should be created", inject(
+    [ScreeningStateService],
+    (service: ScreeningStateService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

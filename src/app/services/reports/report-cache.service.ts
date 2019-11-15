@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
 
-import { ReportData } from 'src/app/entities/ReportData';
-import { ReportService } from 'src/app/services/reports/report.service';
+import { ReportData } from "src/app/entities/ReportData";
+import { ReportService } from "src/app/services/reports/report.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ReportCacheService {
   cacheMap: object = new Object();
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService) {}
 
   invalidateCache() {
     this.cacheMap = new Object();
@@ -21,22 +21,28 @@ export class ReportCacheService {
     if (key in this.cacheMap) {
       console.log(`Retrieving ${key} from cache`);
       return of(this.cacheMap[key]);
-    }  else {
+    } else {
       console.log(`Requesting ${key} from server`);
-      return this.reportService.getScreenersByPartialEmail(partialEmail).pipe(
-        tap(data => this.cacheMap[key] = data));
+      return this.reportService
+        .getScreenersByPartialEmail(partialEmail)
+        .pipe(tap(data => (this.cacheMap[key] = data)));
     }
   }
 
-  getScreenerDataByWeeks(startDate: string, endDate: string, email: string): Observable<ReportData> {
+  getScreenerDataByWeeks(
+    startDate: string,
+    endDate: string,
+    email: string
+  ): Observable<ReportData> {
     const key = `$startDate=${startDate}&endDate=${endDate}&email=${email}`;
     if (key in this.cacheMap) {
       console.log(`Retrieving ${key} from cache`);
       return of(this.cacheMap[key]);
     } else {
       console.log(`Requesting ${key} from server`);
-      return this.reportService.getScreenerDataByWeeks(startDate, endDate, email).pipe(
-        tap(data => this.cacheMap[key] = data));
+      return this.reportService
+        .getScreenerDataByWeeks(startDate, endDate, email)
+        .pipe(tap(data => (this.cacheMap[key] = data)));
     }
   }
 
@@ -47,8 +53,9 @@ export class ReportCacheService {
       return of(this.cacheMap[key]);
     } else {
       console.log(`Requesting ${key} from server`);
-      return this.reportService.getAllScreenerDataByWeeks(startDate, endDate).pipe(
-        tap(data => this.cacheMap[key] = data));
+      return this.reportService
+        .getAllScreenerDataByWeeks(startDate, endDate)
+        .pipe(tap(data => (this.cacheMap[key] = data)));
     }
   }
 }

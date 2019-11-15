@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Routes } from '@angular/router';
-import { routes } from '../../app.routes';
+import { Injectable } from "@angular/core";
+import { Routes } from "@angular/router";
+import { routes } from "../../app.routes";
 
 // rxjs
-import { BehaviorSubject } from 'rxjs';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
 
 // components
-import { AppComponent } from '../../app.component';
+import { AppComponent } from "../../app.component";
 
 /**
  * This class converts the contents of the Routes array
@@ -35,7 +35,7 @@ export class RouteService {
    * Delegates bootstrapping to the initialize function
    */
   constructor() {
-    this.rootNode = '/';
+    this.rootNode = "/";
     this.initialize();
   }
 
@@ -98,28 +98,32 @@ export class RouteService {
    * AppComponent and pushed them on the "all" subject
    */
   private fetchAll(): void {
-    const root = routes.find((route) => route.path === '');
+    const root = routes.find(route => route.path === "");
     const nodes = root.children;
-    nodes.forEach( (node) => {
-      node.path = [ this.rootNode, node.path].join('/');
+    nodes.forEach(node => {
+      node.path = [this.rootNode, node.path].join("/");
     });
-    this.all.next( nodes );
+    this.all.next(nodes);
   }
 
   /**
    * filters out all defined routes with a "data"
    * property and pushes them on the "allWithData" subject
    */
-  private fetchWithData( defRoutes: Routes): void {
-    this.allWithData.next( defRoutes.filter( (route) => route.hasOwnProperty('data') ) );
+  private fetchWithData(defRoutes: Routes): void {
+    this.allWithData.next(
+      defRoutes.filter(route => route.hasOwnProperty("data"))
+    );
   }
 
   /**
    * filters out all defined routes with a "data.title"
    * property and pushes them on the "allWithTitles" subject
    */
-  private fetchWithTitles( defRoutes: Routes): void {
-    this.allWithTitles.next(defRoutes.filter( (route) => route.data.hasOwnProperty('title') ) );
+  private fetchWithTitles(defRoutes: Routes): void {
+    this.allWithTitles.next(
+      defRoutes.filter(route => route.data.hasOwnProperty("title"))
+    );
   }
 
   /**
@@ -127,7 +131,9 @@ export class RouteService {
    * property and pushes them on the "allNavRoutes" subject
    */
   private fetchNavRoutes(defRoutes: Routes): void {
-    this.allNavRoutes.next(defRoutes.filter( (route) => route.data.hasOwnProperty('position') ) );
+    this.allNavRoutes.next(
+      defRoutes.filter(route => route.data.hasOwnProperty("position"))
+    );
   }
 
   /**
@@ -135,7 +141,9 @@ export class RouteService {
    * property set to "top" and pushes them on the "allTopNav" subject
    */
   private fetchTopNavRoutes(defRoutes: Routes): void {
-    this.allTopNav.next((defRoutes.filter( (route) => route.data.position === 'top') ) );
+    this.allTopNav.next(
+      defRoutes.filter(route => route.data.position === "top")
+    );
   }
 
   /**
@@ -146,9 +154,9 @@ export class RouteService {
     this.initializeSubjects();
     this.initializeSubscriptions();
 
-  /*
-   * begin daisy chain of subscriptions
-   */
+    /*
+     * begin daisy chain of subscriptions
+     */
     this.fetchAll();
   }
 
@@ -169,16 +177,16 @@ export class RouteService {
    * subject with it's view of the routes array
    */
   private initializeSubscriptions(): void {
-    this.all.subscribe((defRoutes) => this.fetchWithData(defRoutes));
-    this.allWithData.subscribe((defRoutes) => this.fetchWithTitles(defRoutes));
-    this.allWithTitles.subscribe((defRoutes) => this.fetchNavRoutes(defRoutes));
+    this.all.subscribe(defRoutes => this.fetchWithData(defRoutes));
+    this.allWithData.subscribe(defRoutes => this.fetchWithTitles(defRoutes));
+    this.allWithTitles.subscribe(defRoutes => this.fetchNavRoutes(defRoutes));
 
     /*
-    * this subscription is the point where we may want to expand with multiple
-    * actions take place at some point like if we want side nav routes
-    * or footer nav routes
-    */
-    this.allNavRoutes.subscribe((defRoutes) => {
+     * this subscription is the point where we may want to expand with multiple
+     * actions take place at some point like if we want side nav routes
+     * or footer nav routes
+     */
+    this.allNavRoutes.subscribe(defRoutes => {
       this.fetchTopNavRoutes(defRoutes);
       // fetch side nav
       // fetch footer nav

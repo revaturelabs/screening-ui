@@ -1,10 +1,10 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { TestBed, inject } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientModule } from "@angular/common/http";
 
-import { SoftSkillsService } from './soft-skills.service';
+import { SoftSkillsService } from "./soft-skills.service";
 
-describe('SoftSkillsService', () => {
+describe("SoftSkillsService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
@@ -13,7 +13,10 @@ describe('SoftSkillsService', () => {
     });
   });
 
-  it('should be created', inject([SoftSkillsService], (service: SoftSkillsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it("should be created", inject(
+    [SoftSkillsService],
+    (service: SoftSkillsService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });
