@@ -1,8 +1,5 @@
-
-
 export class Track {
-    trackId: number;
-    title: string;
-    active: boolean;
+  trackId: number;
+  title: string;
+  active: boolean;
 }
-

@@ -14,7 +14,7 @@ import { AuthenticationService } from './services/authentication/authentication.
 export const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginComponent
   },
   {
     path: '',
@@ -35,22 +35,22 @@ export const routes: Routes = [
         children: [
           {
             path: 'intro',
-            component: IntroductionComponent,
+            component: IntroductionComponent
           },
           {
             path: 'questions',
-            component: QuestionsTableComponent,
+            component: QuestionsTableComponent
           },
           {
             path: 'finalReport',
-            component: FinalReportComponent,
+            component: FinalReportComponent
           },
           {
             path: 'passFail',
             component: PassFailComponent
           }
         ]
-      },
+      }
     ]
   },
   {
@@ -72,8 +72,5 @@ export const routes: Routes = [
     path: '**',
     pathMatch: 'full',
     redirectTo: '/home'
-
-  },
+  }
 ];
-
-

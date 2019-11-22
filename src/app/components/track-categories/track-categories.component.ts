@@ -9,15 +9,12 @@ import { CategoryFilterPipe } from '../../pipes/track-categories.filter';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 
-
 @Component({
   selector: 'app-track-categories',
   templateUrl: './track-categories.component.html',
   styleUrls: ['./track-categories.component.css']
 })
-
 export class TrackCategoriesComponent implements OnInit {
-
   /** variable to hold an array of 'Category' entities */
   categories: Category[];
   /** variable to hold category being edited */
@@ -33,7 +30,8 @@ export class TrackCategoriesComponent implements OnInit {
     private categoryService: CategoriesService,
 
     private modalService: NgbModal,
-    private alertsService: AlertsService, ) { }
+    private alertsService: AlertsService
+  ) {}
 
   filter: Category = new Category();
   ngOnInit() {
@@ -60,7 +58,11 @@ export class TrackCategoriesComponent implements OnInit {
 
   /** used to compare categories Array to sorts it alphabetically */
   compareAlphabetically(a: Category, b: Category) {
-    if (a.isActive && a.categoryDescription.toLocaleLowerCase() < b.categoryDescription.toLocaleLowerCase()) {
+    if (
+      a.isActive &&
+      a.categoryDescription.toLocaleLowerCase() <
+        b.categoryDescription.toLocaleLowerCase()
+    ) {
       return -1;
     } else {
       return 1;
@@ -68,17 +70,22 @@ export class TrackCategoriesComponent implements OnInit {
   }
 
   compareInactiveCategories(a: Category, b: Category) {
-    if (!a.isActive && !b.isActive && a.categoryDescription.toLocaleLowerCase() < b.categoryDescription.toLocaleLowerCase()) {
-        return -1;
+    if (
+      !a.isActive &&
+      !b.isActive &&
+      a.categoryDescription.toLocaleLowerCase() <
+        b.categoryDescription.toLocaleLowerCase()
+    ) {
+      return -1;
     } else {
-        return 1;
+      return 1;
     }
-}
+  }
 
   /** Save the selected 'category' in 'category.service' to be used in
-    * 'category.component'.
-    * Then route to 'category.component'.
-    */
+   * 'category.component'.
+   * Then route to 'category.component'.
+   */
   routeToCategory(item: Category) {
     this.categoryService.setCategory(item);
     this.router.navigate(['settings/category']);
@@ -95,7 +102,9 @@ export class TrackCategoriesComponent implements OnInit {
    * @param categoryParam
    */
   updateCategory(categoryParam: Category) {
-    if (!categoryParam) { categoryParam = this.currCategory; }
+    if (!categoryParam) {
+      categoryParam = this.currCategory;
+    }
     if (categoryParam) {
       this.categoryService.updateCategory(categoryParam).subscribe(category => {
         this.getCategories();
@@ -107,7 +116,8 @@ export class TrackCategoriesComponent implements OnInit {
   /** Creates new category */
   createCategory() {
     // The server will generate the id for this new hero
-    this.categoryService.createNewCategory(this.newCategory)
+    this.categoryService
+      .createNewCategory(this.newCategory)
       .subscribe(category => {
         this.categories.push(category);
         this.getCategories();
@@ -119,13 +129,16 @@ export class TrackCategoriesComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.newCategory = new Category();
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.newCategory.categoryDescription = '';
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content).result.then(
+      result => {
+        this.newCategory = new Category();
+        this.closeResult = `Closed with: ${result}`;
+      },
+      reason => {
+        this.newCategory.categoryDescription = '';
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
     event.stopPropagation();
   }
 

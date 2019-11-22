@@ -1,15 +1,28 @@
-<nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-light display-front nav-pad">
+<nav
+  class="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-light display-front nav-pad"
+>
   <div class="navbar-header c-pointer shift-left">
-    <img  class="img-adjust-position" routerLink="/dashboard" class="rev-logo" src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"  height=30 width=110 alt="revature">
+    <img
+      class="img-adjust-position"
+      routerLink="/dashboard"
+      class="rev-logo"
+      src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"
+      height="30"
+      width="110"
+      alt="revature"
+    />
   </div>
 
-  <button class="navbar-toggler c-pointer shift-right" (click)="toggleCollapse()" aria-label="Toggle navigation">
-    <span class="current-app-position">{{currentApp}}</span>
+  <button
+    class="navbar-toggler c-pointer shift-right"
+    (click)="toggleCollapse()"
+    aria-label="Toggle navigation"
+  >
+    <span class="current-app-position">{{ currentApp }}</span>
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
-
+  <div [ngClass]="{ collapse: collapsed, 'navbar-collapse': true }">
     <!-- <ul class="navbar-nav mr-auto module-select">
       <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown-toggle c-pointer janus-links-collapse-support shift-down" id="dropdownBasic1" ngbDropdownToggle>{{currentApp}}</a>
@@ -21,30 +34,31 @@
 
     <ul class="navbar-nav ml-auto margin-nav">
       <li class="nav-item" *ngIf="showHome">
-        <a class="nav-link" routerLink="home" routerLinkActive="activeLink">Home</a>
+        <a class="nav-link" routerLink="home" routerLinkActive="activeLink"
+          >Home</a
+        >
       </li>
       <li class="nav-item" *ngIf="showReports">
-          <a class="nav-link" routerLink="reports" routerLinkActive="activeLink">Reports</a>
+        <a class="nav-link" routerLink="reports" routerLinkActive="activeLink"
+          >Reports</a
+        >
       </li>
-      <li class="nav-item" *ngIf="showSettings"> 
-          <a class="nav-link" routerLink="settings/main">Settings</a>
+      <li class="nav-item" *ngIf="showSettings">
+        <a class="nav-link" routerLink="settings/main">Settings</a>
       </li>
-      <li class="nav-item" (click)="attemptLogout=true;" *ngIf="showLogout">
+      <li class="nav-item" (click)="attemptLogout = true" *ngIf="showLogout">
+        <a class="nav-link" style="cursor:pointer">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-        <a class="nav-link" style="cursor:pointer">Logout</a>  
-
-      </ul>
-    </div>
-  </nav>
-  
-  <div class="modal" [style.display]="toggleLogout()">
-    <div class="modal-content">
-      <div class="buttons">
-        <h2>Are you sure you want to Logout?</h2>
-        <button class="btn" (click)="logout()" routerLink="/login">Logout</button>
-        <button class="btn" (click)="attemptLogout=false;">Back</button>
-      </div>
+<div class="modal" [style.display]="toggleLogout()">
+  <div class="modal-content">
+    <div class="buttons">
+      <h2>Are you sure you want to Logout?</h2>
+      <button class="btn" (click)="logout()" routerLink="/login">Logout</button>
+      <button class="btn" (click)="attemptLogout = false">Back</button>
     </div>
   </div>
-
-  
+</div>

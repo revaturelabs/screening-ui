@@ -4,24 +4,40 @@
     <div class="info">
       <div class="name">
         <label>Name: </label>
-        <p>{{currentScreening.candidate.name}}</p>
+        <p>{{ currentScreening.candidate.name }}</p>
       </div>
       <div class="track">
         <label>Track: </label>
-        <p>{{currentScreening.track.title}}</p>
+        <p>{{ currentScreening.track.title }}</p>
       </div>
     </div>
-    <hr>
+    <hr />
     <div>
       <div class="form-group comment-container">
-        <app-violation-flag (flagChange)="getMessage($event)"></app-violation-flag>
+        <app-violation-flag
+          (flagChange)="getMessage($event)"
+        ></app-violation-flag>
         <div>
-          <br>
+          <br />
           <label for="inputComment">Overall Introduction Feedback</label>
-          <br>
-          <textarea class="form-control" (input)="comment = $event.target.value" id="inputComment" name="commentBox" placeholder="Optional Feedback"></textarea>
-          <br>
-          <button class="btn" (click)="onSubmit()" id="submit-button" routerLink="/screening/questions" routerLinkActive="activeLink">Begin Questions</button>
+          <br />
+          <textarea
+            class="form-control"
+            (input)="comment = $event.target.value"
+            id="inputComment"
+            name="commentBox"
+            placeholder="Optional Feedback"
+          ></textarea>
+          <br />
+          <button
+            class="btn"
+            (click)="onSubmit()"
+            id="submit-button"
+            routerLink="/screening/questions"
+            routerLinkActive="activeLink"
+          >
+            Begin Questions
+          </button>
         </div>
       </div>
     </div>

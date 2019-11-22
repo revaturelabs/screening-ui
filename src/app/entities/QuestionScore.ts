@@ -1,3 +1,5 @@
+import { Screening } from './Screening';
+
 export class QuestionScore {
   qSID: number;
   questionId: number;

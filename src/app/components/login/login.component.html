@@ -1,53 +1,80 @@
-
 <div class="container1">
-<div class="container-flex">
-        <div class="card">  
-            <div class="card-header-light text-center">
-                <img src="assets/rev-logo.png"  class="ml-4 mt-4" alt="Revature Logo!">
-                <br>
-                <br>
-            </div> <!--End Card Header-->
-                <div class="card-body" > 
-                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                   <div class="form-group justify-content-center">
-                                  <div class="input-group-text">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    </div>
-                                      <input type="text" formControlName="username" class="form-control" placeholder="Username" id="username"
-                                      [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                        <div *ngIf="f.username.errors.required">Username is required</div>
-                                    </div>
-                                  </div>
-                                </div>
+  <div class="container-flex">
+    <div class="card">
+      <div class="card-header-light text-center">
+        <img src="assets/rev-logo.png" class="ml-4 mt-4" alt="Revature Logo!" />
+        <br />
+        <br />
+      </div>
+      <!--End Card Header-->
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group justify-content-center">
+            <div class="input-group-text">
+              <div class="input-group-append">
+                <span class="input-group-text"
+                  ><i class="fas fa-user"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                formControlName="username"
+                class="form-control"
+                placeholder="Username"
+                id="username"
+                [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+              />
+              <div
+                *ngIf="submitted && f.username.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.username.errors.required">
+                  Username is required
+                </div>
+              </div>
+            </div>
+          </div>
 
-                        <!--TS needed to change how the invalid state appears-->
-                            <div class="form-group">
-                                  <div class="input-group-text">
-                                      <div class="input-group-append">
-                                          <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                        </div>
-                                      <input type="password" formControlName="password" class="form-control" placeholder="Password" id="password" 
-                                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                        <div *ngIf="f.password.errors.required">Password is required
-                                        </div>
-                                      </div>
-                                   </div>
-                            </div>
-                        
-                            <div class="form-group-register">
-                              <button class="btn btn-outline-dark w-100">Login</button> <!-- [disabled]="loading"  -->
-                              
-                              <a [routerLink]="['/register']">Register</a>
-                            </div>
-                            <br>
-                  </form>
-                  <br>
-                 </div> <!--End Card Body-->
-              </div> <!--End Card-->
-          
-      </div> <!--End Container-->
-   </div>
+          <!--TS needed to change how the invalid state appears-->
+          <div class="form-group">
+            <div class="input-group-text">
+              <div class="input-group-append">
+                <span class="input-group-text"
+                  ><i class="fas fa-lock"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                formControlName="password"
+                class="form-control"
+                placeholder="Password"
+                id="password"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              />
+              <div
+                *ngIf="submitted && f.password.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.password.errors.required">
+                  Password is required
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="form-group-register">
+            <button class="btn btn-outline-dark w-100">Login</button>
+            <!-- [disabled]="loading"  -->
+
+            <a [routerLink]="['/register']">Register</a>
+          </div>
+          <br />
+        </form>
+        <br />
+      </div>
+      <!--End Card Body-->
+    </div>
+    <!--End Card-->
+  </div>
+  <!--End Container-->
+</div>

@@ -8,7 +8,6 @@ import { ReportService } from '../../../services/reports/report.service';
   styleUrls: ['./average-category-type.component.css']
 })
 export class AverageCategoryTypeComponent implements OnInit {
-
   Highcharts = HighCharts;
   options: Object;
   _barData: object[] = [];
@@ -18,9 +17,7 @@ export class AverageCategoryTypeComponent implements OnInit {
     this.setOptions(barData);
   }
 
-
-  constructor(private reportService: ReportService) {
-  }
+  constructor(private reportService: ReportService) {}
 
   ngOnInit() {
     this.setOptions(this._barData);

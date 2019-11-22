@@ -4,10 +4,16 @@ import { Question } from '../../entities/Question';
 import { Category } from '../../entities/Category';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionsService } from '../../services/questions/questions.service';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes
+} from '@angular/animations';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { AlertsService } from '../../services/alert-service/alerts.service';
-
 
 @Component({
   selector: 'app-question',
@@ -15,14 +21,20 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
   styleUrls: ['./question.component.css'],
   animations: [
     trigger('move', [
-      state('center', style({
-        transform: 'translateX(0) scaleX(1)'
-      })),
-      state('left', style({
-        transform: 'translateX(-28%) scaleX(1)'
-      })),
-      transition('center =>left', animate('300ms ease-in')),
-    ]),
+      state(
+        'center',
+        style({
+          transform: 'translateX(0) scaleX(1)'
+        })
+      ),
+      state(
+        'left',
+        style({
+          transform: 'translateX(-28%) scaleX(1)'
+        })
+      ),
+      transition('center =>left', animate('300ms ease-in'))
+    ])
   ]
 })
 
@@ -39,11 +51,13 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
  * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
  */
 export class QuestionComponent implements OnInit {
-
-  constructor(private modalService: NgbModal, private fb: FormBuilder,
+  constructor(
+    private modalService: NgbModal,
+    private fb: FormBuilder,
     private questionService: QuestionsService,
     private categoryService: CategoriesService,
-    private alertsService: AlertsService) { }
+    private alertsService: AlertsService
+  ) {}
 
   createQuestion: FormGroup;
   newQuestion: Question;
@@ -53,8 +67,6 @@ export class QuestionComponent implements OnInit {
   currentCategory: Category;
   public answersCollapsed = true;
   public tagsCollapsed = true;
-
-
 
   ngOnInit() {
     this.currentCategory = this.categoryService.getCurrentCategory();
@@ -75,7 +87,7 @@ export class QuestionComponent implements OnInit {
    **/
   initFormControl() {
     this.createQuestion = this.fb.group({
-      'name': ['', Validators.required],
+      name: ['', Validators.required]
     });
   }
 
@@ -166,11 +178,13 @@ export class QuestionComponent implements OnInit {
    **/
   updateQuestions() {
     if (this.currentCategory) {
-      this.questionService.getCategoryQuestions(this.currentCategory.categoryId).subscribe(data => {
-        this.questions = data;
-        this.questions.sort(this.compare);
-        this.questions.sort(this.compare2);
-      });
+      this.questionService
+        .getCategoryQuestions(this.currentCategory.categoryId)
+        .subscribe(data => {
+          this.questions = data;
+          this.questions.sort(this.compare);
+          this.questions.sort(this.compare2);
+        });
     }
   }
 
@@ -184,7 +198,10 @@ export class QuestionComponent implements OnInit {
   }
 
   compare2(a: Question, b: Question) {
-    if (a.isActive && a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()) {
+    if (
+      a.isActive &&
+      a.questionText.toLocaleLowerCase() < b.questionText.toLocaleLowerCase()
+    ) {
       return -1;
     } else {
       return 1;

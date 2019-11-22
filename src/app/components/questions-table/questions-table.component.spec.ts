@@ -22,7 +22,6 @@ import { UrlService } from '../../services/urls/url.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { QuestionScore } from '../../entities/QuestionScore';
 
-
 // Author: David Gustafson
 
 // Running test with ngOnInit fails so comment out the body of ngOnInit to run these test
@@ -42,7 +41,7 @@ const mockQuestionScore: QuestionScore = {
   score: 1,
   commentary: 'string',
   categoryId: 1,
-  beginTime: new Date
+  beginTime: new Date()
 };
 
 const CATEGORIES: Category[] = [
@@ -55,7 +54,8 @@ const CATEGORIES: Category[] = [
     categoryId: 2,
     categoryDescription: 'SQL database questions',
     isActive: true
-  }];
+  }
+];
 
 describe('QuestionsTableComponent', () => {
   let component: QuestionsTableComponent;
@@ -63,19 +63,38 @@ describe('QuestionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent], // cut out NgbModalBackdrop, NgbModalWindow,
+      declarations: [
+        QuestionsTableComponent,
+        AnswerComponent,
+        ViolationFlagComponent
+      ], // cut out NgbModalBackdrop, NgbModalWindow,
       imports: [FormsModule, RouterTestingModule],
-      providers: [HttpClient, HttpHandler, QuestionsService, ScreeningStateService,
-        TracksService, QuestionScoreService, NgbModal, ScreeningService, // cut out NgbModalStack,
-        TrackCategoryService, SoftSkillsViolationService, ViolationTypeService, AlertsService, UrlService]
+      providers: [
+        HttpClient,
+        HttpHandler,
+        QuestionsService,
+        ScreeningStateService,
+        TracksService,
+        QuestionScoreService,
+        NgbModal,
+        ScreeningService, // cut out NgbModalStack,
+        TrackCategoryService,
+        SoftSkillsViolationService,
+        ViolationTypeService,
+        AlertsService,
+        UrlService
+      ]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [QuestionsTableComponent, AnswerComponent, ViolationFlagComponent] // cut out NgbModalBackdrop, NgbModalWindow,
+        entryComponents: [
+          QuestionsTableComponent,
+          AnswerComponent,
+          ViolationFlagComponent
+        ] // cut out NgbModalBackdrop, NgbModalWindow,
       }
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -91,7 +110,9 @@ describe('QuestionsTableComponent', () => {
     component.ngOnDestroy();
     if (component.questionCategories !== undefined) {
       for (const category of component.questionCategories) {
-        const bs = jasmine.createSpyObj('QuestionService', ['getCategoryQuestions']);
+        const bs = jasmine.createSpyObj('QuestionService', [
+          'getCategoryQuestions'
+        ]);
         expect(bs.getCategoryQuestions(category.categoryId)).toEqual([]);
       }
     }
@@ -120,5 +141,4 @@ describe('QuestionsTableComponent', () => {
     component.generalComment = 'here';
     expect(component.submitAllowed()).toBeFalsy();
   });
-
 });

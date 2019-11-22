@@ -4,7 +4,6 @@ import { ScreeningConfigComponent } from './screening-config.component';
 import { TrackCategoriesComponent } from '../track-categories/track-categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TracksComponent } from '../tracks/tracks.component';
-import { CandidateComponent } from '../candidate/candidate.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CategoriesService } from '../../services/categories/categories.service';
@@ -18,10 +17,13 @@ describe('ScreeningComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, NgbModule, RouterTestingModule, HttpClientModule],
-      declarations: [ ScreeningConfigComponent, TrackCategoriesComponent, TracksComponent, CandidateComponent ],
+      declarations: [
+        ScreeningConfigComponent,
+        TrackCategoriesComponent,
+        TracksComponent
+      ],
       providers: [CategoriesService, UrlService, AlertsService]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

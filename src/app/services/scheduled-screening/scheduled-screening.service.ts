@@ -11,7 +11,7 @@ export class ScheduledScreeningService {
     private httpClient: HttpClient,
     private tracksService: TracksService,
     private urlService: UrlService
-  ) { }
+  ) {}
 
   private tracks: Track[] = [];
   private scheduledScreenings: ScheduledScreening[] = [];
@@ -19,22 +19,24 @@ export class ScheduledScreeningService {
   getScheduledScreenings(): ScheduledScreening[] {
     this.tracksService.getTracks().subscribe(trackData => {
       this.tracks = trackData;
-      this.httpClient.get<any[]>(this.urlService.screening.scheduledScreeningUrl()).subscribe(scheduledScreeningData => {
-        for (const scheduledScreening of scheduledScreeningData) {
-          let s: ScheduledScreening = new ScheduledScreening();
-          s.scheduledScreeningId = scheduledScreening.scheduledScreeningId;
-          s.scheduledStatus = scheduledScreening.scheduledStatus;
-          s.scheduledDate = scheduledScreening.scheduledDate;
-          s.candidate = scheduledScreening.candidate;
-          for (const track of this.tracks) {
-            if (track.trackId === scheduledScreening.trackId) {
-              s.track = track;
-              break;
+      this.httpClient
+        .get<any[]>(this.urlService.screening.scheduledScreeningUrl())
+        .subscribe(scheduledScreeningData => {
+          for (const scheduledScreening of scheduledScreeningData) {
+            let s: ScheduledScreening = new ScheduledScreening();
+            s.scheduledScreeningId = scheduledScreening.scheduledScreeningId;
+            s.scheduledStatus = scheduledScreening.scheduledStatus;
+            s.scheduledDate = scheduledScreening.scheduledDate;
+            s.candidate = scheduledScreening.candidate;
+            for (const track of this.tracks) {
+              if (track.trackId === scheduledScreening.trackId) {
+                s.track = track;
+                break;
+              }
             }
+            this.scheduledScreenings.push(s);
           }
-          this.scheduledScreenings.push(s);
-        }
-      });
+        });
     });
     return this.scheduledScreenings;
   }

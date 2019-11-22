@@ -10,14 +10,12 @@ describe('AverageTrackComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[ RouterTestingModule, HighchartsChartModule],
-      declarations: [ AverageTrackComponent ],
-
-    })
+      imports: [RouterTestingModule, HighchartsChartModule],
+      declarations: [AverageTrackComponent]
+    });
     fixture = TestBed.createComponent(AverageTrackComponent);
     component = fixture.componentInstance;
   });
-
 
   it('should create', () => {
     expect(component).toBeTruthy();

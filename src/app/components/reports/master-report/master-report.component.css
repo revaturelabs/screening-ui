@@ -1,46 +1,79 @@
 /* The Modal (background) */
 
-h1{
-    background: #f26925;
-    color: white;
-    min-width: 100%;
-    max-width: 100%;
-    width: 100%;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    padding: 12px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-color: #f26925;
-    text-align: center;
-    font-size: 25px;
-    white-space:nowrap;
+.myh2 {
+  padding-top: 1em;
+  color: lightgray;
+  font-size: 1.2rem;
+}
+
+#Scatter {
+  display: inline-block;
+  width: 90%;
+}
+
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active,
+.btn-light.active,
+.open > .dropdown-toggle.btn-light {
+  color: #fff;
+  background-color: #f26925;
+  border-color: #f25925;
+  /*set the color you want here*/
+}
+
+h1 {
+  background: #f26925;
+  color: white;
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding: 12px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-color: #f26925;
+  text-align: center;
+  font-size: 25px;
+  white-space: nowrap;
 }
 
 .modal {
-    display: none; /* Hidden by default*/
-    margin: auto;
-    /* position: fixed; Stay in place */
-    z-index: 0; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /*Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.583); /* Black w/ opacity */
+  display: none;
+  /* Hidden by default*/
+  margin: auto;
+  /* position: fixed; Stay in place */
+  z-index: 0;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /*Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.583);
+  /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
+
 .modal-content {
-    text-align: center;
-    background-color: #fefefe;
-    margin: 300px auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 350px; /* Could be more or less, depending on screen size */
+  text-align: center;
+  background-color: #fefefe;
+  margin: 300px auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 350px;
+  /* Could be more or less, depending on screen size */
 }
-.button {
+
+/* .button {
     padding: 10px;
     color: white !important;
     font-size: 20px;
@@ -48,20 +81,21 @@ h1{
     background: #f26925;
     border: 0px solid #f26925;
     margin: 5px;
+} */
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
 }
-.buttons{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
-}
-.btn{
+
+/* .btn {
     background: #f26925;
     color: white;
     font-weight: strong;
-} 
+} */
+
 .col-lg-10 {
-    margin: auto;
-    margin-top: 25px;
+  margin: auto;
+  margin-top: 25px;
 }
-
-

@@ -25,9 +25,7 @@ in each category on technical skills, the overall feedback therein,
 and if the candidate passed or failed their soft skills evaluation.
 Screener can copy the summary to the clipboard, and return to the candidate list.
 */
-
 export class FinalReportComponent implements OnInit, OnDestroy {
-
   candidate: Candidate;
   track: Track;
   softSkillString: string;
@@ -49,43 +47,51 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     private scoresToCategoriesUtil: ScoresToCategoriesUtil,
     private alertsService: AlertsService,
     private softSkillsViolationService: SoftSkillsViolationService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.checked = 'false';
     this.candidate = this.screeningStateService.getCurrentScreening().candidate;
-    this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
+    this.softSkillString =
+      'Soft Skills: ' + this.screeningService.softSkillsResult;
     this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
         // need to get the skilltype of the screening from something other than the Candidate.
-        this.trackCategoryService.getWeightsByTrack(0).subscribe(
-          weights => {
-            this.categoryStringArray =
-            this.scoresToCategoriesUtil.getFinalBreakdown(this.questionScores, weights);
-          }
-        );
+        this.trackCategoryService.getWeightsByTrack(0).subscribe(weights => {
+          this.categoryStringArray = this.scoresToCategoriesUtil.getFinalBreakdown(
+            this.questionScores,
+            weights
+          );
+        });
         // Set the composite score in the screening service
-        this.screeningService.compositeScore = +this.categoryStringArray[this.categoryStringArray.length - 1];
+        this.screeningService.compositeScore = +this.categoryStringArray[
+          this.categoryStringArray.length - 1
+        ];
         this.categoryStringArray.splice(this.categoryStringArray.length - 1, 1);
 
-        this.overallScoreString = this.categoryStringArray[this.categoryStringArray.length - 1];
+        this.overallScoreString = this.categoryStringArray[
+          this.categoryStringArray.length - 1
+        ];
         this.categoryStringArray.splice(this.categoryStringArray.length - 1, 1);
 
         this.categoryStringArray.forEach(categoryString => {
           this.allTextString += categoryString + '\n';
         });
         this.allTextString += this.overallScoreString + '\n';
-      });
+      }
+    );
     // this.overallScoreString = "Overall: 71%";
     this.generalNotesString = this.screeningService.generalComments;
     this.allTextString += '"' + this.generalNotesString + '"';
 
     this.screeningService.endScreening(this.generalNotesString);
-    this.subscriptions.push(this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
-      softSkillViolations => (this.softSkillViolations = softSkillViolations)
-    ));
+    this.subscriptions.push(
+      this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
+        softSkillViolations => (this.softSkillViolations = softSkillViolations)
+      )
+    );
   }
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)
@@ -111,7 +117,9 @@ export class FinalReportComponent implements OnInit, OnDestroy {
     this.questionScores = [];
     this.questionScoreService.updateQuestionScores(this.questionScores);
     this.softSkillViolations = [];
-    this.softSkillsViolationService.updateSoftSkillViolations(this.softSkillViolations);
+    this.softSkillsViolationService.updateSoftSkillViolations(
+      this.softSkillViolations
+    );
     localStorage.removeItem('screeningID');
     localStorage.removeItem('scheduledScreeningID');
     this.subscriptions.forEach(s => s.unsubscribe);
