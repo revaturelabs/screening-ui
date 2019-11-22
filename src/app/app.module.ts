@@ -104,7 +104,6 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     ReportVisualComponent
   ],
   imports: [
-
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -133,16 +132,13 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
-
     TracksService,
     TrackCategoryService,
-
     SimpleReportService,
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
     ViolationTypeService,
-    MatDatepickerModule,
     AuthenticationService,
     AmplifyService,
     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }

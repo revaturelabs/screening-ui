@@ -37,6 +37,7 @@ import { TracksComponent } from './components/tracks/tracks.component';
 import { TrackCategoriesComponent } from './components/track-categories/track-categories.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -85,6 +86,7 @@ export const Dependencies = {
     AuthenticationService
   ],
   bootstrap: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [ViolationFlagComponent, PaginatePipe],
   entryComponents: []
 };

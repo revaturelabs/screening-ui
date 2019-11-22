@@ -8,8 +8,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AverageTrackComponent } from '../average-track/average-track.component';
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { UrlService } from 'src/app/services/urls/url.service';
+import { UrlService } from '../../../services/urls/url.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 describe('MasterReportComponent', () => {
   let component: MasterReportComponent;
@@ -22,7 +24,9 @@ describe('MasterReportComponent', () => {
         NgbModule,
         FormsModule,
         HighchartsChartModule,
-        HttpClientModule
+        HttpClientModule,
+        MatDatepickerModule,
+        MatNativeDateModule
       ],
       declarations: [
         MasterReportComponent,
@@ -30,6 +34,7 @@ describe('MasterReportComponent', () => {
         AverageCategoryTypeComponent,
         AverageTrackComponent
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [UrlService]
     }).compileComponents();
   }));

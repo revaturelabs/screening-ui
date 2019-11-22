@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportService } from 'src/app/services/reports/report.service';
-import { ReportData } from 'src/app/entities/ReportData';
-import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
-import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
+import { SimpleReportService } from '../../../services/reports/simple-report.service';
 import { Chart } from 'chart.js';
 import * as moment from 'moment';
-import { SimpleReportModel } from 'src/app/entities/SimpleReportModel';
+import { SimpleReportModel } from '../../../entities/SimpleReportModel';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ReportVisualComponent } from '../report-visual/report-visual.component';
-import { FullReportService } from 'src/app/services/reports/full-report.service';
+import { FullReportService } from '../../../services/reports/full-report.service';
 
 @Component({
   selector: 'app-master-report',

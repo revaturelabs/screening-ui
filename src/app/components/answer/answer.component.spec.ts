@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UrlService } from '../../services/urls/url.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 describe('AnswerComponent', () => {
   let component: AnswerComponent;
@@ -13,9 +15,10 @@ describe('AnswerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule, NgbModule],
-      declarations: [AnswerComponent, NgbActiveModal],
-      providers: [QuestionScoreService, UrlService]
+      imports: [RouterTestingModule, HttpClientModule, NgbModule, FormsModule],
+      declarations: [AnswerComponent],
+      providers: [QuestionScoreService, UrlService, NgbActiveModal],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 

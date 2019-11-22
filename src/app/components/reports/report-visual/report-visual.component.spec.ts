@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReportVisualComponent } from './report-visual.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 describe('ReportVisualComponent', () => {
   let component: ReportVisualComponent;
@@ -8,7 +10,9 @@ describe('ReportVisualComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ReportVisualComponent]
+      declarations: [ReportVisualComponent],
+      providers: [MatDialogRef],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 

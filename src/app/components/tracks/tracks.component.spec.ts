@@ -11,6 +11,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { TrackCategoryService } from '../../services/track-category/track-category.service';
 import { CategoriesService } from '../../services/categories/categories.service';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 describe('TracksComponent', () => {
   let component: TracksComponent;
@@ -32,7 +33,8 @@ describe('TracksComponent', () => {
         AmplifyService,
         AlertsService,
         UrlService,
-        TrackCategoryService
+        TrackCategoryService,
+        NgbTabset
       ]
     });
 

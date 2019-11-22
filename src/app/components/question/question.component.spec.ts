@@ -10,7 +10,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { QuestionsService } from '../../services/questions/questions.service';
 import { CategoriesService } from '../../services/categories/categories.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
@@ -24,7 +24,7 @@ describe('QuestionComponent', () => {
         ReactiveFormsModule,
         HttpClientModule
       ],
-      declarations: [QuestionComponent, NgbModal],
+      declarations: [QuestionComponent],
       providers: [
         QuestionsService,
         CategoriesService,
@@ -32,7 +32,8 @@ describe('QuestionComponent', () => {
         AmplifyService,
         AlertsService,
         UrlService
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
 
     fixture = TestBed.createComponent(QuestionComponent);
