@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { environment } from "../../../environments/environment";
-import { Weight } from "../../entities/Weight";
-import { String } from "aws-sdk/clients/cloudhsmv2";
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { Weight } from '../../entities/Weight';
+import { String } from 'aws-sdk/clients/cloudhsmv2';
 
 @Injectable()
 export class UrlService {
@@ -20,7 +20,7 @@ export class UrlService {
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    *
    */
-  private categoryEndpoint = this.adminContext + "/category";
+  private categoryEndpoint = this.adminContext + '/category';
   category = {
     getAllCategories: () => `${this.categoryEndpoint}`,
     getCategoryById: (categoryId: number) =>
@@ -38,7 +38,7 @@ export class UrlService {
    * @author Michael Adedigba | 1803-USF-MAR26 | Wezley Singleton
    * @author Pedro De Los Reyes | 1803-USF-MAR26 | Wezley Singleton
    */
-  private questionEndpoint = this.adminContext + "/question";
+  private questionEndpoint = this.adminContext + '/question';
   question = {
     postQuestion: () => `${this.questionEndpoint}`,
     putQuestion: () => `${this.questionEndpoint}/update`,
@@ -51,7 +51,7 @@ export class UrlService {
     filteredQuestions: () => `${this.questionEndpoint}/filter`
   };
 
-  private questionScoringEndpoint = "question-score-service/question";
+  private questionScoringEndpoint = 'question-score-service/question';
   questionScoring = {
     scoringQuestion: () =>
       `${this.screeningContext + this.questionScoringEndpoint}/score`
@@ -70,7 +70,7 @@ export class UrlService {
     screeningUrl: () => `${this.screeningContext}/screening/`,
     screeningUrlById: id => `${this.screeningContext}/screening/${id}`
   };
-  weightsEndpoint = this.adminContext + "/weight";
+  weightsEndpoint = this.adminContext + '/weight';
   weights = {
     getAll: () => `${this.weightsEndpoint}`,
     getWeightsByTrack: (trackId: number) =>
@@ -83,7 +83,7 @@ export class UrlService {
   /**
    * Endpoints for track
    */
-  tracksServiceEndpoint = this.adminContext + "/track";
+  tracksServiceEndpoint = this.adminContext + '/track';
   tracks = {
     findAll: () => `${this.tracksServiceEndpoint}`,
     findAllActive: () => `${this.tracksServiceEndpoint}/active`,

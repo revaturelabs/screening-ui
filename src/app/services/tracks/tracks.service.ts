@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
-import { Track } from "../../entities/Track";
-import { Category } from "../../entities/Category";
-import { UrlService } from "../urls/url.service";
+import { Track } from '../../entities/Track';
+import { Category } from '../../entities/Category';
+import { UrlService } from '../urls/url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*"
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   })
 };
 

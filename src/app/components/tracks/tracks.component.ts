@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { NgbTabset, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { FormBuilder } from "@angular/forms";
-import { Track } from "../../entities/Track";
-import { TracksService } from "../../services/tracks/tracks.service";
-import { Category } from "../../entities/Category";
-import { Weight } from "../../entities/Weight";
-import { CategoriesService } from "../../services/categories/categories.service";
-import { AlertsService } from "../../services/alert-service/alerts.service";
-import { TrackCategoryService } from "../../services/track-category/track-category.service";
+import { Component, OnInit } from '@angular/core';
+import { NgbTabset, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder } from '@angular/forms';
+import { Track } from '../../entities/Track';
+import { TracksService } from '../../services/tracks/tracks.service';
+import { Category } from '../../entities/Category';
+import { Weight } from '../../entities/Weight';
+import { CategoriesService } from '../../services/categories/categories.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
+import { TrackCategoryService } from '../../services/track-category/track-category.service';
 
 @Component({
-  selector: "app-tracks",
-  templateUrl: "./tracks.component.html",
-  styleUrls: ["./tracks.component.css"]
+  selector: 'app-tracks',
+  templateUrl: './tracks.component.html',
+  styleUrls: ['./tracks.component.css']
 })
 
 /**
@@ -363,11 +363,11 @@ export class TracksComponent implements OnInit {
   }
 
   savedSuccessfully() {
-    this.alertsService.success("Saved successfully");
+    this.alertsService.success('Saved successfully');
   }
 
   testing() {
-    this.tab.activeId = "tab-2";
+    this.tab.activeId = 'tab-2';
   }
 
   getAllWaits() {

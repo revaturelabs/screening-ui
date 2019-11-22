@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { ReactiveFormsModule } from "@angular/forms/";
-import { LoginComponent } from "./login.component";
-import { RouterTestingModule } from "@angular/router/testing";
-import { FormsModule } from "@angular/forms/";
-import { HttpClientModule } from "@angular/common/http";
-import { UrlService } from "../../services/urls/url.service";
-import { AuthenticationService } from "../../services/authentication/authentication.service";
-import Amplify from "aws-amplify";
-import { AmplifyService } from "aws-amplify-angular";
-import { AlertsService } from "../../services/alert-service/alerts.service";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms/';
+import { LoginComponent } from './login.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms/';
+import { HttpClientModule } from '@angular/common/http';
+import { UrlService } from '../../services/urls/url.service';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
+import Amplify from 'aws-amplify';
+import { AmplifyService } from 'aws-amplify-angular';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 
-describe("LoginComponent", () => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   //let mockAuthenticationService: AuthenticationService;
@@ -38,7 +38,7 @@ describe("LoginComponent", () => {
     //mockAuthenticationService = TestBed.get(AuthenticationService);
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,19 +1,19 @@
-import { Injectable } from "@angular/core";
-import { UrlService } from "../urls/url.service";
-import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { stringifyDate } from "../../util/utils";
-import { ReportData } from "../../entities/ReportData";
-import { Screening } from "../../entities/Screening";
+import { Injectable } from '@angular/core';
+import { UrlService } from '../urls/url.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { stringifyDate } from '../../util/utils';
+import { ReportData } from '../../entities/ReportData';
+import { Screening } from '../../entities/Screening';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ReportService {
   constructor(private urlService: UrlService, private http: HttpClient) {}
 
   getScreenersByPartialEmail(partialEmail: string): Observable<string[]> {
-    if (partialEmail === "") {
+    if (partialEmail === '') {
       return of([]);
     } else {
       return this.http.get<string[]>(
@@ -31,10 +31,10 @@ export class ReportService {
     endDate: string,
     email: string
   ): Observable<ReportData> {
-    if (startDate === "" || email === "") {
+    if (startDate === '' || email === '') {
       return null;
     }
-    if (endDate === "") {
+    if (endDate === '') {
       endDate = stringifyDate(new Date());
     }
     // this line exists because all the data on the server is more than 1yr old

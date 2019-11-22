@@ -1,6 +1,6 @@
-import { Candidate } from "./Candidate";
-import { Track } from "./Track";
-import { ScheduledStatus } from "./ScheduledStatus";
+import { Candidate } from './Candidate';
+import { Track } from './Track';
+import { ScheduledStatus } from './ScheduledStatus';
 
 export class ScheduledScreening {
   scheduledScreeningId: number;

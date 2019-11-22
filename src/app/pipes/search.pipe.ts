@@ -1,7 +1,7 @@
-import { Pipe, PipeTransform, Injectable } from "@angular/core";
+import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
 @Pipe({
-  name: "searchPipe"
+  name: 'searchPipe'
 })
 /**
  * @author Shane Sistoza
@@ -28,7 +28,7 @@ export class SearchPipe implements PipeTransform {
     if (!field || !value) {
       return items;
     }
-    if (field === "all") {
+    if (field === 'all') {
       return items.filter(item => {
         for (const i in item) {
           if (item[i] !== undefined) {
@@ -44,8 +44,8 @@ export class SearchPipe implements PipeTransform {
         }
       });
     }
-    if (field.split(",").length > 1) {
-      const fields = field.split(",");
+    if (field.split(',').length > 1) {
+      const fields = field.split(',');
       return items.filter(item => {
         for (const f in fields) {
           if (

@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { ViolationType } from "../../entities/ViolationType";
-import { HttpClient } from "@angular/common/http";
-import { UrlService } from "../urls/url.service";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ViolationType } from '../../entities/ViolationType';
+import { HttpClient } from '@angular/common/http';
+import { UrlService } from '../urls/url.service';
 
 /**
  * Service that contains methods related to ViolationType entities

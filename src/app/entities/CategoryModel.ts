@@ -1,4 +1,4 @@
-import { QuestionModel } from "./QuestionModel";
+import { QuestionModel } from './QuestionModel';
 
 export class CategoryModel {
   categoryId: number;

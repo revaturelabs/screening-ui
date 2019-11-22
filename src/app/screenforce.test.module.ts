@@ -1,42 +1,42 @@
 // modules
-import { RouterModule, Router, ActivatedRoute } from "@angular/router";
-import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { FormsModule, ReactiveFormsModule, NgModel } from "@angular/forms";
-import { CommonModule } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
-import { NgxPaginationModule, PaginatePipe } from "ngx-pagination";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // routing
-import { routes } from "./app.routes";
-import { SpringInterceptor } from "./interceptors/spring.interceptor";
+import { routes } from './app.routes';
+import { SpringInterceptor } from './interceptors/spring.interceptor';
 
 // services
-import { AlertsService } from "./services/alert-service/alerts.service";
-import { ScreeningStateService } from "./services/screening-state/screening-state.service";
-import { TracksService } from "./services/tracks/tracks.service";
-import { ScreeningService } from "./services/screening/screening.service";
-import { TrackCategoryService } from "./services/track-category/track-category.service";
-import { QuestionsService } from "./services/questions/questions.service";
-import { CategoriesService } from "./services/categories/categories.service";
-import { UrlService } from "./services/urls/url.service";
-import { ScheduledScreeningService } from "./services/scheduled-screening/scheduled-screening.service";
+import { AlertsService } from './services/alert-service/alerts.service';
+import { ScreeningStateService } from './services/screening-state/screening-state.service';
+import { TracksService } from './services/tracks/tracks.service';
+import { ScreeningService } from './services/screening/screening.service';
+import { TrackCategoryService } from './services/track-category/track-category.service';
+import { QuestionsService } from './services/questions/questions.service';
+import { CategoriesService } from './services/categories/categories.service';
+import { UrlService } from './services/urls/url.service';
+import { ScheduledScreeningService } from './services/scheduled-screening/scheduled-screening.service';
 
 // pipes
-import { SearchPipe } from "./pipes/search.pipe";
+import { SearchPipe } from './pipes/search.pipe';
 
 // components
-import { IntroductionComponent } from "./components/introduction/introduction.component";
-import { AnswerComponent } from "./components/answer/answer.component";
-import { PassFailComponent } from "./components/pass-fail/pass-fail.component";
-import { ViolationFlagComponent } from "./components/violation-flag/violation-flag.component";
-import { ScreeningConfigComponent } from "./components/screening-config/screening-config.component";
-import { TracksComponent } from "./components/tracks/tracks.component";
-import { TrackCategoriesComponent } from "./components/track-categories/track-categories.component";
-import { QuestionComponent } from "./components/question/question.component";
-import { AuthenticationService } from "./services/authentication/authentication.service";
+import { IntroductionComponent } from './components/introduction/introduction.component';
+import { AnswerComponent } from './components/answer/answer.component';
+import { PassFailComponent } from './components/pass-fail/pass-fail.component';
+import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
+import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
+import { TracksComponent } from './components/tracks/tracks.component';
+import { TrackCategoriesComponent } from './components/track-categories/track-categories.component';
+import { QuestionComponent } from './components/question/question.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 

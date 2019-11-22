@@ -1,9 +1,9 @@
-import { TestBed } from "@angular/core/testing";
-import { HttpClientModule } from "@angular/common/http";
-import { UrlService } from "../urls/url.service";
-import { FullReportService } from "./full-report.service";
+import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { UrlService } from '../urls/url.service';
+import { FullReportService } from './full-report.service';
 
-describe("FullReportService", () => {
+describe('FullReportService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
@@ -12,7 +12,7 @@ describe("FullReportService", () => {
     })
   );
 
-  it("should be created", () => {
+  it('should be created', () => {
     const service: FullReportService = TestBed.get(FullReportService);
     expect(service).toBeTruthy();
   });

@@ -1,9 +1,9 @@
-import { TestBed, inject } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { AmplifyService } from "aws-amplify-angular";
-import { AuthenticationService } from "./authentication.service";
+import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AmplifyService } from 'aws-amplify-angular';
+import { AuthenticationService } from './authentication.service';
 
-describe("AuthenticationService", () => {
+describe('AuthenticationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -12,7 +12,7 @@ describe("AuthenticationService", () => {
   });
 
   // testing services
-  it("should be created", inject(
+  it('should be created', inject(
     [AuthenticationService, AmplifyService],
     (
       authenticationService: AuthenticationService,
@@ -24,7 +24,7 @@ describe("AuthenticationService", () => {
   ));
 
   // testing methods
-  it("has working methods", inject(
+  it('has working methods', inject(
     [AuthenticationService, AmplifyService],
     (
       authenticationService: AuthenticationService,

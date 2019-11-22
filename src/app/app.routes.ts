@@ -1,52 +1,52 @@
-import { Routes } from "@angular/router";
-import { RoleGuard, roles } from "./role-guard";
-import { CandidatesScreeningListComponent } from "./components/candidates-screening-list/candidates-screening-list.component";
-import { QuestionsTableComponent } from "./components/questions-table/questions-table.component";
-import { FinalReportComponent } from "./components/final-report/final-report.component";
-import { IntroductionComponent } from "./components/introduction/introduction.component";
-import { PassFailComponent } from "./components/pass-fail/pass-fail.component";
-import { ScreeningConfigComponent } from "./components/screening-config/screening-config.component";
-import { QuestionComponent } from "./components/question/question.component";
-import { MasterReportComponent } from "./components/reports/master-report/master-report.component";
-import { LoginComponent } from "./components/login/login.component";
-import { AuthenticationService } from "./services/authentication/authentication.service";
+import { Routes } from '@angular/router';
+import { RoleGuard, roles } from './role-guard';
+import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
+import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
+import { FinalReportComponent } from './components/final-report/final-report.component';
+import { IntroductionComponent } from './components/introduction/introduction.component';
+import { PassFailComponent } from './components/pass-fail/pass-fail.component';
+import { ScreeningConfigComponent } from './components/screening-config/screening-config.component';
+import { QuestionComponent } from './components/question/question.component';
+import { MasterReportComponent } from './components/reports/master-report/master-report.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 export const routes: Routes = [
   {
-    path: "login",
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: "",
+    path: '',
     canActivate: [AuthenticationService],
     // a list of roles that can access the resource -- in this case all of them
-    data: { roles: ["ROLE_REPORTING", "ROLE_SCREENER", "ROLE_ADMIN"] },
+    data: { roles: ['ROLE_REPORTING', 'ROLE_SCREENER', 'ROLE_ADMIN'] },
     children: [
       {
-        path: "reports",
+        path: 'reports',
         component: MasterReportComponent
       },
       {
-        path: "home",
+        path: 'home',
         component: CandidatesScreeningListComponent
       },
       {
-        path: "screening",
+        path: 'screening',
         children: [
           {
-            path: "intro",
+            path: 'intro',
             component: IntroductionComponent
           },
           {
-            path: "questions",
+            path: 'questions',
             component: QuestionsTableComponent
           },
           {
-            path: "finalReport",
+            path: 'finalReport',
             component: FinalReportComponent
           },
           {
-            path: "passFail",
+            path: 'passFail',
             component: PassFailComponent
           }
         ]
@@ -54,23 +54,23 @@ export const routes: Routes = [
     ]
   },
   {
-    path: "settings",
+    path: 'settings',
     canActivate: [AuthenticationService],
-    data: { roles: ["ROLE_ADMIN"] },
+    data: { roles: ['ROLE_ADMIN'] },
     children: [
       {
-        path: "main",
+        path: 'main',
         component: ScreeningConfigComponent
       },
       {
-        path: "category",
+        path: 'category',
         component: QuestionComponent
       }
     ]
   },
   {
-    path: "**",
-    pathMatch: "full",
-    redirectTo: "/home"
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/home'
   }
 ];

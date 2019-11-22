@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
-import * as HighCharts from "highcharts";
-import { ReportService } from "../../../services/reports/report.service";
+import { Component, OnInit, Input } from '@angular/core';
+import * as HighCharts from 'highcharts';
+import { ReportService } from '../../../services/reports/report.service';
 
 @Component({
-  selector: "app-average-category-type",
-  templateUrl: "./average-category-type.component.html",
-  styleUrls: ["./average-category-type.component.css"]
+  selector: 'app-average-category-type',
+  templateUrl: './average-category-type.component.html',
+  styleUrls: ['./average-category-type.component.css']
 })
 export class AverageCategoryTypeComponent implements OnInit {
   Highcharts = HighCharts;
@@ -27,44 +27,44 @@ export class AverageCategoryTypeComponent implements OnInit {
     if (this._barData.length > 0) {
       this.options = {
         title: {
-          text: "Average Score By Screener",
+          text: 'Average Score By Screener',
           y: 10,
           floating: false
         },
         xAxis: {
-          type: "category"
+          type: 'category'
         },
         yAxis: {
           title: {
-            text: "Average Score Values"
+            text: 'Average Score Values'
           }
         },
         legend: {
           enabled: false
         },
-        chart: { zoomType: "x", type: "line" },
-        series: [{ name: "Category", colorByPoint: true, data: this._barData }]
+        chart: { zoomType: 'x', type: 'line' },
+        series: [{ name: 'Category', colorByPoint: true, data: this._barData }]
       };
     } else {
       this.options = {
         title: {
-          text: "Average Score By Category is N/A",
+          text: 'Average Score By Category is N/A',
           y: 200,
           floating: true
         },
         xAxis: {
-          type: "category"
+          type: 'category'
         },
         yAxis: {
           title: {
-            text: ""
+            text: ''
           }
         },
         legend: {
           enabled: false
         },
-        chart: { zoomType: "x", type: "line" },
-        series: [{ name: "Category", colorByPoint: true, data: this._barData }]
+        chart: { zoomType: 'x', type: 'line' },
+        series: [{ name: 'Category', colorByPoint: true, data: this._barData }]
       };
     }
   }

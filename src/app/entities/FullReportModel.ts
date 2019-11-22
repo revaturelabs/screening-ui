@@ -1,7 +1,7 @@
-import { SimpleReportModel } from "./SimpleReportModel";
-import { Candidate } from "./Candidate";
-import { ViolationModel } from "./ViolationModel";
-import { CategoryModel } from "./CategoryModel";
+import { SimpleReportModel } from './SimpleReportModel';
+import { Candidate } from './Candidate';
+import { ViolationModel } from './ViolationModel';
+import { CategoryModel } from './CategoryModel';
 
 export class FullReportModel {
   srm: SimpleReportModel;

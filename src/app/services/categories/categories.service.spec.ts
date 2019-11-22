@@ -1,7 +1,7 @@
-import { CategoriesService } from "./categories.service";
-import { Category } from "../../entities/Category";
-import { defer } from "rxjs";
-import { UrlService } from "../urls/url.service";
+import { CategoriesService } from './categories.service';
+import { Category } from '../../entities/Category';
+import { defer } from 'rxjs';
+import { UrlService } from '../urls/url.service';
 
 export function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));
@@ -13,21 +13,21 @@ export function asyncError<T>(errorObject: any) {
 
 const mockcategory: Category = {
   categoryId: 1,
-  categoryDescription: "Hi",
+  categoryDescription: 'Hi',
   isActive: true
 };
 
 const categories: Category[] = [mockcategory];
 
-describe("CategoriesService", () => {
+describe('CategoriesService', () => {
   const testCategory = -1;
   let httpClientSpyOnGet: { get: jasmine.Spy };
   let httpClientSpyOnPut: { put: jasmine.Spy };
   let httpClientSpyOnPost: { post: jasmine.Spy };
   let categoriesService: CategoriesService;
   // testing getAllCategories makes http request
-  it("getAllCategories should return expected categories", () => {
-    httpClientSpyOnGet = jasmine.createSpyObj("http", ["get"]);
+  it('getAllCategories should return expected categories', () => {
+    httpClientSpyOnGet = jasmine.createSpyObj('http', ['get']);
     categoriesService = new CategoriesService(
       <any>httpClientSpyOnGet,
       new UrlService()
@@ -42,15 +42,15 @@ describe("CategoriesService", () => {
         fetchedCategories =>
           expect(fetchedCategories).toEqual(
             expectedCategories,
-            "expected categories"
+            'expected categories'
           ),
         fail
       );
-    expect(httpClientSpyOnGet.get.calls.count()).toBe(1, "one call");
+    expect(httpClientSpyOnGet.get.calls.count()).toBe(1, 'one call');
   });
   // testing CreateNewCategory makes an Http Request
-  it("createNewCategory should return new Category", () => {
-    httpClientSpyOnPost = jasmine.createSpyObj("http", ["post"]);
+  it('createNewCategory should return new Category', () => {
+    httpClientSpyOnPost = jasmine.createSpyObj('http', ['post']);
     categoriesService = new CategoriesService(
       <any>httpClientSpyOnPost,
       new UrlService()
@@ -63,11 +63,11 @@ describe("CategoriesService", () => {
         categoryList => expect(categoryList).toEqual(Category[0]),
         fail
       );
-    expect(httpClientSpyOnPost.post.calls.count()).toBe(1, "one call");
+    expect(httpClientSpyOnPost.post.calls.count()).toBe(1, 'one call');
   });
 
-  it("updateCategory should return category with updated values", () => {
-    httpClientSpyOnPut = jasmine.createSpyObj("http", ["put"]);
+  it('updateCategory should return category with updated values', () => {
+    httpClientSpyOnPut = jasmine.createSpyObj('http', ['put']);
     categoriesService = new CategoriesService(
       <any>httpClientSpyOnPut,
       new UrlService()
@@ -80,6 +80,6 @@ describe("CategoriesService", () => {
         categoryList => expect(categoryList).toEqual(mockcategory),
         fail
       );
-    expect(httpClientSpyOnPut.put.calls.count()).toBe(1, "one call");
+    expect(httpClientSpyOnPut.put.calls.count()).toBe(1, 'one call');
   });
 });

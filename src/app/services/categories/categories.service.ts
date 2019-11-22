@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, Subject } from "rxjs";
-import { Category } from "../../entities/Category";
-import { UrlService } from "../urls/url.service";
+import { Observable, Subject } from 'rxjs';
+import { Category } from '../../entities/Category';
+import { UrlService } from '../urls/url.service';
 
 /**
  * Imported urlservice to replace hardcoded endpoints
@@ -19,7 +19,7 @@ import { UrlService } from "../urls/url.service";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    "Content-Type": "application/json"
+    'Content-Type': 'application/json'
   })
 };
 
@@ -46,7 +46,7 @@ export class CategoriesService {
 
   updateCategory(category: Category) {
     return this.http.put<Category>(
-      this.urlService.category.updateCategory() + "/" + category.categoryId,
+      this.urlService.category.updateCategory() + '/' + category.categoryId,
       category,
       httpOptions
     );
@@ -55,7 +55,7 @@ export class CategoriesService {
   // Delete category
   deleteCategory(category: Category) {
     return this.http.delete<Category>(
-      this.urlService.category.deleteCategory() + "/" + category.categoryId,
+      this.urlService.category.deleteCategory() + '/' + category.categoryId,
       httpOptions
     );
   }

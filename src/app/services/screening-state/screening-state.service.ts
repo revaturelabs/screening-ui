@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ScheduledScreening } from "src/app/entities/ScheduledScreening";
+import { Injectable } from '@angular/core';
+import { ScheduledScreening } from 'src/app/entities/ScheduledScreening';
 
 /**
  * Passes information about the current selected screening to screening components.

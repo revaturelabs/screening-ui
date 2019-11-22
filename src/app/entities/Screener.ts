@@ -1,4 +1,4 @@
-import { Screening } from "./Screening";
+import { Screening } from './Screening';
 
 export class Screener {
   screenerId: number;

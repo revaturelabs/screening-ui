@@ -1,21 +1,21 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViolationFlagComponent } from "./violation-flag.component";
-import { SoftSkillsViolationService } from "../../services/soft-skills-violation/soft-skills-violation.service";
-import { HttpClient, HttpHandler } from "@angular/common/http";
-import { ScreeningStateService } from "../../services/screening-state/screening-state.service";
-import { TracksService } from "../../services/tracks/tracks.service";
-import { ViolationTypeService } from "../../services/violationType/violationType.service";
-import { AlertsService } from "../../services/alert-service/alerts.service";
-import { ViolationType } from "../../entities/ViolationType";
-import { UrlService } from "../../services/urls/url.service";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ViolationFlagComponent } from './violation-flag.component';
+import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ScreeningStateService } from '../../services/screening-state/screening-state.service';
+import { TracksService } from '../../services/tracks/tracks.service';
+import { ViolationTypeService } from '../../services/violationType/violationType.service';
+import { AlertsService } from '../../services/alert-service/alerts.service';
+import { ViolationType } from '../../entities/ViolationType';
+import { UrlService } from '../../services/urls/url.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Author: David Gustafson
 
 // Can't test with subscribes, comment out subscribes in component to run tests
 
-describe("ViolationFlagComponent", () => {
+describe('ViolationFlagComponent', () => {
   let component: ViolationFlagComponent;
   let fixture: ComponentFixture<ViolationFlagComponent>;
 
@@ -42,26 +42,26 @@ describe("ViolationFlagComponent", () => {
     //fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should push violation list", () => {
+  it('should push violation list', () => {
     component.updateViolationList({} as ViolationType, true);
     expect(component.violationTypesChecked).not.toBeNull();
   });
 
-  it("should splice violation list", () => {
+  it('should splice violation list', () => {
     component.updateViolationList({} as ViolationType, false);
     expect(component.violationTypesChecked).toEqual([]);
   });
 
-  it("should call", () => {
+  it('should call', () => {
     expect(component.cancelViolation()).toBeUndefined();
   });
 
-  it("should change flag", () => {
+  it('should change flag', () => {
     component.flagChange();
-    expect(component.flagEvent).not.toContain("update");
+    expect(component.flagEvent).not.toContain('update');
   });
 });

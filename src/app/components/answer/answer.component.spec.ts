@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnswerComponent } from "./answer.component";
-import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientModule } from "@angular/common/http";
-import { UrlService } from "../../services/urls/url.service";
-import { QuestionScoreService } from "../../services/question-score/question-score.service";
-import { NgbActiveModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { AnswerComponent } from './answer.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { UrlService } from '../../services/urls/url.service';
+import { QuestionScoreService } from '../../services/question-score/question-score.service';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-describe("AnswerComponent", () => {
+describe('AnswerComponent', () => {
   let component: AnswerComponent;
   let fixture: ComponentFixture<AnswerComponent>;
 
@@ -24,7 +24,7 @@ describe("AnswerComponent", () => {
     component = fixture.componentInstance;
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

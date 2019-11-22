@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { QuestionScore } from "../../entities/QuestionScore";
-import { HttpClient } from "@angular/common/http";
-import { UrlService } from "../urls/url.service";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { QuestionScore } from '../../entities/QuestionScore';
+import { HttpClient } from '@angular/common/http';
+import { UrlService } from '../urls/url.service';
 
 /*
 Exchanges data between QuestionBank (the table) and Question (the modal) components.

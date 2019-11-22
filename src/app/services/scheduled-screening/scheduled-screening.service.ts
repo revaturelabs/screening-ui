@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { ScheduledScreening } from "../../entities/ScheduledScreening";
-import { TracksService } from "../tracks/tracks.service";
-import { Track } from "../../entities/Track";
-import { UrlService } from "../urls/url.service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ScheduledScreening } from '../../entities/ScheduledScreening';
+import { TracksService } from '../tracks/tracks.service';
+import { Track } from '../../entities/Track';
+import { UrlService } from '../urls/url.service';
 
 @Injectable()
 export class ScheduledScreeningService {

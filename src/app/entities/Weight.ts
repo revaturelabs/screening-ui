@@ -1,5 +1,5 @@
-import { Category } from "./Category";
-import { Track } from "./Track";
+import { Category } from './Category';
+import { Track } from './Track';
 
 export class Weight {
   weightId: number;

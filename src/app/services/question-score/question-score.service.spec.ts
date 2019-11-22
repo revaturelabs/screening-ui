@@ -1,11 +1,11 @@
-import { TestBed, inject } from "@angular/core/testing";
-import { QuestionScoreService } from "./question-score.service";
-import { UrlService } from "../../services/urls/url.service";
-import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { defer } from "rxjs";
-import { HttpErrorResponse } from "@angular/common/http";
-import { QuestionScore } from "../../entities/QuestionScore";
+import { TestBed, inject } from '@angular/core/testing';
+import { QuestionScoreService } from './question-score.service';
+import { UrlService } from '../../services/urls/url.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { defer } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { QuestionScore } from '../../entities/QuestionScore';
 
 /**
  * Test for methods on the question - score service.
@@ -36,14 +36,14 @@ const score: QuestionScore = {
   questionId: 2,
   screeningID: 3,
   score: 4,
-  commentary: "Good job",
+  commentary: 'Good job',
   categoryId: 5,
   beginTime: null
 };
 
 const QUESTIONSCORE: QuestionScore[] = [score];
 
-describe("QuestionScoreService ", () => {
+describe('QuestionScoreService ', () => {
   const testCategory = -1;
   // tslint:disable-next-line:prefer-const
   let httpClientSpyOnPost: { post: jasmine.Spy };
@@ -58,7 +58,7 @@ describe("QuestionScoreService ", () => {
     }).compileComponents();
   });
   // checking if component is created
-  it("should be created", inject(
+  it('should be created', inject(
     [QuestionScoreService],
     (service: QuestionScoreService) => {
       expect(service).toBeTruthy();
@@ -70,9 +70,9 @@ describe("QuestionScoreService ", () => {
    *
    * Function tested: postQuestionScore()
    **/
-  it("postQuestionScore should call HttpClient.post, and post.calls.count() will be 1", () => {
+  it('postQuestionScore should call HttpClient.post, and post.calls.count() will be 1', () => {
     let questionscoreSpy: { post: jasmine.Spy };
-    questionscoreSpy = jasmine.createSpyObj("HttpClient", ["post"]);
+    questionscoreSpy = jasmine.createSpyObj('HttpClient', ['post']);
     questionscoreService = new QuestionScoreService(
       <any>questionscoreSpy,
       new UrlService()
@@ -80,10 +80,10 @@ describe("QuestionScoreService ", () => {
 
     //sending the data 'Test' but the function doesn't return anything
     //as the function just does an post call we are mocking the call
-    questionscoreSpy.post.and.returnValue(asyncData("Test"));
+    questionscoreSpy.post.and.returnValue(asyncData('Test'));
     questionscoreService.postQuestionScore(QUESTIONSCORE[0]);
 
-    expect(questionscoreSpy.post.calls.count()).toBe(1, "one call");
+    expect(questionscoreSpy.post.calls.count()).toBe(1, 'one call');
   });
   /**
    * Test error responses.
@@ -91,8 +91,8 @@ describe("QuestionScoreService ", () => {
    * Function tested: None, just check if it gets an 404 status code error.
    **/
   const errorResponse = new HttpErrorResponse({
-    error: "test 404 error",
+    error: 'test 404 error',
     status: 404,
-    statusText: "Not Found"
+    statusText: 'Not Found'
   });
 });

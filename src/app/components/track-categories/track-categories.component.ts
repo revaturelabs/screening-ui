@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 /** component, service imports */
-import { Category } from "../../entities/Category";
-import { CategoriesService } from "../../services/categories/categories.service";
-import { QuestionsService } from "../../services/questions/questions.service";
+import { Category } from '../../entities/Category';
+import { CategoriesService } from '../../services/categories/categories.service';
+import { QuestionsService } from '../../services/questions/questions.service';
 /** style lib. imports */
-import { CategoryFilterPipe } from "../../pipes/track-categories.filter";
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-import { AlertsService } from "../../services/alert-service/alerts.service";
+import { CategoryFilterPipe } from '../../pipes/track-categories.filter';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AlertsService } from '../../services/alert-service/alerts.service';
 
 @Component({
-  selector: "app-track-categories",
-  templateUrl: "./track-categories.component.html",
-  styleUrls: ["./track-categories.component.css"]
+  selector: 'app-track-categories',
+  templateUrl: './track-categories.component.html',
+  styleUrls: ['./track-categories.component.css']
 })
 export class TrackCategoriesComponent implements OnInit {
   /** variable to hold an array of 'Category' entities */
@@ -88,7 +88,7 @@ export class TrackCategoriesComponent implements OnInit {
    */
   routeToCategory(item: Category) {
     this.categoryService.setCategory(item);
-    this.router.navigate(["settings/category"]);
+    this.router.navigate(['settings/category']);
   }
 
   /** Stores the value of selected category to a 'currCategory' */
@@ -125,7 +125,7 @@ export class TrackCategoriesComponent implements OnInit {
   }
 
   savedSuccessfully() {
-    this.alertsService.success("Saved successfully");
+    this.alertsService.success('Saved successfully');
   }
 
   open(content) {
@@ -135,7 +135,7 @@ export class TrackCategoriesComponent implements OnInit {
         this.closeResult = `Closed with: ${result}`;
       },
       reason => {
-        this.newCategory.categoryDescription = "";
+        this.newCategory.categoryDescription = '';
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       }
     );
@@ -144,9 +144,9 @@ export class TrackCategoriesComponent implements OnInit {
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return "by pressing ESC";
+      return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return "by clicking on a backdrop";
+      return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
     }

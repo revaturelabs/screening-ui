@@ -1,22 +1,22 @@
-import { Component, OnInit } from "@angular/core";
-import { ReportService } from "src/app/services/reports/report.service";
-import { ReportData } from "src/app/entities/ReportData";
-import { ReportCacheService } from "src/app/services/reports/report-cache.service";
-import { SimpleReportService } from "src/app/services/reports/simple-report.service";
-import { Chart } from "chart.js";
-import * as moment from "moment";
-import { SimpleReportModel } from "src/app/entities/SimpleReportModel";
-import { MatDialogConfig, MatDialog } from "@angular/material/dialog";
-import { ReportVisualComponent } from "../report-visual/report-visual.component";
-import { FullReportService } from "src/app/services/reports/full-report.service";
+import { Component, OnInit } from '@angular/core';
+import { ReportService } from 'src/app/services/reports/report.service';
+import { ReportData } from 'src/app/entities/ReportData';
+import { ReportCacheService } from 'src/app/services/reports/report-cache.service';
+import { SimpleReportService } from 'src/app/services/reports/simple-report.service';
+import { Chart } from 'chart.js';
+import * as moment from 'moment';
+import { SimpleReportModel } from 'src/app/entities/SimpleReportModel';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { ReportVisualComponent } from '../report-visual/report-visual.component';
+import { FullReportService } from 'src/app/services/reports/full-report.service';
 
 @Component({
-  selector: "app-master-report",
-  templateUrl: "./master-report.component.html",
-  styleUrls: ["./master-report.component.css"]
+  selector: 'app-master-report',
+  templateUrl: './master-report.component.html',
+  styleUrls: ['./master-report.component.css']
 })
 export class MasterReportComponent implements OnInit {
-  title = "ScreenForce Simple Report";
+  title = 'ScreenForce Simple Report';
   LineChart = [];
   BarChart = [];
   PieChart = [];
@@ -71,10 +71,10 @@ export class MasterReportComponent implements OnInit {
   getRandomColor(size) {
     const threshold = 20000;
     const result = new Array(size);
-    const letters = "0123456789ABCDEF".split("");
-    let red = "FF";
-    let green = "FF";
-    let blue = "FF";
+    const letters = '0123456789ABCDEF'.split('');
+    let red = 'FF';
+    let green = 'FF';
+    let blue = 'FF';
     for (let i = 0; i < 1; ) {
       const r =
         letters[Math.floor(Math.random() * 16)] +
@@ -86,12 +86,12 @@ export class MasterReportComponent implements OnInit {
         letters[Math.floor(Math.random() * 16)] +
         letters[Math.floor(Math.random() * 16)];
       const notWhite =
-        (255 - parseInt("0x" + r)) * (255 - parseInt("0x" + r)) +
-          (255 - parseInt("0x" + g)) * (255 - parseInt("0x" + g)) +
-          (255 - parseInt("0x" + b)) * (255 - parseInt("0x" + b)) >
+        (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) +
+          (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g)) +
+          (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) >
         threshold;
       if (notWhite) {
-        result[i] = "#" + r + g + b;
+        result[i] = '#' + r + g + b;
         i++;
         red = r;
         green = g;
@@ -108,20 +108,20 @@ export class MasterReportComponent implements OnInit {
           letters[Math.floor(Math.random() * 16)] +
           letters[Math.floor(Math.random() * 16)];
         const notWhite =
-          (255 - parseInt("0x" + r)) * (255 - parseInt("0x" + r)) +
-            (255 - parseInt("0x" + g)) * (255 - parseInt("0x" + g)) +
-            (255 - parseInt("0x" + b)) * (255 - parseInt("0x" + b)) >
+          (255 - parseInt('0x' + r)) * (255 - parseInt('0x' + r)) +
+            (255 - parseInt('0x' + g)) * (255 - parseInt('0x' + g)) +
+            (255 - parseInt('0x' + b)) * (255 - parseInt('0x' + b)) >
           threshold;
         const notSameasPre =
-          (parseInt("0x" + red) - parseInt("0x" + r)) *
-            (parseInt("0x" + red) - parseInt("0x" + r)) +
-            (parseInt("0x" + green) - parseInt("0x" + g)) *
-              (parseInt("0x" + green) - parseInt("0x" + g)) +
-            (parseInt("0x" + blue) - parseInt("0x" + b)) *
-              (parseInt("0x" + blue) - parseInt("0x" + b)) >
+          (parseInt('0x' + red) - parseInt('0x' + r)) *
+            (parseInt('0x' + red) - parseInt('0x' + r)) +
+            (parseInt('0x' + green) - parseInt('0x' + g)) *
+              (parseInt('0x' + green) - parseInt('0x' + g)) +
+            (parseInt('0x' + blue) - parseInt('0x' + b)) *
+              (parseInt('0x' + blue) - parseInt('0x' + b)) >
           threshold;
         if (notWhite && notSameasPre) {
-          result[i] = "#" + r + g + b;
+          result[i] = '#' + r + g + b;
           i++;
           red = r;
           green = g;
@@ -134,8 +134,8 @@ export class MasterReportComponent implements OnInit {
   }
   //formats and returns reports by date
   datelog() {
-    let newdate = moment(this.date1).format("YYYY-MM-DD");
-    let newdate2 = moment(this.date2).format("YYYY-MM-DD");
+    let newdate = moment(this.date1).format('YYYY-MM-DD');
+    let newdate2 = moment(this.date2).format('YYYY-MM-DD');
 
     this.bydate(newdate, newdate2);
   }
@@ -165,7 +165,7 @@ export class MasterReportComponent implements OnInit {
 
     for (let i = 0; i < len; i++) {
       length = this.scatterPlotResults.push({
-        x: moment(dataModel[i].screenDate).format("YYYY-MM-DD"),
+        x: moment(dataModel[i].screenDate).format('YYYY-MM-DD'),
         y: dataModel[i].compositeScore
       });
     }
@@ -175,12 +175,12 @@ export class MasterReportComponent implements OnInit {
     }
 
     //scatter
-    this.scatterChart = new Chart("Scatter", {
-      type: "scatter",
+    this.scatterChart = new Chart('Scatter', {
+      type: 'scatter',
       data: {
         datasets: [
           {
-            label: "",
+            label: '',
             data: this.scatterPlotResults,
             pointBackgroundColor: this.colors,
             pointBorderColor: this.colors,
@@ -207,11 +207,11 @@ export class MasterReportComponent implements OnInit {
         scales: {
           xAxes: [
             {
-              type: "time",
+              type: 'time',
               time: {
-                unit: "day"
+                unit: 'day'
               },
-              position: "bottom"
+              position: 'bottom'
             }
           ]
         }
@@ -235,7 +235,7 @@ export class MasterReportComponent implements OnInit {
 
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.width = "60%";
+        dialogConfig.width = '60%';
         dialogConfig.data = temp;
 
         this.dialog.open(ReportVisualComponent, dialogConfig);
