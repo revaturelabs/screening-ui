@@ -104,7 +104,7 @@ import { ReportVisualComponent } from './components/reports/report-visual/report
     ReportVisualComponent
   ],
   imports: [
-    ViolationFlagComponent,
+
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
