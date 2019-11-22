@@ -8,14 +8,16 @@ import { TrackCategoryService } from './track-category.service';
 describe('TrackCategoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule , HttpClientModule ],
+      imports: [RouterTestingModule, HttpClientModule],
 
       providers: [TrackCategoryService, UrlService]
     });
   });
 
-  it('should be created', inject([TrackCategoryService], (service: TrackCategoryService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [TrackCategoryService],
+    (service: TrackCategoryService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });
-

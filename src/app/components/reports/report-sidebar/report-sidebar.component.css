@@ -1,17 +1,15 @@
-
-.search-bar{
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 4px;
-    padding: 5px;
-    border-radius: 5px;
+.search-bar {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  padding: 5px;
+  border-radius: 5px;
 }
-ul.search-result{
-    padding-left: 0%; 
-};
+ul.search-result {
+  padding-left: 0%;
+}
 
-
-h1{
+h1 {
   background: #f26925;
   color: white;
   min-width: 260px;
@@ -21,7 +19,7 @@ h1{
   border-color: #f26925;
   text-align: center;
   font-size: 25px;
- /* white-space:nowrap; */
+  /* white-space:nowrap; */
 }
 
 .dropdown {
@@ -44,27 +42,29 @@ h1{
   text-decoration: none;
   display: block;
 }
-.dropdown-content a:hover {background-color: #f1f1f1}
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.datePicker{
+.datePicker {
   width: 100%;
   margin-top: 20px;
   margin-bottom: 4px;
   padding: 5px;
   border-radius: 5px;
 }
-.dateText{
+.dateText {
   width: 80%;
 }
 
-.dataText{
+.dataText {
   width: 80%;
 }
 
-
-
-.btn{
+.btn {
   font-size: 18px;
   margin-top: 20px;
   height: 35px;
@@ -74,7 +74,7 @@ h1{
   color: white;
   font-weight: strong;
   padding: 1px;
-} 
+}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) 
 .show {display:block;}

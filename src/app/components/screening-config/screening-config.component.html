@@ -1,20 +1,16 @@
 <div class="container">
+  <!-- NgBootstrap Tab -->
+  <ngb-tabset>
+    <ngb-tab title="Categories" id="tab-1">
+      <ng-template ngbTabContent>
+        <app-track-categories></app-track-categories>
+      </ng-template>
+    </ngb-tab>
 
-	<!-- NgBootstrap Tab -->
-	<ngb-tabset>
-
-		<ngb-tab title="Categories" id="tab-1">
-			<ng-template ngbTabContent>
-				<app-track-categories></app-track-categories>
-			</ng-template>
-		</ngb-tab>
-
-		<ngb-tab title="Tracks" id="tab-2">
-			<ng-template ngbTabContent>
-				<app-tracks></app-tracks>
-			</ng-template>
-		</ngb-tab>
-
-	</ngb-tabset>
-
+    <ngb-tab title="Tracks" id="tab-2">
+      <ng-template ngbTabContent>
+        <app-tracks></app-tracks>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 </div>

@@ -7,7 +7,6 @@ const TYPE_ARR = typeof [];
   name: 'arrToString'
 })
 export class ArrToStringPipe implements PipeTransform {
-
   /**
    * Adds spacing between elements in a string array. Specifically used for
    * the topics covered in a given week.
@@ -17,7 +16,6 @@ export class ArrToStringPipe implements PipeTransform {
    * @memberof WeeklyFeedbackComponent
    */
   transform(arr: any): string {
-
     let result = '';
 
     for (let i = 0; i < arr.length; i++) {
@@ -29,5 +27,4 @@ export class ArrToStringPipe implements PipeTransform {
 
     return result;
   }
-
 }

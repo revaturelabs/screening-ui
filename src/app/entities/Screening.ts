@@ -15,4 +15,7 @@ export class Screening {
   softSkillsVerdict: boolean;
   status: string;
   scheduledScreening: ScheduledScreening;
+
+  //new
+  track: number;
 }

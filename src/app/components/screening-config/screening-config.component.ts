@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./screening-config.component.css']
 })
 export class ScreeningConfigComponent implements OnInit {
-
   constructor() {}
   ngOnInit() {}
-
 }

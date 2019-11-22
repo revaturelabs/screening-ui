@@ -13,7 +13,10 @@ describe('ScheduleScreeningService', () => {
     });
   });
 
-  it('should be created', inject([ScheduledScreeningService], (service: ScheduledScreeningService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [ScheduledScreeningService],
+    (service: ScheduledScreeningService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

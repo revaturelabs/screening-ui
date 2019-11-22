@@ -17,10 +17,10 @@ import { ScheduledScreening } from '../../entities/ScheduledScreening';
   feedback on the candidates introduction (optional).
 */
 export class IntroductionComponent implements OnInit {
-
   constructor(
     private screeningStateService: ScreeningStateService,
-    private screeningService: ScreeningService) { }
+    private screeningService: ScreeningService
+  ) {}
 
   public currentScreening: ScheduledScreening;
   public comment: string;
@@ -38,5 +38,4 @@ export class IntroductionComponent implements OnInit {
     // Send the comments to the appropriate service method saves them to the DB
     this.screeningService.createScreening();
   }
-
 }

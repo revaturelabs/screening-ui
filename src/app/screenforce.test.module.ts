@@ -37,7 +37,7 @@ import { TracksComponent } from './components/tracks/tracks.component';
 import { TrackCategoriesComponent } from './components/track-categories/track-categories.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 // import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -66,10 +66,10 @@ export const Dependencies = {
     ViolationFlagComponent,
     TracksComponent,
     TrackCategoriesComponent,
-    QuestionComponent,
+    QuestionComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true },  // interceptor for all HTTP requests
+    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }, // interceptor for all HTTP requests
     QuestionsService,
     CategoriesService,
     ScreeningStateService,
@@ -85,12 +85,8 @@ export const Dependencies = {
     UrlService,
     AuthenticationService
   ],
-  bootstrap: [
-  ],
-  exports: [
-    ViolationFlagComponent,
-    PaginatePipe,
-  ],
-  entryComponents: [
-  ],
+  bootstrap: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  exports: [ViolationFlagComponent, PaginatePipe],
+  entryComponents: []
 };

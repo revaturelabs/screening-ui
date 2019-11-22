@@ -12,8 +12,6 @@ import { AlertsService } from '../../services/alert-service/alerts.service';
 import { UrlService } from '../../services/urls/url.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
-
-
 // Author: David Gustafson
 
 // Cannot test: Appears to be error on component side
@@ -26,10 +24,18 @@ describe('PassFailComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [PassFailComponent, ViolationFlagComponent],
-      providers: [SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningService, ScreeningStateService,
-        ViolationTypeService, AlertsService, UrlService, TracksService]
-    })
-      .compileComponents();
+      providers: [
+        SoftSkillsViolationService,
+        HttpClient,
+        HttpHandler,
+        ScreeningService,
+        ScreeningStateService,
+        ViolationTypeService,
+        AlertsService,
+        UrlService,
+        TracksService
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

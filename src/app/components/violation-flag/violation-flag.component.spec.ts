@@ -9,7 +9,7 @@ import { ViolationTypeService } from '../../services/violationType/violationType
 import { AlertsService } from '../../services/alert-service/alerts.service';
 import { ViolationType } from '../../entities/ViolationType';
 import { UrlService } from '../../services/urls/url.service';
-import { RouterTestingModule } from '@angular/router/testing'; 
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Author: David Gustafson
 
@@ -22,11 +22,18 @@ describe('ViolationFlagComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [ ViolationFlagComponent ],
-      providers: [ SoftSkillsViolationService, HttpClient, HttpHandler, ScreeningStateService,
-      TracksService, ViolationTypeService, AlertsService, UrlService ]
-    })
-    .compileComponents();
+      declarations: [ViolationFlagComponent],
+      providers: [
+        SoftSkillsViolationService,
+        HttpClient,
+        HttpHandler,
+        ScreeningStateService,
+        TracksService,
+        ViolationTypeService,
+        AlertsService,
+        UrlService
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -57,18 +64,4 @@ describe('ViolationFlagComponent', () => {
     component.flagChange();
     expect(component.flagEvent).not.toContain('update');
   });
-
-
-
-
-
-//This needs to have a mock/spy service added to it
-
-  // it('should submit violation', () => {
-  //   localStorage.setItem('screeningID', '1');
-  //   component.submitViolation({} as ViolationType, 'hi');
-
-  //   expect(component.flagEvent).not.toContain('update');
-  // });
-
 });

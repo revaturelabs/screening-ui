@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 // Classes
@@ -16,7 +16,6 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 // npm install ngx-pagination --save
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { SearchPipe } from '../../pipes/search.pipe';
-
 
 @Component({
   selector: 'app-candidates-screening-list',
@@ -74,7 +73,6 @@ export class CandidatesScreeningListComponent implements OnInit {
       window.location.reload(true);
     }
     this.scheduledScreenings = this.scheduledScreeningService.getScheduledScreenings();
-
   }
 
   // Reveals the "Begin Interview" prompt
@@ -88,7 +86,9 @@ export class CandidatesScreeningListComponent implements OnInit {
 
   // clicking "Begin Interview" will save the candidate for later use
   confirmSelectedCandidate(): void {
-    this.screeningStateService.setCurrentScreening(this.selectedScheduledScreening);
+    this.screeningStateService.setCurrentScreening(
+      this.selectedScheduledScreening
+    );
   }
 
   // clicking "Begin Interview" will create a new screening entry in the database
@@ -110,11 +110,12 @@ export class CandidatesScreeningListComponent implements OnInit {
       .subscribe(
         // take the data from the response from the database
         data => {
-        // and save the screening ID as a cookie to localStorage.
-        // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
-        // localStorage.setItem('trackID', this.selectedScheduledScreening.track.trackId.toString());
-        screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
-        trackId = this.selectedScheduledScreening.track.trackId.toString();
-      });
+          // and save the screening ID as a cookie to localStorage.
+          // localStorage.setItem('screeningID', this.selectedScheduledScreening.scheduledScreeningId.toString());
+          // localStorage.setItem('trackID', this.selectedScheduledScreening.track.trackId.toString());
+          screeningId = this.selectedScheduledScreening.scheduledScreeningId.toString();
+          trackId = this.selectedScheduledScreening.track.trackId.toString();
+        }
+      );
   }
 }

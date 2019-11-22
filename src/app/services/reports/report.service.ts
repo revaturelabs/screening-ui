@@ -10,16 +10,15 @@ import { Screening } from '../../entities/Screening';
   providedIn: 'root'
 })
 export class ReportService {
-  constructor(
-    private urlService: UrlService,
-    private http: HttpClient
-  ) { }
+  constructor(private urlService: UrlService, private http: HttpClient) {}
 
   getScreenersByPartialEmail(partialEmail: string): Observable<string[]> {
     if (partialEmail === '') {
       return of([]);
     } else {
-      return this.http.get<string[]>(this.urlService.reports.getScreenersByPartialEmail(partialEmail));
+      return this.http.get<string[]>(
+        this.urlService.reports.getScreenersByPartialEmail(partialEmail)
+      );
     }
   }
 
@@ -27,21 +26,32 @@ export class ReportService {
     return this.http.get<Screening>(this.urlService.reports.getAllScreeners());
   }
 
-  getScreenerDataByWeeks(startDate: string, endDate: string, email: string): Observable<ReportData> {
+  getScreenerDataByWeeks(
+    startDate: string,
+    endDate: string,
+    email: string
+  ): Observable<ReportData> {
     if (startDate === '' || email === '') {
       return null;
     }
     if (endDate === '') {
-      endDate = stringifyDate(new Date);
+      endDate = stringifyDate(new Date());
     }
     // this line exists because all the data on the server is more than 1yr old
     // weeks = weeks + 52;
-    return this.http.get<ReportData>(this.urlService.reports.getScreenerDataByWeeks(startDate, endDate, email));
+    return this.http.get<ReportData>(
+      this.urlService.reports.getScreenerDataByWeeks(startDate, endDate, email)
+    );
   }
 
-  getAllScreenerDataByWeeks(startDate: string, endDate: string): Observable<ReportData> {
+  getAllScreenerDataByWeeks(
+    startDate: string,
+    endDate: string
+  ): Observable<ReportData> {
     // this line cause all data on server more than 1yr old
     // weeks = weeks + 52;
-    return this.http.get<ReportData>(this.urlService.reports.getAllScreenerDataByWeeks(startDate, endDate));
+    return this.http.get<ReportData>(
+      this.urlService.reports.getAllScreenerDataByWeeks(startDate, endDate)
+    );
   }
 }

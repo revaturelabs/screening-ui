@@ -1,24 +1,26 @@
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HighchartsChartModule} from 'highcharts-angular';
+import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Ng5SliderModule } from 'ng5-slider';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
-import {SpringInterceptor} from './interceptors/spring.interceptor';
+import { SpringInterceptor } from './interceptors/spring.interceptor';
 
 import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { AverageCategoryTypeComponent } from './components/reports/average-category-type/average-category-type.component';
-import { AverageTrackComponent} from './components/reports/average-track/average-track.component';
-import { CandidateComponent } from './components/candidate/candidate.component';
+import { AverageTrackComponent } from './components/reports/average-track/average-track.component';
 import { CandidatesScreeningListComponent } from './components/candidates-screening-list/candidates-screening-list.component';
 import { FinalReportComponent } from './components/final-report/final-report.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
@@ -34,7 +36,6 @@ import { TracksComponent } from './components/tracks/tracks.component';
 import { ViolationsByTypeComponent } from './components/reports/violations-by-type/violations-by-type.component';
 import { ViolationFlagComponent } from './components/violation-flag/violation-flag.component';
 import { LoginComponent } from './components/login/login.component';
-
 
 // Services
 import { AlertsService } from './services/alert-service/alerts.service';
@@ -52,12 +53,11 @@ import { TrackCategoryService } from './services/track-category/track-category.s
 
 import { SimpleReportService } from './services/reports/simple-report.service';
 
-
 import { SoftSkillsService } from './services/soft-skills/soft-skills.service';
 import { SoftSkillsViolationService } from './services/soft-skills-violation/soft-skills-violation.service';
 import { UrlService } from './services/urls/url.service';
 import { ViolationTypeService } from './services/violationType/violationType.service';
-import {AuthenticationService} from './services/authentication/authentication.service';
+import { AuthenticationService } from './services/authentication/authentication.service';
 import { AmplifyService } from 'aws-amplify-angular';
 
 // Pipes
@@ -71,6 +71,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TierPipe } from './pipes/tier-pipe';
 
 import { RoleGuard } from './role-guard';
+import { ReportVisualComponent } from './components/reports/report-visual/report-visual.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,6 @@ import { RoleGuard } from './role-guard';
     TrackCategoriesComponent,
     TracksComponent,
     ViolationFlagComponent,
-    CandidateComponent,
     AverageTrackComponent,
     LoginComponent,
     ArrToStringPipe,
@@ -100,7 +100,8 @@ import { RoleGuard } from './role-guard';
     AverageCategoryTypeComponent,
     MasterReportComponent,
     ReportSidebarComponent,
-    ViolationsByTypeComponent
+    ViolationsByTypeComponent,
+    ReportVisualComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -111,9 +112,14 @@ import { RoleGuard } from './role-guard';
     NgbModule,
     NgxPaginationModule,
     Ng5SliderModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    AmplifyAngularModule
+    AmplifyAngularModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     AlertsService,
@@ -126,20 +132,19 @@ import { RoleGuard } from './role-guard';
     ScheduledScreeningService,
     ScreeningService,
     RoleGuard,
-
     TracksService,
     TrackCategoryService,
-
     SimpleReportService,
-    
     SoftSkillsService,
     SoftSkillsViolationService,
     UrlService,
     ViolationTypeService,
     AuthenticationService,
     AmplifyService,
-     { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: SpringInterceptor, multi: true }
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [ReportVisualComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
